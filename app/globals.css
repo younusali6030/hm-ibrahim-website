@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Premium industrial dark palette — primary orange for CTAs and trust */
+    --background: 220 35% 6%;
+    --foreground: 210 40% 96%;
+    --card: 222 30% 10%;
+    --card-foreground: 210 36% 96%;
+    --primary: 28 90% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 22% 16%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 220 20% 16%;
+    --muted-foreground: 220 15% 65%;
+    --accent: 220 26% 18%;
+    --accent-foreground: 210 40% 96%;
+    --destructive: 0 84% 62%;
+    --border: 220 26% 24%;
+    --input: 220 26% 24%;
+    --ring: 28 90% 52%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image: radial-gradient(circle at top left, rgba(248, 250, 252, 0.05), transparent 55%),
+      radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.06), transparent 55%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-ring;
+}
