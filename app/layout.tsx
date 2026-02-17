@@ -25,7 +25,6 @@ export const metadata: Metadata = {
   ],
   metadataBase: new URL(baseUrl),
   alternates: { canonical: baseUrl },
-  robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "en_IN",
