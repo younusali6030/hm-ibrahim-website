@@ -119,7 +119,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       "Fasteners, nails, bolts, nuts",
     ],
     useCases: ["Site work", "Digging and demolition", "Welding and fabrication", "Tiling and finishing", "General construction"],
-    productSlugs: ["crowbars-pickaxes", "sponge", "welding-rods", "fasteners-nails", "perforated-sheets"],
+    productSlugs: ["crowbars-pickaxes", "sponge", "welding-rods", "fasteners-nails", "perforated-sheets", "cutting-discs-grinding-wheels"],
   },
 };
 
