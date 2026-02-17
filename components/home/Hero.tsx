@@ -22,6 +22,9 @@ const TRUST_ITEMS = [
 export function Hero() {
   const showBrandStrip =
     site.authorizedDealer.enabled || (site.inHouseBrandsEnabled && inHouseBrands.length >= 2);
+  // For the hero strip, we want to avoid showing Tata twice.
+  // Tata Wiron already appears via the authorizedDealer badge, so we only show CM and Border here.
+  const heroBrands = inHouseBrands.filter((brand) => brand.id !== "tata");
 
   return (
     <section
@@ -102,7 +105,7 @@ export function Hero() {
                   />
                 </Link>
               )}
-              {inHouseBrands.map((brand) => (
+              {heroBrands.map((brand) => (
                 <Link
                   key={brand.id}
                   href={`/brands/${brand.id}`}
