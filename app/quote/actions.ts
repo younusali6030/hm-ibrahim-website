@@ -2,7 +2,7 @@
 
 import { site } from "@/content/site";
 
-/** Quote requests are sent to business WhatsApp (+919993078654) via a prefilled link; no email required. */
+/** Quote requests are sent to business WhatsApp (+919826053563) via a prefilled link; no email required. */
 
 export async function submitQuote(formData: FormData): Promise<{ success?: boolean; error?: string }> {
   const honeypot = formData.get("website")?.toString();

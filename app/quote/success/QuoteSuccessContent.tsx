@@ -38,7 +38,7 @@ export function QuoteSuccessContent() {
               aria-label="Send quote to WhatsApp"
             >
               <MessageCircle className="h-5 w-5" />
-              Send to WhatsApp (+91 9993078654)
+              Send to WhatsApp ({site.phone})
             </a>
           </Button>
           <Button asChild variant="outline">

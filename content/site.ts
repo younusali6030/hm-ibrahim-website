@@ -31,15 +31,15 @@ export const site = {
   landmark: "Opposite Tijori Gali",
 
   /** Primary phone (used for Call button, WhatsApp, etc.) */
-  phone: "+91 9993078654",
+  phone: "+91 9826053563",
   /** Primary contact for above phone/email */
-  phoneLabel: "Shoeb Ali",
+  phoneLabel: "Akbar Ali",
   /** Alternate phone */
-  phoneAlt: "+91 9826053563",
-  phoneAltLabel: "Akbar Ali",
+  phoneAlt: "+91 9993078654",
+  phoneAltLabel: "Shoeb Ali",
 
   /** WhatsApp number (with country code, no +). Used for wa.me links */
-  whatsapp: "919993078654",
+  whatsapp: "919826053563",
 
   /** Primary business email for quote/contact form submissions */
   email: "shoebali786@gmail.com",
@@ -79,7 +79,7 @@ export const site = {
     note: "Authorized Tata dealer • Tata products available on request",
   },
 
-  /** In-house brands (CM, Boarder) for Barbed Wire & Chain Link Fencing */
+  /** Signature brands (CM, Boarder) for Barbed Wire & Chain Link Fencing */
   inHouseBrandsEnabled: true,
 
   /** Google rating badge (hero). Update with real profile URL when available. */

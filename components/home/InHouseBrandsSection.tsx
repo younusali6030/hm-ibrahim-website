@@ -19,7 +19,7 @@ export function InHouseBrandsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Our In-house Brands
+          Our Signature Brands
         </motion.h2>
         <motion.p
           className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground"

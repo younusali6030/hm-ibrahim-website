@@ -1,5 +1,5 @@
 /**
- * In-house brands (CM, Boarder). Used for brand picker, logos, and product variants.
+ * Signature brands (CM, Boarder). Used for brand picker, logos, and product variants.
  */
 
 export type BrandId = "cm" | "boarder";
@@ -27,7 +27,7 @@ export const inHouseBrands: Brand[] = [
     id: "cm",
     name: "CM",
     logo: "/brands/cm-logo.png",
-    tagline: "In-house brand",
+    tagline: "Our signature brand",
     productsSupported: ["barbed-wire", "chain-link-fencing"],
     pageContent: {
       title: "CM (Chote Mullaji)",
@@ -39,7 +39,7 @@ export const inHouseBrands: Brand[] = [
     id: "boarder",
     name: "Boarder",
     logo: "/brands/boarder-logo.png",
-    tagline: "In-house brand",
+    tagline: "Our signature brand",
     productsSupported: ["barbed-wire", "chain-link-fencing"],
     pageContent: {
       title: "Boarder",
