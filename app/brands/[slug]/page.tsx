@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 type Props = { params: Promise<{ slug: string }> };
 
-const validSlugs: BrandId[] = ["cm", "boarder"];
+const validSlugs: BrandId[] = ["cm", "boarder", "national"];
 
 export function generateStaticParams() {
   return validSlugs.map((slug) => ({ slug }));

@@ -7,7 +7,9 @@ import { inHouseBrands } from "@/content/brands";
 import { site } from "@/content/site";
 
 export function InHouseBrandsSection() {
-  if (!site.inHouseBrandsEnabled || inHouseBrands.length === 0) return null;
+  // Only show signature brands (CM, Border) here — exclude Tata and National (quality local)
+  const signatureBrands = inHouseBrands.filter((b) => b.id !== "tata" && b.id !== "national");
+  if (!site.inHouseBrandsEnabled || signatureBrands.length === 0) return null;
 
   return (
     <section className="border-y border-border bg-muted/30 py-16 md:py-20" aria-labelledby="inhouse-brands-heading">
@@ -31,7 +33,7 @@ export function InHouseBrandsSection() {
           Barbed Wire & Chain Link Fencing (Jali) in trusted brands
         </motion.p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto">
-          {inHouseBrands.map((brand, i) => (
+          {signatureBrands.map((brand, i) => (
             <motion.div
               key={brand.id}
               initial={{ opacity: 0, y: 20 }}

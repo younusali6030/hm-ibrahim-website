@@ -44,6 +44,24 @@ export default function AboutPage() {
             </p>
           </section>
 
+          <section className="mt-10 pt-10 border-t border-border" aria-labelledby="leadership-heading">
+            <h2 id="leadership-heading" className="text-2xl font-semibold text-foreground">
+              Our Leadership & Legacy
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              HM Ibrahim & Co. was founded by Late H.M. Ibrahim, whose vision laid the foundation of trust, quality, and long-term relationships in the steel and hardware trade.
+            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              The firm was later managed by Late Abedeali Bhai Dewaswala (CM) (1924–2025). Under his leadership, the company strengthened its reputation across Indore and surrounding regions, building deep customer relationships and operational discipline.
+            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              The command was then entrusted to Akbar Ali, who built a highly skilled and trustworthy sales and production team, strengthening internal systems and expanding the firm&apos;s reach.
+            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Today, the firm is scaling under the supervision of Shoeb Ali, who brings modern strategy, structured operations, and forward-thinking execution to this hereditary business — ensuring the HM Ibrahim & Co. name reaches every household while preserving its legacy of trust.
+            </p>
+          </section>
+
           <section aria-labelledby="values-heading">
             <h2 id="values-heading" className="text-2xl font-semibold text-foreground">
               Our Values

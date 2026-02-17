@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { categories } from "@/content/products";
-import { getBrandById } from "@/content/brands";
+import { getBrandById, type BrandId } from "@/content/brands";
 import { submitQuote } from "@/app/quote/actions";
 
 const QUOTE_STORAGE_KEY = "quoteWhatsAppMessage";
@@ -57,7 +57,7 @@ export function QuoteForm() {
   const prefilledProduct = searchParams.get("product") ?? "";
   const prefilledBrand = searchParams.get("brand") ?? "";
 
-  const selectedBrand = prefilledBrand ? getBrandById(prefilledBrand as "cm" | "boarder") : null;
+  const selectedBrand = prefilledBrand ? getBrandById(prefilledBrand as BrandId) : null;
   const itemsDefault = prefilledProduct
     ? (selectedBrand ? `${prefilledProduct} (${selectedBrand.name} brand)` : prefilledProduct)
     : "";
