@@ -29,13 +29,13 @@ export function ProductBrandPicker({ productSlug, selectedBrandId, onSelect, cla
               selectedBrandId === brand.id ? "border-primary ring-2 ring-primary/20" : "border-border"
             }`}
           >
-            <span className="relative h-12 w-24 shrink-0">
+            <span className="relative h-12 w-24 shrink-0 overflow-hidden rounded-md bg-muted/50">
               <Image
                 src={brand.logo}
                 alt={brand.name}
-                width={96}
-                height={48}
-                className="object-contain object-left"
+                fill
+                className="object-contain object-center"
+                sizes="96px"
               />
             </span>
             <span className="font-medium text-foreground">{brand.name}</span>

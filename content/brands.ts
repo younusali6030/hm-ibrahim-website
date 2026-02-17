@@ -63,7 +63,7 @@ export const inHouseBrands: Brand[] = [
   },
   {
     id: "national",
-    name: "National",
+    name: "Others",
     logo: "/products/national-barbed-wire-1.png",
     tagline: "Quality local brand",
     productsSupported: ["barbed-wire"],
