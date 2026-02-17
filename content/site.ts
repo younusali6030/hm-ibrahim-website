@@ -70,7 +70,18 @@ export const site = {
   priceRange: "$$",
 
   /** Areas served for SEO / schema */
-  areasServed: ["Indore", "Dewas", "Ujjain", "Mhow", "Pithampur", "Nearby areas"],
+  areasServed: [
+    "Indore",
+    "Dewas",
+    "Ujjain",
+    "Mhow",
+    "Pithampur",
+    "Nearby areas",
+    "Madhya Pradesh (MP)",
+    "Maharashtra",
+    "Gujarat",
+    "Rajasthan",
+  ],
 
   /** Authorized dealer information */
   authorizedDealer: {
