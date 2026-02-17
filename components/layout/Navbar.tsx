@@ -25,7 +25,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur print:hidden supports-[backdrop-filter]:bg-background/80">
-      <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label="Main navigation">
+      <nav className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 md:px-6 max-w-7xl" aria-label="Main navigation">
         <Link
           href="/"
           className="flex items-center gap-2 font-semibold text-foreground"
@@ -90,15 +90,15 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-border bg-card md:hidden"
+            className="border-t border-border bg-card md:hidden overflow-hidden"
           >
-            <ul className="container flex flex-col gap-1 px-4 py-4">
+            <ul className="flex flex-col gap-0 px-4 py-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className={cn(
-                      "block rounded-md px-3 py-2 text-sm font-medium",
+                      "block rounded-md px-3 py-3 text-sm font-medium min-h-[44px] flex items-center",
                       pathname === link.href
                         ? "bg-accent text-accent-foreground"
                         : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
@@ -109,15 +109,16 @@ export function Navbar() {
                   </Link>
                 </li>
               ))}
-              <li className="mt-2 flex gap-2">
-                <Button asChild className="flex-1" size="sm" variant="outline">
-                  <a href={`tel:${site.phone.replace(/\s/g, "")}`}>Call</a>
+              <li className="mt-2 flex gap-2 pt-2 border-t border-border">
+                <Button asChild className="flex-1 min-h-[44px]" size="sm" variant="outline">
+                  <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="flex items-center justify-center">Call</a>
                 </Button>
-                <Button asChild className="flex-1" size="sm">
+                <Button asChild className="flex-1 min-h-[44px]" size="sm">
                   <a
                     href={getWhatsAppLink(site.whatsapp, "Hi, I'm interested in your products. Please share price/availability.")}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="flex items-center justify-center"
                   >
                     WhatsApp
                   </a>

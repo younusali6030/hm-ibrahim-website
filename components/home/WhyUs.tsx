@@ -39,7 +39,7 @@ const points = [
 export function WhyUs() {
   return (
     <section className="py-16 md:py-20" aria-labelledby="why-heading">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl min-w-0">
         <motion.h2
           id="why-heading"
           className="text-center text-3xl font-bold text-foreground md:text-4xl"

@@ -10,7 +10,7 @@ import { ImageWithFallback } from "@/components/ImageWithFallback";
 export function CategoryGrid() {
   return (
     <section className="py-16 md:py-20" aria-labelledby="categories-heading">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl min-w-0">
         <motion.h2
           id="categories-heading"
           className="text-center text-3xl font-bold text-foreground md:text-4xl"
@@ -29,7 +29,7 @@ export function CategoryGrid() {
         >
           Iron, steel, pipes, wire, mesh, and hardware for construction and fabrication
         </motion.p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((cat, i) => {
             const Icon = getIcon(cat.icon);
             return (
@@ -53,7 +53,8 @@ export function CategoryGrid() {
                             alt={cat.imageAlt || `${cat.name} category image`}
                             fill
                             className="object-cover"
-                            sizes="(max-width: 768px) 100vw, 25vw"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                            loading="lazy"
                           />
                           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                         </div>

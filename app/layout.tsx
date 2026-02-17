@@ -49,9 +49,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className="font-sans min-h-screen flex flex-col">
+      <body className="font-sans min-h-screen flex flex-col min-w-0">
         <Navbar />
-        <main className="flex-1 pb-20 md:pb-0">{children}</main>
+        <main className="flex-1 w-full min-w-0 pb-20 md:pb-0">{children}</main>
         <Footer />
         <MobileStickyCTA />
         <JsonLd />

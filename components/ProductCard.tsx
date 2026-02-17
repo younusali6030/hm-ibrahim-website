@@ -40,7 +40,8 @@ export function ProductCard({ product, index = 0 }: Props) {
               alt={imgAlt}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+              loading="lazy"
             />
             {categoryName && (
               <span className="absolute bottom-2 left-2 rounded bg-background/80 px-2 py-0.5 text-xs text-muted-foreground">

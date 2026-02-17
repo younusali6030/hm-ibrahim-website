@@ -29,10 +29,12 @@
 
   html {
     @apply scroll-smooth;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
     background-image: radial-gradient(circle at top left, rgba(248, 250, 252, 0.05), transparent 55%),
       radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.06), transparent 55%);
   }

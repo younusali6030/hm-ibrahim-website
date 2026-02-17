@@ -41,7 +41,7 @@ export function ProductsClient() {
 
   return (
     <>
-      <div className="container mx-auto px-4 py-12 md:py-16">
+      <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 max-w-7xl">
         <h1 className="text-4xl font-bold text-foreground md:text-5xl">Products</h1>
         <p className="mt-4 max-w-2xl text-muted-foreground">
           Browse our categories and products. Use search and filters to find what you need, then
@@ -130,7 +130,7 @@ export function ProductsClient() {
           {filteredProducts.length === 0 ? (
             <p className="mt-4 text-muted-foreground">No products match your search.</p>
           ) : (
-            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {filteredProducts.map((product, i) => (
                 <ProductCard
                   key={product.slug}

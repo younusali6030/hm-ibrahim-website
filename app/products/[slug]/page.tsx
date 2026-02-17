@@ -65,7 +65,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const whatsAppMessage = `Hi, I'm interested in ${product.name}.${sizeInfo} Please share price/availability.`;
 
   return (
-    <div className="container mx-auto px-4 py-12 md:py-16">
+    <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 max-w-7xl min-w-0">
       <JsonLdBreadcrumb items={breadcrumbItems} />
       <script
         type="application/ld+json"

@@ -98,7 +98,7 @@ export function QuoteForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto mt-10 max-w-2xl space-y-6">
+    <form onSubmit={handleSubmit} className="mx-auto mt-10 w-full max-w-2xl space-y-6">
       <input
         type="text"
         name="website"
@@ -111,24 +111,24 @@ export function QuoteForm() {
       />
       {prefilledBrand && <input type="hidden" name="brand" value={prefilledBrand} />}
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="name">Name *</Label>
-          <Input id="name" name="name" required placeholder="Your name" className="mt-1" />
+          <Input id="name" name="name" required placeholder="Your name" className="mt-1 w-full min-h-[44px]" />
         </div>
-        <div>
+        <div className="space-y-2">
           <Label htmlFor="phone">Phone *</Label>
-          <Input id="phone" name="phone" type="tel" required placeholder="10-digit mobile" className="mt-1" />
+          <Input id="phone" name="phone" type="tel" required placeholder="10-digit mobile" className="mt-1 w-full min-h-[44px]" />
         </div>
       </div>
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="email">Email *</Label>
-        <Input id="email" name="email" type="email" required placeholder="you@example.com" className="mt-1" />
+        <Input id="email" name="email" type="email" required placeholder="you@example.com" className="mt-1 w-full min-h-[44px]" />
       </div>
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="customerType">Customer type</Label>
         <Select value={customerType} onValueChange={setCustomerType}>
-          <SelectTrigger id="customerType" className="mt-1">
+          <SelectTrigger id="customerType" className="mt-1 w-full min-h-[44px]">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent>
@@ -150,10 +150,10 @@ export function QuoteForm() {
           </div>
         </div>
       )}
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="category">Product category</Label>
         <Select value={category} onValueChange={setCategory}>
-          <SelectTrigger id="category" className="mt-1">
+          <SelectTrigger id="category" className="mt-1 w-full min-h-[44px]">
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
@@ -165,25 +165,25 @@ export function QuoteForm() {
           </SelectContent>
         </Select>
       </div>
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="items">Items / products needed *</Label>
         <Textarea
           id="items"
           name="items"
           required
           placeholder="e.g. TMT bars 12mm, MS angles 50x50, binding wire"
-          className="mt-1 min-h-[100px]"
+          className="mt-1 w-full min-h-[100px]"
           defaultValue={itemsDefault}
         />
       </div>
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="quantity">Quantity (approx.)</Label>
-        <Input id="quantity" name="quantity" placeholder="e.g. 5 tonnes, 100 kg" className="mt-1" />
+        <Input id="quantity" name="quantity" placeholder="e.g. 5 tonnes, 100 kg" className="mt-1 w-full min-h-[44px]" />
       </div>
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="delivery">Delivery / pickup preference</Label>
         <Select value={delivery} onValueChange={setDelivery}>
-          <SelectTrigger id="delivery" className="mt-1">
+          <SelectTrigger id="delivery" className="mt-1 w-full min-h-[44px]">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent>
@@ -193,9 +193,9 @@ export function QuoteForm() {
           </SelectContent>
         </Select>
       </div>
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="notes">Additional notes</Label>
-        <Textarea id="notes" name="notes" placeholder="Any other details" className="mt-1 min-h-[80px]" />
+        <Textarea id="notes" name="notes" placeholder="Any other details" className="mt-1 w-full min-h-[80px]" />
       </div>
 
       {error && (
@@ -204,7 +204,7 @@ export function QuoteForm() {
         </p>
       )}
 
-      <Button type="submit" disabled={loading} className="w-full sm:w-auto">
+      <Button type="submit" disabled={loading} className="w-full min-h-[48px] text-base">
         {loading ? "Sending..." : "Submit quote request"}
       </Button>
     </form>

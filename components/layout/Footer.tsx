@@ -26,8 +26,8 @@ const indoreLinks = [
 export function Footer() {
   return (
     <footer className="border-t border-border bg-card print:hidden">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+      <div className="container mx-auto px-4 md:px-6 py-12 max-w-7xl">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           <div>
             <p className="text-lg font-semibold text-foreground">
               <span className="text-primary">HM</span> Ibrahim & Co
@@ -63,7 +63,7 @@ export function Footer() {
               <li>
                 <a
                   href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-2 hover:text-primary"
+                  className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                   {site.phone}
@@ -74,7 +74,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`tel:${String(site.phoneAlt).replace(/\s/g, "")}`}
-                    className="flex items-center gap-2 hover:text-primary"
+                    className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center"
                   >
                     <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                     {site.phoneAlt}
@@ -87,7 +87,7 @@ export function Footer() {
                   href={getWhatsAppLink(site.whatsapp)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-primary"
+                  className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center"
                 >
                   WhatsApp
                 </a>
@@ -95,7 +95,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="flex items-center gap-2 hover:text-primary"
+                  className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center break-all"
                 >
                   <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                   {site.email}
@@ -106,7 +106,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`mailto:${site.emailAlt}`}
-                    className="flex items-center gap-2 hover:text-primary"
+                    className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center break-all"
                   >
                     <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                     {site.emailAlt}

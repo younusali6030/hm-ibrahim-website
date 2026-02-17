@@ -10,6 +10,12 @@ import type { Category } from "@/content/products";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { ProductImageGallery } from "@/components/ProductImageGallery";
 import { ProductBrandPicker } from "@/components/product/ProductBrandPicker";
 import { LookingForMoreSection } from "@/components/LookingForMoreSection";
@@ -48,8 +54,18 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
     ? `/quote?product=${product.slug}&category=${product.categorySlug}&brand=${selectedBrandId}`
     : `/quote?product=${product.slug}&category=${product.categorySlug}`;
 
+  const hasSpecs = (displaySpecs?.length ?? 0) > 0 || product.tataOfficial || product.tataAvailable || category?.slug === "wire-mesh";
+  const accordionDefaults = ["specs", "sizes", "materials", "uses", "variants"].filter((key) => {
+    if (key === "specs") return hasSpecs;
+    if (key === "sizes") return displaySizes && displaySizes.length > 0;
+    if (key === "materials") return displayMaterials && displayMaterials.length > 0;
+    if (key === "uses") return displayUseCases && displayUseCases.length > 0;
+    if (key === "variants") return product.variants && product.variants.length > 0;
+    return false;
+  });
+
   return (
-    <div className="grid gap-8 lg:grid-cols-2">
+    <div className="grid gap-8 lg:grid-cols-2 min-w-0">
       <ProductImageGallery
         key={`${product.slug}-${selectedBrandId ?? "default"}`}
         images={images}
@@ -58,9 +74,9 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
         productSlug={product.slug}
       />
 
-      <div>
+      <div className="min-w-0">
         <div>
-          <h1 className="text-3xl font-bold text-foreground md:text-4xl">{product.name}</h1>
+          <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">{product.name}</h1>
           {category && (
             <p className="mt-2 text-muted-foreground">{category.name}</p>
           )}
@@ -76,92 +92,110 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           />
         )}
 
-        {(displaySpecs?.length ?? 0) > 0 || product.tataOfficial || product.tataAvailable || category?.slug === "wire-mesh" ? (
-          <div className="mt-6">
-            <h2 className="text-lg font-semibold text-foreground">Specifications</h2>
-            <dl className="mt-2 space-y-2">
-                {product.tataOfficial && (
-                  <div className="flex gap-2">
-                    <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
-                    <dd className="flex items-center gap-2 text-foreground">
-                      <span className="relative h-[18px] w-9 shrink-0">
-                        <Image src="/brands/tata.svg" alt="" width={36} height={18} className="object-contain" />
-                      </span>
-                      <span>Tata products available on request (Authorized Dealer).</span>
-                    </dd>
-                  </div>
-                )}
-                {product.tataAvailable && !product.tataOfficial && (
-                  <div className="flex gap-2">
-                    <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
-                    <dd className="text-foreground">Tata product available on request.</dd>
-                  </div>
-                )}
-                {category?.slug === "wire-mesh" && !product.tataOfficial && !product.tataAvailable && (
-                  <div className="flex gap-2">
-                    <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
-                    <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
-                  </div>
-                )}
-                {category?.slug === "wire-mesh" && (product.tataOfficial || product.tataAvailable) && (
-                  <div className="flex gap-2">
-                    <dt className="shrink-0 text-muted-foreground">Brands:</dt>
-                    <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
-                  </div>
-                )}
-                {displaySpecs?.map((spec) => (
-                <div key={spec.label} className="flex gap-2">
-                  <dt className="text-muted-foreground">{spec.label}:</dt>
-                  <dd className="text-foreground">{spec.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        ) : null}
-
-        {displaySizes && displaySizes.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-lg font-semibold text-foreground">Sizes & Thickness</h2>
-            <ul className="mt-2 list-inside list-disc text-muted-foreground">
-              {displaySizes.map((size) => (
-                <li key={size}>{size}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {displayMaterials && displayMaterials.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-lg font-semibold text-foreground">Materials / Finish</h2>
-            <ul className="mt-2 list-inside list-disc text-muted-foreground">
-              {displayMaterials.map((m) => (
-                <li key={m}>{m}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {product.variants && product.variants.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-lg font-semibold text-foreground">Variants</h2>
-            <ul className="mt-2 list-inside list-disc text-muted-foreground">
-              {product.variants.map((v) => (
-                <li key={v}>{v}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {displayUseCases && displayUseCases.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-lg font-semibold text-foreground">Common Uses</h2>
-            <ul className="mt-2 list-inside list-disc text-muted-foreground">
-              {displayUseCases.map((u) => (
-                <li key={u}>{u}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <Accordion type="multiple" defaultValue={accordionDefaults} className="mt-6 w-full">
+          {hasSpecs && (
+            <AccordionItem value="specs" className="border-b border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+                Specifications
+              </AccordionTrigger>
+              <AccordionContent>
+                <dl className="space-y-2 pb-2">
+                  {product.tataOfficial && (
+                    <div className="flex flex-wrap gap-2">
+                      <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
+                      <dd className="flex items-center gap-2 text-foreground">
+                        <span className="relative h-[18px] w-9 shrink-0">
+                          <Image src="/brands/tata.svg" alt="" width={36} height={18} className="object-contain" />
+                        </span>
+                        <span>Tata products available on request (Authorized Dealer).</span>
+                      </dd>
+                    </div>
+                  )}
+                  {product.tataAvailable && !product.tataOfficial && (
+                    <div className="flex flex-wrap gap-2">
+                      <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
+                      <dd className="text-foreground">Tata product available on request.</dd>
+                    </div>
+                  )}
+                  {category?.slug === "wire-mesh" && !product.tataOfficial && !product.tataAvailable && (
+                    <div className="flex flex-wrap gap-2">
+                      <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
+                      <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
+                    </div>
+                  )}
+                  {category?.slug === "wire-mesh" && (product.tataOfficial || product.tataAvailable) && (
+                    <div className="flex flex-wrap gap-2">
+                      <dt className="shrink-0 text-muted-foreground">Brands:</dt>
+                      <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
+                    </div>
+                  )}
+                  {displaySpecs?.map((spec) => (
+                    <div key={spec.label} className="flex flex-wrap gap-2">
+                      <dt className="text-muted-foreground">{spec.label}:</dt>
+                      <dd className="text-foreground">{spec.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {displaySizes && displaySizes.length > 0 && (
+            <AccordionItem value="sizes" className="border-b border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+                Sizes & Thickness
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul className="list-inside list-disc text-muted-foreground pb-2">
+                  {displaySizes.map((size) => (
+                    <li key={size}>{size}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {displayMaterials && displayMaterials.length > 0 && (
+            <AccordionItem value="materials" className="border-b border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+                Materials / Finish
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul className="list-inside list-disc text-muted-foreground pb-2">
+                  {displayMaterials.map((m) => (
+                    <li key={m}>{m}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {product.variants && product.variants.length > 0 && (
+            <AccordionItem value="variants" className="border-b border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+                Variants
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul className="list-inside list-disc text-muted-foreground pb-2">
+                  {product.variants.map((v) => (
+                    <li key={v}>{v}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {displayUseCases && displayUseCases.length > 0 && (
+            <AccordionItem value="uses" className="border-b border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+                Common Uses
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul className="list-inside list-disc text-muted-foreground pb-2">
+                  {displayUseCases.map((u) => (
+                    <li key={u}>{u}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+        </Accordion>
 
         {displayNotes && (
           <div className="mt-6 rounded-lg bg-muted/50 p-4">
@@ -175,11 +209,11 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           </p>
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Button asChild>
+        <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+          <Button asChild className="w-full sm:w-auto min-h-[44px]">
             <Link href={quoteHref}>Request a Quote</Link>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="w-full sm:w-auto min-h-[44px]">
             <a
               href={getWhatsAppLink(site.whatsapp, whatsAppMessage)}
               target="_blank"

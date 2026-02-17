@@ -46,9 +46,9 @@ export function ProductImageGallery({ images, alt, productName, productSlug }: P
   };
 
   return (
-    <div className="space-y-4">
-      {/* Main image - key forces remount when image changes so Next/Image shows correct src */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted">
+    <div className="space-y-4 min-w-0">
+      {/* Main image on top - key forces remount when image changes so Next/Image shows correct src */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-muted shrink-0">
         <ImageWithFallback
           key={currentImage}
           src={currentImage}
@@ -56,14 +56,14 @@ export function ProductImageGallery({ images, alt, productName, productSlug }: P
           fill
           className="object-cover"
           priority={activeIndex === 0}
-          sizes="(max-width: 1024px) 100vw, 50vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
         />
         {images.length > 1 && (
           <>
             <Button
               variant="outline"
               size="icon"
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background h-10 w-10 md:h-9 md:w-9"
               onClick={goToPrevious}
               aria-label="Previous image"
             >
@@ -72,7 +72,7 @@ export function ProductImageGallery({ images, alt, productName, productSlug }: P
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background h-10 w-10 md:h-9 md:w-9"
               onClick={goToNext}
               aria-label="Next image"
             >
@@ -85,15 +85,15 @@ export function ProductImageGallery({ images, alt, productName, productSlug }: P
         )}
       </div>
 
-      {/* Thumbnails */}
+      {/* Thumbnails: horizontal scroll on mobile, grid on desktop */}
       {images.length > 1 && (
-        <div className="grid grid-cols-4 gap-2">
+        <div className="flex md:grid md:grid-cols-4 gap-2 overflow-x-auto pb-1 md:pb-0 snap-x snap-mandatory md:snap-align-none scrollbar-thin min-w-0">
           {images.map((img, idx) => (
             <button
               key={`${img}-${idx}`}
               type="button"
               onClick={() => setActiveIndex(idx)}
-              className={`relative aspect-square overflow-hidden rounded-md border-2 transition-all ${
+              className={`relative aspect-square w-20 h-20 md:w-full shrink-0 overflow-hidden rounded-md border-2 transition-all snap-start ${
                 activeIndex === idx
                   ? "border-primary ring-2 ring-primary/20"
                   : "border-border hover:border-primary/50"
@@ -105,7 +105,8 @@ export function ProductImageGallery({ images, alt, productName, productSlug }: P
                 alt={`${productName} thumbnail ${idx + 1}`}
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 25vw, 12.5vw"
+                sizes="(max-width: 768px) 80px, (max-width: 1024px) 25vw, 12.5vw"
+                loading={idx < 4 ? undefined : "lazy"}
               />
             </button>
           ))}

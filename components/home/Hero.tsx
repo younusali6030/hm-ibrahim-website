@@ -25,13 +25,13 @@ export function Hero() {
 
   return (
     <section
-      className="relative overflow-hidden bg-gradient-to-b from-industrial-900 to-background px-4 py-20 md:py-28"
+      className="relative overflow-hidden bg-gradient-to-b from-industrial-900 to-background px-4 py-16 md:py-28"
       aria-labelledby="hero-heading"
     >
-      <div className="container mx-auto text-center">
+      <div className="container mx-auto text-center min-w-0 max-w-6xl">
         <motion.h1
           id="hero-heading"
-          className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl"
+          className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -41,7 +41,7 @@ export function Hero() {
           Trusted Iron & Hardware Since 1939
         </motion.h1>
         <motion.p
-          className="mx-auto mt-4 max-w-xl text-base text-muted-foreground"
+          className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground md:text-base"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -49,7 +49,7 @@ export function Hero() {
           {site.tagline}
         </motion.p>
         <motion.p
-          className="mx-auto mt-2 max-w-lg text-xs text-muted-foreground/90 md:text-sm"
+          className="mx-auto mt-2 max-w-lg text-xs text-muted-foreground/90 md:text-sm text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -79,12 +79,12 @@ export function Hero() {
 
         {showBrandStrip && (
           <motion.div
-            className="mt-5 flex justify-center"
+            className="mt-5 flex justify-center min-w-0"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.26 }}
           >
-            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5">
+            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5 max-w-full">
               {site.authorizedDealer.enabled && (
                 <Link
                   href="/products?tata=1"
@@ -98,6 +98,7 @@ export function Hero() {
                     height={32}
                     className="h-7 w-auto object-contain"
                     priority
+                    sizes="(max-width: 768px) 80px, 80px"
                   />
                 </Link>
               )}
@@ -115,6 +116,7 @@ export function Hero() {
                     height={24}
                     className="h-6 w-auto object-contain"
                     priority
+                    sizes="(max-width: 768px) 64px, 64px"
                   />
                 </Link>
               ))}
@@ -123,15 +125,15 @@ export function Hero() {
         )}
 
         <motion.div
-          className="mt-6 flex flex-wrap items-center justify-center gap-4"
+          className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <Button asChild size="lg" className="min-w-[160px]">
+          <Button asChild size="lg" className="w-full max-w-sm sm:min-w-[160px]">
             <Link href="/quote">Request a Quote</Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="min-w-[160px]">
+          <Button asChild size="lg" variant="outline" className="w-full max-w-sm sm:min-w-[160px]">
             <a
               href={getWhatsAppLink(
                 site.whatsapp,
