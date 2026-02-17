@@ -1,14 +1,14 @@
 /**
- * Signature brands (CM, Boarder). Used for brand picker, logos, and product variants.
+ * Signature brands (CM, Border) and Tata Wiron. Used for brand picker, logos, and product variants.
  */
 
-export type BrandId = "cm" | "boarder";
+export type BrandId = "cm" | "boarder" | "tata";
 
 export type BrandPageContent = {
   title: string;
   subtitle: string;
   body: string;
-  /** Prominent tagline (e.g. Boarder Hindi tagline) */
+  /** Prominent tagline (e.g. Border Hindi tagline) */
   prominentTagline?: string;
 };
 
@@ -37,15 +37,28 @@ export const inHouseBrands: Brand[] = [
   },
   {
     id: "boarder",
-    name: "Boarder",
+    name: "Border",
     logo: "/brands/boarder-logo.png",
     tagline: "Our signature brand",
     productsSupported: ["barbed-wire", "chain-link-fencing"],
     pageContent: {
-      title: "Boarder",
+      title: "Border",
       subtitle: "Built for Strength. Designed for Security.",
-      body: "Boarder is built for one thing: reliable protection. From farm boundaries to industrial perimeters, our barbed wire and chain link fencing (jali) are designed to last. We focus on strength, durability, and consistent quality so that every roll delivers what you expect — security you can trust. Boarder has become a name associated with toughness and dependability in fencing across the country.",
-      prominentTagline: "Boarder ka vaada — desh ki suraksha zyada.",
+      body: "Border is built for one thing: reliable protection. From farm boundaries to industrial perimeters, our barbed wire and chain link fencing (jali) are designed to last. We focus on strength, durability, and consistent quality so that every roll delivers what you expect — security you can trust. Border has become a name associated with toughness and dependability in fencing across the country.",
+      prominentTagline: "Border ka vaada — desh ki suraksha zyada.",
+    },
+  },
+  {
+    id: "tata",
+    name: "Tata Wiron",
+    logo: "/brands/tata-wiron.png",
+    tagline: "Authorized Tata Wiron partner",
+    productsSupported: ["gi-wire", "barbed-wire", "chain-link-fencing"],
+    pageContent: {
+      title: "Tata Wiron",
+      subtitle: "Tata quality for wire and fencing products",
+      body:
+        "As an authorized Tata Wiron partner, we supply GI wire, barbed wire, and chain link fencing with Tata's trusted quality and coating technology. Tata Wiron products offer consistent strength, corrosion resistance, and reliable performance for fencing and general purpose use.",
     },
   },
 ];

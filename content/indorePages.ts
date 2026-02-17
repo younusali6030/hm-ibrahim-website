@@ -54,7 +54,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       "Mesh: 1\", 2\", 3\" common",
       "Heights: 3ft to 10ft rolls",
       "GI and PVC-coated options",
-      "Signature brands: CM, Boarder",
+      "Signature brands: CM, Border",
     ],
     useCases: ["Compound fencing", "Boundary walls", "Sports grounds", "Industrial premises", "Window jali"],
     productSlugs: ["chain-link-fencing", "barbed-wire", "ss-gi-mesh-jalies"],
@@ -62,10 +62,10 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
   "barbed-wire": {
     slug: "barbed-wire",
     title: "Barbed Wire Indore | Security & Boundary Fencing in Siyaganj",
-    description: "Barbed wire in Indore for boundary and security fencing. HM Ibrahim & Co, Siyaganj, supplies GI barbed wire in single and double strand. CM and Boarder brands. Retail and wholesale.",
+    description: "Barbed wire in Indore for boundary and security fencing. HM Ibrahim & Co, Siyaganj, supplies GI barbed wire in single and double strand. CM and Border brands. Retail and wholesale.",
     h1: "Barbed Wire in Indore",
     intro: "We supply barbed wire for boundary and security fencing from our Siyaganj, Indore store. Available in single and double strand, in various coil sizes, for farms, boundaries, and industrial sites.",
-    intro2: "Our signature brands CM and Boarder offer trusted barbed wire options. Tell us your length and height requirements for a quote.",
+    intro2: "Our signature brands CM and Border offer trusted barbed wire options. Tell us your length and height requirements for a quote.",
     specs: [
       "Single strand and double strand",
       "2-point and 4-point common",

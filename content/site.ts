@@ -90,7 +90,7 @@ export const site = {
     note: "Authorized Tata dealer • Tata products available on request",
   },
 
-  /** Signature brands (CM, Boarder) for Barbed Wire & Chain Link Fencing */
+  /** Signature brands (CM, Border) for Barbed Wire & Chain Link Fencing */
   inHouseBrandsEnabled: true,
 
   /** Google rating badge (hero). Update with real profile URL when available. */

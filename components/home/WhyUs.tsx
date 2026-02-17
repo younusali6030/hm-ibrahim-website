@@ -27,7 +27,7 @@ const points = [
   {
     icon: BadgeCheck,
     title: "Trusted brands",
-    description: "Our signature brands CM and Boarder for barbed wire and chain link; authorized Tata dealer for steel and wire.",
+    description: "Our signature brands CM and Border for barbed wire and chain link; authorized Tata dealer for steel and wire.",
   },
   {
     icon: Handshake,

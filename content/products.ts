@@ -37,7 +37,7 @@ export type Product = {
   tataAvailable?: boolean;
   /** Official Tata distributor/retailer for this product (steel only; show badge + logo) */
   tataOfficial?: boolean;
-  /** Brand-specific variants (CM, Boarder) with images and range */
+  /** Brand-specific variants (CM, Border) with images and range */
   brandVariants?: BrandVariant[];
 };
 
@@ -345,6 +345,21 @@ export const categories: Category[] = [
           "Available in different gauges and coil weights; availability depends on stock. Commonly used for binding, fencing, and general tying purposes. Tata Wiron GI wire and other trusted brands available.",
         tataAvailable: true,
         tataOfficial: true,
+        brandVariants: [
+          {
+            brandId: "tata",
+            images: ["/products/tata-gi-wire-1.png", "/products/tata-gi-wire-2.png"],
+            specs: [
+              { label: "Brand", value: "Tata Wiron GI wire" },
+              { label: "Gauge", value: "8 SWG to 18 SWG (common Tata range)" },
+              { label: "Coating", value: "Heavy zinc coating for long life" },
+            ],
+            sizes: ["8 SWG", "10 SWG", "12 SWG", "14 SWG", "16 SWG", "18 SWG"],
+            materials: ["Galvanized iron"],
+            useCases: ["Binding", "General purpose tying", "Light fencing"],
+            notes: "Tata Wiron GI wire with consistent strength and coating quality.",
+          },
+        ],
       },
       {
         slug: "binding-wire",
@@ -383,7 +398,7 @@ export const categories: Category[] = [
         sizes: ["Standard coils: 5kg", "10kg", "20kg", "25kg", "Packing: coils up to 25 kg (varies by type and stock)"],
         materials: ["Galvanized iron"],
         notes:
-          "Available in different types and packing sizes; availability depends on stock. Commonly used for boundary and security fencing applications. Packing: coils up to 25 kg (varies by type and stock). Tata Wiron barbed wire available along with CM and Boarder brands.",
+          "Available in different types and packing sizes; availability depends on stock. Commonly used for boundary and security fencing applications. Packing: coils up to 25 kg (varies by type and stock). Tata Wiron barbed wire available along with CM and Border brands.",
         tataAvailable: true,
         tataOfficial: true,
         brandVariants: [
@@ -417,7 +432,20 @@ export const categories: Category[] = [
             sizes: ["5kg", "10kg", "20kg", "25kg coils"],
             materials: ["Galvanized iron"],
             useCases: ["Farm fencing", "Boundary", "Security"],
-            notes: "Boarder brand barbed wire. Available in single/double strand; gauges and coil sizes as per stock.",
+            notes: "Border brand barbed wire. Available in single/double strand; gauges and coil sizes as per stock.",
+          },
+          {
+            brandId: "tata",
+            images: ["/products/tata-barbed-wire.png"],
+            specs: [
+              { label: "Brand", value: "Tata Wiron barbed wire" },
+              { label: "Coating", value: "Patented coating technology (Tashiel-1000 type, as available)" },
+              { label: "Packing", value: "Branded coils as per stock" },
+            ],
+            sizes: ["Standard coils as per Tata Wiron specification"],
+            materials: ["Galvanized iron"],
+            useCases: ["High durability security fencing", "Farm boundaries", "Perimeter fencing"],
+            notes: "Tata Wiron barbed wire for long life and corrosion resistance. Availability as per Tata stock.",
           },
         ],
       },
@@ -440,7 +468,7 @@ export const categories: Category[] = [
         sizes: ["Mesh: 1\"", "2\"", "3\"", "Height: 3ft", "4ft", "5ft", "6ft", "8ft", "10ft"],
         materials: ["Galvanized iron", "PVC coated"],
         notes:
-          "Available in different mesh sizes and heights; availability depends on stock. Commonly used for compound fencing, sports grounds, and industrial boundaries. Tata Wiron chain link fencing available along with CM and Boarder brands.",
+          "Available in different mesh sizes and heights; availability depends on stock. Commonly used for compound fencing, sports grounds, and industrial boundaries. Tata Wiron chain link fencing available along with CM and Border brands.",
         tataAvailable: true,
         tataOfficial: true,
         brandVariants: [
@@ -475,7 +503,20 @@ export const categories: Category[] = [
             sizes: ["Mesh: 1\"", "2\"", "3\"", "Height: 3ft", "4ft", "5ft", "6ft", "8ft", "10ft"],
             materials: ["Galvanized iron", "PVC coated"],
             useCases: ["Boundary fencing", "Sports grounds", "Industrial", "Farm"],
-            notes: "Boarder brand chain link fencing (jali). Mesh and heights as per stock.",
+            notes: "Border brand chain link fencing (jali). Mesh and heights as per stock.",
+          },
+          {
+            brandId: "tata",
+            images: ["/products/tata-chainlink-1.png"],
+            specs: [
+              { label: "Brand", value: "Tata Wiron chain link fencing" },
+              { label: "Mesh opening", value: "1\" to 3\" (common Tata range)" },
+              { label: "Finish", value: "GI (other finishes as per availability)" },
+            ],
+            sizes: ["Heights and mesh sizes as per Tata Wiron availability"],
+            materials: ["Galvanized iron"],
+            useCases: ["High-quality boundary fencing", "Industrial and residential compounds"],
+            notes: "Tata Wiron chain link fencing for durable compound and boundary fencing.",
           },
         ],
       },
