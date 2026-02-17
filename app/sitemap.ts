@@ -11,6 +11,7 @@ const staticPages = [
   "services",
   "quote",
   "contact",
+  "catalog",
 ] as const;
 
 const indoreSlugs = [

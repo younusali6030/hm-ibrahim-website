@@ -32,10 +32,10 @@ export default function ContactPage() {
             <li>
               <span className="font-medium text-foreground">Phone:</span>{" "}
               <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="text-primary hover:underline">
-                {site.phone}
+                {site.phone} {site.phoneLabel && `(${site.phoneLabel})`}
               </a>
               {site.phoneAlt && (
-                <> / <a href={`tel:${String(site.phoneAlt).replace(/\s/g, "")}`} className="text-primary hover:underline">{site.phoneAlt}</a></>
+                <> / <a href={`tel:${String(site.phoneAlt).replace(/\s/g, "")}`} className="text-primary hover:underline">{site.phoneAlt} {site.phoneAltLabel && `(${site.phoneAltLabel})`}</a></>
               )}
             </li>
             <li>
@@ -52,8 +52,11 @@ export default function ContactPage() {
             <li>
               <span className="font-medium text-foreground">Email:</span>{" "}
               <a href={`mailto:${site.email}`} className="text-primary hover:underline">
-                {site.email}
+                {site.email} {site.emailLabel && `(${site.emailLabel})`}
               </a>
+              {site.emailAlt && (
+                <> / <a href={`mailto:${site.emailAlt}`} className="text-primary hover:underline">{site.emailAlt} {site.emailAltLabel && `(${site.emailAltLabel})`}</a></>
+              )}
             </li>
             <li>
               <span className="font-medium text-foreground">Hours:</span>

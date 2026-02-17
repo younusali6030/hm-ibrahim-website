@@ -48,3 +48,13 @@
 *:focus-visible {
   @apply outline-2 outline-offset-2 outline-ring;
 }
+
+/* Print: hide no-print elements (nav/footer use Tailwind print:hidden) */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+}

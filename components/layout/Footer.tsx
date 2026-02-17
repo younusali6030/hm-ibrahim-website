@@ -9,7 +9,7 @@ const footerLinks = [
   { href: "/services", label: "Services" },
   { href: "/quote", label: "Request Quote" },
   { href: "/contact", label: "Contact" },
-  { href: "/catalog.pdf", label: "Download Catalog" },
+  { href: "/catalog", label: "Download Catalog" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
 ];
@@ -25,7 +25,7 @@ const indoreLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-card">
+    <footer className="border-t border-border bg-card print:hidden">
       <div className="container mx-auto px-4 py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           <div>
@@ -67,6 +67,7 @@ export function Footer() {
                 >
                   <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                   {site.phone}
+                  {site.phoneLabel && <span className="text-muted-foreground/80">({site.phoneLabel})</span>}
                 </a>
               </li>
               {site.phoneAlt && (
@@ -77,6 +78,7 @@ export function Footer() {
                   >
                     <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                     {site.phoneAlt}
+                    {site.phoneAltLabel && <span className="text-muted-foreground/80">({site.phoneAltLabel})</span>}
                   </a>
                 </li>
               )}
@@ -97,8 +99,21 @@ export function Footer() {
                 >
                   <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                   {site.email}
+                  {site.emailLabel && <span className="text-muted-foreground/80">({site.emailLabel})</span>}
                 </a>
               </li>
+              {site.emailAlt && (
+                <li>
+                  <a
+                    href={`mailto:${site.emailAlt}`}
+                    className="flex items-center gap-2 hover:text-primary"
+                  >
+                    <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />
+                    {site.emailAlt}
+                    {site.emailAltLabel && <span className="text-muted-foreground/80">({site.emailAltLabel})</span>}
+                  </a>
+                </li>
+              )}
               <li className="flex items-start gap-2">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
                 <span>

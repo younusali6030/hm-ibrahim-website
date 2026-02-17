@@ -30,16 +30,23 @@ export const site = {
   /** Landmark for "How to reach" */
   landmark: "Opposite Tijori Gali",
 
-  /** Primary phone for calls (display and tel: links) */
+  /** Primary phone (used for Call button, WhatsApp, etc.) */
   phone: "+91 9993078654",
-  /** Alternate phone if any; leave empty string to hide */
-  phoneAlt: "",
+  /** Primary contact for above phone/email */
+  phoneLabel: "Shoeb Ali",
+  /** Alternate phone */
+  phoneAlt: "+91 9826053563",
+  phoneAltLabel: "Akbar Ali",
 
   /** WhatsApp number (with country code, no +). Used for wa.me links */
   whatsapp: "919993078654",
 
-  /** Business email for quote/contact form submissions */
+  /** Primary business email for quote/contact form submissions */
   email: "shoebali786@gmail.com",
+  emailLabel: "Shoeb Ali",
+  /** Alternate email */
+  emailAlt: "akbar1972@rediffmail.com",
+  emailAltLabel: "Akbar Ali",
 
   /** Opening hours - editable. Format: "Day: Time" or "Day: Closed" */
   hours: {
@@ -49,7 +56,7 @@ export const site = {
   },
 
   /** Optional: GSTIN. Set to empty string to hide from About/footer */
-  gstin: "23AAAAA0000A1Z5",
+  gstin: "23AACFH8321H1ZP",
 
   /** Optional: social links. Use empty string to hide. */
   social: {
