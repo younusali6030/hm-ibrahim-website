@@ -39,8 +39,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entries.push({
       url: `${baseUrl}/products/${product.slug}`,
       lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
+      changeFrequency: "weekly" as const, // Changed to weekly for better indexing
+      priority: 0.8, // Increased priority for product pages
     });
   }
 
@@ -57,8 +57,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entries.push({
       url: `${baseUrl}/indore/${slug}`,
       lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.75,
+      changeFrequency: "weekly" as const, // Changed to weekly for local SEO
+      priority: 0.85, // Higher priority for local landing pages
     });
   }
 

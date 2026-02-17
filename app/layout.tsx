@@ -33,11 +33,31 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
+    images: [
+      {
+        url: `${baseUrl}/logo.svg`,
+        width: 1200,
+        height: 630,
+        alt: `${site.name} - Iron & Hardware Trading in Indore`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
+    images: [`${baseUrl}/logo.svg`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: { icon: "/favicon.ico" },
 };

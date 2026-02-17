@@ -59,4 +59,14 @@
   body {
     background: white !important;
   }
+  /* Catalog images - ensure they print well */
+  .catalog-print-area img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+  /* Prevent images from breaking across pages */
+  .catalog-print-area .break-inside-avoid {
+    page-break-inside: avoid;
+  }
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { categories } from "@/content/products";
+import Image from "next/image";
+import { categories, getProductImages, getCategoryBySlug } from "@/content/products";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { PrintCatalogButton } from "@/components/catalog/PrintCatalogButton";
@@ -56,15 +57,39 @@ export default function CatalogPage() {
                 <p className="mb-6 text-sm text-gray-600">{category.description}</p>
 
                 <div className="space-y-6">
-                  {category.products.map((product) => (
-                    <div
-                      key={product.slug}
-                      className="break-inside-avoid border-b border-gray-200 pb-6 last:border-0"
-                    >
-                      <h3 className="text-base font-semibold text-gray-900">{product.name}</h3>
-                      <p className="mt-1 text-sm text-gray-700">{product.shortDesc}</p>
+                  {category.products.map((product) => {
+                    const productImages = getProductImages(product, category).slice(0, 2); // Max 2 images
+                    return (
+                      <div
+                        key={product.slug}
+                        className="break-inside-avoid border-b border-gray-200 pb-6 last:border-0"
+                      >
+                        <h3 className="text-base font-semibold text-gray-900">{product.name}</h3>
+                        <p className="mt-1 text-sm text-gray-700">{product.shortDesc}</p>
 
-                      {product.specs && product.specs.length > 0 && (
+                        {/* Product Images - Max 2, small size for catalog */}
+                        {productImages.length > 0 && (
+                          <div className="mt-3 flex gap-2 print:gap-1">
+                            {productImages.map((imgSrc, idx) => (
+                              <div
+                                key={`${product.slug}-img-${idx}`}
+                                className="relative h-20 w-20 shrink-0 overflow-hidden rounded border border-gray-300 print:h-16 print:w-16"
+                              >
+                                <Image
+                                  src={imgSrc}
+                                  alt={`${product.name} - Image ${idx + 1}`}
+                                  fill
+                                  className="object-cover"
+                                  sizes="80px"
+                                  quality={75}
+                                  unoptimized={false}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {product.specs && product.specs.length > 0 && (
                         <dl className="mt-3 space-y-1 text-sm">
                           {product.specs.map((spec) => (
                             <div key={spec.label} className="flex gap-2">
@@ -92,7 +117,8 @@ export default function CatalogPage() {
                         )}
                       </div>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </section>
             ))}

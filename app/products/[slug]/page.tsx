@@ -23,11 +23,58 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) return { title: "Product" };
-  const description = `${product.shortDesc} Available from HM Ibrahim & Co, Siyaganj, Indore.`;
+  
+  const category = getCategoryBySlug(product.categorySlug);
+  const images = getProductImages(product, category);
+  const firstImage = images[0]?.startsWith("http") ? images[0] : `${baseUrl}${images[0] || ""}`;
+  
+  // Enhanced description with location and keywords
+  const locationKeywords = "in Indore, Siyaganj, Madhya Pradesh";
+  const description = `${product.name} - ${product.shortDesc} Available from HM Ibrahim & Co, Siyaganj, Indore. ${product.sizes?.slice(0, 3).join(", ") || ""} ${product.materials?.join(", ") || ""}. Retail and wholesale.`;
+  
+  // Build keywords array
+  const keywords = [
+    `${product.name} Indore`,
+    `${product.name} Siyaganj`,
+    `${product.name} MP`,
+    ...(category ? [`${category.name} Indore`, `${category.name} Siyaganj`] : []),
+    ...(product.materials || []).map(m => `${m} Indore`),
+    "iron and hardware Indore",
+    "construction materials Indore",
+    "HM Ibrahim & Co",
+  ];
+
   return {
-    title: product.name,
-    description,
+    title: `${product.name} ${locationKeywords} | ${site.name}`,
+    description: description.substring(0, 160), // Keep under 160 chars
+    keywords: keywords.join(", "),
     alternates: { canonical: `${baseUrl}/products/${product.slug}` },
+    openGraph: {
+      title: `${product.name} ${locationKeywords}`,
+      description: description.substring(0, 200),
+      url: `${baseUrl}/products/${product.slug}`,
+      siteName: site.name,
+      images: firstImage ? [{ url: firstImage, alt: product.imageAlt || product.name }] : [],
+      locale: "en_IN",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} ${locationKeywords}`,
+      description: description.substring(0, 200),
+      images: firstImage ? [firstImage] : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
@@ -49,14 +96,55 @@ export default async function ProductDetailPage({ params }: Props) {
     { name: product.name, url: `/products/${product.slug}` },
   ];
 
+  // Enhanced Product schema with more SEO fields
+  const allImages = images.map(img => img.startsWith("http") ? img : `${baseUrl}${img}`);
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
     description: product.shortDesc,
-    ...(firstImage ? { image: firstImage } : {}),
-    brand: { "@type": "Brand", name: site.name },
-    offers: { "@type": "Offer", availability: "https://schema.org/InStock", url: `${baseUrl}/products/${product.slug}` },
+    sku: product.slug,
+    mpn: product.slug,
+    ...(allImages.length > 0 ? { 
+      image: allImages.length === 1 ? allImages[0] : allImages,
+    } : {}),
+    brand: { 
+      "@type": "Brand", 
+      name: site.name,
+      url: baseUrl,
+    },
+    category: category?.name || product.categorySlug,
+    offers: { 
+      "@type": "Offer", 
+      availability: "https://schema.org/InStock",
+      url: `${baseUrl}/products/${product.slug}`,
+      priceCurrency: "INR",
+      price: "0", // Contact for price
+      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      seller: {
+        "@type": "LocalBusiness",
+        name: site.name,
+        url: baseUrl,
+      },
+      areaServed: {
+        "@type": "City",
+        name: "Indore",
+      },
+    },
+    aggregateRating: site.googleReview ? {
+      "@type": "AggregateRating",
+      ratingValue: site.googleReview.rating.toString(),
+      reviewCount: site.googleReview.reviewCount.toString(),
+      bestRating: "5",
+      worstRating: "1",
+    } : undefined,
+    ...(product.specs && product.specs.length > 0 ? {
+      additionalProperty: product.specs.map(spec => ({
+        "@type": "PropertyValue",
+        name: spec.label,
+        value: spec.value,
+      })),
+    } : {}),
   };
 
   const sizeInfo = product.sizes && product.sizes.length > 0
@@ -65,7 +153,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const whatsAppMessage = `Hi, I'm interested in ${product.name}.${sizeInfo} Please share price/availability.`;
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 max-w-7xl min-w-0">
+    <article className="container mx-auto px-4 md:px-6 py-12 md:py-16 max-w-7xl min-w-0">
       <JsonLdBreadcrumb items={breadcrumbItems} />
       <script
         type="application/ld+json"
@@ -245,6 +333,6 @@ export default async function ProductDetailPage({ params }: Props) {
           </ul>
         </section>
       )}
-    </div>
+    </article>
   );
 }
