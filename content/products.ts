@@ -546,23 +546,6 @@ export const categories: Category[] = [
         notes: "Available as per specification; contact us for gauge and quantity.",
       },
       {
-        slug: "jhatka-machine-wire",
-        name: "Jhatka Machine Wire",
-        shortDesc: "Wire for jhatka (halal slaughter) machines and related equipment.",
-        categorySlug: "wire-mesh",
-        specs: [
-          { label: "Type", value: "As per machine specification" },
-          { label: "Packing", value: "Coils / lengths" },
-        ],
-        images: ["/products/gi-wire.png"],
-        image: "/products/gi-wire.png",
-        imageAlt: "Jhatka machine wire",
-        useCases: ["Jhatka machines", "Slaughter equipment"],
-        sizes: ["As per machine requirement"],
-        materials: ["Steel", "Galvanized"],
-        notes: "Contact us with machine type or specification for the right wire.",
-      },
-      {
         slug: "chicken-net",
         name: "Chicken Net",
         shortDesc: "Hexagonal galvanized wire net for poultry, enclosures, and light fencing.",
