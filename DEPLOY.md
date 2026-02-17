@@ -4,6 +4,31 @@ The app builds successfully. Here’s how to publish it.
 
 ---
 
+## Pushing updates (Vercel already connected)
+
+If Vercel is already connected to GitHub and you just need to push local changes:
+
+1. **Get your GitHub repo URL**  
+   In [Vercel](https://vercel.com) → your project → **Settings** → **Git**: note the connected repo (e.g. `yourusername/HM`).
+
+2. **Set the remote** (use your actual username and repo name):
+   ```bash
+   git remote set-url origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+   ```
+   Example: `git remote set-url origin https://github.com/younusali/HM.git`
+
+3. **Push** (Git will ask for credentials):
+   ```bash
+   git push origin main
+   ```
+   - **Username:** your GitHub username  
+   - **Password:** use a **Personal Access Token**, not your GitHub password  
+   - Create a token: GitHub → **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)** → **Generate new token**, enable `repo`, then paste the token when prompted for password.
+
+4. **Done.** Vercel will auto-deploy from `main`; your domain will update after the build finishes.
+
+---
+
 ## Option 1: Vercel (recommended for Next.js)
 
 1. **Push your code to GitHub** (if not already):
