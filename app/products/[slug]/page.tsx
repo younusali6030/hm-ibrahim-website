@@ -316,35 +316,6 @@ export default async function ProductDetailPage({ params }: Props) {
         </>
       )}
 
-      {slug === "barbed-wire" && (
-        <section className="mt-14 border-t border-border pt-10" aria-labelledby="quality-local-heading">
-          <h2 id="quality-local-heading" className="text-xl font-semibold text-foreground">Quality local brands</h2>
-          <p className="mt-2 text-muted-foreground max-w-2xl">
-            We stock trusted local brands like National barbed wire — high quality, reliable for boundary and farm security. Strong and dependable fencing for crop protection and perimeter security.
-          </p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 max-w-3xl">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-muted/30">
-              <Image
-                src="/products/national-barbed-wire-1.png"
-                alt="National barbed wire — high quality local brand"
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
-            </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-muted/30">
-              <Image
-                src="/products/national-barbed-wire-2.png"
-                alt="National barbed wire coils — quality local fencing"
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-        </section>
-      )}
-
       {relatedProducts.length > 0 && (
         <section className="mt-14 border-t border-border pt-10" aria-labelledby="related-heading">
           <h2 id="related-heading" className="text-xl font-semibold text-foreground">Related products</h2>

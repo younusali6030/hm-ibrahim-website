@@ -453,23 +453,6 @@ export const categories: Category[] = [
             useCases: ["High durability security fencing", "Farm boundaries", "Perimeter fencing"],
             notes: "Tata Wiron barbed wire for long life and corrosion resistance. Availability as per Tata stock.",
           },
-          {
-            brandId: "national",
-            images: [
-              "/products/national-barbed-wire-1.png",
-              "/products/national-barbed-wire-2.png",
-            ],
-            specs: [
-              { label: "Brand", value: "National barbed wire" },
-              { label: "Tagline", value: "High Quality – Higher Life" },
-              { label: "Common gauges", value: "14x14 and others as per stock" },
-              { label: "Packing", value: "Branded coils" },
-            ],
-            sizes: ["Standard coils as per stock"],
-            materials: ["Galvanized iron"],
-            useCases: ["Farm fencing", "Boundary", "Crop protection", "Security"],
-            notes: "National barbed wire — trusted local brand for strong, reliable security. Available in standard gauges and coil sizes as per stock.",
-          },
         ],
       },
       {

@@ -7,8 +7,8 @@ import { inHouseBrands } from "@/content/brands";
 import { site } from "@/content/site";
 
 export function InHouseBrandsSection() {
-  // Only show signature brands (CM, Border) here — exclude Tata and National (quality local)
-  const signatureBrands = inHouseBrands.filter((b) => b.id !== "tata" && b.id !== "national");
+  // Only show signature brands (CM, Border) here — exclude Tata
+  const signatureBrands = inHouseBrands.filter((b) => b.id !== "tata");
   if (!site.inHouseBrandsEnabled || signatureBrands.length === 0) return null;
 
   return (

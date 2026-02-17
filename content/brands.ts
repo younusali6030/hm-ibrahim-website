@@ -2,7 +2,7 @@
  * Signature brands (CM, Border) and Tata Wiron. Used for brand picker, logos, and product variants.
  */
 
-export type BrandId = "cm" | "boarder" | "tata" | "national";
+export type BrandId = "cm" | "boarder" | "tata";
 
 export type BrandPageContent = {
   title: string;
@@ -59,19 +59,6 @@ export const inHouseBrands: Brand[] = [
       subtitle: "Tata quality for wire and fencing products",
       body:
         "As an authorized Tata Wiron partner, we supply GI wire, barbed wire, and chain link fencing with Tata's trusted quality and coating technology. Tata Wiron products offer consistent strength, corrosion resistance, and reliable performance for fencing and general purpose use.",
-    },
-  },
-  {
-    id: "national",
-    name: "Others",
-    logo: "/products/national-barbed-wire-1.png",
-    tagline: "Quality local brand",
-    productsSupported: ["barbed-wire"],
-    pageContent: {
-      title: "National Barbed Wire",
-      subtitle: "High quality, reliable local brand for boundary and farm security",
-      body:
-        "National barbed wire is a trusted local brand we stock for boundary fencing, farm security, and perimeter protection. Known for strong and reliable security — 'मजबूत एवं भरोसेमंद सुरक्षा' — and promoted with the message that saving the crop leads to development. We offer National barbed wire in standard gauges and coil sizes as per stock.",
     },
   },
 ];

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { site } from "@/content/site";
 import { inHouseBrands } from "@/content/brands";
 import { getWhatsAppLink } from "@/lib/utils";
-import { Award, BadgeCheck, Store, Package } from "lucide-react";
+import { Award, BadgeCheck, Store, Package, Truck } from "lucide-react";
 
 const SEO_SUBLINE =
   "Wire mesh, barbed wire, chain link, perforated sheets, Tata wire & more in Indore.";
@@ -17,13 +17,14 @@ const TRUST_ITEMS = [
   { icon: BadgeCheck, label: "Authorized Tata Dealer" },
   { icon: Store, label: "Retail + Wholesale" },
   { icon: Package, label: "Bulk Orders Available" },
+  { icon: Truck, label: "Shipping all over India" },
 ];
 
 export function Hero() {
   const showBrandStrip =
     site.authorizedDealer.enabled || (site.inHouseBrandsEnabled && inHouseBrands.length >= 2);
-  // For the hero strip, show only CM and Border (Tata has its own badge; National/Others is in product picker only).
-  const heroBrands = inHouseBrands.filter((brand) => brand.id !== "tata" && brand.id !== "national");
+  // For the hero strip, show only CM and Border (Tata has its own badge).
+  const heroBrands = inHouseBrands.filter((brand) => brand.id !== "tata");
 
   return (
     <section
