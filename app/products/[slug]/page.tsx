@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProductBySlug, getCategoryBySlug, allProducts, getProductImages, getRelatedProducts } from "@/content/products";
+import { getProductBySlug, getCategoryBySlug, allProducts, getProductImages, getProductMedia, getRelatedProducts } from "@/content/products";
 import { baseUrl, site } from "@/lib/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -86,6 +86,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const category = getCategoryBySlug(product.categorySlug);
   const images = getProductImages(product, category);
+  const media = getProductMedia(product, category);
   const hasBrandVariants = product.brandVariants && product.brandVariants.length > 0;
   const relatedProducts = getRelatedProducts(slug, 4);
   const firstImage = images[0]?.startsWith("http") ? images[0] : `${baseUrl}${images[0] || ""}`;
@@ -169,7 +170,7 @@ export default async function ProductDetailPage({ params }: Props) {
           <div className="grid gap-8 lg:grid-cols-2">
             <ProductImageGallery
               key={product.slug}
-              images={images}
+              media={media}
               alt={product.imageAlt || product.name}
               productName={product.name}
               productSlug={product.slug}

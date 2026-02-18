@@ -2,25 +2,46 @@
 
 import { useState, useEffect } from "react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { ProductMediaItem } from "@/content/products";
 
 type Props = {
-  images: string[];
+  /** When provided, gallery shows both images and videos (images first). */
+  media?: ProductMediaItem[];
+  /** Legacy: when media is not provided, use images only. */
+  images?: string[];
   alt: string;
   productName: string;
   productSlug?: string;
 };
 
-export function ProductImageGallery({ images, alt, productName, productSlug }: Props) {
+function isVideoSrc(src: string): boolean {
+  return /\.(mp4|webm|ogg)(\?|$)/i.test(src);
+}
+
+export function ProductImageGallery({
+  media: mediaProp,
+  images: imagesProp,
+  alt,
+  productName,
+  productSlug,
+}: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Reset to first image when product or images change (e.g. navigating between products)
+  const media: ProductMediaItem[] =
+    mediaProp ??
+    (imagesProp?.length
+      ? imagesProp.map((src) =>
+          isVideoSrc(src) ? { type: "video", src } : { type: "image", src }
+        )
+      : []);
+
   useEffect(() => {
     setActiveIndex(0);
-  }, [productSlug, images?.length]);
+  }, [productSlug, media?.length]);
 
-  if (!images || images.length === 0) {
+  if (!media || media.length === 0) {
     return (
       <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted">
         <ImageWithFallback
@@ -35,37 +56,49 @@ export function ProductImageGallery({ images, alt, productName, productSlug }: P
     );
   }
 
-  const currentImage = images[activeIndex];
+  const current = media[activeIndex];
 
   const goToPrevious = () => {
-    setActiveIndex((i) => (i - 1 + images.length) % images.length);
+    setActiveIndex((i) => (i - 1 + media.length) % media.length);
   };
 
   const goToNext = () => {
-    setActiveIndex((i) => (i + 1) % images.length);
+    setActiveIndex((i) => (i + 1) % media.length);
   };
 
   return (
     <div className="space-y-4 min-w-0">
-      {/* Main image on top - key forces remount when image changes so Next/Image shows correct src */}
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-muted shrink-0">
-        <ImageWithFallback
-          key={currentImage}
-          src={currentImage}
-          alt={`${productName} - Image ${activeIndex + 1}`}
-          fill
-          className="object-cover"
-          priority={activeIndex === 0}
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
-        />
-        {images.length > 1 && (
+        {current.type === "video" ? (
+          <video
+            key={current.src}
+            src={current.src}
+            controls
+            playsInline
+            muted
+            loop
+            className="h-full w-full object-cover"
+            aria-label={`${productName} - Video ${activeIndex + 1}`}
+          />
+        ) : (
+          <ImageWithFallback
+            key={current.src}
+            src={current.src}
+            alt={`${productName} - Image ${activeIndex + 1}`}
+            fill
+            className="object-cover"
+            priority={activeIndex === 0}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
+          />
+        )}
+        {media.length > 1 && (
           <>
             <Button
               variant="outline"
               size="icon"
               className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background h-10 w-10 md:h-9 md:w-9"
               onClick={goToPrevious}
-              aria-label="Previous image"
+              aria-label="Previous"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -74,23 +107,22 @@ export function ProductImageGallery({ images, alt, productName, productSlug }: P
               size="icon"
               className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background h-10 w-10 md:h-9 md:w-9"
               onClick={goToNext}
-              aria-label="Next image"
+              aria-label="Next"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-background/80 px-3 py-1 text-xs text-muted-foreground">
-              {activeIndex + 1} / {images.length}
+              {activeIndex + 1} / {media.length}
             </div>
           </>
         )}
       </div>
 
-      {/* Thumbnails: horizontal scroll on mobile, grid on desktop */}
-      {images.length > 1 && (
+      {media.length > 1 && (
         <div className="flex md:grid md:grid-cols-4 gap-2 overflow-x-auto pb-1 md:pb-0 snap-x snap-mandatory md:snap-align-none scrollbar-thin min-w-0">
-          {images.map((img, idx) => (
+          {media.map((item, idx) => (
             <button
-              key={`${img}-${idx}`}
+              key={`${item.src}-${idx}`}
               type="button"
               onClick={() => setActiveIndex(idx)}
               className={`relative aspect-square w-20 h-20 md:w-full shrink-0 overflow-hidden rounded-md border-2 transition-all snap-start ${
@@ -98,16 +130,26 @@ export function ProductImageGallery({ images, alt, productName, productSlug }: P
                   ? "border-primary ring-2 ring-primary/20"
                   : "border-border hover:border-primary/50"
               }`}
-              aria-label={`View image ${idx + 1}`}
+              aria-label={
+                item.type === "video"
+                  ? `Play video ${idx + 1}`
+                  : `View image ${idx + 1}`
+              }
             >
-              <ImageWithFallback
-                src={img}
-                alt={`${productName} thumbnail ${idx + 1}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 80px, (max-width: 1024px) 25vw, 12.5vw"
-                loading={idx < 4 ? undefined : "lazy"}
-              />
+              {item.type === "video" ? (
+                <div className="absolute inset-0 flex items-center justify-center bg-muted">
+                  <Play className="h-8 w-8 text-muted-foreground" fill="currentColor" />
+                </div>
+              ) : (
+                <ImageWithFallback
+                  src={item.src}
+                  alt={`${productName} thumbnail ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 80px, (max-width: 1024px) 25vw, 12.5vw"
+                  loading={idx < 4 ? undefined : "lazy"}
+                />
+              )}
             </button>
           ))}
         </div>

@@ -10,6 +10,8 @@ export type ProductSpec = { label: string; value: string };
 export type BrandVariant = {
   brandId: BrandId;
   images: string[];
+  /** Optional video paths in /public/products/ (e.g. /products/demo.mp4) */
+  videos?: string[];
   specs?: ProductSpec[];
   sizes?: string[];
   materials?: string[];
@@ -28,6 +30,8 @@ export type Product = {
   imageAlt?: string;
   /** Array of local image paths in /public/products/ */
   images?: string[];
+  /** Optional video paths in /public/products/ (e.g. /products/demo.mp4) */
+  videos?: string[];
   useCases?: string[];
   variants?: string[];
   sizes?: string[];
@@ -220,6 +224,7 @@ export const categories: Category[] = [
           { label: "Material", value: "Glass fiber reinforced polymer" },
         ],
         images: ["/products/frp-bars-1.png", "/products/frp-bars-2.png", "/products/frp-bars-3.png"],
+        videos: ["/products/frp-bars-pipe.mp4"],
         image: "/products/frp-bars-1.png",
         imageAlt: "FRP bars for concrete reinforcement",
         useCases: ["RCC where corrosion is a concern", "Marine structures", "Chemicals", "Bridges"],
@@ -393,6 +398,7 @@ export const categories: Category[] = [
           { label: "Use", value: "Fencing, agricultural boundaries, jhatka machines" },
         ],
         images: ["/products/jhatka-machine-fencing-wire-1.png", "/products/jhatka-machine-fencing-wire-2.png"],
+        videos: ["/products/jhatka-machine-fencing-wire.mp4"],
         image: "/products/jhatka-machine-fencing-wire-1.png",
         imageAlt: "Jhatka machine fencing wire coils for agricultural and boundary use",
         useCases: ["Farm fencing", "Boundary wire", "Jhatka machine use", "Agricultural fencing"],
@@ -895,6 +901,7 @@ export const categories: Category[] = [
           "/products/sr-hoe-faurdha-with-handle-1.png",
           "/products/sr-hoe-faurdha-with-handle-2.png",
         ],
+        videos: ["/products/sr-hoe-with-handle.mp4"],
         image: "/products/sr-hoe-faurdha-with-handle-1.png",
         imageAlt: "SR hoe (faurdha) with handle — carbon steel hoe, ready to use",
         useCases: ["Agriculture", "Gardening", "Digging", "Weeding", "Site work"],
@@ -1083,6 +1090,34 @@ export function getProductImages(
     return [category.image];
   }
   return ["/placeholder-product.svg"];
+}
+
+/** Get product videos (brand variant or product-level). */
+export function getProductVideos(
+  product: Product,
+  brandId?: BrandId
+): string[] {
+  if (brandId && product.brandVariants) {
+    const variant = product.brandVariants.find((v) => v.brandId === brandId);
+    if (variant?.videos?.length) return variant.videos;
+  }
+  return product.videos ?? [];
+}
+
+/** Media item for gallery: image or video. */
+export type ProductMediaItem = { type: "image"; src: string } | { type: "video"; src: string };
+
+/** Get combined images + videos for product gallery (images first, then videos). */
+export function getProductMedia(
+  product: Product,
+  category?: Category | null,
+  brandId?: BrandId
+): ProductMediaItem[] {
+  const images = getProductImages(product, category, brandId);
+  const videos = getProductVideos(product, brandId);
+  const imageItems: ProductMediaItem[] = images.map((src) => ({ type: "image", src }));
+  const videoItems: ProductMediaItem[] = videos.map((src) => ({ type: "video", src }));
+  return [...imageItems, ...videoItems];
 }
 
 /** Get brand variant for a product by brandId */

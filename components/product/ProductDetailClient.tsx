@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getProductImages, getBrandVariant } from "@/content/products";
+import { getProductImages, getProductMedia, getBrandVariant } from "@/content/products";
 import { getBrandById } from "@/content/brands";
 import type { Product } from "@/content/products";
 import type { Category } from "@/content/products";
@@ -34,6 +34,10 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
 
   const images = useMemo(
     () => getProductImages(product, category, selectedBrandId ?? undefined),
+    [product, category, selectedBrandId]
+  );
+  const media = useMemo(
+    () => getProductMedia(product, category, selectedBrandId ?? undefined),
     [product, category, selectedBrandId]
   );
 
@@ -68,7 +72,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
     <div className="grid gap-8 lg:grid-cols-2 min-w-0">
       <ProductImageGallery
         key={`${product.slug}-${selectedBrandId ?? "default"}`}
-        images={images}
+        media={media}
         alt={product.imageAlt || product.name}
         productName={product.name}
         productSlug={product.slug}
