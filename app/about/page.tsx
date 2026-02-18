@@ -32,6 +32,37 @@ export default function AboutPage() {
               Our store at 60, Siyaganj — your trusted source for iron and hardware since 1939.
             </p>
           </div>
+
+          <section className="mt-8" aria-labelledby="warehouse-heading">
+            <h2 id="warehouse-heading" className="text-xl font-semibold text-foreground mb-4">
+              Stock at our warehouse
+            </h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              CM and Border barbed wire & chain link — ready for dispatch.
+            </p>
+            <div className="space-y-4">
+              <div className="overflow-hidden rounded-xl border border-border bg-card">
+                <Image
+                  src="/about/warehouse-stock-1.png"
+                  alt="CM and Border barbed wire and chain link coils in warehouse"
+                  width={680}
+                  height={453}
+                  className="h-auto w-full object-cover"
+                  sizes="(max-width: 768px) 100vw, 340px"
+                />
+              </div>
+              <div className="overflow-hidden rounded-xl border border-border bg-card">
+                <Image
+                  src="/about/warehouse-stock-2.png"
+                  alt="Barbed wire rolls — CM and Border brand stock at warehouse"
+                  width={680}
+                  height={453}
+                  className="h-auto w-full object-cover"
+                  sizes="(max-width: 768px) 100vw, 340px"
+                />
+              </div>
+            </div>
+          </section>
         </section>
 
         <div className="min-w-0 space-y-10">
