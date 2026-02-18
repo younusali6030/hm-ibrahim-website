@@ -33,10 +33,10 @@ const categoryLinks = categories.map((c) => ({
 export function Footer() {
   return (
     <footer className="border-t border-border bg-card print:hidden">
-      <div className="container mx-auto px-4 md:px-6 py-12 max-w-7xl">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
-          <div>
-            <p className="text-lg font-semibold text-foreground">
+      <div className="container mx-auto px-4 sm:px-6 md:px-6 py-10 sm:py-12 max-w-7xl">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <div className="min-w-0">
+            <p className="text-base sm:text-lg font-semibold text-foreground">
               <span className="text-primary">HM</span> Ibrahim & Co
             </p>
             <p className="mt-2 text-sm text-muted-foreground">{site.tagline}</p>
@@ -51,7 +51,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary"
+                    className="block py-1.5 text-sm text-muted-foreground hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
                   >
                     {link.label}
                   </Link>
@@ -136,12 +136,12 @@ export function Footer() {
 
           <div>
             <h3 className="font-semibold text-foreground">Categories</h3>
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-3 space-y-0">
               {categoryLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary"
+                    className="block py-1.5 text-sm text-muted-foreground hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
                   >
                     {link.label}
                   </Link>
@@ -152,12 +152,12 @@ export function Footer() {
 
           <div>
             <h3 className="font-semibold text-foreground">Products in Indore</h3>
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-3 space-y-0">
               {indoreLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary"
+                    className="block py-1.5 text-sm text-muted-foreground hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
                   >
                     {link.label}
                   </Link>

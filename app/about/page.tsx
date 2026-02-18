@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 md:px-6 py-16 md:py-20 max-w-7xl min-w-0">
-      <h1 className="text-4xl font-bold text-foreground md:text-5xl">About HM Ibrahim & Co</h1>
-      <p className="mt-4 text-lg text-muted-foreground">{site.tagline}</p>
-      <p className="mt-2 text-muted-foreground">{site.manufacturerTagline}</p>
+    <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-7xl min-w-0">
+      <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">About HM Ibrahim & Co</h1>
+      <p className="mt-3 sm:mt-4 text-base sm:text-lg text-muted-foreground">{site.tagline}</p>
+      <p className="mt-2 text-sm sm:text-base text-muted-foreground">{site.manufacturerTagline}</p>
 
-      <div className="mt-12 grid gap-8 md:grid-cols-[minmax(0,340px)_1fr] md:gap-10">
+      <div className="mt-10 sm:mt-12 grid gap-8 md:grid-cols-[minmax(0,300px)_1fr] lg:grid-cols-[minmax(0,340px)_1fr] md:gap-10">
         <section className="md:pt-1" aria-label="Our store">
           <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-card shadow-lg md:mx-0 md:max-w-none">
             <Image
@@ -65,34 +65,49 @@ export default function AboutPage() {
 
         <div className="min-w-0 space-y-10">
           <section aria-labelledby="story-heading">
-            <h2 id="story-heading" className="text-2xl font-semibold text-foreground">
+            <h2 id="story-heading" className="text-xl font-semibold text-foreground sm:text-2xl">
               Our Story
             </h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              Since 1939, HM Ibrahim & Co has stood at the heart of Indore&apos;s iron and hardware trade. For over eight decades we have been the go-to name for builders, contractors, fabricators, and retailers who demand quality materials and dependable service. Based in the historic Siyaganj market — Indore&apos;s premier hub for steel and hardware — we have built lasting, multi-generation relationships with our clients and take pride in being part of their growth.
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Founded in 1939, H.Mohammed.Husain.HM.Ibrahim&Co (CM) has been a trusted name in wiremesh, steel sections, and industrial hardware in Indore.
+            </p>
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Located in the heart of Siyaganj, we have proudly served generations of contractors, builders, fabricators, and businesses with consistent quality, fair pricing, and reliable supply. Today, the business is being managed by the third generation, continuing the legacy with the same commitment to quality and customer satisfaction.
+            </p>
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              We specialize in a wide range of products including wiremesh, weldmesh, perforated sheets (MS & SS), steel sections, GI & MS wires, fencing materials, and industrial hardware. Our fencing solutions include barbed wire, chainlink fence, and zatka (jhatka) wire, catering to both construction and agricultural needs.
+            </p>
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              In addition to industrial materials, we also deal in durable agricultural and manual tools such as hoe, pickaxe, and crowbar, ensuring strong and dependable equipment for field and construction use.
+            </p>
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              With decades of experience in the industry, we possess in-depth product knowledge and practical understanding of customer requirements. We guide our customers in selecting the most suitable and cost-effective products based on their specific application, ensuring durability, safety, and long-term value.
+            </p>
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              For over eight decades, we have continued to support modern construction and agricultural requirements while maintaining the traditional business values of trust, integrity, and long-term relationships.
             </p>
           </section>
 
           <section className="mt-10 pt-10 border-t border-border" aria-labelledby="leadership-heading">
-            <h2 id="leadership-heading" className="text-2xl font-semibold text-foreground">
+            <h2 id="leadership-heading" className="text-xl font-semibold text-foreground sm:text-2xl">
               Our Leadership & Legacy
             </h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
               HM Ibrahim & Co. was founded by Late H.M. Ibrahim, whose vision laid the foundation of trust, quality, and long-term relationships in the steel and hardware trade.
             </p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
               The firm was later managed by Late Abedeali Bhai Dewaswala (CM) (1924–2025). Under his leadership, the company strengthened its reputation across Indore and surrounding regions, building deep customer relationships and operational discipline.
             </p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
               The command was then entrusted to Akbar Ali, who built a highly skilled and trustworthy sales and production team, strengthening internal systems and expanding the firm&apos;s reach.
             </p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
               Today, the firm is scaling under the supervision of Shoeb Ali, who brings modern strategy, structured operations, and forward-thinking execution to this hereditary business — ensuring the HM Ibrahim & Co. name reaches every household while preserving its legacy of trust.
             </p>
           </section>
 
           <section aria-labelledby="values-heading">
-            <h2 id="values-heading" className="text-2xl font-semibold text-foreground">
+            <h2 id="values-heading" className="text-xl font-semibold text-foreground sm:text-2xl">
               Our Values
             </h2>
             <ul className="mt-4 space-y-3 text-muted-foreground leading-relaxed">
@@ -104,10 +119,10 @@ export default function AboutPage() {
           </section>
 
           <section aria-labelledby="supply-heading">
-            <h2 id="supply-heading" className="text-2xl font-semibold text-foreground">
+            <h2 id="supply-heading" className="text-xl font-semibold text-foreground sm:text-2xl">
               What We Supply
             </h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
               We stock a wide range of iron and steel — MS angles, flats, bright bars, TMT bars, and structural sections — plus pipes and tubes, wire and mesh (GI wire, binding wire, barbed wire, chain link, welded mesh, jalies), and hardware and tools including welding rods, fasteners, nails, crowbars, pickaxes, perforated sheets, and pigeon nets. Our product range serves construction, fabrication, and industrial needs for both retail and wholesale customers.
             </p>
           </section>

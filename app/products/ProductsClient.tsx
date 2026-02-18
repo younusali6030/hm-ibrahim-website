@@ -41,9 +41,9 @@ export function ProductsClient() {
 
   return (
     <>
-      <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 max-w-7xl">
-        <h1 className="text-4xl font-bold text-foreground md:text-5xl">Products</h1>
-        <p className="mt-4 max-w-2xl text-muted-foreground">
+      <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl min-w-0">
+        <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">Products</h1>
+        <p className="mt-3 sm:mt-4 max-w-2xl text-sm sm:text-base text-muted-foreground">
           Browse our categories and products. Use search and filters to find what you need, then
           request a quote for pricing and availability.
         </p>
@@ -52,24 +52,24 @@ export function ProductsClient() {
           <TataBadge />
         </div>
 
-        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-          <div className="relative flex-1">
+        <div className="mt-6 sm:mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="relative flex-1 w-full min-w-0">
             <Input
               type="search"
               placeholder="Search products..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10"
+              className="w-full pl-10 min-h-[44px] text-base"
               aria-label="Search products"
             />
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" aria-hidden>
               🔍
             </span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex overflow-x-auto gap-2 pb-2 snap-x snap-mandatory scrollbar-thin min-w-0 -mx-1 px-1 sm:flex-wrap sm:overflow-visible sm:pb-0 sm:mx-0 sm:px-0">
             <Link
               href={tataOnly ? (activeCategory ? `/products?category=${activeCategory.slug}` : "/products") : (activeCategory ? `/products?category=${activeCategory.slug}&tata=1` : "/products?tata=1")}
-              className={`rounded-md border px-4 py-2 text-sm font-medium transition-colors ${
+              className={`shrink-0 snap-start rounded-md border px-4 py-2.5 text-sm font-medium transition-colors min-h-[44px] flex items-center justify-center ${
                 tataOnly
                   ? "border-primary bg-primary/20 text-primary"
                   : "border-border bg-card text-muted-foreground hover:bg-accent"
@@ -79,7 +79,7 @@ export function ProductsClient() {
             </Link>
             <Link
               href="/products"
-              className={`rounded-md border px-4 py-2 text-sm font-medium transition-colors ${
+              className={`shrink-0 snap-start rounded-md border px-4 py-2.5 text-sm font-medium transition-colors min-h-[44px] flex items-center justify-center ${
                 !activeCategory && !tataOnly
                   ? "border-primary bg-primary/20 text-primary"
                   : "border-border bg-card text-muted-foreground hover:bg-accent"
@@ -91,7 +91,7 @@ export function ProductsClient() {
               <Link
                 key={cat.slug}
                 href={`/products?category=${cat.slug}${tataOnly ? "&tata=1" : ""}`}
-                className={`rounded-md border px-4 py-2 text-sm font-medium transition-colors ${
+                className={`shrink-0 snap-start rounded-md border px-4 py-2.5 text-sm font-medium transition-colors min-h-[44px] flex items-center justify-center ${
                   activeCategory?.slug === cat.slug
                     ? "border-primary bg-primary/20 text-primary"
                     : "border-border bg-card text-muted-foreground hover:bg-accent"
@@ -130,7 +130,7 @@ export function ProductsClient() {
           {filteredProducts.length === 0 ? (
             <p className="mt-4 text-muted-foreground">No products match your search.</p>
           ) : (
-            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredProducts.map((product, i) => (
                 <ProductCard
                   key={product.slug}

@@ -9,11 +9,11 @@ import { ImageWithFallback } from "@/components/ImageWithFallback";
 
 export function CategoryGrid() {
   return (
-    <section className="py-16 md:py-20" aria-labelledby="categories-heading">
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl min-w-0">
+    <section className="py-12 sm:py-16 md:py-20" aria-labelledby="categories-heading">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl min-w-0">
         <motion.h2
           id="categories-heading"
-          className="text-center text-3xl font-bold text-foreground md:text-4xl"
+          className="text-center text-2xl font-bold text-foreground sm:text-3xl md:text-4xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -21,7 +21,7 @@ export function CategoryGrid() {
           Product Categories
         </motion.h2>
         <motion.p
-          className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground"
+          className="mx-auto mt-2 max-w-2xl text-center text-sm sm:text-base text-muted-foreground"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -29,7 +29,7 @@ export function CategoryGrid() {
         >
           Iron, steel, pipes, wire, mesh, and hardware for construction and fabrication
         </motion.p>
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
           {categories.map((cat, i) => {
             const Icon = getIcon(cat.icon);
             return (

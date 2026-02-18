@@ -85,17 +85,17 @@ export default async function CategoryPage({ params }: Props) {
   const faqSchema = getCategoryFaqSchema();
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 max-w-7xl min-w-0">
+    <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl min-w-0">
       <JsonLdBreadcrumb items={breadcrumbItems} />
       {faqSchema && <SeoJsonLd data={faqSchema} />}
 
       <Breadcrumbs items={breadcrumbItems} className="mb-6" />
 
       <article>
-        <h1 className="text-3xl font-bold text-foreground md:text-4xl">
+        <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">
           {category.name} in Indore, {localSeo.state}
         </h1>
-        <p className="mt-4 text-lg text-muted-foreground max-w-3xl leading-relaxed">
+        <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl leading-relaxed">
           {category.description} We are based in <strong className="text-foreground">Siyaganj, Indore</strong> and serve retail and wholesale customers across Indore, Dewas, Ujjain, Mhow, and nearby areas.
         </p>
 
@@ -140,11 +140,11 @@ export default async function CategoryPage({ params }: Props) {
           <FAQAccordion faqs={productFaqs.slice(0, 5)} title="Common questions" />
         </section>
 
-        <div className="mt-10 flex flex-wrap gap-4">
-          <Button asChild>
+        <div className="mt-10 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+          <Button asChild className="w-full sm:w-auto min-h-[44px]">
             <Link href={`/quote?category=${category.slug}`}>Request a quote for {category.name}</Link>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="w-full sm:w-auto min-h-[44px]">
             <a
               href={getWhatsAppLink(site.whatsapp, `Hi, I'm interested in ${category.name}. Please share price and availability.`)}
               target="_blank"
@@ -155,7 +155,7 @@ export default async function CategoryPage({ params }: Props) {
           </Button>
           <Link
             href="/products"
-            className="inline-flex items-center rounded-lg border border-border bg-transparent px-4 py-2 text-sm font-medium text-foreground hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-lg border border-border bg-transparent px-4 py-3 text-sm font-medium text-foreground hover:bg-accent min-h-[44px] sm:min-h-0"
           >
             View all products
           </Link>

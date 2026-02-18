@@ -20,11 +20,11 @@ export function CTASection({
   whatsAppMessage = "Hi, I'm interested in your products. Please share price/availability.",
 }: Props) {
   return (
-    <section className="bg-primary/10 border-y border-border py-16 md:py-20" aria-labelledby="cta-heading">
-      <div className="container mx-auto px-4 text-center">
+    <section className="bg-primary/10 border-y border-border py-12 sm:py-16 md:py-20" aria-labelledby="cta-heading">
+      <div className="container mx-auto px-4 sm:px-6 text-center max-w-7xl min-w-0">
         <motion.h2
           id="cta-heading"
-          className="text-2xl font-bold text-foreground md:text-3xl"
+          className="text-xl font-bold text-foreground sm:text-2xl md:text-3xl"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -41,16 +41,16 @@ export function CTASection({
           {description}
         </motion.p>
         <motion.div
-          className="mt-8 flex flex-wrap items-center justify-center gap-4"
+          className="mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 sm:gap-4"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="w-full sm:w-auto min-h-[44px]">
             <Link href="/quote">{quoteLabel}</Link>
           </Button>
-          <Button asChild size="lg" variant="outline">
+          <Button asChild size="lg" variant="outline" className="w-full sm:w-auto min-h-[44px]">
             <a
               href={getWhatsAppLink(site.whatsapp, whatsAppMessage)}
               target="_blank"

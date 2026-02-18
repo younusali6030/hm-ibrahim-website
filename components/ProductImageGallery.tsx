@@ -96,7 +96,7 @@ export function ProductImageGallery({
             <Button
               variant="outline"
               size="icon"
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background h-10 w-10 md:h-9 md:w-9"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background min-h-[44px] min-w-[44px] h-11 w-11 md:h-9 md:w-9 md:min-h-0 md:min-w-0"
               onClick={goToPrevious}
               aria-label="Previous"
             >
@@ -105,7 +105,7 @@ export function ProductImageGallery({
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background h-10 w-10 md:h-9 md:w-9"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background min-h-[44px] min-w-[44px] h-11 w-11 md:h-9 md:w-9 md:min-h-0 md:min-w-0"
               onClick={goToNext}
               aria-label="Next"
             >
@@ -119,13 +119,13 @@ export function ProductImageGallery({
       </div>
 
       {media.length > 1 && (
-        <div className="flex md:grid md:grid-cols-4 gap-2 overflow-x-auto pb-1 md:pb-0 snap-x snap-mandatory md:snap-align-none scrollbar-thin min-w-0">
+        <div className="flex md:grid md:grid-cols-4 gap-2 overflow-x-auto pb-1 md:pb-0 snap-x snap-mandatory md:snap-align-none scrollbar-thin min-w-0 -mx-4 px-4 md:mx-0 md:px-0">
           {media.map((item, idx) => (
             <button
               key={`${item.src}-${idx}`}
               type="button"
               onClick={() => setActiveIndex(idx)}
-              className={`relative aspect-square w-20 h-20 md:w-full shrink-0 overflow-hidden rounded-md border-2 transition-all snap-start ${
+              className={`relative aspect-square w-16 h-16 sm:w-20 sm:h-20 md:w-full shrink-0 overflow-hidden rounded-md border-2 transition-all snap-start min-w-[64px] sm:min-w-[80px] ${
                 activeIndex === idx
                   ? "border-primary ring-2 ring-primary/20"
                   : "border-border hover:border-primary/50"

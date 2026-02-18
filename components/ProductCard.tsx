@@ -86,7 +86,7 @@ export function ProductCard({ product, index = 0 }: Props) {
           </CardContent>
         </Link>
         <div className="border-t border-border px-4 pb-4 pt-0">
-          <Button asChild variant="outline" size="sm" className="w-full mt-2">
+          <Button asChild variant="outline" size="sm" className="w-full mt-2 min-h-[44px] sm:min-h-0">
             <Link href={`/products/${product.slug}`}>View details & quote</Link>
           </Button>
         </div>

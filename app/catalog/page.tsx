@@ -15,10 +15,10 @@ export default function CatalogPage() {
 
   return (
     <div className="catalog-page">
-      <div className="no-print container mx-auto px-4 py-8">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-foreground md:text-3xl">Product Catalog</h1>
+      <div className="no-print container mx-auto px-4 sm:px-6 py-6 sm:py-8 max-w-7xl min-w-0">
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-between gap-4">
+          <div className="min-w-0">
+            <h1 className="text-xl font-bold text-foreground sm:text-2xl md:text-3xl">Product Catalog</h1>
             <p className="mt-1 text-sm text-muted-foreground">
               Download or print this catalog for reference. Contact us for pricing and availability.
             </p>
@@ -28,7 +28,7 @@ export default function CatalogPage() {
       </div>
 
       <div className="catalog-print-area bg-white text-gray-900 print:block">
-        <div className="mx-auto max-w-4xl px-6 py-8 print:px-8 print:py-12">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 py-6 sm:py-8 print:px-8 print:py-12">
           {/* Header */}
           <header className="mb-10 border-b-2 border-gray-800 pb-6">
             <h1 className="text-3xl font-bold text-gray-900">{site.name}</h1>

@@ -69,7 +69,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
   });
 
   return (
-    <div className="grid gap-8 lg:grid-cols-2 min-w-0">
+    <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 min-w-0">
       <ProductImageGallery
         key={`${product.slug}-${selectedBrandId ?? "default"}`}
         media={media}
@@ -80,7 +80,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
 
       <div className="min-w-0">
         <div>
-          <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">{product.name}</h1>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl md:text-3xl lg:text-4xl">{product.name}</h1>
           {category && (
             <p className="mt-2 text-muted-foreground">{category.name}</p>
           )}
@@ -99,7 +99,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
         <Accordion type="multiple" defaultValue={accordionDefaults} className="mt-6 w-full">
           {hasSpecs && (
             <AccordionItem value="specs" className="border-b border-border">
-              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
                 Specifications
               </AccordionTrigger>
               <AccordionContent>
@@ -145,7 +145,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           )}
           {displaySizes && displaySizes.length > 0 && (
             <AccordionItem value="sizes" className="border-b border-border">
-              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
                 Sizes & Thickness
               </AccordionTrigger>
               <AccordionContent>
@@ -159,7 +159,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           )}
           {displayMaterials && displayMaterials.length > 0 && (
             <AccordionItem value="materials" className="border-b border-border">
-              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
                 Materials / Finish
               </AccordionTrigger>
               <AccordionContent>
@@ -173,7 +173,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           )}
           {product.variants && product.variants.length > 0 && (
             <AccordionItem value="variants" className="border-b border-border">
-              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
                 Variants
               </AccordionTrigger>
               <AccordionContent>
@@ -187,7 +187,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           )}
           {displayUseCases && displayUseCases.length > 0 && (
             <AccordionItem value="uses" className="border-b border-border">
-              <AccordionTrigger className="text-left text-lg font-semibold py-4 hover:no-underline">
+              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
                 Common Uses
               </AccordionTrigger>
               <AccordionContent>

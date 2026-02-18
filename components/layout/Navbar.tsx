@@ -29,7 +29,7 @@ export function Navbar() {
       <nav className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 md:px-6 max-w-7xl" aria-label="Main navigation">
         <Link
           href="/"
-          className="flex items-center gap-2 font-semibold text-foreground"
+          className="flex items-center gap-2 font-semibold text-foreground text-sm sm:text-base min-h-[44px] items-center"
           onClick={() => setOpen(false)}
         >
           <span className="text-primary">HM</span> Ibrahim & Co

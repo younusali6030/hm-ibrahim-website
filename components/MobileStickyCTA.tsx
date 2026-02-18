@@ -6,7 +6,7 @@ import { getWhatsAppLink } from "@/lib/utils";
 export function MobileStickyCTA() {
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-40 flex gap-2 border-t border-border bg-background/95 p-3 backdrop-blur print:hidden md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-40 flex gap-2 border-t border-border bg-background/95 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] backdrop-blur print:hidden md:hidden"
       role="group"
       aria-label="Quick contact"
     >

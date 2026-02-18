@@ -34,7 +34,7 @@ export function Hero() {
       <div className="container mx-auto text-center min-w-0 max-w-6xl">
         <motion.h1
           id="hero-heading"
-          className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
+          className="text-2xl font-bold tracking-tight text-foreground xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -44,7 +44,7 @@ export function Hero() {
           Trusted Iron & Hardware Since 1939
         </motion.h1>
         <motion.p
-          className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground md:text-base"
+          className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-base"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -159,10 +159,10 @@ export function Hero() {
           {TRUST_ITEMS.map((item) => (
             <div
               key={item.label}
-              className="flex items-center justify-center gap-1.5 md:justify-center"
+              className="flex items-center justify-center gap-1.5 md:justify-center min-h-[44px] md:min-h-0"
             >
               <item.icon className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden />
-              <span className="text-[11px] text-muted-foreground md:text-xs">{item.label}</span>
+              <span className="text-xs text-muted-foreground">{item.label}</span>
             </div>
           ))}
         </motion.div>

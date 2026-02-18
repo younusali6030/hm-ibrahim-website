@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 max-w-7xl min-w-0">
-      <h1 className="text-4xl font-bold text-foreground md:text-5xl">Contact Us</h1>
-      <p className="mt-4 max-w-2xl text-muted-foreground">
+    <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl min-w-0">
+      <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">Contact Us</h1>
+      <p className="mt-3 sm:mt-4 max-w-2xl text-sm sm:text-base text-muted-foreground">
         Visit our store, call, or send a message. We&apos;re here to help.
       </p>
 
-      <div className="mt-12 grid gap-12 lg:grid-cols-2">
+      <div className="mt-10 sm:mt-12 grid gap-10 sm:gap-12 lg:grid-cols-2">
         <div>
           <h2 className="text-xl font-semibold text-foreground">Get in touch</h2>
           <ul className="mt-4 space-y-4 text-muted-foreground">
@@ -71,10 +71,10 @@ export default function ContactPage() {
             connected by road; you can ask for &quot;HM Ibrahim & Co&quot; or &quot;Tijori Gali&quot;.
           </p>
 
-          <div className="mt-8 flex gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
               href={`tel:${site.phone.replace(/\s/g, "")}`}
-              className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 min-h-[44px]"
             >
               Call now
             </a>
@@ -82,7 +82,7 @@ export default function ContactPage() {
               href={getWhatsAppLink(site.whatsapp, "Hi, I'd like to inquire about your products.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg border border-border px-4 py-2 text-sm font-medium hover:bg-accent"
+              className="inline-flex items-center justify-center rounded-lg border border-border px-4 py-3 text-sm font-medium hover:bg-accent min-h-[44px]"
             >
               WhatsApp
             </a>

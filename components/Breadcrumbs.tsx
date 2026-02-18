@@ -23,7 +23,7 @@ export function Breadcrumbs({ items, className = "" }: Props) {
                   {item.name}
                 </span>
               ) : (
-                <Link href={item.url} className="hover:text-primary transition-colors">
+                <Link href={item.url} className="hover:text-primary transition-colors py-1.5 -my-1.5 inline-flex items-center">
                   {item.name}
                 </Link>
               )}
