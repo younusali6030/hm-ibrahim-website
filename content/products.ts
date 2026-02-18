@@ -43,6 +43,8 @@ export type Product = {
   tataOfficial?: boolean;
   /** Brand-specific variants (CM, Border) with images and range */
   brandVariants?: BrandVariant[];
+  /** Optional indicative rate range for catalog email (e.g. "Approx. ₹55–65 per kg") when API rates not used */
+  indicativeRate?: string;
 };
 
 export type Category = {
@@ -107,6 +109,7 @@ export const categories: Category[] = [
         notes: "Available in multiple sizes and weights; availability depends on stock. Commonly used for fabrication, grills, and structural supports.",
         tataAvailable: true,
         tataOfficial: true,
+        indicativeRate: "Approx. ₹58–68 per kg (varies by size and quantity). Confirm for current price.",
       },
       {
         slug: "bright-bars",

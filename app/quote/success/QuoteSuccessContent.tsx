@@ -24,10 +24,9 @@ export function QuoteSuccessContent() {
     const whatsappUrl = getWhatsAppLink(site.whatsapp, message);
     return (
       <div className="container mx-auto px-4 py-16 text-center">
-        <h1 className="text-3xl font-bold text-foreground">Quote request ready</h1>
+        <h1 className="text-3xl font-bold text-foreground">Quote request received</h1>
         <p className="mt-4 text-muted-foreground">
-          Send your quote request to us on WhatsApp. We&apos;ll get back to you with pricing and
-          availability.
+          We&apos;ve sent a product catalog with tentative prices to your email. Check your inbox (and spam folder). You can also send your request to us on WhatsApp.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button asChild size="lg" className="gap-2">
@@ -56,7 +55,7 @@ export function QuoteSuccessContent() {
     <div className="container mx-auto px-4 py-16 text-center">
       <h1 className="text-3xl font-bold text-foreground">Quote request received</h1>
       <p className="mt-4 text-muted-foreground">
-        Thank you. We have received your request and will get back to you shortly.
+        We&apos;ve sent a product catalog with tentative prices to your email. Check your inbox (and spam folder). We&apos;ll confirm exact rates when you contact us.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-4">
         <Button asChild>

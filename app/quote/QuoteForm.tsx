@@ -110,6 +110,7 @@ export function QuoteForm() {
         aria-hidden
       />
       {prefilledBrand && <input type="hidden" name="brand" value={prefilledBrand} />}
+      {prefilledProduct && <input type="hidden" name="product" value={prefilledProduct} />}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">

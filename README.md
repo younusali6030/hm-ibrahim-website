@@ -40,6 +40,10 @@ Create a `.env.local` file (and add the same in Vercel → Project → Settings 
 |----------|-------------|
 | `RESEND_API_KEY` | Your [Resend](https://resend.com) API key (required for quote & contact forms) |
 | `RESEND_FROM_EMAIL` | Sender email for Resend (e.g. `noreply@yourdomain.com`). If not set, Resend default is used. |
+| `QUOTE_FROM_EMAIL` | Gmail address that sends the catalog to the customer (default: `younusali6030@gmail.com`). |
+| `GMAIL_APP_PASSWORD` | [Gmail App Password](https://myaccount.google.com/apppasswords) for the account above (required to send catalog). |
+| `SERPER_API_KEY` | Optional. [Serper](https://serper.dev) API key to search for product rates in Indore/Siyaganj (free tier: 2500 queries). |
+| `OPENAI_API_KEY` | Optional. Used with Serper to extract tentative supplier/rates from search results (gpt-4o-mini). |
 | `QUOTE_TO_EMAIL` | Email where quote requests are sent (default: value from `content/site.ts`) |
 | `CONTACT_TO_EMAIL` | Email where contact form messages are sent (default: value from `content/site.ts`) |
 | `NEXT_PUBLIC_SITE_URL` | Full site URL for sitemap, robots, and metadata (e.g. `https://hmibrahimco.com`) |

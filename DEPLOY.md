@@ -47,10 +47,13 @@ If Vercel is already connected to GitHub and you just need to push local changes
    - Click **Deploy**. Vercel will build and give you a URL like `your-project.vercel.app`.
 
 3. **Set environment variables** (in Vercel: Project → Settings → Environment Variables):
-   - `RESEND_API_KEY` – from [resend.com](https://resend.com) (for quote/contact forms)
+   - `RESEND_API_KEY` – from [resend.com](https://resend.com) (for quote/contact forms and catalog email)
    - `RESEND_FROM_EMAIL` – verified sender email (e.g. `noreply@yourdomain.com`)
+   - `QUOTE_FROM_EMAIL` – Gmail address that sends the catalog (default: `younusali6030@gmail.com`)
+   - `GMAIL_APP_PASSWORD` – Gmail App Password for that account (create at [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords))
    - `NEXT_PUBLIC_SITE_URL` – your live URL (e.g. `https://hmibrahimco.com`)
    - Optional: `QUOTE_TO_EMAIL`, `CONTACT_TO_EMAIL` if different from `content/site.ts`
+   - Optional (for live tentative rates in catalog): `SERPER_API_KEY` ([serper.dev](https://serper.dev)), `OPENAI_API_KEY`
 
 4. **Use your own domain** (optional):
    - In Vercel: Project → Settings → Domains → Add `hmibrahimco.com`
