@@ -63,6 +63,9 @@ If Vercel is already connected to GitHub and you just need to push local changes
 
    **Optional:** `QUOTE_TO_EMAIL`, `CONTACT_TO_EMAIL` (defaults in `content/site.ts`). For live tentative rates in catalog: `SERPER_API_KEY`, `OPENAI_API_KEY`.
 
+   **Optional — save every quote to one Google Sheet (like an Excel file that keeps growing):**  
+   Set `GOOGLE_SHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, and `GOOGLE_PRIVATE_KEY`. See **Google Sheet setup** below.
+
 4. **Use your own domain** (optional):
    - In Vercel: Project → Settings → Domains → Add `hmibrahimco.com`
    - Add the CNAME or A record your registrar shows (Vercel will tell you what to add).
@@ -83,6 +86,24 @@ If Vercel is already connected to GitHub and you just need to push local changes
    The app will be at `http://localhost:3000`.
 
 3. **On a server**: Use a process manager (e.g. PM2) and a reverse proxy (e.g. Nginx) in front of `npm start`. Set the same env vars as above (e.g. in `.env.production` or your hosting panel).
+
+---
+
+## Google Sheet setup (optional — one “Excel” that keeps growing)
+
+If you want every quote request to be appended to a single Google Sheet (you can export to Excel anytime):
+
+1. **Create a Google Sheet** at [sheets.google.com](https://sheets.google.com). You can leave the first row blank; the app will add the header row on the first quote.
+2. **Create a Google Cloud service account:**
+   - Go to [Google Cloud Console](https://console.cloud.google.com) → APIs & Services → Credentials → Create Credentials → Service Account. Name it (e.g. “HM Quote Sheet”), create, then open it.
+   - Under **Keys** → Add Key → Create new key → JSON. Download the JSON file.
+   - From the JSON, note: `client_email` (use as `GOOGLE_SERVICE_ACCOUNT_EMAIL`) and `private_key` (use as `GOOGLE_PRIVATE_KEY` — paste the full key including `-----BEGIN PRIVATE KEY-----` and `-----END PRIVATE KEY-----`; in Vercel you can put it in one line with `\n` for newlines).
+3. **Enable the Sheets API:** Google Cloud Console → APIs & Services → Enable APIs → Google Sheets API → Enable.
+4. **Share the sheet with the service account:** Open your Google Sheet → Share → add the `client_email` (e.g. `xxx@xxx.iam.gserviceaccount.com`) as **Editor**.
+5. **Get the Sheet ID** from the URL: `https://docs.google.com/spreadsheets/d/SHEET_ID/edit` → `SHEET_ID` is what you set as `GOOGLE_SHEET_ID`.
+6. **Set in Vercel (or .env.local):** `GOOGLE_SHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY`.
+
+After that, each quote submission will add one row. You can open the sheet in the browser or download as Excel (File → Download → Microsoft Excel).
 
 ---
 
