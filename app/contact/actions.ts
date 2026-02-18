@@ -1,9 +1,9 @@
 "use server";
 
-import { Resend } from "resend";
-import { site } from "@/content/site";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const CONTACT_FROM_EMAIL = process.env.QUOTE_FROM_EMAIL || "younusali6030@gmail.com";
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || "younusali6030@gmail.com";
 
 export async function submitContact(formData: FormData): Promise<{ success?: boolean; error?: string }> {
   const honeypot = formData.get("website")?.toString();
@@ -18,8 +18,10 @@ export async function submitContact(formData: FormData): Promise<{ success?: boo
     return { error: "Please fill in name, email, and message." };
   }
 
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
-  const toEmail = process.env.CONTACT_TO_EMAIL || "younusali6030@gmail.com";
+  const appPassword = process.env.GMAIL_APP_PASSWORD;
+  if (!appPassword) {
+    return { error: "Email is not configured. Please add GMAIL_APP_PASSWORD in your hosting settings." };
+  }
 
   const body = `
 New contact form submission
@@ -33,18 +35,21 @@ ${message}
   `.trim();
 
   try {
-    const { error } = await resend.emails.send({
-      from: fromEmail,
-      to: toEmail,
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: CONTACT_FROM_EMAIL,
+        pass: appPassword,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"HM Ibrahim & Co" <${CONTACT_FROM_EMAIL}>`,
+      to: CONTACT_TO_EMAIL,
       replyTo: email,
       subject: `Contact form: ${name} — HM Ibrahim & Co`,
       text: body,
     });
-
-    if (error) {
-      console.error("Resend contact error:", error);
-      return { error: "Failed to send. Please try again or call us." };
-    }
   } catch (e) {
     console.error("Contact submit error:", e);
     return { error: "Failed to send. Please try again or call us." };

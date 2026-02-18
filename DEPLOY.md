@@ -55,11 +55,7 @@ If Vercel is already connected to GitHub and you just need to push local changes
    | `GMAIL_APP_PASSWORD` | Your 16-char Gmail App Password | [Create one](https://myaccount.google.com/apppasswords) for this Gmail account |
    | `NEXT_PUBLIC_SITE_URL` | `https://hmibrahimco.com` (or your Vercel domain) | **Required** so product images in the email load (use your real domain, not `*.vercel.app`) |
 
-   **Required for contact form (Resend):**
-   | Variable | Value |
-   |----------|--------|
-   | `RESEND_API_KEY` | From [resend.com](https://resend.com) |
-   | `RESEND_FROM_EMAIL` | Verified sender (e.g. `noreply@yourdomain.com`) |
+   **Contact form** uses the same Gmail as the quote catalog: messages are sent to `younusali6030@gmail.com` via `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD`. No separate Resend setup needed.
 
    **Optional — live rate range in catalog:** Add `SERPER_API_KEY` ([serper.dev](https://serper.dev), free tier 2500 queries) so the catalog email shows a **live indicative range** from recent web search (Indore/Siyaganj). Add `OPENAI_API_KEY` for richer extraction (multiple supplier rates); without it, a single live range is still derived from search.
 
@@ -110,7 +106,6 @@ After that, each quote submission will add one row. You can open the sheet in th
 ## Before going live
 
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to your real domain (sitemap, OG, canonicals, **and catalog email images**).
-- [ ] Add `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD` so the quote catalog email is sent from your Gmail.
-- [ ] Add `RESEND_API_KEY` and `RESEND_FROM_EMAIL` so the contact form sends email.
+- [ ] Add `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD` so both the quote catalog and contact form emails work (sent from your Gmail to younusali6030@gmail.com).
 - [ ] Replace `site.googleReview.profileUrl` in `content/site.ts` with your real Google Business profile URL.
 - [ ] Add `public/favicon.ico` if you want a custom favicon.
