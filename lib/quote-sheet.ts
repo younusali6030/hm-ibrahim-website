@@ -9,6 +9,7 @@ import type { QuoteSubmission } from "./quote-notification";
 
 const SHEET_HEADERS = [
   "date",
+  "time",
   "name",
   "phone number",
   "email",
@@ -21,12 +22,22 @@ const SHEET_HEADERS = [
 ] as const;
 
 function formatSubmissionDate(date: Date): string {
-  return date.toISOString();
+  return date.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit" });
+}
+
+function formatSubmissionTime(date: Date): string {
+  return date.toLocaleTimeString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 }
 
 function submissionToRow(data: QuoteSubmission, submittedAt: Date): Record<string, string> {
   return {
     "date": formatSubmissionDate(submittedAt),
+    "time": formatSubmissionTime(submittedAt),
     "name": data.name,
     "phone number": data.phone,
     "email": data.email,

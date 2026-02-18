@@ -78,6 +78,63 @@ async function searchRatesSerper(productName: string): Promise<string[]> {
   }
 }
 
+/** Parse number from price string (e.g. "58,500" or "62.5" -> 58500, 62.5) */
+function parsePriceNumber(s: string): number | null {
+  const cleaned = s.replace(/,/g, "").trim();
+  const n = parseFloat(cleaned);
+  return Number.isFinite(n) && n > 0 && n < 1e7 ? n : null;
+}
+
+/**
+ * Extract a live rate range from search snippets using regex (no OpenAI).
+ * Looks for ₹/Rs. amounts and "per kg", "per metre", etc.; returns one TentativeRate with min–max range.
+ */
+function extractLiveRangeFromSnippets(snippets: string[]): TentativeRate[] {
+  const text = snippets.join(" ");
+  const numbers: number[] = [];
+  let unit = "per kg";
+
+  const patterns: Array<{ re: RegExp; unitGroup?: number; rangeGroup?: number }> = [
+    { re: /(?:₹|Rs\.?)\s*([\d,.]+)\s*[–\-]\s*([\d,.]+)\s*(?:per\s*(kg|metre|m\b|sq\.?\s*m|piece|sq\s*ft|meter))?/gi, unitGroup: 3, rangeGroup: 2 },
+    { re: /(?:₹|Rs\.?)\s*([\d,.]+)\s*(?:per\s*(kg|metre|m\b|sq\.?\s*m|piece|sq\s*ft|meter))?/gi, unitGroup: 2 },
+    { re: /([\d,.]+)\s*\/?\s*per\s*(kg|metre|m\b|sq\.?\s*m|piece|sq\s*ft|meter)/gi, unitGroup: 2 },
+    { re: /(?:₹|Rs\.?)\s*([\d,.]+)/g },
+  ];
+
+  for (const { re, unitGroup, rangeGroup } of patterns) {
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+      const n1 = parsePriceNumber(m[1]);
+      if (n1 !== null) numbers.push(n1);
+      if (rangeGroup && m[rangeGroup]) {
+        const n2 = parsePriceNumber(m[rangeGroup]);
+        if (n2 !== null) numbers.push(n2);
+      }
+      if (unitGroup && m[unitGroup]) {
+        const u = String(m[unitGroup]).toLowerCase();
+        if (u.includes("kg")) unit = "per kg";
+        else if (u.includes("metre") || u === "m") unit = "per metre";
+        else if (u.includes("sq") && u.includes("m")) unit = "per sq m";
+        else if (u.includes("piece")) unit = "per piece";
+      }
+    }
+  }
+
+  if (numbers.length === 0) return [];
+  const min = Math.min(...numbers);
+  const max = Math.max(...numbers);
+  const minR = min % 1 === 0 ? min : Math.round(min * 10) / 10;
+  const maxR = max % 1 === 0 ? max : Math.round(max * 10) / 10;
+  const rateStr = minR === maxR ? `₹${minR} ${unit}` : `₹${minR}–${maxR} ${unit}`;
+  return [
+    {
+      supplier: "Market (live search)",
+      rate: rateStr,
+      note: "From recent Indore/Siyaganj web search. Confirm for current price.",
+    },
+  ];
+}
+
 /** Use OpenAI to extract 3–4 supplier names and tentative rates from search snippets */
 async function extractRatesFromSnippets(
   productName: string,
@@ -141,6 +198,9 @@ export async function getCatalogData(
   const snippets = await searchRatesSerper(productName);
   if (snippets.length > 0) {
     tentativeRates = await extractRatesFromSnippets(productName, snippets);
+    if (tentativeRates.length === 0) {
+      tentativeRates = extractLiveRangeFromSnippets(snippets);
+    }
   }
   const indicativeRateRange = product?.indicativeRate;
 

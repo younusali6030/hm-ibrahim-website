@@ -61,7 +61,7 @@ If Vercel is already connected to GitHub and you just need to push local changes
    | `RESEND_API_KEY` | From [resend.com](https://resend.com) |
    | `RESEND_FROM_EMAIL` | Verified sender (e.g. `noreply@yourdomain.com`) |
 
-   **Optional:** `QUOTE_TO_EMAIL`, `CONTACT_TO_EMAIL` (defaults in `content/site.ts`). For live tentative rates in catalog: `SERPER_API_KEY`, `OPENAI_API_KEY`.
+   **Optional — live rate range in catalog:** Add `SERPER_API_KEY` ([serper.dev](https://serper.dev), free tier 2500 queries) so the catalog email shows a **live indicative range** from recent web search (Indore/Siyaganj). Add `OPENAI_API_KEY` for richer extraction (multiple supplier rates); without it, a single live range is still derived from search.
 
    **Optional — save every quote to one Google Sheet (like an Excel file that keeps growing):**  
    Set `GOOGLE_SHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, and `GOOGLE_PRIVATE_KEY`. See **Google Sheet setup** below.

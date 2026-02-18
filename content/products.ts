@@ -88,6 +88,7 @@ export const categories: Category[] = [
         notes: "Available in different sizes and thicknesses; availability depends on stock. Commonly requested sizes include 25x25mm, 40x40mm, 50x50mm, and 75x75mm.",
         tataAvailable: true,
         tataOfficial: true,
+        indicativeRate: "Approx. ₹52–62 per kg (varies by size and quantity). Confirm for current price.",
       },
       {
         slug: "ms-flats",
@@ -130,6 +131,7 @@ export const categories: Category[] = [
         notes: "Tighter tolerance commonly requested. Available in different sizes; availability depends on stock. Suitable for precision machining applications.",
         tataAvailable: true,
         tataOfficial: true,
+        indicativeRate: "Approx. ₹65–78 per kg (varies by size and finish). Confirm for current price.",
       },
       {
         slug: "tmt-bars",
@@ -151,6 +153,7 @@ export const categories: Category[] = [
         notes: "Available in different sizes and grades; availability depends on stock. Commonly requested sizes include 8mm, 10mm, 12mm, 16mm, and 20mm for RCC work.",
         tataAvailable: true,
         tataOfficial: true,
+        indicativeRate: "Approx. ₹52–62 per kg (varies by size and grade). Confirm for current price.",
       },
       {
         slug: "ms-round-bars",
@@ -172,6 +175,7 @@ export const categories: Category[] = [
         notes: "Available in different sizes and lengths; availability depends on stock. Commonly used for fabrication, anchors, and general construction purposes.",
         tataAvailable: true,
         tataOfficial: true,
+        indicativeRate: "Approx. ₹50–60 per kg (varies by size). Confirm for current price.",
       },
       {
         slug: "ms-channels",
@@ -193,6 +197,7 @@ export const categories: Category[] = [
         notes: "Available in standard channel sizes; availability depends on stock. Used for structural support, purlins, and fabrication.",
         tataAvailable: true,
         tataOfficial: true,
+        indicativeRate: "Approx. ₹55–68 per kg (varies by size). Confirm for current price.",
       },
       {
         slug: "ms-i-beams-joists",
@@ -214,6 +219,7 @@ export const categories: Category[] = [
         notes: "Available in standard I-section sizes; availability depends on stock. Contact us for specific sizes and load requirements.",
         tataAvailable: true,
         tataOfficial: true,
+        indicativeRate: "Approx. ₹56–66 per kg (varies by size). Confirm for current price.",
       },
       {
         slug: "frp-bars",
@@ -235,6 +241,7 @@ export const categories: Category[] = [
         sizes: ["4 ft (530 g)", "5 ft (660 g)", "6 ft (790 g)", "6mm", "8mm", "10mm", "12mm", "16mm", "20mm diameter"],
         materials: ["Glass fiber reinforced polymer (GFRP)"],
         notes: "Corrosion-resistant alternative to steel TMT. Available in 4 ft / 5 ft / 6 ft lengths with weights as above; also in diameters 6mm–20mm. Contact us for stock.",
+        indicativeRate: "Approx. ₹90–120 per kg (varies by diameter and length). Confirm for current price.",
       },
     ],
   },
@@ -264,6 +271,7 @@ export const categories: Category[] = [
         sizes: ["15mm (1/2\")", "20mm (3/4\")", "25mm (1\")", "32mm (1.25\")", "40mm (1.5\")", "50mm (2\")", "65mm (2.5\")", "80mm (3\")", "100mm (4\")", "125mm (5\")", "150mm (6\")"],
         materials: ["Galvanized iron (GI)"],
         notes: "Available in different sizes and classes; availability depends on stock. Commonly used for water supply, fencing, and structural applications.",
+        indicativeRate: "Approx. ₹85–180 per metre (varies by NB size and class). Confirm for current price.",
       },
       {
         slug: "ms-pipes",
@@ -284,6 +292,7 @@ export const categories: Category[] = [
         notes: "Available in different sizes and schedules; availability depends on stock. Suitable for structural and industrial applications.",
         tataAvailable: true,
         tataOfficial: true,
+        indicativeRate: "Approx. ₹55–70 per kg (varies by size and schedule). Confirm for current price.",
       },
       {
         slug: "square-tubes",
@@ -304,6 +313,7 @@ export const categories: Category[] = [
         notes: "Available in different sizes and thicknesses; availability depends on stock. Commonly used for gates, furniture, and fabrication work.",
         tataAvailable: true,
         tataOfficial: true,
+        indicativeRate: "Approx. ₹62–75 per kg (varies by size and thickness). Confirm for current price.",
       },
     ],
   },
@@ -351,6 +361,7 @@ export const categories: Category[] = [
             notes: "Tata Wiron GI wire with consistent strength and coating quality.",
           },
         ],
+        indicativeRate: "Approx. ₹72–88 per kg (varies by gauge). Confirm for current price.",
       },
       {
         slug: "binding-wire",
@@ -370,6 +381,7 @@ export const categories: Category[] = [
         materials: ["Annealed mild steel"],
         notes: "Available in different pack sizes; availability depends on stock. Specifically designed for RCC reinforcement tying work. Packing: coils up to 50 kg (varies by gauge and stock).",
         tataAvailable: true,
+        indicativeRate: "Approx. ₹65–78 per kg (varies by gauge and pack size). Confirm for current price.",
       },
       {
         slug: "clutch-wire",
@@ -389,6 +401,7 @@ export const categories: Category[] = [
         sizes: ["Spool sizes and lengths as per stock"],
         materials: ["Steel", "Galvanized"],
         notes: "Available in spools; used for clutch cables and similar applications. Contact us for gauge, length, and quantity.",
+        indicativeRate: "Approx. ₹70–85 per kg (varies by gauge). Confirm for current price.",
       },
       {
         slug: "jhatka-machine-fencing-wire",
@@ -409,6 +422,7 @@ export const categories: Category[] = [
         sizes: ["Coil sizes and lengths as per stock"],
         materials: ["Galvanized steel", "GI wire"],
         notes: "Quality jhatka and fencing wire for agricultural and boundary use. Available in coils; contact us for gauge and quantity.",
+        indicativeRate: "Approx. ₹68–82 per kg (varies by gauge). Confirm for current price.",
       },
       {
         slug: "barbed-wire",
@@ -483,6 +497,7 @@ export const categories: Category[] = [
             notes: "Tata Wiron barbed wire for long life and corrosion resistance. Availability as per Tata stock.",
           },
         ],
+        indicativeRate: "Approx. ₹75–92 per kg (varies by type and coil size). Confirm for current price.",
       },
       {
         slug: "chain-link-fencing",
@@ -560,6 +575,7 @@ export const categories: Category[] = [
             notes: "Tata Wiron chain link fencing for durable compound and boundary fencing.",
           },
         ],
+        indicativeRate: "Approx. ₹55–75 per sq m (varies by mesh size and height). Confirm for current price.",
       },
       {
         slug: "welded-mesh",
@@ -578,6 +594,7 @@ export const categories: Category[] = [
         sizes: ["15mm x 15mm", "50x50mm", "75x75mm", "100x100mm", "150x150mm"],
         materials: ["Mild steel wire"],
         notes: "Available in different mesh sizes and wire diameters; availability depends on stock. Used for RCC slab reinforcement, partitions, and cages. Common mesh sizes include 15mm x 15mm.",
+        indicativeRate: "Approx. ₹50–70 per sq m (varies by mesh and wire size). Confirm for current price.",
       },
       {
         slug: "fiber-mesh",
@@ -598,6 +615,7 @@ export const categories: Category[] = [
         sizes: ["4\"", "6\"", "8\"", "Other sizes available"],
         materials: ["Fiberglass"],
         notes: "Fiber mesh for embedding in plaster, stucco, or render to reinforce and reduce cracking. Commonly comes in 4\", 6\", 8\" width; other sizes available. Contact us for pricing.",
+        indicativeRate: "Approx. ₹15–35 per metre (varies by width). Confirm for current price.",
       },
       {
         slug: "ss-gi-mesh-jalies",
@@ -616,6 +634,7 @@ export const categories: Category[] = [
         sizes: ["Custom sizes as per design"],
         materials: ["Stainless steel 304", "Galvanized iron"],
         notes: "Available in different patterns and materials; availability depends on stock. Custom designs available as per requirements.",
+        indicativeRate: "Approx. ₹180–350 per sq ft (SS) / ₹80–150 per sq ft (GI) — varies by design. Confirm for current price.",
       },
       {
         slug: "clutcher-wire",
@@ -633,6 +652,7 @@ export const categories: Category[] = [
         sizes: ["As per requirement"],
         materials: ["High-carbon steel", "Galvanized"],
         notes: "Available as per specification; contact us for gauge and quantity.",
+        indicativeRate: "Approx. ₹70–85 per kg (varies by gauge). Confirm for current price.",
       },
       {
         slug: "chicken-net",
@@ -652,6 +672,7 @@ export const categories: Category[] = [
         sizes: ["Various roll widths and lengths as per stock"],
         materials: ["Galvanized iron"],
         notes: "Available in roll form; contact us for mesh size and dimensions.",
+        indicativeRate: "Approx. ₹45–65 per metre (varies by width and mesh). Confirm for current price.",
       },
       {
         slug: "plastic-hexagonal-poultry-mesh",
@@ -676,6 +697,7 @@ export const categories: Category[] = [
         sizes: ["Various roll widths and lengths as per stock"],
         materials: ["Plastic"],
         notes: "Lightweight, durable plastic mesh with hexagonal openings. Suitable for poultry, small animal enclosures, and garden use. Cable ties often used for installation. Available in green and dark colors; dimensions as per stock.",
+        indicativeRate: "Approx. ₹25–55 per metre (varies by width). Confirm for current price.",
       },
       {
         slug: "concertina-wire",
@@ -695,6 +717,7 @@ export const categories: Category[] = [
         sizes: ["Coil diameter and length as per stock"],
         materials: ["Galvanized steel", "Stainless"],
         notes: "High-security fencing. Contact us for coil size and type.",
+        indicativeRate: "Approx. ₹120–200 per metre (varies by type and coil). Confirm for current price.",
       },
       {
         slug: "safety-net",
@@ -715,6 +738,7 @@ export const categories: Category[] = [
         sizes: ["Sheets and roll sizes as per stock"],
         materials: ["Nylon", "Polyethylene", "Synthetic"],
         notes: "Heavy-duty safety nets for construction and scaffolding. Available in green and dual-layer (green with white fine mesh) with braided rope reinforcement. Contact us for dimensions and type.",
+        indicativeRate: "Approx. ₹35–90 per sq m (varies by type and size). Confirm for current price.",
       },
       {
         slug: "wire-rope",
@@ -734,6 +758,7 @@ export const categories: Category[] = [
         sizes: ["2mm to 20+ mm diameter", "Supplied by meter or coil/drum"],
         materials: ["Steel", "Galvanized or ungalvanized"],
         notes: "Tell us diameter + length + application and we'll suggest the right rope.",
+        indicativeRate: "Approx. ₹85–180 per kg (varies by diameter and construction). Confirm for current price.",
       },
     ],
   },
@@ -763,6 +788,7 @@ export const categories: Category[] = [
         sizes: ["2.5mm", "3.15mm", "4.0mm"],
         materials: ["Coated electrodes"],
         notes: "Available in different types and sizes; availability depends on stock. Commonly requested types include E6013 and E7018 for general fabrication and repair work.",
+        indicativeRate: "Approx. ₹95–130 per kg (varies by type and size). Confirm for current price.",
       },
       {
         slug: "fasteners-nails",
@@ -781,6 +807,7 @@ export const categories: Category[] = [
         sizes: ["1\"", "2\"", "3\"", "4\"", "5\"", "6\"", "Other lengths as per stock"],
         materials: ["Mild steel", "Stainless steel", "Galvanized iron"],
         notes: "Wire nails in lengths from 1 inch to 6 inch. Available in MS, GI, and SS; availability depends on stock. Please specify size and quantity.",
+        indicativeRate: "Approx. ₹65–95 per kg (varies by size and type). Confirm for current price.",
       },
       {
         slug: "roofing-nail",
@@ -800,6 +827,7 @@ export const categories: Category[] = [
         sizes: ["1.5\"", "2\"", "2.5\"", "3\"", "4\"", "5\"", "6\"", "Other lengths as per stock"],
         materials: ["Mild steel", "Galvanized iron"],
         notes: "Roofing nails with wide flat head for shingles and roofing sheets. Available from 1.5 inch to 6 inch; MS and galvanized. Contact us for size and quantity.",
+        indicativeRate: "Approx. ₹70–100 per kg (varies by size). Confirm for current price.",
       },
       {
         slug: "concrete-cover-block",
@@ -819,6 +847,7 @@ export const categories: Category[] = [
         sizes: ["20mm", "25mm", "30mm", "40mm", "50mm cover (as per block orientation and stock)"],
         materials: ["Concrete", "Cement"],
         notes: "Concrete cover blocks to maintain rebar cover in RCC. Multi-sided design gives different cover depths (e.g. 20, 25, 30, 40, 50mm). Available in various sizes; contact us for quantity and specs.",
+        indicativeRate: "Approx. ₹3–8 per piece (varies by size and depth). Confirm for current price.",
       },
       {
         slug: "sr-crowbar",
@@ -838,6 +867,7 @@ export const categories: Category[] = [
         sizes: ["Standard lengths as per stock"],
         materials: ["Mild steel"],
         notes: "SR brand crowbars with distinctive orange-tipped design. Available in standard sizes; contact us for length and quantity.",
+        indicativeRate: "Approx. ₹350–650 per piece (varies by length). Confirm for current price.",
       },
       {
         slug: "sr-hoe-faurdha",
@@ -863,6 +893,7 @@ export const categories: Category[] = [
         sizes: ["Blue 1.0 kg", "Orange 1.1 kg", "Red 900 g / 1.4 kg", "Green 1.1 kg", "Other weights as per stock"],
         materials: ["Carbon steel"],
         notes: "SR brand hoe (faurdha) blades. Every color is a different weight — specify the color or weight you need. Carbon steel construction. Contact us for availability and price.",
+        indicativeRate: "Approx. ₹180–320 per piece (varies by weight/color). Confirm for current price.",
       },
       {
         slug: "sr-pickaxe-geti",
@@ -889,6 +920,7 @@ export const categories: Category[] = [
         sizes: ["1.7 kg", "2.2 kg", "2.4 kg", "2.8 kg", "3 kg", "Other weights as per stock"],
         materials: ["Carbon steel"],
         notes: "SR brand pickaxe (geti) heads. Carbon steel, pointed and chisel ends. Available in different weights and colors (e.g. red-blue, orange, blue, green, black). Contact us for weight and color availability.",
+        indicativeRate: "Approx. ₹280–450 per piece (varies by weight). Confirm for current price.",
       },
       {
         slug: "sr-hoe-faurdha-with-handle",
@@ -913,6 +945,7 @@ export const categories: Category[] = [
         sizes: ["Standard; handle length and blade size as per stock"],
         materials: ["Carbon steel", "Handle (wood/metal as supplied)"],
         notes: "SR brand hoe (faurdha) supplied with handle. Carbon steel blade, ready to use. Available in green, black, and other colors. Contact us for availability.",
+        indicativeRate: "Approx. ₹220–380 per piece (with handle). Confirm for current price.",
       },
       {
         slug: "santing-shikanja",
@@ -933,6 +966,7 @@ export const categories: Category[] = [
         sizes: ["Various sizes as per stock"],
         materials: ["Heavy-duty steel", "Iron"],
         notes: "Heavy-duty construction clamps specifically designed for formwork (centering/shuttering) work. Used to hold shuttering plates/sheets tightly together and lock alignment while casting RCC slabs, beams, and columns. Works with pins, wedges, or bolts to prevent plates from opening under concrete pressure. Available in bulk; contact us for sizes and quantity.",
+        indicativeRate: "Approx. ₹45–85 per piece (varies by size). Confirm for current price.",
       },
       {
         slug: "perforated-sheets",
@@ -951,6 +985,7 @@ export const categories: Category[] = [
         sizes: ["Custom sizes as per requirement"],
         materials: ["Mild steel", "Galvanized iron"],
         notes: "Available in different thicknesses and hole patterns; availability depends on stock. Custom sizes available as per requirements.",
+        indicativeRate: "Approx. ₹120–220 per sq m (varies by thickness and pattern). Confirm for current price.",
       },
       {
         slug: "pigeon-nets",
@@ -971,6 +1006,7 @@ export const categories: Category[] = [
         sizes: ["Widths: 3ft to 20ft", "Lengths: As required"],
         materials: ["Nylon", "HDPE"],
         notes: "Available in different sizes, colors, and styles; availability depends on stock. Custom cut to size. UV stabilized options available for outdoor use.",
+        indicativeRate: "Approx. ₹15–40 per sq m (varies by mesh and style). Confirm for current price.",
       },
       {
         slug: "pigeon-spikes",
@@ -991,6 +1027,7 @@ export const categories: Category[] = [
         materials: ["UV-stabilized plastic", "Stainless steel"],
         notes:
           "Pigeon spikes to prevent birds from sitting on ledges, beams, and sign boards. Available in plastic and SS variants; installation with screws or adhesive as per site.",
+        indicativeRate: "Approx. ₹25–80 per metre (plastic) / ₹150–350 per metre (SS). Confirm for current price.",
       },
       {
         slug: "sponge",
@@ -1011,6 +1048,7 @@ export const categories: Category[] = [
           "Sold as single pieces or packs (as available)",
         ],
         notes: "Call/WhatsApp for the exact size and type you need.",
+        indicativeRate: "Approx. ₹25–75 per piece (varies by size). Confirm for current price.",
       },
       {
         slug: "cutting-discs-grinding-wheels",
@@ -1030,6 +1068,7 @@ export const categories: Category[] = [
         sizes: ["100mm (4\")", "115mm", "125mm (5\")", "150mm (6\")", "180mm (7\")"],
         materials: ["Abrasive"],
         notes: "Available in various sizes and grades; availability depends on stock. Contact us for bulk or specific requirements.",
+        indicativeRate: "Approx. ₹35–95 per piece (varies by diameter and type). Confirm for current price.",
       },
     ],
   },

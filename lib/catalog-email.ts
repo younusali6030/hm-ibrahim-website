@@ -56,8 +56,8 @@ function buildCatalogHtml(data: CatalogData): string {
   const ratesSection = hasRates
     ? `
     <div style="margin-top:20px;padding:14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;">
-      <h3 style="margin:0 0 10px 0;font-size:14px;color:#166534;">Tentative rates (Indore / Siyaganj)</h3>
-      <p style="margin:0 0 10px 0;font-size:12px;color:#6b7280;">Based on market search for: ${escapeHtml(searchContext)}. Confirm with us for current price and availability.</p>
+      <h3 style="margin:0 0 10px 0;font-size:14px;color:#166534;">Live indicative range (Indore / Siyaganj)</h3>
+      <p style="margin:0 0 10px 0;font-size:12px;color:#6b7280;">From recent web search for: ${escapeHtml(searchContext)}. Confirm with us for current price and availability.</p>
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <tr style="border-bottom:1px solid #bbf7d0;"><th style="text-align:left;padding:6px 8px 6px 0;">Source</th><th style="text-align:left;padding:6px 0;">Rate</th><th style="text-align:left;padding:6px 0;">Note</th></tr>
         ${tentativeRates.map((r) => `<tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:6px 8px 6px 0;">${escapeHtml(r.supplier ?? "—")}</td><td style="padding:6px 0;">${escapeHtml(r.rate ?? "—")}</td><td style="padding:6px 0;color:#6b7280;">${escapeHtml(r.note ?? "")}</td></tr>`).join("")}
