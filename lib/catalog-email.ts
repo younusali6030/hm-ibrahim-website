@@ -16,16 +16,12 @@ function buildCatalogHtml(data: CatalogData): string {
   const hasRates = tentativeRates.length > 0;
   const hasIndicative = !hasRates && indicativeRateRange?.trim();
 
+  const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : null;
   const imagesHtml =
-    imageUrls.length > 0
+    firstImageUrl
       ? `
     <div style="margin-bottom:20px;">
-      ${imageUrls
-        .map(
-          (url) =>
-            `<img src="${escapeHtml(url)}" alt="${escapeHtml(productName)}" width="100%" style="max-width:100%;height:auto;border-radius:8px;display:block;margin-bottom:8px;" />`
-        )
-        .join("")}
+      <img src="${escapeHtml(firstImageUrl)}" alt="${escapeHtml(productName)}" width="100%" style="max-width:100%;height:auto;border-radius:8px;display:block;" />
     </div>`
       : "";
 
@@ -100,9 +96,20 @@ function buildCatalogHtml(data: CatalogData): string {
       ${notesHtml}
       ${ratesSection}
     </div>
-    <div style="padding:20px 24px;background:#f9fafb;border-top:1px solid #e5e7eb;">
+    <div style="padding:20px 24px;background:#eff6ff;border-top:1px solid #bfdbfe;">
+      <p style="margin:0 0 12px 0;font-size:14px;font-weight:600;color:#1e40af;">Call us ASAP at <a href="tel:+919826053563" style="color:#2563eb;">+91 9826053563</a> to book the best available rate.</p>
       <p style="margin:0;font-size:12px;color:#6b7280;">This catalog was sent in response to your quote request. For current prices and orders, contact us:</p>
       <p style="margin:8px 0 0 0;font-size:13px;"><a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> · <a href="mailto:${QUOTE_FROM_EMAIL}" style="color:#2563eb;">${QUOTE_FROM_EMAIL}</a></p>
+    </div>
+    <div style="padding:20px 24px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:13px;color:#374151;">
+      <p style="margin:0 0 8px 0;font-weight:600;color:#111827;">${escapeHtml(site.name)}</p>
+      <p style="margin:0 0 4px 0;">${escapeHtml(site.fullAddress)}</p>
+      <p style="margin:0 0 4px 0;">Landmark: ${escapeHtml(site.landmark)}</p>
+      <p style="margin:0 0 4px 0;">Phone: <a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> (${escapeHtml(site.phoneLabel)}) · <a href="tel:${site.phoneAlt.replace(/\s/g, "")}" style="color:#2563eb;">${site.phoneAlt}</a> (${escapeHtml(site.phoneAltLabel)})</p>
+      <p style="margin:0 0 4px 0;">Email: <a href="mailto:${site.email}" style="color:#2563eb;">${site.email}</a> (${escapeHtml(site.emailLabel)}) · <a href="mailto:${site.emailAlt}" style="color:#2563eb;">${site.emailAlt}</a> (${escapeHtml(site.emailAltLabel)})</p>
+      <p style="margin:0 0 4px 0;">WhatsApp: <a href="https://wa.me/${site.whatsapp}" style="color:#2563eb;">${site.phone}</a></p>
+      <p style="margin:8px 0 0 0;font-size:12px;color:#6b7280;">${escapeHtml(site.hours.weekdays)} · ${escapeHtml(site.hours.sunday)} · ${escapeHtml(site.hours.note)}</p>
+      ${site.gstin ? `<p style="margin:6px 0 0 0;font-size:12px;color:#6b7280;">GSTIN: ${escapeHtml(site.gstin)}</p>` : ""}
     </div>
   </div>
 </body>

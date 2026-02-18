@@ -46,14 +46,22 @@ If Vercel is already connected to GitHub and you just need to push local changes
    - Leave **Framework Preset** as Next.js and **Root Directory** as `.`
    - Click **Deploy**. Vercel will build and give you a URL like `your-project.vercel.app`.
 
-3. **Set environment variables** (in Vercel: Project → Settings → Environment Variables):
-   - `RESEND_API_KEY` – from [resend.com](https://resend.com) (for quote/contact forms and catalog email)
-   - `RESEND_FROM_EMAIL` – verified sender email (e.g. `noreply@yourdomain.com`)
-   - `QUOTE_FROM_EMAIL` – Gmail address that sends the catalog (default: `younusali6030@gmail.com`)
-   - `GMAIL_APP_PASSWORD` – Gmail App Password for that account (create at [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords))
-   - `NEXT_PUBLIC_SITE_URL` – your live URL (e.g. `https://hmibrahimco.com`)
-   - Optional: `QUOTE_TO_EMAIL`, `CONTACT_TO_EMAIL` if different from `content/site.ts`
-   - Optional (for live tentative rates in catalog): `SERPER_API_KEY` ([serper.dev](https://serper.dev)), `OPENAI_API_KEY`
+3. **Set environment variables** (in Vercel: Project → **Settings** → **Environment Variables**). Add each name/value, then **Save**. Redeploy after adding or changing variables.
+
+   **Required for quote catalog (catalog email to customer):**
+   | Variable | Value | Notes |
+   |----------|--------|------|
+   | `QUOTE_FROM_EMAIL` | `younusali6030@gmail.com` | Gmail that sends the catalog |
+   | `GMAIL_APP_PASSWORD` | Your 16-char Gmail App Password | [Create one](https://myaccount.google.com/apppasswords) for this Gmail account |
+   | `NEXT_PUBLIC_SITE_URL` | `https://hmibrahimco.com` (or your Vercel domain) | **Required** so product images in the email load (use your real domain, not `*.vercel.app`) |
+
+   **Required for contact form (Resend):**
+   | Variable | Value |
+   |----------|--------|
+   | `RESEND_API_KEY` | From [resend.com](https://resend.com) |
+   | `RESEND_FROM_EMAIL` | Verified sender (e.g. `noreply@yourdomain.com`) |
+
+   **Optional:** `QUOTE_TO_EMAIL`, `CONTACT_TO_EMAIL` (defaults in `content/site.ts`). For live tentative rates in catalog: `SERPER_API_KEY`, `OPENAI_API_KEY`.
 
 4. **Use your own domain** (optional):
    - In Vercel: Project → Settings → Domains → Add `hmibrahimco.com`
@@ -80,7 +88,8 @@ If Vercel is already connected to GitHub and you just need to push local changes
 
 ## Before going live
 
-- [ ] Set `NEXT_PUBLIC_SITE_URL` to your real domain (sitemap, OG, canonicals use this).
-- [ ] Add `RESEND_API_KEY` and `RESEND_FROM_EMAIL` so quote and contact forms send email.
+- [ ] Set `NEXT_PUBLIC_SITE_URL` to your real domain (sitemap, OG, canonicals, **and catalog email images**).
+- [ ] Add `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD` so the quote catalog email is sent from your Gmail.
+- [ ] Add `RESEND_API_KEY` and `RESEND_FROM_EMAIL` so the contact form sends email.
 - [ ] Replace `site.googleReview.profileUrl` in `content/site.ts` with your real Google Business profile URL.
 - [ ] Add `public/favicon.ico` if you want a custom favicon.
