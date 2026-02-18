@@ -8,6 +8,7 @@ import { JWT } from "google-auth-library";
 import type { QuoteSubmission } from "./quote-notification";
 
 const SHEET_HEADERS = [
+  "date",
   "name",
   "phone number",
   "email",
@@ -19,8 +20,13 @@ const SHEET_HEADERS = [
   "additional notes",
 ] as const;
 
-function submissionToRow(data: QuoteSubmission): Record<string, string> {
+function formatSubmissionDate(date: Date): string {
+  return date.toISOString();
+}
+
+function submissionToRow(data: QuoteSubmission, submittedAt: Date): Record<string, string> {
   return {
+    "date": formatSubmissionDate(submittedAt),
     "name": data.name,
     "phone number": data.phone,
     "email": data.email,
@@ -66,7 +72,7 @@ export async function appendQuoteToSheet(data: QuoteSubmission): Promise<AppendQ
       return { success: false, error: "Sheet has no worksheets." };
     }
 
-    const rowData = submissionToRow(data);
+    const rowData = submissionToRow(data, new Date());
 
     try {
       await sheet.addRow(rowData);
