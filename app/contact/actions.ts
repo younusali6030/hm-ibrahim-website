@@ -19,7 +19,7 @@ export async function submitContact(formData: FormData): Promise<{ success?: boo
   }
 
   const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
-  const toEmail = process.env.CONTACT_TO_EMAIL || site.email;
+  const toEmail = process.env.CONTACT_TO_EMAIL || "younusali6030@gmail.com";
 
   const body = `
 New contact form submission
