@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { categories, getProductImages, getCategoryBySlug } from "@/content/products";
-import { site } from "@/content/site";
+import { baseUrl, site } from "@/lib/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { PrintCatalogButton } from "@/components/catalog/PrintCatalogButton";
 
@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default function CatalogPage() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
 
   return (
     <div className="catalog-page">

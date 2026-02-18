@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProductBySlug, getCategoryBySlug, allProducts, getProductImages, getRelatedProducts } from "@/content/products";
-import { site } from "@/content/site";
+import { baseUrl, site } from "@/lib/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -10,8 +10,9 @@ import { ProductImageGallery } from "@/components/ProductImageGallery";
 import { ProductDetailClient } from "@/components/product/ProductDetailClient";
 import { LookingForMoreSection } from "@/components/LookingForMoreSection";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { productFaqs } from "@/content/faqs";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -92,11 +93,11 @@ export default async function ProductDetailPage({ params }: Props) {
   const breadcrumbItems = [
     { name: "Home", url: "/" },
     { name: "Products", url: "/products" },
-    ...(category ? [{ name: category.name, url: `/products?category=${category.slug}` }] : []),
+    ...(category ? [{ name: category.name, url: `/categories/${category.slug}` }] : []),
     { name: product.name, url: `/products/${product.slug}` },
   ];
 
-  // Enhanced Product schema with more SEO fields
+  // Product schema — no price (contact for quote); eligibility for rich results
   const allImages = images.map(img => img.startsWith("http") ? img : `${baseUrl}${img}`);
   const productSchema = {
     "@context": "https://schema.org",
@@ -105,39 +106,27 @@ export default async function ProductDetailPage({ params }: Props) {
     description: product.shortDesc,
     sku: product.slug,
     mpn: product.slug,
-    ...(allImages.length > 0 ? { 
+    ...(allImages.length > 0 ? {
       image: allImages.length === 1 ? allImages[0] : allImages,
     } : {}),
-    brand: { 
-      "@type": "Brand", 
-      name: site.name,
-      url: baseUrl,
-    },
+    brand: { "@type": "Brand", name: site.name, url: baseUrl },
     category: category?.name || product.categorySlug,
-    offers: { 
-      "@type": "Offer", 
+    offers: {
+      "@type": "Offer",
       availability: "https://schema.org/InStock",
       url: `${baseUrl}/products/${product.slug}`,
-      priceCurrency: "INR",
-      price: "0", // Contact for price
-      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-      seller: {
-        "@type": "LocalBusiness",
-        name: site.name,
-        url: baseUrl,
-      },
-      areaServed: {
-        "@type": "City",
-        name: "Indore",
-      },
+      seller: { "@type": "LocalBusiness", name: site.name, url: baseUrl },
+      areaServed: { "@type": "City", name: "Indore" },
     },
-    aggregateRating: site.googleReview ? {
-      "@type": "AggregateRating",
-      ratingValue: site.googleReview.rating.toString(),
-      reviewCount: site.googleReview.reviewCount.toString(),
-      bestRating: "5",
-      worstRating: "1",
-    } : undefined,
+    ...(site.googleReview ? {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: site.googleReview.rating.toString(),
+        reviewCount: site.googleReview.reviewCount.toString(),
+        bestRating: "5",
+        worstRating: "1",
+      },
+    } : {}),
     ...(product.specs && product.specs.length > 0 ? {
       additionalProperty: product.specs.map(spec => ({
         "@type": "PropertyValue",
@@ -147,6 +136,16 @@ export default async function ProductDetailPage({ params }: Props) {
     } : {}),
   };
 
+  const productFaqSchema = productFaqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: productFaqs.slice(0, 4).map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  } : null;
+
   const sizeInfo = product.sizes && product.sizes.length > 0
     ? ` Size: ${product.sizes.slice(0, 3).join(", ")}`
     : "";
@@ -155,23 +154,9 @@ export default async function ProductDetailPage({ params }: Props) {
   return (
     <article className="container mx-auto px-4 md:px-6 py-12 md:py-16 max-w-7xl min-w-0">
       <JsonLdBreadcrumb items={breadcrumbItems} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />
-      <nav className="mb-6 text-sm text-muted-foreground">
-        <Link href="/products" className="hover:text-primary">Products</Link>
-        {category && (
-          <>
-            {" / "}
-            <Link href={`/products?category=${product.categorySlug}`} className="hover:text-primary">
-              {category.name}
-            </Link>
-          </>
-        )}
-        {" / "}
-        <span className="text-foreground">{product.name}</span>
-      </nav>
+      <SeoJsonLd data={productSchema} />
+      {productFaqSchema && <SeoJsonLd data={productFaqSchema} />}
+      <Breadcrumbs items={breadcrumbItems} className="mb-6" />
 
       {hasBrandVariants ? (
         <ProductDetailClient

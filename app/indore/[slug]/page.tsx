@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { indorePageSlugs, getIndorePage } from "@/content/indorePages";
 import { getProductBySlug } from "@/content/products";
-import { site } from "@/content/site";
+import { site } from "@/lib/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const page = getIndorePage(slug);
   if (!page) return { title: "Products in Indore" };
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
+  const { baseUrl } = await import("@/lib/site");
   return {
     title: page.title,
     description: page.description,

@@ -1,6 +1,4 @@
-import { site } from "@/content/site";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
+import { baseUrl, site } from "@/lib/site";
 
 export function JsonLd() {
   const schema = {
@@ -42,11 +40,11 @@ export function JsonLd() {
         closes: "00:00",
       },
     ],
-    areaServed: site.areasServed.map((name) => ({ 
-      "@type": "City", 
-      name,
-      "@id": `https://www.wikidata.org/wiki/${name}`,
-    })),
+    areaServed: site.areasServed.map((name) =>
+      name === "Nearby areas" || name.includes("Maharashtra") || name.includes("Gujarat") || name.includes("Rajasthan")
+        ? { "@type": "Place" as const, name }
+        : { "@type": "City" as const, name }
+    ),
     priceRange: site.priceRange,
     paymentAccepted: "Cash, Bank Transfer, UPI",
     currenciesAccepted: "INR",

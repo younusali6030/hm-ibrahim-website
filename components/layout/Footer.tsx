@@ -2,10 +2,12 @@ import Link from "next/link";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
+import { categories } from "@/content/products";
 
 const footerLinks = [
   { href: "/about", label: "About" },
   { href: "/products", label: "Products" },
+  { href: "/indore", label: "Indore" },
   { href: "/services", label: "Services" },
   { href: "/quote", label: "Request Quote" },
   { href: "/contact", label: "Contact" },
@@ -22,6 +24,11 @@ const indoreLinks = [
   { href: "/indore/gi-wire", label: "GI Wire Indore" },
   { href: "/indore/construction-hardware", label: "Construction Hardware Indore" },
 ];
+
+const categoryLinks = categories.map((c) => ({
+  href: `/categories/${c.slug}`,
+  label: c.name,
+}));
 
 export function Footer() {
   return (
@@ -124,6 +131,22 @@ export function Footer() {
                   {site.hours.note}
                 </span>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-foreground">Categories</h3>
+            <ul className="mt-3 space-y-2">
+              {categoryLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

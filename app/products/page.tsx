@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ProductsClient } from "./ProductsClient";
-import { site } from "@/content/site";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
+import { baseUrl, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Products | Iron & Hardware in Indore, Siyaganj | HM Ibrahim & Co",

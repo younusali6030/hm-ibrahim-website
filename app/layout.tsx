@@ -3,10 +3,8 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
-import { site } from "@/content/site";
+import { baseUrl, site } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
 
 export const metadata: Metadata = {
   title: {

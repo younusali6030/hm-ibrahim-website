@@ -1,4 +1,4 @@
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
+import { baseUrl } from "@/lib/site";
 
 type BreadcrumbItem = { name: string; url: string };
 

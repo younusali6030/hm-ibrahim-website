@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
-import { allProducts } from "@/content/products";
+import { allProducts, categories } from "@/content/products";
 import { inHouseBrands } from "@/content/brands";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
+import { baseUrl } from "@/lib/site";
 
 const staticPages = [
   "",
@@ -12,6 +11,7 @@ const staticPages = [
   "quote",
   "contact",
   "catalog",
+  "indore",
 ] as const;
 
 const indoreSlugs = [
@@ -35,12 +35,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  for (const category of categories) {
+    entries.push({
+      url: `${baseUrl}/categories/${category.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    });
+  }
+
   for (const product of allProducts) {
     entries.push({
       url: `${baseUrl}/products/${product.slug}`,
       lastModified: new Date(),
-      changeFrequency: "weekly" as const, // Changed to weekly for better indexing
-      priority: 0.8, // Increased priority for product pages
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
     });
   }
 

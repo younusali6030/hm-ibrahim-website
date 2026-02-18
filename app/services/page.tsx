@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { site } from "@/content/site";
+import { baseUrl, site } from "@/lib/site";
 import { ServicesGrid } from "@/components/ServicesGrid";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
 
 export const metadata: Metadata = {
   title: "Services",

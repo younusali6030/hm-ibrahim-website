@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { site } from "@/content/site";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
+import { baseUrl, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Us",

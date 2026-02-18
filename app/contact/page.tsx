@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { site } from "@/content/site";
+import { baseUrl, site } from "@/lib/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { ContactForm } from "./ContactForm";
-
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com";
 
 export const metadata: Metadata = {
   title: "Contact",
