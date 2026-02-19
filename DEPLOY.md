@@ -103,9 +103,22 @@ After that, each quote submission will add one row. You can open the sheet in th
 
 ---
 
+## Analytics (full reports: page views, product views, quote/contact, call/WhatsApp)
+
+To see **how many times the site was opened**, **which products were viewed**, and **quote/contact/call/WhatsApp** actions:
+
+1. Create a GA4 property at [analytics.google.com](https://analytics.google.com) and get your **Measurement ID** (`G-XXXXXXXXXX`).
+2. Set in Vercel (and in `.env.local` for local): **`NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX`**.
+3. Redeploy. Reports appear in GA4 within 24–48 hours.
+
+See **[ANALYTICS.md](./ANALYTICS.md)** for setup steps and where to find each report (pages, products, events).
+
+---
+
 ## Before going live
 
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to your real domain (sitemap, OG, canonicals, **and catalog email images**).
 - [ ] Add `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD` so both the quote catalog and contact form emails work (sent from your Gmail to younusali6030@gmail.com).
 - [ ] Replace `site.googleReview.profileUrl` in `content/site.ts` with your real Google Business profile URL.
+- [ ] (Optional) Set `NEXT_PUBLIC_GA_ID` for full analytics — see [ANALYTICS.md](./ANALYTICS.md).
 - [ ] Add `public/favicon.ico` if you want a custom favicon.

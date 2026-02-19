@@ -3,6 +3,8 @@
 import { Phone, MessageCircle } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
+import { trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
+
 export function MobileStickyCTA() {
   return (
     <div
@@ -12,6 +14,7 @@ export function MobileStickyCTA() {
     >
       <a
         href={`tel:${site.phone.replace(/\D/g, "")}`}
+        onClick={() => trackCallClick("mobile_sticky")}
         className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
         aria-label="Call us"
       >
@@ -23,6 +26,7 @@ export function MobileStickyCTA() {
           site.whatsapp,
           "Hi, I'm interested in your products. Please share price/availability."
         )}
+        onClick={() => trackWhatsAppClick("mobile_sticky")}
         target="_blank"
         rel="noopener noreferrer"
         className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-border bg-card py-3 text-sm font-medium hover:bg-accent"

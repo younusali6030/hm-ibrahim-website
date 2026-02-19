@@ -17,6 +17,7 @@ import {
 import { categories } from "@/content/products";
 import { getBrandById, type BrandId } from "@/content/brands";
 import { submitQuote } from "@/app/quote/actions";
+import { trackQuoteRequest } from "@/lib/analytics";
 
 const QUOTE_STORAGE_KEY = "quoteWhatsAppMessage";
 
@@ -82,6 +83,7 @@ export function QuoteForm() {
     try {
       const result = await submitQuote(formData);
       if (result?.success) {
+        trackQuoteRequest();
         const message = buildQuoteMessage(formData);
         if (typeof window !== "undefined") {
           sessionStorage.setItem(QUOTE_STORAGE_KEY, message);

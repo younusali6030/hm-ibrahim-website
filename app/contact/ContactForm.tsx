@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitContact } from "@/app/contact/actions";
+import { trackContactSubmit } from "@/lib/analytics";
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ export function ContactForm() {
     try {
       const result = await submitContact(formData);
       if (result?.success) {
+        trackContactSubmit();
         setSuccess(true);
         (e.target as HTMLFormElement).reset();
         return;

@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { testimonials } from "@/content/testimonials";
+import { site } from "@/content/site";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -21,7 +22,7 @@ export function TestimonialCarousel() {
           What Our Customers Say
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">
-          Trusted by builders, contractors, and fabricators across Indore and beyond
+          Real reviews from Google — trusted by builders, contractors, and fabricators across Indore and beyond
         </p>
 
         <div className="mx-auto mt-10 max-w-3xl">
@@ -35,10 +36,17 @@ export function TestimonialCarousel() {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex gap-1 text-primary">
-                    {Array.from({ length: current.rating ?? 5 }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-current" aria-hidden />
-                    ))}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex gap-1 text-primary">
+                      {Array.from({ length: current.rating ?? 5 }).map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" aria-hidden />
+                      ))}
+                    </div>
+                    {current.fromGoogle && (
+                      <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
+                        From Google
+                      </span>
+                    )}
                   </div>
                   <blockquote className="mt-4 text-lg text-foreground">
                     &ldquo;{current.text}&rdquo;
@@ -66,6 +74,20 @@ export function TestimonialCarousel() {
               </div>
             </CardContent>
           </Card>
+
+          {site.googleReview?.profileUrl && (
+            <p className="mt-6 text-center">
+              <a
+                href={site.googleReview.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+              >
+                Leave us a review on Google
+                <ExternalLink className="h-4 w-4" aria-hidden />
+              </a>
+            </p>
+          )}
         </div>
       </div>
     </section>

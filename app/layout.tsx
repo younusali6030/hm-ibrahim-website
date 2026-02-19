@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 import { baseUrl, site } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: {
@@ -74,6 +75,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="font-sans min-h-screen flex flex-col min-w-0">
+        <GoogleAnalytics />
         <Navbar />
         <main className="flex-1 w-full min-w-0 pb-20 md:pb-0">{children}</main>
         <Footer />

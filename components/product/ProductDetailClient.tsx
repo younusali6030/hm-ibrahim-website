@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getProductImages, getProductMedia, getBrandVariant } from "@/content/products";
@@ -20,6 +20,7 @@ import { ProductImageGallery } from "@/components/ProductImageGallery";
 import { ProductBrandPicker } from "@/components/product/ProductBrandPicker";
 import { LookingForMoreSection } from "@/components/LookingForMoreSection";
 import type { BrandId } from "@/content/brands";
+import { trackProductView } from "@/lib/analytics";
 
 type Props = {
   product: Product;
@@ -28,6 +29,10 @@ type Props = {
 };
 
 export function ProductDetailClient({ product, category, defaultImages }: Props) {
+  useEffect(() => {
+    trackProductView(product.slug, product.name, category?.name);
+  }, [product.slug, product.name, category?.name]);
+
   const hasBrandVariants = product.brandVariants && product.brandVariants.length > 0;
   const firstBrandId = hasBrandVariants ? (product.brandVariants![0].brandId as BrandId) : null;
   const [selectedBrandId, setSelectedBrandId] = useState<BrandId | null>(firstBrandId);

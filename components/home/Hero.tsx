@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { site } from "@/content/site";
 import { inHouseBrands } from "@/content/brands";
 import { getWhatsAppLink } from "@/lib/utils";
+import { trackWhatsAppClick } from "@/lib/analytics";
 import { Award, BadgeCheck, Store, Package, Truck } from "lucide-react";
 
 const SEO_SUBLINE =
@@ -142,6 +143,7 @@ export function Hero() {
                 site.whatsapp,
                 "Hi, I'm interested in your iron and hardware products. Please share price/availability."
               )}
+              onClick={() => trackWhatsAppClick("hero")}
               target="_blank"
               rel="noopener noreferrer"
             >

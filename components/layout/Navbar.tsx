@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -55,6 +56,7 @@ export function Navbar() {
           <Button asChild size="sm" variant="outline">
             <a
               href={`tel:${site.phone.replace(/\s/g, "")}`}
+              onClick={() => trackCallClick("navbar")}
               aria-label="Call us"
             >
               Call
@@ -63,6 +65,7 @@ export function Navbar() {
           <Button asChild size="sm">
             <a
               href={getWhatsAppLink(site.whatsapp, "Hi, I'm interested in your products. Please share price/availability.")}
+              onClick={() => trackWhatsAppClick("navbar")}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp us"
@@ -112,11 +115,12 @@ export function Navbar() {
               ))}
               <li className="mt-2 flex gap-2 pt-2 border-t border-border">
                 <Button asChild className="flex-1 min-h-[44px]" size="sm" variant="outline">
-                  <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="flex items-center justify-center">Call</a>
+                  <a href={`tel:${site.phone.replace(/\s/g, "")}`} onClick={() => trackCallClick("navbar_mobile")} className="flex items-center justify-center">Call</a>
                 </Button>
                 <Button asChild className="flex-1 min-h-[44px]" size="sm">
                   <a
                     href={getWhatsAppLink(site.whatsapp, "Hi, I'm interested in your products. Please share price/availability.")}
+                    onClick={() => trackWhatsAppClick("navbar_mobile")}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center"
