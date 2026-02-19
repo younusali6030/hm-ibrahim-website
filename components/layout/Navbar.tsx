@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -32,7 +33,7 @@ export function Navbar() {
           className="flex items-center gap-2 font-semibold text-foreground text-sm sm:text-base min-h-[44px] items-center"
           onClick={() => setOpen(false)}
         >
-          <span className="text-primary">HM</span> Ibrahim & Co
+          <Image src="/logo.png" alt="HM Ibrahim & Co" width={120} height={48} className="h-8 w-auto object-contain" priority />
         </Link>
 
         <ul className="hidden md:flex md:items-center md:gap-6">

@@ -9,8 +9,8 @@ export function JsonLd() {
     alternateName: site.legalName,
     description: site.description,
     url: baseUrl,
-    logo: `${baseUrl}/logo.svg`,
-    image: `${baseUrl}/logo.svg`,
+    logo: `${baseUrl}/logo.png`,
+    image: `${baseUrl}/logo.png`,
     telephone: site.phone.replace(/\s/g, ""),
     email: site.email,
     address: {

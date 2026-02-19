@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: `${baseUrl}/logo.svg`,
+        url: `${baseUrl}/logo.png`,
         width: 1200,
         height: 630,
         alt: `${site.name} - Iron & Hardware Trading in Indore`,
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
-    images: [`${baseUrl}/logo.svg`],
+    images: [`${baseUrl}/logo.png`],
   },
   robots: {
     index: true,

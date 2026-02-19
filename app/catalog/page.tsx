@@ -31,8 +31,13 @@ export default function CatalogPage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 py-6 sm:py-8 print:px-8 print:py-12">
           {/* Header */}
           <header className="mb-10 border-b-2 border-gray-800 pb-6">
-            <h1 className="text-3xl font-bold text-gray-900">{site.name}</h1>
-            <p className="mt-1 text-lg text-gray-600">{site.tagline}</p>
+            <div className="flex items-start gap-4">
+              <Image src="/logo.png" alt="HM Ibrahim & Co" width={160} height={107} className="h-20 w-auto shrink-0 object-contain print:h-16" />
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900">{site.name}</h1>
+                <p className="mt-1 text-lg text-gray-600">{site.tagline}</p>
+              </div>
+            </div>
             <p className="mt-2 text-sm text-gray-600">{site.manufacturerTagline}</p>
             <div className="mt-4 grid gap-1 text-sm text-gray-700 sm:grid-cols-2">
               <p>{site.fullAddress}</p>
@@ -125,6 +130,7 @@ export default function CatalogPage() {
 
           {/* Footer */}
           <footer className="mt-12 border-t-2 border-gray-800 pt-6 text-center text-sm text-gray-600">
+            <Image src="/logo.png" alt="" width={100} height={67} className="mx-auto mb-3 h-12 w-auto object-contain print:h-10" />
             <p className="font-semibold text-gray-900">{site.name}</p>
             <p>{site.fullAddress}</p>
             <p className="mt-1">

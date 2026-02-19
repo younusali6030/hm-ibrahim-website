@@ -11,19 +11,21 @@ import type { CatalogData } from "./catalog";
 /** From address for quote catalog — the customer sees this as the sender */
 const QUOTE_FROM_EMAIL = process.env.QUOTE_FROM_EMAIL || "younusali6030@gmail.com";
 
+/** Base URL for logo in email (must be absolute so it loads in email clients) */
+const emailBaseUrl =
+  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_SITE_URL
+    ? process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")
+    : null) || "https://hmibrahimco.com";
+
 function buildCatalogHtml(data: CatalogData): string {
-  const { productName, categoryName, shortDesc, imageUrls, classifications, tentativeRates, indicativeRateRange, searchContext } = data;
+  const { productName, categoryName, shortDesc, classifications, tentativeRates, indicativeRateRange, searchContext } = data;
   const hasRates = tentativeRates.length > 0;
   const hasIndicative = !hasRates && indicativeRateRange?.trim();
 
-  const firstImageUrl = imageUrls.length > 0 ? imageUrls[0] : null;
-  const imagesHtml =
-    firstImageUrl
-      ? `
-    <div style="margin-bottom:20px;">
-      <img src="${escapeHtml(firstImageUrl)}" alt="${escapeHtml(productName)}" width="100%" style="max-width:100%;height:auto;border-radius:8px;display:block;" />
-    </div>`
-      : "";
+  const logoHtml = `
+    <div style="margin-bottom:20px;text-align:center;">
+      <img src="${emailBaseUrl}/logo.png" alt="HM Ibrahim &amp; Co" width="140" height="93" style="height:auto;max-width:140px;display:inline-block;" />
+    </div>`;
 
   const specsHtml =
     classifications.specs.length > 0
@@ -81,12 +83,13 @@ function buildCatalogHtml(data: CatalogData): string {
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;font-family:system-ui,-apple-system,sans-serif;background:#f9fafb;padding:24px;">
   <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
-    <div style="padding:24px;border-bottom:1px solid #e5e7eb;">
+    ${logoHtml}
+    <div style="padding:0 24px 16px;border-bottom:1px solid #e5e7eb;">
+      <p style="margin:0 0 16px 0;font-size:15px;color:#374151;">Thanks for contacting us. Please refer to the reference prices below. You can call us for immediate assistance or wait for us to reach back to you.</p>
       <h1 style="margin:0 0 4px 0;font-size:20px;color:#111827;">${escapeHtml(productName)}</h1>
       <p style="margin:0;font-size:13px;color:#6b7280;">${escapeHtml(categoryName)} — HM Ibrahim & Co, Siyaganj, Indore</p>
     </div>
     <div style="padding:24px;">
-      ${imagesHtml}
       ${shortDesc ? `<p style="margin:0 0 16px 0;font-size:14px;color:#374151;">${escapeHtml(shortDesc)}</p>` : ""}
       ${specsHtml}
       ${sizesHtml}
