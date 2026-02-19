@@ -1,10 +1,27 @@
 "use server";
 
 import { getCategoryBySlug } from "@/content/products";
-import { getCatalogData } from "@/lib/catalog";
+import { getCatalogData, type CatalogData } from "@/lib/catalog";
 import { sendCatalogToCustomer } from "@/lib/catalog-email";
 import { sendQuoteNotification } from "@/lib/quote-notification";
 import { appendQuoteToSheet } from "@/lib/quote-sheet";
+
+function buildRateSharedWithCustomer(catalog: CatalogData): string {
+  if (catalog.tentativeRates.length > 0) {
+    return catalog.tentativeRates
+      .map(
+        (r) =>
+          [r.supplier && `Source: ${r.supplier}`, r.rate && `Rate: ${r.rate}`, r.note && `Note: ${r.note}`]
+            .filter(Boolean)
+            .join(" | ")
+      )
+      .join("\n");
+  }
+  if (catalog.indicativeRateRange?.trim()) {
+    return catalog.indicativeRateRange.trim();
+  }
+  return "No specific rate in catalog (generic message shown).";
+}
 
 /**
  * Submit quote request: validate form, build product catalog and email to customer,
@@ -43,17 +60,21 @@ export async function submitQuote(formData: FormData): Promise<{ success?: boole
       return { error: result.error };
     }
 
-    const notifyResult = await sendQuoteNotification({
-      name,
-      phone,
-      email,
-      customerType,
-      productCategory,
-      items,
-      quantity,
-      delivery,
-      additionalNotes,
-    });
+    const rateSharedWithCustomer = buildRateSharedWithCustomer(catalogData);
+    const notifyResult = await sendQuoteNotification(
+      {
+        name,
+        phone,
+        email,
+        customerType,
+        productCategory,
+        items,
+        quantity,
+        delivery,
+        additionalNotes,
+      },
+      rateSharedWithCustomer
+    );
     if (!notifyResult.success) {
       console.error("Quote notification failed:", notifyResult.error);
     }

@@ -72,10 +72,11 @@ const DELIVERY_LABELS: Record<string, string> = {
 export type SendQuoteNotificationResult = { success: true } | { success: false; error: string };
 
 /**
- * Send an email to younusali6030@gmail.com with the quote details and attach a CSV file.
+ * Send an email to younusali6030@gmail.com with the quote details, the price/rate shared with the customer, and a CSV attachment.
  */
 export async function sendQuoteNotification(
-  data: QuoteSubmission
+  data: QuoteSubmission,
+  rateSharedWithCustomer?: string
 ): Promise<SendQuoteNotificationResult> {
   const appPassword = process.env.GMAIL_APP_PASSWORD;
   if (!appPassword) {
@@ -86,7 +87,7 @@ export async function sendQuoteNotification(
   const customerTypeLabel = data.customerType ? (CUSTOMER_TYPE_LABELS[data.customerType] ?? data.customerType) : "—";
   const deliveryLabel = data.delivery ? (DELIVERY_LABELS[data.delivery] ?? data.delivery) : "—";
 
-  const text = [
+  const lines = [
     "New quote request from website",
     "",
     "Name: " + data.name,
@@ -98,7 +99,11 @@ export async function sendQuoteNotification(
     "Quantity: " + (data.quantity || "—"),
     "Delivery: " + deliveryLabel,
     "Additional notes: " + (data.additionalNotes || "—"),
-  ].join("\n");
+  ];
+  if (rateSharedWithCustomer?.trim()) {
+    lines.push("", "---", "Price/rate shared with customer (in their catalog email):", "", rateSharedWithCustomer.trim());
+  }
+  const text = lines.join("\n");
 
   const filename = `quote-${Date.now()}-${data.name.replace(/[^a-zA-Z0-9]/g, "-").slice(0, 20)}.csv`;
 
