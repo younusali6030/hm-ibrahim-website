@@ -22,6 +22,7 @@ export function ProductCard({ product, index = 0 }: Props) {
   const imgSrc = images[0];
   const imgAlt =
     product.imageAlt ||
+    (product.shortDesc ? `${product.name} – ${product.shortDesc}` : undefined) ||
     category?.imageAlt ||
     `${product.name} product image for ${categoryName || product.categorySlug}`;
 

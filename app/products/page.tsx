@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ProductsClient } from "./ProductsClient";
 import { baseUrl, site } from "@/lib/site";
+import { allProducts } from "@/content/products";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
 
 export const metadata: Metadata = {
   title: "Products | Iron & Hardware in Indore, Siyaganj | HM Ibrahim & Co",
@@ -42,10 +44,30 @@ export const metadata: Metadata = {
   },
 };
 
+function getProductsItemListSchema() {
+  const items = allProducts.slice(0, 20).map((p, i) => ({
+    "@type": "ListItem" as const,
+    position: i + 1,
+    url: `${baseUrl}/products/${p.slug}`,
+    name: p.name,
+  }));
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Iron & Hardware Products",
+    description: `Browse ${site.name} products — MS angles, TMT bars, wire mesh, barbed wire, chain link, GI pipes, construction hardware. Retail and wholesale in Indore.`,
+    numberOfItems: allProducts.length,
+    itemListElement: items,
+  };
+}
+
 export default function ProductsPage() {
   return (
-    <Suspense fallback={<div className="container mx-auto px-4 py-12">Loading...</div>}>
-      <ProductsClient />
-    </Suspense>
+    <>
+      <SeoJsonLd data={getProductsItemListSchema()} />
+      <Suspense fallback={<div className="container mx-auto px-4 py-12">Loading...</div>}>
+        <ProductsClient />
+      </Suspense>
+    </>
   );
 }

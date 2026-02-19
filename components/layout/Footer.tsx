@@ -8,14 +8,15 @@ import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { categories } from "@/content/products";
 
+// High-value links first: Products, Quote, Contact; then supporting pages
 const footerLinks = [
-  { href: "/about", label: "About" },
-  { href: "/products", label: "Products" },
-  { href: "/indore", label: "Indore" },
+  { href: "/products", label: "Browse all products" },
+  { href: "/quote", label: "Request a quote" },
+  { href: "/contact", label: "Contact us" },
+  { href: "/about", label: "About us" },
+  { href: "/indore", label: "Products in Indore" },
   { href: "/services", label: "Services" },
-  { href: "/quote", label: "Request Quote" },
-  { href: "/contact", label: "Contact" },
-  { href: "/catalog", label: "Download Catalog" },
+  { href: "/catalog", label: "Download catalog" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
 ];
@@ -29,8 +30,9 @@ const indoreLinks = [
   { href: "/indore/construction-hardware", label: "Construction Hardware Indore" },
 ];
 
+// Link to filtered products (1 click to products) + category SEO page for crawlers
 const categoryLinks = categories.map((c) => ({
-  href: `/categories/${c.slug}`,
+  href: `/products?category=${c.slug}`,
   label: c.name,
 }));
 

@@ -1,6 +1,22 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { baseUrl, site } from "@/lib/site";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
+
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: `About ${site.name}`,
+  description: site.description,
+  url: `${baseUrl}/about`,
+  mainEntity: {
+    "@type": "Organization",
+    "@id": `${baseUrl}#organization`,
+    name: site.name,
+    foundingDate: "1939",
+    description: site.description,
+  },
+};
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -11,6 +27,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-7xl min-w-0">
+      <SeoJsonLd data={aboutPageSchema} />
       <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">About HM Ibrahim & Co</h1>
       <p className="mt-3 sm:mt-4 text-base sm:text-lg text-muted-foreground">{site.tagline}</p>
       <p className="mt-2 text-sm sm:text-base text-muted-foreground">{site.manufacturerTagline}</p>

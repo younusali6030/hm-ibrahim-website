@@ -9,6 +9,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
   async redirects() {
     return [
       { source: '/categories/iron-steel', destination: '/categories/structural-items', permanent: true },

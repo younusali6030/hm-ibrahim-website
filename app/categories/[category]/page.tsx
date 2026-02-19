@@ -71,6 +71,22 @@ function getCategoryFaqSchema() {
   };
 }
 
+function getCategoryItemListSchema(category: { name: string; slug: string; description: string; products: { slug: string; name: string }[] }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${category.name} — Iron & Hardware`,
+    description: `${category.description} Available from ${site.name} in Siyaganj, Indore. Retail and wholesale.`,
+    numberOfItems: category.products.length,
+    itemListElement: category.products.map((p, i) => ({
+      "@type": "ListItem" as const,
+      position: i + 1,
+      url: `${baseUrl}/products/${p.slug}`,
+      name: p.name,
+    })),
+  };
+}
+
 export default async function CategoryPage({ params }: Props) {
   const { category: slug } = await params;
   const category = getCategoryBySlug(slug);
@@ -83,11 +99,12 @@ export default async function CategoryPage({ params }: Props) {
   ];
 
   const faqSchema = getCategoryFaqSchema();
+  const itemListSchema = getCategoryItemListSchema(category);
 
   return (
     <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl min-w-0">
       <JsonLdBreadcrumb items={breadcrumbItems} />
-      {faqSchema && <SeoJsonLd data={faqSchema} />}
+      <SeoJsonLd data={[itemListSchema, ...(faqSchema ? [faqSchema] : [])]} />
 
       <Breadcrumbs items={breadcrumbItems} className="mb-6" />
 
@@ -154,10 +171,16 @@ export default async function CategoryPage({ params }: Props) {
             </a>
           </Button>
           <Link
-            href="/products"
+            href={`/products?category=${category.slug}`}
             className="inline-flex items-center justify-center rounded-lg border border-border bg-transparent px-4 py-3 text-sm font-medium text-foreground hover:bg-accent min-h-[44px] sm:min-h-0"
           >
-            View all products
+            Browse {category.name} on Products →
+          </Link>
+          <Link
+            href="/products"
+            className="inline-flex items-center justify-center rounded-lg border border-border bg-transparent px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent min-h-[44px] sm:min-h-0"
+          >
+            All product categories
           </Link>
         </div>
       </article>

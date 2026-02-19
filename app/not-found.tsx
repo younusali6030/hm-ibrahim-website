@@ -12,10 +12,13 @@ export default function NotFound() {
       </p>
       <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
         <Button asChild>
-          <Link href="/">Home</Link>
+          <Link href="/">Back to home</Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href="/products">View products</Link>
+          <Link href="/products">Browse all products</Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href="/quote">Request a quote</Link>
         </Button>
       </div>
       <p className="mt-8 text-sm text-muted-foreground">

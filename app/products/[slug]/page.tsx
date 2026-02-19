@@ -98,43 +98,54 @@ export default async function ProductDetailPage({ params }: Props) {
     { name: product.name, url: `/products/${product.slug}` },
   ];
 
-  // Product schema — no price (contact for quote); eligibility for rich results
-  const allImages = images.map(img => img.startsWith("http") ? img : `${baseUrl}${img}`);
+  // Product schema — no price (contact for quote); eligibility for rich results & AI search
+  const allImages = images.map((img) => (img.startsWith("http") ? img : `${baseUrl}${img}`));
+  const productUrl = `${baseUrl}/products/${product.slug}`;
+
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${productUrl}#product`,
     name: product.name,
     description: product.shortDesc,
+    url: productUrl,
     sku: product.slug,
     mpn: product.slug,
-    ...(allImages.length > 0 ? {
-      image: allImages.length === 1 ? allImages[0] : allImages,
-    } : {}),
+    ...(allImages.length > 0 ? { image: allImages } : {}),
     brand: { "@type": "Brand", name: site.name, url: baseUrl },
     category: category?.name || product.categorySlug,
+    ...(product.materials && product.materials.length > 0 ? { material: product.materials.join(", ") } : {}),
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
-      url: `${baseUrl}/products/${product.slug}`,
+      url: productUrl,
       seller: { "@type": "LocalBusiness", name: site.name, url: baseUrl },
       areaServed: { "@type": "City", name: "Indore" },
     },
-    ...(site.googleReview ? {
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: site.googleReview.rating.toString(),
-        reviewCount: site.googleReview.reviewCount.toString(),
-        bestRating: "5",
-        worstRating: "1",
-      },
-    } : {}),
-    ...(product.specs && product.specs.length > 0 ? {
-      additionalProperty: product.specs.map(spec => ({
-        "@type": "PropertyValue",
-        name: spec.label,
-        value: spec.value,
-      })),
-    } : {}),
+    ...(site.googleReview
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: site.googleReview.rating.toString(),
+            reviewCount: site.googleReview.reviewCount.toString(),
+            bestRating: "5",
+            worstRating: "1",
+          },
+        }
+      : {}),
+    ...(product.specs && product.specs.length > 0
+      ? {
+          additionalProperty: product.specs.map((spec) => ({
+            "@type": "PropertyValue",
+            name: spec.label,
+            value: spec.value,
+          })),
+        }
+      : {}),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "[data-speakable]"],
+    },
   };
 
   const productFaqSchema = productFaqs.length > 0 ? {
@@ -178,13 +189,13 @@ export default async function ProductDetailPage({ params }: Props) {
               productSlug={product.slug}
             />
             <div>
-              <div>
+              <div data-speakable>
                 <h1 className="text-3xl font-bold text-foreground md:text-4xl">{product.name}</h1>
                 {category && (
                   <p className="mt-2 text-muted-foreground">{category.name}</p>
                 )}
+                <p className="mt-4 text-muted-foreground leading-relaxed">{product.shortDesc}</p>
               </div>
-              <p className="mt-4 text-muted-foreground leading-relaxed">{product.shortDesc}</p>
 
               {(product.specs && product.specs.length > 0) || product.tataOfficial || product.tataAvailable || (category?.slug && meshWireCategorySlugs.includes(category.slug)) ? (
                 <div className="mt-6">

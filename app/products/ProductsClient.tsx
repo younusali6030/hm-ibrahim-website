@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { categories, allProducts, getCategoryThumbnails, type ProductWithCategory } from "@/content/products";
 import { ProductCard } from "@/components/ProductCard";
@@ -22,7 +22,12 @@ export function ProductsClient() {
   const categoryParam = searchParams.get("category") ?? "";
   const viewAll = searchParams.get("view") === "all";
   const tataOnly = searchParams.get("tata") === "1";
-  const [search, setSearch] = useState("");
+  const qParam = searchParams.get("q") ?? "";
+  const [search, setSearch] = useState(qParam);
+
+  useEffect(() => {
+    setSearch(qParam);
+  }, [qParam]);
 
   const activeCategory = categoryParam
     ? categories.find((c) => c.slug === categoryParam) ?? null
@@ -260,12 +265,15 @@ export function ProductsClient() {
               <h2 className="text-xl font-semibold text-foreground">{viewAll ? "All products" : activeCategory!.name}</h2>
               <p className="mt-2 text-muted-foreground">{viewAll ? "Browse our full range. Use search or category filters above." : activeCategory!.description}</p>
               {!viewAll && (
-                <Link
-                  href={`/quote?category=${activeCategory!.slug}`}
-                  className="mt-4 inline-block text-primary hover:underline"
-                >
-                  Request quote for this category →
-                </Link>
+                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
+                  <Link href={`/quote?category=${activeCategory!.slug}`} className="text-primary hover:underline">
+                    Request quote for {activeCategory!.name} →
+                  </Link>
+                  <span className="text-muted-foreground">·</span>
+                  <Link href={`/categories/${activeCategory!.slug}`} className="text-muted-foreground hover:text-primary hover:underline">
+                    {activeCategory!.name} in Indore — details & FAQ
+                  </Link>
+                </div>
               )}
               {viewAll && (
                 <Link href="/quote" className="mt-4 inline-block text-primary hover:underline">

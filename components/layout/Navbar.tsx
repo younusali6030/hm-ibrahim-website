@@ -11,14 +11,15 @@ import { getWhatsAppLink } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
 
+// Order: Home, then high-value (Products, Quote, Contact), then supporting (About, Indore, Services)
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   { href: "/products", label: "Products" },
-  { href: "/indore", label: "Indore" },
-  { href: "/services", label: "Services" },
   { href: "/quote", label: "Request Quote" },
   { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About" },
+  { href: "/indore", label: "Indore" },
+  { href: "/services", label: "Services" },
 ];
 
 export function Navbar() {

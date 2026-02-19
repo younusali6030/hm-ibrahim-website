@@ -2,6 +2,30 @@ import type { Metadata } from "next";
 import { baseUrl, site } from "@/lib/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { ContactForm } from "./ContactForm";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact HM Ibrahim & Co",
+  description: `Contact ${site.name} — address, phone, WhatsApp, email. Siyaganj, Indore. Iron and hardware retail and wholesale.`,
+  url: `${baseUrl}/contact`,
+  mainEntity: {
+    "@type": "LocalBusiness",
+    "@id": `${baseUrl}#localbusiness`,
+    name: site.name,
+    telephone: site.phone.replace(/\s/g, ""),
+    email: site.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: `${site.address.line1}, ${site.address.line2}`,
+      addressLocality: site.address.city,
+      addressRegion: site.address.state,
+      postalCode: site.address.pincode,
+      addressCountry: site.address.country,
+    },
+  },
+};
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -12,6 +36,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl min-w-0">
+      <SeoJsonLd data={contactPageSchema} />
       <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">Contact Us</h1>
       <p className="mt-3 sm:mt-4 max-w-2xl text-sm sm:text-base text-muted-foreground">
         Visit our store, call, or send a message. We&apos;re here to help.

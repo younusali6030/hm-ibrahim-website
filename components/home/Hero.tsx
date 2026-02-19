@@ -138,6 +138,9 @@ export function Hero() {
             <Link href="/quote">Request a Quote</Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="w-full max-w-sm sm:min-w-[160px]">
+            <Link href="/products">Browse products</Link>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="w-full max-w-sm sm:min-w-[160px]">
             <a
               href={getWhatsAppLink(
                 site.whatsapp,

@@ -18,7 +18,7 @@ const INTENT_BLOCKS = [
     title: "Wholesale in Indore",
     text: "Contractors, fabricators, and dealers: we supply wholesale quantities across Indore, Dewas, Ujjain, Mhow, and nearby areas. Bulk orders welcome.",
     link: "/products",
-    linkLabel: "View products",
+    linkLabel: "Browse iron, steel & hardware catalog",
   },
   {
     icon: Truck,
@@ -31,8 +31,8 @@ const INTENT_BLOCKS = [
     icon: Factory,
     title: "Industrial suppliers in Indore",
     text: "From MS angles and TMT bars to wire mesh, barbed wire, and construction hardware — we stock what industries and construction sites need. Serving Indore since 1939.",
-    link: "/categories/structural-items",
-    linkLabel: "Iron & steel",
+    link: "/products?category=structural-items",
+    linkLabel: "Browse structural items (angles, TMT, pipes)",
   },
 ];
 

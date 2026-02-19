@@ -78,13 +78,13 @@ export function ProductImageGallery({
             muted
             loop
             className="h-full w-full object-cover"
-            aria-label={`${productName} - Video ${activeIndex + 1}`}
+            aria-label={alt ? `${alt} video` : `${productName} video`}
           />
         ) : (
           <ImageWithFallback
             key={current.src}
             src={current.src}
-            alt={`${productName} - Image ${activeIndex + 1}`}
+            alt={alt || productName}
             fill
             className="object-cover"
             priority={activeIndex === 0}
@@ -143,7 +143,7 @@ export function ProductImageGallery({
               ) : (
                 <ImageWithFallback
                   src={item.src}
-                  alt={`${productName} thumbnail ${idx + 1}`}
+                    alt={alt ? `${alt} thumbnail` : `${productName} thumbnail`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 80px, (max-width: 1024px) 25vw, 12.5vw"

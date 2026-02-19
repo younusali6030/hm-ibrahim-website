@@ -22,7 +22,7 @@ export function FeaturedProducts() {
             Featured Products
           </h2>
           <Button asChild variant="outline" className="w-full sm:w-auto min-h-[44px]">
-            <Link href="/products">View all products</Link>
+            <Link href="/products">Browse full product catalog</Link>
           </Button>
         </motion.div>
         <p className="mx-auto mt-2 max-w-2xl text-center text-sm sm:text-base text-muted-foreground md:text-left">

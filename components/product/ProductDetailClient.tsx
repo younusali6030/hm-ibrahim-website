@@ -53,6 +53,8 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
   const displayUseCases = variant?.useCases ?? product.useCases;
   const displayNotes = variant?.notes ?? product.notes;
 
+  const baseAlt = product.imageAlt || `${product.name} – ${product.shortDesc}`;
+
   const sizeInfo = displaySizes?.length
     ? ` Size: ${displaySizes.slice(0, 3).join(", ")}`
     : "";
@@ -80,19 +82,19 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
       <ProductImageGallery
         key={`${product.slug}-${selectedBrandId ?? "default"}`}
         media={media}
-        alt={product.imageAlt || product.name}
+        alt={baseAlt}
         productName={product.name}
         productSlug={product.slug}
       />
 
       <div className="min-w-0">
-        <div>
+        <div data-speakable>
           <h1 className="text-xl font-bold text-foreground sm:text-2xl md:text-3xl lg:text-4xl">{product.name}</h1>
           {category && (
             <p className="mt-2 text-muted-foreground">{category.name}</p>
           )}
+          <p className="mt-4 text-muted-foreground leading-relaxed">{product.shortDesc}</p>
         </div>
-        <p className="mt-4 text-muted-foreground leading-relaxed">{product.shortDesc}</p>
 
         {hasBrandVariants && (
           <ProductBrandPicker

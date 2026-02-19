@@ -83,7 +83,7 @@ export function CategoryGrid() {
                         {cat.description}
                       </p>
                       <span className="mt-2 inline-block text-sm text-primary">
-                        View products →
+                        Browse {cat.name} →
                       </span>
                     </CardContent>
                   </Card>

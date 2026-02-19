@@ -3,6 +3,15 @@ import Link from "next/link";
 import { indorePageSlugs, getIndorePage, type IndorePage } from "@/content/indorePages";
 import { baseUrl, site, localSeo } from "@/lib/site";
 import { Button } from "@/components/ui/button";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
+
+const indorePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: `Iron & Hardware in Indore, ${localSeo.state}`,
+  description: `Buy iron, steel, wire mesh, barbed wire, chain link, and construction hardware in Indore. ${site.name} — Siyaganj. Retail and wholesale. Best price in Indore.`,
+  url: `${baseUrl}/indore`,
+};
 
 export const metadata: Metadata = {
   title: `Iron & Hardware in Indore, ${localSeo.state} | ${site.name}`,
@@ -33,6 +42,7 @@ export default function IndoreIndexPage() {
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-16 md:py-20 max-w-4xl min-w-0">
+      <SeoJsonLd data={indorePageSchema} />
       <h1 className="text-4xl font-bold text-foreground md:text-5xl">
         Iron & Hardware in Indore, {localSeo.state}
       </h1>

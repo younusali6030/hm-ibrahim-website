@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Hero } from "@/components/home/Hero";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
 import { InHouseBrandsSection } from "@/components/home/InHouseBrandsSection";
@@ -6,12 +7,26 @@ import { BrandsWeStockSection } from "@/components/home/BrandsWeStockSection";
 import { WhyUs } from "@/components/home/WhyUs";
 import { IndoreIntentSection } from "@/components/home/IndoreIntentSection";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
-import { TestimonialCarousel } from "@/components/TestimonialCarousel";
-import { CTASection } from "@/components/CTASection";
-import { FAQAccordion } from "@/components/FAQAccordion";
-import { LocationPreview } from "@/components/home/LocationPreview";
 import { faqs } from "@/content/faqs";
 import { baseUrl, site, localSeo } from "@/lib/site";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
+
+const homeFaqSchema = faqs.length > 0
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.slice(0, 6).map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+      })),
+    }
+  : null;
+
+const TestimonialCarousel = dynamic(() => import("@/components/TestimonialCarousel").then((m) => ({ default: m.TestimonialCarousel })), { ssr: true });
+const FAQAccordion = dynamic(() => import("@/components/FAQAccordion").then((m) => ({ default: m.FAQAccordion })), { ssr: true });
+const LocationPreview = dynamic(() => import("@/components/home/LocationPreview").then((m) => ({ default: m.LocationPreview })), { ssr: true });
+const CTASection = dynamic(() => import("@/components/CTASection").then((m) => ({ default: m.CTASection })), { ssr: true });
 
 export const metadata: Metadata = {
   title: `${site.name} | Iron & Hardware in Indore, ${localSeo.state} since 1939`,
@@ -47,6 +62,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      {homeFaqSchema && <SeoJsonLd data={homeFaqSchema} />}
       <Hero />
       <CategoryGrid />
       <InHouseBrandsSection />

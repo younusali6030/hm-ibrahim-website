@@ -66,7 +66,7 @@ export function getCategoryThumbnails(
   for (const p of cat.products) {
     if (out.length >= max) break;
     const urls = (p.images?.length ? p.images : p.image ? [p.image] : []) as string[];
-    const alt = p.imageAlt || p.name;
+    const alt = p.imageAlt || `${p.name} – ${p.shortDesc}`;
     for (const src of urls) {
       if (out.length >= max) break;
       out.push({ src, alt });
