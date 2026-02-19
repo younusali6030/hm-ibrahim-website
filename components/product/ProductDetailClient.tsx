@@ -63,7 +63,9 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
     ? `/quote?product=${product.slug}&category=${product.categorySlug}&brand=${selectedBrandId}`
     : `/quote?product=${product.slug}&category=${product.categorySlug}`;
 
-  const hasSpecs = (displaySpecs?.length ?? 0) > 0 || product.tataOfficial || product.tataAvailable || category?.slug === "wire-mesh";
+  const meshWireCategorySlugs = ["wiremesh", "wires", "welded-mesh", "perforated-sheets", "fibermesh", "chicken-mesh", "plastic-hexa"];
+  const hasSpecs = (displaySpecs?.length ?? 0) > 0 || product.tataOfficial || product.tataAvailable || (category?.slug && meshWireCategorySlugs.includes(category.slug));
+  const showBrandMessaging = category?.slug ? meshWireCategorySlugs.includes(category.slug) : false;
   const accordionDefaults = ["specs", "sizes", "materials", "uses", "variants"].filter((key) => {
     if (key === "specs") return hasSpecs;
     if (key === "sizes") return displaySizes && displaySizes.length > 0;
@@ -126,13 +128,13 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
                       <dd className="text-foreground">Tata product available on request.</dd>
                     </div>
                   )}
-                  {category?.slug === "wire-mesh" && !product.tataOfficial && !product.tataAvailable && (
+                  {showBrandMessaging && !product.tataOfficial && !product.tataAvailable && (
                     <div className="flex flex-wrap gap-2">
                       <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
                       <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
                     </div>
                   )}
-                  {category?.slug === "wire-mesh" && (product.tataOfficial || product.tataAvailable) && (
+                  {showBrandMessaging && (product.tataOfficial || product.tataAvailable) && (
                     <div className="flex flex-wrap gap-2">
                       <dt className="shrink-0 text-muted-foreground">Brands:</dt>
                       <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>

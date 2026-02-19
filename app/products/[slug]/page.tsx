@@ -152,6 +152,8 @@ export default async function ProductDetailPage({ params }: Props) {
     : "";
   const whatsAppMessage = `Hi, I'm interested in ${product.name}.${sizeInfo} Please share price/availability.`;
 
+  const meshWireCategorySlugs = ["wiremesh", "wires", "welded-mesh", "perforated-sheets", "fibermesh", "chicken-mesh", "plastic-hexa"];
+
   return (
     <article className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl min-w-0">
       <JsonLdBreadcrumb items={breadcrumbItems} />
@@ -184,7 +186,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
               <p className="mt-4 text-muted-foreground leading-relaxed">{product.shortDesc}</p>
 
-              {(product.specs && product.specs.length > 0) || product.tataOfficial || product.tataAvailable || category?.slug === "wire-mesh" ? (
+              {(product.specs && product.specs.length > 0) || product.tataOfficial || product.tataAvailable || (category?.slug && meshWireCategorySlugs.includes(category.slug)) ? (
                 <div className="mt-6">
                   <h2 className="text-lg font-semibold text-foreground">Specifications</h2>
                   <dl className="mt-2 space-y-2">
@@ -205,13 +207,13 @@ export default async function ProductDetailPage({ params }: Props) {
                         <dd className="text-foreground">Tata product available on request.</dd>
                       </div>
                     )}
-                    {category?.slug === "wire-mesh" && !product.tataOfficial && !product.tataAvailable && (
+                    {category?.slug && meshWireCategorySlugs.includes(category.slug) && !product.tataOfficial && !product.tataAvailable && (
                       <div className="flex gap-2">
                         <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
                         <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
                       </div>
                     )}
-                    {category?.slug === "wire-mesh" && (product.tataOfficial || product.tataAvailable) && (
+                    {category?.slug && meshWireCategorySlugs.includes(category.slug) && (product.tataOfficial || product.tataAvailable) && (
                       <div className="flex gap-2">
                         <dt className="shrink-0 text-muted-foreground">Brands:</dt>
                         <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>

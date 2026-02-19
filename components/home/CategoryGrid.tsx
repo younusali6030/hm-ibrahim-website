@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { categories } from "@/content/products";
+import { categories, getCategoryThumbnails } from "@/content/products";
 import { getIcon } from "@/components/icons";
 import { Card, CardContent } from "@/components/ui/card";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
@@ -32,6 +32,7 @@ export function CategoryGrid() {
         <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
           {categories.map((cat, i) => {
             const Icon = getIcon(cat.icon);
+            const thumbnails = getCategoryThumbnails(cat, 6);
             return (
               <motion.div
                 key={cat.slug}
@@ -46,7 +47,25 @@ export function CategoryGrid() {
                       <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
                         <Icon className="h-6 w-6" />
                       </div>
-                      {cat.image ? (
+                      {thumbnails.length > 0 ? (
+                        <div className="mb-4 flex flex-wrap gap-1.5">
+                          {thumbnails.map((t, j) => (
+                            <div
+                              key={j}
+                              className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-border bg-muted"
+                            >
+                              <ImageWithFallback
+                                src={t.src}
+                                alt={t.alt}
+                                fill
+                                className="object-cover"
+                                sizes="56px"
+                                loading="lazy"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      ) : cat.image ? (
                         <div className="relative mb-4 aspect-video overflow-hidden rounded-xl">
                           <ImageWithFallback
                             src={cat.image}

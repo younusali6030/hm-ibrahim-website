@@ -28,7 +28,7 @@ export const inHouseBrands: Brand[] = [
     name: "CM",
     logo: "/brands/cm-logo.png",
     tagline: "Our signature brand",
-    productsSupported: ["barbed-wire", "chain-link-fencing"],
+    productsSupported: ["gi-wire", "barbed-wire", "chain-link-fencing"],
     pageContent: {
       title: "CM (Chote Mullaji)",
       subtitle: "A Legacy Shaped by the Market",
@@ -40,7 +40,7 @@ export const inHouseBrands: Brand[] = [
     name: "Border",
     logo: "/brands/boarder-logo.png",
     tagline: "Our signature brand",
-    productsSupported: ["barbed-wire", "chain-link-fencing"],
+    productsSupported: ["gi-wire", "barbed-wire", "chain-link-fencing"],
     pageContent: {
       title: "Border",
       subtitle: "Built for Strength. Designed for Security.",

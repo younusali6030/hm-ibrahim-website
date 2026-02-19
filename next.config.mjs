@@ -9,6 +9,11 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: '/categories/iron-steel', destination: '/categories/structural-items', permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

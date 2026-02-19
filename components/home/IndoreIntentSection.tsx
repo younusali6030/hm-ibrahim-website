@@ -31,7 +31,7 @@ const INTENT_BLOCKS = [
     icon: Factory,
     title: "Industrial suppliers in Indore",
     text: "From MS angles and TMT bars to wire mesh, barbed wire, and construction hardware — we stock what industries and construction sites need. Serving Indore since 1939.",
-    link: "/categories/iron-steel",
+    link: "/categories/structural-items",
     linkLabel: "Iron & steel",
   },
 ];
