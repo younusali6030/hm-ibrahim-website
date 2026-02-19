@@ -38,7 +38,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           <div className="min-w-0">
             <Link href="/" className="inline-block">
-              <Image src="/logo.png" alt="HM Ibrahim & Co" width={140} height={70} className="h-12 w-auto object-contain" />
+              <Image src="/logo-transparent.png" alt="HM Ibrahim & Co" width={140} height={48} className="h-10 w-auto object-contain" />
             </Link>
             <p className="mt-2 text-sm text-muted-foreground">{site.tagline}</p>
             <p className="mt-2 text-sm text-muted-foreground">{site.description}</p>

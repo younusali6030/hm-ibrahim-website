@@ -16,15 +16,14 @@ export default function AboutPage() {
       <p className="mt-2 text-sm sm:text-base text-muted-foreground">{site.manufacturerTagline}</p>
 
       <div className="mt-10 sm:mt-12 grid gap-8 md:grid-cols-[minmax(0,300px)_1fr] lg:grid-cols-[minmax(0,340px)_1fr] md:gap-10">
-        <section className="md:pt-1 mt-8 md:mt-12" aria-label="Our store and logo">
-          <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-card shadow-lg md:mx-0 md:max-w-none">
+        <section className="md:pt-1" aria-label="Our store">
+          <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-lg md:mx-0 md:max-w-none flex justify-center">
             <Image
-              src="/logo.png"
+              src="/logo-transparent.png"
               alt="HM Ibrahim & Co"
-              width={680}
-              height={453}
-              className="h-auto w-full object-contain bg-card"
-              sizes="(max-width: 768px) 100vw, 340px"
+              width={200}
+              height={69}
+              className="h-16 w-auto object-contain"
             />
           </div>
           <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-card shadow-lg md:mx-0 md:max-w-none mt-6">

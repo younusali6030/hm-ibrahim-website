@@ -24,7 +24,7 @@ function buildCatalogHtml(data: CatalogData): string {
 
   const logoHtml = `
     <div style="margin-bottom:20px;text-align:center;">
-      <img src="${emailBaseUrl}/logo.png" alt="HM Ibrahim &amp; Co" width="140" height="93" style="height:auto;max-width:140px;display:inline-block;" />
+      <img src="${emailBaseUrl}/logo-dark.png" alt="HM Ibrahim &amp; Co" width="140" height="48" style="height:auto;max-width:140px;display:inline-block;" />
     </div>`;
 
   const specsHtml =

@@ -30,10 +30,10 @@ export function Navbar() {
       <nav className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 md:px-6 max-w-7xl" aria-label="Main navigation">
         <Link
           href="/"
-          className="flex items-center gap-2 font-semibold text-foreground text-sm sm:text-base min-h-[44px] items-center"
+          className="flex items-center min-h-[44px] items-center"
           onClick={() => setOpen(false)}
         >
-          <Image src="/logo.png" alt="HM Ibrahim & Co" width={120} height={48} className="h-8 w-auto object-contain" priority />
+          <Image src="/logo-transparent.png" alt="HM Ibrahim & Co" width={140} height={48} className="h-9 w-auto object-contain" priority />
         </Link>
 
         <ul className="hidden md:flex md:items-center md:gap-6">
