@@ -197,6 +197,26 @@ export function Footer() {
             >
               Get directions →
             </Link>
+            {"indiamartUrl" in site && site.indiamartUrl && (
+              <a
+                href={site.indiamartUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 block text-sm text-primary hover:underline"
+              >
+                Contact us on IndiaMART →
+              </a>
+            )}
+            {"justdialUrl" in site && site.justdialUrl && (
+              <a
+                href={site.justdialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 block text-sm text-primary hover:underline"
+              >
+                Contact us on JustDial →
+              </a>
+            )}
           </div>
         </div>
 

@@ -58,6 +58,18 @@ export function LocationPreview() {
                 <Link href="/contact">Contact & map</Link>
               </Button>
             </div>
+            {"indiamartUrl" in site && site.indiamartUrl && "justdialUrl" in site && site.justdialUrl && (
+              <p className="mt-4 text-sm text-muted-foreground">
+                You can also contact us on{" "}
+                <a href={site.indiamartUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  IndiaMART
+                </a>{" "}
+                or{" "}
+                <a href={site.justdialUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  JustDial
+                </a>.
+              </p>
+            )}
           </motion.div>
         </div>
       </div>

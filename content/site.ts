@@ -66,6 +66,10 @@ export const site = {
     twitter: "",
   },
 
+  /** IndiaMart & JustDial listing URLs — contact us via these platforms */
+  indiamartUrl: "https://www.indiamart.com/mohhusain-haji-hm-ibrahim-and-company/?srsltid=AfmBOooSV6bbouv6mlXb45IfPpIiswPmitzqLhwk5HkFn8RKgHztjdz8",
+  justdialUrl: "https://www.justdial.com/Indore/H-Mohd-Husain-H-M-Ibrahim-Co-Opposite-Tijori-Gali-Siyaganj/0731PX731-X731-180227083207-Y3W9_BZDET",
+
   /** For LocalBusiness schema - price range indication */
   priceRange: "$$",
 
