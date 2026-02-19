@@ -17,16 +17,7 @@ export default function AboutPage() {
 
       <div className="mt-10 sm:mt-12 grid gap-8 md:grid-cols-[minmax(0,300px)_1fr] lg:grid-cols-[minmax(0,340px)_1fr] md:gap-10">
         <section className="md:pt-1" aria-label="Our store">
-          <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-lg md:mx-0 md:max-w-none flex justify-center">
-            <Image
-              src="/logo-transparent.png"
-              alt="HM Ibrahim & Co"
-              width={280}
-              height={96}
-              className="h-24 w-auto object-contain"
-            />
-          </div>
-          <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-card shadow-lg md:mx-0 md:max-w-none mt-6">
+          <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-card shadow-lg md:mx-0 md:max-w-none">
             <Image
               src="/about-storefront.png"
               alt="H.M. Ibrahim & Company storefront at 60 Siyaganj, Indore — angles, flats, channels, bright bars, rebar, pipes, wire mesh, and hardware on display."

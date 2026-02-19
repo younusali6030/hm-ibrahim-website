@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <circle cx="16" cy="16" r="15" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <ellipse cx="16" cy="16" rx="8" ry="15" fill="none" stroke="#64748b" stroke-width="0.8"/>
+  <path d="M4 16h24" stroke="#64748b" stroke-width="0.8" fill="none"/>
+  <text x="16" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#f8fafc">HM</text>
+</svg>

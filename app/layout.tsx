@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: { icon: "/favicon.ico" },
+  icons: { icon: "/favicon.svg" },
 };
 
 export const viewport = {
