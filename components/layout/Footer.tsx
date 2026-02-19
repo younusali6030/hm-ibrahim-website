@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
@@ -32,14 +35,23 @@ const categoryLinks = categories.map((c) => ({
 }));
 
 export function Footer() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   return (
     <footer className="border-t border-border bg-card print:hidden">
       <div className="container mx-auto px-4 sm:px-6 md:px-6 py-10 sm:py-12 max-w-7xl">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           <div className="min-w-0">
-            <Link href="/" className="inline-block">
-              <Image src="/logo-transparent.png" alt="HM Ibrahim & Co" width={140} height={48} className="h-10 w-auto object-contain" />
-            </Link>
+            {isHome ? (
+              <p className="text-base sm:text-lg font-semibold text-foreground">
+                <span className="text-primary">HM</span> Ibrahim & Co
+              </p>
+            ) : (
+              <Link href="/" className="inline-block">
+                <Image src="/logo-transparent.png" alt="HM Ibrahim & Co" width={220} height={76} className="h-14 w-auto object-contain" />
+              </Link>
+            )}
             <p className="mt-2 text-sm text-muted-foreground">{site.tagline}</p>
             <p className="mt-2 text-sm text-muted-foreground">{site.description}</p>
             <p className="mt-2 text-sm text-muted-foreground">{site.manufacturerTagline}</p>

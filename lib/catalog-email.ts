@@ -2,8 +2,11 @@
  * Build HTML catalog and send it to the customer.
  * Email is sent FROM younusali6030@gmail.com (or QUOTE_FROM_EMAIL) TO the customer's email,
  * using Gmail SMTP (Nodemailer). Requires GMAIL_APP_PASSWORD for the sender Gmail account.
+ * Logo is embedded as base64 so it displays in Gmail and other clients that block external images.
  */
 
+import fs from "fs";
+import path from "path";
 import nodemailer from "nodemailer";
 import { site } from "@/content/site";
 import type { CatalogData } from "./catalog";
@@ -11,21 +14,34 @@ import type { CatalogData } from "./catalog";
 /** From address for quote catalog — the customer sees this as the sender */
 const QUOTE_FROM_EMAIL = process.env.QUOTE_FROM_EMAIL || "younusali6030@gmail.com";
 
-/** Base URL for logo in email (must be absolute so it loads in email clients) */
-const emailBaseUrl =
-  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_SITE_URL
-    ? process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")
-    : null) || "https://hmibrahimco.com";
+let cachedLogoDataUrl: string | null | undefined = undefined;
+
+/** Inline logo as base64 so it shows in Gmail without loading from a URL */
+function getLogoDataUrl(): string | null {
+  if (cachedLogoDataUrl !== undefined) return cachedLogoDataUrl;
+  try {
+    const logoPath = path.join(process.cwd(), "public", "logo-dark.png");
+    const buffer = fs.readFileSync(logoPath);
+    cachedLogoDataUrl = "data:image/png;base64," + buffer.toString("base64");
+  } catch {
+    cachedLogoDataUrl = null;
+  }
+  return cachedLogoDataUrl;
+}
 
 function buildCatalogHtml(data: CatalogData): string {
   const { productName, categoryName, shortDesc, classifications, tentativeRates, indicativeRateRange, searchContext } = data;
   const hasRates = tentativeRates.length > 0;
   const hasIndicative = !hasRates && indicativeRateRange?.trim();
 
-  const logoHtml = `
+  const logoSrc = getLogoDataUrl();
+  const logoHtml = logoSrc
+    ? `
     <div style="margin-bottom:20px;text-align:center;">
-      <img src="${emailBaseUrl}/logo-dark.png" alt="HM Ibrahim &amp; Co" width="140" height="48" style="height:auto;max-width:140px;display:inline-block;" />
-    </div>`;
+      <img src="${logoSrc}" alt="HM Ibrahim &amp; Co" width="200" height="69" style="height:auto;max-width:200px;display:inline-block;" />
+    </div>`
+    : "";
+
 
   const specsHtml =
     classifications.specs.length > 0
