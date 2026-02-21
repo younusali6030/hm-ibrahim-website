@@ -54,7 +54,7 @@ export function Navbar() {
         </ul>
 
         <div className="hidden md:flex md:items-center md:gap-2">
-          <Button asChild size="sm" variant="outline" className="border-white/50 text-white hover:bg-white/10 hover:text-white">
+          <Button asChild size="sm" className="bg-white text-gray-900 hover:bg-gray-100 border-0 font-semibold">
             <a
               href={`tel:${site.phone.replace(/\s/g, "")}`}
               onClick={() => trackCallClick("navbar")}
@@ -63,7 +63,7 @@ export function Navbar() {
               Call
             </a>
           </Button>
-          <Button asChild size="sm">
+          <Button asChild size="sm" className="bg-primary text-gray-900 hover:bg-primary/90 font-semibold">
             <a
               href={getWhatsAppLink(site.whatsapp, "Hi, I'm interested in your products. Please share price/availability.")}
               onClick={() => trackWhatsAppClick("navbar")}
@@ -117,10 +117,10 @@ export function Navbar() {
                 </li>
               ))}
               <li className="mt-2 flex gap-2 pt-2 border-t border-white/20">
-                <Button asChild className="flex-1 min-h-[44px] border-white/50 text-white hover:bg-white/10" size="sm" variant="outline">
+                <Button asChild className="flex-1 min-h-[44px] bg-white text-gray-900 hover:bg-gray-100 font-semibold" size="sm">
                   <a href={`tel:${site.phone.replace(/\s/g, "")}`} onClick={() => trackCallClick("navbar_mobile")} className="flex items-center justify-center">Call</a>
                 </Button>
-                <Button asChild className="flex-1 min-h-[44px]" size="sm">
+                <Button asChild className="flex-1 min-h-[44px] bg-primary text-gray-900 hover:bg-primary/90 font-semibold" size="sm">
                   <a
                     href={getWhatsAppLink(site.whatsapp, "Hi, I'm interested in your products. Please share price/availability.")}
                     onClick={() => trackWhatsAppClick("navbar_mobile")}

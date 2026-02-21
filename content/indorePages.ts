@@ -88,7 +88,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       "Custom sizes on request",
     ],
     useCases: ["Screens and partitions", "Ventilation panels", "Filtration", "Decorative cladding"],
-    productSlugs: ["perforated-sheets", "ss-gi-mesh-jalies", "gi-weldmesh", "ms-weldmesh"],
+    productSlugs: ["gi-perforated-sheet", "ms-perforated-sheet", "ss-gi-mesh-jalies", "gi-weldmesh", "ms-weldmesh"],
   },
   "gi-wire": {
     slug: "gi-wire",
@@ -119,7 +119,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       "Fasteners, nails, bolts, nuts",
     ],
     useCases: ["Site work", "Digging and demolition", "Welding and fabrication", "Tiling and finishing", "General construction"],
-    productSlugs: ["sr-crowbar", "sponge", "welding-rods", "fasteners-nails", "perforated-sheets", "cutting-discs-grinding-wheels"],
+    productSlugs: ["sr-crowbar", "sponge", "welding-rods", "fasteners-nails", "gi-perforated-sheet", "ms-perforated-sheet", "cutting-discs-grinding-wheels"],
   },
 };
 
