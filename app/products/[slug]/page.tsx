@@ -166,7 +166,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const meshWireCategorySlugs = ["wiremesh", "wires", "welded-mesh", "perforated-sheets", "fibermesh", "chicken-mesh", "plastic-hexa"];
 
   return (
-    <article className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl min-w-0">
+    <article className="page-container section-padding">
       <JsonLdBreadcrumb items={breadcrumbItems} />
       <SeoJsonLd data={productSchema} />
       {productFaqSchema && <SeoJsonLd data={productFaqSchema} />}

@@ -15,7 +15,7 @@ export default function CatalogPage() {
 
   return (
     <div className="catalog-page">
-      <div className="no-print container mx-auto px-4 sm:px-6 py-6 sm:py-8 max-w-7xl min-w-0">
+      <div className="no-print page-container section-padding">
         <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-between gap-4">
           <div className="min-w-0">
             <h1 className="text-xl font-bold text-foreground sm:text-2xl md:text-3xl">Product Catalog</h1>

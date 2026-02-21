@@ -27,11 +27,11 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur print:hidden supports-[backdrop-filter]:bg-background/80">
-      <nav className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 md:px-6 max-w-7xl" aria-label="Main navigation">
+    <header className="sticky top-0 z-50 w-full border-b border-white/20 bg-nav backdrop-blur print:hidden supports-[backdrop-filter]:bg-nav/95">
+      <nav className="page-container flex h-14 md:h-16 items-center justify-between" aria-label="Main navigation">
         <Link
           href="/"
-          className="flex items-center gap-2 font-semibold text-foreground text-sm sm:text-base min-h-[44px] items-center"
+          className="flex items-center gap-2 font-semibold text-white text-sm sm:text-base min-h-[44px] items-center"
           onClick={() => setOpen(false)}
         >
           <span className="text-primary">HM</span> Ibrahim & Co
@@ -43,8 +43,8 @@ export function Navbar() {
               <Link
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  pathname === link.href ? "text-primary" : "text-muted-foreground"
+                  "text-sm font-medium transition-colors text-white/90 hover:text-primary",
+                  pathname === link.href && "text-primary"
                 )}
               >
                 {link.label}
@@ -54,7 +54,7 @@ export function Navbar() {
         </ul>
 
         <div className="hidden md:flex md:items-center md:gap-2">
-          <Button asChild size="sm" variant="outline">
+          <Button asChild size="sm" variant="outline" className="border-white/50 text-white hover:bg-white/10 hover:text-white">
             <a
               href={`tel:${site.phone.replace(/\s/g, "")}`}
               onClick={() => trackCallClick("navbar")}
@@ -79,23 +79,27 @@ export function Navbar() {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="md:hidden flex items-center justify-center min-h-[44px] min-w-[44px] text-white hover:bg-white/10 hover:text-white rounded-md"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
-          aria-label="Toggle menu"
+          aria-controls="mobile-nav-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-6 w-6" aria-hidden /> : <Menu className="h-6 w-6" aria-hidden />}
         </Button>
       </nav>
 
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-nav-menu"
+            role="dialog"
+            aria-label="Mobile navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-border bg-card md:hidden overflow-hidden"
+            className="border-t border-white/20 bg-nav md:hidden overflow-hidden"
           >
             <ul className="flex flex-col gap-0 px-4 py-3">
               {navLinks.map((link) => (
@@ -103,10 +107,8 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "block rounded-md px-3 py-3 text-sm font-medium min-h-[44px] flex items-center",
-                      pathname === link.href
-                        ? "bg-accent text-accent-foreground"
-                        : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                      "block rounded-md px-3 py-3 text-sm font-medium min-h-[44px] flex items-center text-white/90 hover:bg-white/10 hover:text-white",
+                      pathname === link.href && "bg-white/15 text-primary"
                     )}
                     onClick={() => setOpen(false)}
                   >
@@ -114,8 +116,8 @@ export function Navbar() {
                   </Link>
                 </li>
               ))}
-              <li className="mt-2 flex gap-2 pt-2 border-t border-border">
-                <Button asChild className="flex-1 min-h-[44px]" size="sm" variant="outline">
+              <li className="mt-2 flex gap-2 pt-2 border-t border-white/20">
+                <Button asChild className="flex-1 min-h-[44px] border-white/50 text-white hover:bg-white/10" size="sm" variant="outline">
                   <a href={`tel:${site.phone.replace(/\s/g, "")}`} onClick={() => trackCallClick("navbar_mobile")} className="flex items-center justify-center">Call</a>
                 </Button>
                 <Button asChild className="flex-1 min-h-[44px]" size="sm">

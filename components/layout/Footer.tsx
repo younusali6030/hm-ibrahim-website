@@ -41,12 +41,12 @@ export function Footer() {
   const isHome = pathname === "/";
 
   return (
-    <footer className="border-t border-border bg-card print:hidden">
-      <div className="container mx-auto px-4 sm:px-6 md:px-6 py-10 sm:py-12 max-w-7xl">
+    <footer className="border-t border-white/20 bg-nav print:hidden">
+      <div className="page-container section-padding">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           <div className="min-w-0">
             {isHome ? (
-              <p className="text-base sm:text-lg font-semibold text-foreground">
+              <p className="text-base sm:text-lg font-semibold text-white">
                 <span className="text-primary">HM</span> Ibrahim & Co
               </p>
             ) : (
@@ -54,19 +54,19 @@ export function Footer() {
                 <Image src="/logo-transparent.png" alt="HM Ibrahim & Co" width={220} height={76} className="h-14 w-auto object-contain" />
               </Link>
             )}
-            <p className="mt-2 text-sm text-muted-foreground">{site.tagline}</p>
-            <p className="mt-2 text-sm text-muted-foreground">{site.description}</p>
-            <p className="mt-2 text-sm text-muted-foreground">{site.manufacturerTagline}</p>
+            <p className="mt-2 text-sm text-white/80">{site.tagline}</p>
+            <p className="mt-2 text-sm text-white/80">{site.description}</p>
+            <p className="mt-2 text-sm text-white/80">{site.manufacturerTagline}</p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground">Quick links</h3>
+            <h3 className="font-semibold text-white">Quick links</h3>
             <ul className="mt-3 space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block py-1.5 text-sm text-muted-foreground hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
+                    className="block py-1.5 text-sm text-white/80 hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
                   >
                     {link.label}
                   </Link>
@@ -76,11 +76,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground">Contact</h3>
-            <ul className="mt-3 space-y-3 text-sm text-muted-foreground">
+            <h3 className="font-semibold text-white">Contact</h3>
+            <ul className="mt-3 space-y-3 text-sm text-white/80">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                <span>{site.fullAddress}</span>
+                  <span>{site.fullAddress}</span>
               </li>
               <li>
                 <a
@@ -89,7 +89,7 @@ export function Footer() {
                 >
                   <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                   {site.phone}
-                  {site.phoneLabel && <span className="text-muted-foreground/80">({site.phoneLabel})</span>}
+                  {site.phoneLabel && <span className="text-white/60">({site.phoneLabel})</span>}
                 </a>
               </li>
               {site.phoneAlt && (
@@ -100,7 +100,7 @@ export function Footer() {
                   >
                     <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                     {site.phoneAlt}
-                    {site.phoneAltLabel && <span className="text-muted-foreground/80">({site.phoneAltLabel})</span>}
+                    {site.phoneAltLabel && <span className="text-white/60">({site.phoneAltLabel})</span>}
                   </a>
                 </li>
               )}
@@ -121,7 +121,7 @@ export function Footer() {
                 >
                   <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                   {site.email}
-                  {site.emailLabel && <span className="text-muted-foreground/80">({site.emailLabel})</span>}
+                  {site.emailLabel && <span className="text-white/60">({site.emailLabel})</span>}
                 </a>
               </li>
               {site.emailAlt && (
@@ -131,8 +131,8 @@ export function Footer() {
                     className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center break-all"
                   >
                     <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />
-                    {site.emailAlt}
-                    {site.emailAltLabel && <span className="text-muted-foreground/80">({site.emailAltLabel})</span>}
+                  {site.emailAlt}
+                  {site.emailAltLabel && <span className="text-white/60">({site.emailAltLabel})</span>}
                   </a>
                 </li>
               )}
@@ -150,13 +150,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground">Categories</h3>
+            <h3 className="font-semibold text-white">Categories</h3>
             <ul className="mt-3 space-y-0">
               {categoryLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block py-1.5 text-sm text-muted-foreground hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
+                    className="block py-1.5 text-sm text-white/80 hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
                   >
                     {link.label}
                   </Link>
@@ -166,13 +166,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground">Products in Indore</h3>
+            <h3 className="font-semibold text-white">Products in Indore</h3>
             <ul className="mt-3 space-y-0">
               {indoreLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block py-1.5 text-sm text-muted-foreground hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
+                    className="block py-1.5 text-sm text-white/80 hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
                   >
                     {link.label}
                   </Link>
@@ -182,11 +182,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground">Location & areas served</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <h3 className="font-semibold text-white">Location & areas served</h3>
+            <p className="mt-2 text-sm text-white/80">
               Siyaganj, Indore — {site.landmark}
             </p>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="mt-1 text-sm text-white/80">
               We serve {site.areasServed.join(", ")}.
             </p>
             <Link
@@ -220,7 +220,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-10 border-t border-white/20 pt-8 text-center text-sm text-white/70">
           <p>© {new Date().getFullYear()} HM Ibrahim & Co. All rights reserved.</p>
         </div>
       </div>

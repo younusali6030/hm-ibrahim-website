@@ -102,7 +102,7 @@ export default async function CategoryPage({ params }: Props) {
   const itemListSchema = getCategoryItemListSchema(category);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl min-w-0">
+    <div className="page-container section-padding">
       <JsonLdBreadcrumb items={breadcrumbItems} />
       <SeoJsonLd data={[itemListSchema, ...(faqSchema ? [faqSchema] : [])]} />
 

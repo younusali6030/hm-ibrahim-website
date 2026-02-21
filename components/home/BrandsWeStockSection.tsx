@@ -10,7 +10,7 @@ export function BrandsWeStockSection() {
       className="border-y border-border bg-card/30 py-16 md:py-20"
       aria-labelledby="brands-we-stock-heading"
     >
-      <div className="container mx-auto px-4">
+      <div className="page-container section-padding">
         <motion.h2
           id="brands-we-stock-heading"
           className="text-center text-3xl font-bold text-foreground md:text-4xl"

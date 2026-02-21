@@ -12,7 +12,7 @@ export function LocationPreview() {
 
   return (
     <section className="py-16 md:py-20" aria-labelledby="location-heading">
-      <div className="container mx-auto px-4">
+      <div className="page-container section-padding">
         <motion.h2
           id="location-heading"
           className="text-center text-3xl font-bold text-foreground md:text-4xl"

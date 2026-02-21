@@ -73,7 +73,7 @@ export function ProductsClient() {
 
   return (
     <>
-      <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl min-w-0">
+      <div className="page-container section-padding">
         <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">Products</h1>
         <p className="mt-3 sm:mt-4 max-w-2xl text-sm sm:text-base text-muted-foreground">
           {showCategoryGrid

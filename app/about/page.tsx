@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-7xl min-w-0">
+    <div className="page-container section-padding">
       <SeoJsonLd data={aboutPageSchema} />
       <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">About HM Ibrahim & Co</h1>
       <p className="mt-3 sm:mt-4 text-base sm:text-lg text-muted-foreground">{site.tagline}</p>

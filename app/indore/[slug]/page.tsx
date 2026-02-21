@@ -44,7 +44,7 @@ export default async function IndoreLandingPage({ params }: Props) {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-12 md:py-16">
+    <div className="page-container section-padding">
       <JsonLdBreadcrumb items={breadcrumbItems} />
       <nav className="mb-6 text-sm text-muted-foreground">
         <Link href="/" className="hover:text-primary">Home</Link>

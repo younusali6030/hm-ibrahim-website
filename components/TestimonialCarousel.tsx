@@ -17,7 +17,7 @@ export function TestimonialCarousel() {
 
   return (
     <section className="py-16 md:py-20" aria-labelledby="testimonials-heading">
-      <div className="container mx-auto px-4">
+      <div className="page-container section-padding">
         <h2 id="testimonials-heading" className="text-center text-3xl font-bold text-foreground md:text-4xl">
           What Our Customers Say
         </h2>

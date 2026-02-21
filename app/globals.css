@@ -4,23 +4,25 @@
 
 @layer base {
   :root {
-    /* Premium industrial dark palette — primary orange for CTAs and trust */
-    --background: 220 35% 6%;
-    --foreground: 210 40% 96%;
-    --card: 222 30% 10%;
-    --card-foreground: 210 36% 96%;
-    --primary: 28 90% 52%;
+    /* Dark blue + white + orange — professional hardware supplier look */
+    --nav-hero-bg: 224 64% 33%; /* #1e3a8a dark blue for header, hero, footer */
+    --nav-hero-bg-deep: 224 76% 26%; /* deeper blue for hero gradient */
+    --background: 0 0% 100%;
+    --foreground: 224 31% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 31% 16%;
+    --primary: 24 95% 53%; /* #f97316 orange for CTAs and accents */
     --primary-foreground: 0 0% 100%;
-    --secondary: 222 22% 16%;
-    --secondary-foreground: 210 40% 96%;
-    --muted: 220 20% 16%;
-    --muted-foreground: 220 15% 65%;
-    --accent: 220 26% 18%;
-    --accent-foreground: 210 40% 96%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 224 31% 16%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 15% 46%;
+    --accent: 210 20% 96%;
+    --accent-foreground: 224 31% 16%;
     --destructive: 0 84% 62%;
-    --border: 220 26% 24%;
-    --input: 220 26% 24%;
-    --ring: 28 90% 52%;
+    --border: 220 20% 90%;
+    --input: 220 20% 90%;
+    --ring: 24 95% 53%;
   }
 
   * {
@@ -36,16 +38,36 @@
   body {
     @apply bg-background text-foreground antialiased;
     overflow-x: hidden;
-    background-image: radial-gradient(circle at top left, rgba(248, 250, 252, 0.05), transparent 55%),
-      radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.06), transparent 55%);
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
+
+  /* Consistent typography: headings use heading font */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+  h1 { @apply text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl; }
+  h2 { @apply text-2xl font-bold tracking-tight sm:text-3xl; }
+  h3 { @apply text-xl font-semibold; }
+  h4 { @apply text-lg font-semibold; }
+  h5 { @apply text-base font-semibold; }
+  h6 { @apply text-sm font-semibold; }
 
   /* Improve touch targets and tap highlight on mobile */
   @media (pointer: coarse) {
     a, button {
       -webkit-tap-highlight-color: hsl(var(--primary) / 0.2);
     }
+  }
+}
+
+@layer components {
+  /* Consistent page grid: use on main content wrappers */
+  .page-container {
+    @apply container mx-auto min-w-0 px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+  .section-padding {
+    @apply py-10 sm:py-12 md:py-16;
   }
 }
 

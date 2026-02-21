@@ -41,7 +41,7 @@ export default function IndoreIndexPage() {
   const pages = indorePageSlugs.map((slug) => getIndorePage(slug)).filter((p): p is IndorePage => p != null);
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-16 md:py-20 max-w-4xl min-w-0">
+    <div className="page-container section-padding max-w-4xl mx-auto">
       <SeoJsonLd data={indorePageSchema} />
       <h1 className="text-4xl font-bold text-foreground md:text-5xl">
         Iron & Hardware in Indore, {localSeo.state}

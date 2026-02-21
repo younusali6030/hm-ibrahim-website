@@ -13,7 +13,7 @@ export function InHouseBrandsSection() {
 
   return (
     <section className="border-y border-border bg-muted/30 py-16 md:py-20" aria-labelledby="inhouse-brands-heading">
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl min-w-0">
+      <div className="page-container section-padding">
         <motion.h2
           id="inhouse-brands-heading"
           className="text-center text-3xl font-bold text-foreground md:text-4xl"

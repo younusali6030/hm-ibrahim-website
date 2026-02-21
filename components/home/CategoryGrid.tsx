@@ -10,7 +10,7 @@ import { ImageWithFallback } from "@/components/ImageWithFallback";
 export function CategoryGrid() {
   return (
     <section className="py-12 sm:py-16 md:py-20" aria-labelledby="categories-heading">
-      <div className="container mx-auto px-4 sm:px-6 max-w-7xl min-w-0">
+      <div className="page-container section-padding">
         <motion.h2
           id="categories-heading"
           className="text-center text-2xl font-bold text-foreground sm:text-3xl md:text-4xl"

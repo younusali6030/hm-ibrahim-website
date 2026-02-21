@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function QuotePage() {
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 max-w-7xl min-w-0">
+    <div className="page-container section-padding">
       <SeoJsonLd data={quotePageSchema} />
       <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-5xl">Request a Quote</h1>
       <p className="mt-4 max-w-2xl text-muted-foreground text-sm md:text-base">

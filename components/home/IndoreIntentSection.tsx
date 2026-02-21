@@ -39,7 +39,7 @@ const INTENT_BLOCKS = [
 export function IndoreIntentSection() {
   return (
     <section className="border-y border-border bg-muted/20 py-16 md:py-20" aria-labelledby="indore-intent-heading">
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl min-w-0">
+      <div className="page-container section-padding max-w-4xl mx-auto">
         <motion.h2
           id="indore-intent-heading"
           className="text-center text-2xl font-bold text-foreground md:text-3xl"

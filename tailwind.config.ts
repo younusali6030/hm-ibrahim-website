@@ -18,8 +18,8 @@ const config: Config = {
     },
     container: {
       center: true,
-      padding: { DEFAULT: "1rem", xs: "1rem", sm: "1.5rem", md: "1.5rem", lg: "2rem" },
-      screens: { xs: "375px", sm: "640px", md: "768px", lg: "1024px", xl: "1280px", "2xl": "1400px" },
+      padding: { DEFAULT: "1rem", sm: "1.5rem", lg: "2rem" },
+      screens: { sm: "640px", md: "768px", lg: "1024px", xl: "1280px", "2xl": "1280px" },
     },
     extend: {
       colors: {
@@ -49,6 +49,10 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        nav: {
+          DEFAULT: "hsl(var(--nav-hero-bg))",
+          deep: "hsl(var(--nav-hero-bg-deep))",
+        },
         industrial: {
           50: "#f4f4f5",
           100: "#e4e4e7",
@@ -74,8 +78,14 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["system-ui", "ui-sans-serif", "sans-serif"],
+        sans: ["var(--font-sans)", "Source Sans 3", "system-ui", "ui-sans-serif", "sans-serif"],
+        heading: ["var(--font-heading)", "Plus Jakarta Sans", "system-ui", "ui-sans-serif", "sans-serif"],
         mono: ["ui-monospace", "monospace"],
+      },
+      fontSize: {
+        "page-title": ["2rem", { lineHeight: "1.2", fontWeight: "700" }],
+        "section-title": ["1.875rem", { lineHeight: "1.25", fontWeight: "700" }],
+        "card-title": ["1.125rem", { lineHeight: "1.3", fontWeight: "600" }],
       },
       keyframes: {
         fadeIn: {

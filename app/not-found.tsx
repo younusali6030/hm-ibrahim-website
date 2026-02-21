@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 
 export default function NotFound() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32 max-w-2xl min-w-0 text-center">
+    <div className="page-container section-padding max-w-2xl mx-auto text-center">
       <h1 className="text-6xl sm:text-7xl font-bold text-foreground">404</h1>
       <p className="mt-4 text-lg text-muted-foreground">This page could not be found.</p>
       <p className="mt-2 text-sm text-muted-foreground">

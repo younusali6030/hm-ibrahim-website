@@ -13,7 +13,7 @@ const items = [
 export function TrustStrip() {
   return (
     <section className="border-y border-border bg-card/50 py-6" aria-label="Trust highlights">
-      <div className="container mx-auto px-4">
+      <div className="page-container">
         <ul className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
           {items.map((item, i) => (
             <motion.li

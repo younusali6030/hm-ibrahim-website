@@ -34,7 +34,7 @@ export default async function BrandPage({ params }: Props) {
   const { title, subtitle, body, prominentTagline } = brand.pageContent;
 
   return (
-    <div className="container mx-auto px-4 py-16 md:py-20">
+    <div className="page-container section-padding">
       <nav className="mb-8 text-sm text-muted-foreground" aria-label="Breadcrumb">
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <li>

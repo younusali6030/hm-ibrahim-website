@@ -7,7 +7,7 @@ const placeholderBrands = ["Brand A", "Brand B", "Brand C", "Brand D"];
 export function BrandsSection() {
   return (
     <section className="py-12 md:py-16" aria-labelledby="brands-heading">
-      <div className="container mx-auto px-4">
+      <div className="page-container section-padding">
         <motion.h2
           id="brands-heading"
           className="text-center text-2xl font-semibold text-foreground"

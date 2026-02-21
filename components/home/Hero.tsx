@@ -29,13 +29,13 @@ export function Hero() {
 
   return (
     <section
-      className="relative overflow-hidden bg-gradient-to-b from-industrial-900 to-background px-4 py-16 md:py-28"
+      className="relative overflow-hidden bg-gradient-to-b from-nav-deep to-nav section-padding px-4"
       aria-labelledby="hero-heading"
     >
-      <div className="container mx-auto text-center min-w-0 max-w-6xl">
+      <div className="page-container max-w-4xl mx-auto text-center">
         <motion.h1
           id="hero-heading"
-          className="text-2xl font-bold tracking-tight text-foreground xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+          className="text-2xl font-bold tracking-tight text-white xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -45,7 +45,7 @@ export function Hero() {
           Trusted Iron & Hardware Since 1939
         </motion.h1>
         <motion.p
-          className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-base"
+          className="mx-auto mt-4 max-w-xl text-sm text-white/80 sm:text-base"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -72,7 +72,7 @@ export function Hero() {
               href={site.googleReview.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-card/40 px-3.5 py-1.5 text-xs text-muted-foreground transition hover:border-primary/30 hover:text-foreground"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3.5 py-1.5 text-xs text-white/90 transition hover:border-primary/50 hover:text-white"
             >
               <span className="text-primary">★</span>
               <span>{site.googleReview.rating} on Google</span>
@@ -92,7 +92,7 @@ export function Hero() {
               {site.authorizedDealer.enabled && (
                 <Link
                   href="/products?tata=1"
-                  className="flex items-center rounded-lg border border-border/50 bg-transparent px-3 py-2 transition hover:border-primary/30"
+                  className="flex items-center rounded-lg border border-white/30 bg-white/5 px-3 py-2 transition hover:border-primary/50"
                   aria-label="Tata Wiron products"
                 >
                   <Image
@@ -110,7 +110,7 @@ export function Hero() {
                 <Link
                   key={brand.id}
                   href={`/brands/${brand.id}`}
-                  className="flex items-center rounded-lg border border-border/50 bg-transparent px-3 py-2 transition hover:border-primary/30"
+                  className="flex items-center rounded-lg border border-white/30 bg-white/5 px-3 py-2 transition hover:border-primary/50"
                   aria-label={`${brand.name} — ${brand.tagline}`}
                 >
                   <Image
@@ -167,7 +167,7 @@ export function Hero() {
               className="flex items-center justify-center gap-1.5 md:justify-center min-h-[44px] md:min-h-0"
             >
               <item.icon className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden />
-              <span className="text-xs text-muted-foreground">{item.label}</span>
+              <span className="text-xs text-white/80">{item.label}</span>
             </div>
           ))}
         </motion.div>

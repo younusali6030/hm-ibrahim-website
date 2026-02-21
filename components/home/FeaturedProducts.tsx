@@ -11,7 +11,7 @@ export function FeaturedProducts() {
 
   return (
     <section className="py-12 sm:py-16 md:py-20" aria-labelledby="featured-heading">
-      <div className="container mx-auto px-4 sm:px-6 max-w-7xl min-w-0">
+      <div className="page-container section-padding">
         <motion.div
           className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-0"
           initial={{ opacity: 0, y: 20 }}

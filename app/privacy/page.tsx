@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="container mx-auto px-4 py-12 md:py-16">
+    <div className="page-container section-padding">
       <h1 className="text-4xl font-bold text-foreground">Privacy Policy</h1>
       <p className="mt-2 text-muted-foreground">Last updated: {new Date().toLocaleDateString("en-IN")}</p>
 

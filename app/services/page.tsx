@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="container mx-auto px-4 py-16 md:py-20">
+    <div className="page-container section-padding">
       <SeoJsonLd data={servicesPageSchema} />
       <h1 className="text-4xl font-bold text-foreground md:text-5xl">Our Services</h1>
       <p className="mt-4 max-w-2xl text-lg text-muted-foreground">

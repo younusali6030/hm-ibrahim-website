@@ -21,7 +21,7 @@ export function FAQAccordion({
 }: Props) {
   return (
     <section className="py-16 md:py-20" aria-labelledby="faq-heading">
-      <div className="container mx-auto px-4">
+      <div className="page-container section-padding">
         <h2 id="faq-heading" className="text-center text-3xl font-bold text-foreground md:text-4xl">
           {title}
         </h2>
@@ -30,7 +30,7 @@ export function FAQAccordion({
             {description}
           </p>
         )}
-        <Accordion type="single" collapsible className="mx-auto mt-10 max-w-3xl">
+        <Accordion type="single" collapsible className="mx-auto mt-10 max-w-3xl w-full">
           {faqs.map((faq) => (
             <AccordionItem key={faq.id} value={faq.id}>
               <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>

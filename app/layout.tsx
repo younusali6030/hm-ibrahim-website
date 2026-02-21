@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -67,6 +68,18 @@ export const viewport = {
   viewportFit: "cover",
 };
 
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -74,7 +87,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className="font-sans min-h-screen flex flex-col min-w-0">
+      <body className={`${sourceSans.variable} ${plusJakarta.variable} font-sans min-h-screen flex flex-col min-w-0 antialiased`}>
         <GoogleAnalytics />
         <Navbar />
         <main className="flex-1 w-full min-w-0 pb-20 md:pb-0">{children}</main>

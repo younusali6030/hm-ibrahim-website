@@ -20,11 +20,11 @@ export function CTASection({
   whatsAppMessage = "Hi, I'm interested in your products. Please share price/availability.",
 }: Props) {
   return (
-    <section className="bg-primary/10 border-y border-border py-12 sm:py-16 md:py-20" aria-labelledby="cta-heading">
-      <div className="container mx-auto px-4 sm:px-6 text-center max-w-7xl min-w-0">
+    <section className="bg-nav border-y border-white/20 section-padding" aria-labelledby="cta-heading">
+      <div className="page-container text-center">
         <motion.h2
           id="cta-heading"
-          className="text-xl font-bold text-foreground sm:text-2xl md:text-3xl"
+          className="text-xl font-bold text-white sm:text-2xl md:text-3xl"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -32,7 +32,7 @@ export function CTASection({
           {title}
         </motion.h2>
         <motion.p
-          className="mx-auto mt-3 max-w-xl text-muted-foreground"
+          className="mx-auto mt-3 max-w-xl text-white/80"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -50,7 +50,7 @@ export function CTASection({
           <Button asChild size="lg" className="w-full sm:w-auto min-h-[44px]">
             <Link href="/quote">{quoteLabel}</Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="w-full sm:w-auto min-h-[44px]">
+          <Button asChild size="lg" variant="outline" className="w-full sm:w-auto min-h-[44px] border-white/50 text-white hover:bg-white/10 hover:text-white">
             <a
               href={getWhatsAppLink(site.whatsapp, whatsAppMessage)}
               target="_blank"
