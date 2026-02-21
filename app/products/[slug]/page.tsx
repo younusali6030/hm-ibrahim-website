@@ -221,13 +221,13 @@ export default async function ProductDetailPage({ params }: Props) {
                     {category?.slug && meshWireCategorySlugs.includes(category.slug) && !product.tataOfficial && !product.tataAvailable && (
                       <div className="flex gap-2">
                         <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
-                        <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
+                        <dd className="text-foreground">Available in multiple trusted brands.</dd>
                       </div>
                     )}
                     {category?.slug && meshWireCategorySlugs.includes(category.slug) && (product.tataOfficial || product.tataAvailable) && (
                       <div className="flex gap-2">
                         <dt className="shrink-0 text-muted-foreground">Brands:</dt>
-                        <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
+                        <dd className="text-foreground">Available in multiple trusted brands.</dd>
                       </div>
                     )}
                     {product.specs?.map((spec) => (

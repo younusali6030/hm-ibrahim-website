@@ -17,7 +17,7 @@ export function SpecificBrandBlock() {
         Looking for a specific brand?
       </h2>
       <p className="mt-2 text-sm text-muted-foreground">
-        We stock trusted brands and quality local options. If you don&apos;t see your item listed,
+        We stock trusted brands and quality options. If you don&apos;t see your item listed,
         call or WhatsApp us for quick availability.
       </p>
       <div className="mt-4 flex flex-wrap gap-3">

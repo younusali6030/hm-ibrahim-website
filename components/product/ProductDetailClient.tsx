@@ -133,13 +133,13 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
                   {showBrandMessaging && !product.tataOfficial && !product.tataAvailable && (
                     <div className="flex flex-wrap gap-2">
                       <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
-                      <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
+                      <dd className="text-foreground">Available in multiple trusted brands.</dd>
                     </div>
                   )}
                   {showBrandMessaging && (product.tataOfficial || product.tataAvailable) && (
                     <div className="flex flex-wrap gap-2">
                       <dt className="shrink-0 text-muted-foreground">Brands:</dt>
-                      <dd className="text-foreground">Available in multiple brands (trusted national + quality local options).</dd>
+                      <dd className="text-foreground">Available in multiple trusted brands.</dd>
                     </div>
                   )}
                   {displaySpecs?.map((spec) => (

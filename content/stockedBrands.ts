@@ -1,5 +1,5 @@
 /**
- * Brands we stock — national and local. Used for "Brands We Stock" section and messaging.
+ * Brands we stock. Used for "Brands We Stock" section and messaging.
  * Only set isAuthorized: true for brands we are truly authorized dealers for.
  */
 

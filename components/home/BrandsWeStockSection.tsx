@@ -27,7 +27,7 @@ export function BrandsWeStockSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.05 }}
         >
-          We stock trusted national brands and high-quality local products. Call or WhatsApp for
+          We stock trusted national brands and quality products. Call or WhatsApp for
           availability.
         </motion.p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
