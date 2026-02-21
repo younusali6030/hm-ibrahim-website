@@ -2,7 +2,7 @@
  * Signature brands (CM, Border) and Tata Wiron. Used for brand picker, logos, and product variants.
  */
 
-export type BrandId = "cm" | "boarder" | "tata";
+export type BrandId = "cm" | "boarder" | "tata" | "local";
 
 export type BrandPageContent = {
   title: string;
@@ -28,7 +28,7 @@ export const inHouseBrands: Brand[] = [
     name: "CM",
     logo: "/brands/cm-logo.png",
     tagline: "Our signature brand",
-    productsSupported: ["gi-wire", "barbed-wire", "chain-link-fencing"],
+    productsSupported: ["barbed-wire", "chain-link-fencing"],
     pageContent: {
       title: "CM (Chote Mullaji)",
       subtitle: "A Legacy Shaped by the Market",
@@ -40,7 +40,7 @@ export const inHouseBrands: Brand[] = [
     name: "Border",
     logo: "/brands/boarder-logo.png",
     tagline: "Our signature brand",
-    productsSupported: ["gi-wire", "barbed-wire", "chain-link-fencing"],
+    productsSupported: ["barbed-wire", "chain-link-fencing"],
     pageContent: {
       title: "Border",
       subtitle: "Built for Strength. Designed for Security.",
@@ -60,6 +60,13 @@ export const inHouseBrands: Brand[] = [
       body:
         "As an authorized Tata Wiron partner, we supply GI wire, barbed wire, and chain link fencing with Tata's trusted quality and coating technology. Tata Wiron products offer consistent strength, corrosion resistance, and reliable performance for fencing and general purpose use.",
     },
+  },
+  {
+    id: "local",
+    name: "Local",
+    logo: "/placeholder-product.svg",
+    tagline: "Local stock",
+    productsSupported: ["gi-wire"],
   },
 ];
 

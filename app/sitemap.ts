@@ -53,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  for (const brand of inHouseBrands) {
+  for (const brand of inHouseBrands.filter((b) => b.pageContent)) {
     entries.push({
       url: `${baseUrl}/brands/${brand.id}`,
       lastModified: new Date(),

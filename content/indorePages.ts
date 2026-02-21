@@ -41,7 +41,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       "Sheet mesh and custom sizes on request",
     ],
     useCases: ["RCC slab reinforcement", "Partition panels", "Cages and enclosures", "Screening and fencing"],
-    productSlugs: ["welded-mesh", "gi-wire", "chain-link-fencing", "ss-gi-mesh-jalies"],
+    productSlugs: ["gi-weldmesh", "ms-weldmesh", "gi-wire", "chain-link-fencing", "ss-gi-mesh-jalies"],
   },
   "chain-link-fencing-jaali": {
     slug: "chain-link-fencing-jaali",
@@ -88,7 +88,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       "Custom sizes on request",
     ],
     useCases: ["Screens and partitions", "Ventilation panels", "Filtration", "Decorative cladding"],
-    productSlugs: ["perforated-sheets", "ss-gi-mesh-jalies", "welded-mesh"],
+    productSlugs: ["perforated-sheets", "ss-gi-mesh-jalies", "gi-weldmesh", "ms-weldmesh"],
   },
   "gi-wire": {
     slug: "gi-wire",
