@@ -17,6 +17,7 @@ const navLinks = [
   { href: "/products", label: "Products" },
   { href: "/quote", label: "Request Quote" },
   { href: "/contact", label: "Contact" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/indore", label: "Indore" },
   { href: "/services", label: "Services" },

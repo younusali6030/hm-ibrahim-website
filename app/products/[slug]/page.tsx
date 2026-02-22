@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProductBySlug, getCategoryBySlug, allProducts, getProductImages, getProductMedia, getRelatedProducts } from "@/content/products";
+import { getProductBySlug, getCategoryBySlug, allProducts, getProductImages, getProductMedia, getRelatedProducts, type ProductWithCategory } from "@/content/products";
+import { getProductSeoContent, getRelatedBlogSlugsForProduct } from "@/content/productSeoContent";
+import { getPostBySlug } from "@/content/blog/posts";
 import { baseUrl, site } from "@/lib/site";
+import { buildProductMeta } from "@/lib/seo";
 import { getWhatsAppLink } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { ProductImageGallery } from "@/components/ProductImageGallery";
 import { ProductDetailClient } from "@/components/product/ProductDetailClient";
 import { LookingForMoreSection } from "@/components/LookingForMoreSection";
+import { ProductSeoContent } from "@/components/ProductSeoContent";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
-import { productFaqs } from "@/content/faqs";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -24,59 +27,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) return { title: "Product" };
-  
   const category = getCategoryBySlug(product.categorySlug);
   const images = getProductImages(product, category);
   const firstImage = images[0]?.startsWith("http") ? images[0] : `${baseUrl}${images[0] || ""}`;
-  
-  // Enhanced description with location and keywords
-  const locationKeywords = "in Indore, Siyaganj, Madhya Pradesh";
-  const description = `${product.name} - ${product.shortDesc} Available from HM Ibrahim & Co, Siyaganj, Indore. ${product.sizes?.slice(0, 3).join(", ") || ""} ${product.materials?.join(", ") || ""}. Retail and wholesale.`;
-  
-  // Build keywords array
-  const keywords = [
-    `${product.name} Indore`,
-    `${product.name} Siyaganj`,
-    `${product.name} MP`,
-    ...(category ? [`${category.name} Indore`, `${category.name} Siyaganj`] : []),
-    ...(product.materials || []).map(m => `${m} Indore`),
-    "iron and hardware Indore",
-    "construction materials Indore",
-    "HM Ibrahim & Co",
-  ];
-
-  return {
-    title: `${product.name} ${locationKeywords} | ${site.name}`,
-    description: description.substring(0, 160), // Keep under 160 chars
-    keywords: keywords.join(", "),
-    alternates: { canonical: `${baseUrl}/products/${product.slug}` },
-    openGraph: {
-      title: `${product.name} ${locationKeywords}`,
-      description: description.substring(0, 200),
-      url: `${baseUrl}/products/${product.slug}`,
-      siteName: site.name,
-      images: firstImage ? [{ url: firstImage, alt: product.imageAlt || product.name }] : [],
-      locale: "en_IN",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${product.name} ${locationKeywords}`,
-      description: description.substring(0, 200),
-      images: firstImage ? [firstImage] : [],
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-  };
+  return buildProductMeta({
+    productName: product.name,
+    shortDesc: product.shortDesc,
+    slug: product.slug,
+    categoryName: category?.name,
+    imageUrl: firstImage,
+    materials: product.materials,
+    sizes: product.sizes,
+  });
 }
 
 export default async function ProductDetailPage({ params }: Props) {
@@ -88,7 +50,17 @@ export default async function ProductDetailPage({ params }: Props) {
   const images = getProductImages(product, category);
   const media = getProductMedia(product, category);
   const hasBrandVariants = product.brandVariants && product.brandVariants.length > 0;
-  const relatedProducts = getRelatedProducts(slug, 4);
+  const seoContent = getProductSeoContent(slug, product);
+  const relatedProductSlugs = seoContent?.relatedProductSlugs;
+  const relatedProducts: ProductWithCategory[] = relatedProductSlugs?.length
+    ? relatedProductSlugs
+        .map((s) => getProductBySlug(s))
+        .filter((p): p is ProductWithCategory => p != null)
+    : getRelatedProducts(slug, 6);
+  const blogSlugs = getRelatedBlogSlugsForProduct(slug);
+  const relatedBlogPosts = await Promise.all(blogSlugs.map((s) => getPostBySlug(s))).then((posts) =>
+    posts.filter((p): p is NonNullable<typeof p> => p != null).map((p) => ({ slug: p.slug, title: p.title }))
+  );
   const firstImage = images[0]?.startsWith("http") ? images[0] : `${baseUrl}${images[0] || ""}`;
 
   const breadcrumbItems = [
@@ -148,15 +120,20 @@ export default async function ProductDetailPage({ params }: Props) {
     },
   };
 
-  const productFaqSchema = productFaqs.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: productFaqs.slice(0, 4).map((f) => ({
-      "@type": "Question",
-      name: f.question,
-      acceptedAnswer: { "@type": "Answer", text: f.answer },
-    })),
-  } : null;
+  const faqsForSchema = seoContent?.faqs?.length
+    ? seoContent.faqs
+    : [];
+  const productFaqSchema = faqsForSchema.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqsForSchema.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : null;
 
   const sizeInfo = product.sizes && product.sizes.length > 0
     ? ` Size: ${product.sizes.slice(0, 3).join(", ")}`
@@ -331,6 +308,16 @@ export default async function ProductDetailPage({ params }: Props) {
             ))}
           </ul>
         </section>
+      )}
+
+      {seoContent && (
+        <ProductSeoContent
+          content={seoContent}
+          product={product}
+          category={category ?? null}
+          relatedProducts={relatedProducts}
+          relatedBlogPosts={relatedBlogPosts}
+        />
       )}
     </article>
   );

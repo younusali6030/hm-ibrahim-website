@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { allProducts, categories } from "@/content/products";
 import { inHouseBrands } from "@/content/brands";
+import { getAllPostSlugs } from "@/content/blog/posts";
 import { baseUrl } from "@/lib/site";
 
 const staticPages = [
@@ -12,6 +13,7 @@ const staticPages = [
   "contact",
   "catalog",
   "indore",
+  "blog",
 ] as const;
 
 const indoreSlugs = [
@@ -23,7 +25,7 @@ const indoreSlugs = [
   "construction-hardware",
 ] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const path of staticPages) {
@@ -66,8 +68,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entries.push({
       url: `${baseUrl}/indore/${slug}`,
       lastModified: new Date(),
-      changeFrequency: "weekly" as const, // Changed to weekly for local SEO
-      priority: 0.85, // Higher priority for local landing pages
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    });
+  }
+
+  const blogSlugs = await getAllPostSlugs();
+  entries.push({
+    url: `${baseUrl}/blog`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  });
+  for (const slug of blogSlugs) {
+    entries.push({
+      url: `${baseUrl}/blog/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     });
   }
 

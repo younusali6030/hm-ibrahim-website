@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { baseUrl, site } from "@/lib/site";
+import { buildPageMeta } from "@/lib/seo";
 import { getWhatsAppLink } from "@/lib/utils";
 import { ContactForm } from "./ContactForm";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
@@ -27,11 +28,11 @@ const contactPageSchema = {
   },
 };
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: `Contact ${site.name} — address, phone, WhatsApp, hours. Siyaganj, Indore.`,
-  alternates: { canonical: `${baseUrl}/contact` },
-};
+export const metadata: Metadata = buildPageMeta({
+  title: `Contact | ${site.name} — Siyaganj, Indore`,
+  description: `Contact ${site.name} — address, phone, WhatsApp, hours. Visit 60 Siyaganj Main Road, Indore. Request a quote.`,
+  path: "contact",
+});
 
 export default function ContactPage() {
   return (

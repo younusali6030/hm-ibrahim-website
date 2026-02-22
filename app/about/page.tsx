@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { baseUrl, site } from "@/lib/site";
+import { buildPageMeta } from "@/lib/seo";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 
 const aboutPageSchema = {
@@ -18,11 +19,11 @@ const aboutPageSchema = {
   },
 };
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description: `Learn about ${site.name} — our story since 1939, values, and what we supply. Trusted iron and hardware trading in Siyaganj, Indore.`,
-  alternates: { canonical: `${baseUrl}/about` },
-};
+export const metadata: Metadata = buildPageMeta({
+  title: `About Us | ${site.name} — Iron & Hardware since 1939, Siyaganj Indore`,
+  description: `Learn about ${site.name}: our story since 1939, values, and what we supply. Trusted iron and hardware in Siyaganj, Indore.`,
+  path: "about",
+});
 
 export default function AboutPage() {
   return (

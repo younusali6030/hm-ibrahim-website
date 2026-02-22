@@ -13,6 +13,7 @@ const footerLinks = [
   { href: "/products", label: "Browse all products" },
   { href: "/quote", label: "Request a quote" },
   { href: "/contact", label: "Contact us" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About us" },
   { href: "/indore", label: "Products in Indore" },
   { href: "/services", label: "Services" },
