@@ -2,6 +2,8 @@
 title: "How Bulk Buyers Save Cost in Loha Mandi Indore"
 description: "Tips for bulk buyers in Loha Mandi and Siyaganj, Indore. Steel, wire, mesh. Better rates and delivery."
 date: "2025-02-11"
+image: "/products/ms-angle-2.png"
+imageAlt: "Bulk steel in Loha Mandi Indore"
 ---
 
 # How Bulk Buyers Save Cost in Loha Mandi Indore

@@ -2,6 +2,8 @@
 title: "Top Hardware Items Contractors Buy in Siyaganj (Checklist)"
 description: "Checklist of hardware and steel items contractors buy in Siyaganj, Indore. Angles, TMT, mesh, wires, tools."
 date: "2025-02-07"
+image: "/products/ms-angle-1.png"
+imageAlt: "MS angles and hardware in Siyaganj"
 ---
 
 # Top Hardware Items Contractors Buy in Siyaganj (Checklist)

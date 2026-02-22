@@ -2,6 +2,8 @@
 title: "Perforated Sheets: MS vs SS, Hole Patterns, Applications"
 description: "Guide to perforated sheets in Indore. MS and GI perforated sheets, hole patterns, uses. Buy from Siyaganj."
 date: "2025-02-05"
+image: "/products/gi-perforated-1.png"
+imageAlt: "GI perforated sheet — screening and ventilation"
 ---
 
 # Perforated Sheets: MS vs GI, Hole Patterns, and Applications

@@ -2,6 +2,8 @@
 title: "Pigeon Spikes & Netting: Installation Guide and Use Cases"
 description: "Guide to pigeon spikes and pigeon netting in Indore. Installation, use cases. Buy from Siyaganj."
 date: "2025-02-10"
+image: "/products/pigeon-spike-1.png"
+imageAlt: "Pigeon spikes and netting"
 ---
 
 # Pigeon Spikes & Netting: Installation Guide and Use Cases

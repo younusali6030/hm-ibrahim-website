@@ -2,6 +2,8 @@
 title: "Wire Mesh Supplier in Indore: Types, Uses, Price Factors"
 description: "Guide to wire mesh types, uses, and pricing in Indore. MS, GI, welded, crimp mesh from Siyaganj. Request a quote."
 date: "2025-02-01"
+image: "/products/gi-wiremesh.png"
+imageAlt: "GI weldmesh rolls — wire mesh in Indore"
 ---
 
 # Wire Mesh Supplier in Indore: Types, Uses, and Price Factors

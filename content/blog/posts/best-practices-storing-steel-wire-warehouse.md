@@ -2,6 +2,8 @@
 title: "Best Practices for Storing Steel & Wire Products (Warehouse)"
 description: "How to store steel sections, TMT bars, wire, and mesh in Indore. Avoid rust, damage, and mix-up."
 date: "2025-02-12"
+image: "/products/gi-wiremesh.png"
+imageAlt: "Wire and mesh storage"
 ---
 
 # Best Practices for Storing Steel & Wire Products (Warehouse)

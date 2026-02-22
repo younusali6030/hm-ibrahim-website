@@ -2,6 +2,8 @@
 title: "How to Choose TMT Bars in Indore: Grades, Brands, Use"
 description: "Guide to selecting TMT bars in Indore. Fe 500, Fe 550, sizes, and where to buy from Siyaganj. Request a quote."
 date: "2025-02-04"
+image: "/products/tmt-bar.png"
+imageAlt: "TMT bars for construction in Indore"
 ---
 
 # How to Choose TMT Bars in Indore: Grades, Brands, and Use

@@ -2,6 +2,8 @@
 title: "How to Estimate Material Quantity for Fencing Projects"
 description: "Estimate chain link, barbed wire, posts, and GI pipe for fencing in Indore. Tips for Siyaganj buyers."
 date: "2025-02-08"
+image: "/products/chain-link-wire.png"
+imageAlt: "Chain link fencing — estimate material quantity"
 ---
 
 # How to Estimate Material Quantity for Fencing Projects

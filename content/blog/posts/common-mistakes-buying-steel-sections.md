@@ -2,6 +2,8 @@
 title: "Common Mistakes When Buying Steel Sections (Angles, Flats)"
 description: "Avoid these mistakes when buying MS angles, flats, and channels in Indore. Tips for Siyaganj and Loha Mandi buyers."
 date: "2025-02-09"
+image: "/products/ms-flat.png"
+imageAlt: "MS flats and steel sections"
 ---
 
 # Common Mistakes When Buying Steel Sections (Angles, Flats)

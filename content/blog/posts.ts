@@ -12,6 +12,9 @@ export type BlogPost = {
   title: string;
   description: string;
   date: string;
+  /** Hero image path (e.g. /products/gi-wiremesh-main.png). Optional. */
+  image?: string;
+  imageAlt?: string;
   content: string;
 };
 
@@ -36,6 +39,8 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       title: (data.title as string) || slug,
       description: (data.description as string) || "",
       date: (data.date as string) || "",
+      image: (data.image as string) || undefined,
+      imageAlt: (data.imageAlt as string) || undefined,
       content: content.trim(),
     };
   } catch {

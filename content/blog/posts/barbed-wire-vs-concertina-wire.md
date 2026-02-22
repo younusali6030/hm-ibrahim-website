@@ -2,6 +2,8 @@
 title: "Barbed Wire vs Concertina Wire: Which is Better for Fencing?"
 description: "Compare barbed wire and concertina wire for security fencing in Indore. Uses, cost factors, and where to buy in Siyaganj."
 date: "2025-02-02"
+image: "/products/concertina-wire-main.png"
+imageAlt: "Concertina wire and barbed wire for fencing"
 ---
 
 # Barbed Wire vs Concertina Wire: Which is Better for Fencing?

@@ -115,6 +115,67 @@
   .space-section > * + * {
     margin-top: clamp(1.5rem, 4vw, 2.5rem);
   }
+
+  /* Blog prose: generous spacing so content doesn’t look cluttered */
+  .blog-prose {
+    line-height: 1.7;
+  }
+  .blog-prose h1 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
+  }
+  .blog-prose h1:first-child {
+    margin-top: 0;
+  }
+  .blog-prose h2 {
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+  .blog-prose h2:first-child {
+    margin-top: 0;
+  }
+  .blog-prose h3 {
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .blog-prose p {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+  .blog-prose ul,
+  .blog-prose ol {
+    margin-top: 0.5rem;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .blog-prose li {
+    margin-bottom: 0.5rem;
+  }
+  .blog-prose li:last-child {
+    margin-bottom: 0;
+  }
+  .blog-prose blockquote {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1.25rem;
+    border-left: 4px solid hsl(var(--primary) / 0.5);
+  }
+  .blog-prose table {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  .blog-prose hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-color: hsl(var(--border));
+  }
+  .blog-prose a {
+    word-break: break-word;
+  }
 }
 
 @layer utilities {

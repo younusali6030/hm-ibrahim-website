@@ -2,6 +2,8 @@
 title: "GI Wire vs MS Wire: Which One for Binding & Fencing?"
 description: "Compare GI wire and MS wire for binding and fencing in Indore. Uses, durability, price factors. Siyaganj supplier."
 date: "2025-02-06"
+image: "/products/gi-wire-local-1.png"
+imageAlt: "GI wire coils for binding and fencing"
 ---
 
 # GI Wire vs MS Wire: Which One for Binding and Fencing?

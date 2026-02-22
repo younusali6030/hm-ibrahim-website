@@ -8,7 +8,7 @@ type Props = { content: string; className?: string };
 
 export function MarkdownContent({ content, className = "" }: Props) {
   return (
-    <div className={`prose prose-invert max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-li:text-muted-foreground ${className}`}>
+    <div className={`prose prose-invert max-w-none prose-headings:text-foreground prose-headings:font-heading prose-p:text-muted-foreground prose-a:text-primary prose-li:text-muted-foreground prose-headings:font-semibold ${className}`}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
