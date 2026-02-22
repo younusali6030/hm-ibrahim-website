@@ -41,6 +41,7 @@ export default async function BlogPostPage({ params }: Props) {
     { name: post.title, url: `/blog/${slug}` },
   ];
 
+  const articleImages = [post.image, post.image2, post.image3].filter(Boolean) as string[];
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -48,8 +49,10 @@ export default async function BlogPostPage({ params }: Props) {
     description: post.description,
     url: `${baseUrl}/blog/${slug}`,
     datePublished: post.date,
-    ...(post.image && {
-      image: post.image.startsWith("http") ? post.image : `${baseUrl}${post.image}`,
+    ...(articleImages.length > 0 && {
+      image: articleImages.map((src) =>
+        src.startsWith("http") ? src : `${baseUrl}${src}`
+      ),
     }),
     publisher: {
       "@type": "Organization",
@@ -65,17 +68,49 @@ export default async function BlogPostPage({ params }: Props) {
       <Breadcrumbs items={breadcrumbItems} className="mb-8" />
 
       <header className="mb-10 sm:mb-12">
-        {post.image && (
-          <div className="mb-8 overflow-hidden rounded-2xl border border-border bg-card">
-            <Image
-              src={post.image}
-              alt={post.imageAlt || post.title}
-              width={960}
-              height={540}
-              className="h-auto w-full object-cover"
-              sizes="(max-width: 768px) 100vw, 960px"
-              priority
-            />
+        {(post.image || post.image2 || post.image3) && (
+          <div className="mb-8 max-w-xl space-y-3">
+            {post.image && (
+              <div className="overflow-hidden rounded-lg border border-border bg-card">
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt || post.title}
+                  width={576}
+                  height={320}
+                  className="h-auto max-h-[200px] w-full object-cover"
+                  sizes="(max-width: 768px) 100vw, 576px"
+                  priority
+                />
+              </div>
+            )}
+            {(post.image2 || post.image3) && (
+              <div className="grid gap-2 sm:grid-cols-2">
+                {post.image2 && (
+                  <div className="overflow-hidden rounded-lg border border-border bg-card">
+                    <Image
+                      src={post.image2}
+                      alt={post.image2Alt || post.title}
+                      width={320}
+                      height={180}
+                      className="h-auto max-h-[140px] w-full object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                  </div>
+                )}
+                {post.image3 && (
+                  <div className="overflow-hidden rounded-lg border border-border bg-card">
+                    <Image
+                      src={post.image3}
+                      alt={post.image3Alt || post.title}
+                      width={320}
+                      height={180}
+                      className="h-auto max-h-[140px] w-full object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
         <h1 className="text-h1 font-heading font-bold text-foreground">

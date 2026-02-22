@@ -4,6 +4,10 @@ description: "Avoid these mistakes when buying MS angles, flats, and channels in
 date: "2025-02-09"
 image: "/products/ms-flat.png"
 imageAlt: "MS flats and steel sections"
+image2: "/products/ms-angle-1.png"
+image2Alt: "MS angles"
+image3: "/products/ms-round-bar.png"
+image3Alt: "MS round bars"
 ---
 
 # Common Mistakes When Buying Steel Sections (Angles, Flats)

@@ -45,13 +45,13 @@ export default async function BlogIndexPage() {
               className="flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-primary/50 hover:bg-card/80 sm:flex-row"
             >
               {post.image && (
-                <div className="relative h-44 w-full shrink-0 sm:h-40 sm:w-56">
+                <div className="relative h-24 w-full shrink-0 sm:h-20 sm:w-28">
                   <Image
                     src={post.image}
                     alt={post.imageAlt || post.title}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 224px"
+                    sizes="(max-width: 640px) 100vw, 112px"
                   />
                 </div>
               )}

@@ -4,6 +4,10 @@ description: "How to store steel sections, TMT bars, wire, and mesh in Indore. A
 date: "2025-02-12"
 image: "/products/gi-wiremesh.png"
 imageAlt: "Wire and mesh storage"
+image2: "/products/ms-angle-2.png"
+image2Alt: "Angle storage"
+image3: "/products/binding-wire-main.png"
+image3Alt: "Wire coils"
 ---
 
 # Best Practices for Storing Steel & Wire Products (Warehouse)

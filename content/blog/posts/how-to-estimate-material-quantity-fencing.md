@@ -4,6 +4,10 @@ description: "Estimate chain link, barbed wire, posts, and GI pipe for fencing i
 date: "2025-02-08"
 image: "/products/chain-link-wire.png"
 imageAlt: "Chain link fencing — estimate material quantity"
+image2: "/products/gi-pipes.png"
+image2Alt: "GI pipe for posts"
+image3: "/products/brands/boarder/barbed-1.png"
+image3Alt: "Barbed wire"
 ---
 
 # How to Estimate Material Quantity for Fencing Projects

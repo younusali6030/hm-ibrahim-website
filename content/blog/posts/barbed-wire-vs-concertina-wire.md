@@ -4,6 +4,10 @@ description: "Compare barbed wire and concertina wire for security fencing in In
 date: "2025-02-02"
 image: "/products/concertina-wire-main.png"
 imageAlt: "Concertina wire and barbed wire for fencing"
+image2: "/products/brands/boarder/barbed-1.png"
+image2Alt: "Barbed wire"
+image3: "/products/concertina-wire-1.png"
+image3Alt: "Concertina coil"
 ---
 
 # Barbed Wire vs Concertina Wire: Which is Better for Fencing?

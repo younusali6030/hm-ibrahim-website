@@ -4,6 +4,10 @@ description: "Guide to perforated sheets in Indore. MS and GI perforated sheets,
 date: "2025-02-05"
 image: "/products/gi-perforated-1.png"
 imageAlt: "GI perforated sheet — screening and ventilation"
+image2: "/products/gi-perforated-2.png"
+image2Alt: "Perforated sheet patterns"
+image3: "/products/perforated-sheet.png"
+image3Alt: "MS perforated sheet"
 ---
 
 # Perforated Sheets: MS vs GI, Hole Patterns, and Applications

@@ -4,6 +4,10 @@ description: "Guide to selecting TMT bars in Indore. Fe 500, Fe 550, sizes, and 
 date: "2025-02-04"
 image: "/products/tmt-bar.png"
 imageAlt: "TMT bars for construction in Indore"
+image2: "/products/ms-angle-1.png"
+image2Alt: "MS angles with TMT"
+image3: "/products/ms-round-bar.png"
+image3Alt: "Steel reinforcement"
 ---
 
 # How to Choose TMT Bars in Indore: Grades, Brands, and Use

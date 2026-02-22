@@ -4,6 +4,10 @@ description: "Checklist of hardware and steel items contractors buy in Siyaganj,
 date: "2025-02-07"
 image: "/products/ms-angle-1.png"
 imageAlt: "MS angles and hardware in Siyaganj"
+image2: "/products/gi-pipes.png"
+image2Alt: "GI pipes"
+image3: "/products/welding-rod.png"
+image3Alt: "Welding rods"
 ---
 
 # Top Hardware Items Contractors Buy in Siyaganj (Checklist)

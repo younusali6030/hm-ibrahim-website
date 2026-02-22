@@ -4,6 +4,8 @@ description: "Guide to pigeon spikes and pigeon netting in Indore. Installation,
 date: "2025-02-10"
 image: "/products/pigeon-spike-1.png"
 imageAlt: "Pigeon spikes and netting"
+image2: "/products/pigeon-net.png"
+image2Alt: "Pigeon net"
 ---
 
 # Pigeon Spikes & Netting: Installation Guide and Use Cases

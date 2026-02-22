@@ -12,9 +12,14 @@ export type BlogPost = {
   title: string;
   description: string;
   date: string;
-  /** Hero image path (e.g. /products/gi-wiremesh-main.png). Optional. */
+  /** Hero image path. Optional. */
   image?: string;
   imageAlt?: string;
+  /** Extra images shown below hero (1–2). Optional. */
+  image2?: string;
+  image2Alt?: string;
+  image3?: string;
+  image3Alt?: string;
   content: string;
 };
 
@@ -41,6 +46,10 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       date: (data.date as string) || "",
       image: (data.image as string) || undefined,
       imageAlt: (data.imageAlt as string) || undefined,
+      image2: (data.image2 as string) || undefined,
+      image2Alt: (data.image2Alt as string) || undefined,
+      image3: (data.image3 as string) || undefined,
+      image3Alt: (data.image3Alt as string) || undefined,
       content: content.trim(),
     };
   } catch {

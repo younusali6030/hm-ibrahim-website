@@ -4,6 +4,10 @@ description: "Tips for bulk buyers in Loha Mandi and Siyaganj, Indore. Steel, wi
 date: "2025-02-11"
 image: "/products/ms-angle-2.png"
 imageAlt: "Bulk steel in Loha Mandi Indore"
+image2: "/products/gi-wiremesh.png"
+image2Alt: "Wire mesh stock"
+image3: "/products/tata-chainlink-1.png"
+image3Alt: "Chain link stock"
 ---
 
 # How Bulk Buyers Save Cost in Loha Mandi Indore

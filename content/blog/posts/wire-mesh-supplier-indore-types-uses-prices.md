@@ -4,6 +4,10 @@ description: "Guide to wire mesh types, uses, and pricing in Indore. MS, GI, wel
 date: "2025-02-01"
 image: "/products/gi-wiremesh.png"
 imageAlt: "GI weldmesh rolls — wire mesh in Indore"
+image2: "/products/ms-weldmesh-1.png"
+image2Alt: "MS weldmesh"
+image3: "/products/crimp-wiremesh-1.png"
+image3Alt: "Crimp wire mesh"
 ---
 
 # Wire Mesh Supplier in Indore: Types, Uses, and Price Factors
