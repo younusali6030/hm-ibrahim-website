@@ -1,6 +1,8 @@
 /**
- * Testimonials for homepage — from Google reviews and customer feedback.
- * Replace or add real snippets from your Google Business profile.
+ * Testimonials for homepage carousel.
+ * TODO: Replace with real testimonials (with permission). Do not fabricate.
+ * For trust sections (TrustBadges, TestimonialsGrid, ProductTestimonials) we use content/trust.ts
+ * where placeholders are clearly marked as "Client (placeholder)" and isPlaceholder: true.
  */
 
 export type Testimonial = {

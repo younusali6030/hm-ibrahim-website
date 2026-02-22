@@ -3,6 +3,8 @@ import Image from "next/image";
 import { baseUrl, site } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { TrustBadges } from "@/components/trust/TrustBadges";
+import { TestimonialsGrid } from "@/components/trust/TestimonialsGrid";
 
 const aboutPageSchema = {
   "@context": "https://schema.org",
@@ -29,7 +31,7 @@ export default function AboutPage() {
   return (
     <div className="page-container section-padding">
       <SeoJsonLd data={aboutPageSchema} />
-      <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">About HM Ibrahim & Co</h1>
+      <h1 className="text-h1 font-heading font-bold text-foreground">About HM Ibrahim & Co</h1>
       <p className="mt-3 sm:mt-4 text-base sm:text-lg text-muted-foreground">{site.tagline}</p>
       <p className="mt-2 text-sm sm:text-base text-muted-foreground">{site.manufacturerTagline}</p>
 
@@ -147,7 +149,7 @@ export default function AboutPage() {
 
           {site.gstin && (
             <section aria-labelledby="compliance-heading">
-              <h2 id="compliance-heading" className="text-2xl font-semibold text-foreground">
+              <h2 id="compliance-heading" className="text-h2 font-heading font-semibold text-foreground">
                 Compliance
               </h2>
               <p className="mt-4 text-muted-foreground">
@@ -155,6 +157,11 @@ export default function AboutPage() {
               </p>
             </section>
           )}
+
+          <section className="mt-14 pt-10 border-t border-border" aria-label="Trust">
+            <TrustBadges className="mb-8" />
+            <TestimonialsGrid max={6} showCta title="What our customers say" />
+          </section>
         </div>
       </div>
     </div>

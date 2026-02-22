@@ -13,6 +13,8 @@ import { ProductImageGallery } from "@/components/ProductImageGallery";
 import { ProductDetailClient } from "@/components/product/ProductDetailClient";
 import { LookingForMoreSection } from "@/components/LookingForMoreSection";
 import { ProductSeoContent } from "@/components/ProductSeoContent";
+import { TrustBadges } from "@/components/trust/TrustBadges";
+import { ProductTestimonials } from "@/components/trust/ProductTestimonials";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
@@ -294,13 +296,13 @@ export default async function ProductDetailPage({ params }: Props) {
 
       {relatedProducts.length > 0 && (
         <section className="mt-14 border-t border-border pt-10" aria-labelledby="related-heading">
-          <h2 id="related-heading" className="text-xl font-semibold text-foreground">Related products</h2>
+          <h2 id="related-heading" className="text-h3 font-heading font-semibold text-foreground">Related products</h2>
           <ul className="mt-4 flex flex-wrap gap-3">
             {relatedProducts.map((p) => (
               <li key={p.slug}>
                 <Link
                   href={`/products/${p.slug}`}
-                  className="rounded-lg border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/40 hover:text-primary"
+                  className="rounded-lg border border-border bg-card px-4 py-2 text-small text-foreground hover:border-primary/40 hover:text-primary"
                 >
                   {p.name}
                 </Link>
@@ -309,6 +311,11 @@ export default async function ProductDetailPage({ params }: Props) {
           </ul>
         </section>
       )}
+
+      <section className="mt-14 border-t border-border pt-10" aria-label="Trust">
+        <TrustBadges className="mb-6" />
+        <ProductTestimonials categorySlug={category?.slug} productSlug={product.slug} max={3} className="mt-6" />
+      </section>
 
       {seoContent && (
         <ProductSeoContent

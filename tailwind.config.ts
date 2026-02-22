@@ -86,6 +86,12 @@ const config: Config = {
         "page-title": ["2rem", { lineHeight: "1.2", fontWeight: "700" }],
         "section-title": ["1.875rem", { lineHeight: "1.25", fontWeight: "700" }],
         "card-title": ["1.125rem", { lineHeight: "1.3", fontWeight: "600" }],
+        "h1": ["var(--text-h1)", { lineHeight: "var(--leading-tight)", letterSpacing: "var(--tracking-tight)" }],
+        "h2": ["var(--text-h2)", { lineHeight: "var(--leading-tight)", letterSpacing: "var(--tracking-tight)" }],
+        "h3": ["var(--text-h3)", { lineHeight: "var(--leading-snug)", letterSpacing: "var(--tracking-tight)" }],
+        "h4": ["var(--text-h4)", { lineHeight: "var(--leading-snug)", letterSpacing: "var(--tracking-normal)" }],
+        "body": ["var(--text-body)", { lineHeight: "var(--leading-relaxed)" }],
+        "small": ["var(--text-small)", { lineHeight: "var(--leading-normal)" }],
       },
       keyframes: {
         fadeIn: {
