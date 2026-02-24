@@ -12,13 +12,7 @@ const purchaseSchema = z.object({
 
   productCategory: z.string().min(1, "Product category is required"),
   itemName: z.string().min(1, "Item / Product Name is required"),
-  quantity: z
-    .union([
-      z.number().int().positive("Quantity must be greater than 0"),
-      z.string().regex(/^\d+$/, "Quantity must be a number"),
-    ])
-    .transform((val) => (typeof val === "number" ? val : parseInt(val, 10))),
-  unit: z.string().optional(),
+  quantity: z.string().min(1, "Quantity is required"),
   purchaseDate: z.string().optional(),
   invoiceNumber: z.string().optional(),
   preferredContact: z.string().optional(),

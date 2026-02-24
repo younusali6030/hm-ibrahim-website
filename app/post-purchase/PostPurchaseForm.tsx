@@ -201,9 +201,8 @@ export function PostPurchaseForm() {
           id="quantity"
           name="quantity"
           required
-          type="number"
-          min={1}
-          placeholder="e.g. 100"
+          type="text"
+          placeholder="e.g. 5 bundles, 100 kg"
           className="mt-1 w-full min-h-[44px]"
         />
       </div>
