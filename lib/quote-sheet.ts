@@ -37,6 +37,22 @@ const SHEET_HEADERS = [
   "additional notes",
 ] as const;
 
+function getNormalizedPrivateKey(raw: string | undefined | null): string | null {
+  if (!raw) return null;
+
+  let key = raw.trim();
+
+  // If the key was pasted with surrounding quotes (e.g. from JSON), strip them
+  if (key.startsWith('"') && key.endsWith('"')) {
+    key = key.slice(1, -1);
+  }
+
+  // Convert escaped newlines (\n) to real newlines (PEM format)
+  key = key.replace(/\\n/g, "\n");
+
+  return key;
+}
+
 function formatSubmissionDate(date: Date): string {
   return date.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit" });
 }
@@ -99,18 +115,16 @@ export type AppendQuoteToSheetResult = { success: true } | { success: false; err
 export async function appendQuoteToSheet(data: QuoteSubmission): Promise<AppendQuoteToSheetResult> {
   const sheetId = process.env.GOOGLE_SHEET_ID;
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY;
+  const privateKey = getNormalizedPrivateKey(process.env.GOOGLE_PRIVATE_KEY);
 
   if (!sheetId || !email || !privateKey) {
     return { success: false, error: "Google Sheet not configured (missing GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, or GOOGLE_PRIVATE_KEY)." };
   }
 
-  const key = privateKey.replace(/\\n/g, "\n");
-
   try {
     const auth = new JWT({
       email,
-      key,
+      key: privateKey,
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
 
@@ -154,7 +168,7 @@ export type AppendPurchaseToSheetResult = { success: true } | { success: false; 
 export async function appendPurchaseToSheet(data: PurchaseSubmissionForSheet): Promise<AppendPurchaseToSheetResult> {
   const sheetId = process.env.GOOGLE_PURCHASE_SHEET_ID || process.env.GOOGLE_SHEET_ID;
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY;
+  const privateKey = getNormalizedPrivateKey(process.env.GOOGLE_PRIVATE_KEY);
 
   if (!sheetId || !email || !privateKey) {
     return {
@@ -163,12 +177,10 @@ export async function appendPurchaseToSheet(data: PurchaseSubmissionForSheet): P
     };
   }
 
-  const key = privateKey.replace(/\\n/g, "\n");
-
   try {
     const auth = new JWT({
       email,
-      key,
+      key: privateKey,
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
 
