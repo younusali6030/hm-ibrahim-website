@@ -125,8 +125,14 @@ See **[ANALYTICS.md](./ANALYTICS.md)** for setup steps and where to find each re
 
 ## Post-purchase form storage (Google Sheet)
 
-The `/post-purchase` form stores submissions in the **same Google Sheet** used for quotes, via the existing
-Google Sheets integration (`GOOGLE_SHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY`).
+The `/post-purchase` form can store submissions either in:
+
+1. **A separate Google Sheet just for post-purchase data** — recommended  
+   - Set `GOOGLE_PURCHASE_SHEET_ID` to the Sheet ID for your post-purchase spreadsheet.  
+   - Also set `GOOGLE_SERVICE_ACCOUNT_EMAIL` and `GOOGLE_PRIVATE_KEY` as for the quote sheet.
+
+2. **The same Google Sheet used for quotes** (fallback)  
+   - If `GOOGLE_PURCHASE_SHEET_ID` is **not** set, the form will use `GOOGLE_SHEET_ID`.
 
 Each post-purchase submission is appended as a new row with a `customer type` value tagged `(post-purchase)`,
-so you can filter them separately inside Google Sheets.
+so you can still filter them separately inside Google Sheets even if you use a single sheet.

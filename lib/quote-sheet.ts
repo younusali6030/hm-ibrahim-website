@@ -152,7 +152,7 @@ export async function appendQuoteToSheet(data: QuoteSubmission): Promise<AppendQ
 export type AppendPurchaseToSheetResult = { success: true } | { success: false; error: string };
 
 export async function appendPurchaseToSheet(data: PurchaseSubmissionForSheet): Promise<AppendPurchaseToSheetResult> {
-  const sheetId = process.env.GOOGLE_SHEET_ID;
+  const sheetId = process.env.GOOGLE_PURCHASE_SHEET_ID || process.env.GOOGLE_SHEET_ID;
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   const privateKey = process.env.GOOGLE_PRIVATE_KEY;
 
