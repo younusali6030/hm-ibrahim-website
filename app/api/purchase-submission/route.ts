@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { prisma } from "@/lib/prisma";
+import { appendPurchaseToSheet } from "@/lib/quote-sheet";
 
 const purchaseSchema = z.object({
   fullName: z.string().min(1, "Full Name is required"),
@@ -101,29 +101,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   }
 
-  try {
-    await prisma.purchaseSubmission.create({
-      data: {
-        fullName,
-        email,
-        phone,
-        address,
-        customerType,
-        notes: notes && notes.trim().length > 0 ? notes : null,
-        productCategory,
-        itemName,
-        quantity,
-        unit,
-        purchaseDate: purchaseDate ? new Date(purchaseDate) : null,
-        invoiceNumber: invoiceNumber && invoiceNumber.trim().length > 0 ? invoiceNumber : null,
-        preferredContact: preferredContact && preferredContact.trim().length > 0 ? preferredContact : null,
-        source: "web",
-      },
-    });
-  } catch (e) {
-    console.error("purchase-submission create error:", e);
+  const sheetResult = await appendPurchaseToSheet({
+    fullName,
+    email,
+    phone,
+    customerType,
+    productCategory,
+    itemName,
+    quantity,
+    unit,
+    address,
+    purchaseDate,
+    invoiceNumber,
+    preferredContact,
+    notes,
+  });
+
+  if (!sheetResult.success) {
     return NextResponse.json(
-      { success: false, error: "Could not save your details. Please try again later." },
+      { success: false, error: sheetResult.error || "Could not save your details. Please try again later." },
       { status: 500 }
     );
   }

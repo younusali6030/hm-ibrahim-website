@@ -7,6 +7,22 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 import { JWT } from "google-auth-library";
 import type { QuoteSubmission } from "./quote-notification";
 
+type PurchaseSubmissionForSheet = {
+  fullName: string;
+  email: string;
+  phone: string;
+  customerType: string;
+  productCategory: string;
+  itemName: string;
+  quantity: number;
+  unit: string;
+  address: string;
+  purchaseDate?: string;
+  invoiceNumber?: string;
+  preferredContact?: string;
+  notes?: string;
+};
+
 const SHEET_HEADERS = [
   "date",
   "time",
@@ -47,6 +63,29 @@ function submissionToRow(data: QuoteSubmission, submittedAt: Date): Record<strin
     "quantity": data.quantity,
     "delivery": data.delivery,
     "additional notes": data.additionalNotes,
+  };
+}
+
+function purchaseSubmissionToRow(data: PurchaseSubmissionForSheet, submittedAt: Date): Record<string, string> {
+  const baseNotes: string[] = [];
+  if (data.address) baseNotes.push(`Address: ${data.address}`);
+  if (data.invoiceNumber) baseNotes.push(`Invoice: ${data.invoiceNumber}`);
+  if (data.preferredContact) baseNotes.push(`Preferred: ${data.preferredContact}`);
+  if (data.purchaseDate) baseNotes.push(`Purchase date: ${data.purchaseDate}`);
+  if (data.notes) baseNotes.push(`Notes: ${data.notes}`);
+
+  return {
+    date: formatSubmissionDate(submittedAt),
+    time: formatSubmissionTime(submittedAt),
+    name: data.fullName,
+    "phone number": data.phone,
+    email: data.email,
+    "customer type": `${data.customerType} (post-purchase)`,
+    "product category": data.productCategory,
+    "items/products needed": data.itemName,
+    quantity: `${data.quantity} ${data.unit}`,
+    delivery: "",
+    "additional notes": baseNotes.join(" | "),
   };
 }
 
@@ -109,3 +148,62 @@ export async function appendQuoteToSheet(data: QuoteSubmission): Promise<AppendQ
     return { success: false, error: `Failed to append to sheet: ${message}` };
   }
 }
+
+export type AppendPurchaseToSheetResult = { success: true } | { success: false; error: string };
+
+export async function appendPurchaseToSheet(data: PurchaseSubmissionForSheet): Promise<AppendPurchaseToSheetResult> {
+  const sheetId = process.env.GOOGLE_SHEET_ID;
+  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  const privateKey = process.env.GOOGLE_PRIVATE_KEY;
+
+  if (!sheetId || !email || !privateKey) {
+    return {
+      success: false,
+      error: "Google Sheet not configured (missing GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, or GOOGLE_PRIVATE_KEY).",
+    };
+  }
+
+  const key = privateKey.replace(/\\n/g, "\n");
+
+  try {
+    const auth = new JWT({
+      email,
+      key,
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    });
+
+    const doc = new GoogleSpreadsheet(sheetId, auth);
+    await doc.loadInfo();
+
+    const sheet = doc.sheetsByIndex[0];
+    if (!sheet) {
+      return { success: false, error: "Sheet has no worksheets." };
+    }
+
+    const rowData = purchaseSubmissionToRow(data, new Date());
+
+    try {
+      await sheet.addRow(rowData);
+    } catch (headerError: unknown) {
+      const msg = headerError instanceof Error ? headerError.message : String(headerError);
+      if (
+        msg.includes("header") ||
+        msg.includes("Header") ||
+        msg.includes("blank") ||
+        msg.includes("No values")
+      ) {
+        await sheet.setHeaderRow([...SHEET_HEADERS]);
+        await sheet.addRow(rowData);
+      } else {
+        throw headerError;
+      }
+    }
+
+    return { success: true };
+  } catch (e) {
+    console.error("Purchase sheet append error:", e);
+    const message = e instanceof Error ? e.message : "Unknown error";
+    return { success: false, error: `Failed to append purchase to sheet: ${message}` };
+  }
+}
+

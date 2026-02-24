@@ -123,17 +123,10 @@ See **[ANALYTICS.md](./ANALYTICS.md)** for setup steps and where to find each re
 - [ ] (Optional) Set `NEXT_PUBLIC_GA_ID` for full analytics — see [ANALYTICS.md](./ANALYTICS.md).
 - [ ] Add `public/favicon.ico` if you want a custom favicon.
 
-## Post-purchase form database (Prisma + SQLite)
+## Post-purchase form storage (Google Sheet)
 
-The `/post-purchase` form stores submissions in a local SQLite database via Prisma.
+The `/post-purchase` form stores submissions in the **same Google Sheet** used for quotes, via the existing
+Google Sheets integration (`GOOGLE_SHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY`).
 
-1. **Set env vars** in `.env.local` and Vercel:
-   - `DATABASE_URL="file:./prisma/dev.db"`
-   - `ADMIN_PASSWORD=changeme` (replace with a strong password for `/admin/purchase-submissions`)
-2. **Run Prisma migrate locally** to create the SQLite DB:
-   ```bash
-   npx prisma migrate dev --name init-purchase-submission
-   ```
-3. **Deploy**:
-   - On Vercel, add the same `DATABASE_URL` (e.g. `file:./prisma/prod.db` or a hosted DB URL) and `ADMIN_PASSWORD`.
-   - Redeploy; Prisma will use the configured database.
+Each post-purchase submission is appended as a new row with a `customer type` value tagged `(post-purchase)`,
+so you can filter them separately inside Google Sheets.
