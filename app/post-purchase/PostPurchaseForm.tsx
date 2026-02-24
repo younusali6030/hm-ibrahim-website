@@ -70,7 +70,6 @@ export function PostPurchaseForm() {
       form.reset();
       setCustomerType("");
       setProductCategory("");
-      setUnit("");
       setPreferredContact(null);
     } catch (err) {
       console.error("post-purchase submit error:", err);
