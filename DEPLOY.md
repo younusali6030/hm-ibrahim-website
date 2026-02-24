@@ -122,3 +122,18 @@ See **[ANALYTICS.md](./ANALYTICS.md)** for setup steps and where to find each re
 - [ ] Replace `site.googleReview.profileUrl` in `content/site.ts` with your real Google Business profile URL.
 - [ ] (Optional) Set `NEXT_PUBLIC_GA_ID` for full analytics — see [ANALYTICS.md](./ANALYTICS.md).
 - [ ] Add `public/favicon.ico` if you want a custom favicon.
+
+## Post-purchase form database (Prisma + SQLite)
+
+The `/post-purchase` form stores submissions in a local SQLite database via Prisma.
+
+1. **Set env vars** in `.env.local` and Vercel:
+   - `DATABASE_URL="file:./prisma/dev.db"`
+   - `ADMIN_PASSWORD=changeme` (replace with a strong password for `/admin/purchase-submissions`)
+2. **Run Prisma migrate locally** to create the SQLite DB:
+   ```bash
+   npx prisma migrate dev --name init-purchase-submission
+   ```
+3. **Deploy**:
+   - On Vercel, add the same `DATABASE_URL` (e.g. `file:./prisma/prod.db` or a hosted DB URL) and `ADMIN_PASSWORD`.
+   - Redeploy; Prisma will use the configured database.
