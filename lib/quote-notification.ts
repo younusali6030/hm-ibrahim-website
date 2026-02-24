@@ -1,12 +1,12 @@
 /**
- * Send a notification email to the business (younusali6030@gmail.com) when someone
+ * Send a notification email to the business when someone
  * requests a quote, including all form fields and a CSV attachment.
  */
 
 import nodemailer from "nodemailer";
 
 const QUOTE_FROM_EMAIL = process.env.QUOTE_FROM_EMAIL || "younusali6030@gmail.com";
-const QUOTE_NOTIFY_EMAIL = process.env.QUOTE_NOTIFY_EMAIL || "younusali6030@gmail.com";
+const QUOTE_NOTIFY_EMAIL = process.env.QUOTE_NOTIFY_EMAIL || "hmibrahimco1939@gmail.com";
 
 export type QuoteSubmission = {
   name: string;
