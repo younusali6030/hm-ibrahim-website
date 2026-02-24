@@ -13,54 +13,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { categories } from "@/content/products";
 
-const CUSTOMER_TYPES = [
-  "Contractor",
-  "Builder",
-  "Fabricator",
-  "Retail Shop",
-  "Farmer/Agriculture",
-  "Industrial/B2B",
-  "Individual",
-  "Other",
-] as const;
-
-const PRODUCT_CATEGORIES = [
-  "Wire Mesh",
-  "Welded Mesh",
-  "Barbed Wire",
-  "Chainlink Fence",
-  "Zatka/Jhatka Wire",
-  "GI/MS Wire",
-  "Steel Sections",
-  "Perforated Sheets",
-  "Hardware/Tools",
-  "Other",
-] as const;
-
-const UNITS = [
-  "Kg",
-  "Bundle",
-  "Piece",
-  "Meter",
-  "Sq Ft",
-  "Sq Meter",
-  "Roll",
-  "Sheet",
-  "Other",
-] as const;
+const CUSTOMER_TYPES = ["retail", "wholesale", "contractor", "other"] as const;
 
 const PREFERRED_CONTACT = ["WhatsApp", "Call", "Email"] as const;
 
 export function PostPurchaseForm() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [honeypot, setHoneypot] = useState("");
   const [customerType, setCustomerType] = useState("");
   const [productCategory, setProductCategory] = useState("");
-  const [unit, setUnit] = useState("");
   const [preferredContact, setPreferredContact] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -82,7 +47,6 @@ export function PostPurchaseForm() {
       productCategory,
       itemName: formData.get("itemName")?.toString().trim() ?? "",
       quantity: formData.get("quantity")?.toString().trim() ?? "",
-      unit,
       purchaseDate: formData.get("purchaseDate")?.toString().trim() || undefined,
       invoiceNumber: formData.get("invoiceNumber")?.toString().trim() || undefined,
       preferredContact: preferredContact ?? undefined,
@@ -186,11 +150,10 @@ export function PostPurchaseForm() {
             <SelectValue placeholder="Select customer type" />
           </SelectTrigger>
           <SelectContent>
-            {CUSTOMER_TYPES.map((t) => (
-              <SelectItem key={t} value={t}>
-                {t}
-              </SelectItem>
-            ))}
+            <SelectItem value="retail">Retail</SelectItem>
+            <SelectItem value="wholesale">Wholesale</SelectItem>
+            <SelectItem value="contractor">Contractor / Builder</SelectItem>
+            <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -213,9 +176,9 @@ export function PostPurchaseForm() {
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
-            {PRODUCT_CATEGORIES.map((c) => (
-              <SelectItem key={c} value={c}>
-                {c}
+            {categories.map((c) => (
+              <SelectItem key={c.slug} value={c.name}>
+                {c.name}
               </SelectItem>
             ))}
           </SelectContent>
@@ -233,34 +196,17 @@ export function PostPurchaseForm() {
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-[1.5fr_minmax(0,1fr)]">
-        <div className="space-y-2">
-          <Label htmlFor="quantity">Quantity *</Label>
-          <Input
-            id="quantity"
-            name="quantity"
-            required
-            type="number"
-            min={1}
-            placeholder="e.g. 100"
-            className="mt-1 w-full min-h-[44px]"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="unit">Unit *</Label>
-          <Select value={unit} onValueChange={setUnit}>
-            <SelectTrigger id="unit" className="mt-1 w-full min-h-[44px]">
-              <SelectValue placeholder="Select" />
-            </SelectTrigger>
-            <SelectContent>
-              {UNITS.map((u) => (
-                <SelectItem key={u} value={u}>
-                  {u}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="quantity">Quantity *</Label>
+        <Input
+          id="quantity"
+          name="quantity"
+          required
+          type="number"
+          min={1}
+          placeholder="e.g. 100"
+          className="mt-1 w-full min-h-[44px]"
+        />
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

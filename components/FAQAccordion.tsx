@@ -12,13 +12,33 @@ type Props = {
   faqs: FAQ[];
   title?: string;
   description?: string;
+  /** When true, renders just the accordion (no outer section/heading). */
+  inline?: boolean;
 };
 
 export function FAQAccordion({
   faqs,
   title = "Frequently Asked Questions",
   description,
+  inline = false,
 }: Props) {
+  const accordion = (
+    <Accordion type="single" collapsible className="mx-auto mt-10 max-w-3xl w-full">
+      {faqs.map((faq) => (
+        <AccordionItem key={faq.id} value={faq.id}>
+          <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+          <AccordionContent className="text-muted-foreground">
+            {faq.answer}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+
+  if (inline) {
+    return accordion;
+  }
+
   return (
     <section className="py-16 md:py-20" aria-labelledby="faq-heading">
       <div className="page-container section-padding">
@@ -30,16 +50,7 @@ export function FAQAccordion({
             {description}
           </p>
         )}
-        <Accordion type="single" collapsible className="mx-auto mt-10 max-w-3xl w-full">
-          {faqs.map((faq) => (
-            <AccordionItem key={faq.id} value={faq.id}>
-              <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        {accordion}
       </div>
     </section>
   );

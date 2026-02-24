@@ -15,7 +15,6 @@ type PurchaseSubmissionForSheet = {
   productCategory: string;
   itemName: string;
   quantity: number;
-  unit: string;
   address: string;
   purchaseDate?: string;
   invoiceNumber?: string;
@@ -102,7 +101,7 @@ function purchaseSubmissionToRow(data: PurchaseSubmissionForSheet, submittedAt: 
     "customer type": `${data.customerType} (post-purchase)`,
     "product category": data.productCategory,
     "items/products needed": data.itemName,
-    quantity: `${data.quantity} ${data.unit}`,
+    quantity: String(data.quantity),
     delivery: "",
     "additional notes": baseNotes.join(" | "),
   };

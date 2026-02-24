@@ -18,7 +18,7 @@ const purchaseSchema = z.object({
       z.string().regex(/^\d+$/, "Quantity must be a number"),
     ])
     .transform((val) => (typeof val === "number" ? val : parseInt(val, 10))),
-  unit: z.string().min(1, "Unit is required"),
+  unit: z.string().optional(),
   purchaseDate: z.string().optional(),
   invoiceNumber: z.string().optional(),
   preferredContact: z.string().optional(),

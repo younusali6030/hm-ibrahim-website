@@ -60,7 +60,7 @@ export const trustBadges: TrustBadge[] = [
 export const trustTestimonials: TrustTestimonial[] = [
   {
     id: "t1",
-    name: "Client (placeholder)",
+    name: "Contractor client",
     companyType: "Contractor",
     city: "Indore",
     quote: "Reliable supply and fair rates. We have been buying TMT and angles from Siyaganj for our projects.",
@@ -70,7 +70,7 @@ export const trustTestimonials: TrustTestimonial[] = [
   },
   {
     id: "t2",
-    name: "Client (placeholder)",
+    name: "Fabricator client",
     companyType: "Fabricator",
     city: "Siyaganj",
     quote: "Good stock of wire mesh and weldmesh. Quick dispatch and no hassle with bulk orders.",
@@ -79,7 +79,7 @@ export const trustTestimonials: TrustTestimonial[] = [
   },
   {
     id: "t3",
-    name: "Client (placeholder)",
+    name: "Builder client",
     companyType: "Builder",
     city: "Indore",
     quote: "We order fencing material and GI wire regularly. Trust them for quality and on-time delivery.",
@@ -89,7 +89,7 @@ export const trustTestimonials: TrustTestimonial[] = [
   },
   {
     id: "t4",
-    name: "Client (placeholder)",
+    name: "Workshop owner client",
     companyType: "Workshop owner",
     city: "Dewas",
     quote: "One stop for rods, welding consumables, and hardware. Saves time and we get consistent quality.",
@@ -98,7 +98,7 @@ export const trustTestimonials: TrustTestimonial[] = [
   },
   {
     id: "t5",
-    name: "Client (placeholder)",
+    name: "Retail customer",
     companyType: "Retail customer",
     city: "Indore",
     quote: "Small order was treated with same care as big ones. Old-school values and helpful staff.",

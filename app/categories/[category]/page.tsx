@@ -2,13 +2,18 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { categories, getCategoryBySlug } from "@/content/products";
+import { categories, getCategoryBySlug, type Category } from "@/content/products";
 import { baseUrl, site, localSeo } from "@/lib/site";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
-import { FAQAccordion } from "@/components/FAQAccordion";
-import { productFaqs } from "@/content/faqs";
+import type { FAQ } from "@/content/faqs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink } from "@/lib/utils";
 
@@ -54,8 +59,46 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function getCategoryFaqSchema() {
-  const faqs = productFaqs.slice(0, 5);
+function buildCategoryFaqs(category: Category): FAQ[] {
+  const productFaqs: FAQ[] = category.products.map((product, index) => {
+    const sizeSnippet =
+      product.sizes && product.sizes.length > 0
+        ? ` Common sizes we usually supply include ${product.sizes.slice(0, 6).join(", ")}.`
+        : "";
+    const materialSnippet =
+      product.materials && product.materials.length > 0
+        ? ` Materials / finishes can include ${product.materials.join(", ")}.`
+        : "";
+
+    return {
+      id: `${category.slug}-${product.slug}-sizes`,
+      question: `What sizes and specifications of ${product.name} do you stock in Indore?`,
+      answer: `We keep multiple sizes and specifications of ${product.name} ready in Siyaganj, Indore for contractors, fabricators, and retailers.${sizeSnippet}${materialSnippet} Stock moves quickly, so share your exact size and quantity and we’ll confirm current availability and the best rate for your order.`,
+      category: "products",
+    };
+  });
+
+  const categoryLevelFaqs: FAQ[] = [
+    {
+      id: `${category.slug}-delivery`,
+      question: `Do you deliver ${category.name} around Indore?`,
+      answer:
+        `Yes. We can arrange delivery of ${category.name.toLowerCase()} within Indore city and nearby industrial areas like Dewas, Pithampur, and Mhow for suitable order quantities. For small loads you can also pick up directly from our Siyaganj godown. Mention your site location when you request a quote so we can suggest the best option.`,
+      category: "products",
+    },
+    {
+      id: `${category.slug}-bulk-orders`,
+      question: `Can you handle bulk and repeat orders for ${category.name}?`,
+      answer:
+        `We regularly serve builders, contractors, and dealers who buy ${category.name.toLowerCase()} in bulk or on a repeat basis. Share your approximate monthly requirement and preferred brands/sizes and we’ll plan stock and pricing accordingly.`,
+      category: "products",
+    },
+  ];
+
+  return [...productFaqs, ...categoryLevelFaqs];
+}
+
+function getCategoryFaqSchema(faqs: FAQ[]) {
   if (faqs.length === 0) return null;
   return {
     "@context": "https://schema.org",
@@ -98,7 +141,8 @@ export default async function CategoryPage({ params }: Props) {
     { name: category.name, url: `/categories/${category.slug}` },
   ];
 
-  const faqSchema = getCategoryFaqSchema();
+  const categoryFaqs = buildCategoryFaqs(category);
+  const faqSchema = getCategoryFaqSchema(categoryFaqs.slice(0, 8));
   const itemListSchema = getCategoryItemListSchema(category);
 
   return (
@@ -154,7 +198,18 @@ export default async function CategoryPage({ params }: Props) {
           <h2 id="faq-heading" className="text-xl font-semibold text-foreground mb-4">
             Frequently asked questions
           </h2>
-          <FAQAccordion faqs={productFaqs.slice(0, 5)} title="Common questions" />
+          <Accordion type="single" collapsible className="mt-4 max-w-3xl">
+            {categoryFaqs.map((faq) => (
+              <AccordionItem key={faq.id} value={faq.id}>
+                <AccordionTrigger className="text-left text-sm sm:text-base">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground text-sm sm:text-base">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </section>
 
         <div className="mt-10 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
