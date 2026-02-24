@@ -43,7 +43,10 @@ function getNormalizedPrivateKey(raw: string | undefined | null): string | null 
   let key = raw.trim();
 
   // If the key was pasted with surrounding quotes (e.g. from JSON), strip them
-  if (key.startsWith('"') && key.endsWith('"')) {
+  if (
+    (key.startsWith('"') && key.endsWith('"')) ||
+    (key.startsWith("'") && key.endsWith("'"))
+  ) {
     key = key.slice(1, -1);
   }
 
