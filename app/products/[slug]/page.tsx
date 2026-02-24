@@ -174,6 +174,11 @@ export default async function ProductDetailPage({ params }: Props) {
                   <p className="mt-2 text-muted-foreground">{category.name}</p>
                 )}
                 <p className="mt-4 text-muted-foreground leading-relaxed">{product.shortDesc}</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Wholesale supplier and distributor for{" "}
+                  <span className="text-foreground font-medium">{product.name}</span> in Indore (Siyaganj, Loha
+                  Mandi and nearby areas).
+                </p>
               </div>
 
               {(product.specs && product.specs.length > 0) || product.tataOfficial || product.tataAvailable || (category?.slug && meshWireCategorySlugs.includes(category.slug)) ? (
