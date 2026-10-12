@@ -1,6 +1,6 @@
 import Link from "@/components/LocaleLink";
 import { site } from "@/content/site";
-import { getReviewsForProduct } from "@/content/productReviews";
+import { getProductReviewSet } from "@/content/productReviews";
 import { GaugeRule } from "@/components/motif/Motif";
 import { tt, whenText, type Lang } from "@/lib/locale";
 import { ReviewQuote } from "@/components/trust/ReviewQuote";
@@ -13,15 +13,33 @@ type Props = { productSlug: string; productName: string; lang?: Lang; max?: numb
  */
 export function ProductReviewsRail({ productSlug, productName, lang = "en", max = 10 }: Props) {
   const t = tt(lang);
-  const items = getReviewsForProduct(productSlug, max);
+  const { items, directCount } = getProductReviewSet(productSlug, max);
   if (items.length === 0) return null;
-  const heading = lang === "hi" ? `${productName} के बारे में खरीदार क्या कहते हैं` : `What buyers say about ${productName}`;
+  // A product heading only when every review shown names the product. Otherwise these are shop reviews.
+  const allDirect = directCount === items.length;
+  const heading = allDirect
+    ? lang === "hi"
+      ? `${productName} के बारे में खरीदार क्या कहते हैं`
+      : `What buyers say about ${productName}`
+    : lang === "hi"
+      ? "हमारी दुकान के गूगल रिव्यू"
+      : "Reviews of our shop";
+  const scopeNote = allDirect
+    ? null
+    : lang === "hi"
+      ? directCount > 0
+        ? `ये दुकान के रिव्यू हैं। इनमें से ${directCount} में ${productName} का नाम आता है।`
+        : `ये पूरी दुकान के रिव्यू हैं, सिर्फ़ ${productName} के नहीं।`
+      : directCount > 0
+        ? `These are reviews of the shop. ${directCount} of them name ${productName}.`
+        : `These are reviews of the shop and its range, not of ${productName} alone.`;
   return (
     <section className="mt-8" aria-labelledby="product-reviews-heading">
       <GaugeRule label={`${t("Google", "गूगल")} ${site.googleReview.rating} / ${site.googleReview.reviewCount}`} />
       <h2 id="product-reviews-heading" className="mt-2 font-display text-2xl font-extrabold uppercase leading-none text-foreground">
         {heading}
       </h2>
+      {scopeNote && <p className="mt-2 text-sm text-muted-foreground">{scopeNote}</p>}
       {lang === "hi" && (
         <p className="mt-2 text-sm text-muted-foreground">
           ये ग्राहकों की असली समीक्षाएँ हैं, ठीक वैसी ही जैसी उन्होंने गूगल पर लिखीं (मूल भाषा में)।

@@ -18,7 +18,8 @@ import { getWhatsAppLink } from "@/lib/utils";
 import { T, useT, useLang } from "@/lib/i18n";
 import { localePath } from "@/lib/locale";
 import { ShopStatus } from "@/components/visit/VisitUs";
-import { validateQuoteFields } from "@/lib/quoteValidation";
+import { ATTACHMENT_ACCEPT, ATTACHMENT_MAX_BYTES, sniffAttachment, validateQuoteFields } from "@/lib/quoteValidation";
+import { readLanding } from "@/lib/attribution";
 
 export const QUOTE_STORAGE_KEY = "hmQuoteSuccess";
 const DRAFT_KEY = "hmQuoteDraft";
@@ -42,6 +43,12 @@ function resolveBrand(raw: string): { key: string; name: string; id?: BrandId } 
   return stocked ? { key: stocked.name, name: stocked.name } : null;
 }
 
+function deliveryLabel(key: string, hi: boolean): string {
+  const en: Record<string, string> = { pickup: "I will collect from Siyaganj", delivery: "Delivery needed", flexible: "Either is fine" };
+  const hin: Record<string, string> = { pickup: "सियागंज से खुद ले जाऊँगा", delivery: "डिलीवरी चाहिए", flexible: "कुछ भी चलेगा" };
+  return (hi ? hin : en)[key] ?? key;
+}
+
 function buildQuoteMessage(v: Record<string, string>, categoryName: string, reference?: string, brandName?: string, hi = false): string {
   return [
     hi
@@ -55,6 +62,9 @@ function buildQuoteMessage(v: Record<string, string>, categoryName: string, refe
     categoryName && (hi ? `श्रेणी: ${categoryName}` : `Category: ${categoryName}`),
     v.items && (hi ? `माल: ${v.items}` : `Items: ${v.items}`),
     v.quantity && (hi ? `मात्रा: ${v.quantity}` : `Quantity: ${v.quantity}`),
+    v.delivery && (hi ? `डिलीवरी / पिकअप: ${deliveryLabel(v.delivery, true)}` : `Delivery or pickup: ${deliveryLabel(v.delivery, false)}`),
+    v.deliveryLocation && (hi ? `डिलीवरी की जगह: ${v.deliveryLocation}` : `Delivery location: ${v.deliveryLocation}`),
+    v.neededBy && (hi ? `कब तक चाहिए: ${v.neededBy}` : `Needed by: ${v.neededBy}`),
     v.notes && (hi ? `टिप्पणी: ${v.notes}` : `Notes: ${v.notes}`),
   ]
     .filter(Boolean)
@@ -107,7 +117,16 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
     email: "",
     items: itemsDefault,
     quantity: prefilledQty,
+    delivery: "",
+    deliveryLocation: "",
+    neededBy: "",
+    customerType: "",
   });
+  const [file, setFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState<string | null>(null);
+  const fileInput = useRef<HTMLInputElement>(null);
+  // Today, in India, as YYYY-MM-DD: the earliest "needed by" date the picker offers.
+  const today = new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
   const [honeypot, setHoneypot] = useState("");
   const submitting = useRef(false);
   const [loading, setLoading] = useState(false);
@@ -137,6 +156,9 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
         phone: d.phone || prev.phone,
         email: d.email || prev.email,
         quantity: prev.quantity || d.quantity || "",
+        delivery: prev.delivery || d.delivery || "",
+        deliveryLocation: prev.deliveryLocation || d.deliveryLocation || "",
+        customerType: prev.customerType || d.customerType || "",
         items: !prev.items || (edited && sameContext) ? d.items || prev.items : prev.items,
       }));
     } catch {
@@ -154,6 +176,29 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setValues((v) => ({ ...v, [k]: e.target.value }));
+
+  async function onFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0] ?? null;
+    setFileError(null);
+    if (!f) {
+      setFile(null);
+      return;
+    }
+    // Same rules as the server: small, and a real photo or PDF. Say so here instead of silently dropping it there.
+    let problem: string | null = null;
+    if (f.size > ATTACHMENT_MAX_BYTES) {
+      problem = t("That file is over 3 MB. Please choose a smaller photo or PDF, or send it on WhatsApp.", "यह फ़ाइल 3 MB से बड़ी है। छोटी फ़ोटो या PDF चुनिए, या व्हाट्सएप पर भेज दीजिए।");
+    } else if (!sniffAttachment(new Uint8Array(await f.slice(0, 16).arrayBuffer()))) {
+      problem = t("Please attach a JPG, PNG, WebP or PDF file.", "कृपया JPG, PNG, WebP या PDF फ़ाइल लगाइए।");
+    }
+    if (problem) {
+      setFile(null);
+      setFileError(problem);
+      if (fileInput.current) fileInput.current.value = "";
+      return;
+    }
+    setFile(f);
+  }
 
   /** What we actually send as the list: a brand-only prefill ("CM brand: ") is not a list. */
   const cleanItems = () => {
@@ -202,6 +247,12 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
     }
     fd.set("category", prefilledCategory);
     fd.set("website", honeypot);
+    const landing = readLanding();
+    if (landing) {
+      fd.set("landing", landing.path);
+      fd.set("source", landing.source);
+    }
+    if (file) fd.set("attachment", file);
     // The server looks the product up by slug (catalogue email); the visible name is already in the list.
     if (productParam) fd.set("product", productParam);
     if (prefilledBrand) fd.set("brand", prefilledBrand);
@@ -212,8 +263,16 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
     try {
       const res = await submitQuote(fd);
       if (res.success) {
-        if (sv.items) trackQuoteRequest("quote_form");
-        else trackContactSubmit("quote_form");
+        const lead = {
+          landing: landing?.path,
+          channel: landing?.source,
+          product: productParam || undefined,
+          category: prefilledCategory || undefined,
+          delivery: values.delivery || undefined,
+          hasAttachment: !!file,
+        };
+        if (sv.items) trackQuoteRequest("quote_form", lead);
+        else trackContactSubmit("quote_form", lead);
         try {
           sessionStorage.setItem(
             QUOTE_STORAGE_KEY,
@@ -362,7 +421,104 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
 
         <fieldset className="space-y-5">
           <legend className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            <T en="2. How to reach you" hi="2. आपसे बात कैसे हो" />
+            <T en="2. Delivery and timing (optional)" hi="2. डिलीवरी और समय (ज़रूरी नहीं)" />
+          </legend>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <Label htmlFor="delivery">
+                <T en="Pickup or delivery" hi="पिकअप या डिलीवरी" />
+              </Label>
+              <select
+                id="delivery"
+                name="delivery"
+                value={values.delivery}
+                onChange={(e) => setValues((v) => ({ ...v, delivery: e.target.value }))}
+                className={`${inputCls} rounded-md border border-input bg-background px-3`}
+              >
+                <option value="">{t("Not sure yet", "अभी पक्का नहीं")}</option>
+                <option value="pickup">{deliveryLabel("pickup", hi)}</option>
+                <option value="delivery">{deliveryLabel("delivery", hi)}</option>
+                <option value="flexible">{deliveryLabel("flexible", hi)}</option>
+              </select>
+            </div>
+            <div>
+              <Label htmlFor="customerType">
+                <T en="You are buying as" hi="आप किस रूप में खरीद रहे हैं" />
+              </Label>
+              <select
+                id="customerType"
+                name="customerType"
+                value={values.customerType}
+                onChange={(e) => setValues((v) => ({ ...v, customerType: e.target.value }))}
+                className={`${inputCls} rounded-md border border-input bg-background px-3`}
+              >
+                <option value="">{t("Prefer not to say", "बताना ज़रूरी नहीं")}</option>
+                <option value="retail">{t("Retail (for my own use)", "रिटेल (अपने इस्तेमाल के लिए)")}</option>
+                <option value="wholesale">{t("Wholesale or dealer", "थोक या डीलर")}</option>
+                <option value="contractor">{t("Contractor or builder", "ठेकेदार या बिल्डर")}</option>
+                <option value="other">{t("Other", "अन्य")}</option>
+              </select>
+            </div>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <Label htmlFor="deliveryLocation">
+                <T en="Delivery town or site" hi="डिलीवरी का शहर या साइट" />
+              </Label>
+              <Input
+                id="deliveryLocation"
+                name="deliveryLocation"
+                value={values.deliveryLocation}
+                onChange={set("deliveryLocation")}
+                placeholder={t("e.g. Pithampur, Sector 3", "जैसे पीथमपुर, सेक्टर 3")}
+                className={inputCls}
+                autoComplete="off"
+                maxLength={160}
+              />
+            </div>
+            <div>
+              <Label htmlFor="neededBy">
+                <T en="Needed by" hi="कब तक चाहिए" />
+              </Label>
+              <Input
+                id="neededBy"
+                name="neededBy"
+                type="date"
+                min={today}
+                value={values.neededBy}
+                onChange={set("neededBy")}
+                className={inputCls}
+              />
+            </div>
+          </div>
+          <div>
+            <Label htmlFor="attachment">
+              <T en="Photo or specification (optional)" hi="फ़ोटो या स्पेसिफ़िकेशन (ज़रूरी नहीं)" />
+            </Label>
+            <p id="attachment-hint" className="mt-0.5 text-sm text-muted-foreground">
+              <T
+                en="One JPG, PNG, WebP or PDF, up to 3 MB. A drawing, a sample or the old part helps us match it."
+                hi="एक JPG, PNG, WebP या PDF, 3 MB तक। ड्रॉइंग, सैंपल या पुराने पुर्ज़े की फ़ोटो से मिलान आसान होता है।"
+              />
+            </p>
+            <input
+              ref={fileInput}
+              id="attachment"
+              name="attachmentPicker"
+              type="file"
+              accept={ATTACHMENT_ACCEPT}
+              onChange={onFile}
+              aria-describedby={describe("attachment-hint", !!fileError && "attachment-error")}
+              aria-invalid={!!fileError}
+              className="mt-1.5 block w-full min-h-[48px] cursor-pointer rounded-md border border-input bg-background p-2 text-sm file:mr-3 file:rounded-sm file:border-0 file:bg-secondary file:px-3 file:py-2 file:text-sm file:font-semibold file:text-foreground"
+            />
+            <FieldError id="attachment-error" message={fileError ?? undefined} />
+          </div>
+        </fieldset>
+
+        <fieldset className="space-y-5">
+          <legend className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            <T en="3. How to reach you" hi="3. आपसे बात कैसे हो" />
           </legend>
           <div className="grid gap-5 sm:grid-cols-2">
             <div>

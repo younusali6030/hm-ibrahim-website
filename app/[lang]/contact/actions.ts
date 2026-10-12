@@ -6,7 +6,16 @@ import { getCatalogData, type CatalogData } from "@/lib/catalog";
 import { sendCatalogToCustomer } from "@/lib/catalog-email";
 import { sendQuoteNotification } from "@/lib/quote-notification";
 import { appendQuoteToSheet } from "@/lib/quote-sheet";
-import { normalizeIndianMobile, validEmail } from "@/lib/quoteValidation";
+import {
+  ATTACHMENT_MAX_BYTES,
+  ATTACHMENT_MIME,
+  normalizeCustomerType,
+  normalizeDeliveryMode,
+  normalizeIndianMobile,
+  normalizeNeededBy,
+  sniffAttachment,
+  validEmail,
+} from "@/lib/quoteValidation";
 
 export type QuoteResult =
   | {
@@ -120,11 +129,18 @@ export async function submitQuote(formData: FormData): Promise<QuoteResult> {
   const email = formData.get("email")?.toString().trim() ?? "";
   const itemsRaw = formData.get("items")?.toString().trim() ?? "";
   const productSlug = formData.get("product")?.toString().trim() || null;
-  const customerType = formData.get("customerType")?.toString().trim() || "";
+  const customerType = normalizeCustomerType(formData.get("customerType")?.toString() ?? "");
   const categorySlug = formData.get("category")?.toString().trim() || "";
-  const quantity = formData.get("quantity")?.toString().trim() || "";
-  const delivery = formData.get("delivery")?.toString().trim() || "";
-  const additionalNotes = formData.get("notes")?.toString().trim() || "";
+  const quantity = (formData.get("quantity")?.toString().trim() || "").slice(0, 120);
+  const delivery = normalizeDeliveryMode(formData.get("delivery")?.toString() ?? "");
+  const deliveryLocation = (formData.get("deliveryLocation")?.toString().trim() || "").replace(/[\u0000-\u001f]/g, " ").slice(0, 160);
+  const neededBy = normalizeNeededBy(formData.get("neededBy")?.toString() ?? "");
+  const additionalNotes = (formData.get("notes")?.toString().trim() || "").slice(0, 1000);
+  // Attribution is for reporting only: short, printable, never trusted for anything else.
+  const clean = (k: string, max: number) =>
+    (formData.get(k)?.toString().trim() || "").replace(/[^\x20-\x7e]/g, "").slice(0, max);
+  const landingPage = clean("landing", 200);
+  const trafficSource = clean("source", 120);
 
   // Name and phone are what we need. The list is welcome but optional: a bare call-back request is a real lead.
   const items = itemsRaw.length >= 3 ? itemsRaw : "Call back requested (no list given)";
@@ -153,6 +169,25 @@ export async function submitQuote(formData: FormData): Promise<QuoteResult> {
   const productCategory = category?.name ?? categorySlug;
   const reference = makeReference();
 
+  // One optional file. A bad file never costs the lead: it is dropped and the request goes through without it.
+  let attachment: { filename: string; contentType: string; content: Buffer } | null = null;
+  const file = formData.get("attachment");
+  if (file && typeof file !== "string" && file.size > 0 && file.size <= ATTACHMENT_MAX_BYTES) {
+    try {
+      const bytes = Buffer.from(await file.arrayBuffer());
+      const kind = sniffAttachment(bytes.subarray(0, 16));
+      if (kind) {
+        attachment = {
+          filename: `enquiry-${Date.now().toString(36)}.${kind}`,
+          contentType: ATTACHMENT_MIME[kind],
+          content: bytes,
+        };
+      }
+    } catch {
+      attachment = null;
+    }
+  }
+
   const submission = {
     name,
     phone,
@@ -164,6 +199,12 @@ export async function submitQuote(formData: FormData): Promise<QuoteResult> {
     delivery,
     additionalNotes,
     reference,
+    deliveryLocation,
+    neededBy,
+    productSlug: (productSlug ?? "").replace(/[^a-z0-9-]/gi, "").slice(0, 80),
+    landingPage,
+    trafficSource,
+    attachment,
   };
 
   // 1) Rates for the customer's catalog (capped, so a slow search never stalls the lead).

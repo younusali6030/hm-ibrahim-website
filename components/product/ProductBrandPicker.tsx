@@ -17,7 +17,7 @@ type Props = {
   Lj?: (s: string) => string;
 };
 
-const ASK = "Ask at counter";
+const ASK = "Confirmed at quote";
 /** Row labels the comparison builds itself (spec labels come through L()). */
 const ROW_HI: Record<string, string> = { Sizes: "साइज़", "Used for": "कहाँ लगता है", Material: "मटेरियल" };
 
@@ -112,7 +112,7 @@ export function ProductBrandPicker({ variants, selectedBrandId, onSelect, classN
                 </th>
                 {r.values.map((v, i) => (
                   <td key={i} className={"px-2 py-2 " + (v ? "text-foreground" : "text-muted-foreground")}>
-                    {v ? Lj(v) : hi ? "काउंटर पर पूछें" : ASK}
+                    {v ? Lj(v) : hi ? "रेट के समय पक्का" : ASK}
                   </td>
                 ))}
               </tr>

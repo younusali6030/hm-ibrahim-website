@@ -22,6 +22,17 @@ export type QuoteSubmission = {
   additionalNotes: string;
   /** Lead reference shown to the customer, e.g. HM-261011-4F7K */
   reference?: string;
+  /** Delivery town or site, free text from the customer. */
+  deliveryLocation?: string;
+  /** YYYY-MM-DD the customer needs the material by. */
+  neededBy?: string;
+  /** Product the enquiry started from (slug), when the visitor came from a product page. */
+  productSlug?: string;
+  /** First page of the visit and how the visitor arrived, so enquiries can be traced to a landing page. */
+  landingPage?: string;
+  trafficSource?: string;
+  /** One optional photo or specification sheet, already checked by the action. */
+  attachment?: { filename: string; contentType: string; content: Buffer } | null;
 };
 
 /** Escape a CSV field (wrap in quotes if needed, escape " as "") */
@@ -42,7 +53,13 @@ function buildQuoteCsv(data: QuoteSubmission): string {
     "items/products needed",
     "quantity",
     "delivery",
+    "delivery location",
+    "needed by",
     "additional notes",
+    "product",
+    "landing page",
+    "traffic source",
+    "attachment",
   ].join(",");
 
   const row = [
@@ -54,7 +71,13 @@ function buildQuoteCsv(data: QuoteSubmission): string {
     csvEscape(data.items),
     csvEscape(data.quantity),
     csvEscape(data.delivery),
+    csvEscape(data.deliveryLocation ?? ""),
+    csvEscape(data.neededBy ?? ""),
     csvEscape(data.additionalNotes),
+    csvEscape(data.productSlug ?? ""),
+    csvEscape(data.landingPage ?? ""),
+    csvEscape(data.trafficSource ?? ""),
+    csvEscape(data.attachment?.filename ?? ""),
   ].join(",");
 
   return `${header}\r\n${row}`;
@@ -108,7 +131,13 @@ export async function sendQuoteNotification(
     "Items/products needed: " + data.items,
     "Quantity: " + (data.quantity || "—"),
     "Delivery: " + deliveryLabel,
+    "Delivery location: " + (data.deliveryLocation || "—"),
+    "Needed by: " + (data.neededBy || "—"),
     "Additional notes: " + (data.additionalNotes || "—"),
+    "Started from product: " + (data.productSlug || "—"),
+    "Landing page: " + (data.landingPage || "—"),
+    "How they arrived: " + (data.trafficSource || "—"),
+    "Attachment: " + (data.attachment ? data.attachment.filename + " (attached)" : "none"),
     "",
     "Call back: tel:+91" + data.phone.replace(/\D/g, "").slice(-10),
     "WhatsApp: https://wa.me/91" + data.phone.replace(/\D/g, "").slice(-10),
@@ -143,6 +172,9 @@ export async function sendQuoteNotification(
           filename,
           content: csvContent,
         },
+        ...(data.attachment
+          ? [{ filename: data.attachment.filename, content: data.attachment.content, contentType: data.attachment.contentType }]
+          : []),
       ],
     });
 

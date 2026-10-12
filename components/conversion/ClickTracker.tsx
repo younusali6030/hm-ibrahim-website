@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import { trackCallClick, trackDirectionsClick, trackWhatsAppClick } from "@/lib/analytics";
+import { trackCallClick, trackDirectionsClick, trackQuoteCtaClick, trackWhatsAppClick } from "@/lib/analytics";
 
 /** Which kind of contact link is this href, if any? Plain WhatsApp share links (no shop number) are not leads. */
-function classify(href: string): "call" | "whatsapp" | "directions" | null {
+function classify(href: string): "call" | "whatsapp" | "directions" | "quote" | null {
   const h = href.trim().toLowerCase();
   if (h.startsWith("tel:")) return "call";
+  // Any internal link to the quote form (/contact or /hi/contact, with or without ?product=...).
+  if (/^\/(hi\/)?contact(\?|$)/.test(h)) return "quote";
   try {
     const u = new URL(h, "https://x.invalid");
     if (u.hostname === "wa.me") return /^\/\d{8,}/.test(u.pathname) ? "whatsapp" : null;
@@ -32,7 +34,8 @@ export function ClickTracker() {
       const kind = classify(el.getAttribute("href") ?? "");
       if (!kind) return;
       const source = el.closest("[data-track]")?.getAttribute("data-track") || window.location.pathname;
-      if (kind === "call") trackCallClick(source);
+      if (kind === "quote") trackQuoteCtaClick(source);
+      else if (kind === "call") trackCallClick(source);
       else if (kind === "whatsapp") trackWhatsAppClick(source);
       else trackDirectionsClick(source);
     };

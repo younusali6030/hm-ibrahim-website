@@ -4,6 +4,7 @@ import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { trackPageView } from "@/lib/analytics";
+import { captureLanding } from "@/lib/attribution";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -11,6 +12,7 @@ export function GoogleAnalytics() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname) captureLanding(pathname);
     if (GA_ID && pathname) trackPageView(pathname);
   }, [pathname]);
 

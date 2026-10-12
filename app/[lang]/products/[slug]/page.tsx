@@ -4,21 +4,22 @@ import Link from "@/components/LocaleLink";
 import { getProductBySlug, getCategoryBySlug, allProducts, getProductImages, getRelatedProducts, type ProductWithCategory } from "@/content/products";
 import { getProductSeoContent, getRelatedBlogSlugsForProduct } from "@/content/productSeoContent";
 import { getPostBySlug } from "@/content/blog/posts";
-import { baseUrl, site } from "@/lib/site";
+import { baseUrl } from "@/lib/site";
 import { buildProductMeta, pageUrl } from "@/lib/seo";
 import { tt, type Lang } from "@/lib/locale";
 import { localize, collectStrings } from "@/lib/localize";
-import { inHouseBrands } from "@/content/brands";
-import { siteHi } from "@/content/hi/site";
+import { inHouseBrands, getBrandById } from "@/content/brands";
 import { ProductDetailClient } from "@/components/product/ProductDetailClient";
 import { ProductSeoContent } from "@/components/ProductSeoContent";
+import { ProductReference } from "@/components/product/ProductReference";
 import { TrustBadges } from "@/components/trust/TrustBadges";
 import { ProductReviewsRail } from "@/components/trust/ProductReviewsRail";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
-import { ids } from "@/lib/schema";
-import { manufacturedProductSlugs } from "@/content/indorePages";
+import { ids, productJsonLd } from "@/lib/schema";
+import { manufacturedProductSlugs, localPageForProductSlug, getIndorePage } from "@/content/indorePages";
+import { indorePagesHi } from "@/content/hi/indore";
 import { GaugeRule } from "@/components/motif/Motif";
 
 type Props = { params: { lang: string; slug: string } };
@@ -85,45 +86,30 @@ export default async function ProductDetailPage({ params }: Props) {
     { name: product.name, url: `/products/${product.slug}` },
   ];
 
-  // Product schema — no price (contact for quote); eligibility for rich results & AI search
+  // Product schema. No price, offer or rating: prices are "ask for rate" and ratings are the shop's own
+  // (see the rules at the top of lib/schema.ts). Brand is set only for makes the shop really stocks for this item.
   const allImages = images.map((img) => (img.startsWith("http") ? img : `${baseUrl}${img}`));
   const productUrl = pageUrl(`products/${product.slug}`, lang);
+  const brandNames = (productEn.brandVariants ?? [])
+    .map((v) => getBrandById(v.brandId)?.name)
+    .filter((n): n is string => !!n);
 
   const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
+    ...productJsonLd({
+      slug: product.slug,
+      name: product.name,
+      description: product.shortDesc,
+      images: allImages,
+      category: category?.name || product.categorySlug,
+      materials: product.materials,
+      specs: product.specs,
+      brands: brandNames,
+    }),
     "@id": `${productUrl}#product`,
-    name: product.name,
-    description: product.shortDesc,
     url: productUrl,
-    sku: product.slug,
-    mpn: product.slug,
-    ...(allImages.length > 0 ? { image: allImages } : {}),
-    brand: { "@type": "Brand", name: hi ? siteHi.name : site.name, url: baseUrl },
     // Only the product families the owner confirmed the shop makes (12 Oct 2026). Everything else is stocked.
     ...((manufacturedProductSlugs as readonly string[]).includes(product.slug) ? { manufacturer: { "@id": ids.organization } } : {}),
-    category: category?.name || product.categorySlug,
-    ...(product.materials && product.materials.length > 0 ? { material: product.materials.join(", ") } : {}),
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      url: productUrl,
-      seller: { "@type": "LocalBusiness", name: hi ? siteHi.name : site.name, url: baseUrl },
-      areaServed: { "@type": "City", name: hi ? "इंदौर" : "Indore" },
-    },
-    ...(product.specs && product.specs.length > 0
-      ? {
-          additionalProperty: product.specs.map((spec) => ({
-            "@type": "PropertyValue",
-            name: spec.label,
-            value: spec.value,
-          })),
-        }
-      : {}),
-    speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: ["h1", "[data-speakable]"],
-    },
+    isRelatedTo: relatedProducts.slice(0, 4).map((r) => ({ "@id": `${pageUrl(`products/${r.slug}`, lang)}#product` })),
   };
 
   const faqsForSchema = seoContent?.faqs?.length
@@ -141,6 +127,21 @@ export default async function ProductDetailPage({ params }: Props) {
       }
     : null;
 
+  // The Indore page that owns "<product> Indore". This page keeps the specification; that one the local buying.
+  const localBase = getIndorePage(localPageForProductSlug[product.slug] ?? "");
+  const localPage = localBase ? (hi ? { ...localBase, ...indorePagesHi[localBase.slug] } : localBase) : null;
+  const localNote = localPage ? (
+    <p className="mt-2 text-sm text-muted-foreground">
+      {hi ? "इंदौर में खरीदने की जानकारी, पिकअप और डिलीवरी: " : "Buying in Indore, with pickup and delivery: "}
+      <Link
+        href={`/indore/${localPage.slug}`}
+        className="font-semibold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      >
+        {localPage.h1}
+      </Link>
+    </p>
+  ) : null;
+
   return (
     <article className="page-container pb-28 pt-4 md:pb-16 md:pt-6">
       <JsonLdBreadcrumb items={breadcrumbItems} lang={lang} />
@@ -153,6 +154,8 @@ export default async function ProductDetailPage({ params }: Props) {
         category={categoryEn ?? null}
         defaultImages={getProductImages(productEn, categoryEn)}
         tx={tx}
+        localNote={localNote}
+        afterSpecs={<ProductReference slug={product.slug} lang={lang} />}
         reviews={<ProductReviewsRail lang={lang} productSlug={product.slug} productName={product.name} />}
       />
 

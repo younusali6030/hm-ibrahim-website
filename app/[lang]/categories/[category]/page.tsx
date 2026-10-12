@@ -6,6 +6,10 @@ import { baseUrl, site, localSeo } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
 import { productCopy } from "@/content/productCopy";
 import { productCopyHi } from "@/content/hi/productCopy";
+import { categoryGuides } from "@/content/categoryGuides";
+import { getRelatedBlogSlugsForProduct } from "@/content/productSeoContent";
+import { getPostBySlug } from "@/content/blog/posts";
+import { CategoryGuide } from "@/components/catalog/CategoryGuide";
 import { localize, tr } from "@/lib/localize";
 import { tt, type Lang } from "@/lib/locale";
 import { pageUrl } from "@/lib/seo";
@@ -95,7 +99,16 @@ function buildCategoryFaqs(category: Category, lang: Lang): FAQ[] {
     },
   ];
 
-  return [...productFaqs, ...categoryLevelFaqs];
+  // The buying questions that decide the order lead; the shop's delivery and bulk answers follow; one real answer
+  // per product (also on each product page) only fills what is left.
+  const chooseFaqs: FAQ[] = (categoryGuides[category.slug]?.choose ?? []).map((c, i) => ({
+    id: `${category.slug}-choose-${i}`,
+    question: hi ? c.q.hi : c.q.en,
+    answer: hi ? c.a.hi : c.a.en,
+    category: "products",
+  } as FAQ));
+
+  return [...chooseFaqs, ...categoryLevelFaqs, ...productFaqs];
 }
 
 function getCategoryFaqSchema(faqs: FAQ[]) {
@@ -155,6 +168,19 @@ export default async function CategoryPage({ params }: Props) {
   const itemListSchema = getCategoryItemListSchema(category, lang);
 
   const heroImg = category.products[0]?.images?.[0] ?? category.image;
+
+  // Guides that the category's products already point to, most-shared first. Missing posts are skipped.
+  const guideCount = new Map<string, number>();
+  for (const p of categoryEn.products) {
+    for (const s of getRelatedBlogSlugsForProduct(p.slug)) guideCount.set(s, (guideCount.get(s) ?? 0) + 1);
+  }
+  const guideSlugs = Array.from(guideCount.entries())
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 4)
+    .map(([s]) => s);
+  const guides = (await Promise.all(guideSlugs.map((s) => getPostBySlug(s, lang))))
+    .filter((p): p is NonNullable<typeof p> => p != null)
+    .map((p) => ({ slug: p.slug, title: p.title, lang: p.lang }));
 
   return (
     <>
@@ -240,6 +266,8 @@ export default async function CategoryPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      <CategoryGuide categoryEn={categoryEn} category={category} lang={lang} guides={guides} />
 
       <section className="border-t border-border bg-card py-10 md:py-14" aria-labelledby="faq-heading">
         <div className="page-container grid gap-10 lg:grid-cols-2 lg:gap-14">

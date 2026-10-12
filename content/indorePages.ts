@@ -230,6 +230,33 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
   },
 };
 
+/**
+ * Which /indore/* page owns the local-buying intent for a product page. The product page keeps the specification
+ * and range intent; the Indore page keeps "<product> Indore" (see docs/seo/keyword-map.md). One owner per product:
+ * chain link appears in the barbed-wire page's list too, but its local intent belongs to the jali page.
+ * tests/seo.test.mjs checks that every mapped product is listed on its owner page.
+ */
+export const localPageForProductSlug: Record<string, IndorePageSlug> = {
+  "barbed-wire": "barbed-wire",
+  "concertina-wire": "barbed-wire",
+  "chain-link-fencing": "chain-link-fencing-jaali",
+  "gi-wire": "gi-wire",
+  "gi-wiremesh": "wire-mesh",
+  "ms-wiremesh": "wire-mesh",
+  "crimp-wiremesh": "wire-mesh",
+  "gi-weldmesh": "wire-mesh",
+  "ms-weldmesh": "wire-mesh",
+  "pvc-coated-weldmesh": "wire-mesh",
+  "gi-perforated-sheet": "perforated-sheets",
+  "ms-perforated-sheet": "perforated-sheets",
+  "sr-crowbar": "construction-hardware",
+  "sr-pickaxe-geti": "construction-hardware",
+  "sr-hoe-faurdha": "construction-hardware",
+  "sr-hoe-faurdha-with-handle": "construction-hardware",
+  "sr-sledge-hammer": "construction-hardware",
+  "santing-shikanja": "construction-hardware",
+};
+
 export function getIndorePage(slug: string): IndorePage | null {
   if (indorePageSlugs.includes(slug as IndorePageSlug)) {
     return indorePages[slug as IndorePageSlug];

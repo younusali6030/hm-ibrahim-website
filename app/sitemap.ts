@@ -5,10 +5,11 @@ import { localePath } from "@/lib/locale";
 import { indorePageSlugs } from "@/content/indorePages";
 import { baseUrl } from "@/lib/site";
 import { CONTENT_DATES } from "@/lib/contentDates";
+import lastmodLedger from "@/content/lastmod.json";
 
 /**
- * Every lastModified below is a real content date: blog frontmatter (updated, else date) or the
- * static dates in lib/contentDates.ts. Nothing uses new Date(). Google ignores changefreq and
+ * Every lastModified below is a real content date: blog frontmatter (updated, else date), the per-page
+ * ledger in content/lastmod.json (products, categories, Indore pages), or the static dates in lib/contentDates.ts. Nothing uses new Date(). Google ignores changefreq and
  * priority, so they are not emitted.
  *
  * Companion sitemaps (listed in robots.txt): /sitemap-images.xml and /sitemap-videos.xml.
@@ -28,6 +29,13 @@ const staticPages: { path: string; date: string }[] = [
   { path: "privacy", date: CONTENT_DATES.contact },
   { path: "terms", date: CONTENT_DATES.contact },
 ];
+
+/**
+ * Date a product, category or Indore page last changed, from content/lastmod.json (written by
+ * scripts/update-lastmod.mjs from a hash of the page's content). Falls back to the static date for the group.
+ */
+const ledger = lastmodLedger as Record<string, { hash: string; date: string }>;
+const pageDate = (key: string, fallback: string) => new Date(ledger[key]?.date ?? fallback);
 
 type Entry = MetadataRoute.Sitemap[number];
 
@@ -53,9 +61,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const { path, date } of staticPages) entries.push(...both(path, new Date(date)));
   entries.push(...both("blog", new Date(latestPost)));
 
-  for (const c of categories) entries.push(...both(`categories/${c.slug}`, new Date(CONTENT_DATES.categories)));
-  for (const p of allProducts) entries.push(...both(`products/${p.slug}`, new Date(CONTENT_DATES.product)));
-  for (const slug of indorePageSlugs) entries.push(...both(`indore/${slug}`, new Date(CONTENT_DATES.indore)));
+  for (const c of categories) entries.push(...both(`categories/${c.slug}`, pageDate(`categories/${c.slug}`, CONTENT_DATES.categories)));
+  for (const p of allProducts) entries.push(...both(`products/${p.slug}`, pageDate(`products/${p.slug}`, CONTENT_DATES.product)));
+  for (const slug of indorePageSlugs) entries.push(...both(`indore/${slug}`, pageDate(`indore/${slug}`, CONTENT_DATES.indore)));
   for (const post of posts) {
     const d = new Date(post.updated || post.date);
     if (hiSlugs.has(post.slug)) entries.push(...both(`blog/${post.slug}`, d));
