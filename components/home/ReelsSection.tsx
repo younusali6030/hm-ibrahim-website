@@ -23,6 +23,7 @@ const REELS: Reel[] = [
 ];
 
 function ReelCard({ reel }: { reel: Reel }) {
+  // The poster is fetched only when the card is near the viewport, not for all twelve at page load.
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -33,6 +34,7 @@ function ReelCard({ reel }: { reel: Reel }) {
     const io = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
+          v.poster = `/reels/${reel.id}.jpg`;
           v.preload = "metadata";
           io.disconnect();
         }
@@ -41,7 +43,7 @@ function ReelCard({ reel }: { reel: Reel }) {
     );
     io.observe(v);
     return () => io.disconnect();
-  }, []);
+  }, [reel.id]);
 
   function toggle() {
     const v = ref.current;
@@ -67,7 +69,6 @@ function ReelCard({ reel }: { reel: Reel }) {
           ref={ref}
           data-reel
           className="h-full w-full object-cover"
-          poster={`/reels/${reel.id}.jpg`}
           preload="none"
           playsInline
           loop
