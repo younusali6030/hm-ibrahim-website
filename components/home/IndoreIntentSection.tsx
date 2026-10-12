@@ -10,7 +10,7 @@ const INTENT_BLOCKS = [
     icon: BadgeDollarSign,
     title: "Best price in Indore",
     text: "We offer competitive rates on iron, steel, wire mesh, and hardware in Siyaganj. Get a quote for retail or bulk — we aim to give you the best value in Indore and Madhya Pradesh.",
-    link: "/quote",
+    link: "/contact",
     linkLabel: "Request a quote",
   },
   {

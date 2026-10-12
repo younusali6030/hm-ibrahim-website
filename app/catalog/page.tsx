@@ -133,7 +133,7 @@ export default function CatalogPage() {
               Phone: {site.phone} ({site.phoneLabel}) / {site.phoneAlt} ({site.phoneAltLabel}) | WhatsApp: {site.whatsapp} | Email: {site.email} ({site.emailLabel}) / {site.emailAlt} ({site.emailAltLabel})
             </p>
             <p className="mt-2 text-xs text-gray-500">
-              Request a quote: {baseUrl}/quote | Contact: {baseUrl}/contact
+              Request a quote: {baseUrl}/contact | Contact: {baseUrl}/contact
             </p>
           </footer>
         </div>
@@ -151,7 +151,7 @@ export default function CatalogPage() {
           >
             WhatsApp for Quote
           </a>
-          <Link href="/quote" className="inline-flex items-center rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent">
+          <Link href="/contact" className="inline-flex items-center rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent">
             Request a Quote
           </Link>
         </div>

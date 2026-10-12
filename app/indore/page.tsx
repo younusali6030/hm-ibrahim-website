@@ -1,92 +1,143 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { indorePageSlugs, getIndorePage, type IndorePage } from "@/content/indorePages";
+import { getProductBySlug, getProductImages, getCategoryBySlug } from "@/content/products";
 import { baseUrl, site, localSeo } from "@/lib/site";
-import { Button } from "@/components/ui/button";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { PageHero, btnMain, btnGhostDark, btnGhost } from "@/components/site/PageHero";
+import { ReviewsList } from "@/components/trust/ReviewsList";
 
-const indorePageSchema = {
+const schema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: `Iron & Hardware in Indore, ${localSeo.state}`,
-  description: `Buy iron, steel, wire mesh, barbed wire, chain link, and construction hardware in Indore. ${site.name} — Siyaganj. Retail and wholesale. Best price in Indore.`,
+  description: `Iron, steel, wire mesh, barbed wire, chain link and construction hardware in Indore. ${site.name}, Siyaganj. Retail and wholesale.`,
   url: `${baseUrl}/indore`,
 };
 
 export const metadata: Metadata = {
   title: `Iron & Hardware in Indore, ${localSeo.state} | ${site.name}`,
-  description: `Buy iron, steel, wire mesh, barbed wire, chain link, and construction hardware in Indore. We are in Siyaganj — retail and wholesale. Best price in Indore. Delivery in Indore and nearby areas.`,
-  keywords: [
-    "iron and hardware Indore",
-    "wire mesh Indore",
-    "TMT bars Indore",
-    "construction materials Indore",
-    "wholesale Indore",
-    "Siyaganj Indore",
-    site.name,
-  ].join(", "),
+  description: `Buy iron, steel, wire mesh, barbed wire, chain link and construction hardware in Indore from ${site.name}, Siyaganj. Retail and wholesale, with delivery to Dewas, Ujjain, Mhow and Pithampur.`,
   alternates: { canonical: `${baseUrl}/indore` },
   openGraph: {
     title: `Iron & Hardware in Indore | ${site.name}`,
-    description: "Iron, steel, wire mesh, and hardware in Siyaganj, Indore. Retail and wholesale. Request a quote.",
+    description: "Iron, steel, wire mesh and hardware from Siyaganj, Indore. Retail and wholesale.",
     url: `${baseUrl}/indore`,
     siteName: site.name,
     locale: "en_IN",
     type: "website",
   },
-  robots: { index: true, follow: true },
 };
 
+function imageFor(page: IndorePage) {
+  const p = page.productSlugs.map((s) => getProductBySlug(s)).find(Boolean);
+  if (!p) return null;
+  return getProductImages(p, getCategoryBySlug(p.categorySlug))[0] ?? null;
+}
+
 export default function IndoreIndexPage() {
-  const pages = indorePageSlugs.map((slug) => getIndorePage(slug)).filter((p): p is IndorePage => p != null);
+  const pages = indorePageSlugs.map((s) => getIndorePage(s)).filter((p): p is IndorePage => p != null);
 
   return (
-    <div className="page-container section-padding max-w-4xl mx-auto">
-      <SeoJsonLd data={indorePageSchema} />
-      <h1 className="text-4xl font-bold text-foreground md:text-5xl">
-        Iron & Hardware in Indore, {localSeo.state}
-      </h1>
-      <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-        {site.name} is based in <strong className="text-foreground">Siyaganj, Indore</strong> — one of Indore&apos;s main markets for iron and hardware. We supply retail and wholesale: MS angles, TMT bars, wire mesh, barbed wire, chain link fencing, GI pipes, and construction hardware. Get the best price in Indore; we also deliver to Dewas, Ujjain, Mhow, Pithampur, and nearby areas.
-      </p>
+    <>
+      <SeoJsonLd data={schema} />
+      <PageHero
+        eyebrow={`Indore, ${localSeo.state}`}
+        title="Iron and hardware, bought where Indore has bought it since 1939"
+        lede={`${site.name} sits on Siyaganj Main Road, one of Indore's oldest iron and hardware markets. Walk in, call, or send a list. We supply retail and wholesale, and deliver across Indore and nearby towns.`}
+        image={{ src: "/about/storefront-hero.jpg", alt: "The H M Ibrahim & Co shopfront on Siyaganj Main Road, Indore" }}
+      >
+        <Link href="/contact" className={btnMain}>Get a quote</Link>
+        <a href="#range" className={btnGhostDark}>What we supply</a>
+      </PageHero>
 
-      <section className="mt-12" aria-labelledby="products-indore-heading">
-        <h2 id="products-indore-heading" className="text-2xl font-semibold text-foreground">
-          Products we supply in Indore
-        </h2>
-        <ul className="mt-4 space-y-3">
-          {pages.map((page) => (
-            <li key={page.slug}>
-              <Link
-                href={`/indore/${page.slug}`}
-                className="text-primary font-medium hover:underline"
-              >
-                {page.h1}
-              </Link>
-              <p className="mt-0.5 text-sm text-muted-foreground line-clamp-2">
-                {page.intro}
-              </p>
+      <section className="border-b border-border bg-card" aria-label="Reach">
+        <ul className="page-container grid grid-cols-2 gap-px bg-border md:grid-cols-4">
+          {[
+            { big: "Siyaganj", small: "Opposite Tijori Gali" },
+            { big: "Retail + wholesale", small: "From one coil to a truckload" },
+            { big: "Delivery", small: "Indore and nearby towns" },
+            { big: "Since 1939", small: "Same road, same shop" },
+          ].map((f) => (
+            <li key={f.big} className="bg-card px-4 py-6 md:py-8">
+              <p className="font-display text-3xl font-extrabold uppercase leading-none text-foreground md:text-4xl">{f.big}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{f.small}</p>
             </li>
           ))}
         </ul>
       </section>
 
-      <section className="mt-12 rounded-xl border border-border bg-card p-6" aria-labelledby="visit-heading">
-        <h2 id="visit-heading" className="text-xl font-semibold text-foreground">
-          Visit our shop in Indore
-        </h2>
-        <p className="mt-2 text-muted-foreground">
-          {site.fullAddress}. {site.landmark}. We are open Monday–Saturday, 9 AM–8 PM. Call or WhatsApp for a quote.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <Button asChild>
-            <Link href="/quote">Request a quote</Link>
-          </Button>
-          <Button asChild variant="outline">
-            <Link href="/contact">Contact & directions</Link>
-          </Button>
+      <section id="range" className="scroll-mt-24 py-14 md:py-20" aria-labelledby="range-heading">
+        <div className="page-container">
+          <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">What Indore buys from us</p>
+          <h2 id="range-heading" className="mt-2 max-w-3xl text-foreground">Six things people drive to Siyaganj for</h2>
+          <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {pages.map((page) => {
+              const img = imageFor(page);
+              return (
+                <li key={page.slug}>
+                  <Link
+                    href={`/indore/${page.slug}`}
+                    className="group flex h-full flex-col overflow-hidden rounded-sm border border-border bg-card transition-shadow hover:shadow-xl"
+                  >
+                    <span className="relative block aspect-[16/10] bg-secondary">
+                      {img && (
+                        <Image src={img} alt="" fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                      )}
+                    </span>
+                    <span className="flex flex-1 flex-col p-5">
+                      <span className="font-display text-3xl font-extrabold uppercase leading-none text-foreground">{page.h1}</span>
+                      <span className="mt-3 line-clamp-3 text-sm text-muted-foreground">{page.intro}</span>
+                      <span className="mt-4 text-sm font-bold text-foreground underline underline-offset-4 group-hover:text-primary">
+                        Read more
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
-    </div>
+
+      <section className="border-y border-border bg-card py-14 md:py-20" aria-labelledby="areas-heading">
+        <div className="page-container grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">Where we deliver</p>
+            <h2 id="areas-heading" className="mt-2 text-foreground">Indore, and the towns around it</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Ask about delivery when you order. Dispatch depends on stock, quantity and location.
+            </p>
+          </div>
+          <ul className="flex flex-wrap content-start gap-2">
+            {site.areasServed.map((a) => (
+              <li key={a} className="rounded-sm border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground">
+                {a}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <div className="page-container py-14 md:py-20">
+        <ReviewsList max={3} title="What Indore buyers say" />
+      </div>
+
+      <section className="bg-nav py-14 text-white md:py-20">
+        <div className="page-container flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+          <div>
+            <h2 className="text-white">Come to the counter</h2>
+            <p className="mt-3 max-w-xl text-white/80">
+              {site.address.line1}, {site.address.line2}, {site.address.city}. Call first if you want stock confirmed.
+            </p>
+          </div>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <Link href="/contact" className={btnMain}>Get a quote</Link>
+            <Link href="/contact#visit-heading" className={btnGhostDark}>Directions</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

@@ -18,6 +18,8 @@ export type QuoteSubmission = {
   quantity: string;
   delivery: string;
   additionalNotes: string;
+  /** Lead reference shown to the customer, e.g. HM-261011-4F7K */
+  reference?: string;
 };
 
 /** Escape a CSV field (wrap in quotes if needed, escape " as "") */
@@ -88,7 +90,7 @@ export async function sendQuoteNotification(
   const deliveryLabel = data.delivery ? (DELIVERY_LABELS[data.delivery] ?? data.delivery) : "—";
 
   const lines = [
-    "New quote request from website",
+    "New quote request from website" + (data.reference ? " (" + data.reference + ")" : ""),
     "",
     "Name: " + data.name,
     "Phone number: " + data.phone,
@@ -99,6 +101,9 @@ export async function sendQuoteNotification(
     "Quantity: " + (data.quantity || "—"),
     "Delivery: " + deliveryLabel,
     "Additional notes: " + (data.additionalNotes || "—"),
+    "",
+    "Call back: tel:+91" + data.phone.replace(/\D/g, "").slice(-10),
+    "WhatsApp: https://wa.me/91" + data.phone.replace(/\D/g, "").slice(-10),
   ];
   if (rateSharedWithCustomer?.trim()) {
     lines.push("", "---", "Price/rate shared with customer (in their catalog email):", "", rateSharedWithCustomer.trim());
@@ -110,16 +115,20 @@ export async function sendQuoteNotification(
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
+      connectionTimeout: 8000,
+      greetingTimeout: 8000,
+      socketTimeout: 12000,
       auth: {
         user: QUOTE_FROM_EMAIL,
-        pass: appPassword,
+        pass: appPassword.replace(/\s/g, ""),
       },
     });
 
     await transporter.sendMail({
       from: `"HM Ibrahim & Co" <${QUOTE_FROM_EMAIL}>`,
       to: QUOTE_NOTIFY_EMAIL,
-      subject: `New quote request: ${data.name} — ${data.items.slice(0, 50)}${data.items.length > 50 ? "…" : ""}`,
+      replyTo: data.email || undefined,
+      subject: `${data.reference ? "[" + data.reference + "] " : ""}New quote: ${data.name}, ${data.phone} — ${data.items.slice(0, 50)}${data.items.length > 50 ? "…" : ""}`,
       text,
       attachments: [
         {

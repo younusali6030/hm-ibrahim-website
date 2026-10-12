@@ -48,7 +48,7 @@ export function CTASection({
           transition={{ delay: 0.1 }}
         >
           <Button asChild size="lg" className="w-full sm:w-auto min-h-[44px] bg-primary text-gray-900 hover:bg-primary/90 font-semibold">
-            <Link href="/quote">{quoteLabel}</Link>
+            <Link href="/contact">{quoteLabel}</Link>
           </Button>
           <Button asChild size="lg" className="w-full sm:w-auto min-h-[44px] bg-white text-gray-900 hover:bg-gray-100 font-semibold">
             <a

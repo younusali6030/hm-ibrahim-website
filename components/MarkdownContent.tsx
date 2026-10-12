@@ -12,6 +12,13 @@ export function MarkdownContent({ content, className = "" }: Props) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
+          img: ({ src, alt }) => (
+            <figure className="my-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={typeof src === "string" ? src : undefined} alt={alt ?? ""} loading="lazy" className="w-full rounded-sm" />
+              {alt && <figcaption className="mt-2 text-sm text-muted-foreground">{alt}</figcaption>}
+            </figure>
+          ),
           a: ({ href, children }) => {
             if (href?.startsWith("/")) {
               return (

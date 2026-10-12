@@ -42,7 +42,7 @@ export function JsonLd() {
       : { "@type": "City" as const, name }
   );
 
-  const aggregateRating = site.googleReview
+  const aggregateRating = site.googleReview.verified
     ? {
         "@type": "AggregateRating" as const,
         ratingValue: site.googleReview.rating.toString(),

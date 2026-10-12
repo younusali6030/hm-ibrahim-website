@@ -11,13 +11,12 @@ import { categories } from "@/content/products";
 // High-value links first: Products, Quote, Contact; then supporting pages
 const footerLinks = [
   { href: "/products", label: "Browse all products" },
-  { href: "/quote", label: "Request a quote" },
-  { href: "/contact", label: "Contact us" },
+  { href: "/contact", label: "Get a quote & contact" },
+  { href: "/brands", label: "Brands: CM, Border, Tata Wiron" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About us" },
   { href: "/indore", label: "Products in Indore" },
   { href: "/services", label: "Services" },
-  { href: "/post-purchase", label: "Save your purchase" },
   { href: "/catalog", label: "Download catalog" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },

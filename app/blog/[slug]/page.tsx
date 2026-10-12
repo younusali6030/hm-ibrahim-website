@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { getPostBySlug, getAllPostSlugs } from "@/content/blog/posts";
+import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/content/blog/posts";
 import { baseUrl, site } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { MarkdownContent } from "@/components/MarkdownContent";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
@@ -26,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${post.title} | Blog | ${site.name}`,
     description: post.description || `${post.title}. Read on our blog. Indore, Siyaganj.`,
     path: `blog/${slug}`,
-    keywords: ["blog Indore", "Siyaganj", post.title],
+    keywords: ["blog Indore", "Siyaganj", post.category ?? "", post.title].filter(Boolean),
   });
 }
 
@@ -42,107 +41,160 @@ export default async function BlogPostPage({ params }: Props) {
   ];
 
   const articleImages = [post.image, post.image2, post.image3].filter(Boolean) as string[];
+  const abs = (src: string) => (src.startsWith("http") ? src : `${baseUrl}${src}`);
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.description,
     url: `${baseUrl}/blog/${slug}`,
+    mainEntityOfPage: `${baseUrl}/blog/${slug}`,
     datePublished: post.date,
-    ...(articleImages.length > 0 && {
-      image: articleImages.map((src) =>
-        src.startsWith("http") ? src : `${baseUrl}${src}`
-      ),
-    }),
+    dateModified: post.updated || post.date,
+    wordCount: post.wordCount,
+    inLanguage: "en-IN",
+    ...(post.category && { articleSection: post.category }),
+    ...(articleImages.length > 0 && { image: articleImages.map(abs) }),
+    author: { "@type": "Organization", name: site.name, url: baseUrl },
     publisher: {
       "@type": "Organization",
       name: site.name,
       url: baseUrl,
+      logo: { "@type": "ImageObject", url: `${baseUrl}/logo-dark.png` },
     },
   };
+  const faqSchema =
+    post.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: post.faqs.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: { "@type": "Answer", text: f.answer },
+          })),
+        }
+      : null;
+  const videoSchema = post.video
+    ? {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        name: post.videoCaption || post.title,
+        description: post.videoCaption || post.description,
+        thumbnailUrl: abs(post.video.replace(/\.mp4$/, ".jpg")),
+        contentUrl: abs(post.video),
+        uploadDate: post.date,
+      }
+    : null;
+
+  const related = (await getAllPosts())
+    .filter((p) => p.slug !== slug)
+    .sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category))
+    .slice(0, 3);
+
+  const hero = post.image;
 
   return (
-    <article className="page-container section-padding">
+    <article>
       <JsonLdBreadcrumb items={breadcrumbItems} />
       <SeoJsonLd data={articleSchema} />
-      <Breadcrumbs items={breadcrumbItems} className="mb-8" />
+      {faqSchema && <SeoJsonLd data={faqSchema} />}
+      {videoSchema && <SeoJsonLd data={videoSchema} />}
 
-      <header className="mb-10 sm:mb-12">
-        {(post.image || post.image2 || post.image3) && (
-          <div className="mb-8 max-w-xl space-y-3">
-            {post.image && (
-              <div className="overflow-hidden rounded-lg border border-border bg-card">
-                <Image
-                  src={post.image}
-                  alt={post.imageAlt || post.title}
-                  width={576}
-                  height={320}
-                  className="h-auto max-h-[200px] w-full object-cover"
-                  sizes="(max-width: 768px) 100vw, 576px"
-                  priority
-                />
-              </div>
-            )}
-            {(post.image2 || post.image3) && (
-              <div className="grid gap-2 sm:grid-cols-2">
-                {post.image2 && (
-                  <div className="overflow-hidden rounded-lg border border-border bg-card">
-                    <Image
-                      src={post.image2}
-                      alt={post.image2Alt || post.title}
-                      width={320}
-                      height={180}
-                      className="h-auto max-h-[140px] w-full object-cover"
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                    />
-                  </div>
-                )}
-                {post.image3 && (
-                  <div className="overflow-hidden rounded-lg border border-border bg-card">
-                    <Image
-                      src={post.image3}
-                      alt={post.image3Alt || post.title}
-                      width={320}
-                      height={180}
-                      className="h-auto max-h-[140px] w-full object-cover"
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                    />
-                  </div>
-                )}
-              </div>
-            )}
+      <header className="bg-nav text-white">
+        <div className="page-container grid items-end gap-8 py-12 md:py-20 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-white/60">
+              <Link href="/blog" className="hover:text-white">The buyer&apos;s guide</Link>
+              {post.category ? ` · ${post.category}` : ""}
+              {post.date ? ` · ${post.date}` : ""}
+              {` · ${post.readingMinutes} min read`}
+            </p>
+            <h1 className="mt-4 text-white" style={{ fontSize: "clamp(2.4rem, 5.4vw, 4.6rem)" }}>
+              {post.title}
+            </h1>
+            {post.description && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">{post.description}</p>}
           </div>
-        )}
-        <h1 className="text-h1 font-heading font-bold text-foreground">
-          {post.title}
-        </h1>
-        {post.date && (
-          <p className="mt-3 text-small text-muted-foreground">{post.date}</p>
-        )}
+          {hero && (
+            <div className="relative aspect-[16/10] overflow-hidden rounded-sm ring-1 ring-white/15">
+              <Image src={hero} alt={post.imageAlt || post.title} fill priority sizes="(max-width:1024px) 100vw, 40vw" className="object-cover" />
+            </div>
+          )}
+        </div>
       </header>
 
-      <div className="max-w-3xl">
-        <MarkdownContent content={post.content} className="blog-prose" />
+      <div className="page-container py-12 md:py-16">
+        <div className="mx-auto max-w-3xl">
+          {post.video && (
+            <figure className="mb-10">
+              <video
+                className="aspect-video w-full rounded-sm bg-black object-cover"
+                poster={post.video.replace(/\.mp4$/, ".jpg")}
+                controls
+                muted
+                playsInline
+                preload="none"
+              >
+                <source src={post.video} type="video/mp4" />
+              </video>
+              {post.videoCaption && <figcaption className="mt-2 text-sm text-muted-foreground">{post.videoCaption}</figcaption>}
+            </figure>
+          )}
+          <MarkdownContent content={post.content} className="blog-prose" />
+        </div>
+
+        {(post.image2 || post.image3) && (
+          <div className="mx-auto mt-12 grid max-w-3xl gap-3 sm:grid-cols-2">
+            {[
+              { src: post.image2, alt: post.image2Alt },
+              { src: post.image3, alt: post.image3Alt },
+            ]
+              .filter((i) => i.src)
+              .map((i) => (
+                <div key={i.src} className="relative aspect-[16/10] overflow-hidden rounded-sm bg-secondary">
+                  <Image src={i.src as string} alt={i.alt || post.title} fill sizes="(max-width:640px) 100vw, 380px" className="object-cover" />
+                </div>
+              ))}
+          </div>
+        )}
       </div>
 
-      <footer className="mt-14 pt-10 border-t border-border">
-        <p className="text-muted-foreground text-small">
-          Request a quote in Indore or Siyaganj:{" "}
-          <Link href="/quote" className="text-primary hover:underline">
-            Request a Quote
-          </Link>
-          {" · "}
-          <Link href="/contact" className="text-primary hover:underline">
-            Contact
-          </Link>
-        </p>
-        <Link
-          href="/blog"
-          className="mt-5 inline-block text-small text-primary hover:underline"
-        >
-          ← Back to Blog
-        </Link>
-      </footer>
+      {related.length > 0 && (
+        <section className="border-t border-border py-12 md:py-16" aria-labelledby="related-heading">
+          <div className="page-container">
+            <h2 id="related-heading" className="text-foreground">Keep reading</h2>
+            <ul className="mt-6 grid gap-5 md:grid-cols-3">
+              {related.map((p) => (
+                <li key={p.slug}>
+                  <Link href={`/blog/${p.slug}`} className="group block overflow-hidden rounded-sm border border-border bg-card">
+                    <span className="relative block aspect-[16/10] bg-secondary">
+                      {p.image && <Image src={p.image} alt={p.imageAlt || p.title} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />}
+                    </span>
+                    <span className="block p-4 font-display text-xl font-extrabold uppercase leading-tight text-foreground">{p.title}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      <section className="bg-nav py-14 text-white md:py-16">
+        <div className="page-container flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+          <div>
+            <h2 className="text-white">Buying this material in Indore?</h2>
+            <p className="mt-2 max-w-xl text-white/80">Send your list and we call back with rates and stock.</p>
+          </div>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <Link href="/contact" className="inline-flex min-h-[52px] items-center justify-center rounded-sm bg-primary px-7 font-bold text-primary-foreground hover:brightness-110">
+              Get a quote
+            </Link>
+            <Link href="/blog" className="inline-flex min-h-[52px] items-center justify-center rounded-sm border border-white/40 px-7 font-semibold text-white hover:bg-white/10">
+              More guides
+            </Link>
+          </div>
+        </div>
+      </section>
     </article>
   );
 }

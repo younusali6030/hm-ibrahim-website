@@ -81,6 +81,8 @@ const config: Config = {
         sans: ["var(--font-sans)", "Source Sans 3", "system-ui", "ui-sans-serif", "sans-serif"],
         heading: ["var(--font-heading)", "Plus Jakarta Sans", "system-ui", "ui-sans-serif", "sans-serif"],
         mono: ["ui-monospace", "monospace"],
+        display: ["var(--font-display)", "Big Shoulders Display", "Impact", "sans-serif"],
+        "mono-brand": ["var(--font-mono-brand)", "IBM Plex Mono", "ui-monospace", "monospace"],
       },
       fontSize: {
         "page-title": ["2rem", { lineHeight: "1.2", fontWeight: "700" }],

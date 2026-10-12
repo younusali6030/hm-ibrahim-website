@@ -62,10 +62,10 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
   const whatsAppMessage = `Hi, I'm interested in ${product.name}${brandName ? ` (${brandName} brand)` : ""}.${sizeInfo} Please share price/availability.`;
 
   const quoteHref = selectedBrandId
-    ? `/quote?product=${product.slug}&category=${product.categorySlug}&brand=${selectedBrandId}`
-    : `/quote?product=${product.slug}&category=${product.categorySlug}`;
+    ? `/contact?product=${product.slug}&category=${product.categorySlug}&brand=${selectedBrandId}`
+    : `/contact?product=${product.slug}&category=${product.categorySlug}`;
 
-  const meshWireCategorySlugs = ["wiremesh", "wires", "welded-mesh", "perforated-sheets", "fibermesh", "chicken-mesh", "plastic-hexa"];
+  const meshWireCategorySlugs = ["wiremesh", "wires", "welded-mesh", "perforated-sheets"];
   const hasSpecs = (displaySpecs?.length ?? 0) > 0 || product.tataOfficial || product.tataAvailable || (category?.slug && meshWireCategorySlugs.includes(category.slug));
   const showBrandMessaging = category?.slug ? meshWireCategorySlugs.includes(category.slug) : false;
   const accordionDefaults = ["specs", "sizes", "materials", "uses", "variants"].filter((key) => {

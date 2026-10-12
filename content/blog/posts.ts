@@ -20,8 +20,43 @@ export type BlogPost = {
   image2Alt?: string;
   image3?: string;
   image3Alt?: string;
+  /** Last edit date (ISO). Falls back to `date`. */
+  updated?: string;
+  /** Short topic label shown on cards and in JSON-LD. */
+  category?: string;
+  /** Optional silent loop from /public/videos, shown under the intro. */
+  video?: string;
+  videoCaption?: string;
   content: string;
+  wordCount: number;
+  readingMinutes: number;
+  faqs: { question: string; answer: string }[];
 };
+
+/** Pull question/answer pairs out of a "## FAQs" section written as **Question?** followed by the answer. */
+export function extractFaqs(md: string): { question: string; answer: string }[] {
+  const m = md.match(/^##\s+(?:FAQs?|Frequently asked questions)[^\n]*\n([\s\S]*?)(?=^##\s|\s*$(?![\s\S]))/im);
+  if (!m) return [];
+  const out: { question: string; answer: string }[] = [];
+  let q: string | null = null;
+  let a: string[] = [];
+  const flush = () => {
+    if (q && a.join(" ").trim()) out.push({ question: q, answer: a.join(" ").replace(/\s+/g, " ").trim() });
+    q = null;
+    a = [];
+  };
+  for (const line of m[1].split("\n")) {
+    const qm = line.match(/^\*\*(.+?)\*\*\s*$/);
+    if (qm) {
+      flush();
+      q = qm[1].trim();
+    } else if (q && line.trim()) {
+      a.push(line.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*/g, ""));
+    }
+  }
+  flush();
+  return out;
+}
 
 const POSTS_DIR = path.join(process.cwd(), "content/blog/posts");
 
@@ -50,7 +85,14 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       image2Alt: (data.image2Alt as string) || undefined,
       image3: (data.image3 as string) || undefined,
       image3Alt: (data.image3Alt as string) || undefined,
+      updated: (data.updated as string) || undefined,
+      category: (data.category as string) || undefined,
+      video: (data.video as string) || undefined,
+      videoCaption: (data.videoCaption as string) || undefined,
       content: content.trim(),
+      wordCount: content.trim().split(/\s+/).length,
+      readingMinutes: Math.max(1, Math.round(content.trim().split(/\s+/).length / 210)),
+      faqs: extractFaqs(content),
     };
   } catch {
     return null;

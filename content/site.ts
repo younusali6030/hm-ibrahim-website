@@ -99,10 +99,11 @@ export const site = {
 
   /** Google rating badge (hero). Update with real profile URL when available. */
   googleReview: {
+    /** Real figures from the shop's Google Business Profile (checked October 2026). */
+    verified: true,
     rating: 4.9,
-    reviewCount: 350,
-    /** Replace with your Google Maps / Business profile URL */
-    profileUrl: "https://www.google.com/maps/search/?api=1&query=HM+Ibrahim+%26+Co+Siyaganj+Indore",
+    reviewCount: 633,
+    profileUrl: "https://www.google.com/maps?cid=13885147699571790648",
   },
 } as const;
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
+import { Plus_Jakarta_Sans, Source_Sans_3, Big_Shoulders_Display, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -82,6 +82,20 @@ const sourceSans = Source_Sans_3({
   weight: ["400", "500", "600", "700"],
 });
 
+const bigShoulders = Big_Shoulders_Display({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  weight: ["700", "800"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono-brand",
+  display: "swap",
+  weight: ["500"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -89,7 +103,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${sourceSans.variable} ${plusJakarta.variable} font-sans min-h-screen flex flex-col min-w-0 antialiased`}>
+      <body className={`${sourceSans.variable} ${plusJakarta.variable} ${bigShoulders.variable} ${plexMono.variable} font-sans min-h-screen flex flex-col min-w-0 antialiased`}>
         <GoogleAnalytics />
         <Navbar />
         <main className="flex-1 w-full min-w-0 pb-20 md:pb-0">{children}</main>

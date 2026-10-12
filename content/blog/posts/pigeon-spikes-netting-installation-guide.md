@@ -2,14 +2,13 @@
 title: "Pigeon Spikes & Netting: Installation Guide and Use Cases"
 description: "Guide to pigeon spikes and pigeon netting in Indore. Installation, use cases. Buy from Siyaganj."
 date: "2025-02-10"
-image: "/products/pigeon-spike-1.png"
-imageAlt: "Pigeon spikes and netting"
+image: "/blog/pigeon-net-shop.jpg"
+imageAlt: "Pigeon nets and spikes at the counter"
 image2: "/products/pigeon-net.png"
 image2Alt: "Pigeon net"
+updated: "2026-10-11"
+category: "Safety and nets"
 ---
-
-# Pigeon Spikes & Netting: Installation Guide and Use Cases
-
 Pigeons and birds can cause nuisance on ledges, ducts, and balconies in Indore and nearby areas. **Pigeon spikes** and **pigeon netting** are two common solutions. This guide explains use cases, installation basics, and where to buy in Siyaganj so you can choose the right option.
 
 ## Pigeon Spikes (Bird Spikes)

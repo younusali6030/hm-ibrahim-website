@@ -180,7 +180,8 @@ ${text}`;
  */
 export async function getCatalogData(
   productSlug: string | null,
-  itemsText: string
+  itemsText: string,
+  options: { skipRates?: boolean } = {}
 ): Promise<CatalogData> {
   const product = productSlug ? getProductBySlug(productSlug) : null;
   const category = product ? getCategoryBySlug(product.categorySlug) : null;
@@ -195,7 +196,7 @@ export async function getCatalogData(
   const imageUrls = imagePaths.map((path) => `${baseUrl}${path.startsWith("/") ? "" : "/"}${path}`);
 
   let tentativeRates: TentativeRate[] = [];
-  const snippets = await searchRatesSerper(productName);
+  const snippets = options.skipRates ? [] : await searchRatesSerper(productName);
   if (snippets.length > 0) {
     tentativeRates = await extractRatesFromSnippets(productName, snippets);
     if (tentativeRates.length === 0) {

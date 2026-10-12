@@ -14,7 +14,7 @@ import { ProductDetailClient } from "@/components/product/ProductDetailClient";
 import { LookingForMoreSection } from "@/components/LookingForMoreSection";
 import { ProductSeoContent } from "@/components/ProductSeoContent";
 import { TrustBadges } from "@/components/trust/TrustBadges";
-import { ProductTestimonials } from "@/components/trust/ProductTestimonials";
+import { ReviewsList } from "@/components/trust/ReviewsList";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
@@ -96,7 +96,7 @@ export default async function ProductDetailPage({ params }: Props) {
       seller: { "@type": "LocalBusiness", name: site.name, url: baseUrl },
       areaServed: { "@type": "City", name: "Indore" },
     },
-    ...(site.googleReview
+    ...(site.googleReview.verified
       ? {
           aggregateRating: {
             "@type": "AggregateRating",
@@ -142,7 +142,7 @@ export default async function ProductDetailPage({ params }: Props) {
     : "";
   const whatsAppMessage = `Hi, I'm interested in ${product.name}.${sizeInfo} Please share price/availability.`;
 
-  const meshWireCategorySlugs = ["wiremesh", "wires", "welded-mesh", "perforated-sheets", "fibermesh", "chicken-mesh", "plastic-hexa"];
+  const meshWireCategorySlugs = ["wiremesh", "wires", "welded-mesh", "perforated-sheets"];
 
   return (
     <article className="page-container section-padding">
@@ -282,7 +282,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <Button asChild>
-                  <Link href={`/quote?product=${product.slug}&category=${product.categorySlug}`}>
+                  <Link href={`/contact?product=${product.slug}&category=${product.categorySlug}`}>
                     Request a Quote
                   </Link>
                 </Button>
@@ -319,7 +319,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
       <section className="mt-14 border-t border-border pt-10" aria-label="Trust">
         <TrustBadges className="mb-6" />
-        <ProductTestimonials categorySlug={category?.slug} productSlug={product.slug} max={3} className="mt-6" />
+        <ReviewsList max={3} productSlug={product.slug} title={`What buyers say about ${product.name}`} className="mt-10" />
       </section>
 
       {seoContent && (

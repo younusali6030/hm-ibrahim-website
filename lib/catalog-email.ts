@@ -165,9 +165,12 @@ export async function sendCatalogToCustomer(
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
+      connectionTimeout: 8000,
+      greetingTimeout: 8000,
+      socketTimeout: 12000,
       auth: {
         user: QUOTE_FROM_EMAIL,
-        pass: appPassword,
+        pass: appPassword.replace(/\s/g, ""),
       },
     });
 

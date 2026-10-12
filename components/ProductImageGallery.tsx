@@ -73,11 +73,13 @@ export function ProductImageGallery({
           <video
             key={current.src}
             src={current.src}
+            poster={current.src.replace(/\.mp4$/, ".jpg")}
             controls
+            autoPlay
             playsInline
             muted
             loop
-            className="h-full w-full object-cover"
+            className="h-full w-full bg-black object-contain"
             aria-label={alt ? `${alt} video` : `${productName} video`}
           />
         ) : (
@@ -137,9 +139,13 @@ export function ProductImageGallery({
               }
             >
               {item.type === "video" ? (
-                <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                  <Play className="h-8 w-8 text-muted-foreground" fill="currentColor" />
-                </div>
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={item.src.replace(/\.mp4$/, ".jpg")} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+                  <span className="absolute inset-0 flex items-center justify-center bg-black/35">
+                    <Play className="h-7 w-7 text-white" fill="currentColor" />
+                  </span>
+                </>
               ) : (
                 <ImageWithFallback
                   src={item.src}

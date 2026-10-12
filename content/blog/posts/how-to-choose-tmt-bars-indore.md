@@ -8,10 +8,9 @@ image2: "/products/ms-angle-1.png"
 image2Alt: "MS angles with TMT"
 image3: "/products/ms-round-bar.png"
 image3Alt: "Steel reinforcement"
+updated: "2026-10-11"
+category: "Structural steel"
 ---
-
-# How to Choose TMT Bars in Indore: Grades, Brands, and Use
-
 TMT (thermo-mechanically treated) bars are the standard reinforcement for RCC construction in Indore, Siyaganj, and across Madhya Pradesh. This guide explains grades, common sizes, and how to choose the right TMT bars for your project—and where to get them in Siyaganj or Loha Mandi.
 
 ## What Are TMT Bars?

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { Hero } from "@/components/home/Hero";
-import { CategoryGrid } from "@/components/home/CategoryGrid";
-import { InHouseBrandsSection } from "@/components/home/InHouseBrandsSection";
-import { BrandsWeStockSection } from "@/components/home/BrandsWeStockSection";
-import { WhyUs } from "@/components/home/WhyUs";
-import { IndoreIntentSection } from "@/components/home/IndoreIntentSection";
-import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { ScrollHero } from "@/components/home/ScrollHero";
+import { StockReel } from "@/components/home/StockReel";
+import { RevealOnScroll } from "@/components/home/RevealOnScroll";
+import { ProofStrip } from "@/components/home/ProofStrip";
+import { CategoryShowcase } from "@/components/home/CategoryShowcase";
+import { ReelsSection } from "@/components/home/ReelsSection";
+import { GoogleReviews } from "@/components/home/GoogleReviews";
+import { BrandsBand } from "@/components/home/BrandsBand";
 import { faqs } from "@/content/faqs";
 import { baseUrl, site, localSeo } from "@/lib/site";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
@@ -23,12 +24,8 @@ const homeFaqSchema = faqs.length > 0
     }
   : null;
 
-const TestimonialCarousel = dynamic(() => import("@/components/TestimonialCarousel").then((m) => ({ default: m.TestimonialCarousel })), { ssr: true });
 const FAQAccordion = dynamic(() => import("@/components/FAQAccordion").then((m) => ({ default: m.FAQAccordion })), { ssr: true });
-const LocationPreview = dynamic(() => import("@/components/home/LocationPreview").then((m) => ({ default: m.LocationPreview })), { ssr: true });
 const CTASection = dynamic(() => import("@/components/CTASection").then((m) => ({ default: m.CTASection })), { ssr: true });
-const TrustBadges = dynamic(() => import("@/components/trust/TrustBadges").then((m) => ({ default: m.TrustBadges })), { ssr: true });
-const StatsStrip = dynamic(() => import("@/components/trust/StatsStrip").then((m) => ({ default: m.StatsStrip })), { ssr: true });
 
 export const metadata: Metadata = {
   title: `${site.name} | Iron & Hardware in Indore, ${localSeo.state} since 1939`,
@@ -65,21 +62,22 @@ export default function HomePage() {
   return (
     <>
       {homeFaqSchema && <SeoJsonLd data={homeFaqSchema} />}
-      <Hero />
-      <CategoryGrid />
-      <InHouseBrandsSection />
-      <BrandsWeStockSection />
-      <WhyUs />
-      <IndoreIntentSection />
-      <FeaturedProducts />
-      <TestimonialCarousel />
-      <FAQAccordion faqs={faqs.slice(0, 6)} description="Quick answers about our business and services." />
-      <LocationPreview />
-      <StatsStrip />
-      <section className="page-container section-padding border-t border-border" aria-label="Trust">
-        <TrustBadges className="py-4" />
-      </section>
-      <CTASection />
+      <ScrollHero />
+      <div className="home-dark">
+        <RevealOnScroll />
+        <ProofStrip />
+        <StockReel />
+        <CategoryShowcase />
+        <ReelsSection />
+        <BrandsBand />
+        <GoogleReviews />
+        <FAQAccordion faqs={faqs.slice(0, 4)} description="Straight answers before you call." />
+        <CTASection
+          title="Send us your list."
+          description="We check stock, then call you back with rates. Or ring us now and talk to the counter."
+          quoteLabel="Get a quote"
+        />
+      </div>
     </>
   );
 }

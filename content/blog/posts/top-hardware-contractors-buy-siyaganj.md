@@ -2,16 +2,15 @@
 title: "Top Hardware Items Contractors Buy in Siyaganj (Checklist)"
 description: "Checklist of hardware and steel items contractors buy in Siyaganj, Indore. Angles, TMT, mesh, wires, tools."
 date: "2025-02-07"
-image: "/products/ms-angle-1.png"
-imageAlt: "MS angles and hardware in Siyaganj"
+image: "/blog/siyaganj-shopfront.jpg"
+imageAlt: "H M Ibrahim & Co shopfront in Siyaganj"
 image2: "/products/gi-pipes.png"
 image2Alt: "GI pipes"
 image3: "/products/welding-rod.png"
 image3Alt: "Welding rods"
+updated: "2026-10-11"
+category: "Buying guide"
 ---
-
-# Top Hardware Items Contractors Buy in Siyaganj (Checklist)
-
 Contractors and builders in Siyaganj, Loha Mandi, and New Siyaganj regularly buy a set of steel and hardware items for construction and fabrication. This checklist covers the main products so you can plan your list and request quotes from a trusted Siyaganj supplier.
 
 ## Structural Steel (Indore / Siyaganj)

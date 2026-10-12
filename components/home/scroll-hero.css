@@ -1,0 +1,611 @@
+/* Scroll hero: "The Shutter Rises". Real footage of the Siyaganj shop, scrubbed by scroll.
+   Palette is sampled from the footage: shutter steel, asphalt, morning sky, the brand orange used in rare doses. */
+
+.sh {
+  --sh-nav: 0rem;
+  --sh-canvas: #0c1520;
+  --sh-ink: #eef2f6;
+  --sh-ink-2: #aab8c6;
+  --sh-steel: #5d7288;
+  --sh-accent: #f97316;
+  --sh-fw: calc((100svh - var(--sh-nav)) * 0.5625);
+  --sh-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --sh-shadow: 0 1px 2px rgba(5, 9, 14, 0.95), 0 3px 12px rgba(5, 9, 14, 0.78), 0 10px 44px rgba(5, 9, 14, 0.8);
+
+  position: relative;
+  height: 650vh;
+  background: var(--sh-canvas);
+  color: var(--sh-ink);
+}
+
+.sh-stage {
+  position: sticky;
+  top: var(--sh-nav);
+  height: calc(100svh - var(--sh-nav));
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* One environment: the poster, blurred into a slow-drifting steel-blue backdrop. */
+.sh-bg {
+  position: absolute;
+  inset: -4% 0;
+  /* A rolling shutter, drawn in CSS: sharp, never a blurred photo. */
+  background:
+    repeating-linear-gradient(to bottom, #122030 0, #122030 13px, #0a121b 13px, #0a121b 16px);
+  animation: sh-drift 90s ease-in-out infinite alternate;
+  animation-delay: -12s;
+}
+.sh-bg-dim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 80% at 50% 45%, rgba(12, 21, 32, 0.35), rgba(12, 21, 32, 0.88));
+}
+@keyframes sh-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 3%, 0);
+  }
+}
+
+.sh-frame {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: var(--sh-fw);
+  transform: translateX(-50%);
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(170, 184, 198, 0.18), 0 30px 120px rgba(0, 0, 0, 0.55);
+}
+.sh-poster {
+  background-image: url("/hero/poster.jpg");
+}
+.sh-poster,
+.sh-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+.sh-video {
+  opacity: 0;
+  transition: opacity 0.6s var(--sh-ease);
+  will-change: transform;
+  transform: translateZ(0);
+}
+.sh-stage.video-ready .sh-video {
+  opacity: 1;
+}
+.sh-stage.video-failed .sh-video,
+.sh-stage.video-failed .sh-ring {
+  display: none;
+}
+.sh-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 120% 90% at 50% 45%, rgba(10, 10, 18, 0) 35%, rgba(10, 10, 18, 0.55) 100%);
+}
+.sh-ring {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  color: rgba(238, 242, 246, 0.8);
+  transform: rotate(-90deg);
+  transition: opacity 0.4s var(--sh-ease) 0.3s;
+}
+.sh-stage.video-ready .sh-ring {
+  opacity: 0;
+}
+
+/* Captions */
+.sh-band {
+  position: absolute;
+  z-index: 3;
+  opacity: 0;
+  visibility: hidden;
+  text-shadow: var(--sh-shadow);
+  will-change: opacity;
+}
+.sh-band[data-a="0"] {
+  opacity: 1;
+  visibility: visible;
+}
+.sh-l,
+.sh-r {
+  top: 50%;
+  width: calc(50vw - var(--sh-fw) / 2 - 5vw);
+  min-width: 220px;
+  transform: translateY(-50%);
+}
+.sh-l {
+  left: 4vw;
+  text-align: left;
+}
+.sh-r {
+  right: 4vw;
+  text-align: right;
+}
+.sh-kicker {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-mono-brand, ui-monospace, monospace);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sh-ink-2);
+}
+.sh-line {
+  margin: 0;
+  font-family: var(--font-display, "Big Shoulders Display", Impact, sans-serif);
+  font-size: clamp(2.2rem, 4.2vw, 4.4rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--sh-ink);
+  transform: translateY(calc((1 - var(--k, 1)) * 22px));
+}
+.sh-line-big {
+  font-size: clamp(2.1rem, 3.6vw, 4.2rem);
+}
+.sh-sub {
+  margin: 1rem 0 0;
+  max-width: 32ch;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--sh-ink-2);
+}
+
+/* Settle: columns converge around the finished frame. */
+.sh-settle {
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr var(--sh-fw) 1fr;
+  align-items: center;
+  padding: 0 4vw;
+  transform: translateY(calc((1 - var(--k, 1)) * 16px));
+}
+.sh-settle-l {
+  grid-column: 1;
+  max-width: 34rem;
+}
+.sh-settle-r {
+  grid-column: 3;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.7rem;
+  text-shadow: none;
+}
+.sh-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 13.5rem;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid rgba(238, 242, 246, 0.5);
+  border-radius: 2px;
+  background: rgba(12, 21, 32, 0.55);
+  backdrop-filter: blur(8px);
+  color: var(--sh-ink);
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background 0.3s var(--sh-ease), border-color 0.3s var(--sh-ease), transform 0.3s var(--sh-ease);
+}
+.sh-btn:hover {
+  background: rgba(238, 242, 246, 0.14);
+  border-color: var(--sh-ink);
+  transform: translateY(-1px);
+}
+.sh-btn-main {
+  background: var(--sh-accent);
+  border-color: var(--sh-accent);
+  color: #1a0e04;
+}
+.sh-btn-main:hover {
+  background: #ff8a3a;
+  border-color: #ff8a3a;
+}
+.sh-btn:focus-visible,
+.sh-chip:focus-visible {
+  outline: 2px solid var(--sh-accent);
+  outline-offset: 3px;
+}
+.sh-chip {
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid rgba(96, 96, 126, 0.3);
+  border-radius: 10px;
+  background: rgba(8, 8, 15, 0.55);
+  backdrop-filter: blur(10px);
+  color: var(--sh-ink);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.sh-chip span {
+  color: var(--sh-accent);
+}
+
+/* Scroll cue, hidden after the first beat via the band system (decorative). */
+.sh-cue {
+  position: absolute;
+  z-index: 3;
+  left: 4vw;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono-brand, ui-monospace, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sh-ink-2);
+}
+.sh-cue i {
+  width: 42px;
+  height: 1px;
+  background: var(--sh-ink-2);
+  transform-origin: left;
+  animation: sh-cue 3.2s var(--sh-ease) infinite;
+  animation-delay: -1.2s;
+}
+.sh-cue {
+  transition: opacity 0.4s var(--sh-ease);
+}
+.sh-stage.is-settled .sh-cue {
+  opacity: 0;
+}
+@keyframes sh-cue {
+  0%,
+  100% {
+    transform: scaleX(0.25);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+}
+body.paused .sh *,
+body.paused .sh *::before,
+body.paused .sh *::after {
+  animation-play-state: paused !important;
+}
+
+/* Phones: the portrait video fills the screen, captions ride over a local scrim. */
+@media (max-width: 820px) {
+  .sh {
+    --sh-fw: 100vw;
+    height: 560vh;
+  }
+  .sh-frame {
+    box-shadow: none;
+  }
+  .sh-l,
+  .sh-r {
+    top: auto;
+    bottom: 6.4rem;
+    left: 20px;
+    right: 20px;
+    width: auto;
+    min-width: 0;
+    transform: none;
+    text-align: left;
+  }
+  .sh-band::before {
+    content: "";
+    position: absolute;
+    inset: -90px -20px -70px;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(5, 9, 14, 0.82) 0%, rgba(5, 9, 14, 0.55) 55%, rgba(5, 9, 14, 0) 100%);
+  }
+  .sh-line {
+    font-size: clamp(2.2rem, 11vw, 3.4rem);
+  }
+  .sh-line-big {
+    font-size: clamp(2rem, 9.5vw, 3rem);
+  }
+  .sh-settle-r {
+    gap: 0.5rem;
+  }
+  .sh-btn {
+    min-height: 44px;
+    padding: 0.5rem 1rem;
+  }
+  .sh-sub {
+    display: none;
+  }
+  .sh-settle {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1.2rem;
+    inset: 0;
+    padding: 0 20px 6rem;
+  }
+  .sh-settle-r {
+    grid-column: auto;
+    align-items: stretch;
+    align-self: stretch;
+    justify-self: stretch;
+    width: 100%;
+  }
+  .sh-btn {
+    min-width: 0;
+    width: 100%;
+  }
+  .sh-sub {
+    max-width: none;
+  }
+  .sh-cue {
+    display: none;
+  }
+}
+@media (max-height: 560px) {
+  .sh-cue {
+    display: none;
+  }
+}
+
+/* Reduced motion: a composed still hero, no video request, every line in its final state. */
+.sh.sh-static {
+  height: auto;
+}
+.sh.sh-static .sh-stage {
+  position: relative;
+  top: 0;
+  height: auto;
+  min-height: calc(100svh - var(--sh-nav));
+}
+.sh.sh-static .sh-poster {
+  background-image: url("/hero/ending.jpg");
+}
+.sh.sh-static .sh-video,
+.sh.sh-static .sh-ring,
+.sh.sh-static .sh-cue,
+.sh.sh-static .sh-l,
+.sh.sh-static .sh-r {
+  display: none;
+}
+.sh.sh-static .sh-settle {
+  position: relative;
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-height: calc(100svh - var(--sh-nav));
+  transform: none;
+}
+.sh.sh-static .sh-bg {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sh {
+    height: auto;
+  }
+  .sh .sh-stage {
+    position: relative;
+    top: 0;
+    height: auto;
+    min-height: calc(100svh - var(--sh-nav));
+  }
+  .sh .sh-poster {
+    background-image: url("/hero/ending.jpg");
+  }
+  .sh .sh-video,
+  .sh .sh-ring,
+  .sh .sh-cue,
+  .sh .sh-l,
+  .sh .sh-r {
+    display: none;
+  }
+  .sh .sh-settle {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    min-height: calc(100svh - var(--sh-nav));
+  }
+  .sh .sh-bg,
+  .sh .sh-cue i {
+    animation: none;
+  }
+  .sh .sh-line,
+  .sh .sh-settle {
+    transform: none;
+  }
+}
+
+/* Larger screens use the 900px-wide stills for retina sharpness. */
+@media (min-width: 821px) {
+  .sh-poster {
+    background-image: url("/hero/poster-wide.jpg");
+  }
+  .sh.sh-static .sh-poster {
+    background-image: url("/hero/ending-wide.jpg");
+  }
+}
+@media (min-width: 821px) and (prefers-reduced-motion: reduce) {
+  .sh .sh-poster {
+    background-image: url("/hero/ending-wide.jpg");
+  }
+}
+
+/* Signature element: the year, drawn as outlined steel numerals beside the film (desktop only). */
+.sh-year {
+  position: absolute;
+  z-index: 1;
+  top: 9%;
+  left: 4vw;
+  text-align: left;
+  pointer-events: none;
+  font-family: var(--font-display, "Big Shoulders Display", Impact, sans-serif);
+  text-transform: uppercase;
+  line-height: 0.85;
+}
+.sh-year span,
+.sh-year em {
+  display: block;
+  font-style: normal;
+  font-family: var(--font-mono-brand, ui-monospace, monospace);
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: var(--sh-steel);
+}
+.sh-year strong {
+  display: block;
+  margin: 0.5rem 0;
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(170, 184, 198, 0.55);
+}
+@media (max-width: 1100px), (max-width: 820px) {
+  .sh-year {
+    display: none;
+  }
+}
+
+/* Wide screens: three real films, full bleed. No empty side columns. */
+@media (min-width: 821px) {
+  .sh-bg,
+  .sh-bg-dim,
+  .sh-year {
+    display: none;
+  }
+  .sh-frame {
+    left: 0;
+    width: 100%;
+    transform: none;
+    box-shadow: none;
+  }
+  .sh-vignette {
+    background:
+      linear-gradient(to top, rgba(5, 9, 14, 0.92) 0%, rgba(5, 9, 14, 0.6) 26%, rgba(5, 9, 14, 0) 55%),
+      linear-gradient(to bottom, rgba(5, 9, 14, 0.5) 0%, rgba(5, 9, 14, 0) 22%);
+  }
+  .sh-l,
+  .sh-r {
+    top: auto;
+    bottom: 4.6rem;
+    left: 4vw;
+    right: auto;
+    width: min(46rem, 62vw);
+    min-width: 0;
+    transform: none;
+    text-align: left;
+  }
+  .sh-line {
+    font-size: clamp(2.6rem, 5.4vw, 5.6rem);
+  }
+  .sh-line-big {
+    font-size: clamp(2.4rem, 4.6vw, 4.8rem);
+  }
+  .sh-settle {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    inset: auto 0 0 0;
+    padding: 0 4vw 3.4rem;
+    grid-template-columns: none;
+  }
+  .sh-settle-l {
+    max-width: 44rem;
+  }
+  .sh-settle-r {
+    flex-shrink: 0;
+  }
+  .sh-cue {
+    bottom: 1.4rem;
+  }
+}
+
+/* Top scrim so the glass navbar always reads over footage */
+.sh-scrim {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 2;
+  height: 11rem;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(5, 9, 14, 0.78), rgba(5, 9, 14, 0));
+}
+.sh-foot {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  height: 38%;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(5, 9, 14, 0.8), rgba(5, 9, 14, 0));
+}
+
+/* Own-brand rail: CM and Border sit on the right edge of the stage */
+.sh-brands {
+  position: absolute;
+  z-index: 4;
+  right: clamp(12px, 2.4vw, 36px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: opacity 0.5s var(--sh-ease), transform 0.5s var(--sh-ease);
+}
+.sh-stage.is-settled .sh-brands {
+  opacity: 0;
+  transform: translateY(-50%) translateX(16px);
+  pointer-events: none;
+}
+.sh-brands-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono-brand), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(238, 242, 246, 0.7);
+  margin-bottom: 4px;
+}
+.sh-brand {
+  display: block;
+  width: clamp(64px, 6vw, 92px);
+  padding: 7px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.35s var(--sh-ease);
+}
+.sh-brand:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+.sh-brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 640px) {
+  .sh-brands {
+    top: auto;
+    bottom: 5.5rem;
+    transform: none;
+    flex-direction: row;
+    right: 12px;
+  }
+  .sh-brands-label {
+    display: none;
+  }
+  .sh-stage.is-settled .sh-brands {
+    transform: none;
+  }
+}

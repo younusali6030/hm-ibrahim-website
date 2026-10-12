@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import { baseUrl, site } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
-import { getWhatsAppLink } from "@/lib/utils";
-import { ContactForm } from "./ContactForm";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { QuoteFormWrapper } from "./QuoteFormWrapper";
+
+// Quote submissions email the business and the customer; allow time on serverless hosts.
+export const maxDuration = 30;
 
 const contactPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  name: "Contact HM Ibrahim & Co",
-  description: `Contact ${site.name} — address, phone, WhatsApp, email. Siyaganj, Indore. Iron and hardware retail and wholesale.`,
+  name: "Get a quote or contact H M Ibrahim & Co",
+  description: `Request a quote or contact ${site.name}, Siyaganj, Indore. Iron and hardware, retail and wholesale.`,
   url: `${baseUrl}/contact`,
   mainEntity: {
     "@type": "LocalBusiness",
@@ -29,118 +31,98 @@ const contactPageSchema = {
 };
 
 export const metadata: Metadata = buildPageMeta({
-  title: `Contact | ${site.name} — Siyaganj, Indore`,
-  description: `Contact ${site.name} — address, phone, WhatsApp, hours. Visit 60 Siyaganj Main Road, Indore. Request a quote.`,
+  title: `Get a Quote & Contact | ${site.name}, Siyaganj, Indore`,
+  description: `Request a quote for iron, wire, mesh and hardware, or visit ${site.name} at 60 Siyaganj Main Road, Indore. Call, WhatsApp or send your list.`,
   path: "contact",
 });
 
 export default function ContactPage() {
+  const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
   return (
-    <div className="page-container section-padding">
-      <SeoJsonLd data={contactPageSchema} />
-      <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-5xl">Contact Us</h1>
-      <p className="mt-3 sm:mt-4 max-w-2xl text-sm sm:text-base text-muted-foreground">
-        Visit our store, call, or send a message. We&apos;re here to help.
-      </p>
-
-      <div className="mt-10 sm:mt-12 grid gap-10 sm:gap-12 lg:grid-cols-2">
-        <div>
-          <h2 className="text-xl font-semibold text-foreground">Get in touch</h2>
-          <ul className="mt-4 space-y-4 text-muted-foreground">
-            <li>
-              <span className="font-medium text-foreground">Address:</span> {site.fullAddress}
-            </li>
-            <li>
-              <span className="font-medium text-foreground">Landmark:</span> {site.landmark}
-            </li>
-            <li>
-              <span className="font-medium text-foreground">Phone:</span>{" "}
-              <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="text-primary hover:underline">
-                {site.phone} {site.phoneLabel && `(${site.phoneLabel})`}
-              </a>
-              {site.phoneAlt && (
-                <> / <a href={`tel:${String(site.phoneAlt).replace(/\s/g, "")}`} className="text-primary hover:underline">{site.phoneAlt} {site.phoneAltLabel && `(${site.phoneAltLabel})`}</a></>
-              )}
-            </li>
-            <li>
-              <span className="font-medium text-foreground">WhatsApp:</span>{" "}
-              <a
-                href={getWhatsAppLink(site.whatsapp, "Hi, I'd like to inquire about your products.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
-                Chat with us
-              </a>
-            </li>
-            <li>
-              <span className="font-medium text-foreground">Email:</span>{" "}
-              <a href={`mailto:${site.email}`} className="text-primary hover:underline">
-                {site.email} {site.emailLabel && `(${site.emailLabel})`}
-              </a>
-              {site.emailAlt && (
-                <> / <a href={`mailto:${site.emailAlt}`} className="text-primary hover:underline">{site.emailAlt} {site.emailAltLabel && `(${site.emailAltLabel})`}</a></>
-              )}
-            </li>
-            <li>
-              <span className="font-medium text-foreground">Hours:</span>
-              <br />
-              {site.hours.weekdays}
-              <br />
-              {site.hours.sunday}
-              <br />
-              {site.hours.note}
-            </li>
-          </ul>
-          <p className="mt-6 text-sm text-muted-foreground">
-            How to reach: We are on Siyaganj Main Road, opposite Tijori Gali. Siyaganj is well
-            connected by road; you can ask for &quot;HM Ibrahim & Co&quot; or &quot;Tijori Gali&quot;.
-          </p>
-
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <a
-              href={`tel:${site.phone.replace(/\s/g, "")}`}
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 min-h-[44px]"
-            >
-              Call now
-            </a>
-            <a
-              href={getWhatsAppLink(site.whatsapp, "Hi, I'd like to inquire about your products.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-lg border border-border px-4 py-3 text-sm font-medium hover:bg-accent min-h-[44px]"
-            >
-              WhatsApp
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <ContactForm />
-        </div>
+    <>
+      <div className="page-container section-padding" id="quote">
+        <SeoJsonLd data={contactPageSchema} />
+        <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+          H M Ibrahim &amp; Co, Siyaganj, Indore
+        </p>
+        <h1 className="mt-2 text-foreground">Get a quote</h1>
+        <p className="mt-4 max-w-2xl text-sm text-muted-foreground md:text-base">
+          Send your list. We check stock and call you back with rates, usually the same working day. Prefer to talk? Call
+          or WhatsApp us, or walk in.
+        </p>
+        <QuoteFormWrapper />
       </div>
 
-      <section className="mt-16" aria-label="Map">
-        <h2 className="text-xl font-semibold text-foreground">Map</h2>
-        <div className="mt-4 aspect-video w-full overflow-hidden rounded-lg border border-border bg-muted">
-          <iframe
-            title="Location map"
-            src={`https://www.google.com/maps?q=${encodeURIComponent(site.fullAddress)}&output=embed`}
-            className="h-full w-full"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+      <section className="border-t border-border bg-card py-14 md:py-20" aria-labelledby="visit-heading">
+        <div className="page-container grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-14">
+          <div>
+            <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+              Visit the shop
+            </p>
+            <h2 id="visit-heading" className="mt-2 text-foreground">
+              Find us on Siyaganj Main Road
+            </h2>
+            <dl className="mt-8 space-y-5 text-base">
+              <div>
+                <dt className="text-sm font-semibold text-foreground">Address</dt>
+                <dd className="mt-1 text-muted-foreground">
+                  {site.address.line1}, {site.address.line2}, {site.address.city}, {site.address.state} {site.address.pincode}
+                  <br />
+                  Opposite Tijori Gali. Ask for H M Ibrahim &amp; Co.
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold text-foreground">Hours</dt>
+                <dd className="mt-1 text-muted-foreground">
+                  {site.hours.weekdays}
+                  <br />
+                  {site.hours.sunday}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold text-foreground">Phone</dt>
+                <dd className="mt-1 text-muted-foreground">
+                  <a href={tel(site.phone)} className="font-semibold text-foreground underline underline-offset-4">
+                    {site.phone}
+                  </a>{" "}
+                  ({site.phoneLabel})
+                  <br />
+                  <a href={tel(site.phoneAlt)} className="font-semibold text-foreground underline underline-offset-4">
+                    {site.phoneAlt}
+                  </a>{" "}
+                  ({site.phoneAltLabel})
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold text-foreground">Email</dt>
+                <dd className="mt-1 break-words text-muted-foreground">
+                  <a href={`mailto:${site.email}`} className="underline underline-offset-4">{site.email}</a>
+                  <br />
+                  <a href={`mailto:${site.emailAlt}`} className="underline underline-offset-4">{site.emailAlt}</a>
+                </dd>
+              </div>
+            </dl>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-sm border border-input bg-background px-6 font-semibold text-foreground hover:border-foreground/50"
+            >
+              Get directions
+            </a>
+          </div>
+          <div className="aspect-[4/3] w-full overflow-hidden rounded-sm border border-border bg-muted lg:aspect-auto lg:min-h-[28rem]">
+            <iframe
+              title="H M Ibrahim & Co on the map, Siyaganj, Indore"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(site.fullAddress)}&output=embed`}
+              className="h-full w-full"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
-        <a
-          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 inline-block text-sm text-primary hover:underline"
-        >
-          Open in Google Maps →
-        </a>
       </section>
-    </div>
+    </>
   );
 }

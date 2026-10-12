@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
 import Link from "next/link";
+import { PageHero } from "@/components/site/PageHero";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
@@ -9,11 +10,10 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="page-container section-padding">
-      <h1 className="text-4xl font-bold text-foreground">Terms of Use</h1>
-      <p className="mt-2 text-muted-foreground">Last updated: {new Date().toLocaleDateString("en-IN")}</p>
-
-      <div className="prose prose-invert mt-8 max-w-3xl">
+    <>
+      <PageHero eyebrow="Legal" title="Terms of Use" lede={<>Last updated: {new Date().toLocaleDateString("en-IN")}</>} compact />
+      <div className="page-container py-12 md:py-16">
+      <div className="max-w-3xl space-y-4 text-lg leading-relaxed text-muted-foreground [&_h2]:mt-10 [&_h2]:font-display [&_h2]:text-3xl [&_h2]:font-extrabold [&_h2]:uppercase [&_h2]:leading-none [&_h2]:text-foreground [&_strong]:text-foreground [&_a]:text-foreground [&_a]:underline">
         <p>
           By using the website of <strong>{site.name}</strong>, you agree to these terms of use.
         </p>
@@ -50,6 +50,7 @@ export default function TermsPage() {
           </Link>
         </p>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

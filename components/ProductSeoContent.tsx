@@ -139,7 +139,7 @@ export function ProductSeoContent({
 
       <p className="text-sm text-muted-foreground">
         Request a quote in Indore or Siyaganj:{" "}
-        <Link href="/quote" className="text-primary hover:underline">
+        <Link href="/contact" className="text-primary hover:underline">
           Request a Quote
         </Link>
         {" · "}

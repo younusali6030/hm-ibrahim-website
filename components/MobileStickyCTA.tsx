@@ -1,6 +1,7 @@
 "use client";
 
-import { Phone, MessageCircle } from "lucide-react";
+import Link from "next/link";
+import { Phone, MessageCircle, FileText } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
@@ -12,10 +13,18 @@ export function MobileStickyCTA() {
       role="group"
       aria-label="Quick contact"
     >
+      <Link
+        href="/contact"
+        className="flex flex-[1.4] items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground hover:brightness-110"
+        aria-label="Get a quote"
+      >
+        <FileText className="h-5 w-5" aria-hidden />
+        Get a quote
+      </Link>
       <a
         href={`tel:${site.phone.replace(/\D/g, "")}`}
         onClick={() => trackCallClick("mobile_sticky")}
-        className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+        className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-border bg-card py-3 text-sm font-medium hover:bg-accent"
         aria-label="Call us"
       >
         <Phone className="h-5 w-5" aria-hidden />

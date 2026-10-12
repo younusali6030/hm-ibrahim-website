@@ -9,8 +9,10 @@ const staticPages = [
   "about",
   "products",
   "services",
-  "quote",
   "contact",
+  "brands",
+  "brands/cm",
+  "brands/boarder",
   "catalog",
   "indore",
   "blog",
@@ -32,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     entries.push({
       url: path ? `${baseUrl}/${path}` : baseUrl,
       lastModified: new Date(),
-      changeFrequency: path === "" ? "weekly" : path === "products" || path === "quote" ? "weekly" : "monthly",
+      changeFrequency: path === "" ? "weekly" : path === "products" || path === "contact" ? "weekly" : "monthly",
       priority: path === "" ? 1 : path === "products" || path === "contact" ? 0.9 : 0.8,
     });
   }
