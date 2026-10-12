@@ -27,9 +27,9 @@ export function ProductSeoContent({
   const hasSpecs = specs.length > 0 || sizes.length > 0 || materials.length > 0 || variants.length > 0;
 
   return (
-    <div className="mt-12 space-y-3 border-t border-border pt-10">
-      <details className="glass group rounded-[22px] px-5 py-4" open>
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+    <div className="mt-12 space-y-3 border-t-2 border-border pt-8">
+      <details className="group border-b border-border py-4" open>
+        <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Overview</h2>
           <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
         </summary>
@@ -38,8 +38,8 @@ export function ProductSeoContent({
         </div>
       </details>
 
-      <details className="glass group rounded-[22px] px-5 py-4">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+      <details className="group border-b border-border py-4">
+        <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Uses in Indore</h2>
           <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
         </summary>
@@ -50,8 +50,8 @@ export function ProductSeoContent({
 
       {hasSpecs && (
         <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Specifications / Variants</h2>
-          <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+          <h2 className="mb-3 font-display text-2xl font-extrabold uppercase leading-none text-foreground">Specifications / Variants</h2>
+          <ul className="border-t border-border text-muted-foreground [&>li]:border-b [&>li]:border-border [&>li]:py-2">
             {specs.map((s) => (
               <li key={s.label}>
                 <span className="text-foreground font-medium">{s.label}:</span> {s.value}
@@ -77,8 +77,8 @@ export function ProductSeoContent({
         </section>
       )}
 
-      <details className="glass group rounded-[22px] px-5 py-4">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+      <details className="group border-b border-border py-4">
+        <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Buying guide</h2>
           <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
         </summary>
@@ -87,8 +87,8 @@ export function ProductSeoContent({
         </div>
       </details>
 
-      <details className="glass group rounded-[22px] px-5 py-4">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+      <details className="group border-b border-border py-4">
+        <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Pricing factors</h2>
           <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
         </summary>
@@ -97,8 +97,8 @@ export function ProductSeoContent({
         </div>
       </details>
 
-      <details className="glass group rounded-[22px] px-5 py-4">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+      <details className="group border-b border-border py-4">
+        <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Why buy from H.M. Ibrahim & Co.</h2>
           <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
         </summary>
@@ -109,10 +109,10 @@ export function ProductSeoContent({
 
       {content.faqs.length > 0 && (
         <section aria-labelledby="product-faq-heading">
-          <h2 id="product-faq-heading" className="text-xl font-semibold text-foreground mb-3">
+          <h2 id="product-faq-heading" className="mb-3 font-display text-2xl font-extrabold uppercase leading-none text-foreground">
             FAQs
           </h2>
-          <ul className="space-y-4">
+          <ul className="border-t border-border [&>li]:border-b [&>li]:border-border [&>li]:py-4">
             {content.faqs.map((faq, i) => (
               <li key={i}>
                 <h3 className="font-medium text-foreground">{faq.question}</h3>
@@ -123,8 +123,8 @@ export function ProductSeoContent({
         </section>
       )}
 
-      <details className="glass group rounded-[22px] px-5 py-4">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+      <details className="group border-b border-border py-4">
+        <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Service area</h2>
           <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
         </summary>
@@ -135,12 +135,12 @@ export function ProductSeoContent({
 
       {(relatedProducts.length > 0 || relatedBlogPosts.length > 0) && (
         <section className="border-t border-border pt-8">
-          <h2 className="text-xl font-semibold text-foreground mb-4">Related products & reading</h2>
-          <div className="flex flex-wrap gap-3">
+          <h2 className="mb-3 font-display text-2xl font-extrabold uppercase leading-none text-foreground">Related products & reading</h2>
+          <div className="flex flex-wrap gap-x-6 gap-y-1">
             {category && (
               <Link
                 href={`/categories/${category.slug}`}
-                className="lift rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/50 hover:text-primary"
+                className="inline-flex min-h-[44px] items-center border-b border-border py-2 text-sm text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 {category.name}
               </Link>
@@ -149,7 +149,7 @@ export function ProductSeoContent({
               <Link
                 key={p.slug}
                 href={`/products/${p.slug}`}
-                className="lift rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/50 hover:text-primary"
+                className="inline-flex min-h-[44px] items-center border-b border-border py-2 text-sm text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 {p.name}
               </Link>
@@ -158,7 +158,7 @@ export function ProductSeoContent({
               <Link
                 key={b.slug}
                 href={`/blog/${b.slug}`}
-                className="lift rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/50 hover:text-primary"
+                className="inline-flex min-h-[44px] items-center border-b border-border py-2 text-sm text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 {b.title}
               </Link>
@@ -169,7 +169,7 @@ export function ProductSeoContent({
 
       <p className="text-sm text-muted-foreground">
         Request a quote in Indore or Siyaganj:{" "}
-        <Link href="/contact" className="text-primary hover:underline">
+        <Link href="/contact" className="inline-flex min-h-[44px] items-center text-primary underline underline-offset-4">
           Request a Quote
         </Link>
         {" · "}
@@ -177,7 +177,7 @@ export function ProductSeoContent({
           href={`https://wa.me/${site.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary hover:underline"
+          className="inline-flex min-h-[44px] items-center text-primary underline underline-offset-4"
         >
           WhatsApp
         </a>

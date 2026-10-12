@@ -58,7 +58,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
 
   if (media.length === 0) {
     return (
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-muted">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] bg-[hsl(210_30%_10%)]">
         <ImageWithFallback src="/placeholder-product.svg" alt={alt || productName} fill className="object-cover" priority sizes="(max-width: 1024px) 100vw, 50vw" />
       </div>
     );
@@ -70,12 +70,12 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
         <div
           ref={scroller}
           onScroll={onScroll}
-          className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-[24px] bg-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-[14px] bg-[hsl(210_30%_10%)] ring-1 ring-white/10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           aria-roledescription="carousel"
           aria-label={`${productName} photos and videos`}
         >
           {media.map((item, i) => (
-            <div key={`${item.src}-${i}`} className="relative aspect-square w-full shrink-0 snap-center snap-always sm:aspect-[4/3]">
+            <div key={`${item.src}-${i}`} className="relative aspect-[4/3] w-full shrink-0 snap-center snap-always">
               {item.type === "video" ? (
                 <video
                   ref={(el) => {
@@ -96,7 +96,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
                   src={item.src}
                   alt={i === 0 ? alt || productName : `${alt || productName}, view ${i + 1}`}
                   fill
-                  className="object-contain p-3 sm:p-5"
+                  className="object-cover"
                   priority={i === 0}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
@@ -110,7 +110,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
             <button
               type="button"
               onClick={() => goTo((active - 1 + media.length) % media.length)}
-              className="glass absolute left-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full sm:flex"
+              className="border border-white/20 bg-background/80 absolute left-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:flex"
               aria-label="Previous"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -118,12 +118,12 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
             <button
               type="button"
               onClick={() => goTo((active + 1) % media.length)}
-              className="glass absolute right-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full sm:flex"
+              className="border border-white/20 bg-background/80 absolute right-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:flex"
               aria-label="Next"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
-            <div className="glass-pill absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 px-3 py-2" aria-hidden="true">
+            <div className="absolute bottom-3 left-1/2 flex rounded-full bg-background/70 -translate-x-1/2 items-center gap-1.5 px-3 py-2" aria-hidden="true">
               {media.map((_, i) => (
                 <span
                   key={i}
@@ -136,13 +136,13 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
       </div>
 
       {media.length > 1 && (
-        <div className="mt-3 hidden gap-2 sm:grid sm:grid-cols-5">
+        <div className="mt-3 hidden gap-2 sm:grid sm:grid-cols-5 [&>button]:aspect-[4/3]">
           {media.slice(0, 10).map((item, idx) => (
             <button
               key={`${item.src}-${idx}`}
               type="button"
               onClick={() => goTo(idx)}
-              className={`relative aspect-square overflow-hidden rounded-xl border-2 bg-white transition ${
+              className={`relative overflow-hidden rounded-[6px] border-2 bg-[hsl(210_30%_10%)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                 active === idx ? "border-primary" : "border-transparent opacity-70 hover:opacity-100"
               }`}
               aria-label={item.type === "video" ? `Show video ${idx + 1}` : `Show image ${idx + 1}`}
@@ -156,7 +156,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
                   </span>
                 </>
               ) : (
-                <ImageWithFallback src={item.src} alt="" fill className="object-contain p-1" sizes="96px" />
+                <ImageWithFallback src={item.src} alt="" fill className="object-cover" sizes="96px" />
               )}
             </button>
           ))}

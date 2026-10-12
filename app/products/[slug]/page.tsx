@@ -13,6 +13,7 @@ import { ReviewsList } from "@/components/trust/ReviewsList";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { GaugeRule } from "@/components/motif/Motif";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -120,7 +121,7 @@ export default async function ProductDetailPage({ params }: Props) {
     : null;
 
   return (
-    <article className="page-container pb-10 pt-4 md:pb-16 md:pt-6">
+    <article className="page-container pb-28 pt-4 md:pb-16 md:pt-6">
       <JsonLdBreadcrumb items={breadcrumbItems} />
       <SeoJsonLd data={productSchema} />
       {productFaqSchema && <SeoJsonLd data={productFaqSchema} />}
@@ -133,16 +134,18 @@ export default async function ProductDetailPage({ params }: Props) {
       />
 
       {relatedProducts.length > 0 && (
-        <section className="mt-14 border-t border-border pt-10" aria-labelledby="related-heading">
-          <h2 id="related-heading" className="text-h3 font-heading font-semibold text-foreground">Related products</h2>
-          <ul className="mt-4 flex flex-wrap gap-3">
+        <section className="mt-14" aria-labelledby="related-heading">
+          <GaugeRule label={`${relatedProducts.length}`} />
+          <h2 id="related-heading" className="mt-3 text-foreground">Related products</h2>
+          <ul className="mt-4 grid border-t border-border sm:grid-cols-2 sm:gap-x-10">
             {relatedProducts.map((p) => (
-              <li key={p.slug}>
+              <li key={p.slug} className="border-b border-border">
                 <Link
                   href={`/products/${p.slug}`}
-                  className="lift rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/50 hover:text-primary"
+                  className="flex min-h-[48px] items-center justify-between gap-3 py-3 text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  {p.name}
+                  <span className="font-display text-xl font-extrabold uppercase leading-none">{p.name}</span>
+                  <span className="font-mono-brand text-[11px] uppercase tracking-[0.12em] text-muted-foreground">{p.categoryName}</span>
                 </Link>
               </li>
             ))}
@@ -150,9 +153,9 @@ export default async function ProductDetailPage({ params }: Props) {
         </section>
       )}
 
-      <section className="mt-14 border-t border-border pt-10" aria-label="Trust">
-        <TrustBadges className="mb-6" />
-        <ReviewsList max={3} productSlug={product.slug} title={`What buyers say about ${product.name}`} className="mt-10" />
+      <section className="mt-14" aria-label="Shop facts and reviews">
+        <TrustBadges />
+        <ReviewsList max={3} productSlug={product.slug} title={`What buyers say about ${product.name}`} className="mt-8" />
       </section>
 
       {seoContent && (
