@@ -75,6 +75,7 @@ export function LangToggle({ className = "" }: { className?: string }) {
           onClick={() => setLang(l)}
           aria-pressed={lang === l}
           lang={l === "hi" ? "hi" : "en"}
+          style={lang === l ? { color: "#0b121a", backgroundColor: "#fff" } : { color: "rgba(255,255,255,0.88)" }}
           className={
             "min-h-8 min-w-9 rounded-full px-2.5 transition-colors " +
             (lang === l ? "bg-white text-[#0b121a]" : "text-white/85 hover:text-white")
