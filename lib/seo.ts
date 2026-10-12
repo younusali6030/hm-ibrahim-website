@@ -123,7 +123,8 @@ export function buildPageMeta(input: PageMetaInput): Metadata {
     title: metaTitle,
     description: desc,
     keywords: keywords.length ? keywords.join(", ") : undefined,
-    alternates: { canonical: url },
+    // One URL per page. The Hindi toggle swaps the interface on the same URL, so only en-IN is declared.
+    alternates: { canonical: url, languages: { "en-IN": url, "x-default": url } },
     openGraph: {
       title: full,
       description: trimAtWord(finalDescription, 200),
@@ -179,7 +180,8 @@ export function buildProductMeta(input: ProductMetaInput): Metadata {
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical: url },
+    // One URL per page. The Hindi toggle swaps the interface on the same URL, so only en-IN is declared.
+    alternates: { canonical: url, languages: { "en-IN": url, "x-default": url } },
     openGraph: {
       title,
       description,
