@@ -145,7 +145,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
             target="_blank"
             rel="noopener noreferrer"
             data-track={`${source}_map`}
-            aria-label={t("Open the shop in Google Maps (opens in a new tab)", "Google Maps पर दुकान खोलें (नई टैब में)")}
+            aria-label={t("Open in Google Maps (opens in a new tab)", "Google Maps पर खोलें (नई टैब में)")}
             className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm bg-primary px-5 font-bold text-primary-foreground transition hover:brightness-110"
           >
             <MapPin className="h-4 w-4" aria-hidden />
@@ -206,7 +206,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
             target="_blank"
             rel="noopener noreferrer"
             data-track={`${source}_map`}
-            aria-label={t("Open the shop in Google Maps (opens in a new tab)", "Google Maps पर दुकान खोलें (नई टैब में)")}
+            aria-label={t("Open in Google Maps (opens in a new tab)", "Google Maps पर खोलें (नई टैब में)")}
             className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-sm bg-primary px-6 font-bold text-primary-foreground transition hover:brightness-110"
           >
             <MapPin className="h-5 w-5" aria-hidden />

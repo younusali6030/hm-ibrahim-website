@@ -77,7 +77,7 @@ export function LangToggle({ className = "" }: { className?: string }) {
           lang={l === "hi" ? "hi" : "en"}
           className={
             "min-h-8 min-w-9 rounded-full px-2.5 transition-colors " +
-            (lang === l ? "bg-white text-black" : "text-white/70 hover:text-white")
+            (lang === l ? "bg-white text-[#0b121a]" : "text-white/85 hover:text-white")
           }
         >
           {l === "en" ? "EN" : "हिं"}
