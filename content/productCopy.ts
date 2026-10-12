@@ -72,7 +72,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["What is the difference between ISMB and ISJB?", "ISMB is the medium weight beam. ISJB is the lighter joist section. Your drawing names the one it needs."],
       ["Can you deliver long beams to a site outside Indore?", "Delivery can be arranged depending on length, weight and distance. Give us the site location when you ask for the rate."],
     ],
-    ["common-mistakes-buying-steel-sections"],
+    ["common-mistakes-buying-steel-sections", "siyaganj-market-guide-buying-iron-hardware-indore"],
     ["ms-channels", "ms-angles", "tmt-bars"]
   ),
   "ms-pipes": c(
@@ -323,7 +323,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["Do you stock Tata Wiron GI wire?", "Yes, as an authorised Tata dealer. Ask for the gauge you need."],
       ["How many metres are in a kg of GI wire?", "It depends on the gauge. A 12 SWG wire is about 23 m per kg."],
     ],
-    ["wire-gauge-chart-swg-bwg-mm-guide", "gi-wire-vs-ms-wire-binding-fencing"],
+    ["wire-gauge-chart-swg-bwg-mm-guide", "gi-wire-vs-ms-wire-binding-fencing", "best-practices-storing-steel-wire-warehouse"],
     ["binding-wire", "barbed-wire", "jhatka-machine-fencing-wire"]
   ),
   "binding-wire": c(
