@@ -1,0 +1,86 @@
+[
+ {
+  "page": "/",
+  "perf": 91,
+  "a11y": 100,
+  "bp": 100,
+  "seo": 100,
+  "LCP": 3473,
+  "CLS": 0,
+  "TBT": 47,
+  "FCP": 1514,
+  "KB": 556
+ },
+ {
+  "page": "/products",
+  "perf": 93,
+  "a11y": 100,
+  "bp": 100,
+  "seo": 100,
+  "LCP": 3238,
+  "CLS": 0,
+  "TBT": 51,
+  "FCP": 1059,
+  "KB": 669
+ },
+ {
+  "page": "/products/gi-wire",
+  "perf": 91,
+  "a11y": 100,
+  "bp": 100,
+  "seo": 100,
+  "LCP": 3466,
+  "CLS": 0,
+  "TBT": 24,
+  "FCP": 1511,
+  "KB": 650
+ },
+ {
+  "page": "/categories/wiremesh",
+  "perf": 91,
+  "a11y": 100,
+  "bp": 100,
+  "seo": 100,
+  "LCP": 3469,
+  "CLS": 0,
+  "TBT": 8,
+  "FCP": 1514,
+  "KB": 688
+ },
+ {
+  "page": "/brands",
+  "perf": 88,
+  "a11y": 100,
+  "bp": 100,
+  "seo": 100,
+  "LCP": 3910,
+  "CLS": 0,
+  "TBT": 2,
+  "FCP": 1365,
+  "KB": 842
+ },
+ {
+  "page": "/contact",
+  "perf": 94,
+  "a11y": 100,
+  "bp": 100,
+  "seo": 100,
+  "LCP": 3084,
+  "CLS": 0,
+  "TBT": 0,
+  "FCP": 909,
+  "KB": 466
+ },
+ {
+  "page": "/blog/wire-gauge-chart-swg-bwg-mm-guide",
+  "perf": 92,
+  "a11y": 100,
+  "bp": 100,
+  "seo": 100,
+  "LCP": 3382,
+  "CLS": 0,
+  "TBT": 29,
+  "FCP": 1357,
+  "KB": 566
+ }
+]
