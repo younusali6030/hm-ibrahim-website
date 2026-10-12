@@ -168,6 +168,6 @@ export const indoreFaqs = [
   {
     question: "Which areas do you deliver to?",
     answer:
-      "Across Indore, from Siyaganj, Rajwada and Chhatribagh to Palasia, Vijay Nagar, Bhawarkuan, Rau and the Super Corridor, and to Mhow, Pithampur, Sanwer Road, Dewas and Ujjain. Further across Madhya Pradesh on request. Dispatch depends on stock, quantity and location.",
+      "Across Indore, from Siyaganj, Rajwada and Chhatribagh to Palasia, Vijay Nagar, Bhawarkuan, Rau and the Super Corridor, and to Mhow, Pithampur, Sanwer Road, Dewas and Ujjain. Orders accepted across India; delivery arrangements confirmed with each quotation.",
   },
 ];

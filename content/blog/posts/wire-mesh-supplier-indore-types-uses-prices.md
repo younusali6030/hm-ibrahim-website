@@ -65,7 +65,7 @@ You can buy wire mesh at our shop on Siyaganj Main Road. We sell retail and whol
 MS is mild steel; it can rust if exposed. GI is galvanised and more corrosion-resistant, so it is preferred for outdoor use in Indore.
 
 **Do you deliver wire mesh to Dewas or Pithampur?**  
-We serve Indore and nearby areas including Dewas, Pithampur and Ujjain. Delivery depends on order size and location.
+We serve Indore and nearby areas including Dewas, Pithampur and Ujjain. Orders accepted across India; delivery arrangements confirmed with each quotation.
 
 **How do I get a price quote for wire mesh?**  
 Send the type, mesh size, wire gauge, quantity and roll or sheet size through the quote form, phone or WhatsApp.

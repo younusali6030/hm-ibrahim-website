@@ -35,7 +35,7 @@ export const faqs: FAQ[] = [
     id: "4",
     question: "Do you deliver or do I need to pick up?",
     answer:
-      "We can arrange delivery, subject to stock and location, and we often deliver bulk and local orders. You can always collect from our warehouse. Tell us which you prefer when you ask for a quote.",
+      "Orders accepted across India; delivery arrangements confirmed with each quotation. You can also collect from our warehouse in Siyaganj. Tell us which you prefer when you ask for a quote.",
     category: "orders",
   },
   {
@@ -63,7 +63,7 @@ export const faqs: FAQ[] = [
     id: "8",
     question: "Which areas do you serve?",
     answer:
-      "We are based in Indore and serve the city and nearby areas, including Dewas, Ujjain, Mhow and Pithampur. Delivery depends on order size and location.",
+      "We are based in Indore and serve the city and nearby areas, including Dewas, Ujjain, Mhow and Pithampur. Orders accepted across India; delivery arrangements confirmed with each quotation.",
     category: "general",
   },
   {

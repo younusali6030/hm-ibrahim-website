@@ -1,16 +1,10 @@
 import type { MetadataRoute } from "next";
 import { baseUrl } from "@/lib/site";
+import { robotsRules } from "@/lib/crawlerPolicy";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        // API routes and the post-submit thank-you page have nothing to index.
-        disallow: ["/api/", "/contact/success", "/hi/contact/success"],
-      },
-    ],
+    rules: robotsRules(),
     sitemap: [`${baseUrl}/sitemap.xml`, `${baseUrl}/sitemap-images.xml`, `${baseUrl}/sitemap-videos.xml`],
     host: baseUrl,
   };

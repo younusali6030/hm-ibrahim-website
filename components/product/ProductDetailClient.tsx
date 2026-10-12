@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, type ReactNode } from "react";
 import Link from "@/components/LocaleLink";
 import { Phone, MessageCircle } from "lucide-react";
 import { getProductImages, getProductMedia, getBrandVariant } from "@/content/products";
@@ -23,13 +23,15 @@ type Props = {
   defaultImages: string[];
   /** { english: hindi } for the strings of this product, category and brands. Empty in English. */
   tx?: Record<string, string>;
+  /** Server-rendered reviews, shown under the photos. */
+  reviews?: ReactNode;
 };
 
 const ASK = "Ask at counter";
 const btn =
   "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm px-5 font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
-export function ProductDetailClient({ product, category, tx = {} }: Props) {
+export function ProductDetailClient({ product, category, tx = {}, reviews }: Props) {
   const t = useT();
   const { lang } = useLang();
   const hi = lang === "hi";
@@ -120,6 +122,7 @@ export function ProductDetailClient({ product, category, tx = {} }: Props) {
           alt={baseAlt}
           productName={L(product.name)}
           productSlug={product.slug}
+          footer={reviews}
         />
 
         <div className="min-w-0">

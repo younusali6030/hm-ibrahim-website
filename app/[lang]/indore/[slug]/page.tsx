@@ -86,11 +86,11 @@ export default async function IndoreLandingPage({ params }: Props) {
             <p className="mt-4 text-muted-foreground">
               {hi ? (
                 <>
-                  हम <strong className="text-foreground">सियागंज, इंदौर</strong> में हैं, और सियागंज, लोहा मंडी, नई सियागंज, देवास, उज्जैन, महू, पीथमपुर और आसपास के इलाकों में माल देते हैं।
+                  हम <strong className="text-foreground">सियागंज, इंदौर</strong> में हैं, और सियागंज, लोहा मंडी, नई सियागंज, देवास, उज्जैन, महू, पीथमपुर और आसपास के इलाकों में माल देते हैं। पूरे भारत से ऑर्डर स्वीकार किए जाते हैं; डिलीवरी की व्यवस्था हर कोटेशन के साथ तय की जाती है।
                 </>
               ) : (
                 <>
-                  We are in <strong className="text-foreground">Siyaganj, Indore</strong>, and supply Siyaganj, Loha Mandi, New Siyaganj, Dewas, Ujjain, Mhow, Pithampur and nearby areas.
+                  We are in <strong className="text-foreground">Siyaganj, Indore</strong>, and supply Siyaganj, Loha Mandi, New Siyaganj, Dewas, Ujjain, Mhow, Pithampur and nearby areas. Orders accepted across India; delivery arrangements confirmed with each quotation.
                 </>
               )}
             </p>

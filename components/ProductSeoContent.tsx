@@ -78,18 +78,21 @@ export function ProductSeoContent({
       </details>
 
       {content.faqs.length > 0 && (
-        <section aria-labelledby="product-faq-heading">
-          <h2 id="product-faq-heading" className="mb-3 font-display text-2xl font-extrabold uppercase leading-none text-foreground">
+        <section aria-labelledby="product-faq-heading" className="mx-auto max-w-3xl py-10 text-center">
+          <h2 id="product-faq-heading" className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">
             {t("FAQs", "अक्सर पूछे जाने वाले सवाल")}
           </h2>
-          <ul className="border-t border-border [&>li]:border-b [&>li]:border-border [&>li]:py-4">
+          <div className="mt-6 space-y-1">
             {content.faqs.map((faq, i) => (
-              <li key={i}>
-                <h3 className="font-medium text-foreground">{faq.question}</h3>
-                <p className="mt-1 text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
-              </li>
+              <details key={i} className="group" open={i === 0}>
+                <summary className="relative flex min-h-[52px] cursor-pointer list-none items-center justify-center px-10 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary [&::-webkit-details-marker]:hidden">
+                  <h3 className="text-lg font-medium text-foreground">{faq.question}</h3>
+                  <span aria-hidden="true" className="absolute right-2 top-1/2 -translate-y-1/2 text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
+                </summary>
+                <p className="mx-auto max-w-2xl px-4 pb-4 pt-1 text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
+              </details>
             ))}
-          </ul>
+          </div>
         </section>
       )}
 

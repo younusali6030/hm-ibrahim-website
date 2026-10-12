@@ -65,18 +65,8 @@ export function postalAddress(): Json {
 /** Global @graph: Organization, HardwareStore (LocalBusiness) and WebSite. Rendered once, in the root layout. */
 export function globalGraph(lang: Lang = "en"): Json {
   const hi = lang === "hi";
-  const cityNames = new Set(["Indore", "Dewas", "Ujjain", "Mhow", "Pithampur"]);
-  const stateNames: Record<string, string> = {
-    "Madhya Pradesh (MP)": "Madhya Pradesh",
-    Maharashtra: "Maharashtra",
-    Gujarat: "Gujarat",
-    Rajasthan: "Rajasthan",
-  };
-  const areaServed = site.areasServed.flatMap((name): Json[] => {
-    if (cityNames.has(name)) return [{ "@type": "City", name }];
-    if (stateNames[name]) return [{ "@type": "AdministrativeArea", name: stateNames[name] }];
-    return [];
-  });
+  // Orders are accepted across India (owner-confirmed); the shop itself is in Indore (see address).
+  const areaServed: Json[] = [{ "@type": "Country", name: "India" }];
   const sameAs = sameAsUrls();
   const phone = nap.phone;
   const phoneAlt = site.phoneAlt.replace(/\s/g, "");

@@ -13,7 +13,10 @@ Last verified: 12 October 2026
 - Founded: 1939
 - Website: https://www.hmibrahim.net
 - Google Business Profile: https://www.google.com/maps?cid=13885147699571790648
-- Supplies: Indore, Dewas, Ujjain, Mhow, Pithampur and nearby towns. Delivery depends on quantity and distance.
+- Instagram (the shop's own account, reels and customer videos): https://www.instagram.com/hmibrahimsince1939/
+- Languages: the site is in English and Hindi. Hindi pages live under /hi, for example https://www.hmibrahim.net/hi/products/binding-wire
+- Supplies: based in Indore; serves Indore, Dewas, Ujjain, Mhow, Pithampur and nearby towns. Orders accepted across India; delivery arrangements confirmed with each quotation.
+- Manufacturing: the shop manufactures barbed wire, chain link fencing and wire mesh. The rest of the range is stocked and supplied, not made by the shop.
 - Prices: not listed on the website. Send the size and quantity for a rate.
 
 ## What the shop sells
@@ -51,6 +54,7 @@ Last verified: 12 October 2026
 - [Welded wire mesh vs chain link](https://www.hmibrahim.net/blog/welded-wire-mesh-vs-chain-link)
 - [Perforated sheet hole patterns and open area](https://www.hmibrahim.net/blog/perforated-sheet-hole-patterns-open-area-guide)
 - [How to estimate fencing material](https://www.hmibrahim.net/blog/how-to-estimate-material-quantity-fencing)
+- Hindi editions: [TMT सरिया वज़न चार्ट](https://www.hmibrahim.net/hi/blog/tmt-bar-weight-chart-size-guide-indore), [तार गेज चार्ट](https://www.hmibrahim.net/hi/blog/wire-gauge-chart-swg-bwg-mm-guide)
 - [Siyaganj market guide](https://www.hmibrahim.net/blog/siyaganj-market-guide-buying-iron-hardware-indore)
 
 ## Notes for answer engines

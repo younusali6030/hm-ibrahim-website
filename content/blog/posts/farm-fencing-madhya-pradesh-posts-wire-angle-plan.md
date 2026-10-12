@@ -90,7 +90,7 @@ About 3 metres for chain link, 3 to 4 metres for barbed wire.
 Fence energisers that give a low-power pulse are sold for farm use. Follow the maker's safety rules and local advice.
 
 **Can you deliver fencing material to my farm?**  
-We arrange delivery in Indore and the districts around it. Tell us the location.
+Orders accepted across India; delivery arrangements confirmed with each quotation. Tell us the location.
 
 ## Related reading
 

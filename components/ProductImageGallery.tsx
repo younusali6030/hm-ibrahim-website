@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import type { ProductMediaItem } from "@/content/products";
@@ -15,6 +15,8 @@ type Props = {
   alt: string;
   productName: string;
   productSlug?: string;
+  /** Rendered under the thumbnails. When present the column scrolls with the page instead of sticking. */
+  footer?: ReactNode;
 };
 
 function isVideoSrc(src: string): boolean {
@@ -22,7 +24,7 @@ function isVideoSrc(src: string): boolean {
 }
 
 /** Swipeable on phones (scroll-snap, native momentum), arrows and thumbnails on larger screens. Only the visible video plays. */
-export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt, productName, productSlug }: Props) {
+export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt, productName, productSlug, footer }: Props) {
   const { lang } = useLang();
   const hi = lang === "hi";
   const [active, setActive] = useState(0);
@@ -69,7 +71,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
   }
 
   return (
-    <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
+    <div className={"min-w-0 " + (footer ? "" : "lg:sticky lg:top-28 lg:self-start")}>
       <div className="relative">
         <div
           ref={scroller}
@@ -203,6 +205,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
           ))}
         </div>
       )}
+      {footer}
     </div>
   );
 }

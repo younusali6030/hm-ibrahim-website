@@ -340,8 +340,8 @@ export default function IndoreIndexPage({ params }: { params: { lang: string } }
             </div>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
               <T
-                en="Delivery across Indore, from Palasia, Vijay Nagar, Bhawarkuan and Rau to the Super Corridor and Sanwer Road, and to Mhow, Pithampur, Dewas and Ujjain."
-                hi="पूरे इंदौर में डिलीवरी, पलासिया, विजय नगर, भंवरकुआँ और राऊ से लेकर सुपर कॉरिडोर और सांवेर रोड तक, और महू, पीथमपुर, देवास और उज्जैन तक।"
+                en="Across Indore, from Palasia, Vijay Nagar, Bhawarkuan and Rau to the Super Corridor and Sanwer Road, and to Mhow, Pithampur, Dewas and Ujjain. Orders accepted across India; delivery arrangements confirmed with each quotation."
+                hi="पूरे इंदौर में, पलासिया, विजय नगर, भंवरकुआँ और राऊ से लेकर सुपर कॉरिडोर और सांवेर रोड तक, और महू, पीथमपुर, देवास और उज्जैन तक। पूरे भारत से ऑर्डर स्वीकार किए जाते हैं; डिलीवरी की व्यवस्था हर कोटेशन के साथ तय की जाती है।"
               />
             </p>
           </div>

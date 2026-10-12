@@ -36,7 +36,7 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
     buyingGuide: `Choose size and thickness based on load and design. Equal angles (e.g. 50 x 50 mm) are common for symmetric frames; unequal angles suit specific connections. Check for straightness and consistent thickness. For outdoor use, consider galvanising or paint. Specify length (6 m or 12 m) and quantity; bulk orders from Loha Mandi or Siyaganj often get better rates.`,
     pricingFactors: `Price depends on size, thickness, quantity, and market rates. Heavier sections and larger sizes cost more per metre. Wholesale and repeat orders typically get better rates. We do not publish fixed prices; request a quote with size, thickness, and quantity for current rates in Indore.`,
     whyUs: `HM Ibrahim & Co has been supplying iron and hardware in Siyaganj, Indore since 1939. We stock MS angles in multiple sizes and thicknesses and serve contractors, fabricators, and industries in Indore, Siyaganj, Loha Mandi, and nearby areas. You can request a quote or visit our shop for availability and pricing.`,
-    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, and nearby areas including Dewas, Pithampur, Ujjain, and Mhow. Delivery can be arranged subject to order size and location.`,
+    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, and nearby areas including Dewas, Pithampur, Ujjain, and Mhow. Orders accepted across India; delivery arrangements confirmed with each quotation.`,
     faqs: [
       { question: "What sizes of MS angles do you stock in Indore?", answer: "We stock MS angles from 20 x 20 mm to 100 x 100 mm, thickness 3 mm to 10 mm, in 6 m and 12 m lengths. Common sizes include 25 x 25, 40 x 40, 50 x 50, and 75 x 75 mm. Availability varies; contact us for current stock in Siyaganj." },
       { question: "Do you supply MS angles for wholesale in Siyaganj?", answer: "Yes. We supply both retail and wholesale to contractors and fabricators in Siyaganj, Loha Mandi, and Indore. Quote with quantity for better rates." },
@@ -52,12 +52,12 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
     buyingGuide: `Select width and thickness as per design and load. Bright flats give a cleaner finish for visible applications. Check for flatness and consistent dimensions. Specify length and quantity; mention if you need a specific finish (black or bright).`,
     pricingFactors: `Rates depend on width, thickness, quantity, and current market. Heavier and wider sections cost more. Wholesale orders get better per-kg rates. Request a quote with dimensions and quantity for Indore/Siyaganj rates.`,
     whyUs: `We stock MS flats in multiple sizes and serve fabricators and contractors in Siyaganj, Indore, and nearby areas. Request a quote or visit our shop for availability and pricing.`,
-    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow. Delivery subject to order size and location.`,
+    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow. Orders accepted across India; delivery arrangements confirmed with each quotation.`,
     faqs: [
       { question: "What sizes of MS flats are available in Indore?", answer: "We stock widths from 12 mm to 150 mm and thickness 3 mm to 12 mm, in 6 m and 12 m lengths. Common sizes include 20 x 5, 25 x 5, 40 x 6, 50 x 6, 75 x 8, and 100 x 10 mm. Contact us for current stock in Siyaganj." },
       { question: "Do you have bright MS flats?", answer: "Yes. We have both black and bright MS flats. Specify your requirement when requesting a quote." },
       { question: "Are MS flats suitable for welding?", answer: "Yes. Mild steel flats are commonly used for welding and fabrication. Confirm the grade if you have specific weld requirements." },
-      { question: "Do you deliver flats to Dewas or Pithampur?", answer: "We serve Indore and nearby areas including Dewas and Pithampur. Delivery can be arranged depending on order size and location." },
+      { question: "Do you deliver flats to Dewas or Pithampur?", answer: "We serve Indore and nearby areas including Dewas and Pithampur. Orders accepted across India; delivery arrangements confirmed with each quotation." },
     ],
     relatedBlogSlugs: ["common-mistakes-buying-steel-sections", "top-hardware-contractors-buy-siyaganj", "how-bulk-buyers-save-cost-loha-mandi-indore"],
   },
@@ -67,11 +67,11 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
     buyingGuide: `Choose grade (Fe 500, Fe 550, Fe 500D) and diameter as per structural design. Fe 500 is common for most buildings; Fe 550 where higher strength is needed. Check for proper rib pattern and absence of surface defects. Specify diameter, grade, and quantity; bulk orders get better rates.`,
     pricingFactors: `Price depends on diameter, grade, quantity, and market. Larger diameters and higher grades cost more per kg. Rates fluctuate with raw material and demand. We do not fix prices on the site; request a quote for current rates in Indore.`,
     whyUs: `We stock TMT bars in multiple sizes and grades and serve builders and contractors in Siyaganj, Indore, and nearby areas. Request a quote or visit for availability and pricing.`,
-    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow. Delivery can be arranged for bulk orders.`,
+    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow. Orders accepted across India; delivery arrangements confirmed with each quotation.`,
     faqs: [
       { question: "What grades of TMT bars do you supply in Indore?", answer: "We supply Fe 500, Fe 550, and Fe 500D in various diameters. Specify grade and size when requesting a quote." },
       { question: "Which TMT bar sizes are most commonly used?", answer: "8 mm, 10 mm, 12 mm, 16 mm, and 20 mm are commonly used for columns, beams, and slabs. Contact us for stock in Siyaganj." },
-      { question: "Do you deliver TMT bars to construction sites?", answer: "Delivery can be arranged depending on order size and location. Mention your site location when requesting a quote." },
+      { question: "Do you deliver TMT bars to construction sites?", answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Mention your site location when requesting a quote." },
       { question: "Can I get a small quantity for a home project?", answer: "Yes. We serve both retail and wholesale. Minimum order may vary by product; contact us for details." },
       { question: "Are your TMT bars from branded manufacturers?", answer: "We stock TMT bars in several grades; Tata and other brands may be available on request. Ask for current availability." },
     ],
@@ -83,7 +83,7 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
     buyingGuide: `Choose NB size and class (light/medium/heavy) as per pressure and use. For water supply, class and joint type matter. For fencing, consider diameter and wall thickness. Specify size, class, and quantity for an accurate quote.`,
     pricingFactors: `Rates depend on NB size, class, quantity, and market. Heavier class and larger sizes cost more. Prices are per metre or per piece. Request a quote with size and quantity for current rates in Indore.`,
     whyUs: `We stock GI pipes in multiple sizes and classes and serve plumbers and contractors in Siyaganj, Indore, and nearby areas. Request a quote or visit for availability and pricing.`,
-    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow. Delivery subject to order size and location.`,
+    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow. Orders accepted across India; delivery arrangements confirmed with each quotation.`,
     faqs: [
       { question: "What GI pipe sizes do you stock in Indore?", answer: "We stock from 15 mm (1/2\") to 150 mm (6\") NB in light, medium, and heavy classes. Contact us for current availability in Siyaganj." },
       { question: "Are GI pipes suitable for drinking water?", answer: "Yes. GI pipes are commonly used for potable water supply. Check that the class and joints suit your application." },
@@ -98,7 +98,7 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
     buyingGuide: `Choose mesh size (1" to 4") and wire gauge based on security and cost. Smaller mesh and thicker wire are stronger but cost more. PVC-coated lasts longer in exposed conditions. Specify height, length, mesh size, and finish (GI or PVC) for a quote.`,
     pricingFactors: `Price depends on mesh size, wire gauge, height, finish (GI vs PVC), and quantity. Larger rolls and bulk orders get better per-sq-m rates. Request a quote with specifications for current rates in Indore.`,
     whyUs: `We stock multiple brands and sizes of chain link fencing and serve contractors and buyers in Siyaganj, Indore, and nearby areas. Request a quote or visit for availability and pricing.`,
-    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow. Delivery can be arranged for bulk orders.`,
+    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow. Orders accepted across India; delivery arrangements confirmed with each quotation.`,
     faqs: [
       { question: "What mesh sizes of chain link do you have in Indore?", answer: "We have 1\", 2\", 3\", and 4\" mesh in various heights (3 ft to 10 ft). GI and PVC coated. Contact us for stock in Siyaganj." },
       { question: "Which is better for boundary: chain link or barbed wire?", answer: "Chain link gives a full barrier and is common for compounds. Barbed wire is often used on top for extra security. We can supply both." },
@@ -113,11 +113,11 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
     buyingGuide: `Choose single or double strand and gauge as per security needs. Double strand and thicker gauge last longer. Specify coil size and quantity for a quote.`,
     pricingFactors: `Rates depend on type, gauge, coil size, and quantity. Request a quote for current rates in Indore.`,
     whyUs: `We stock multiple brands of barbed wire and serve contractors and farmers in Siyaganj, Indore, and nearby areas. Request a quote or visit for availability.`,
-    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow.`,
+    serviceArea: `We serve Indore, Siyaganj, Loha Mandi, New Siyaganj, Dewas, Pithampur, Ujjain, and Mhow. Orders accepted across India; delivery arrangements confirmed with each quotation.`,
     faqs: [
       { question: "What types of barbed wire do you stock in Indore?", answer: "We have single and double strand, 2-point and 4-point, in coils up to 25 kg. CM, Border, and Tata Wiron available. Contact us for Siyaganj stock." },
       { question: "Barbed wire vs concertina: which for high security?", answer: "Concertina (coiled) is used for high-security perimeters. Barbed wire is common for boundaries. We supply both." },
-      { question: "Do you deliver barbed wire?", answer: "Delivery can be arranged depending on order size and location. Mention your location when requesting a quote." },
+      { question: "Do you deliver barbed wire?", answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Mention your location when requesting a quote." },
     ],
     relatedBlogSlugs: ["barbed-wire-vs-concertina-wire", "farm-fencing-madhya-pradesh-posts-wire-angle-plan", "wire-gauge-chart-swg-bwg-mm-guide"],
   },
@@ -144,9 +144,9 @@ const whyUsByCategory: Record<string, string> = {
 };
 
 const serviceAreaTexts = [
-  "We sell from our shop at 60 Siyaganj Main Road, Indore (opposite Tijori Gali) and supply Dewas, Ujjain, Mhow and Pithampur. Delivery depends on the quantity and the distance.",
-  "Walk in at Siyaganj Main Road, Indore, or send the list. We supply Indore and nearby towns including Dewas, Ujjain, Mhow and Pithampur, with delivery arranged by quantity and distance.",
-  "Visit us on Siyaganj Main Road, Indore. Orders go to Dewas, Ujjain, Mhow and Pithampur too. Tell us the site location and the quantity and we will say how it can reach you.",
+  "We sell from our shop at 60 Siyaganj Main Road, Indore (opposite Tijori Gali) and supply Dewas, Ujjain, Mhow and Pithampur. Orders accepted across India; delivery arrangements confirmed with each quotation.",
+  "Walk in at Siyaganj Main Road, Indore, or send the list. We supply Indore and nearby towns including Dewas, Ujjain, Mhow and Pithampur. Orders accepted across India; delivery arrangements confirmed with each quotation.",
+  "Visit us on Siyaganj Main Road, Indore. Orders go to Dewas, Ujjain, Mhow and Pithampur too. Orders accepted across India; delivery arrangements confirmed with each quotation. Tell us the site location and the quantity.",
 ];
 
 function stableIndex(key: string, n: number): number {

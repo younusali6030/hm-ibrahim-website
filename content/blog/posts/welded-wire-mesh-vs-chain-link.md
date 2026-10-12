@@ -49,7 +49,7 @@ Browse [Welded Mesh](/categories/welded-mesh) and [Fencing Material](/categories
 Both GI weldmesh and GI chain link resist corrosion. PVC-coated chain link adds extra life. MS will rust if not painted or galvanised.
 
 **Do you deliver weldmesh to Pithampur?**  
-We serve Indore and nearby areas. Confirm delivery when you ask for the rate.
+We serve Indore and nearby areas. Orders accepted across India; delivery arrangements confirmed with each quotation. Ask for the rate and tell us the location.
 
 **How do I get a quote?**  
 Specify product (weldmesh or chain link), mesh size, wire gauge, dimensions or area, and quantity. Request a quote for current Indore rates.
