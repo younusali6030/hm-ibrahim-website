@@ -72,6 +72,7 @@ export default function BrandsPage() {
         title={<T en="Wire & fencing brands in Indore" hi="इंदौर में तार और जाली के ब्रांड" />}
         lede="CM and Border are our own barbed wire and chain link fencing brands. Alongside them we stock Tata Wiron and wire and mesh from other makers."
         compact
+        film
       >
         <a href="#own-brands" className={btnMain}><T en="Explore our brands" hi="हमारे ब्रांड देखें" /></a>
         <Link href="/contact?category=fencing-material" className={btnGhostDark}>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { baseUrl, site } from "@/lib/site";
 import { services } from "@/content/services";
@@ -18,11 +19,11 @@ const servicesPageSchema = {
   url: `${baseUrl}/services`,
 };
 
-export const metadata: Metadata = {
-  title: "Services | Retail, Wholesale, Bulk Orders & Delivery",
+export const metadata: Metadata = buildPageMeta({
+  title: "Services: Retail, Wholesale and Bulk Orders",
   description: `Retail, wholesale, bulk orders, warehouse and delivery. How ${site.name} serves builders, contractors and customers in Indore.`,
-  alternates: { canonical: `${baseUrl}/services` },
-};
+  path: "services",
+});
 
 const STEPS = [
   { t: "Tell us what you need", d: "Send a list, call, or walk in. Sizes and quantities help us quote exactly." },

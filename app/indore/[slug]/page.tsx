@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMeta } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,11 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const page = getIndorePage(slug);
   if (!page) return { title: "Products in Indore" };
-  return {
-    title: page.title,
-    description: page.description,
-    alternates: { canonical: `${baseUrl}/indore/${page.slug}` },
-  };
+  return buildPageMeta({ title: page.title, description: page.description, path: `indore/${page.slug}` });
 }
 
 export default async function IndoreLandingPage({ params }: Props) {

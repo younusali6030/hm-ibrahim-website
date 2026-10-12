@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMeta } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { categories, getProductImages, getCategoryBySlug } from "@/content/products";
@@ -8,11 +9,11 @@ import { PrintCatalogButton } from "@/components/catalog/PrintCatalogButton";
 import { PageHero, btnGhostDark } from "@/components/site/PageHero";
 import { T } from "@/lib/i18n";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMeta({
   title: "Product Catalog",
-  description: `Product catalog — ${site.name}. Iron, steel, pipes, wire, mesh, and hardware. Siyaganj, Indore.`,
-  alternates: { canonical: `${baseUrl}/catalog` },
-};
+  description: `Printable product catalog from ${site.name}: iron, steel, pipes, wire, mesh and hardware. Siyaganj, Indore. Ask for the rate.`,
+  path: "catalog",
+});
 
 export default function CatalogPage() {
 

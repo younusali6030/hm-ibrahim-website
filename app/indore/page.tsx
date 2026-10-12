@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMeta } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { indorePageSlugs, getIndorePage, type IndorePage } from "@/content/indorePages";
@@ -21,19 +22,11 @@ const schema = {
   url: `${baseUrl}/indore`,
 };
 
-export const metadata: Metadata = {
-  title: `Iron & Hardware in Indore, ${localSeo.state}`,
-  description: `Buy iron, steel, wire mesh, barbed wire, chain link and construction hardware in Indore from ${site.name}, Siyaganj. Retail and wholesale, with delivery to Dewas, Ujjain, Mhow and Pithampur.`,
-  alternates: { canonical: `${baseUrl}/indore` },
-  openGraph: {
-    title: `Iron & Hardware in Indore | ${site.name}`,
-    description: "Iron, steel, wire mesh and hardware from Siyaganj, Indore. Retail and wholesale.",
-    url: `${baseUrl}/indore`,
-    siteName: site.name,
-    locale: "en_IN",
-    type: "website",
-  },
-};
+export const metadata: Metadata = buildPageMeta({
+  title: `Iron and Hardware in Indore, ${localSeo.state}`,
+  description: `Iron, steel, wire mesh, barbed wire, chain link and hardware in Indore from ${site.name}, Siyaganj. Retail and wholesale, delivery to Dewas, Ujjain, Mhow and Pithampur.`,
+  path: "indore",
+});
 
 function imageFor(page: IndorePage) {
   const p = page.productSlugs.map((s) => getProductBySlug(s)).find(Boolean);
