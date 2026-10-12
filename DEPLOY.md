@@ -15,7 +15,7 @@ If Vercel is already connected to GitHub and you just need to push local changes
    ```bash
    git remote set-url origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
    ```
-   Example: `git remote set-url origin https://github.com/younusali/HM.git`
+   Example: `git remote set-url origin https://github.com/<account>/<repo>.git`
 
 3. **Push** (Git will ask for credentials):
    ```bash
@@ -51,11 +51,11 @@ If Vercel is already connected to GitHub and you just need to push local changes
    **Required for quote catalog (catalog email to customer):**
    | Variable | Value | Notes |
    |----------|--------|------|
-   | `QUOTE_FROM_EMAIL` | `younusali6030@gmail.com` | Gmail that sends the catalog |
+   | `QUOTE_FROM_EMAIL` | `<your-sending-address>` | Gmail that sends the catalog |
    | `GMAIL_APP_PASSWORD` | Your 16-char Gmail App Password | [Create one](https://myaccount.google.com/apppasswords) for this Gmail account |
    | `NEXT_PUBLIC_SITE_URL` | _not needed_ | The production URL (`https://www.hmibrahim.net`) is fixed in `lib/site.ts`. Remove this variable in Vercel if it is set to anything else. |
 
-   **Contact form** uses the same Gmail as the quote catalog: messages are sent to `younusali6030@gmail.com` via `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD`. No separate Resend setup needed.
+   **Contact form** uses the same Gmail as the quote catalog: messages are sent to `<your-sending-address>` via `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD`. No separate Resend setup needed.
 
    **Optional — live rate range in catalog:** Add `SERPER_API_KEY` ([serper.dev](https://serper.dev), free tier 2500 queries) so the catalog email shows a **live indicative range** from recent web search (Indore/Siyaganj). Add `OPENAI_API_KEY` for richer extraction (multiple supplier rates); without it, a single live range is still derived from search.
 
@@ -118,7 +118,7 @@ See **[ANALYTICS.md](./ANALYTICS.md)** for setup steps and where to find each re
 ## Before going live
 
 - [ ] Remove any stale `NEXT_PUBLIC_SITE_URL` in Vercel; the production URL lives in `lib/site.ts`.
-- [ ] Add `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD` so both the quote catalog and contact form emails work (sent from your Gmail to younusali6030@gmail.com).
+- [ ] Add `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD` so both the quote catalog and contact form emails work (sent from your Gmail to <your-sending-address>).
 - [ ] Replace `site.googleReview.profileUrl` in `content/site.ts` with your real Google Business profile URL.
 - [ ] (Optional) Set `NEXT_PUBLIC_GA_ID` for full analytics — see [ANALYTICS.md](./ANALYTICS.md).
 - [ ] Add `public/favicon.ico` if you want a custom favicon.
