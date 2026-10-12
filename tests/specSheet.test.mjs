@@ -80,3 +80,14 @@ test("trimRepeatedPacking removes only a trailing packing sentence", () => {
   assert.equal(trimRepeatedPacking(n, false), n);
   assert.equal(trimRepeatedPacking("Packing: coils up to 50 kg (varies).", false), "Packing: coils up to 50 kg (varies).");
 });
+
+test("plastic mesh is never asked for a wire gauge; expanded metal asks for strand thickness", () => {
+  for (const slug of ["plastic-hexagonal-poultry-mesh", "square-mesh"]) assert.ok(!sheetOf(slug).rows.some((r) => r.key === "gauge"), slug);
+  assert.equal(sheetOf("expanded-metal-mesh").rows.find((r) => r.key === "gauge").label, "Strand thickness");
+});
+
+test("values already on file fill their rows: pipe length, rope supply, pigeon net width", () => {
+  assert.equal(sheetOf("ms-pipes").rows.find((r) => r.key === "length").value, "6 m");
+  for (const slug of ["ms-wire-rope", "gi-wire-rope", "ss-wire-rope"]) assert.match(sheetOf(slug).rows.find((r) => r.key === "pack").value, /metre/);
+  assert.equal(sheetOf("pigeon-nets").rows.find((r) => r.key === "size").value, "3 ft to 20 ft");
+});

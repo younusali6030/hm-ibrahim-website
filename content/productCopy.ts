@@ -207,7 +207,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "Stainless costs more than GI or MS. The rate depends on the grade of steel, the mesh count, the wire diameter and the width. Ask us with the mesh and the area.",
     [
       ["Is SS mesh good for mosquito screens?", "Yes. It does not rust, it is hard to cut, and it keeps its shape for years."],
-      ["Which grade of stainless do you supply?", "Ask us at the time of the quote. Tell us if you need a particular grade."],
+      ["Which grade of stainless do you supply?", "SS 304."],
     ],
     ["mosquito-net-types-fibreglass-ss-aluminium-indore"],
     ["mosquito-net", "aluminium-wiremesh", "crimp-wiremesh"]

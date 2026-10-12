@@ -12,6 +12,10 @@ type Def = { key: string; label: string; hi: string; match: RegExp; /** Listed u
 const SINGLE_WIRE = ["binding-wire", "gi-wire", "jhatka-machine-fencing-wire", "clutch-wire", "barbed-wire", "concertina-wire"];
 const MESH_SLUGS = ["chain-link-fencing", "chicken-net", "plastic-hexagonal-poultry-mesh", "square-mesh", "expanded-metal-mesh"];
 const NET_SLUGS = ["pigeon-nets", "safety-net", "fiber-mesh", "pigeon-spikes"];
+/** Extruded plastic mesh has no wire, so it is never asked for a gauge. */
+const NO_WIRE = ["plastic-hexagonal-poultry-mesh", "square-mesh"];
+/** Expanded metal is slit from sheet: it has a strand thickness, not a wire gauge. */
+const STRAND = "expanded-metal-mesh";
 
 /** Fittings and accessories: sold by piece, no length or roll. */
 const PIECE_ITEMS = ["wire-rope-clamp", "ms-holepass", "concrete-cover-block"];
@@ -134,7 +138,9 @@ export function buildSheet(
   };
 
   const rows: SheetRow[] = [];
-  for (const d of DEFS[kind]) {
+  for (const def of DEFS[kind]) {
+    if (def.key === "gauge" && NO_WIRE.includes(product.slug)) continue;
+    const d = def.key === "gauge" && product.slug === STRAND ? { ...def, label: "Strand thickness", hi: "पत्ती की मोटाई", match: /strand|thickness/i } : def;
     const value = take(d.match);
     const core = d.core || d.coreFor?.includes(product.slug);
     if (value === null && !core) continue;

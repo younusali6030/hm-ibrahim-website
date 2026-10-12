@@ -56,8 +56,8 @@ export const brandPageVisuals: Partial<Record<BrandId, BrandPageVisuals>> = {
     ],
     facts: [
       { big: "8 to 18 SWG", small: "GI wire gauge" },
-      { big: "1 to 4 in", small: "Chain link mesh opening" },
-      { big: "1.5 to 4 mm", small: "Chain link wire size" },
+      { big: "2 to 4 in", small: "Chain link mesh opening" },
+      { big: "2.5 to 3 mm", small: "Chain link wire size" },
     ],
   },
 };

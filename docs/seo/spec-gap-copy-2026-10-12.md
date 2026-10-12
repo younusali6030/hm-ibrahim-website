@@ -4,6 +4,8 @@ Prepared 12 Oct 2026 for the 28 products listed by `node scripts/spec-gaps.mjs -
 
 **Honest count: 5 fully resolved, 15 partially resolved, 8 still need owner input.**
 
+**Applied 12 Oct 2026:** every supported value in Part 1 is now in `content/products.ts`, with Hindi in `content/hi/catalogExtra.ts`. The gap script went from 28 products and 43 open rows to 20 products and 28 open rows. The Part 3 questions were not answered by guesswork: no source read in this session holds those values, so those rows stay out of the pages until the counter supplies them.
+
 How to read this file:
 
 - **Part 1** is publish-ready copy. Every value in it is backed by our own site, our own IndiaMART listing, our own shop photos, the maker's own page for a brand we sell (Tata Wiron), or a property of the material itself. A field we could not establish is left out of Part 1 and listed in Part 3.
