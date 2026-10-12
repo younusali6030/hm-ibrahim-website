@@ -18,7 +18,7 @@ now. "With handoff" assumes the design agent applies `docs/seo/handoff-to-design
 | Structured data validity | 5 | 8 | 9 | Fake `Offer` InStock on 53 products, `sku` and `mpn` equal to URL slug, `speakable`, `priceRange`, unverified `paymentAccepted`, Brand with brand removed |
 | Local SEO and NAP | 7 | 8 | 8 | NAP identical on site and schema; business-name variants remain (see 5) |
 | Content depth and uniqueness | 4 | 8 | 8 | 53 of 53 products now have specific copy; before, 6 had it and the rest shared a template |
-| Internal linking | 5 | 7 | 8 | Posts with a product linking to them 8 of 24 to 24 of 24 (via all 53 products 2 to 3 guides each); posts linking to other posts 0 to 24; posts linking to `/indore` 16 |
+| Internal linking | 5 | 7 | 8 | Guides linked from at least one product page: 8 of 24 to 24 of 24 (each of 53 products links 2 to 3); guides linking to other guides: 0 to 24; guides linking to `/indore/*`: 16 |
 | GEO / AI answer readiness | 4 | 7 | 8 | `llms.txt`, quick-answer blocks on 13 guides, tables kept, "Last verified" dated lines |
 | Social previews (OG) | 3 | 5 | 8 | Home had no og:image; every page used the logo. Template wiring done; PNGs not yet generated |
 | **Total /100** | **53** | **76** | **85** | |
@@ -75,7 +75,7 @@ redirect `www` to apex, a second rule would loop. Verify in Vercel (NEEDS YOU, i
 | Category (9) | BreadcrumbList, ItemList, FAQPage | yes | FAQ text is templated (handoff P1-5) |
 | Indore landing (6) | BreadcrumbList | yes | ItemList available (handoff P2-1) |
 | Blog index | Blog (+BlogPosting list), BreadcrumbList | yes | |
-| Blog post (24) | BlogPosting, BreadcrumbList, FAQPage (22 of 24 have FAQs), VideoObject (7) | yes | FAQs are visible markdown |
+| Blog post (24) | BlogPosting, BreadcrumbList, FAQPage (19 of 24 have FAQs), VideoObject (7) | yes | FAQs are visible markdown |
 | Brand (2) | Brand | yes | add VideoObject (handoff) |
 | About / Contact | AboutPage / ContactPage with `mainEntity` as `@id` | yes | |
 | Products index | ItemList of 30 of 53 | partial | handoff P2-1 |
