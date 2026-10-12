@@ -187,21 +187,23 @@ export const productCopy: Record<string, ProductCopy> = {
     ["gi-weldmesh", "ms-perforated-sheet", "crimp-wiremesh"]
   ),
   "mosquito-net": c(
-    "Mosquito net is fine mesh that keeps insects out and lets air through. We sell it in rolls, and we cut it at the counter to your window size.",
-    "It is fixed in window and door frames, vents and balconies. Choose the material by the place: fibreglass is cheap and easy to fit, aluminium is firmer, stainless steel lasts longest and resists cutting.",
-    "Measure the frame in width and height, add a little for fixing, and tell us the material. For rooms near the sea or in kitchens, stainless steel holds up best. See the blog for the comparison.",
-    "The rate depends on the material, the mesh count, the width and the length you buy. Ask us with the width and metres.",
+    "Mosquito net, also called machhar jali or mosquito mesh, is fine mesh that keeps insects out and lets air through. We sell it in rolls in fibreglass, aluminium, GI and stainless steel, and cut it at the counter to your window size.",
+    "It is fixed in window and door frames, vents, balconies and kitchen openings. Fibreglass is the lightest and cheapest and does not rust. Aluminium is firmer and does not rust. GI is zinc-coated steel and holds its shape, but it rusts once the coat wears off. Stainless steel lasts longest and resists cutting by rats.",
+    "Pick the material by the place: fibreglass or aluminium for ordinary windows, stainless steel for kitchens, damp rooms and rat-prone openings. Give us the frame width and height, add a little for fixing, and tell us the mesh count, which is the number of openings per inch. A higher count keeps out smaller insects but lets less air through.",
+    "The rate depends on the material, the mesh count, the roll width and the length you buy. Ask us with the material, the width and the metres.",
     [
-      ["Which mosquito net lasts longest?", "Stainless steel mesh lasts longest and resists rats and cuts. Fibreglass is the cheapest and easiest to fit."],
+      ["Which mosquito net lasts longest?", "Stainless steel mesh lasts longest and resists rats and cuts. Aluminium and fibreglass do not rust. Fibreglass is the cheapest and easiest to fit."],
+      ["Is machhar jali the same as mosquito net?", "Yes. Machhar jali, mosquito mesh and mosquito net are different names for the same window and door screen mesh."],
+      ["Do you sell fibreglass, aluminium and GI mosquito mesh?", "Yes, along with stainless steel. Tell us the material and the width and we will confirm what is in stock."],
       ["Can you cut it to size?", "Yes. We cut mosquito net at the counter from the roll."],
     ],
     ["mosquito-net-types-fibreglass-ss-aluminium-indore"],
     ["ss-fine-mesh", "aluminium-wiremesh", "gi-wiremesh"]
   ),
   "ss-fine-mesh": c(
-    "SS fine mesh is woven stainless steel wire in a small opening. It resists rust and heat, and it is used where a finer, tougher screen is needed than aluminium or GI.",
-    "It is used for insect screens, filters, kitchens, laboratories, food and chemical plants, and for sieving fine material.",
-    "Tell us the aperture in mesh count or mm, the wire diameter and the width. For ordinary windows fibreglass or aluminium is cheaper. Pay for stainless where corrosion, heat or rats are the problem.",
+    "SS fine mesh is woven stainless steel wire in a small opening. It resists rust and heat, and it is used where a finer, tougher screen is needed than aluminium, fibreglass or GI mosquito mesh.",
+    "It is used for insect screens in kitchens and damp rooms, filters, laboratories, food and chemical plants, and for sieving fine material.",
+    "Tell us the aperture in mesh count or mm, the wire diameter and the width. For ordinary windows fibreglass or aluminium mosquito mesh is cheaper. Pay for stainless where corrosion, heat or rats are the problem.",
     "Stainless costs more than GI or MS. The rate depends on the grade of steel, the mesh count, the wire diameter and the width. Ask us with the mesh and the area.",
     [
       ["Is SS mesh good for mosquito screens?", "Yes. It does not rust, it is hard to cut, and it keeps its shape for years."],
@@ -288,11 +290,12 @@ export const productCopy: Record<string, ProductCopy> = {
 
   // ---------------------------------------------------------------- Perforated sheets
   "gi-perforated-sheet": c(
-    "GI perforated sheet is galvanised steel sheet punched with a regular pattern of holes. We supply thicknesses from 0.5 mm to 3 mm in round, square, slot and hexagonal patterns, cut to your size.",
-    "It is used for ventilation panels, speaker and machine covers, screens and partitions, cladding, filters and air-handling parts. The zinc coat helps outdoors.",
-    "Three choices matter: the thickness for strength, the hole size and pitch for flow, and the open area, which is the share of the sheet that is hole. Our guide on hole patterns explains how to work it out.",
+    "GI perforated sheet, called chaddar jali in the market, is galvanised steel sheet punched with a regular pattern of holes. We supply thicknesses from 0.5 mm to 3 mm in round, square, slot and hexagonal patterns, cut to your size. Perforated sheet is punched sheet, not expanded metal.",
+    "It is used for ventilation panels, speaker and machine covers, screens and partitions, cladding, filters and air-handling parts. The zinc coat helps outdoors and in damp places.",
+    "Three choices matter: the thickness for strength, the hole size and pitch for flow, and the open area, which is the share of the sheet that is hole. A thicker sheet is stiffer but heavier. Our guide on hole patterns explains how to work out open area. Stainless steel and aluminium sheet are also available on request.",
     "The rate depends on the thickness, the hole pattern, the sheet size, the coat and the quantity. A fine pattern costs more to punch. Ask us with the pattern and the sheet size.",
     [
+      ["Is chaddar jali the same as perforated sheet?", "Yes. Chaddar jali is the market name for sheet punched with holes. Expanded metal is a different product, made by cutting and stretching the sheet."],
       ["What hole patterns do you have?", "Round, square, slot and hexagonal. Custom patterns can be asked for."],
       ["Do you cut the sheet to size?", "Yes. Send us the size and the pattern."],
     ],
@@ -300,13 +303,14 @@ export const productCopy: Record<string, ProductCopy> = {
     ["ms-perforated-sheet", "expanded-metal-mesh", "gi-weldmesh"]
   ),
   "ms-perforated-sheet": c(
-    "MS perforated sheet is mild steel sheet punched in round, square or slot patterns, in thicknesses from 0.5 mm to 3 mm. It is the cheaper option and is meant for indoor use or for painting.",
+    "MS perforated sheet, called chaddar jali in the market, is mild steel sheet punched in round, square or slot patterns, in thicknesses from 0.5 mm to 3 mm. It is the cheaper option and is meant for indoor use or for painting.",
     "It is used for screens, machine guards, partition panels, ventilation covers and filters inside plants and workshops.",
-    "Choose the thickness, the hole size and the open area for the job. For anything outside, pick GI or paint the MS sheet after cutting. Say the sheet size and the quantity.",
+    "Choose the thickness, the hole size and the open area for the job. For anything outside, pick GI or paint the MS sheet after cutting. If the sheet will stand in the weather or in damp air for years, stainless steel or aluminium sheet is the better choice and is available on request. Say the sheet size and the quantity.",
     "The rate depends on the thickness, the hole pattern, the sheet size and the quantity. Ask us with the pattern and the sheet size.",
     [
       ["MS or GI perforated sheet: which should I choose?", "GI for outdoors or damp places. MS for indoors, or where you will paint it."],
       ["What thicknesses are available?", "0.5 mm to 3 mm."],
+      ["Do you have stainless steel or aluminium perforated sheet?", "Yes, on request. Tell us the thickness, the hole pattern and the sheet size."],
     ],
     ["perforated-sheets-ms-vs-ss-applications", "perforated-sheet-hole-patterns-open-area-guide"],
     ["gi-perforated-sheet", "expanded-metal-mesh", "ms-weldmesh"]
@@ -426,11 +430,11 @@ export const productCopy: Record<string, ProductCopy> = {
 
   // ---------------------------------------------------------------- Tools
   "sr-crowbar": c(
-    "The crowbar is a heavy steel bar with a flat or pointed end, for prying, lifting and breaking. We stock SR brand crowbars for site and demolition work.",
+    "The crowbar, called sabbal at the counter, is a heavy steel bar with a flat or pointed end, for prying, lifting and breaking. We stock SR brand crowbars for site and demolition work.",
     "It is used for demolition, lifting slabs and kerbs, prying shuttering, digging in hard ground and moving heavy objects.",
     "Pick the length and weight for the job. A long bar gives more leverage; a short one is easier to carry. Check that the ends are not chipped.",
     "The rate depends on the length, the weight and the number of pieces. Ask us with the size.",
-    [["Which brand of crowbar do you sell?", "SR brand."], ["Do you keep different lengths?", "Yes. Tell us the length or the job and we will show you what is in stock."]],
+    [["Is sabbal the same as a crowbar?", "Yes. Sabbal is the Hindi market name for the crowbar."], ["Which brand of crowbar do you sell?", "SR brand."], ["Do you keep different lengths?", "Yes. Tell us the length or the job and we will show you what is in stock."]],
     [],
     ["sr-sledge-hammer", "sr-pickaxe-geti", "sr-hoe-faurdha"]
   ),
@@ -448,7 +452,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "It is used in farms and gardens for digging, weeding and levelling, and on sites for light digging and mixing.",
     "Choose the blade size by the soil: a heavier blade for hard ground. If you want a ready tool, ask for the faurdha with handle.",
     "The rate depends on the blade size and the number of pieces. Ask us with the size.",
-    [["Is the handle included?", "This listing is for the blade. A hoe with a fitted handle is listed separately."], ["Which brand?", "SR brand."]],
+    [["Is faurdha the same as phawda?", "Yes. Faurdha and phawda are two names for the hoe."], ["Is the handle included?", "This listing is for the blade. A hoe with a fitted handle is listed separately."], ["Which brand?", "SR brand."]],
     [],
     ["sr-hoe-faurdha-with-handle", "sr-pickaxe-geti", "sr-crowbar"]
   ),
@@ -516,7 +520,7 @@ export const productCopy: Record<string, ProductCopy> = {
     ["welding-rods", "ms-angles", "sponge"]
   ),
   "sr-hoe-faurdha-with-handle": c(
-    "This is the SR hoe (faurdha) with the handle already fitted, with a carbon steel blade and a green, black or other finish as per stock. It is ready to use from the shop.",
+    "This is the SR hoe (faurdha or phawda) with the handle already fitted, with a carbon steel blade and a green, black or other finish as per stock. It is ready to use from the shop.",
     "It is used for digging, weeding and levelling in farms and gardens, and for light site work.",
     "Choose a handle length that suits the user's height. Carbon steel holds an edge but should be wiped dry to stop rust.",
     "The rate depends on the blade size and the handle. Ask us for the current rate.",

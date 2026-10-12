@@ -7,6 +7,19 @@ import { T } from "@/lib/i18n";
 import { localize } from "@/lib/localize";
 import type { Lang } from "@/lib/locale";
 
+/** Counter names buyers search for, each linked to the page that owns the term (docs/seo/keyword-map.md). */
+const OFTEN_ASKED: { href: string; en: string; hi: string }[] = [
+  { href: "/products/mosquito-net", en: "Mosquito net (machhar jali)", hi: "मच्छर जाली" },
+  { href: "/products/ss-fine-mesh", en: "SS fine mesh", hi: "एसएस फाइन मेश" },
+  { href: "/indore/perforated-sheets", en: "Perforated sheet (chaddar jali)", hi: "चादर जाली (परफोरेटेड शीट)" },
+  { href: "/products/ms-perforated-sheet", en: "MS perforated sheet", hi: "एमएस परफोरेटेड शीट" },
+  { href: "/products/gi-perforated-sheet", en: "GI perforated sheet", hi: "जीआई परफोरेटेड शीट" },
+  { href: "/products/sr-crowbar", en: "Crowbar (sabbal)", hi: "सब्बल" },
+  { href: "/products/sr-pickaxe-geti", en: "Pickaxe (geti)", hi: "गेंती" },
+  { href: "/products/sr-hoe-faurdha-with-handle", en: "Hoe (faurdha, phawda) with handle", hi: "दस्ते सहित फौड़ा" },
+  { href: "/products/sr-sledge-hammer", en: "Sledge hammer", hi: "घन (स्लेज हैमर)" },
+];
+
 /** The counter as a ledger: one ruled row per range, a few real photos, a count, and a way in. */
 export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
   const cats = localize(categories, lang);
@@ -62,6 +75,23 @@ export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
               );
             })}
           </ol>
+          <nav aria-label={hi ? "अक्सर माँगे जाने वाले" : "Often asked for"} className="mt-8">
+            <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+              <T en="Often asked for at the counter" hi="काउंटर पर अक्सर माँगे जाने वाले" />
+            </p>
+            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
+              {OFTEN_ASKED.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="inline-flex min-h-[44px] items-center text-sm text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    {hi ? l.hi : l.en}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <div className="mt-6">
             <Link href="/products" className="glass-btn glass-btn-main">
               <T en="Browse all products" hi="सभी प्रोडक्ट देखें" /> <span aria-hidden="true">→</span>

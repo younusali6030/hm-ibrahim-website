@@ -26,7 +26,16 @@ reel titles and customer reviews.
 | Siyaganj iron market, Loha Mandi Indore | `/blog/siyaganj-market-guide-buying-iron-hardware-indore` | `/indore`, `/blog/how-bulk-buyers-save-cost-loha-mandi-indore` |
 | iron and hardware Indore (broad) | `/indore` | `/` (brand and shop name only) |
 | construction hardware Indore, geti, faurdha | `/indore/construction-hardware` | `/categories/construction-tools` |
-| mosquito net Indore | `/products/mosquito-net` | `/blog/mosquito-net-types-fibreglass-ss-aluminium-indore` |
+| mosquito net Indore, machhar jali, mosquito mesh, mosquito net roll, fibreglass / aluminium / GI mosquito mesh | `/products/mosquito-net` | `/products/ss-fine-mesh`, `/blog/mosquito-net-types-fibreglass-ss-aluminium-indore`, home "Often asked for" row |
+| SS mosquito net, SS fine mesh, stainless mesh | `/products/ss-fine-mesh` | `/products/mosquito-net` |
+| chaddar jali, perforated sheet Indore (see row above) | `/indore/perforated-sheets` | `/products/ms-perforated-sheet`, `/products/gi-perforated-sheet`, `/categories/perforated-sheets` |
+| MS perforated sheet / GI perforated sheet | `/products/ms-perforated-sheet`, `/products/gi-perforated-sheet` | `/indore/perforated-sheets` |
+| SS / aluminium perforated sheet | `/categories/perforated-sheets` (on request; no product page until specs exist) | `/indore/perforated-sheets` |
+| sabbal, crowbar Indore | `/products/sr-crowbar` | `/indore/construction-hardware` |
+| geti, pickaxe Indore | `/products/sr-pickaxe-geti` | `/indore/construction-hardware` |
+| faurdha, phawda, hoe (blade) | `/products/sr-hoe-faurdha` | `/products/sr-hoe-faurdha-with-handle` |
+| faurdha / phawda with handle | `/products/sr-hoe-faurdha-with-handle` | `/products/sr-hoe-faurdha` |
+| sledge hammer, ghan Indore | `/products/sr-sledge-hammer` | `/indore/construction-hardware` |
 | pigeon net Indore, kabootar jali | `/products/pigeon-nets` | `/blog/pigeon-net-balcony-indore-mesh-size-fixing-guide` |
 | FRP bars | `/products/frp-bars` | `/blog/frp-bars-vs-tmt-bars-where-each-belongs` |
 

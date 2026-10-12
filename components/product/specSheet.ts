@@ -4,7 +4,7 @@ import type { BrandVariant, Product } from "@/content/products";
 
 export type SheetRow = { key: string; label: string; hi: string; value: string | null };
 
-const WIRE_CATEGORIES = ["wiremesh", "welded-mesh", "wires", "fencing-material", "perforated-sheets", "nails", "safety-nets-equipments"];
+const WIRE_CATEGORIES = ["wiremesh", "welded-mesh", "wires", "fencing-material", "nails", "safety-nets-equipments"];
 
 type Def = { key: string; label: string; hi: string; match: RegExp };
 
@@ -13,11 +13,31 @@ const WIRE_ROWS: Def[] = [
   { key: "mesh", label: "Mesh / hole size", hi: "जाली / छेद का साइज़", match: /mesh|hole|opening|pattern|aperture/i },
   { key: "roll", label: "Roll length / pack", hi: "रोल लंबाई / पैक", match: /roll|length|coil|packing|supplied|form|height|width/i },
 ];
+/** Punched sheet is sold by thickness and sheet size, not by wire gauge or roll length. */
+const SHEET_ROWS: Def[] = [
+  { key: "thickness", label: "Thickness", hi: "मोटाई", match: /thickness|gauge/i },
+  { key: "hole", label: "Hole shape / size", hi: "छेद का आकार / साइज़", match: /hole|pattern|aperture|opening/i },
+  { key: "sheet", label: "Sheet size", hi: "शीट साइज़", match: /sheet size|size|length|width|dimension|supplied/i },
+];
+/** Hand tools: brand, head or blade size, and what comes fitted. */
+const TOOL_ROWS: Def[] = [
+  { key: "brand", label: "Brand", hi: "ब्रांड", match: /^brand$/i },
+  { key: "size", label: "Size / weight", hi: "साइज़ / वज़न", match: /size|weight|length/i },
+  { key: "handle", label: "Handle", hi: "दस्ता", match: /handle|type/i },
+];
 const SECTION_ROWS: Def[] = [
   { key: "size", label: "Size", hi: "साइज़", match: /size|width|diameter|dimension/i },
   { key: "thickness", label: "Thickness / gauge", hi: "मोटाई", match: /thickness|gauge|wall/i },
   { key: "length", label: "Length", hi: "लंबाई", match: /length|roll|packing|supplied/i },
 ];
+
+export function isSheetKind(categorySlug?: string | null): boolean {
+  return categorySlug === "perforated-sheets";
+}
+
+export function isToolKind(categorySlug?: string | null): boolean {
+  return categorySlug === "construction-tools";
+}
 
 export function isWireKind(categorySlug?: string | null): boolean {
   return !!categorySlug && WIRE_CATEGORIES.includes(categorySlug);
@@ -45,7 +65,13 @@ export function buildSheet(
     return specs[i].value;
   };
 
-  const defs = isWireKind(categorySlug) ? WIRE_ROWS : SECTION_ROWS;
+  const defs = isSheetKind(categorySlug)
+    ? SHEET_ROWS
+    : isToolKind(categorySlug)
+      ? TOOL_ROWS
+      : isWireKind(categorySlug)
+        ? WIRE_ROWS
+        : SECTION_ROWS;
   const rows: SheetRow[] = defs.map((d) => ({ key: d.key, label: d.label, hi: d.hi, value: take(d.match) }));
 
   const materialSpec = take(/material|grade/i);

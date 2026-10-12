@@ -584,25 +584,26 @@ const ownCategories: Category[] = [
       {
         slug: "mosquito-net",
         name: "Mosquito Net",
-        shortDesc: "Fine mesh for mosquito screening, insect barriers, and ventilation; supplied in rolls.",
+        shortDesc: "Mosquito mesh (machhar jali) in rolls: fibreglass, aluminium, GI and stainless steel, cut to your window size.",
         categorySlug: "wiremesh",
         specs: [
-          { label: "Type", value: "Fine mesh / mosquito screening" },
-          { label: "Form", value: "Rolls" },
+          { label: "Also called", value: "Machhar jali, mosquito mesh, window jali" },
+          { label: "Material options", value: "Fibreglass, aluminium, GI, stainless steel" },
+          { label: "Form", value: "Rolls, cut to size at the counter" },
         ],
         images: ["/products/mosquito-net.png", "/videos/mosquito-net.jpg", "/videos/mosquito-net-cutting.jpg"],
         videos: ["/videos/mosquito-net-cutting.mp4", "/videos/mosquito-net.mp4"],
         image: "/products/mosquito-net.png",
         imageAlt: "Fine metallic mosquito net mesh in rolls",
         useCases: ["Mosquito screening", "Insect barriers", "Ventilation", "Doors and windows"],
-        materials: ["Stainless steel", "Metallic mesh"],
-        notes: "Fine mesh suitable for mosquito net and insect screening. Available in rolls. Contact us for width, length, and mesh size.",
+        materials: ["Fibreglass", "Aluminium", "Galvanised iron", "Stainless steel"],
+        notes: "Mosquito mesh in fibreglass, aluminium, GI and stainless steel, sold in rolls and cut at the counter. Tell us the material, the mesh count, and the width and length you need.",
         indicativeRate: "Approx. ₹80–200 per sq m (varies by mesh). Confirm for current price.",
       },
       {
         slug: "ss-fine-mesh",
         name: "SS Fine Mesh",
-        shortDesc: "Stainless steel fine mesh for screening, filtration, and insect barriers; supplied in rolls.",
+        shortDesc: "Stainless steel fine mesh (SS mosquito mesh) for insect screens, filtration and sieving; supplied in rolls.",
         categorySlug: "wiremesh",
         specs: [
           { label: "Material", value: "Stainless steel (SS)" },
@@ -734,18 +735,19 @@ const ownCategories: Category[] = [
   {
     slug: "perforated-sheets",
     name: "Perforated Sheets",
-    description: "GI and MS perforated sheets for screening and filtration.",
+    description: "GI and MS perforated sheets (chaddar jali) for screening and filtration. SS and aluminium sheet on request.",
     icon: "Grid3X3",
     products: [
       {
         slug: "gi-perforated-sheet",
         name: "GI Perforated Sheet",
-        shortDesc: "Galvanised iron perforated sheets for screening, ventilation, and filtration.",
+        shortDesc: "Galvanised iron perforated sheet (chaddar jali) for screening, ventilation, and filtration.",
         categorySlug: "perforated-sheets",
         specs: [
           { label: "Material", value: "Galvanised iron (GI)" },
           { label: "Thickness", value: "0.5 mm to 3 mm" },
           { label: "Hole pattern", value: "Round, square, slot, hexagonal" },
+          { label: "Also called", value: "Chaddar jali, punched sheet" },
         ],
         images: ["/products/gi-perforated-1.png", "/products/gi-perforated-2.png", "/products/gi-perforated-3.png", "/videos/perforated-sheet.jpg", "/videos/perforated-cutting.jpg"],
         videos: ["/videos/perforated-sheet.mp4", "/videos/perforated-cutting.mp4"],
@@ -760,12 +762,13 @@ const ownCategories: Category[] = [
       {
         slug: "ms-perforated-sheet",
         name: "MS Perforated Sheet",
-        shortDesc: "Mild steel perforated sheets for screening and filtration.",
+        shortDesc: "Mild steel perforated sheet (chaddar jali) for screening and filtration.",
         categorySlug: "perforated-sheets",
         specs: [
           { label: "Material", value: "Mild steel (MS)" },
           { label: "Thickness", value: "0.5 mm to 3 mm" },
           { label: "Hole pattern", value: "Round, square, slot" },
+          { label: "Also called", value: "Chaddar jali, punched sheet" },
         ],
         images: ["/products/perforated-sheet.png", "/products/perforated-sheet-2.png", "/videos/perforated-sheet.jpg"],
         videos: ["/videos/perforated-sheet.mp4", "/videos/perforated-cutting.mp4"],
@@ -975,9 +978,9 @@ const ownCategories: Category[] = [
       {
         slug: "sr-crowbar",
         name: "Crowbar",
-        shortDesc: "Heavy-duty crowbars for demolition and site work.",
+        shortDesc: "Heavy-duty SR crowbar (sabbal) for demolition, prying and digging on site.",
         categorySlug: "construction-tools",
-        specs: [{ label: "Brand", value: "SR" }],
+        specs: [{ label: "Brand", value: "SR" }, { label: "Also called", value: "Sabbal" }],
         images: ["/products/sr-crowbar-1.png", "/products/sr-crowbar-2.png"],
         image: "/products/sr-crowbar-1.png",
         imageAlt: "SR crowbar — black shaft with orange tip, heavy-duty digging and prying bars",
@@ -992,6 +995,7 @@ const ownCategories: Category[] = [
         specs: [
           { label: "Brand", value: "SR" },
           { label: "Sizes", value: "5M, 10M, 15M (head weight)" },
+          { label: "Also called", value: "Ghan" },
         ],
         images: ["/products/sr-sledge-hammer.png"],
         image: "/products/sr-sledge-hammer.png",
@@ -1005,9 +1009,9 @@ const ownCategories: Category[] = [
       {
         slug: "sr-hoe-faurdha",
         name: "Hoe (Faurdha)",
-        shortDesc: "Hoe blades for agriculture and gardening.",
+        shortDesc: "SR hoe (faurdha, phawda) blade for farm, garden and site digging; handle fitted after purchase.",
         categorySlug: "construction-tools",
-        specs: [{ label: "Brand", value: "SR" }],
+        specs: [{ label: "Brand", value: "SR" }, { label: "Type", value: "Blade only; handle fitted after purchase" }, { label: "Also called", value: "Faurdha, phawda" }],
         images: [
           "/products/sr-hoe-faurdha-1.png",
           "/products/sr-hoe-faurdha-2.png",
@@ -1022,9 +1026,9 @@ const ownCategories: Category[] = [
       {
         slug: "sr-pickaxe-geti",
         name: "Pickaxe (Geti)",
-        shortDesc: "Pickaxe heads for breaking ground and construction.",
+        shortDesc: "SR pickaxe (geti) heads for breaking hard ground, trench work and demolition.",
         categorySlug: "construction-tools",
-        specs: [{ label: "Brand", value: "SR" }],
+        specs: [{ label: "Brand", value: "SR" }, { label: "Also called", value: "Geti" }],
         images: [
           "/products/sr-pickaxe-geti-1.png",
           "/products/sr-pickaxe-geti-2.png",
@@ -1126,13 +1130,14 @@ const ownCategories: Category[] = [
       {
         slug: "sr-hoe-faurdha-with-handle",
         name: "Hoe (Faurdha) with Handle",
-        shortDesc: "Hoe (faurdha) with handle — carbon steel blade and fitted handle. Ready to use for agriculture and gardening.",
+        shortDesc: "SR hoe (faurdha, phawda) with handle: carbon steel blade and fitted handle, ready to use on the farm, in the garden and on site.",
         categorySlug: "construction-tools",
         specs: [
           { label: "Brand", value: "SR" },
           { label: "Material", value: "Carbon steel blade" },
           { label: "Type", value: "Hoe with handle (complete tool)" },
           { label: "Finish", value: "Green, black, or as per stock" },
+          { label: "Also called", value: "Faurdha, phawda" },
         ],
         images: [
           "/products/sr-hoe-faurdha-with-handle-1.png",

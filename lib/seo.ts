@@ -273,10 +273,14 @@ export function buildProductMeta(input: ProductMetaInput): Metadata {
         `${productName} in Indore: Sizes and Rate | HM Ibrahim`,
         `${productName} in Indore | ${site.name}`,
       ];
-  const title = candidates.find((c) => c.length <= 60) ?? trimAtWord(candidates[2], 60);
+  // Hand-written title and description for a product (content/seoOverrides.ts, content/hi/seo.ts) win over the template.
+  const override = hi ? getHiSeo(`products/${slug}`) : getSeoOverride(`products/${slug}`);
+  const title = override?.title ?? candidates.find((c) => c.length <= 60) ?? trimAtWord(candidates[2], 60);
 
   const lead = shortDesc.replace(/\s+/g, " ").trim().replace(/[.।]?$/, hi ? "।" : ".");
-  const description = trimAtWord(
+  const description = override?.description
+    ? trimAtWord(override.description, hi ? 150 : 158)
+    : trimAtWord(
     hi
       ? `${lead} साइज़, उपयोग और कैसे चुनें, सियागंज मेन रोड, इंदौर से ${siteHi.name}। रेट पूछें।`
       : `${lead} Sizes, uses and how to choose, from ${site.name} on Siyaganj Main Road, Indore. Ask for the rate.`,

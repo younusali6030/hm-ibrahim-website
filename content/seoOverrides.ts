@@ -30,9 +30,9 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "GI, MS and PVC-coated welded mesh in rolls and panels, from 15 x 15 mm to 150 x 150 mm grids. Weldmesh jali at the Siyaganj counter, Indore.",
   },
   "categories/perforated-sheets": {
-    title: "Perforated Sheet Range: GI and MS Patterns | HM Ibrahim",
+    title: "Perforated Sheet (Chaddar Jali) Range | HM Ibrahim",
     description:
-      "GI and MS perforated sheets from 0.5 to 3 mm in round, square, slot and hexagonal patterns, cut to size. Siyaganj, Indore. Ask for the rate.",
+      "GI and MS perforated sheets (chaddar jali), 0.5 to 3 mm, in round, square, slot and hexagonal holes, cut to size. SS and aluminium on request. Siyaganj, Indore.",
   },
   "categories/wires": {
     title: "Wire and Wire Rope: GI, Binding, Fencing | HM Ibrahim",
@@ -40,9 +40,9 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "GI wire, binding wire (kala taar), jhatka wire, MS, GI and SS wire rope, rope clamps and concertina wire, in coils at Siyaganj, Indore.",
   },
   "categories/construction-tools": {
-    title: "Construction Tools: Crowbar, Geti, Cover Block | HM Ibrahim",
+    title: "Sabbal, Geti, Faurdha, Ghan: Site Tools | HM Ibrahim",
     description:
-      "Crowbar, sledge hammer, pickaxe (geti), hoe (faurdha), shikanja, cover blocks, welding rods, cutting discs and sponge at the Siyaganj counter, Indore.",
+      "Crowbar (sabbal), sledge hammer (ghan), pickaxe (geti), hoe (faurdha, phawda), shikanja, cover blocks, welding rods and cutting discs at Siyaganj, Indore.",
   },
   "categories/nails": {
     title: "Wire Nails and Roofing Nails, 1 to 6 Inch | HM Ibrahim",
@@ -53,6 +53,53 @@ export const seoOverrides: Record<string, SeoOverride> = {
     title: "Pigeon Net, Bird Spikes and Safety Net | HM Ibrahim",
     description:
       "Pigeon net cut to your balcony size, plastic and steel bird spikes, and construction safety net. Siyaganj, Indore. Ask for the rate.",
+  },
+
+  // ---- Product pages: hand-written for the priority products (see docs/seo-indore-audit.md).
+  "products/mosquito-net": {
+    title: "Mosquito Net (Machhar Jali) in Indore | HM Ibrahim",
+    description:
+      "Mosquito mesh in rolls: fibreglass, aluminium, GI and stainless steel, cut to your window size at Siyaganj, Indore. Tell us the width and mesh count.",
+  },
+  "products/ss-fine-mesh": {
+    title: "SS Fine Mesh and SS Mosquito Net, Indore | HM Ibrahim",
+    description:
+      "Stainless steel fine mesh in rolls for insect screens, filters and sieving. Rust and rat resistant. Siyaganj, Indore. Send mesh count and width for a rate.",
+  },
+  "products/gi-perforated-sheet": {
+    title: "GI Perforated Sheet (Chaddar Jali), Indore | HM Ibrahim",
+    description:
+      "Galvanised perforated sheet, 0.5 to 3 mm, in round, square, slot and hexagonal holes, cut to size at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/ms-perforated-sheet": {
+    title: "MS Perforated Sheet (Chaddar Jali), Indore | HM Ibrahim",
+    description:
+      "Mild steel perforated sheet, 0.5 to 3 mm, in round, square and slot holes, cut to size at Siyaganj, Indore. SS and aluminium sheet on request.",
+  },
+  "products/sr-crowbar": {
+    title: "SR Crowbar (Sabbal) in Indore | HM Ibrahim, Siyaganj",
+    description:
+      "SR brand crowbar (sabbal) for demolition, prying and hard-ground digging, in stock at the Siyaganj counter, Indore. Tell us the length for a rate.",
+  },
+  "products/sr-hoe-faurdha": {
+    title: "SR Hoe Blade (Faurdha, Phawda) in Indore | HM Ibrahim",
+    description:
+      "SR brand hoe blade (faurdha, phawda) for farm, garden and site digging, from Siyaganj, Indore. Need it ready to use? See the hoe with handle.",
+  },
+  "products/sr-hoe-faurdha-with-handle": {
+    title: "SR Hoe (Faurdha, Phawda) with Handle, Indore | HM Ibrahim",
+    description:
+      "SR carbon steel hoe (faurdha, phawda) with fitted handle, ready to use for farm, garden and site work. Green and black as per stock. Siyaganj, Indore.",
+  },
+  "products/sr-pickaxe-geti": {
+    title: "SR Pickaxe (Geti) in Indore | HM Ibrahim, Siyaganj",
+    description:
+      "SR brand pickaxe (geti) heads for hard ground, trench work and demolition, at the Siyaganj counter in Indore. Retail and wholesale. Ask for the rate.",
+  },
+  "products/sr-sledge-hammer": {
+    title: "SR Sledge Hammer (Ghan) 5M, 10M, 15M, Indore | HM Ibrahim",
+    description:
+      "SR brand sledge hammer heads in 5M, 10M and 15M for breaking and driving stakes, at the Siyaganj counter, Indore. Ask for handle options and the rate.",
   },
 
   // ---- Blog posts

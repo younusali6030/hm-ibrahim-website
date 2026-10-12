@@ -94,16 +94,16 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
   "perforated-sheets": {
     slug: "perforated-sheets",
     // Owns: "perforated sheet Indore". Category page /categories/perforated-sheets is the range page.
-    title: "Perforated Sheets in Indore: MS and GI",
+    title: "Perforated Sheet (Chaddar Jali) in Indore: MS, GI",
     description:
-      "Perforated sheets in Indore: MS and GI, 0.5 to 3 mm thick, round, square, slot and hexagonal holes. Cut to size at our Siyaganj shop. Ask for the rate.",
+      "Perforated sheet (chaddar jali) in Indore: MS and GI, 0.5 to 3 mm, round, square, slot and hexagonal holes. SS and aluminium on request. Siyaganj shop.",
     h1: "Perforated Sheets in Indore",
     intro:
-      "We sell perforated sheet from our shop in Siyaganj, Indore, in mild steel and galvanised iron. You pick the thickness, the hole shape and the open area. We cut it to the size you need.",
+      "We sell perforated sheet, called chaddar jali in the market, from our shop in Siyaganj, Indore, in mild steel and galvanised iron. Stainless steel and aluminium sheet are available on request. You pick the thickness, the hole shape and the open area. We cut it to the size you need.",
     intro2:
-      "Hole size and pitch decide how much air or material passes through. If you are not sure, tell us what the sheet is for (a screen, a guard, ventilation, a filter) and we will suggest a pattern.",
+      "Chaddar jali is punched sheet, not expanded metal. Hole size and pitch decide how much air or material passes through. If you are not sure, tell us what the sheet is for (a screen, a guard, ventilation, a filter) and we will suggest a pattern.",
     specs: [
-      "Material: mild steel (MS) and galvanised iron (GI)",
+      "Material: mild steel (MS) and galvanised iron (GI); SS and aluminium on request",
       "Thickness: 0.5 mm to 3 mm",
       "Holes: round, square, slot and hexagonal (GI)",
       "Custom sizes on request",
@@ -135,21 +135,21 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     slug: "construction-hardware",
     title: "Construction Hardware in Indore",
     description:
-      "Construction hardware in Indore: crowbar, pickaxe (geti), hoe (faurdha), sledge hammer, shikanja, welding rods, nails, cutting discs. Siyaganj shop.",
+      "Construction hardware in Indore: crowbar (sabbal), pickaxe (geti), hoe (faurdha, phawda), sledge hammer, shikanja, welding rods, nails, cutting discs. Siyaganj.",
     h1: "Construction Hardware in Indore",
     intro:
-      "Site tools and consumables from our shop in Siyaganj, Indore: crowbar, pickaxe (geti), hoe (faurdha), sledge hammer, shikanja for shuttering, cover blocks, welding rods, cutting discs and nails.",
+      "Site tools and consumables from our shop in Siyaganj, Indore: crowbar (sabbal), pickaxe (geti), hoe (faurdha or phawda), sledge hammer (ghan), shikanja for shuttering, cover blocks, welding rods, cutting discs and nails.",
     intro2:
       "Most of the tools are SR brand. Buy one piece or a carton for the site. Tell us what you are building or repairing and we will put the list together.",
     specs: [
-      "SR crowbar, pickaxe (geti), hoe (faurdha) and sledge hammer (5M, 10M, 15M)",
+      "SR crowbar (sabbal), pickaxe (geti), hoe (faurdha, phawda; blade or with handle) and sledge hammer (5M, 10M, 15M)",
       "Shikanja clamps for slab and beam shuttering",
       "Concrete cover blocks in 20 to 50 mm cover",
       "Welding rods, cutting discs and grinding wheels",
       "Wire nails and roofing nails",
     ],
     useCases: ["Site work and digging", "Demolition", "Slab and beam shuttering", "Welding and fabrication", "General construction"],
-    productSlugs: ["sr-crowbar", "sr-pickaxe-geti", "sr-hoe-faurdha", "sr-sledge-hammer", "santing-shikanja", "concrete-cover-block", "welding-rods", "cutting-discs-grinding-wheels", "fasteners-nails"],
+    productSlugs: ["sr-crowbar", "sr-pickaxe-geti", "sr-hoe-faurdha", "sr-hoe-faurdha-with-handle", "sr-sledge-hammer", "santing-shikanja", "concrete-cover-block", "welding-rods", "cutting-discs-grinding-wheels", "fasteners-nails"],
   },
 };
 
