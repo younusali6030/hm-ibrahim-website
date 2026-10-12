@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "@/components/LocaleLink";
 import Image from "next/image";
+import { blogBlur } from "@/lib/media-blog";
 import { MessageCircle, Phone, ArrowRight } from "lucide-react";
 import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/content/blog/posts";
 import { extractToc, extractProductSlugs } from "@/content/blog/toc";
@@ -244,11 +245,43 @@ export default async function BlogPostPage({ params }: Props) {
               </figure>
             )}
 
-            <div lang={bodyLang === "hi" ? "hi" : "en"}>
-              <MarkdownContent content={post.content} className="blog-prose" lang={bodyLang} />
-            </div>
+            {(() => {
+              const chunks = post.content.split(/\n(?=## )/);
+              const figs = [
+                { src: post.image2, alt: post.image2Alt, at: 1 },
+                { src: post.image3, alt: post.image3Alt, at: 3 },
+              ].filter((f) => f.src) as { src: string; alt?: string; at: number }[];
+              const inline = chunks.length >= 4 && figs.length > 0;
+              return (
+                <div lang={bodyLang === "hi" ? "hi" : "en"}>
+                  {(inline ? chunks : [post.content]).map((c, ci) => (
+                    <div key={ci}>
+                      <MarkdownContent content={c} className="blog-prose" lang={bodyLang} />
+                      {inline &&
+                        figs
+                          .filter((f) => f.at === ci)
+                          .map((f) => (
+                            <figure key={f.src} className="my-10 md:-mx-8">
+                              <div className="relative aspect-[21/9] overflow-hidden rounded-[14px] bg-secondary ring-1 ring-white/10">
+                                <Image
+                                  src={f.src}
+                                  alt={f.alt || post.title}
+                                  fill
+                                  sizes="(max-width:1024px) 100vw, 900px"
+                                  className="object-cover"
+                                  {...(blogBlur(f.src) ? { placeholder: "blur" as const, blurDataURL: blogBlur(f.src) } : {})}
+                                />
+                              </div>
+                              {f.alt && <figcaption className="mt-2 font-mono-brand text-[11px] uppercase tracking-[0.12em] text-muted-foreground">{f.alt}</figcaption>}
+                            </figure>
+                          ))}
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
 
-            {(post.image2 || post.image3) && (
+            {(post.image2 || post.image3) && post.content.split(/\n(?=## )/).length < 4 && (
               <div className="mt-12 grid gap-3 sm:grid-cols-2">
                 {[
                   { src: post.image2, alt: post.image2Alt },
@@ -258,7 +291,7 @@ export default async function BlogPostPage({ params }: Props) {
                   .map((i) => (
                     <figure key={i.src} className="m-0">
                       <div className="relative aspect-[16/10] overflow-hidden rounded-[14px] bg-secondary">
-                        <Image src={i.src as string} alt={i.alt || post.title} fill sizes="(max-width:640px) 100vw, 400px" className="object-cover" />
+                        <Image src={i.src as string} alt={i.alt || post.title} fill sizes="(max-width:640px) 100vw, 400px" className="object-cover" {...(blogBlur(i.src as string) ? { placeholder: "blur" as const, blurDataURL: blogBlur(i.src as string) } : {})} />
                       </div>
                       {i.alt && <figcaption className="mt-2 text-sm text-muted-foreground">{i.alt}</figcaption>}
                     </figure>

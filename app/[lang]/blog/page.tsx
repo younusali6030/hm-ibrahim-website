@@ -78,7 +78,7 @@ export default async function BlogIndexPage({ params }: { params: { lang: string
         </div>
       </PageHero>
 
-      <section className="py-12 md:py-16">
+      <section className="py-8 md:py-16">
         <div className="page-container">
           {lead && (
             <Link

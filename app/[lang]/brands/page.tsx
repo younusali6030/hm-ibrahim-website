@@ -223,7 +223,7 @@ export default function BrandsPage({ params }: { params: { lang: string } }) {
               <p className="mt-2 text-lg text-foreground">{tata.pageContent?.subtitle}</p>
               <p className="st-body mt-4">{tata.pageContent?.body}</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Link href="/products?tata=wiron" className={btnMain}>{t("Browse Tata Wiron products", "टाटा वायरॉन उत्पाद देखें")}</Link>
+                <Link href="/brands/tata" className={btnMain}>{t("Tata Wiron range and details", "टाटा वायरॉन रेंज और जानकारी")}</Link>
                 <Link href="/contact?brand=tata&category=wires" className={btnGhost}>{t("Check availability", "उपलब्धता पूछें")}</Link>
               </div>
             </div>

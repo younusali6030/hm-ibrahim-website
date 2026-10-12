@@ -4,6 +4,7 @@ import { googleReviews } from "@/content/reviews";
 import { getReviewsForProduct, getReviewsForCategory } from "@/content/productReviews";
 import { GaugeRule } from "@/components/motif/Motif";
 import { tt, whenText, type Lang } from "@/lib/locale";
+import { ReviewQuote } from "@/components/trust/ReviewQuote";
 
 type Props = { max?: number; title?: string; className?: string; productSlug?: string; categorySlug?: string; lang?: Lang };
 
@@ -19,18 +20,18 @@ export function ReviewsList({ max = 3, title, className = "", productSlug, categ
   if (items.length === 0) return null;
   return (
     <section className={className} aria-labelledby="reviews-list-heading">
-      <GaugeRule label={`${t("Google", "गूगल")} ${site.googleReview.rating} / ${site.googleReview.reviewCount}`} className="mt-6" />
-      <h2 id="reviews-list-heading" className="mt-3 text-foreground">{heading}</h2>
+      <GaugeRule label={`${t("Google", "गूगल")} ${site.googleReview.rating} / ${site.googleReview.reviewCount}`} className="mt-2" />
+      <h2 id="reviews-list-heading" className="mt-2 text-foreground">{heading}</h2>
       {lang === "hi" && (
         <p className="mt-2 text-sm text-muted-foreground">
           ये ग्राहकों की असली समीक्षाएँ हैं, ठीक वैसी ही जैसी उन्होंने गूगल पर लिखीं (मूल भाषा में)।
         </p>
       )}
-      <ul className="mt-5 border-t border-border">
+      <ul className="mt-4 border-t border-border">
         {items.map((r) => (
           <li
             key={r.author + r.text.slice(0, 12)}
-            className="grid gap-x-8 gap-y-2 border-b border-border py-5 md:grid-cols-[11rem_minmax(0,1fr)]"
+            className="grid gap-x-8 gap-y-1 border-b border-border py-4 md:grid-cols-[11rem_minmax(0,1fr)]"
           >
             <div>
               <p className="font-semibold text-foreground">{r.author}</p>
@@ -41,7 +42,7 @@ export function ReviewsList({ max = 3, title, className = "", productSlug, categ
                 {r.when && <span> {whenText(r.when, lang)}</span>}
               </p>
             </div>
-            <blockquote lang="en" className="whitespace-pre-line leading-relaxed text-foreground/90">{r.text}</blockquote>
+            <ReviewQuote text={r.text} more={t("Read more", "और पढ़ें")} less={t("Show less", "कम दिखाएँ")} />
           </li>
         ))}
       </ul>
@@ -49,7 +50,7 @@ export function ReviewsList({ max = 3, title, className = "", productSlug, categ
         href={site.googleReview.profileUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 inline-flex min-h-[44px] items-center text-sm font-semibold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        className="mt-2 inline-flex min-h-[44px] items-center text-sm font-semibold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         {t("Read all reviews on Google", "गूगल पर सभी रिव्यू पढ़ें")}
       </Link>

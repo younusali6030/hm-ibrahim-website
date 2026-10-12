@@ -12,6 +12,9 @@ import { GoogleReviews } from "@/components/home/GoogleReviews";
 import { BrandsBand } from "@/components/home/BrandsBand";
 import { faqs } from "@/content/faqs";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { videoObject } from "@/lib/schema";
+import { homeReels } from "@/content/reels";
+import { pageUrl } from "@/lib/seo";
 import { buildPageMeta } from "@/lib/seo";
 import { LocationPreview } from "@/components/home/LocationPreview";
 import { localize } from "@/lib/localize";
@@ -50,6 +53,12 @@ export default async function HomePage({ params }: { params: { lang: string } })
   return (
     <>
       {homeFaqSchema && <SeoJsonLd data={homeFaqSchema} lang={lang} />}
+      <SeoJsonLd
+        data={homeReels.map((v) =>
+          videoObject({ name: v.title, description: v.description, thumbnail: `${v.src}.jpg`, contentUrl: `${v.src}.mp4`, uploadDate: v.uploadDate, pageUrl: pageUrl("", lang) })
+        )}
+        lang={lang}
+      />
       <HomeHero />
       <div className="home-dark">
         <RevealOnScroll />

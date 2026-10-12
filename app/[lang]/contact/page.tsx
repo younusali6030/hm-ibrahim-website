@@ -73,11 +73,11 @@ export default function ContactPage({ params }: { params: { lang: string } }) {
         compact
       />
 
-      <div className="page-container section-padding pb-14 md:pb-20" id="quote" data-track="contact_page">
+      <div className="page-container section-padding pb-9 md:pb-20" id="quote" data-track="contact_page">
         <QuoteFormWrapper tx={collectStrings([categories.map((c) => ({ n: c.name, p: c.products.map((x) => x.name) })), stockedBrands.map((b) => b.name), inHouseBrands.map((b) => b.name)], lang)} />
       </div>
 
-      <section className="border-t border-border bg-card py-14 md:py-20">
+      <section className="border-t border-border bg-card py-9 md:py-20">
         <div className="page-container grid gap-12 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-14">
           <VisitUs variant="full" source="contact_visit" embed />
           <div>

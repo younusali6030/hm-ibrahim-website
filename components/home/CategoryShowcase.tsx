@@ -25,7 +25,7 @@ export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
   const cats = localize(categories, lang);
   const hi = lang === "hi";
   return (
-    <section className="py-14 md:py-20" aria-labelledby="categories-heading">
+    <section className="py-9 md:py-20" aria-labelledby="categories-heading">
       <div className="page-container">
         <p data-reveal className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
           <T en="The counter" hi="काउंटर" />
@@ -33,11 +33,11 @@ export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
         <h2 id="categories-heading" data-reveal className="mt-2 max-w-3xl text-foreground">
           <T en="Every wire, mesh, sheet and bar a build calls for" hi="तार, जाली, शीट और सरिया: जो भी निर्माण को चाहिए" />
         </h2>
-        <p className="mt-4 max-w-2xl text-muted-foreground">
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:mt-4 md:text-base">
           <T en="In stock at our Siyaganj counter, for retail and wholesale. Pick a range, then ask for a rate." hi="सियागंज काउंटर पर स्टॉक में, रिटेल और थोक दोनों के लिए। रेंज चुनें, फिर रेट पूछें।" />
         </p>
 
-        <div className="mt-10">
+        <div className="mt-6 md:mt-10">
           <GaugeRule label={hi ? `${cats.length} श्रेणियाँ` : `${cats.length} ranges`} />
           <ol className="mt-2">
             {cats.map((cat, i) => {
@@ -46,11 +46,11 @@ export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
                 <li key={cat.slug} data-reveal className="border-b border-border">
                   <Link
                     href={`/categories/${cat.slug}`}
-                    className="group grid min-h-[76px] grid-cols-[2rem_1fr_auto] items-center gap-x-3 gap-y-1 py-4 sm:grid-cols-[3rem_1fr_auto_auto] sm:gap-x-6 sm:py-5"
+                    className="group grid min-h-[64px] grid-cols-[2rem_1fr_auto] items-center gap-x-3 gap-y-1 py-3 sm:grid-cols-[3rem_1fr_auto_auto] sm:gap-x-6 sm:py-5"
                   >
                     <span className="font-mono-brand text-xs text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
                     <span className="min-w-0">
-                      <span className="block font-display text-[1.75rem] font-extrabold uppercase leading-none text-foreground transition-colors group-hover:text-primary sm:text-4xl lg:text-5xl">
+                      <span className="block font-display text-2xl font-extrabold uppercase leading-none text-foreground transition-colors group-hover:text-primary sm:text-4xl lg:text-5xl">
                         {cat.name}
                       </span>
                       <span className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -75,7 +75,7 @@ export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
               );
             })}
           </ol>
-          <nav aria-label={hi ? "अक्सर माँगे जाने वाले" : "Often asked for"} className="mt-8">
+          <nav aria-label={hi ? "अक्सर माँगे जाने वाले" : "Often asked for"} className="mt-6 md:mt-8">
             <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
               <T en="Often asked for at the counter" hi="काउंटर पर अक्सर माँगे जाने वाले" />
             </p>
@@ -84,7 +84,7 @@ export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="inline-flex min-h-[44px] items-center text-sm text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="inline-flex min-h-[40px] items-center text-sm text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     {hi ? l.hi : l.en}
                   </Link>

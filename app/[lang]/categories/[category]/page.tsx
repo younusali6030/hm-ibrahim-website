@@ -12,6 +12,7 @@ import { pageUrl } from "@/lib/seo";
 
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
 import { ReviewsList } from "@/components/trust/ReviewsList";
+import { ClosingBand } from "@/components/site/ClosingBand";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import type { FAQ } from "@/content/faqs";
@@ -148,7 +149,9 @@ export default async function CategoryPage({ params }: Props) {
   ];
 
   const categoryFaqs = buildCategoryFaqs(category, lang);
-  const faqSchema = getCategoryFaqSchema(categoryFaqs.slice(0, 8));
+  // What the page shows is what the schema lists.
+  const shownFaqs = categoryFaqs.slice(0, 6);
+  const faqSchema = getCategoryFaqSchema(shownFaqs);
   const itemListSchema = getCategoryItemListSchema(category, lang);
 
   const heroImg = category.products[0]?.images?.[0] ?? category.image;
@@ -184,7 +187,7 @@ export default async function CategoryPage({ params }: Props) {
         </a>
       </PageHero>
 
-      <section className="pb-14 pt-10 md:pb-20 md:pt-14" aria-labelledby="products-heading">
+      <section className="pb-10 pt-6 md:pb-14 md:pt-10" aria-labelledby="products-heading">
         <div className="page-container lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12">
           {/* Jump list: desktop only. On a phone the ledger itself is short enough to scroll. */}
           <nav aria-label={hi ? `${category.name} सूची` : `${category.name} index`} className="hidden lg:block">
@@ -209,11 +212,11 @@ export default async function CategoryPage({ params }: Props) {
           </nav>
 
           <div className="min-w-0">
-            <GaugeRule tone="primary" label={`${category.products.length}`} className="mt-6" />
-            <h2 id="products-heading" className="mt-3 text-foreground">
+            <GaugeRule tone="primary" label={`${category.products.length}`} />
+            <h2 id="products-heading" className="mt-2 text-foreground">
               {hi ? `${category.name} में ${category.products.length} आइटम` : `${category.products.length} products in ${category.name}`}
             </h2>
-            <ul className="mt-4 border-t border-border">
+            <ul className="mt-3 border-t border-border">
               {category.products.map((product, i) => (
                 <LedgerRow
                   key={product.slug}
@@ -224,6 +227,7 @@ export default async function CategoryPage({ params }: Props) {
                     name: product.name,
                     shortDesc: product.shortDesc,
                     image: product.images?.[0] ?? product.image ?? category.image ?? "",
+                    image2: product.images?.[1],
                     imageAlt: product.imageAlt || product.name,
                     categorySlug: category.slug,
                     // Spec labels are matched in English, so build the tag from the English record, then translate it.
@@ -237,33 +241,31 @@ export default async function CategoryPage({ params }: Props) {
         </div>
       </section>
 
-      <div className="page-container pb-14 md:pb-20">
-        <ReviewsList lang={lang} max={3} categorySlug={category.slug} title={hi ? `हमारे ${category.name} के बारे में खरीदार क्या कहते हैं` : `What buyers say about our ${category.name.toLowerCase()}`} />
-      </div>
-
-      <section className="border-t border-border bg-card py-14 md:py-20" aria-labelledby="faq-heading">
-        <div className="page-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-          <div>
-            <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground"><T en="Questions" hi="सवाल" /></p>
+      <section className="border-t border-border bg-card py-10 md:py-14" aria-labelledby="faq-heading">
+        <div className="page-container grid gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="min-w-0">
+            <GaugeRule tone="primary" label={hi ? "सवाल" : "Questions"} />
             <h2 id="faq-heading" className="mt-2 text-foreground"><T en="Before you order" hi="ऑर्डर से पहले" /></h2>
+            <Accordion type="single" collapsible className="mt-3">
+              {shownFaqs.map((faq) => (
+                <AccordionItem key={faq.id} value={faq.id}>
+                  <AccordionTrigger className="text-left text-base">{faq.question}</AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
-          <Accordion type="single" collapsible>
-            {categoryFaqs.map((faq) => (
-              <AccordionItem key={faq.id} value={faq.id}>
-                <AccordionTrigger className="text-left text-base">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="min-w-0">
+            <ReviewsList lang={lang} max={2} categorySlug={category.slug} title={hi ? "खरीदार क्या कहते हैं" : "What buyers say"} />
+          </div>
         </div>
       </section>
 
-      <section className="bg-nav pb-28 pt-14 text-white md:py-16">
-        <div className="page-container flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <h2 className="text-white">{hi ? `${category.name} चाहिए?` : `Need ${category.name.toLowerCase()}?`}</h2>
-          <Link href={`/contact?category=${category.slug}`} className={btnMain}><T en="Ask for rate" hi="रेट पूछें" /></Link>
-        </div>
-      </section>
+      <ClosingBand
+        heading={hi ? `${category.name} चाहिए?` : `Need ${category.name.toLowerCase()}?`}
+        quoteHref={`/contact?category=${category.slug}`}
+        quoteLabel={<T en="Ask for rate" hi="रेट पूछें" />}
+      />
     </>
   );
 }

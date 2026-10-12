@@ -1,5 +1,5 @@
 /**
- * Visual and range content for the CM and Border brand pages.
+ * Visual and range content for the CM, Border and Tata Wiron brand pages.
  * Story text and taglines live in content/brands.ts; specs come from the product catalog (brandVariants).
  */
 import type { BrandId } from "./brands";
@@ -43,6 +43,21 @@ export const brandPageVisuals: Partial<Record<BrandId, BrandPageVisuals>> = {
       { big: "1 to 4 in", small: "Chain link mesh opening" },
       { big: "3 to 10 ft", small: "Roll heights" },
       { big: "Up to 25 kg", small: "Barbed wire coils" },
+    ],
+  },
+  tata: {
+    accent: "#1b4f9c",
+    logoClear: "/brands/tata-wiron.png",
+    hero: { src: "/products/tata-chainlink-1.png", alt: "Tata Wiron chain link fencing roll at the HM Ibrahim & Co shop" },
+    gallery: [
+      { src: "/products/tata-barbed-wire.png", alt: "Tata Wiron barbed wire coil" },
+      { src: "/products/tata-gi-wire-1.png", alt: "Tata Wiron GI wire coils" },
+      { src: "/products/tata-gi-wire-2.png", alt: "Tata Wiron GI wire in stock" },
+    ],
+    facts: [
+      { big: "8 to 18 SWG", small: "GI wire gauge" },
+      { big: "1 to 4 in", small: "Chain link mesh opening" },
+      { big: "1.5 to 4 mm", small: "Chain link wire size" },
     ],
   },
 };

@@ -4,24 +4,30 @@ import Link from "@/components/LocaleLink";
 import { useEffect, useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { useLang } from "@/lib/i18n";
+import { homeReels } from "@/content/reels";
 
 type Reel = { id: string; title: string; note: string; href?: string; cta?: string };
 
-/** Full-quality reels, re-encoded from the original footage. Files live in /public/reels. */
-const REELS: Reel[] = [
-  { id: "shop-par-bharosa", title: "Shop par bharosa", note: "Walk in. See the stock. Decide." },
-  { id: "check-the-strength", title: "Check the strength", note: "Wire and mesh, tested in front of you." },
-  { id: "machhar-full-stop", title: "Machhar ka full stop", note: "Mosquito net, cut at the counter.", href: "/products/mosquito-net", cta: "Mosquito net" },
-  { id: "perforated-sheet-customer", title: "Perforated sheet", note: "A customer on why he buys it here.", href: "/categories/perforated-sheets", cta: "Perforated sheets" },
-  { id: "nail-reel", title: "Nails, by weight", note: "Every length in the bins.", href: "/categories/nails", cta: "Nails" },
-  { id: "kala-taar-wholesale", title: "Kala taar, wholesale", note: "Binding wire by the coil.", href: "/products/binding-wire", cta: "Binding wire" },
-  { id: "frp-bars", title: "FRP bars", note: "Light, rust-proof, cut to length.", href: "/products/frp-bars", cta: "FRP bars" },
-  { id: "weldmesh-jali", title: "Weldmesh jali", note: "Rolls and panels, any gauge.", href: "/categories/welded-mesh", cta: "Welded mesh" },
-  { id: "kabootar-jali", title: "Kabootar jali", note: "Pigeon net for balconies and shafts.", href: "/products/pigeon-nets", cta: "Pigeon nets" },
-  { id: "pvc-hexa-mesh", title: "PVC hexa mesh", note: "Garden and poultry fencing.", href: "/products/plastic-hexagonal-poultry-mesh", cta: "Hexa mesh" },
-  { id: "tata-wire-rate", title: "Tata wire, firm rate", note: "Tata Wiron, straight from the shelf.", href: "/products/gi-wire", cta: "GI wire" },
-  { id: "rat-jaali-customer", title: "A customer, on camera", note: "Rat jaali, from our customer." },
-];
+/** Order and files come from content/reels.ts (also feeds the video sitemap and VideoObject schema). Files live in /public/reels. */
+const REEL_UI: Record<string, Omit<Reel, "id">> = {
+  "shop-par-bharosa": { title: "Shop par bharosa", note: "Walk in. See the stock. Decide." },
+  "check-the-strength": { title: "Check the strength", note: "Wire and mesh, tested in front of you." },
+  "machhar-full-stop": { title: "Machhar ka full stop", note: "Mosquito net, cut at the counter.", href: "/products/mosquito-net", cta: "Mosquito net" },
+  "perforated-sheet-customer": { title: "Perforated sheet", note: "A customer on why he buys it here.", href: "/categories/perforated-sheets", cta: "Perforated sheets" },
+  "nail-reel": { title: "Nails, by weight", note: "Every length in the bins.", href: "/categories/nails", cta: "Nails" },
+  "kala-taar-wholesale": { title: "Kala taar, wholesale", note: "Binding wire by the coil.", href: "/products/binding-wire", cta: "Binding wire" },
+  "frp-bars": { title: "FRP bars", note: "Light, rust-proof, cut to length.", href: "/products/frp-bars", cta: "FRP bars" },
+  "weldmesh-jali": { title: "Weldmesh jali", note: "Rolls and panels, any gauge.", href: "/categories/welded-mesh", cta: "Welded mesh" },
+  "kabootar-jali": { title: "Kabootar jali", note: "Pigeon net for balconies and shafts.", href: "/products/pigeon-nets", cta: "Pigeon nets" },
+  "pvc-hexa-mesh": { title: "PVC hexa mesh", note: "Garden and poultry fencing.", href: "/products/plastic-hexagonal-poultry-mesh", cta: "Hexa mesh" },
+  "tata-wire-rate": { title: "Tata wire, firm rate", note: "Tata Wiron, straight from the shelf.", href: "/products/gi-wire", cta: "GI wire" },
+  "rat-jaali-customer": { title: "A customer, on camera", note: "Rat jaali, from our customer." },
+};
+
+const REELS: Reel[] = homeReels.map((v) => {
+  const id = v.src.replace("/reels/", "");
+  return { id, ...(REEL_UI[id] ?? { title: v.title, note: v.description }) };
+});
 
 const REELS_HI: Record<string, Pick<Reel, "title" | "note" | "cta">> = {
   "shop-par-bharosa": { title: "दुकान पर भरोसा", note: "आइए। माल देखिए। फिर तय कीजिए।" },
@@ -124,7 +130,7 @@ export function ReelsSection() {
   const { lang } = useLang();
   const hi = lang === "hi";
   return (
-    <section className="border-y border-border py-14 md:py-20" aria-labelledby="reels-heading">
+    <section className="border-y border-border py-9 md:py-20" aria-labelledby="reels-heading">
       <div className="page-container">
         <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
           {hi ? "दुकान के फ़र्श से" : "From the shop floor"}

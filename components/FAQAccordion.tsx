@@ -42,7 +42,7 @@ export function FAQAccordion({
   }
 
   return (
-    <section className="py-14 md:py-20" aria-labelledby="faq-heading">
+    <section className="py-9 md:py-20" aria-labelledby="faq-heading">
       <div className="page-container section-padding">
         <h2 id="faq-heading" className="mx-auto max-w-3xl text-foreground">
           {title}

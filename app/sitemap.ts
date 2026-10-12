@@ -22,6 +22,7 @@ const staticPages: { path: string; date: string }[] = [
   { path: "brands", date: CONTENT_DATES.brands },
   { path: "brands/cm", date: CONTENT_DATES.brandPages },
   { path: "brands/border", date: CONTENT_DATES.brandPages },
+  { path: "brands/tata", date: CONTENT_DATES.brandPages },
   { path: "catalog", date: CONTENT_DATES.catalog },
   { path: "indore", date: CONTENT_DATES.indore },
   { path: "privacy", date: CONTENT_DATES.contact },

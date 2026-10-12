@@ -168,7 +168,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
   }
 
   return (
-    <div data-track={source} className={cn("grid gap-8 lg:gap-12", embed && "lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]", className)}>
+    <div data-track={source} className={cn("grid gap-6 lg:gap-12", embed && "lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]", className)}>
       <div>
         <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
           <T en="Visit the shop" hi="दुकान पर आइए" />
@@ -176,7 +176,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
         <h2 className="mt-2 text-foreground">
           <T en="Find us on Siyaganj Main Road" hi="सियागंज मेन रोड पर आइए" />
         </h2>
-        <dl className="mt-7 space-y-5 text-base">
+        <dl className="mt-4 space-y-3 text-base md:mt-7 md:space-y-5">
           <div>
             <dt className="text-sm font-semibold text-foreground">
               <T en="Address" hi="पता" />
@@ -203,14 +203,14 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
             </dd>
           </div>
         </dl>
-        <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row md:mt-7">
           <a
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             data-track={`${source}_map`}
             aria-label={t("Open in Google Maps (opens in a new tab)", "गूगल मैप्स पर खोलें (नए टैब में)")}
-            className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-sm bg-primary px-6 font-bold text-primary-foreground transition hover:brightness-110"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm bg-primary px-6 font-bold text-primary-foreground transition hover:brightness-110"
           >
             <MapPin className="h-5 w-5" aria-hidden />
             <T en="Open in Google Maps" hi="गूगल मैप्स पर खोलें" />
@@ -218,7 +218,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
           <a
             href={telHref}
             data-track={`${source}_call`}
-            className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-sm border border-input bg-card px-6 font-semibold text-foreground hover:border-foreground/50"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm border border-input bg-card px-6 font-semibold text-foreground hover:border-foreground/50"
           >
             <Phone className="h-5 w-5" aria-hidden />
             <T en="Call before you come" hi="आने से पहले कॉल करें" />

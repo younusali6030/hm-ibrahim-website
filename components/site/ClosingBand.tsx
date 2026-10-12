@@ -37,7 +37,7 @@ export function ClosingBand({
   const waText = waMessage ?? t("Hi, I'd like a rate. Product, size and quantity: ", "नमस्ते, मुझे रेट चाहिए। उत्पाद, साइज़ और मात्रा: ");
   return (
     <section className="border-t border-white/10 bg-nav text-white" aria-labelledby={headingId}>
-      <div className="page-container flex flex-col gap-5 py-8 md:flex-row md:items-center md:justify-between md:gap-10 md:py-10">
+      <div className="page-container flex flex-col gap-4 py-6 md:flex-row md:items-center md:justify-between md:gap-10 md:py-9">
         <div className="min-w-0 max-w-2xl">
           <h2
             id={headingId}
@@ -46,7 +46,7 @@ export function ClosingBand({
           >
             {heading}
           </h2>
-          <p className="mt-2 text-[15px] leading-relaxed text-white/70">{subText}</p>
+          <p className="mt-1.5 text-sm leading-snug text-white/70 md:text-[15px] md:leading-relaxed">{subText}</p>
         </div>
         <div className="grid shrink-0 grid-cols-2 gap-3 sm:flex">
           <Link href={quoteHref} className={btnMain + " col-span-2 sm:col-auto"}>

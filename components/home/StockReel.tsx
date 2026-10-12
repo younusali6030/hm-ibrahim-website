@@ -161,10 +161,10 @@ function Chapter({ c: en, i }: { c: ChapterData; i: number }) {
     <article
       ref={box}
       data-reveal
-      className="grid items-center gap-6 py-8 md:grid-cols-2 md:gap-12 md:py-14"
+      className="grid w-[82vw] max-w-[360px] shrink-0 snap-start content-start gap-4 md:w-auto md:max-w-none md:grid-cols-2 md:items-center md:gap-12 md:py-14"
     >
       <div className={"relative " + (flip ? "md:order-2" : "")}>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] md:aspect-[5/4] bg-[#0b121a] ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] md:aspect-[5/4] md:rounded-[28px] bg-[#0b121a] ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]">
           <video
             ref={video}
             className="h-full w-full object-cover"
@@ -184,18 +184,18 @@ function Chapter({ c: en, i }: { c: ChapterData; i: number }) {
 
       <div className={flip ? "md:order-1" : ""}>
         <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-primary">{c.kicker}</p>
-        <h3 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[0.98] text-foreground sm:text-5xl lg:text-6xl">
+        <h3 className="mt-2 font-display text-2xl font-extrabold uppercase leading-[1] text-foreground md:mt-3 md:text-5xl lg:text-6xl">
           {c.title}
         </h3>
-        <p className="mt-4 max-w-md text-base text-muted-foreground sm:text-lg">{c.body}</p>
-        <ul className="mt-5 flex flex-wrap gap-2">
+        <p className="mt-2 max-w-md text-sm leading-snug text-muted-foreground md:mt-4 md:text-lg">{c.body}</p>
+        <ul className="mt-3 hidden flex-wrap gap-2 md:mt-5 md:flex">
           {c.facts.map((f) => (
             <li key={f} className="glass-pill px-3.5 py-1.5 text-sm font-semibold">
               {f}
             </li>
           ))}
         </ul>
-        <Link href={c.href} className="glass-btn mt-6">
+        <Link href={c.href} className="glass-btn mt-3 md:mt-6">
           {c.cta} <span aria-hidden="true">→</span>
         </Link>
       </div>
@@ -207,14 +207,14 @@ export function StockReel() {
   const { lang } = useLang();
   const hi = lang === "hi";
   return (
-    <section className="border-t border-border py-14 md:py-20" aria-labelledby="stock-heading">
+    <section className="border-t border-border py-9 md:py-20" aria-labelledby="stock-heading">
       <div className="page-container">
         <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">{hi ? "गोदाम से" : "From the godown"}</p>
         <h2 id="stock-heading" data-reveal className="stock-intro-title mt-3 max-w-4xl text-foreground">
           {hi ? "निर्माण को जो कुछ चाहिए" : "Everything a build needs"}
         </h2>
-        <p className="mt-4 max-w-xl text-muted-foreground">{hi ? "सियागंज में हमारे अपने काउंटर और गोदाम पर फ़िल्माया गया। असली स्टॉक, आपके साइज़ में कटा हुआ।" : "Filmed at our own counter and godown in Siyaganj. Real stock, cut to your size."}</p>
-        <div className="mt-6 divide-y divide-border">
+        <p className="mt-3 max-w-xl text-sm text-muted-foreground md:mt-4 md:text-base">{hi ? "सियागंज में हमारे अपने काउंटर और गोदाम पर फ़िल्माया गया। असली स्टॉक, आपके साइज़ में कटा हुआ।" : "Filmed at our own counter and godown in Siyaganj. Real stock, cut to your size."}</p>
+        <div className="-mx-4 mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 [scrollbar-width:none] md:mx-0 md:mt-6 md:block md:divide-y md:divide-border md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
           {CHAPTERS.map((c, i) => (
             <Chapter key={c.id} c={c} i={i} />
           ))}

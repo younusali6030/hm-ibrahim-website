@@ -12,6 +12,7 @@ import { ReviewsList } from "@/components/trust/ReviewsList";
 import { SectionHead } from "@/components/story/SectionHead";
 import { ContactStrip } from "@/components/story/ContactStrip";
 import { T } from "@/lib/i18n";
+import { PhotoPlate } from "@/components/ui/PhotoPlate";
 import "@/components/story/story.css";
 
 function servicesPageSchema(lang: Lang) {
@@ -35,6 +36,15 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
     path: "services",
   });
 }
+
+const SERVICE_PHOTOS: Record<string, { src: string; position?: string; en: string; hi: string }> = {
+  retail: { src: "/about/storefront-hero.jpg", en: "The HM Ibrahim & Co shopfront on Siyaganj Main Road, Indore", hi: "सियागंज मेन रोड, इंदौर पर एच एम इब्राहिम एंड कंपनी की दुकान" },
+  wholesale: { src: "/about/warehouse-stock-1.png", en: "Shrink-wrapped CM barbed wire and chain link coils stacked for wholesale", hi: "थोक के लिए रखे श्रिंक-रैप्ड सीएम कंटीला तार और चेन लिंक के कॉइल" },
+  contractor: { src: "/stock/weldmesh.jpg", position: "50% 70%", en: "Customers checking a welded mesh roll at the counter", hi: "काउंटर पर वेल्डमेश का रोल जाँचते ग्राहक" },
+  warehouse: { src: "/about/warehouse-stock-2.png", en: "Warehouse stock of barbed wire and chain link coils", hi: "गोदाम में कंटीला तार और चेन लिंक का स्टॉक" },
+  delivery: { src: "/reels/shop-par-bharosa.jpg", en: "Inside the Siyaganj shop, looking out to the market street", hi: "सियागंज की दुकान के अंदर से बाज़ार की गली का नज़ारा" },
+  fabrication: { src: "/hero/poster-wide.jpg", en: "Staff handling wire, mesh and tools in the shop", hi: "दुकान में तार, जाली और औज़ार सँभालता स्टाफ़" },
+};
 
 export default function ServicesPage({ params }: { params: { lang: string } }) {
   const lang = params.lang as Lang;
@@ -60,19 +70,27 @@ export default function ServicesPage({ params }: { params: { lang: string } }) {
       <section className="st-sec" aria-labelledby="services-heading">
         <div className="page-container">
           <SectionHead eyebrow={t("What we do", "हम क्या करते हैं")} id="services-heading" title={t("Six ways we serve", "सेवा के छह तरीके")} />
-          <ol className="st-ledger mt-10">
-            {items.map((s, i) => (
-              <li key={s.slug} className="st-row">
-                <span className="st-key" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="st-title">{s.title}</h3>
-                <div>
-                  <p className="st-body text-lg">{s.description}</p>
-                  {(s.slug === "delivery" || s.slug === "fabrication") && (
-                    <p className="st-meta">{t("Subject to availability. Please enquire at the time of order.", "उपलब्धता के अनुसार। कृपया ऑर्डर के समय पूछ लें।")}</p>
+          <ol className="mt-12 space-y-14 lg:space-y-20">
+            {items.map((s, i) => {
+              const ph = SERVICE_PHOTOS[s.slug];
+              return (
+                <li key={s.slug} className="grid items-center gap-6 lg:grid-cols-12 lg:gap-12">
+                  {ph && (
+                    <div className={`group relative aspect-[4/3] overflow-hidden rounded-[14px] bg-[hsl(210_30%_10%)] ring-1 ring-white/10 lg:col-span-6 [perspective:900px] ${i % 2 ? "lg:order-2" : ""}`}>
+                      <PhotoPlate src={ph.src} alt={lang === "hi" ? ph.hi : ph.en} position={ph.position} sizes="(max-width:1024px) 100vw, 560px" />
+                      <span className="absolute left-3 top-3 font-mono-brand text-xs tracking-[0.18em] text-white/90 drop-shadow" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                    </div>
                   )}
-                </div>
-              </li>
-            ))}
+                  <div className={`${ph ? "lg:col-span-6" : "lg:col-span-12"} ${i % 2 ? "lg:order-1" : ""}`}>
+                    <h3 className="font-display text-[2rem] font-extrabold uppercase leading-[1.02] text-foreground sm:text-[2.4rem]">{s.title}</h3>
+                    <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{s.description}</p>
+                    {(s.slug === "delivery" || s.slug === "fabrication") && (
+                      <p className="st-meta mt-3">{t("Subject to availability. Please enquire at the time of order.", "उपलब्धता के अनुसार। कृपया ऑर्डर के समय पूछ लें।")}</p>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </section>

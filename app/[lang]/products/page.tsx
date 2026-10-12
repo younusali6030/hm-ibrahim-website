@@ -27,7 +27,7 @@ function itemListSchema(lang: Lang) {
     "@type": "ItemList",
     name: tt(lang)("Iron & hardware products", "लोहा और हार्डवेयर उत्पाद"),
     numberOfItems: allProducts.length,
-    itemListElement: allProducts.slice(0, 30).map((p, i) => ({
+    itemListElement: allProducts.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
       url: pageUrl(`products/${p.slug}`, lang),
@@ -49,6 +49,7 @@ export default function ProductsPage({ params }: { params: { lang: string } }) {
       name: tr(p.name, lang),
       shortDesc: tr(p.shortDesc, lang),
       image: getProductImages(p, c)[0] ?? "",
+      image2: getProductImages(p, c)[1],
       imageAlt: p.imageAlt ? tr(p.imageAlt, lang) : p.imageAlt,
       categorySlug: c.slug,
       // The tag is picked from English spec labels, then translated.
