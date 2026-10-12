@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = getCategoryBySlug(slug);
   if (!category) return { title: "Category" };
 
-  const title = `${category.name} in Indore, ${localSeo.state} | ${site.name}`;
+  const title = `${category.name} in Indore, ${localSeo.state}`; // layout template appends the site name
   const description = `${category.description} Available in Siyaganj, Indore. Retail and wholesale. ${category.products.slice(0, 3).map((p) => p.name).join(", ")} and more. Request a quote.`;
 
   return {

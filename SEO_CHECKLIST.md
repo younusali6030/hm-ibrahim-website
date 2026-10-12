@@ -3,7 +3,7 @@
 ## What was changed in code
 
 ### 1. **Central site config**
-- **`lib/site.ts`** — Added. Exports `baseUrl`, `nap`, `localSeo`, and `site`. Use `baseUrl` everywhere for canonicals, sitemap, OG, and schema. Set `NEXT_PUBLIC_SITE_URL` in `.env` for production (e.g. `https://hmibrahimco.com`).
+- **`lib/site.ts`** — Added. Exports `baseUrl`, `nap`, `localSeo`, and `site`. Use `baseUrl` everywhere for canonicals, sitemap, OG, and schema. The production host is the `PRODUCTION_URL` constant (`https://www.hmibrahim.net`); `NEXT_PUBLIC_SITE_URL` is honoured only by `next dev`.
 
 ### 2. **On-page SEO**
 - **`app/layout.tsx`** — Uses `baseUrl` and `site` from `lib/site`. Global metadata, canonical, OpenGraph, Twitter, robots.
@@ -47,7 +47,7 @@
    - Use the same `profileUrl` (or the real Google Maps/Business URL) in `content/site.ts` → `googleReview.profileUrl` so the site’s rating badge and schema match.
 
 2. **Google Search Console**
-   - Add the property for your domain (e.g. `https://hmibrahimco.com`).
+   - Add the property for your domain (`https://www.hmibrahim.net`).
    - Submit sitemap: `https://yourdomain.com/sitemap.xml`.
    - Monitor indexing for home, `/products`, `/categories/*`, `/products/*`, and `/indore` (and `/indore/*`).
    - Fix any coverage or mobile issues reported.
@@ -59,7 +59,7 @@
    - Encourage Google reviews and, if you collect them elsewhere, consider adding Review schema later (optional). `aggregateRating` in schema uses `site.googleReview`; keep that updated with real rating and count.
 
 5. **Domain & env**
-   - Set `NEXT_PUBLIC_SITE_URL` in production (e.g. Vercel env) to your real domain (e.g. `https://hmibrahimco.com`). No trailing slash. This drives canonicals, sitemap, OG, and schema URLs.
+   - Production host is fixed in `lib/site.ts` (`https://www.hmibrahim.net`); no env var is required. This drives canonicals, sitemap, OG, and schema URLs.
 
 6. **Rich results**
    - Test key URLs in [Google Rich Results Test](https://search.google.com/test/rich-results): home (LocalBusiness), a product page (Product + FAQ), a category page (FAQ).

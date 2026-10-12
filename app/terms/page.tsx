@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
+import { baseUrl } from "@/lib/site";
 import Link from "next/link";
 import { PageHero } from "@/components/site/PageHero";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
   description: `Terms of use for ${site.name} website.`,
+  alternates: { canonical: `${baseUrl}/terms` },
 };
 
 export default function TermsPage() {

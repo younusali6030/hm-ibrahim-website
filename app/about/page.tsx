@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { baseUrl, site } from "@/lib/site";
+import { baseUrl, entityIds, site } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
@@ -16,7 +16,7 @@ const aboutPageSchema = {
   url: `${baseUrl}/about`,
   mainEntity: {
     "@type": "Organization",
-    "@id": `${baseUrl}#organization`,
+    "@id": entityIds.organization,
     name: site.name,
     foundingDate: "1939",
     description: site.description,

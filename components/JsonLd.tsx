@@ -1,10 +1,10 @@
-import { baseUrl, site } from "@/lib/site";
+import { baseUrl, entityIds, site } from "@/lib/site";
 import { categories } from "@/content/products";
 
 /** Global schema for rich results & AI search. Uses @graph for multiple types. */
 export function JsonLd() {
-  const orgId = `${baseUrl}#organization`;
-  const webSiteId = `${baseUrl}#website`;
+  const orgId = entityIds.organization;
+  const webSiteId = entityIds.website;
 
   const address = {
     "@type": "PostalAddress" as const,
@@ -15,12 +15,6 @@ export function JsonLd() {
     addressCountry: site.address.country,
   };
 
-  const geo = {
-    "@type": "GeoCoordinates" as const,
-    latitude: "22.7196",
-    longitude: "75.8577",
-  };
-
   const openingHoursSpecification = [
     {
       "@type": "OpeningHoursSpecification" as const,
@@ -29,6 +23,7 @@ export function JsonLd() {
       closes: "20:00",
     },
     {
+      // Closed all day. Google's LocalBusiness docs: set both opens and closes to "00:00".
       "@type": "OpeningHoursSpecification" as const,
       dayOfWeek: "Sunday",
       opens: "00:00",
@@ -36,22 +31,23 @@ export function JsonLd() {
     },
   ];
 
-  const areaServed = site.areasServed.map((name) =>
-    name === "Nearby areas" || name.includes("Maharashtra") || name.includes("Gujarat") || name.includes("Rajasthan")
-      ? { "@type": "Place" as const, name }
-      : { "@type": "City" as const, name }
-  );
+  // Cities are City; states are AdministrativeArea. Vague entries ("Nearby areas") are not entities, so they are skipped.
+  const cityNames = new Set(["Indore", "Dewas", "Ujjain", "Mhow", "Pithampur"]);
+  const stateNames: Record<string, string> = {
+    "Madhya Pradesh (MP)": "Madhya Pradesh",
+    Maharashtra: "Maharashtra",
+    Gujarat: "Gujarat",
+    Rajasthan: "Rajasthan",
+  };
+  const areaServed = site.areasServed.flatMap((name): { "@type": string; name: string }[] => {
+    if (cityNames.has(name)) return [{ "@type": "City" as const, name }];
+    if (stateNames[name]) return [{ "@type": "AdministrativeArea" as const, name: stateNames[name] }];
+    return [];
+  });
 
-  const aggregateRating = site.googleReview.verified
-    ? {
-        "@type": "AggregateRating" as const,
-        ratingValue: site.googleReview.rating.toString(),
-        reviewCount: site.googleReview.reviewCount.toString(),
-        bestRating: "5",
-        worstRating: "1",
-        url: site.googleReview.profileUrl,
-      }
-    : undefined;
+  // No AggregateRating here: it is the business's own rating of itself (not eligible for review
+  // rich results) and the 4.9 / 633 figures cannot be verified from this codebase. The figures
+  // remain visible on-page via site.googleReview.
 
   const sameAs = [
     ...(site.social.facebook ? [site.social.facebook] : []),
@@ -95,7 +91,7 @@ export function JsonLd() {
     },
     {
       "@type": "LocalBusiness" as const,
-      "@id": `${baseUrl}#localbusiness`,
+      "@id": entityIds.localBusiness,
       parentOrganization: { "@id": orgId },
       name: site.name,
       alternateName: site.legalName,
@@ -106,14 +102,12 @@ export function JsonLd() {
       telephone: site.phone.replace(/\s/g, ""),
       email: site.email,
       address,
-      geo,
       openingHoursSpecification,
       areaServed,
       priceRange: site.priceRange,
       paymentAccepted: "Cash, Bank Transfer, UPI",
       currenciesAccepted: "INR",
       ...(site.gstin ? { taxID: site.gstin } : {}),
-      ...(aggregateRating ? { aggregateRating } : {}),
       ...(sameAs.length ? { sameAs } : {}),
       hasOfferCatalog,
     },

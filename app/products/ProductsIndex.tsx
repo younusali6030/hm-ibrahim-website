@@ -5,18 +5,21 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { Search, ArrowUpRight } from "lucide-react";
 
-export type IndexProduct = { slug: string; name: string; shortDesc: string; image: string; tata: boolean };
+export type IndexProduct = { slug: string; name: string; shortDesc: string; image: string; tata: "wiron" | "other" | null };
 export type IndexCategory = { slug: string; name: string; description: string; image: string; products: IndexProduct[] };
 
 export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
   const [q, setQ] = useState("");
-  const [tataOnly, setTataOnly] = useState(false);
+  // "wiron": only products with a Tata Wiron variant. "any": every Tata-flagged product (includes steel lines).
+  const [tataFilter, setTataFilter] = useState<"off" | "wiron" | "any">("off");
   const query = q.trim().toLowerCase();
 
   // Old links: ?category=slug, ?tata=1, ?q=word
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
-    if (sp.get("tata") === "1") setTataOnly(true);
+    const tata = sp.get("tata");
+    if (tata === "wiron") setTataFilter("wiron");
+    else if (tata === "1") setTataFilter("any");
     const sq = sp.get("q");
     if (sq) setQ(sq);
     const cat = sp.get("category");
@@ -30,7 +33,8 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
       .map((c) => ({
         ...c,
         products: c.products.filter((p) => {
-          if (tataOnly && !p.tata) return false;
+          if (tataFilter === "wiron" && p.tata !== "wiron") return false;
+          if (tataFilter === "any" && !p.tata) return false;
           if (!query) return true;
           return (
             p.name.toLowerCase().includes(query) ||
@@ -40,9 +44,10 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
         }),
       }))
       .filter((c) => c.products.length > 0);
-  }, [categories, query, tataOnly]);
+  }, [categories, query, tataFilter]);
 
-  const total = view.reduce((n, c) => n + c.products.length, 0);
+  // Cross-listed products appear under more than one category; count each once.
+  const total = new Set(view.flatMap((c) => c.products.map((p) => p.slug))).size;
 
   return (
     <>
@@ -65,23 +70,33 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
               <a
                 key={c.slug}
                 href={`#c-${c.slug}`}
-                className="shrink-0 rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground hover:border-foreground/50"
+                className="inline-flex min-h-[44px] shrink-0 items-center rounded-full border border-border bg-card px-4 text-sm font-semibold text-foreground hover:border-foreground/50"
               >
                 {c.name}
               </a>
             ))}
           </nav>
-          <button
-            type="button"
-            aria-pressed={tataOnly}
-            onClick={() => setTataOnly((v) => !v)}
-            className={
-              "h-11 shrink-0 rounded-full border px-4 text-sm font-semibold " +
-              (tataOnly ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-foreground hover:border-foreground/50")
-            }
-          >
-            Tata only
-          </button>
+          <div className="flex shrink-0 gap-2" role="group" aria-label="Tata filter">
+            {(
+              [
+                ["wiron", "Tata Wiron"],
+                ["any", "All Tata"],
+              ] as const
+            ).map(([key, label]) => (
+              <button
+                key={key}
+                type="button"
+                aria-pressed={tataFilter === key}
+                onClick={() => setTataFilter((v) => (v === key ? "off" : key))}
+                className={
+                  "h-11 shrink-0 rounded-full border px-4 text-sm font-semibold " +
+                  (tataFilter === key ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-foreground hover:border-foreground/50")
+                }
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -92,7 +107,7 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
 
         <div className="mt-6 divide-y divide-border">
           {view.map((c, i) => (
-            <section key={c.slug} id={`c-${c.slug}`} className="scroll-mt-24 py-12 first:pt-0 md:py-16">
+            <section key={c.slug} id={`c-${c.slug}`} className="py-12 first:pt-0 md:py-16 lg:scroll-mt-14">
               <div className="grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
                 <div className={"lg:sticky lg:top-28 lg:self-start " + (i % 2 ? "lg:order-2" : "")}>
                   <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">
@@ -125,7 +140,11 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
                             {p.name}
                           </span>
                           <span className="mt-1 line-clamp-2 block text-sm text-muted-foreground">{p.shortDesc}</span>
-                          {p.tata && <span className="mt-1 inline-block text-xs font-semibold text-primary">Tata Wiron available</span>}
+                          {p.tata && (
+                            <span className="mt-1 inline-block text-xs font-semibold text-primary">
+                              {p.tata === "wiron" ? "Tata Wiron available" : "Tata available on request"}
+                            </span>
+                          )}
                         </span>
                         <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" aria-hidden />
                       </Link>

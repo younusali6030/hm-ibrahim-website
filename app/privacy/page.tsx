@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
+import { baseUrl } from "@/lib/site";
 import Link from "next/link";
 import { PageHero } from "@/components/site/PageHero";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: `Privacy policy for ${site.name} website.`,
+  alternates: { canonical: `${baseUrl}/privacy` },
 };
 
 export default function PrivacyPage() {

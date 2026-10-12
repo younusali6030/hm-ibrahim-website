@@ -2,227 +2,135 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { categories } from "@/content/products";
 
-// High-value links first: Products, Quote, Contact; then supporting pages
-const footerLinks = [
-  { href: "/products", label: "Browse all products" },
-  { href: "/contact", label: "Get a quote & contact" },
-  { href: "/brands", label: "Brands: CM, Border, Tata Wiron" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About us" },
+const usefulLinks = [
+  { href: "/products", label: "All products" },
+  { href: "/brands", label: "Brands" },
+  { href: "/contact", label: "Get a quote" },
+  { href: "/catalog", label: "Catalog" },
   { href: "/indore", label: "Products in Indore" },
   { href: "/services", label: "Services" },
-  { href: "/catalog", label: "Download catalog" },
-  { href: "/privacy", label: "Privacy" },
-  { href: "/terms", label: "Terms" },
+  { href: "/about", label: "About us" },
+  { href: "/blog", label: "Blog" },
 ];
 
-const indoreLinks = [
-  { href: "/indore/wire-mesh", label: "Wire Mesh Indore" },
-  { href: "/indore/chain-link-fencing-jaali", label: "Chain Link & Jaali Indore" },
-  { href: "/indore/barbed-wire", label: "Barbed Wire Indore" },
-  { href: "/indore/perforated-sheets", label: "Perforated Sheets Indore" },
-  { href: "/indore/gi-wire", label: "GI Wire Indore" },
-  { href: "/indore/construction-hardware", label: "Construction Hardware Indore" },
-];
+const linkCls =
+  "inline-flex min-h-[44px] items-center text-[15px] text-white/80 transition-colors hover:text-primary lg:min-h-[36px]";
 
-// Link to filtered products (1 click to products) + category SEO page for crawlers
-const categoryLinks = categories.map((c) => ({
-  href: `/products?category=${c.slug}`,
-  label: c.name,
-}));
+const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
 
 export function Footer() {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`;
 
   return (
-    <footer className="border-t border-white/20 bg-nav print:hidden">
-      <div className="page-container section-padding">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-          <div className="min-w-0">
-            {isHome ? (
-              <p className="text-base sm:text-lg font-semibold text-white">
-                <span className="text-primary">HM</span> Ibrahim & Co
-              </p>
-            ) : (
-              <Link href="/" className="inline-block">
-                <Image src="/logo-transparent.png" alt="HM Ibrahim & Co" width={220} height={76} className="h-14 w-auto object-contain" />
-              </Link>
-            )}
-            <p className="mt-2 text-sm text-white/80">{site.tagline}</p>
-            <p className="mt-2 text-sm text-white/80">{site.description}</p>
-            <p className="mt-2 text-sm text-white/80">{site.manufacturerTagline}</p>
+    <footer className="border-t border-white/15 bg-nav pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] print:hidden md:pb-0">
+      <div className="page-container py-10 md:py-14">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_0.9fr_1.4fr] lg:gap-10">
+          {/* Business identity */}
+          <div className="min-w-0 sm:col-span-2 lg:col-span-1">
+            <Link href="/" className="inline-block" aria-label="HM Ibrahim & Co, home">
+              <Image src="/logo-wordmark.png" alt="HM Ibrahim & Co, since 1939" width={900} height={258} className="h-14 w-auto" />
+            </Link>
+            <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-white/80">
+              Iron and hardware trading in Siyaganj, Indore. Retail and wholesale since 1939.
+            </p>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-white">Quick links</h3>
-            <ul className="mt-3 space-y-2">
-              {footerLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="block py-1.5 text-sm text-white/80 hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
-                  >
-                    {link.label}
-                  </Link>
+          {/* Contact and location: second on mobile (right after the logo); last column on desktop */}
+          <div className="lg:order-4">
+            <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white">Contact &amp; location</h3>
+            <ul className="mt-4 space-y-4 text-[15px] text-white/85">
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
+                <span>
+                  {site.address.line1}, {site.address.line2}, {site.address.city}, {site.address.state} {site.address.pincode}
+                  <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-1 block min-h-[44px] py-2 font-semibold text-primary hover:underline lg:min-h-0 lg:py-0">
+                    Get directions
+                  </a>
+                </span>
+              </li>
+              {[
+                { n: site.phone, l: site.phoneLabel },
+                { n: String(site.phoneAlt), l: site.phoneAltLabel },
+              ].map((p) => (
+                <li key={p.n} className="flex items-start gap-3">
+                  <Phone className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
+                  <a href={tel(p.n)} className="block min-h-[44px] hover:text-primary lg:min-h-0">
+                    <span className="block whitespace-nowrap text-base font-semibold text-white">{p.n}</span>
+                    <span className="block text-sm text-white/60">{p.l}</span>
+                  </a>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-white">Contact</h3>
-            <ul className="mt-3 space-y-3 text-sm text-white/80">
-              <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                  <span>{site.fullAddress}</span>
-              </li>
-              <li>
-                <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center"
-                >
-                  <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
-                  {site.phone}
-                  {site.phoneLabel && <span className="text-white/60">({site.phoneLabel})</span>}
+              <li className="flex items-start gap-3">
+                <MessageCircle className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
+                <a href={getWhatsAppLink(site.whatsapp)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center font-semibold text-white hover:text-primary lg:min-h-0">
+                  WhatsApp us
                 </a>
               </li>
-              {site.phoneAlt && (
-                <li>
-                  <a
-                    href={`tel:${String(site.phoneAlt).replace(/\s/g, "")}`}
-                    className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center"
-                  >
-                    <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
-                    {site.phoneAlt}
-                    {site.phoneAltLabel && <span className="text-white/60">({site.phoneAltLabel})</span>}
+              {[
+                { e: site.email, l: site.emailLabel },
+                { e: site.emailAlt, l: site.emailAltLabel },
+              ].map((m) => (
+                <li key={m.e} className="flex items-start gap-3">
+                  <Mail className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
+                  <a href={`mailto:${m.e}`} className="block min-h-[44px] min-w-0 hover:text-primary lg:min-h-0">
+                    <span className="block break-words text-[15px] text-white">{m.e}</span>
+                    <span className="block text-sm text-white/60">{m.l}</span>
                   </a>
                 </li>
-              )}
-              <li>
-                <a
-                  href={getWhatsAppLink(site.whatsapp)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center"
-                >
-                  WhatsApp
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center break-all"
-                >
-                  <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />
-                  {site.email}
-                  {site.emailLabel && <span className="text-white/60">({site.emailLabel})</span>}
-                </a>
-              </li>
-              {site.emailAlt && (
-                <li>
-                  <a
-                    href={`mailto:${site.emailAlt}`}
-                    className="flex items-center gap-2 hover:text-primary min-h-[44px] items-center break-all"
-                  >
-                    <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />
-                  {site.emailAlt}
-                  {site.emailAltLabel && <span className="text-white/60">({site.emailAltLabel})</span>}
-                  </a>
-                </li>
-              )}
-              <li className="flex items-start gap-2">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
+              ))}
+              <li className="flex items-start gap-3">
+                <Clock className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
                 <span>
                   {site.hours.weekdays}
                   <br />
                   {site.hours.sunday}
-                  <br />
-                  {site.hours.note}
                 </span>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-white">Categories</h3>
-            <ul className="mt-3 space-y-0">
-              {categoryLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="block py-1.5 text-sm text-white/80 hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
-                  >
-                    {link.label}
-                  </Link>
+          {/* Useful links */}
+          <nav aria-label="Useful links">
+            <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white">Useful links</h3>
+            <ul className="mt-3 grid grid-cols-2 gap-x-4 sm:grid-cols-1">
+              {usefulLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className={linkCls}>{l.label}</Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h3 className="font-semibold text-white">Products in Indore</h3>
-            <ul className="mt-3 space-y-0">
-              {indoreLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="block py-1.5 text-sm text-white/80 hover:text-primary min-h-[44px] sm:min-h-0 sm:py-0 flex items-center"
-                  >
-                    {link.label}
-                  </Link>
+          {/* Product categories */}
+          <nav aria-label="Product categories" className="sm:col-span-2 lg:col-span-1">
+            <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white">Product categories</h3>
+            <ul className="mt-3 grid grid-cols-2 gap-x-4 sm:grid-cols-3 lg:grid-cols-1">
+              {categories.map((c) => (
+                <li key={c.slug}>
+                  <Link href={`/products?category=${c.slug}`} className={linkCls}>{c.name}</Link>
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-white">Location & areas served</h3>
-            <p className="mt-2 text-sm text-white/80">
-              Siyaganj, Indore — {site.landmark}
-            </p>
-            <p className="mt-1 text-sm text-white/80">
-              We serve {site.areasServed.join(", ")}.
-            </p>
-            <Link
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-block text-sm text-primary hover:underline"
-            >
-              Get directions →
-            </Link>
-            {"indiamartUrl" in site && site.indiamartUrl && (
-              <a
-                href={site.indiamartUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 block text-sm text-primary hover:underline"
-              >
-                Contact us on IndiaMART →
-              </a>
-            )}
-            {"justdialUrl" in site && site.justdialUrl && (
-              <a
-                href={site.justdialUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-1 block text-sm text-primary hover:underline"
-              >
-                Contact us on JustDial →
-              </a>
-            )}
-          </div>
+          </nav>
         </div>
 
-        <div className="mt-10 border-t border-white/20 pt-8 text-center text-sm text-white/70">
-          <p>© {new Date().getFullYear()} HM Ibrahim & Co. All rights reserved.</p>
+        <div className="mt-10 flex flex-col gap-3 border-t border-white/15 pt-6 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
+          <p>&copy; {new Date().getFullYear()} HM Ibrahim &amp; Co. All rights reserved.</p>
+          <ul className="flex flex-wrap gap-x-5">
+            <li>
+              <a href={site.indiamartUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0">IndiaMART</a>
+            </li>
+            <li>
+              <a href={site.justdialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0">JustDial</a>
+            </li>
+            <li><Link href="/privacy" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0">Privacy</Link></li>
+            <li><Link href="/terms" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0">Terms</Link></li>
+          </ul>
         </div>
       </div>
     </footer>

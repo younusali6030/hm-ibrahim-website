@@ -46,7 +46,7 @@ Create a `.env.local` file (and add the same in Vercel → Project → Settings 
 | `OPENAI_API_KEY` | Optional. Used with Serper to extract tentative supplier/rates from search results (gpt-4o-mini). |
 | `QUOTE_TO_EMAIL` | Email where quote requests are sent (not used; use `QUOTE_NOTIFY_EMAIL` instead) |
 | `CONTACT_TO_EMAIL` | Email where contact form messages are sent (default: value from `content/site.ts`) |
-| `NEXT_PUBLIC_SITE_URL` | Full site URL for sitemap, robots, and metadata (e.g. `https://hmibrahimco.com`) |
+| `NEXT_PUBLIC_SITE_URL` | Optional, `next dev` only. The production host (`https://www.hmibrahim.net`) is set in `lib/site.ts` |
 
 **Resend setup:** Verify your domain in Resend and use a from-address on that domain for production. Without `RESEND_API_KEY`, form submissions will fail with a server error.
 
@@ -76,9 +76,9 @@ All editable content is in a single place so you don’t need to touch component
 ## Connect your domain (Vercel)
 
 1. In Vercel: Project → Settings → Domains.
-2. Add your domain (e.g. `hmibrahimco.com`).
+2. Add your domain (`www.hmibrahim.net`).
 3. Follow Vercel’s instructions to add the suggested DNS records at your registrar.
-4. Set `NEXT_PUBLIC_SITE_URL=https://hmibrahimco.com` (or your domain) in environment variables.
+4. No site-URL env var is needed: canonicals, sitemap and schema use `PRODUCTION_URL` in `lib/site.ts`.
 
 ## Google Analytics (optional)
 
@@ -94,7 +94,7 @@ Before launch, verify:
 - [ ] **Links:** All nav and footer links work; “Request Quote”, “WhatsApp”, “Call”, “Get Directions”.
 - [ ] **Products:** Search and filter on `/products`; open product detail pages; quote link pre-fills category/product where expected.
 - [ ] **Mobile:** Sticky Call/WhatsApp bar appears; layout is readable and tap targets are fine.
-- [ ] **SEO:** View page source for meta tags and JSON-LD; open `/sitemap.xml` and `/robots.txt`; check `NEXT_PUBLIC_SITE_URL` is set in production.
+- [ ] **SEO:** View page source for meta tags and JSON-LD; open `/sitemap.xml` and `/robots.txt`; confirm canonicals and sitemap URLs use `https://www.hmibrahim.net`.
 - [ ] **Content:** Update `content/site.ts` with real phone, WhatsApp, address, hours, and (if desired) GSTIN.
 
 ## Next improvements

@@ -23,13 +23,14 @@ export function buildPageMeta(input: PageMetaInput): Metadata {
 
   // The root layout template already appends the site name.
   const bare = title.replace(/\s*\|\s*(H\.?M\.? ?Ibrahim|HM Ibrahim)[^|]*$/i, "").trim() || title;
+  const fullTitle = `${bare} | ${site.name}`;
   return {
     title: bare.length > 60 ? bare.slice(0, 57) + "..." : bare,
     description: description.length > 160 ? description.slice(0, 157) + "..." : description,
     keywords: keywords.length ? keywords.join(", ") : undefined,
     alternates: { canonical: url },
     openGraph: {
-      title,
+      title: fullTitle,
       description: description.slice(0, 200),
       url,
       siteName: site.name,
@@ -39,7 +40,7 @@ export function buildPageMeta(input: PageMetaInput): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: fullTitle,
       description: description.slice(0, 200),
       images: [img],
     },

@@ -5,6 +5,7 @@
 
 import { getProductBySlug, getCategoryBySlug, getProductImages } from "@/content/products";
 import type { ProductWithCategory } from "@/content/products";
+import { baseUrl } from "@/lib/site";
 
 export type TentativeRate = {
   supplier?: string;
@@ -191,7 +192,6 @@ export async function getCatalogData(
   const classifications = getClassifications(product);
   const searchContext = `${productName} — Indore, Siyaganj`;
 
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://hmibrahimco.com").replace(/\/$/, "");
   const imagePaths = product ? getProductImages(product, category) : [];
   const imageUrls = imagePaths.map((path) => `${baseUrl}${path.startsWith("/") ? "" : "/"}${path}`);
 

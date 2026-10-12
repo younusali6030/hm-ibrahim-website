@@ -49,6 +49,9 @@
   html {
     font-family: var(--font-sans, "Source Sans 3"), system-ui, -apple-system, "Segoe UI", sans-serif;
     @apply scroll-smooth;
+    /* Anchors clear the fixed header; focused controls clear the mobile sticky contact bar. */
+    scroll-padding-top: 5.5rem;
+    scroll-padding-bottom: 6rem;
     overflow-x: hidden;
     overflow-x: clip;
     -webkit-text-size-adjust: 100%;

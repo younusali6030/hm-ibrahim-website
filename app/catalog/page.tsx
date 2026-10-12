@@ -9,6 +9,7 @@ import { PrintCatalogButton } from "@/components/catalog/PrintCatalogButton";
 export const metadata: Metadata = {
   title: "Product Catalog",
   description: `Product catalog — ${site.name}. Iron, steel, pipes, wire, mesh, and hardware. Siyaganj, Indore.`,
+  alternates: { canonical: `${baseUrl}/catalog` },
 };
 
 export default function CatalogPage() {

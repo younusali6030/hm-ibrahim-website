@@ -2,7 +2,7 @@
  * Signature brands (CM, Border) and Tata Wiron. Used for brand picker, logos, and product variants.
  */
 
-export type BrandId = "cm" | "boarder" | "tata";
+export type BrandId = "cm" | "border" | "tata";
 
 export type BrandPageContent = {
   title: string;
@@ -36,7 +36,7 @@ export const inHouseBrands: Brand[] = [
     },
   },
   {
-    id: "boarder",
+    id: "border",
     name: "Border",
     logo: "/brands/boarder-logo.png",
     tagline: "Our signature brand",

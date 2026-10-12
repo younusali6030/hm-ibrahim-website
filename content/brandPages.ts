@@ -30,7 +30,7 @@ export const brandPageVisuals: Partial<Record<BrandId, BrandPageVisuals>> = {
       { big: "Up to 25 kg", small: "Barbed wire coils" },
     ],
   },
-  boarder: {
+  border: {
     accent: "#f26a21",
     logoClear: "/brands/border-logo-clear.png",
     hero: { src: "/brands/border-chainlink-barbed.jpg", alt: "Border brand chain link and barbed wire rolls with the Border label" },

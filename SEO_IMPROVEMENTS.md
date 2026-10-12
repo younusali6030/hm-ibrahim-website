@@ -121,7 +121,7 @@ Example: "TMT bars Indore", "Wire mesh Siyaganj", "MS angles Indore"
 ## 🚀 How to Verify
 
 1. **Google Search Console:**
-   - Submit sitemap: `https://hmibrahimco.com/sitemap.xml`
+   - Submit sitemap: `https://www.hmibrahim.net/sitemap.xml`
    - Monitor indexing status
    - Check for rich snippets
 

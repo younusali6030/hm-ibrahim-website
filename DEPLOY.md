@@ -53,7 +53,7 @@ If Vercel is already connected to GitHub and you just need to push local changes
    |----------|--------|------|
    | `QUOTE_FROM_EMAIL` | `younusali6030@gmail.com` | Gmail that sends the catalog |
    | `GMAIL_APP_PASSWORD` | Your 16-char Gmail App Password | [Create one](https://myaccount.google.com/apppasswords) for this Gmail account |
-   | `NEXT_PUBLIC_SITE_URL` | `https://hmibrahimco.com` (or your Vercel domain) | **Required** so product images in the email load (use your real domain, not `*.vercel.app`) |
+   | `NEXT_PUBLIC_SITE_URL` | _not needed_ | The production URL (`https://www.hmibrahim.net`) is fixed in `lib/site.ts`. Remove this variable in Vercel if it is set to anything else. |
 
    **Contact form** uses the same Gmail as the quote catalog: messages are sent to `younusali6030@gmail.com` via `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD`. No separate Resend setup needed.
 
@@ -63,7 +63,7 @@ If Vercel is already connected to GitHub and you just need to push local changes
    Set `GOOGLE_SHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, and `GOOGLE_PRIVATE_KEY`. See **Google Sheet setup** below.
 
 4. **Use your own domain** (optional):
-   - In Vercel: Project → Settings → Domains → Add `hmibrahimco.com`
+   - In Vercel: Project → Settings → Domains → Add `www.hmibrahim.net`
    - Add the CNAME or A record your registrar shows (Vercel will tell you what to add).
 
 ---
@@ -117,7 +117,7 @@ See **[ANALYTICS.md](./ANALYTICS.md)** for setup steps and where to find each re
 
 ## Before going live
 
-- [ ] Set `NEXT_PUBLIC_SITE_URL` to your real domain (sitemap, OG, canonicals, **and catalog email images**).
+- [ ] Remove any stale `NEXT_PUBLIC_SITE_URL` in Vercel; the production URL lives in `lib/site.ts`.
 - [ ] Add `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD` so both the quote catalog and contact form emails work (sent from your Gmail to younusali6030@gmail.com).
 - [ ] Replace `site.googleReview.profileUrl` in `content/site.ts` with your real Google Business profile URL.
 - [ ] (Optional) Set `NEXT_PUBLIC_GA_ID` for full analytics — see [ANALYTICS.md](./ANALYTICS.md).

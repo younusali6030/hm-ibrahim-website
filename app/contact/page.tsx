@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { baseUrl, site } from "@/lib/site";
+import { baseUrl, entityIds, site } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { QuoteFormWrapper } from "./QuoteFormWrapper";
@@ -15,7 +15,7 @@ const contactPageSchema = {
   url: `${baseUrl}/contact`,
   mainEntity: {
     "@type": "LocalBusiness",
-    "@id": `${baseUrl}#localbusiness`,
+    "@id": entityIds.localBusiness,
     name: site.name,
     telephone: site.phone.replace(/\s/g, ""),
     email: site.email,
@@ -82,12 +82,12 @@ export default function ContactPage() {
               <div>
                 <dt className="text-sm font-semibold text-foreground">Phone</dt>
                 <dd className="mt-1 text-muted-foreground">
-                  <a href={tel(site.phone)} className="font-semibold text-foreground underline underline-offset-4">
+                  <a href={tel(site.phone)} className="inline-block py-2.5 font-semibold text-foreground underline underline-offset-4">
                     {site.phone}
                   </a>{" "}
                   ({site.phoneLabel})
                   <br />
-                  <a href={tel(site.phoneAlt)} className="font-semibold text-foreground underline underline-offset-4">
+                  <a href={tel(site.phoneAlt)} className="inline-block py-2.5 font-semibold text-foreground underline underline-offset-4">
                     {site.phoneAlt}
                   </a>{" "}
                   ({site.phoneAltLabel})
@@ -96,9 +96,9 @@ export default function ContactPage() {
               <div>
                 <dt className="text-sm font-semibold text-foreground">Email</dt>
                 <dd className="mt-1 break-words text-muted-foreground">
-                  <a href={`mailto:${site.email}`} className="underline underline-offset-4">{site.email}</a>
+                  <a href={`mailto:${site.email}`} className="inline-block py-2.5 underline underline-offset-4">{site.email}</a>
                   <br />
-                  <a href={`mailto:${site.emailAlt}`} className="underline underline-offset-4">{site.emailAlt}</a>
+                  <a href={`mailto:${site.emailAlt}`} className="inline-block py-2.5 underline underline-offset-4">{site.emailAlt}</a>
                 </dd>
               </div>
             </dl>

@@ -24,7 +24,6 @@ export const metadata: Metadata = {
     "HM Ibrahim",
   ],
   metadataBase: new URL(baseUrl),
-  alternates: { canonical: baseUrl },
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -106,7 +105,7 @@ export default function RootLayout({
       <body className={`min-h-screen flex flex-col min-w-0 antialiased`}>
         <GoogleAnalytics />
         <Navbar />
-        <main className="flex-1 w-full min-w-0 pb-20 md:pb-0">{children}</main>
+        <main className="flex-1 w-full min-w-0">{children}</main>
         <Footer />
         <MobileStickyCTA />
         <JsonLd />

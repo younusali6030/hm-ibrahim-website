@@ -4,7 +4,7 @@ import { brandPageVisuals } from "@/content/brandPages";
 
 const ITEMS = [
   { id: "cm", name: "CM", blurb: "Barbed wire and chain link, our own brand." },
-  { id: "boarder", name: "Border", blurb: "Built for strength. Designed for security." },
+  { id: "border", name: "Border", blurb: "Built for strength. Designed for security." },
 ] as const;
 
 export function BrandsBand() {

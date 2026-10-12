@@ -391,7 +391,7 @@ const ownCategories: Category[] = [
             notes: "CM brand chain link fencing (jali). Mesh and heights as per stock.",
           },
           {
-            brandId: "boarder",
+            brandId: "border",
             images: [
               "/products/brands/boarder/chainlink-1.png",
               "/products/brands/boarder/chainlink-2.png",
@@ -467,7 +467,7 @@ const ownCategories: Category[] = [
             notes: "CM brand barbed wire. Available in single/double strand; gauges and coil sizes as per stock.",
           },
           {
-            brandId: "boarder",
+            brandId: "border",
             images: [
               "/products/brands/boarder/barbed-1.png",
               "/products/brands/boarder/barbed-chainlink-stack.png",

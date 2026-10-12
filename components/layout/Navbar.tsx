@@ -31,6 +31,18 @@ export function Navbar() {
   const openRef = useRef(false);
   openRef.current = open;
 
+  // Escape closes the open menu and hands focus back to the toggle.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      document.querySelector<HTMLButtonElement>('header button[aria-expanded]')?.focus();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
   // While the menu is open: lock page scroll and tuck the sticky quote bar away.
   useEffect(() => {
     document.documentElement.classList.toggle("menu-open", open);
@@ -96,6 +108,7 @@ export function Navbar() {
                 width={900}
                 height={258}
                 priority
+                sizes="(min-width:768px) 168px, 154px"
                 className="h-11 w-auto md:h-12"
               />
             </Link>
@@ -130,13 +143,13 @@ export function Navbar() {
                 href={`tel:${site.phone.replace(/\s/g, "")}`}
                 onClick={() => trackCallClick("navbar")}
                 aria-label="Call us"
-                className="inline-flex h-10 items-center rounded-full px-4 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                className="inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold text-white/90 lg:px-4 transition hover:bg-white/10"
               >
                 Call
               </a>
               <Link
                 href="/contact"
-                className="inline-flex h-10 items-center rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground transition hover:brightness-110"
+                className="inline-flex h-10 items-center whitespace-nowrap rounded-full bg-primary px-4 text-sm font-bold lg:px-5 text-primary-foreground transition hover:brightness-110"
               >
                 Get a quote
               </Link>

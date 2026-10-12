@@ -28,12 +28,12 @@ export function MarkdownContent({ content, className = "" }: Props) {
         remarkPlugins={[remarkGfm]}
         components={{
           h2: ({ children }) => (
-            <h2 id={idFor(children)} className="scroll-mt-28">
+            <h2 id={idFor(children)} className="scroll-mt-2">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 id={idFor(children)} className="scroll-mt-28">
+            <h3 id={idFor(children)} className="scroll-mt-2">
               {children}
             </h3>
           ),

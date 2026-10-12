@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { allProducts, categories } from "@/content/products";
-import { inHouseBrands } from "@/content/brands";
 import { getAllPostSlugs } from "@/content/blog/posts";
 import { baseUrl } from "@/lib/site";
 
@@ -12,7 +11,7 @@ const staticPages = [
   "contact",
   "brands",
   "brands/cm",
-  "brands/boarder",
+  "brands/border",
   "catalog",
   "indore",
   "blog",
@@ -57,15 +56,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  for (const brand of inHouseBrands.filter((b) => b.pageContent)) {
-    entries.push({
-      url: `${baseUrl}/brands/${brand.id}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    });
-  }
-
   for (const slug of indoreSlugs) {
     entries.push({
       url: `${baseUrl}/indore/${slug}`,
@@ -76,12 +66,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const blogSlugs = await getAllPostSlugs();
-  entries.push({
-    url: `${baseUrl}/blog`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  });
   for (const slug of blogSlugs) {
     entries.push({
       url: `${baseUrl}/blog/${slug}`,

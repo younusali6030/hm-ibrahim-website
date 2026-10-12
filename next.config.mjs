@@ -21,6 +21,8 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Old misspelt brand URL.
+      { source: '/brands/boarder', destination: '/brands/border', permanent: true },
       { source: '/categories/iron-steel', destination: '/categories/structural-items', permanent: true },
       // Small categories folded into bigger ones.
       { source: '/categories/frp-bars', destination: '/categories/structural-items', permanent: true },

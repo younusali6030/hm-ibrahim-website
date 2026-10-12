@@ -46,7 +46,13 @@ export default function ProductsPage() {
       name: p.name,
       shortDesc: p.shortDesc,
       image: getProductImages(p, c)[0] ?? "",
-      tata: !!(p.tataOfficial || p.tataAvailable),
+      // "wiron" only where the catalog holds a Tata Wiron brand variant (GI wire, barbed wire, chain link).
+      // Other Tata-flagged items (structural steel, binding wire) are only "available on request".
+      tata: p.brandVariants?.some((v) => v.brandId === "tata")
+        ? ("wiron" as const)
+        : p.tataOfficial || p.tataAvailable
+          ? ("other" as const)
+          : null,
     })),
   }));
 

@@ -89,17 +89,6 @@ export default async function ProductDetailPage({ params }: Props) {
       seller: { "@type": "LocalBusiness", name: site.name, url: baseUrl },
       areaServed: { "@type": "City", name: "Indore" },
     },
-    ...(site.googleReview.verified
-      ? {
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: site.googleReview.rating.toString(),
-            reviewCount: site.googleReview.reviewCount.toString(),
-            bestRating: "5",
-            worstRating: "1",
-          },
-        }
-      : {}),
     ...(product.specs && product.specs.length > 0
       ? {
           additionalProperty: product.specs.map((spec) => ({

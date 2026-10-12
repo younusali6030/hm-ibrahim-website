@@ -31,7 +31,7 @@ Use this to verify the site before going live.
 - [ ] **JSON-LD:** View source on home page; confirm `application/ld+json` with LocalBusiness is present.
 - [ ] **Sitemap:** Open `/sitemap.xml` and confirm all important URLs are listed.
 - [ ] **Robots:** Open `/robots.txt`; allow `/` and point to sitemap.
-- [ ] **Canonical / OG:** Set `NEXT_PUBLIC_SITE_URL` in production so Open Graph and canonical URLs are correct.
+- [ ] **Canonical / OG:** Canonical host is fixed in `lib/site.ts` (`https://www.hmibrahim.net`); check canonicals and OG URLs use it.
 
 ## Content and config
 

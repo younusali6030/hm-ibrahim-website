@@ -17,7 +17,7 @@ const schema = {
 };
 
 export const metadata: Metadata = {
-  title: `Iron & Hardware in Indore, ${localSeo.state} | ${site.name}`,
+  title: `Iron & Hardware in Indore, ${localSeo.state}`,
   description: `Buy iron, steel, wire mesh, barbed wire, chain link and construction hardware in Indore from ${site.name}, Siyaganj. Retail and wholesale, with delivery to Dewas, Ujjain, Mhow and Pithampur.`,
   alternates: { canonical: `${baseUrl}/indore` },
   openGraph: {

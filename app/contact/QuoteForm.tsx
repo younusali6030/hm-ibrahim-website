@@ -11,6 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { categories } from "@/content/products";
 import { getBrandById, type BrandId } from "@/content/brands";
 import { site } from "@/content/site";
+import { baseUrl } from "@/lib/site";
+import { stockedBrands } from "@/content/stockedBrands";
 import { submitQuote } from "@/app/contact/actions";
 import { trackQuoteRequest, trackWhatsAppClick, trackCallClick } from "@/lib/analytics";
 import { getWhatsAppLink } from "@/lib/utils";
@@ -32,9 +34,24 @@ const DELIVERY = [
 
 type FieldErrors = Partial<Record<"name" | "phone" | "email" | "items", string>>;
 
-function buildQuoteMessage(v: Record<string, string>, categoryName: string, reference?: string): string {
+/** Resolve ?brand= to a display name: our own brands by id (old "boarder" id included), or a stocked brand by name. */
+function resolveBrand(raw: string): { key: string; name: string; id?: BrandId } | null {
+  const clean = raw.replace(/[\u0000-\u001f]/g, "").trim().slice(0, 60);
+  if (!clean) return null;
+  // Exact stocked-brand names win, so the stocked "Tata" (steel) is not mistaken for our "tata" (Tata Wiron) id.
+  const exact = stockedBrands.find((b) => b.name === clean);
+  if (exact) return { key: exact.name, name: exact.name };
+  const id = (clean.toLowerCase() === "boarder" ? "border" : clean.toLowerCase()) as BrandId;
+  const own = getBrandById(id);
+  if (own) return { key: own.id, name: own.name, id: own.id };
+  const stocked = stockedBrands.find((b) => b.name.toLowerCase() === clean.toLowerCase());
+  return stocked ? { key: stocked.name, name: stocked.name } : null;
+}
+
+function buildQuoteMessage(v: Record<string, string>, categoryName: string, reference?: string, brandName?: string): string {
   return [
-    `Quote request${reference ? ` ${reference}` : ""} from hmibrahimco.com`,
+    `Quote request${reference ? ` ${reference}` : ""} from ${new URL(baseUrl).hostname}`,
+    ...(brandName ? [`Brand: ${brandName}`] : []),
     "",
     `Name: ${v.name}`,
     `Phone: ${v.phone}`,
@@ -82,13 +99,16 @@ export function QuoteForm() {
   const searchParams = useSearchParams();
   const prefilledCategory = searchParams.get("category") ?? "";
   const prefilledProduct = searchParams.get("product") ?? "";
-  const prefilledBrand = searchParams.get("brand") ?? "";
-  const selectedBrand = prefilledBrand ? getBrandById(prefilledBrand as BrandId) : null;
+  // Resolves our own brand ids (old "boarder" links included) and stocked-brand names.
+  const brand = resolveBrand(searchParams.get("brand") ?? "");
+  const prefilledBrand = brand?.key ?? "";
+  const selectedBrand = brand?.id ? getBrandById(brand.id) : null;
+  const brandPrefix = brand ? `${brand.name} brand: ` : "";
   const itemsDefault = prefilledProduct
-    ? selectedBrand
-      ? `${prefilledProduct} (${selectedBrand.name} brand)`
+    ? brand
+      ? `${prefilledProduct} (${brand.name} brand)`
       : prefilledProduct
-    : "";
+    : brandPrefix;
 
   const [values, setValues] = useState<Record<string, string>>({
     name: "",
@@ -143,18 +163,30 @@ export function QuoteForm() {
   const categoryName = categories.find((c) => c.slug === category)?.name ?? "";
   const fallbackMessage = buildQuoteMessage(
     { ...values, customerType, delivery },
-    categoryName
+    categoryName,
+    undefined,
+    brand?.name
   );
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (loading || honeypot) return;
+    // A brand-only prefill ("CM brand: ") is not a request yet; ask for the actual item.
+    if (brandPrefix && !prefilledProduct && values.items.trim().replace(brandPrefix.trim(), "").trim().length < 3) {
+      setError("Add the product, size and quantity you need.");
+      setFieldErrors({ items: "Add the product, size and quantity you need." });
+      document.getElementById("items")?.focus();
+      return;
+    }
     setError(null);
     setFailed(false);
     setFieldErrors({});
 
     const fd = new FormData();
     Object.entries(values).forEach(([k, v]) => fd.set(k, v));
+    if (brand && !values.items.toLowerCase().includes(brand.name.toLowerCase())) {
+      fd.set("notes", [values.notes, `Brand enquired: ${brand.name}`].filter(Boolean).join("\n"));
+    }
     fd.set("customerType", customerType);
     fd.set("category", category);
     fd.set("delivery", delivery);
@@ -174,7 +206,7 @@ export function QuoteForm() {
               reference: res.reference,
               catalogSent: res.catalogSent,
               name: values.name,
-              message: buildQuoteMessage({ ...values, customerType, delivery }, categoryName, res.reference),
+              message: buildQuoteMessage({ ...values, customerType, delivery }, categoryName, res.reference, brand?.name),
             })
           );
           localStorage.removeItem(DRAFT_KEY);
@@ -222,6 +254,11 @@ export function QuoteForm() {
           aria-hidden
         />
 
+        {brand && !selectedBrand && (
+          <div className="rounded-sm border border-border bg-secondary/60 p-3 text-sm text-muted-foreground">
+            Quote for <span className="font-semibold text-foreground">{brand.name}</span>
+          </div>
+        )}
         {selectedBrand && (
           <div className="flex items-center gap-3 rounded-sm border border-border bg-secondary/60 p-3">
             <span className="relative h-10 w-20">

@@ -7,12 +7,13 @@ import type { BrandId } from "@/content/brands";
 import { brandPageVisuals } from "@/content/brandPages";
 import { getProductBySlug } from "@/content/products";
 import { baseUrl, site } from "@/lib/site";
+import { buildPageMeta } from "@/lib/seo";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { BrandVideo } from "../BrandVideo";
 
 type Props = { params: Promise<{ slug: string }> };
 
-const validSlugs: BrandId[] = ["cm", "boarder"];
+const validSlugs: BrandId[] = ["cm", "border"];
 
 export function generateStaticParams() {
   return validSlugs.map((slug) => ({ slug }));
@@ -21,15 +22,15 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const brand = getBrandById(slug as BrandId);
-  if (!brand?.pageContent) return { title: "Brand" };
-  const title = `${brand.name} Barbed Wire & Chain Link Fencing | ${site.name}, Indore`;
+  const visuals = brandPageVisuals[slug as BrandId];
+  if (!brand?.pageContent || !validSlugs.includes(brand.id)) return { title: "Brand" };
   const description = `${brand.pageContent.subtitle} ${brand.name} barbed wire and chain link fencing (jali), made and sold by ${site.name}, Siyaganj, Indore since 1939.`;
-  return {
-    title,
+  return buildPageMeta({
+    title: `${brand.name} Barbed Wire & Chain Link Fencing in Indore`,
     description,
-    alternates: { canonical: `${baseUrl}/brands/${slug}` },
-    openGraph: { title, description, url: `${baseUrl}/brands/${slug}`, type: "website" },
-  };
+    path: `brands/${brand.id}`,
+    ...(visuals ? { image: { url: visuals.hero.src, alt: visuals.hero.alt } } : {}),
+  });
 }
 
 const RANGE = [
