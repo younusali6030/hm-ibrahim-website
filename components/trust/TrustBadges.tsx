@@ -1,49 +1,29 @@
-"use client";
-
-import {
-  Calendar,
-  Package,
-  Truck,
-  ShieldCheck,
-  BadgeIndianRupee,
-  type LucideIcon,
-} from "lucide-react";
-import { trustBadges } from "@/content/trust";
-
-const iconMap: Record<string, LucideIcon> = {
-  Calendar,
-  Package,
-  Truck,
-  ShieldCheck,
-  BadgeIndianRupee,
-};
+import { site } from "@/content/site";
 
 type Props = {
   className?: string;
-  /** Max badges to show; default all */
+  /** Kept for existing callers; the line below is fixed and short. */
   max?: number;
 };
 
-export function TrustBadges({ className = "", max }: Props) {
-  const badges = max ? trustBadges.slice(0, max) : trustBadges;
-
+/** One line of shop facts, each one checkable: year, address, hours and the Google profile. No slogans. */
+export function TrustBadges({ className = "" }: Props) {
+  const facts = [
+    "Since 1939",
+    `${site.address.line1}, ${site.address.city}`,
+    "Mon to Sat, 9 to 8. Sunday closed",
+    `Google ${site.googleReview.rating} from ${site.googleReview.reviewCount} reviews`,
+  ];
   return (
-    <section
-      className={`flex flex-wrap items-center justify-center gap-3 sm:gap-4 ${className}`}
-      aria-label="Trust badges"
+    <p
+      className={`border-y border-border py-3 font-mono-brand text-xs uppercase leading-relaxed tracking-[0.12em] text-muted-foreground ${className}`}
     >
-      {badges.map((badge) => {
-        const Icon = iconMap[badge.icon] ?? Package;
-        return (
-          <span
-            key={badge.id}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-small font-medium text-foreground"
-          >
-            <Icon className="h-4 w-4 shrink-0 text-primary" aria-hidden />
-            {badge.label}
-          </span>
-        );
-      })}
-    </section>
+      {facts.map((f, i) => (
+        <span key={f}>
+          {i > 0 && <span className="mx-2 text-primary" aria-hidden="true">/</span>}
+          {f}
+        </span>
+      ))}
+    </p>
   );
 }

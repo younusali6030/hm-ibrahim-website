@@ -1,72 +1,61 @@
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { T } from "@/lib/i18n";
 
 type Props = {
   variant?: "page" | "product";
   className?: string;
 };
 
-const whatsAppPrefill = "Hi, I'm looking for [item]. Do you have it available?";
+const link =
+  "inline-flex min-h-[44px] items-center font-semibold text-primary underline underline-offset-4 hover:brightness-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
 
 export function LookingForMoreSection({ variant = "page", className = "" }: Props) {
+  const tel = `tel:${site.phone.replace(/\s/g, "")}`;
   if (variant === "product") {
     return (
-      <div className={`rounded-lg border border-border/60 bg-muted/30 p-4 ${className}`}>
-        <p className="text-sm text-muted-foreground">
-          We stock many more construction and fabrication hardware items. If you don&apos;t see what
-          you need,{" "}
-          <a
-            href={`tel:${site.phone.replace(/\s/g, "")}`}
-            className="text-primary hover:underline"
-          >
-            call
-          </a>{" "}
-          or{" "}
-          <a
-            href={getWhatsAppLink(site.whatsapp, "Hi, I'm looking for a product. Do you have it available?")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            WhatsApp
-          </a>{" "}
-          us for quick availability and pricing.
-        </p>
-      </div>
+      <p className={`border-t border-border pt-4 text-sm text-muted-foreground ${className}`}>
+        <T
+          en="Not the size or item you need? The counter stocks more than the page shows."
+          hi="जो साइज़ या आइटम चाहिए वो नहीं दिखा? काउंटर पर इससे ज़्यादा माल है।"
+        />{" "}
+        <a href={tel} className={link}><T en="Call" hi="कॉल करें" /></a>
+        <span className="mx-2" aria-hidden="true">/</span>
+        <a
+          href={getWhatsAppLink(site.whatsapp, "Hi, I'm looking for a product. Do you have it available?")}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={link}
+        >
+          WhatsApp
+        </a>
+      </p>
     );
   }
 
   return (
-    <div
-      className={`rounded-lg border border-border bg-card/60 p-4 md:p-5 ${className}`}
-      role="region"
-      aria-labelledby="stock-more-heading"
-    >
-      <h2 id="stock-more-heading" className="text-sm font-semibold text-foreground">
-        Need something specific?
+    <section className={`border-y border-border py-5 ${className}`} aria-labelledby="stock-more-heading">
+      <h2 id="stock-more-heading" className="text-xl text-foreground">
+        <T en="Need something specific?" hi="कुछ ख़ास चाहिए?" />
       </h2>
       <p className="mt-2 text-sm text-muted-foreground">
-        We stock a wide range of construction hardware beyond what&apos;s listed here. Call or
-        WhatsApp for availability.
+        <T
+          en="We stock more hardware than is listed here. Call or WhatsApp for availability."
+          hi="लिस्ट से ज़्यादा हार्डवेयर दुकान में है। फ़ोन या WhatsApp पर पूछिए।"
+        />
       </p>
-      <div className="mt-4 flex flex-wrap gap-3">
-        <Button asChild size="sm">
-          <a href={`tel:${site.phone.replace(/\s/g, "")}`} aria-label="Call us">
-            Call
-          </a>
-        </Button>
-        <Button asChild size="sm" variant="outline">
-          <a
-            href={getWhatsAppLink(site.whatsapp, whatsAppPrefill)}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp us"
-          >
-            WhatsApp
-          </a>
-        </Button>
+      <div className="mt-2 flex flex-wrap gap-x-6">
+        <a href={tel} className={link} aria-label="Call us"><T en="Call" hi="कॉल करें" /></a>
+        <a
+          href={getWhatsAppLink(site.whatsapp, "Hi, I'm looking for [item]. Do you have it available?")}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={link}
+          aria-label="WhatsApp us"
+        >
+          WhatsApp
+        </a>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,97 +1,46 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import type { Product, ProductWithCategory } from "@/content/products";
 import { getCategoryBySlug, getProductImages } from "@/content/products";
-import { getBrandsForProduct } from "@/content/brands";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ImageWithFallback } from "@/components/ImageWithFallback";
+import { StencilTag } from "@/components/motif/Motif";
+import { sizeTag } from "@/components/catalog/ledger";
+import { T } from "@/lib/i18n";
 
 type Props = {
   product: Product | ProductWithCategory;
+  /** Kept for existing callers; cards no longer animate in. */
   index?: number;
 };
 
-export function ProductCard({ product, index = 0 }: Props) {
-  const categoryName = "categoryName" in product ? product.categoryName : undefined;
+/** A counter-ledger tile: same 4/3 dark-steel photo crop as the catalog rows, name, size tag, rate link. */
+export function ProductCard({ product }: Props) {
   const category = getCategoryBySlug(product.categorySlug);
-  const images = getProductImages(product, category);
-  const imgSrc = images[0];
-  const imgAlt =
-    product.imageAlt ||
-    (product.shortDesc ? `${product.name} – ${product.shortDesc}` : undefined) ||
-    category?.imageAlt ||
-    `${product.name} product image for ${categoryName || product.categorySlug}`;
+  const imgSrc = getProductImages(product, category)[0];
+  const tag = sizeTag(product);
+  const imgAlt = product.imageAlt || product.name;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.03 }}
-    >
-      <Card className="h-full overflow-hidden transition-colors hover:border-primary/50">
-        <Link href={`/products/${product.slug}`} className="block h-full">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted">
-            <ImageWithFallback
-              src={imgSrc}
-              alt={imgAlt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-              loading="lazy"
-            />
-            {categoryName && (
-              <span className="absolute bottom-2 left-2 rounded bg-background/80 px-2 py-0.5 text-xs text-muted-foreground">
-                {categoryName}
-              </span>
-            )}
-            {getBrandsForProduct(product.slug).length > 0 && (
-              <div className="absolute right-2 top-2 flex gap-1.5">
-                {getBrandsForProduct(product.slug).map((brand) => (
-                  <span
-                    key={brand.id}
-                    className="flex items-center gap-1 rounded-md border border-border/80 bg-background/90 px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground"
-                  >
-                    <span className="relative h-3.5 w-7 shrink-0">
-                      <Image src={brand.logo} alt="" width={28} height={14} className="object-contain" />
-                    </span>
-                    {brand.name}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-          <CardContent className="p-4">
-            <h3 className="font-semibold text-foreground">{product.name}</h3>
-            <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
-              {product.shortDesc}
-            </p>
-            {product.specs && product.specs.length > 0 && (
-              <div className="mt-2 space-y-1">
-                {product.specs.slice(0, 2).map((spec) => (
-                  <div key={spec.label} className="text-xs text-muted-foreground">
-                    <span className="font-medium">{spec.label}:</span> {spec.value}
-                  </div>
-                ))}
-              </div>
-            )}
-            {(product.tataOfficial || product.tataAvailable) && (
-              <p className="mt-2 text-xs text-muted-foreground">
-                Tata product available on request
-              </p>
-            )}
-          </CardContent>
+    <article className="group relative flex h-full flex-col border-t border-border pt-3">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[6px] bg-[hsl(210_30%_10%)] ring-1 ring-white/10">
+        {imgSrc && <Image src={imgSrc} alt={imgAlt} fill sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw" className="object-cover" />}
+        <span className="pointer-events-none absolute inset-0 bg-[hsl(210_40%_6%/0.18)]" aria-hidden="true" />
+      </div>
+      <h3 className="mt-3 font-display text-2xl font-extrabold uppercase leading-[1.02] text-foreground">
+        <Link
+          href={`/products/${product.slug}`}
+          className="rounded-sm after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        >
+          {product.name}
         </Link>
-        <div className="border-t border-border px-4 pb-4 pt-0">
-          <Button asChild variant="outline" size="sm" className="w-full mt-2 min-h-[44px] sm:min-h-0">
-            <Link href={`/products/${product.slug}`}>View details & quote</Link>
-          </Button>
-        </div>
-      </Card>
-    </motion.div>
+      </h3>
+      {tag && <StencilTag className="mt-2 !text-[0.8rem] text-foreground">{tag}</StencilTag>}
+      <p className="mt-2 line-clamp-2 flex-1 text-sm text-muted-foreground">{product.shortDesc}</p>
+      <Link
+        href={`/contact?product=${product.slug}&category=${product.categorySlug}`}
+        className="relative z-10 mt-3 inline-flex min-h-[44px] items-center font-mono-brand text-xs font-semibold uppercase tracking-[0.12em] text-primary underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      >
+        <T en="Ask for rate" hi="रेट पूछें" />
+      </Link>
+    </article>
   );
 }

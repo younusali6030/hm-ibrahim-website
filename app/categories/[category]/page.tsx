@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { categories, getCategoryBySlug, type Category } from "@/content/products";
 import { baseUrl, site, localSeo } from "@/lib/site";
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
@@ -16,6 +15,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { getWhatsAppLink } from "@/lib/utils";
+import { GaugeRule } from "@/components/motif/Motif";
+import { LedgerRow } from "@/components/catalog/LedgerRow";
+import { sizeTag, tataFlag } from "@/components/catalog/ledger";
+import { T } from "@/lib/i18n";
 
 type Props = { params: Promise<{ category: string }> };
 
@@ -155,48 +158,82 @@ export default async function CategoryPage({ params }: Props) {
       <PageHero
         eyebrow={
           <>
-            <Link href="/products" className="hover:text-white">Products</Link> / {category.name}
+            <Link href="/products" className="hover:text-white"><T en="Products" hi="प्रोडक्ट" /></Link> / {category.name}
           </>
         }
-        title={`${category.name} in Indore`}
-        lede={`${category.description} Stocked at our Siyaganj shop for retail and wholesale buyers across Indore, Dewas, Ujjain, Mhow and Pithampur.`}
+        title={<T en={`${category.name} in Indore`} hi={`${category.name}, इंदौर`} />}
+        lede={
+          <T
+            en={`${category.description} Stocked at our Siyaganj shop for retail and wholesale buyers across Indore, Dewas, Ujjain, Mhow and Pithampur.`}
+            hi={`${category.description} सियागंज की दुकान पर, इंदौर, देवास, उज्जैन, महू और पीथमपुर के रिटेल और थोक खरीदारों के लिए।`}
+          />
+        }
         compact
         image={heroImg ? { src: heroImg, alt: `${category.name} at H M Ibrahim & Co, Siyaganj, Indore` } : undefined}
       >
-        <Link href={`/contact?category=${category.slug}`} className={btnMain}>Get a rate for {category.name}</Link>
+        <Link href={`/contact?category=${category.slug}`} className={btnMain}><T en={`Ask for rate: ${category.name}`} hi={`रेट पूछें: ${category.name}`} /></Link>
         <a
           href={getWhatsAppLink(site.whatsapp, `Hi, I'm interested in ${category.name}. Please share price and availability.`)}
           target="_blank"
           rel="noopener noreferrer"
           className={btnGhostDark}
         >
-          WhatsApp us
+          <T en="WhatsApp us" hi="WhatsApp करें" />
         </a>
       </PageHero>
 
-      <section className="py-14 md:py-20" aria-labelledby="products-heading">
-        <div className="page-container">
-          <h2 id="products-heading" className="text-foreground">{category.products.length} products in {category.name}</h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {category.products.map((product) => (
-              <li key={product.slug}>
-                <Link
-                  href={`/products/${product.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-sm border border-border bg-card transition-shadow hover:shadow-xl"
-                >
-                  <span className="relative block aspect-[4/3] bg-secondary">
-                    {product.images?.[0] && (
-                      <Image src={product.images[0]} alt={product.imageAlt || product.name} fill sizes="(max-width:640px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                    )}
-                  </span>
-                  <span className="flex flex-1 flex-col p-5">
-                    <span className="font-display text-3xl font-extrabold uppercase leading-none text-foreground">{product.name}</span>
-                    <span className="mt-2 line-clamp-2 text-sm text-muted-foreground">{product.shortDesc}</span>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <section className="pb-14 pt-10 md:pb-20 md:pt-14" aria-labelledby="products-heading">
+        <div className="page-container lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12">
+          {/* Jump list: desktop only. On a phone the ledger itself is short enough to scroll. */}
+          <nav aria-label={`${category.name} index`} className="hidden lg:block">
+            <div className="sticky top-24">
+              <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                <T en="Jump to" hi="सीधे जाएँ" />
+              </p>
+              <ol className="mt-3 border-t border-border">
+                {category.products.map((p, i) => (
+                  <li key={p.slug} className="border-b border-border">
+                    <a
+                      href={`#p-${p.slug}`}
+                      className="flex min-h-[44px] items-center gap-3 py-2 text-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      <span className="font-mono-brand text-[11px] text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
+                      {p.name}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </nav>
+
+          <div className="min-w-0">
+            <GaugeRule tone="primary" label={`${category.products.length}`} className="mt-6" />
+            <h2 id="products-heading" className="mt-3 text-foreground">
+              <T
+                en={`${category.products.length} products in ${category.name}`}
+                hi={`${category.name} में ${category.products.length} आइटम`}
+              />
+            </h2>
+            <ul className="mt-4 border-t border-border">
+              {category.products.map((product, i) => (
+                <LedgerRow
+                  key={product.slug}
+                  index={i}
+                  anchor
+                  item={{
+                    slug: product.slug,
+                    name: product.name,
+                    shortDesc: product.shortDesc,
+                    image: product.images?.[0] ?? product.image ?? category.image ?? "",
+                    imageAlt: product.imageAlt || product.name,
+                    categorySlug: category.slug,
+                    tag: sizeTag(product),
+                    tata: tataFlag(product),
+                  }}
+                />
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -207,8 +244,8 @@ export default async function CategoryPage({ params }: Props) {
       <section className="border-t border-border bg-card py-14 md:py-20" aria-labelledby="faq-heading">
         <div className="page-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
-            <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">Questions</p>
-            <h2 id="faq-heading" className="mt-2 text-foreground">Before you order</h2>
+            <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground"><T en="Questions" hi="सवाल" /></p>
+            <h2 id="faq-heading" className="mt-2 text-foreground"><T en="Before you order" hi="ऑर्डर से पहले" /></h2>
           </div>
           <Accordion type="single" collapsible>
             {categoryFaqs.map((faq) => (
@@ -221,10 +258,10 @@ export default async function CategoryPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="bg-nav py-14 text-white md:py-16">
+      <section className="bg-nav pb-28 pt-14 text-white md:py-16">
         <div className="page-container flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <h2 className="text-white">Need {category.name.toLowerCase()}?</h2>
-          <Link href={`/contact?category=${category.slug}`} className={btnMain}>Get a quote</Link>
+          <h2 className="text-white"><T en={`Need ${category.name.toLowerCase()}?`} hi={`${category.name} चाहिए?`} /></h2>
+          <Link href={`/contact?category=${category.slug}`} className={btnMain}><T en="Ask for rate" hi="रेट पूछें" /></Link>
         </div>
       </section>
     </>

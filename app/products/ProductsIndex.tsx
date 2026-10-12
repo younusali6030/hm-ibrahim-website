@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { Search, ArrowUpRight } from "lucide-react";
+import { Search } from "lucide-react";
+import { GaugeRule } from "@/components/motif/Motif";
+import { LedgerRow, type LedgerItem } from "@/components/catalog/LedgerRow";
+import { T, useT } from "@/lib/i18n";
 
-export type IndexProduct = { slug: string; name: string; shortDesc: string; image: string; tata: "wiron" | "other" | null };
+export type IndexProduct = LedgerItem;
 export type IndexCategory = { slug: string; name: string; description: string; image: string; products: IndexProduct[] };
 
 export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
+  const t = useT();
   const [q, setQ] = useState("");
   // "wiron": only products with a Tata Wiron variant. "any": every Tata-flagged product (includes steel lines).
   const [tataFilter, setTataFilter] = useState<"off" | "wiron" | "any">("off");
@@ -51,26 +54,29 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
 
   return (
     <>
-      {/* Sticky rail: search and category jumps */}
+      {/* Rail: search, category jumps, Tata filter. Sticky on desktop only; on a phone it scrolls away so the ledger gets the screen. */}
       <div className="z-30 border-b border-border bg-background lg:sticky lg:top-0">
         <div className="page-container flex flex-wrap items-center gap-x-3 gap-y-3 py-3 lg:flex-nowrap">
           <label className="relative block min-w-0 flex-1 basis-[12rem] lg:max-w-xs lg:flex-none">
-            <span className="sr-only">Search products</span>
+            <span className="sr-only">{t("Search products", "प्रोडक्ट खोजें")}</span>
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
             <input
               type="search"
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Search wire, mesh, bars…"
-              className="h-11 w-full rounded-full border border-input bg-card pl-10 pr-3 text-base outline-none focus:border-foreground"
+              placeholder={t("Search wire, mesh, bars…", "तार, जाली, सरिया खोजें…")}
+              className="h-11 w-full rounded-[6px] border border-input bg-card pl-10 pr-3 text-base outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/40"
             />
           </label>
-          <nav aria-label="Categories" className="order-last -mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:order-none lg:mx-0 lg:w-auto lg:min-w-0 lg:flex-1 lg:px-0 lg:pb-0">
+          <nav
+            aria-label={t("Categories", "श्रेणियाँ")}
+            className="order-last -mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:order-none lg:mx-0 lg:w-auto lg:min-w-0 lg:flex-1 lg:px-0 lg:pb-0"
+          >
             {view.map((c) => (
               <a
                 key={c.slug}
                 href={`#c-${c.slug}`}
-                className="inline-flex min-h-[44px] shrink-0 items-center rounded-full border border-border bg-card px-4 text-sm font-semibold text-foreground hover:border-foreground/50"
+                className="inline-flex min-h-[44px] shrink-0 items-center rounded-[6px] border border-border bg-card px-4 text-sm font-semibold text-foreground hover:border-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 {c.name}
               </a>
@@ -89,7 +95,7 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
                 aria-pressed={tataFilter === key}
                 onClick={() => setTataFilter((v) => (v === key ? "off" : key))}
                 className={
-                  "h-11 shrink-0 rounded-full border px-4 text-sm font-semibold " +
+                  "h-11 shrink-0 rounded-[6px] border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary " +
                   (tataFilter === key ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-foreground hover:border-foreground/50")
                 }
               >
@@ -100,67 +106,55 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
         </div>
       </div>
 
-      <div className="page-container py-10 md:py-16">
-        <p className="text-sm text-muted-foreground" aria-live="polite">
-          {total === 0 ? "No product matches. Try a shorter word, or ask us." : `${total} product${total === 1 ? "" : "s"}`}
+      <div className="page-container pb-28 pt-8 md:pb-16 md:pt-12">
+        <p className="font-mono-brand text-xs uppercase tracking-[0.14em] text-muted-foreground" aria-live="polite">
+          {total === 0
+            ? t("No product matches. Try a shorter word, or ask us.", "कुछ नहीं मिला। छोटा शब्द आज़माइए, या हमसे पूछिए।")
+            : `${total} ${t(total === 1 ? "product" : "products", "आइटम")}`}
         </p>
 
-        <div className="mt-6 divide-y divide-border">
-          {view.map((c, i) => (
-            <section key={c.slug} id={`c-${c.slug}`} className="py-12 first:pt-0 md:py-16 lg:scroll-mt-14">
-              <div className="grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
-                <div className={"lg:sticky lg:top-28 lg:self-start " + (i % 2 ? "lg:order-2" : "")}>
-                  <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")} / {c.products.length} products
-                  </p>
-                  <h2 className="mt-2 text-foreground">{c.name}</h2>
-                  <p className="mt-3 max-w-md text-muted-foreground">{c.description}</p>
-                  {c.image && (
-                    <div className="relative mt-6 aspect-[4/3] overflow-hidden rounded-sm bg-secondary">
-                      <Image src={c.image} alt={`${c.name} at H M Ibrahim & Co`} fill sizes="(max-width:1024px) 100vw, 40vw" className="object-cover" />
-                    </div>
-                  )}
-                  <Link
-                    href={`/contact?category=${c.slug}`}
-                    className="mt-6 inline-flex min-h-[48px] items-center rounded-sm bg-primary px-6 font-bold text-primary-foreground hover:brightness-110"
-                  >
-                    Get a rate for {c.name}
-                  </Link>
-                </div>
-
-                <ul className="divide-y divide-border border-y border-border">
-                  {c.products.map((p) => (
-                    <li key={p.slug}>
-                      <Link href={`/products/${p.slug}`} className="group flex items-center gap-4 py-4 transition-colors hover:bg-secondary/60 sm:px-2">
-                        <span className="relative block h-16 w-16 shrink-0 overflow-hidden rounded-sm bg-secondary sm:h-20 sm:w-20">
-                          {p.image && <Image src={p.image} alt="" fill sizes="80px" className="object-cover" />}
-                        </span>
-                        <span className="min-w-0 flex-1">
-                          <span className="block font-display text-2xl font-extrabold uppercase leading-none text-foreground sm:text-3xl">
-                            {p.name}
-                          </span>
-                          <span className="mt-1 line-clamp-2 block text-sm text-muted-foreground">{p.shortDesc}</span>
-                          {p.tata && (
-                            <span className="mt-1 inline-block text-xs font-semibold text-primary">
-                              {p.tata === "wiron" ? "Tata Wiron available" : "Tata available on request"}
-                            </span>
-                          )}
-                        </span>
-                        <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" aria-hidden />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+        {view.map((c, i) => (
+          <section key={c.slug} id={`c-${c.slug}`} aria-labelledby={`h-${c.slug}`} className="mt-12 scroll-mt-20 first:mt-6">
+            <GaugeRule
+              tone={i === 0 ? "primary" : "muted"}
+              label={`${String(i + 1).padStart(2, "0")} / ${c.products.length}`}
+              className="mt-8"
+            />
+            <div className="mt-3 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+              <div className="min-w-0">
+                <h2 id={`h-${c.slug}`} className="text-foreground">{c.name}</h2>
+                <p className="mt-2 max-w-xl text-sm text-muted-foreground">{c.description}</p>
               </div>
-            </section>
-          ))}
-        </div>
+              <Link
+                href={`/categories/${c.slug}`}
+                className="inline-flex min-h-[44px] items-center font-mono-brand text-xs uppercase tracking-[0.14em] text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                <T en={`Open ${c.name}`} hi={`${c.name} खोलें`} />
+              </Link>
+            </div>
+            <ul className="mt-4 border-t border-border">
+              {c.products.map((p, j) => (
+                <LedgerRow key={p.slug} item={p} index={j} />
+              ))}
+            </ul>
+          </section>
+        ))}
 
-        <div className="mt-6 rounded-sm bg-nav p-8 text-white md:p-12">
-          <h2 className="text-white">Not on the list?</h2>
-          <p className="mt-3 max-w-xl text-white/80">We stock more than the page shows. Send us what you need, or call the counter.</p>
-          <Link href="/contact" className="mt-6 inline-flex min-h-[52px] items-center rounded-sm bg-primary px-7 font-bold text-primary-foreground hover:brightness-110">
-            Get a quote
+        <div className="mt-16 border-t-2 border-primary/70 pt-6 md:flex md:items-end md:justify-between md:gap-8">
+          <div>
+            <h2 className="text-foreground"><T en="Not on the list?" hi="लिस्ट में नहीं है?" /></h2>
+            <p className="mt-2 max-w-xl text-muted-foreground">
+              <T
+                en="We stock more than the page shows. Send us what you need, or call the counter."
+                hi="दुकान में इससे ज़्यादा माल है। जो चाहिए बताइए, या काउंटर पर फ़ोन कीजिए।"
+              />
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="mt-5 inline-flex min-h-[52px] items-center rounded-sm bg-primary px-7 font-bold text-primary-foreground hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:mt-0"
+          >
+            <T en="Ask for a rate" hi="रेट पूछें" />
           </Link>
         </div>
       </div>
