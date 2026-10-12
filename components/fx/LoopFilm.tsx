@@ -23,22 +23,51 @@ export function LoopFilm({
     const el = wrap.current;
     const v = video.current;
     if (!el || !v || !motionAllowed()) return;
+    let go = false;
+    let visible = false;
     let loaded = false;
+    const sync = () => {
+      if (!go) return;
+      if (visible) {
+        if (!loaded) {
+          loaded = true;
+          v.src = src;
+          v.load();
+        }
+        v.play().catch(() => {});
+      } else if (loaded) v.pause();
+    };
+    // Poster first: the film waits for the first touch, scroll or key, or ten idle seconds after load,
+    // so its first frame never competes for LCP.
+    const events = ["pointerdown", "keydown", "wheel", "touchstart", "scroll"];
+    let timer = 0;
+    const start = () => {
+      if (go) return;
+      go = true;
+      window.clearTimeout(timer);
+      events.forEach((t) => window.removeEventListener(t, start));
+      sync();
+    };
+    events.forEach((t) => window.addEventListener(t, start, { passive: true }));
+    const arm = () => {
+      timer = window.setTimeout(start, 10000);
+    };
+    if (document.readyState === "complete") arm();
+    else window.addEventListener("load", arm, { once: true });
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
-          if (!loaded) {
-            loaded = true;
-            v.src = src;
-            v.load();
-          }
-          v.play().catch(() => {});
-        } else v.pause();
+        visible = e.isIntersecting;
+        sync();
       },
       { threshold: 0.1 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      window.clearTimeout(timer);
+      window.removeEventListener("load", arm);
+      events.forEach((t) => window.removeEventListener(t, start));
+    };
   }, [src]);
 
   return (
