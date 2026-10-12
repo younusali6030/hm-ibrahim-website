@@ -2,7 +2,7 @@
 title: "TMT Bar Weight Chart: 8 mm to 32 mm, and How to Check What You Were Sent"
 description: "TMT bar weight per metre and per piece for every common diameter, the formula behind it, and a simple way to check a delivery at the gate. From the counter at Siyaganj, Indore."
 date: "2026-10-11"
-updated: "2026-10-11"
+updated: "2026-10-12"
 category: "Structural steel"
 image: "/blog/tmt-weight-1.webp"
 imageAlt: "TMT bars on the counter table ready to be weighed"
@@ -24,6 +24,8 @@ A TMT bar is a solid steel cylinder. Steel weighs about 7,850 kg per cubic metre
 **Weight per metre (kg) = d² ÷ 162**, where d is the diameter in millimetres.
 
 So a 12 mm bar weighs 12 × 12 ÷ 162 = 0.889 kg per metre. A standard 12 metre length weighs about 10.7 kg.
+
+Some charts print 0.888 kg per metre because they cut the decimals instead of rounding; the exact figure is 0.8889. Bars are often called "40 feet" in the market. That is 12.19 m, so a 12 mm bar of that length weighs about 10.8 kg.
 
 ## TMT bar weight chart
 

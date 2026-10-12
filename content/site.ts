@@ -61,7 +61,8 @@ export const site = {
   /** Optional: social links. Use empty string to hide. */
   social: {
     facebook: "",
-    instagram: "",
+    /** The shop's own account: its bio links to hmibrahim.net and the reels on this site come from it. */
+    instagram: "https://www.instagram.com/hmibrahimsince1939/",
     linkedin: "",
     twitter: "",
   },

@@ -98,7 +98,6 @@ export default async function ProductDetailPage({ params }: Props) {
     mpn: product.slug,
     ...(allImages.length > 0 ? { image: allImages } : {}),
     brand: { "@type": "Brand", name: hi ? siteHi.name : site.name, url: baseUrl },
-    inLanguage: hi ? "hi-IN" : "en-IN",
     category: category?.name || product.categorySlug,
     ...(product.materials && product.materials.length > 0 ? { material: product.materials.join(", ") } : {}),
     offers: {
