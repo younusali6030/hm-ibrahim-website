@@ -85,7 +85,10 @@ export function QuoteForm() {
   const t = useT();
 
   const prefilledCategory = searchParams.get("category") ?? "";
-  const prefilledProduct = (searchParams.get("product") ?? "").slice(0, 120);
+  const productParam = (searchParams.get("product") ?? "").slice(0, 120);
+  // Product links carry the slug; the customer should see the name ("GI Wire", not "gi-wire").
+  const prefilledProduct =
+    categories.flatMap((c) => c.products).find((p) => p.slug === productParam)?.name ?? productParam;
   const prefilledQty = (searchParams.get("qty") ?? searchParams.get("quantity") ?? "").replace(/[\u0000-\u001f]/g, "").slice(0, 60);
   // Resolves our own brand ids (old "boarder" links included) and stocked-brand names.
   const brand = resolveBrand(searchParams.get("brand") ?? "");
