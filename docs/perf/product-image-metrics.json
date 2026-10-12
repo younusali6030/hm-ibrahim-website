@@ -1,0 +1,994 @@
+[
+ {
+  "f": "/products/15mmx15mm-welded-wiremesh.png",
+  "w": 1383,
+  "h": 1383,
+  "lap": 1982,
+  "bg": 107,
+  "alpha": false
+ },
+ {
+  "f": "/products/barbed-wire.png",
+  "w": 1198,
+  "h": 800,
+  "lap": 4299,
+  "bg": 112,
+  "alpha": false
+ },
+ {
+  "f": "/products/binding-wire-main.png",
+  "w": 500,
+  "h": 387,
+  "lap": 1197,
+  "bg": 254,
+  "alpha": false
+ },
+ {
+  "f": "/products/binding-wire.png",
+  "w": 640,
+  "h": 480,
+  "lap": 1491,
+  "bg": 112,
+  "alpha": false
+ },
+ {
+  "f": "/products/brands/boarder/barbed-1.png",
+  "w": 768,
+  "h": 1024,
+  "lap": 3778,
+  "bg": 120,
+  "alpha": false
+ },
+ {
+  "f": "/products/brands/boarder/barbed-chainlink-stack.png",
+  "w": 768,
+  "h": 1024,
+  "lap": 5890,
+  "bg": 95,
+  "alpha": false
+ },
+ {
+  "f": "/products/brands/boarder/chainlink-1.png",
+  "w": 338,
+  "h": 1024,
+  "lap": 17725,
+  "bg": 73,
+  "alpha": false
+ },
+ {
+  "f": "/products/brands/boarder/chainlink-2.png",
+  "w": 768,
+  "h": 1024,
+  "lap": 6743,
+  "bg": 121,
+  "alpha": false
+ },
+ {
+  "f": "/products/brands/boarder/chainlink-3.png",
+  "w": 338,
+  "h": 1024,
+  "lap": 17725,
+  "bg": 73,
+  "alpha": false
+ },
+ {
+  "f": "/products/brands/cm/barbed-1.png",
+  "w": 1334,
+  "h": 750,
+  "lap": 2199,
+  "bg": 91,
+  "alpha": false
+ },
+ {
+  "f": "/products/brands/cm/chainlink-1.png",
+  "w": 1024,
+  "h": 768,
+  "lap": 6003,
+  "bg": 76,
+  "alpha": false
+ },
+ {
+  "f": "/products/brands/cm/chainlink-2.png",
+  "w": 1024,
+  "h": 611,
+  "lap": 6224,
+  "bg": 131,
+  "alpha": false
+ },
+ {
+  "f": "/products/bright-bars.png",
+  "w": 900,
+  "h": 465,
+  "lap": 1513,
+  "bg": 94,
+  "alpha": false
+ },
+ {
+  "f": "/products/chain-link-wire.png",
+  "w": 350,
+  "h": 269,
+  "lap": 25699,
+  "bg": 217,
+  "alpha": false
+ },
+ {
+  "f": "/products/chicken-net-1.png",
+  "w": 596,
+  "h": 515,
+  "lap": 8602,
+  "bg": 252,
+  "alpha": false
+ },
+ {
+  "f": "/products/clutch-wire-1.png",
+  "w": 648,
+  "h": 918,
+  "lap": 1757,
+  "bg": 98,
+  "alpha": false
+ },
+ {
+  "f": "/products/clutch-wire-2.png",
+  "w": 1024,
+  "h": 683,
+  "lap": 993,
+  "bg": 74,
+  "alpha": false
+ },
+ {
+  "f": "/products/concertina-wire-1.png",
+  "w": 1138,
+  "h": 655,
+  "lap": 11172,
+  "bg": 123,
+  "alpha": false
+ },
+ {
+  "f": "/products/concertina-wire-2.png",
+  "w": 450,
+  "h": 450,
+  "lap": 837,
+  "bg": 254,
+  "alpha": false
+ },
+ {
+  "f": "/products/concertina-wire-main.png",
+  "w": 450,
+  "h": 450,
+  "lap": 3560,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/concrete-cover-block-1.png",
+  "w": 500,
+  "h": 500,
+  "lap": 94,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/concrete-cover-block-2.png",
+  "w": 500,
+  "h": 481,
+  "lap": 148,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/concrete-cover-block-3.png",
+  "w": 870,
+  "h": 722,
+  "lap": 1069,
+  "bg": 232,
+  "alpha": false
+ },
+ {
+  "f": "/products/crimp-wiremesh-1.png",
+  "w": 550,
+  "h": 550,
+  "lap": 6506,
+  "bg": 111,
+  "alpha": false
+ },
+ {
+  "f": "/products/crimp-wiremesh-2.png",
+  "w": 500,
+  "h": 500,
+  "lap": 5375,
+  "bg": 111,
+  "alpha": false
+ },
+ {
+  "f": "/products/crimp-wiremesh-3.png",
+  "w": 500,
+  "h": 500,
+  "lap": 1044,
+  "bg": 150,
+  "alpha": false
+ },
+ {
+  "f": "/products/fastener-nail-1.png",
+  "w": 300,
+  "h": 300,
+  "lap": 20,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/fastener-nail.png",
+  "w": 900,
+  "h": 469,
+  "lap": 1285,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/fiber-mesh-1.png",
+  "w": 800,
+  "h": 800,
+  "lap": 1049,
+  "bg": 49,
+  "alpha": false
+ },
+ {
+  "f": "/products/fiber-mesh-2.png",
+  "w": 480,
+  "h": 603,
+  "lap": 1040,
+  "bg": 252,
+  "alpha": false
+ },
+ {
+  "f": "/products/fiber-mesh-3.png",
+  "w": 500,
+  "h": 500,
+  "lap": 684,
+  "bg": 250,
+  "alpha": false
+ },
+ {
+  "f": "/products/fiber-mesh-main.png",
+  "w": 800,
+  "h": 800,
+  "lap": 4757,
+  "bg": 10,
+  "alpha": false
+ },
+ {
+  "f": "/products/frp-bars-1.png",
+  "w": 960,
+  "h": 1280,
+  "lap": 2309,
+  "bg": 155,
+  "alpha": false
+ },
+ {
+  "f": "/products/frp-bars-2.png",
+  "w": 960,
+  "h": 1280,
+  "lap": 1099,
+  "bg": 142,
+  "alpha": false
+ },
+ {
+  "f": "/products/frp-bars-3.png",
+  "w": 960,
+  "h": 763,
+  "lap": 3447,
+  "bg": 134,
+  "alpha": false
+ },
+ {
+  "f": "/products/frp-bars-pipe.jpg",
+  "w": 464,
+  "h": 832,
+  "lap": 965,
+  "bg": 155,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-perforated-1.png",
+  "w": 600,
+  "h": 450,
+  "lap": 2742,
+  "bg": 119,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-perforated-2.png",
+  "w": 2048,
+  "h": 1152,
+  "lap": 5047,
+  "bg": 93,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-perforated-3.png",
+  "w": 281,
+  "h": 179,
+  "lap": 1547,
+  "bg": 91,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-pipes.png",
+  "w": 1280,
+  "h": 600,
+  "lap": 1937,
+  "bg": 105,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-weldmesh-1.png",
+  "w": 540,
+  "h": 720,
+  "lap": 7163,
+  "bg": 100,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-weldmesh-main.png",
+  "w": 500,
+  "h": 500,
+  "lap": 5361,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-wire-local-1.png",
+  "w": 775,
+  "h": 721,
+  "lap": 5564,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-wire-local-2.png",
+  "w": 1416,
+  "h": 1416,
+  "lap": 3456,
+  "bg": 126,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-wire-rope.png",
+  "w": 1000,
+  "h": 954,
+  "lap": 6211,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-wire.png",
+  "w": 313,
+  "h": 161,
+  "lap": 3560,
+  "bg": 249,
+  "alpha": false
+ },
+ {
+  "f": "/products/gi-wiremesh.png",
+  "w": 500,
+  "h": 500,
+  "lap": 317,
+  "bg": 118,
+  "alpha": false
+ },
+ {
+  "f": "/products/grinding-disc-1.png",
+  "w": 1024,
+  "h": 682,
+  "lap": 1184,
+  "bg": 91,
+  "alpha": false
+ },
+ {
+  "f": "/products/grinding-disc-main.png",
+  "w": 1024,
+  "h": 682,
+  "lap": 701,
+  "bg": 64,
+  "alpha": false
+ },
+ {
+  "f": "/products/hexa-mesh-1.png",
+  "w": 600,
+  "h": 450,
+  "lap": 2927,
+  "bg": 142,
+  "alpha": false
+ },
+ {
+  "f": "/products/hexa-mesh-2.png",
+  "w": 1600,
+  "h": 1060,
+  "lap": 1803,
+  "bg": 116,
+  "alpha": false
+ },
+ {
+  "f": "/products/jhatka-machine-fencing-wire-1.png",
+  "w": 500,
+  "h": 333,
+  "lap": 1496,
+  "bg": 254,
+  "alpha": false
+ },
+ {
+  "f": "/products/jhatka-machine-fencing-wire-2.png",
+  "w": 1200,
+  "h": 1600,
+  "lap": 6511,
+  "bg": 99,
+  "alpha": false
+ },
+ {
+  "f": "/products/jhatka-machine-fencing-wire.jpg",
+  "w": 360,
+  "h": 640,
+  "lap": 1120,
+  "bg": 203,
+  "alpha": false
+ },
+ {
+  "f": "/products/mosquito-net.png",
+  "w": 850,
+  "h": 850,
+  "lap": 5299,
+  "bg": 55,
+  "alpha": false
+ },
+ {
+  "f": "/products/ms-angle-1.png",
+  "w": 620,
+  "h": 422,
+  "lap": 4265,
+  "bg": 128,
+  "alpha": false
+ },
+ {
+  "f": "/products/ms-angle-2.png",
+  "w": 900,
+  "h": 600,
+  "lap": 2444,
+  "bg": 145,
+  "alpha": false
+ },
+ {
+  "f": "/products/ms-angle.png",
+  "w": 1440,
+  "h": 1000,
+  "lap": 3133,
+  "bg": 83,
+  "alpha": false
+ },
+ {
+  "f": "/products/ms-flat.png",
+  "w": 1500,
+  "h": 2000,
+  "lap": 1660,
+  "bg": 122,
+  "alpha": false
+ },
+ {
+  "f": "/products/ms-holepass.png",
+  "w": 1935,
+  "h": 1769,
+  "lap": 2867,
+  "bg": 101,
+  "alpha": false
+ },
+ {
+  "f": "/products/ms-round-bar.png",
+  "w": 1024,
+  "h": 768,
+  "lap": 3960,
+  "bg": 69,
+  "alpha": false
+ },
+ {
+  "f": "/products/ms-weldmesh-1.png",
+  "w": 500,
+  "h": 375,
+  "lap": 2454,
+  "bg": 156,
+  "alpha": false
+ },
+ {
+  "f": "/products/ms-wire-rope-2.png",
+  "w": 1525,
+  "h": 1451,
+  "lap": 5612,
+  "bg": 84,
+  "alpha": false
+ },
+ {
+  "f": "/products/ms-wire-rope.png",
+  "w": 500,
+  "h": 500,
+  "lap": 3713,
+  "bg": 0,
+  "alpha": false
+ },
+ {
+  "f": "/products/national-barbed-wire-1.png",
+  "w": 817,
+  "h": 864,
+  "lap": 673,
+  "bg": 108,
+  "alpha": false
+ },
+ {
+  "f": "/products/national-barbed-wire-2.png",
+  "w": 813,
+  "h": 1024,
+  "lap": 861,
+  "bg": 103,
+  "alpha": false
+ },
+ {
+  "f": "/products/nylon-jhatka-wire.png",
+  "w": 1436,
+  "h": 2048,
+  "lap": 1620,
+  "bg": 91,
+  "alpha": false
+ },
+ {
+  "f": "/products/perforated-sheet-2.png",
+  "w": 458,
+  "h": 500,
+  "lap": 1379,
+  "bg": 84,
+  "alpha": false
+ },
+ {
+  "f": "/products/perforated-sheet.png",
+  "w": 1024,
+  "h": 683,
+  "lap": 3644,
+  "bg": 178,
+  "alpha": false
+ },
+ {
+  "f": "/products/pickaxe-crowbar-2.png",
+  "w": 1000,
+  "h": 689,
+  "lap": 832,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/pickaxe-crowbar-3.png",
+  "w": 500,
+  "h": 355,
+  "lap": 1059,
+  "bg": 103,
+  "alpha": false
+ },
+ {
+  "f": "/products/pickaxe-crowbar-4.png",
+  "w": 500,
+  "h": 355,
+  "lap": 1059,
+  "bg": 103,
+  "alpha": false
+ },
+ {
+  "f": "/products/pickaxe-crowbar.png",
+  "w": 500,
+  "h": 375,
+  "lap": 470,
+  "bg": 254,
+  "alpha": false
+ },
+ {
+  "f": "/products/pigeon-net.png",
+  "w": 900,
+  "h": 880,
+  "lap": 1057,
+  "bg": 190,
+  "alpha": false
+ },
+ {
+  "f": "/products/pigeon-spike-1.png",
+  "w": 1600,
+  "h": 1062,
+  "lap": 69,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/pigeon-spike-2.png",
+  "w": 435,
+  "h": 435,
+  "lap": 531,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/pigeon-spike-3.png",
+  "w": 1000,
+  "h": 805,
+  "lap": 49,
+  "bg": 249,
+  "alpha": false
+ },
+ {
+  "f": "/products/plastic-hexagonal-poultry-mesh-1.png",
+  "w": 2048,
+  "h": 1580,
+  "lap": 7216,
+  "bg": 176,
+  "alpha": false
+ },
+ {
+  "f": "/products/plastic-hexagonal-poultry-mesh-2.png",
+  "w": 894,
+  "h": 896,
+  "lap": 8710,
+  "bg": 225,
+  "alpha": false
+ },
+ {
+  "f": "/products/plastic-hexagonal-poultry-mesh-3.png",
+  "w": 600,
+  "h": 450,
+  "lap": 11788,
+  "bg": 247,
+  "alpha": false
+ },
+ {
+  "f": "/products/pvc-coated-weldmesh.png",
+  "w": 500,
+  "h": 323,
+  "lap": 1171,
+  "bg": 92,
+  "alpha": false
+ },
+ {
+  "f": "/products/roofing-nail-1.png",
+  "w": 500,
+  "h": 500,
+  "lap": 799,
+  "bg": 249,
+  "alpha": false
+ },
+ {
+  "f": "/products/roofing-nail-2.png",
+  "w": 500,
+  "h": 500,
+  "lap": 1134,
+  "bg": 113,
+  "alpha": false
+ },
+ {
+  "f": "/products/safety-net-1.png",
+  "w": 500,
+  "h": 500,
+  "lap": 4130,
+  "bg": 249,
+  "alpha": false
+ },
+ {
+  "f": "/products/safety-net-2.png",
+  "w": 500,
+  "h": 500,
+  "lap": 1584,
+  "bg": 254,
+  "alpha": false
+ },
+ {
+  "f": "/products/santing-shikanja-1.png",
+  "w": 1280,
+  "h": 1275,
+  "lap": 3155,
+  "bg": 133,
+  "alpha": false
+ },
+ {
+  "f": "/products/square-mesh-1.png",
+  "w": 1022,
+  "h": 1453,
+  "lap": 1256,
+  "bg": 115,
+  "alpha": false
+ },
+ {
+  "f": "/products/square-mesh-2.png",
+  "w": 2048,
+  "h": 1491,
+  "lap": 823,
+  "bg": 173,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-crowbar-1.png",
+  "w": 336,
+  "h": 500,
+  "lap": 1571,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-crowbar-2.png",
+  "w": 1024,
+  "h": 660,
+  "lap": 674,
+  "bg": 122,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-hoe-faurdha-1.png",
+  "w": 942,
+  "h": 1083,
+  "lap": 705,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-hoe-faurdha-2.png",
+  "w": 944,
+  "h": 1131,
+  "lap": 900,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-hoe-faurdha-3.png",
+  "w": 821,
+  "h": 1024,
+  "lap": 368,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-hoe-faurdha-4.png",
+  "w": 487,
+  "h": 500,
+  "lap": 660,
+  "bg": 117,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-hoe-faurdha-with-handle-1.png",
+  "w": 375,
+  "h": 500,
+  "lap": 1194,
+  "bg": 131,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-hoe-faurdha-with-handle-2.png",
+  "w": 1500,
+  "h": 2000,
+  "lap": 1464,
+  "bg": 122,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-hoe-with-handle.jpg",
+  "w": 476,
+  "h": 848,
+  "lap": 1648,
+  "bg": 115,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-pickaxe-geti-1.png",
+  "w": 1000,
+  "h": 836,
+  "lap": 1459,
+  "bg": 50,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-pickaxe-geti-2.png",
+  "w": 750,
+  "h": 1000,
+  "lap": 1556,
+  "bg": 131,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-pickaxe-geti-3.png",
+  "w": 503,
+  "h": 1024,
+  "lap": 3300,
+  "bg": 181,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-pickaxe-geti-4.png",
+  "w": 1024,
+  "h": 539,
+  "lap": 2512,
+  "bg": 223,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-pickaxe-geti-5.png",
+  "w": 1000,
+  "h": 369,
+  "lap": 309,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/sr-sledge-hammer.png",
+  "w": 282,
+  "h": 500,
+  "lap": 402,
+  "bg": 151,
+  "alpha": false
+ },
+ {
+  "f": "/products/ss-fine-mesh-1.png",
+  "w": 1200,
+  "h": 1200,
+  "lap": 114,
+  "bg": 242,
+  "alpha": false
+ },
+ {
+  "f": "/products/ss-fine-mesh.png",
+  "w": 951,
+  "h": 955,
+  "lap": 325,
+  "bg": 211,
+  "alpha": false
+ },
+ {
+  "f": "/products/ss-gi-mesh-and-jali.png",
+  "w": 1024,
+  "h": 1024,
+  "lap": 2541,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/ss-gi-mesh-jali-2.png",
+  "w": 581,
+  "h": 1032,
+  "lap": 1936,
+  "bg": 16,
+  "alpha": false
+ },
+ {
+  "f": "/products/ss-gi-mesh-jali-3.png",
+  "w": 581,
+  "h": 1032,
+  "lap": 1320,
+  "bg": 60,
+  "alpha": false
+ },
+ {
+  "f": "/products/ss-wire-rope-2.png",
+  "w": 1600,
+  "h": 1533,
+  "lap": 5606,
+  "bg": 76,
+  "alpha": false
+ },
+ {
+  "f": "/products/ss-wire-rope.png",
+  "w": 2048,
+  "h": 1201,
+  "lap": 3874,
+  "bg": 90,
+  "alpha": false
+ },
+ {
+  "f": "/products/tata-barbed-wire.png",
+  "w": 1280,
+  "h": 1206,
+  "lap": 2622,
+  "bg": 253,
+  "alpha": false
+ },
+ {
+  "f": "/products/tata-chainlink-1.png",
+  "w": 500,
+  "h": 500,
+  "lap": 9954,
+  "bg": 157,
+  "alpha": false
+ },
+ {
+  "f": "/products/tata-gi-wire-1.png",
+  "w": 1000,
+  "h": 485,
+  "lap": 2065,
+  "bg": 230,
+  "alpha": false
+ },
+ {
+  "f": "/products/tata-gi-wire-2.png",
+  "w": 800,
+  "h": 600,
+  "lap": 4885,
+  "bg": 63,
+  "alpha": false
+ },
+ {
+  "f": "/products/tmt-bar.png",
+  "w": 326,
+  "h": 155,
+  "lap": 2302,
+  "bg": 100,
+  "alpha": false
+ },
+ {
+  "f": "/products/types-nails.png",
+  "w": 590,
+  "h": 250,
+  "lap": 4215,
+  "bg": 242,
+  "alpha": false
+ },
+ {
+  "f": "/products/warehouse-steel-sections.png",
+  "w": 329,
+  "h": 153,
+  "lap": 2594,
+  "bg": 103,
+  "alpha": false
+ },
+ {
+  "f": "/products/welded-wire-mesh-1.png",
+  "w": 125,
+  "h": 125,
+  "lap": 179,
+  "bg": 50,
+  "alpha": false
+ },
+ {
+  "f": "/products/welded-wire-mesh-2.png",
+  "w": 952,
+  "h": 946,
+  "lap": 3320,
+  "bg": 120,
+  "alpha": false
+ },
+ {
+  "f": "/products/welding-mesh.png",
+  "w": 1200,
+  "h": 1200,
+  "lap": 7373,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/welding-rod.png",
+  "w": 1024,
+  "h": 723,
+  "lap": 1836,
+  "bg": 198,
+  "alpha": false
+ },
+ {
+  "f": "/products/wire-nail-1.png",
+  "w": 1000,
+  "h": 1000,
+  "lap": 323,
+  "bg": 255,
+  "alpha": false
+ },
+ {
+  "f": "/products/wire-nail-2.png",
+  "w": 1000,
+  "h": 1000,
+  "lap": 1896,
+  "bg": 83,
+  "alpha": false
+ },
+ {
+  "f": "/products/wire-rope-clamp.png",
+  "w": 594,
+  "h": 516,
+  "lap": 1569,
+  "bg": 255,
+  "alpha": false
+ }
+]
