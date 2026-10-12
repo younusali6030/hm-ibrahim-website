@@ -1,10 +1,8 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
+import { GaugeRule } from "@/components/motif/Motif";
+import { btnMain, btnGhostDark } from "@/components/site/PageHero";
 
 type Props = {
   title?: string;
@@ -13,53 +11,29 @@ type Props = {
   whatsAppMessage?: string;
 };
 
+/** Closing band: one statement, two ways in. Static, so it never shifts layout. */
 export function CTASection({
   title = "Ready to order?",
-  description = "Request a quote or reach us on WhatsApp for quick pricing and availability.",
-  quoteLabel = "Request a Quote",
+  description = "Send the list. We confirm stock and call back with the rate.",
+  quoteLabel = "Request a quote",
   whatsAppMessage = "Hi, I'm interested in your products. Please share price/availability.",
 }: Props) {
   return (
-    <section className="bg-nav border-y border-white/20 section-padding" aria-labelledby="cta-heading">
-      <div className="page-container text-center">
-        <motion.h2
-          id="cta-heading"
-          className="text-xl font-bold text-white sm:text-2xl md:text-3xl"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          {title}
-        </motion.h2>
-        <motion.p
-          className="mx-auto mt-3 max-w-xl text-white/80"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.05 }}
-        >
-          {description}
-        </motion.p>
-        <motion.div
-          className="mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 sm:gap-4"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-        >
-          <Button asChild size="lg" className="w-full sm:w-auto min-h-[44px] bg-primary text-gray-900 hover:bg-primary/90 font-semibold">
-            <Link href="/contact">{quoteLabel}</Link>
-          </Button>
-          <Button asChild size="lg" className="w-full sm:w-auto min-h-[44px] bg-white text-gray-900 hover:bg-gray-100 font-semibold">
-            <a
-              href={getWhatsAppLink(site.whatsapp, whatsAppMessage)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WhatsApp Us
+    <section className="bg-nav pb-28 pt-14 text-white md:pb-16 md:pt-16" aria-labelledby="cta-heading">
+      <div className="page-container">
+        <GaugeRule />
+        <div className="mt-8 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+          <div>
+            <h2 id="cta-heading" className="text-white">{title}</h2>
+            <p className="mt-3 max-w-xl text-white/80">{description}</p>
+          </div>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <Link href="/contact" className={btnMain}>{quoteLabel}</Link>
+            <a href={getWhatsAppLink(site.whatsapp, whatsAppMessage)} target="_blank" rel="noopener noreferrer" className={btnGhostDark}>
+              WhatsApp<span className="sr-only"> (opens in a new tab)</span>
             </a>
-          </Button>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

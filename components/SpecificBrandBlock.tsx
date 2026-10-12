@@ -9,7 +9,7 @@ export function SpecificBrandBlock() {
 
   return (
     <div
-      className="rounded-lg border border-border bg-card/60 p-4"
+      className="rounded-[10px] border border-border bg-card/60 p-4"
       role="region"
       aria-labelledby="specific-brand-heading"
     >
@@ -21,12 +21,12 @@ export function SpecificBrandBlock() {
         call or WhatsApp us for quick availability.
       </p>
       <div className="mt-4 flex flex-wrap gap-3">
-        <Button asChild size="sm">
+        <Button asChild size="sm" className="min-h-[44px] px-5">
           <a href={`tel:${site.phone.replace(/\s/g, "")}`} aria-label="Call us">
             Call
           </a>
         </Button>
-        <Button asChild size="sm" variant="outline">
+        <Button asChild size="sm" variant="outline" className="min-h-[44px] px-5">
           <a
             href={getWhatsAppLink(site.whatsapp, whatsAppMessage)}
             target="_blank"

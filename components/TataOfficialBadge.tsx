@@ -24,7 +24,7 @@ export function TataOfficialBadge({ variant = "default", className = "" }: Props
 
   return (
     <div
-      className={`flex items-center gap-3 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2.5 ${className}`}
+      className={`flex items-center gap-3 rounded-[10px] border border-primary/30 bg-primary/10 px-4 py-2.5 ${className}`}
       title="Official Tata Distributor & Retailer"
     >
       <span className="relative h-6 w-14 shrink-0">

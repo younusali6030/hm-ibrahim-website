@@ -2,6 +2,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { slugifyHeading } from "@/content/blog/toc";
+import "@/components/story/story.css";
 
 type Props = { content: string; className?: string };
 
@@ -38,14 +39,17 @@ export function MarkdownContent({ content, className = "" }: Props) {
             </h3>
           ),
           table: ({ children }) => (
-            <div className="blog-table-wrap">
-              <table>{children}</table>
-            </div>
+            <>
+              <div className="blog-table-scroll" role="region" aria-label="Table, scrolls sideways on small screens" tabIndex={0}>
+                <table>{children}</table>
+              </div>
+              <p className="blog-table-hint" aria-hidden="true">Table scrolls sideways</p>
+            </>
           ),
           img: ({ src, alt }) => (
             <figure className="my-8">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={typeof src === "string" ? src : undefined} alt={alt ?? ""} loading="lazy" decoding="async" className="w-full rounded-2xl" />
+              <img src={typeof src === "string" ? src : undefined} alt={alt ?? ""} loading="lazy" decoding="async" className="w-full rounded-[14px]" />
               {alt && <figcaption className="mt-2 text-sm text-muted-foreground">{alt}</figcaption>}
             </figure>
           ),

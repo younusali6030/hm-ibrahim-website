@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { brandPageVisuals } from "@/content/brandPages";
+import { StencilTag } from "@/components/motif/Motif";
+import { getBrandById } from "@/content/brands";
 
 const ITEMS = [
   { id: "cm", name: "CM", blurb: "Barbed wire and chain link, our own brand." },
-  { id: "border", name: "Border", blurb: "Built for strength. Designed for security." },
+  { id: "border", name: "Border", blurb: getBrandById("border")?.pageContent?.prominentTagline ?? "Built for strength. Designed for security." },
 ] as const;
 
 export function BrandsBand() {
@@ -16,7 +18,7 @@ export function BrandsBand() {
             <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-white/60">Our brands</p>
             <h2 id="brands-heading" className="mt-2 text-white">Fencing that carries our name</h2>
           </div>
-          <Link href="/brands" className="font-semibold text-white underline underline-offset-4 hover:text-primary">
+          <Link href="/brands" className="inline-flex min-h-[44px] items-center font-semibold text-white underline decoration-primary underline-offset-4 hover:text-primary">
             All brands we stock
           </Link>
         </div>
@@ -34,8 +36,9 @@ export function BrandsBand() {
                   <span className="absolute inset-0 bg-gradient-to-t from-[#0b121a]/95 via-[#0b121a]/30 to-transparent" aria-hidden="true" />
                   <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5">
                     <span>
-                      <span className="block font-display text-4xl font-extrabold uppercase leading-none">{it.name}</span>
-                      <span className="mt-1 block text-sm text-white/80">{it.blurb}</span>
+                      <StencilTag className="!text-white/80">{it.name} · Own brand</StencilTag>
+                      <span className="mt-2 block font-display text-4xl font-extrabold uppercase leading-none">{it.name}</span>
+                      <span className="mt-1 block text-sm text-white/85">{it.blurb}</span>
                     </span>
                     <span className="relative block h-12 w-20 shrink-0">
                       <Image src={v.logoClear} alt="" fill sizes="80px" className="object-contain object-right" />

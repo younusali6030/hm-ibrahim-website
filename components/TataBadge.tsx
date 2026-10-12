@@ -19,7 +19,7 @@ export function TataBadge({ className = "", variant = "default" }: Props) {
   }
 
   return (
-    <div className={`flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2.5 ${className}`}>
+    <div className={`flex items-center gap-2 rounded-[10px] border border-primary/30 bg-primary/10 px-4 py-2.5 ${className}`}>
       <BadgeCheck className="h-5 w-5 shrink-0 text-primary" />
       <p className="text-sm font-medium text-foreground">{site.authorizedDealer.note}</p>
     </div>
