@@ -106,6 +106,7 @@ export function globalGraph(lang: Lang = "en"): Json {
         telephone: phone,
         email: site.email,
         address: postalAddress(),
+        geo: { "@type": "GeoCoordinates", latitude: site.geo.latitude, longitude: site.geo.longitude },
         hasMap: site.googleReview.profileUrl,
         openingHoursSpecification: [
           {

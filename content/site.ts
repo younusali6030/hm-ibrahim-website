@@ -74,6 +74,9 @@ export const site = {
   /** Owner-confirmed 12 Oct 2026. Use this exact sentence wherever reach or delivery is stated. */
   orderReach: "Orders accepted across India; delivery arrangements confirmed with each quotation.",
 
+  /** Shop pin from the Google Business Profile (Maps place data, read 13 Oct 2026). */
+  geo: { latitude: 22.7163264, longitude: 75.8655796 },
+
   /** Areas served for schema: orders are accepted across India. */
   areasServed: ["India"],
 
