@@ -142,7 +142,7 @@ export function Footer() {
             <ul className="grid grid-cols-2 gap-x-4 sm:grid-cols-3 lg:grid-cols-2">
               {categories.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/products?category=${c.slug}`} className={linkCls}>{hi ? catNameHi[c.slug] ?? c.name : c.name}</Link>
+                  <Link href={`/categories/${c.slug}`} className={linkCls}>{hi ? catNameHi[c.slug] ?? c.name : c.name}</Link>
                 </li>
               ))}
             </ul>

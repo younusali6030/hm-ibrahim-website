@@ -39,6 +39,20 @@ reel titles and customer reviews.
 | pigeon net Indore, kabootar jali | `/products/pigeon-nets` | `/blog/pigeon-net-balcony-indore-mesh-size-fixing-guide` |
 | FRP bars | `/products/frp-bars` | `/blog/frp-bars-vs-tmt-bars-where-each-belongs` |
 
+## Update, 12 Oct 2026 (visibility audit)
+
+Manufacturer intent was added without moving ownership of the head terms:
+
+| Term | Owner URL | Notes |
+|---|---|---|
+| barbed wire manufacturer Indore | `/indore/barbed-wire` | Title and H1 now "Barbed Wire Manufacturer in Indore". Concertina keeps `/products/concertina-wire` |
+| chain link fencing manufacturer Indore | `/indore/chain-link-fencing-jaali` | Title and H1 carry manufacturer and jali |
+| wire mesh manufacturer Indore | `/indore/wire-mesh` | Claim limited to wire mesh; other mesh is stocked |
+| barbed wire / chain link specifications, India-wide supply | `/products/barbed-wire`, `/products/chain-link-fencing` | Titles say gauge, coils, mesh, wire, height |
+| Tata Wiron dealer Indore | `/brands/tata` | Now built; title says dealer |
+
+See `visibility-audit-2026-10.md`.
+
 ## Cannibalisation fixed
 
 - Category pages used to be titled "<Category> in Indore, Madhya Pradesh", the same intent as `/indore/*`. Their

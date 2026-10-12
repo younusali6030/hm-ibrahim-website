@@ -56,6 +56,18 @@ export const seoOverrides: Record<string, SeoOverride> = {
   },
 
   // ---- Product pages: hand-written for the priority products (see docs/seo-indore-audit.md).
+  // Barbed wire and chain link are made by the shop (owner-confirmed 12 Oct 2026). The /indore/* pages own the
+  // "<product> manufacturer Indore" intent; these product pages own the specification and "supplied across India" intent.
+  "products/barbed-wire": {
+    title: "Barbed Wire: 12 x 14 Gauge, Coils, Rate | HM Ibrahim",
+    description:
+      "Barbed wire we manufacture: single and double strand, 12 x 14 and 14 x 14 gauge, coils to 25 kg. Orders accepted across India. Ask for the rate.",
+  },
+  "products/chain-link-fencing": {
+    title: "Chain Link Fencing: Mesh, Wire, Height | HM Ibrahim",
+    description:
+      "Chain link fencing we manufacture: 1 to 4 inch mesh, 1.5 to 4 mm wire, 3 to 10 ft rolls, GI or PVC-coated. Orders accepted across India. Ask for the rate.",
+  },
   "products/mosquito-net": {
     title: "Mosquito Net (Machhar Jali) in Indore | HM Ibrahim",
     description:

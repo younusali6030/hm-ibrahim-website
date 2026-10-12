@@ -8,6 +8,9 @@ import { getProductBySlug, getProductImages, getCategoryBySlug } from "@/content
 import { site, baseUrl } from "@/lib/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { FAQAccordion } from "@/components/FAQAccordion";
+import { faqPage } from "@/lib/schema";
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
 import { ReviewsList } from "@/components/trust/ReviewsList";
 import { SectionHead } from "@/components/story/SectionHead";
@@ -46,7 +49,9 @@ export default async function IndoreLandingPage({ params }: Props) {
 
   const products = base.productSlugs.map((s) => getProductBySlug(s)).filter((p): p is NonNullable<typeof p> => !!p);
   const hero = products[0] ? getProductImages(products[0], getCategoryBySlug(products[0].categorySlug))[0] : undefined;
-  const topic = hi ? page.h1.replace(/^इंदौर में /, "") : page.h1.replace(/ in Indore$/, "");
+  const topic = page.topic ?? (hi ? page.h1.replace(/^इंदौर में /, "") : page.h1.replace(/ in Indore$/, ""));
+  const pageFaqs = page.faqs ?? [];
+  const faqSchema = faqPage(pageFaqs);
   const waMessage = hi
     ? `नमस्ते, मुझे ${topic} में रुचि है। कृपया भाव और उपलब्धता बताइए।`
     : `Hi, I'm interested in ${topic}. Please share price and availability.`;
@@ -54,6 +59,7 @@ export default async function IndoreLandingPage({ params }: Props) {
 
   return (
     <>
+      {faqSchema && <SeoJsonLd data={faqSchema} lang={lang} />}
       <JsonLdBreadcrumb
         lang={lang}
         items={[
@@ -142,6 +148,18 @@ export default async function IndoreLandingPage({ params }: Props) {
                 );
               })}
             </ul>
+          </div>
+        </section>
+      )}
+
+      {pageFaqs.length > 0 && (
+        <section className="st-sec" aria-labelledby="faq-heading">
+          <div className="page-container">
+            <SectionHead eyebrow={t("Questions", "सवाल")} id="faq-heading" title={t("Common questions", "आम सवाल")} />
+            <FAQAccordion
+              inline
+              faqs={pageFaqs.map((f, i) => ({ id: `${page.slug}-${i + 1}`, question: f.question, answer: f.answer }))}
+            />
           </div>
         </section>
       )}

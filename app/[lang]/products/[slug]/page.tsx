@@ -17,6 +17,8 @@ import { ProductReviewsRail } from "@/components/trust/ProductReviewsRail";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { ids } from "@/lib/schema";
+import { manufacturedProductSlugs } from "@/content/indorePages";
 import { GaugeRule } from "@/components/motif/Motif";
 
 type Props = { params: { lang: string; slug: string } };
@@ -98,6 +100,8 @@ export default async function ProductDetailPage({ params }: Props) {
     mpn: product.slug,
     ...(allImages.length > 0 ? { image: allImages } : {}),
     brand: { "@type": "Brand", name: hi ? siteHi.name : site.name, url: baseUrl },
+    // Only the product families the owner confirmed the shop makes (12 Oct 2026). Everything else is stocked.
+    ...((manufacturedProductSlugs as readonly string[]).includes(product.slug) ? { manufacturer: { "@id": ids.organization } } : {}),
     category: category?.name || product.categorySlug,
     ...(product.materials && product.materials.length > 0 ? { material: product.materials.join(", ") } : {}),
     offers: {
