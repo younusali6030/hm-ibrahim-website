@@ -2,14 +2,14 @@
 title: "How to Choose TMT Bars in Indore: Grades, Brands, Use"
 description: "Guide to selecting TMT bars in Indore. Fe 500, Fe 550, sizes, and where to buy from Siyaganj. Request a quote."
 date: "2025-02-04"
-image: "/products/tmt-bar.png"
-imageAlt: "TMT bars for construction in Indore"
-image2: "/products/ms-angle-1.png"
-image2Alt: "MS angles with TMT"
-image3: "/products/ms-round-bar.png"
-image3Alt: "Steel reinforcement"
 updated: "2026-10-11"
 category: "Structural steel"
+image: "/blog/tmt-choose-1.webp"
+imageAlt: "Ribbed TMT bars laid on a table for inspection"
+image2: "/blog/tmt-choose-2.webp"
+image2Alt: "TMT bar with the rib pattern in close-up"
+image3: "/blog/tmt-choose-3.webp"
+image3Alt: "Tied bundles of TMT bar next to wire coils"
 ---
 TMT (thermo-mechanically treated) bars are the standard reinforcement for RCC construction in Indore, Siyaganj, and across Madhya Pradesh. This guide explains grades, common sizes, and how to choose the right TMT bars for your project—and where to get them in Siyaganj or Loha Mandi.
 

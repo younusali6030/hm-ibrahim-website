@@ -109,7 +109,7 @@ export default async function BrandPage({ params }: Props) {
 
       {/* Facts */}
       <section className="border-b border-border bg-card" aria-label={`${brand.name} at a glance`}>
-        <ul className="page-container grid grid-cols-3 gap-px bg-border">
+        <ul className="page-container grid grid-cols-3 gap-px bg-border bg-clip-content">
           {visuals.facts.map((f) => (
             <li key={f.small} className="bg-card px-3 py-6 sm:px-6 sm:py-8">
               <p className="font-display text-3xl font-extrabold uppercase leading-none text-foreground sm:text-5xl">{f.big}</p>

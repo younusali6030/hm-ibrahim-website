@@ -47,9 +47,9 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
   return (
     <>
       {/* Sticky rail: search and category jumps */}
-      <div className="sticky top-14 z-30 border-b border-border bg-background/95 backdrop-blur md:top-16">
-        <div className="page-container flex flex-col gap-3 py-3 lg:flex-row lg:items-center">
-          <label className="relative block lg:w-80">
+      <div className="z-30 border-b border-border bg-background lg:sticky lg:top-0">
+        <div className="page-container flex flex-wrap items-center gap-x-3 gap-y-3 py-3 lg:flex-nowrap">
+          <label className="relative block min-w-0 flex-1 basis-[12rem] lg:max-w-xs lg:flex-none">
             <span className="sr-only">Search products</span>
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
             <input
@@ -57,15 +57,15 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search wire, mesh, bars…"
-              className="h-11 w-full rounded-sm border border-input bg-card pl-10 pr-3 text-base outline-none focus:border-foreground"
+              className="h-11 w-full rounded-full border border-input bg-card pl-10 pr-3 text-base outline-none focus:border-foreground"
             />
           </label>
-          <nav aria-label="Categories" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-1 lg:px-0 lg:pb-0">
+          <nav aria-label="Categories" className="order-last -mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:order-none lg:mx-0 lg:w-auto lg:min-w-0 lg:flex-1 lg:px-0 lg:pb-0">
             {view.map((c) => (
               <a
                 key={c.slug}
                 href={`#c-${c.slug}`}
-                className="shrink-0 rounded-sm border border-border bg-card px-3 py-2 text-sm font-semibold text-foreground hover:border-foreground/50"
+                className="shrink-0 rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground hover:border-foreground/50"
               >
                 {c.name}
               </a>
@@ -76,11 +76,11 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
             aria-pressed={tataOnly}
             onClick={() => setTataOnly((v) => !v)}
             className={
-              "shrink-0 rounded-sm border px-3 py-2 text-sm font-semibold " +
+              "h-11 shrink-0 rounded-full border px-4 text-sm font-semibold " +
               (tataOnly ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-foreground hover:border-foreground/50")
             }
           >
-            Tata Wiron only
+            Tata only
           </button>
         </div>
       </div>
@@ -92,9 +92,9 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
 
         <div className="mt-6 divide-y divide-border">
           {view.map((c, i) => (
-            <section key={c.slug} id={`c-${c.slug}`} className="scroll-mt-40 py-12 first:pt-0 md:py-16">
+            <section key={c.slug} id={`c-${c.slug}`} className="scroll-mt-24 py-12 first:pt-0 md:py-16">
               <div className="grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
-                <div className={"lg:sticky lg:top-44 lg:self-start " + (i % 2 ? "lg:order-2" : "")}>
+                <div className={"lg:sticky lg:top-28 lg:self-start " + (i % 2 ? "lg:order-2" : "")}>
                   <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">
                     {String(i + 1).padStart(2, "0")} / {c.products.length} products
                   </p>

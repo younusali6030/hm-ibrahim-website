@@ -4,14 +4,14 @@ description: "Why plaster cracks along beams and columns, and how fibreglass mes
 date: "2026-09-16"
 updated: "2026-09-16"
 category: "Mesh and nets"
-image: "/blog/fibre-mesh-rolls.jpg"
-imageAlt: "Fibreglass mesh rolls in white at H M Ibrahim & Co"
-image2: "/blog/fibre-mesh-stack.jpg"
-image2Alt: "Stacked fibre mesh rolls of different widths"
-image3: "/products/fiber-mesh-1.png"
-image3Alt: "Fibre mesh roll"
 video: "/videos/fiber-mesh.mp4"
 videoCaption: "Fibre mesh rolls at the Siyaganj counter."
+image: "/blog/fibre-1.webp"
+imageAlt: "Fibreglass plaster mesh rolls stacked at the counter"
+image2: "/blog/fibre-2.webp"
+image2Alt: "White fibre mesh rolls standing in a row"
+image3: "/blog/fibre-3.webp"
+image3Alt: "Fibre mesh rolls beside GI wire mesh in the godown"
 ---
 
 Look at the plaster on any building in Indore. Find the line where a brick wall meets a concrete beam or column. If there is a hairline crack running along it, you have found the most common plaster fault there is.

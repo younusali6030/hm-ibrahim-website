@@ -12,6 +12,13 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
+  async headers() {
+    const media = "public, max-age=604800, stale-while-revalidate=2592000";
+    return ["hero", "reels", "stock", "videos", "blog", "products", "brands"].map((dir) => ({
+      source: `/${dir}/:path*`,
+      headers: [{ key: "Cache-Control", value: media }],
+    }));
+  },
   async redirects() {
     return [
       { source: '/categories/iron-steel', destination: '/categories/structural-items', permanent: true },

@@ -2,14 +2,14 @@
 title: "Perforated Sheets: MS vs SS, Hole Patterns, Applications"
 description: "Guide to perforated sheets in Indore. MS and GI perforated sheets, hole patterns, uses. Buy from Siyaganj."
 date: "2025-02-05"
-image: "/blog/perforated-sheet-tubes.jpg"
-imageAlt: "Perforated sheet rolled into tubes at the shop"
-image2: "/products/gi-perforated-2.png"
-image2Alt: "Perforated sheet patterns"
-image3: "/products/perforated-sheet.png"
-image3Alt: "MS perforated sheet"
 updated: "2026-10-11"
 category: "Sheets"
+image: "/blog/perf-ms-ss-1.webp"
+imageAlt: "Perforated sheets rolled and stacked in a truck"
+image2: "/blog/perf-ms-ss-2.webp"
+image2Alt: "Rolling out a perforated sheet before cutting"
+image3: "/blog/perf-ms-ss-3.webp"
+image3Alt: "Slotted and perforated sheet cylinders in stock"
 ---
 Perforated sheets are metal sheets with a regular pattern of holes. In Indore, Siyaganj, and Loha Mandi they are used for screens, ventilation, filtration, and architectural facades. This guide covers material choice (MS vs GI), hole patterns, and typical applications so you can order the right product from a Siyaganj supplier.
 

@@ -2,14 +2,14 @@
 title: "Common Mistakes When Buying Steel Sections (Angles, Flats)"
 description: "Avoid these mistakes when buying MS angles, flats, and channels in Indore. Tips for Siyaganj and Loha Mandi buyers."
 date: "2025-02-09"
-image: "/blog/siyaganj-shopfront.jpg"
-imageAlt: "H M Ibrahim & Co, 60 Siyaganj Main Road, Indore"
-image2: "/products/ms-angle-1.png"
-image2Alt: "MS angles"
-image3: "/products/ms-round-bar.png"
-image3Alt: "MS round bars"
 updated: "2026-10-11"
 category: "Structural steel"
+image: "/blog/steel-sections-1.webp"
+imageAlt: "Bundles of MS rods and angles with painted ends at the counter"
+image2: "/blog/steel-sections-2.webp"
+image2Alt: "Steel rods stacked in an open yard before loading"
+image3: "/blog/steel-sections-3.webp"
+image3Alt: "Bundled steel sections laid out on the ground for counting"
 ---
 Buying MS angles, flats, channels, and other sections in Indore, Siyaganj, or Loha Mandi can go wrong if you don’t specify size, quantity, and quality clearly. Here are common mistakes and how to avoid them—so you get the right material from your Siyaganj supplier.
 

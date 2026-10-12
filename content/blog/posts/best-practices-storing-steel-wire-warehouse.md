@@ -2,14 +2,14 @@
 title: "Best Practices for Storing Steel & Wire Products (Warehouse)"
 description: "How to store steel sections, TMT bars, wire, and mesh in Indore. Avoid rust, damage, and mix-up."
 date: "2025-02-12"
-image: "/blog/binding-wire-shelf.jpg"
-imageAlt: "Binding wire coils stacked on shelves at H M Ibrahim & Co"
-image2: "/products/ms-angle-2.png"
-image2Alt: "Angle storage"
-image3: "/products/binding-wire-main.png"
-image3Alt: "Wire coils"
 updated: "2026-10-11"
 category: "Warehouse"
+image: "/blog/storing-1.webp"
+imageAlt: "Wire mesh rolls racked on high shelves in the Siyaganj godown"
+image2: "/blog/storing-2.webp"
+image2Alt: "Chain link rolls stored upright near the shop entrance"
+image3: "/blog/storing-3.webp"
+image3Alt: "Expanded mesh rolls laid out for stock checking"
 ---
 Contractors and traders in Indore, Siyaganj, and Loha Mandi often store steel, wire, and mesh on site or in a warehouse. Poor storage leads to rust, bent material, and mix-up of sizes. This guide gives simple best practices so your stock stays in good condition after you buy from a Siyaganj supplier.
 

@@ -4,14 +4,14 @@ description: "Expanded metal mesh is cut and stretched from a single steel sheet
 date: "2026-09-12"
 updated: "2026-09-12"
 category: "Mesh and nets"
-image: "/blog/expanded-mesh-close.jpg"
-imageAlt: "Expanded metal mesh rolls at H M Ibrahim & Co"
-image2: "/blog/expanded-mesh-rolls.jpg"
-image2Alt: "Expanded mesh rolls in the Siyaganj godown"
-image3: "/blog/weldmesh-rolls.jpg"
-image3Alt: "Welded mesh rolls for comparison"
 video: "/videos/expanded-mesh-closeup.mp4"
 videoCaption: "Expanded metal mesh at our counter."
+image: "/blog/expanded-1.webp"
+imageAlt: "Shop owner showing rolls of expanded metal mesh"
+image2: "/blog/expanded-2.webp"
+image2Alt: "Diamond pattern of expanded metal mesh up close"
+image3: "/blog/expanded-3.webp"
+image3Alt: "Expanded mesh roll standing in the stock room"
 ---
 
 Expanded metal mesh is a strange product. It looks woven but is not. It is not welded either. It is made from a single sheet of steel that is slit and stretched, so the metal opens into a diamond pattern without a single join.

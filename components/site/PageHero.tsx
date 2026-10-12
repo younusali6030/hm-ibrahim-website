@@ -20,12 +20,12 @@ export function PageHero({ eyebrow, title, lede, children, image, compact }: Pro
         style={{ background: "radial-gradient(ellipse 55% 90% at 90% 30%, rgba(249,115,22,0.16), transparent 70%)" }}
         aria-hidden="true"
       />
-      <div className={"page-container relative grid items-center gap-10 py-12 md:py-20 " + (image ? "lg:grid-cols-[1.05fr_1fr]" : "")}>
+      <div className={"page-container relative grid items-center gap-10 py-10 md:py-20 " + (image ? "lg:grid-cols-[1.05fr_1fr]" : "")}>
         <div>
           <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-white/60">{eyebrow}</p>
           <h1
             className="mt-3 text-white"
-            style={{ fontSize: compact ? "clamp(2.4rem, 5.4vw, 4.6rem)" : "clamp(2.8rem, 6.5vw, 5.6rem)" }}
+            style={{ fontSize: compact ? "clamp(2.1rem, 5.4vw, 4.6rem)" : "clamp(2.4rem, 6.5vw, 5.6rem)" }}
           >
             {title}
           </h1>

@@ -21,8 +21,10 @@ export function buildPageMeta(input: PageMetaInput): Metadata {
   const url = path ? `${baseUrl}/${path}` : baseUrl;
   const img = image?.url?.startsWith("http") ? image.url : `${baseUrl}${image?.url || "/logo-dark.png"}`;
 
+  // The root layout template already appends the site name.
+  const bare = title.replace(/\s*\|\s*(H\.?M\.? ?Ibrahim|HM Ibrahim)[^|]*$/i, "").trim() || title;
   return {
-    title: title.length > 60 ? title.slice(0, 57) + "..." : title,
+    title: bare.length > 60 ? bare.slice(0, 57) + "..." : bare,
     description: description.length > 160 ? description.slice(0, 157) + "..." : description,
     keywords: keywords.length ? keywords.join(", ") : undefined,
     alternates: { canonical: url },
@@ -95,7 +97,7 @@ export function buildProductMeta(input: ProductMetaInput): Metadata {
   ];
 
   return {
-    title: titleFinal,
+    title: { absolute: titleFinal },
     description,
     keywords: keywords.join(", "),
     alternates: { canonical: url },

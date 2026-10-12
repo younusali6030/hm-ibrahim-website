@@ -6,7 +6,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { ProductsIndex, type IndexCategory } from "./ProductsIndex";
 
 export const metadata: Metadata = {
-  title: "Products | Iron, Steel, Wire & Mesh in Indore, Siyaganj | HM Ibrahim & Co",
+  title: "Products | Iron, Steel, Wire & Mesh in Indore, Siyaganj",
   description:
     "Browse the full range at H M Ibrahim & Co, Siyaganj, Indore: TMT bars, MS angles, wire mesh, welded mesh, barbed wire, chain link, perforated sheets, wire rope, tools and more. Retail and wholesale.",
   alternates: { canonical: `${baseUrl}/products` },

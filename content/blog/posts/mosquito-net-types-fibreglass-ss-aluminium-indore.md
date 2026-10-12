@@ -4,14 +4,14 @@ description: "Which mosquito mesh suits which window? Mesh count, wire gauge, ru
 date: "2026-10-09"
 updated: "2026-10-09"
 category: "Mesh and nets"
-image: "/blog/mosquito-net-rolls.jpg"
-imageAlt: "Rolls of mosquito mesh in different materials stacked at the HM Ibrahim & Co counter, Siyaganj"
-image2: "/blog/mosquito-net-cutting.jpg"
-image2Alt: "Mosquito mesh being cut to size on the pavement outside the shop"
-image3: "/blog/green-mesh-rolls.jpg"
-image3Alt: "Green and white mesh rolls on a shelf"
 video: "/videos/mosquito-net-cutting.mp4"
 videoCaption: "Mosquito mesh cut to size at our Siyaganj counter."
+image: "/blog/mosquito-1.webp"
+imageAlt: "Rolls of steel and fibreglass mosquito net of different widths"
+image2: "/blog/mosquito-2.webp"
+image2Alt: "Mosquito net rolls with printed labels"
+image3: "/blog/mosquito-3.webp"
+image3Alt: "Green and blue mosquito net rolls on a shelf"
 ---
 
 Most people buy mosquito net the way they buy a bucket. They ask for the cheapest roll and find out about the difference two monsoons later, when the corners have rusted through or the mesh has gone brittle in the sun.

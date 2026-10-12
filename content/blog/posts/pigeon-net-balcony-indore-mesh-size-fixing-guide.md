@@ -4,14 +4,14 @@ description: "Which pigeon net to buy, what mesh size, how thick and how to fix 
 date: "2026-09-08"
 updated: "2026-09-08"
 category: "Safety and nets"
-image: "/blog/pigeon-net-shop.jpg"
-imageAlt: "Pigeon nets and spikes at the H M Ibrahim & Co counter, Siyaganj"
-image2: "/products/pigeon-net.png"
-image2Alt: "Pigeon net roll"
-image3: "/products/pigeon-spike-1.png"
-image3Alt: "Pigeon spike strips"
 video: "/videos/pigeon-net.mp4"
 videoCaption: "Pigeon net at our Siyaganj counter."
+image: "/blog/pigeon-balcony-1.webp"
+imageAlt: "Pigeon net and bird spikes displayed at the counter"
+image2: "/blog/pigeon-balcony-2.webp"
+image2Alt: "Pigeon net being handled at the shop"
+image3: "/blog/pigeon-balcony-3.webp"
+image3Alt: "Green and orange pigeon net rolls with spike strips"
 ---
 
 Pigeons are not a cosmetic problem. Droppings corrode paint and metal, block drains and carry diseases. A balcony full of pigeons is also a balcony you cannot use.

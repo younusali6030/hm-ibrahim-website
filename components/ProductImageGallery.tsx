@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ImageWithFallback } from "@/components/ImageWithFallback";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ImageWithFallback } from "@/components/ImageWithFallback";
 import type { ProductMediaItem } from "@/content/products";
 
 type Props = {
@@ -20,141 +19,144 @@ function isVideoSrc(src: string): boolean {
   return /\.(mp4|webm|ogg)(\?|$)/i.test(src);
 }
 
-export function ProductImageGallery({
-  media: mediaProp,
-  images: imagesProp,
-  alt,
-  productName,
-  productSlug,
-}: Props) {
-  const [activeIndex, setActiveIndex] = useState(0);
+/** Swipeable on phones (scroll-snap, native momentum), arrows and thumbnails on larger screens. Only the visible video plays. */
+export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt, productName, productSlug }: Props) {
+  const [active, setActive] = useState(0);
+  const scroller = useRef<HTMLDivElement>(null);
+  const videos = useRef<(HTMLVideoElement | null)[]>([]);
 
   const media: ProductMediaItem[] =
     mediaProp ??
-    (imagesProp?.length
-      ? imagesProp.map((src) =>
-          isVideoSrc(src) ? { type: "video", src } : { type: "image", src }
-        )
-      : []);
+    (imagesProp?.length ? imagesProp.map((src) => (isVideoSrc(src) ? { type: "video" as const, src } : { type: "image" as const, src })) : []);
+
+  const goTo = useCallback((i: number) => {
+    const el = scroller.current;
+    if (!el) return;
+    el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
-    setActiveIndex(0);
-  }, [productSlug, media?.length]);
+    setActive(0);
+    scroller.current?.scrollTo({ left: 0 });
+  }, [productSlug, media.length]);
 
-  if (!media || media.length === 0) {
+  // Only the slide on screen plays.
+  useEffect(() => {
+    videos.current.forEach((v, i) => {
+      if (!v) return;
+      if (i === active) v.play().catch(() => {});
+      else v.pause();
+    });
+  }, [active]);
+
+  const onScroll = () => {
+    const el = scroller.current;
+    if (!el || !el.clientWidth) return;
+    const i = Math.round(el.scrollLeft / el.clientWidth);
+    if (i !== active) setActive(i);
+  };
+
+  if (media.length === 0) {
     return (
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted">
-        <ImageWithFallback
-          src="/placeholder-product.svg"
-          alt={alt || productName}
-          fill
-          className="object-cover"
-          priority
-          sizes="(max-width: 1024px) 100vw, 50vw"
-        />
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-muted">
+        <ImageWithFallback src="/placeholder-product.svg" alt={alt || productName} fill className="object-cover" priority sizes="(max-width: 1024px) 100vw, 50vw" />
       </div>
     );
   }
 
-  const current = media[activeIndex];
-
-  const goToPrevious = () => {
-    setActiveIndex((i) => (i - 1 + media.length) % media.length);
-  };
-
-  const goToNext = () => {
-    setActiveIndex((i) => (i + 1) % media.length);
-  };
-
   return (
-    <div className="space-y-4 min-w-0">
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-muted shrink-0">
-        {current.type === "video" ? (
-          <video
-            key={current.src}
-            src={current.src}
-            poster={current.src.replace(/\.mp4$/, ".jpg")}
-            controls
-            autoPlay
-            playsInline
-            muted
-            loop
-            className="h-full w-full bg-black object-contain"
-            aria-label={alt ? `${alt} video` : `${productName} video`}
-          />
-        ) : (
-          <ImageWithFallback
-            key={current.src}
-            src={current.src}
-            alt={alt || productName}
-            fill
-            className="object-cover"
-            priority={activeIndex === 0}
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
-          />
-        )}
+    <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
+      <div className="relative">
+        <div
+          ref={scroller}
+          onScroll={onScroll}
+          className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-[24px] bg-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          aria-roledescription="carousel"
+          aria-label={`${productName} photos and videos`}
+        >
+          {media.map((item, i) => (
+            <div key={`${item.src}-${i}`} className="relative aspect-square w-full shrink-0 snap-center snap-always sm:aspect-[4/3]">
+              {item.type === "video" ? (
+                <video
+                  ref={(el) => {
+                    videos.current[i] = el;
+                  }}
+                  src={item.src}
+                  poster={item.src.replace(/\.mp4$/, ".jpg")}
+                  controls
+                  muted
+                  loop
+                  playsInline
+                  preload={i === active ? "auto" : "none"}
+                  className="h-full w-full bg-black object-contain"
+                  aria-label={`${alt || productName} video`}
+                />
+              ) : (
+                <ImageWithFallback
+                  src={item.src}
+                  alt={i === 0 ? alt || productName : `${alt || productName}, view ${i + 1}`}
+                  fill
+                  className="object-contain p-3 sm:p-5"
+                  priority={i === 0}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              )}
+            </div>
+          ))}
+        </div>
+
         {media.length > 1 && (
           <>
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background min-h-[44px] min-w-[44px] h-11 w-11 md:h-9 md:w-9 md:min-h-0 md:min-w-0"
-              onClick={goToPrevious}
+            <button
+              type="button"
+              onClick={() => goTo((active - 1 + media.length) % media.length)}
+              className="glass absolute left-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full sm:flex"
               aria-label="Previous"
             >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background min-h-[44px] min-w-[44px] h-11 w-11 md:h-9 md:w-9 md:min-h-0 md:min-w-0"
-              onClick={goToNext}
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => goTo((active + 1) % media.length)}
+              className="glass absolute right-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full sm:flex"
               aria-label="Next"
             >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-background/80 px-3 py-1 text-xs text-muted-foreground">
-              {activeIndex + 1} / {media.length}
+              <ChevronRight className="h-5 w-5" />
+            </button>
+            <div className="glass-pill absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 px-3 py-2" aria-hidden="true">
+              {media.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${i === active ? "w-5 bg-primary" : "w-1.5 bg-white/60"}`}
+                />
+              ))}
             </div>
           </>
         )}
       </div>
 
       {media.length > 1 && (
-        <div className="flex md:grid md:grid-cols-4 gap-2 overflow-x-auto pb-1 md:pb-0 snap-x snap-mandatory md:snap-align-none scrollbar-thin min-w-0 -mx-4 px-4 md:mx-0 md:px-0">
-          {media.map((item, idx) => (
+        <div className="mt-3 hidden gap-2 sm:grid sm:grid-cols-5">
+          {media.slice(0, 10).map((item, idx) => (
             <button
               key={`${item.src}-${idx}`}
               type="button"
-              onClick={() => setActiveIndex(idx)}
-              className={`relative aspect-square w-16 h-16 sm:w-20 sm:h-20 md:w-full shrink-0 overflow-hidden rounded-md border-2 transition-all snap-start min-w-[64px] sm:min-w-[80px] ${
-                activeIndex === idx
-                  ? "border-primary ring-2 ring-primary/20"
-                  : "border-border hover:border-primary/50"
+              onClick={() => goTo(idx)}
+              className={`relative aspect-square overflow-hidden rounded-xl border-2 bg-white transition ${
+                active === idx ? "border-primary" : "border-transparent opacity-70 hover:opacity-100"
               }`}
-              aria-label={
-                item.type === "video"
-                  ? `Play video ${idx + 1}`
-                  : `View image ${idx + 1}`
-              }
+              aria-label={item.type === "video" ? `Show video ${idx + 1}` : `Show image ${idx + 1}`}
             >
               {item.type === "video" ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={item.src.replace(/\.mp4$/, ".jpg")} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
                   <span className="absolute inset-0 flex items-center justify-center bg-black/35">
-                    <Play className="h-7 w-7 text-white" fill="currentColor" />
+                    <Play className="h-6 w-6 text-white" fill="currentColor" />
                   </span>
                 </>
               ) : (
-                <ImageWithFallback
-                  src={item.src}
-                    alt={alt ? `${alt} thumbnail` : `${productName} thumbnail`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 80px, (max-width: 1024px) 25vw, 12.5vw"
-                  loading={idx < 4 ? undefined : "lazy"}
-                />
+                <ImageWithFallback src={item.src} alt="" fill className="object-contain p-1" sizes="96px" />
               )}
             </button>
           ))}

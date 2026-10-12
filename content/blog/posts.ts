@@ -15,6 +15,8 @@ export type BlogPost = {
   /** Hero image path. Optional. */
   image?: string;
   imageAlt?: string;
+  /** CSS object-position for the hero image, e.g. "50% 30%". */
+  imagePosition?: string;
   /** Extra images shown below hero (1–2). Optional. */
   image2?: string;
   image2Alt?: string;
@@ -81,6 +83,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       date: (data.date as string) || "",
       image: (data.image as string) || undefined,
       imageAlt: (data.imageAlt as string) || undefined,
+      imagePosition: (data.imagePosition as string) || undefined,
       image2: (data.image2 as string) || undefined,
       image2Alt: (data.image2Alt as string) || undefined,
       image3: (data.image3 as string) || undefined,

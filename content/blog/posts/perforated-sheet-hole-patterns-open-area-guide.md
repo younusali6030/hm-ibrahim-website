@@ -4,14 +4,14 @@ description: "How to read a perforated sheet spec: hole size, pitch, staggered o
 date: "2026-09-30"
 updated: "2026-09-30"
 category: "Sheets"
-image: "/blog/perforated-sheet-tubes.jpg"
-imageAlt: "Perforated sheet rolled into tubes at H M Ibrahim & Co, Siyaganj"
-image2: "/blog/perforated-sheet-cutting.jpg"
-image2Alt: "Perforated sheet being cut to size outside the shop"
-image3: "/products/gi-perforated-1.png"
-image3Alt: "GI perforated sheet sample"
 video: "/videos/perforated-cutting.mp4"
 videoCaption: "Perforated sheet cut to size at the counter."
+image: "/blog/perf-holes-1.webp"
+imageAlt: "Perforated sheet cylinders with round holes"
+image2: "/blog/perf-holes-2.webp"
+image2Alt: "Round hole perforated sheet in close view"
+image3: "/blog/perf-holes-3.webp"
+image3Alt: "Fine round perforation on a rolled sheet"
 ---
 
 A perforated sheet looks simple. A sheet with holes. But order one without the numbers and you will get a sheet that is either too strong or too airy, and no one at the shop will know which you meant.

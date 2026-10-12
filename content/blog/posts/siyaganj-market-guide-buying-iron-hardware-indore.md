@@ -4,12 +4,12 @@ description: "How Siyaganj and Loha Mandi work: when to go, what to carry, how t
 date: "2026-09-20"
 updated: "2026-09-20"
 category: "Buying guide"
-image: "/blog/siyaganj-shopfront.jpg"
-imageAlt: "H M Ibrahim & Co, 60 Siyaganj Main Road, opposite Tijori Gali, Indore"
-image2: "/blog/porter-sack.jpg"
-image2Alt: "A porter carrying a sack through the Siyaganj market"
-image3: "/blog/weldmesh-rolls.jpg"
-image3Alt: "Welded mesh rolls stacked at the shop"
+image: "/blog/siyaganj-1.webp"
+imageAlt: "The H M Ibrahim shopfront in Siyaganj lit at night"
+image2: "/blog/siyaganj-2.webp"
+image2Alt: "A Siyaganj street early in the morning"
+image3: "/blog/siyaganj-3.webp"
+image3Alt: "Siyaganj lane with shop shutters and goods vehicles"
 ---
 
 If you buy iron and hardware in Indore, sooner or later you end up in Siyaganj. It is crowded, loud and the lanes are narrow. It is also where you find the range, the wholesale rate and the person who can tell you what you actually need.

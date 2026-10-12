@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { ScrollHero } from "@/components/home/ScrollHero";
+import { HomeHero } from "@/components/home/HomeHero";
+import { HomeJournal } from "@/components/home/HomeJournal";
+import { getAllPosts } from "@/content/blog/posts";
 import { StockReel } from "@/components/home/StockReel";
 import { RevealOnScroll } from "@/components/home/RevealOnScroll";
 import { ProofStrip } from "@/components/home/ProofStrip";
@@ -58,11 +60,12 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = (await getAllPosts()).slice(0, 3);
   return (
     <>
       {homeFaqSchema && <SeoJsonLd data={homeFaqSchema} />}
-      <ScrollHero />
+      <HomeHero />
       <div className="home-dark">
         <RevealOnScroll />
         <ProofStrip />
@@ -71,6 +74,7 @@ export default function HomePage() {
         <ReelsSection />
         <BrandsBand />
         <GoogleReviews />
+        <HomeJournal posts={posts} />
         <FAQAccordion faqs={faqs.slice(0, 4)} description="Straight answers before you call." />
         <CTASection
           title="Send us your list."

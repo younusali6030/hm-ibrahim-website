@@ -102,8 +102,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${sourceSans.variable} ${plusJakarta.variable} ${bigShoulders.variable} ${plexMono.variable} font-sans min-h-screen flex flex-col min-w-0 antialiased`}>
+    <html lang="en" className={`dark ${sourceSans.variable} ${plusJakarta.variable} ${bigShoulders.variable} ${plexMono.variable}`}>
+      <body className={`min-h-screen flex flex-col min-w-0 antialiased`}>
         <GoogleAnalytics />
         <Navbar />
         <main className="flex-1 w-full min-w-0 pb-20 md:pb-0">{children}</main>

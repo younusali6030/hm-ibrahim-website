@@ -4,12 +4,12 @@ description: "What concrete cover is, typical cover for slabs, beams, columns an
 date: "2026-09-24"
 updated: "2026-09-24"
 category: "Construction"
-image: "/products/concrete-cover-block-1.png"
-imageAlt: "Concrete cover blocks used under rebar"
-image2: "/blog/binding-wire-coils.jpg"
-image2Alt: "Binding wire coils used to tie rebar"
-image3: "/products/concrete-cover-block-2.png"
-image3Alt: "Cover blocks with tie wire"
+image: "/blog/cover-1.webp"
+imageAlt: "Concrete cover blocks with 20, 25 and 40 mm cover marked on the side"
+image2: "/blog/cover-2.webp"
+image2Alt: "Cement cover block, side view"
+image3: "/blog/cover-3.webp"
+image3Alt: "Cover spacers holding steel mesh off the shuttering"
 ---
 
 Open a thirty year old slab that has started to crack and you will often find the same thing. The steel inside has rusted, swelled and pushed the concrete off. The bars were never in the right place.

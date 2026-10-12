@@ -4,12 +4,12 @@ description: "TMT bar weight per metre and per piece for every common diameter, 
 date: "2026-10-11"
 updated: "2026-10-11"
 category: "Structural steel"
-image: "/products/tmt-bar.png"
-imageAlt: "TMT bars bundled for delivery"
-image2: "/blog/siyaganj-shopfront.jpg"
-image2Alt: "H M Ibrahim & Co shopfront on Siyaganj Main Road, Indore"
-image3: "/products/ms-round-bar.png"
-image3Alt: "Round steel bars on a rack"
+image: "/blog/tmt-weight-1.webp"
+imageAlt: "TMT bars on the counter table ready to be weighed"
+image2: "/blog/tmt-weight-2.webp"
+image2Alt: "Gloved hand checking a bundle of bars"
+image3: "/blog/tmt-weight-3.webp"
+image3Alt: "TMT bars with the rib detail visible"
 ---
 
 Every contractor in Indore has had the argument. The invoice says 2 tonnes. The truck feels light. Nobody wants to say it out loud.

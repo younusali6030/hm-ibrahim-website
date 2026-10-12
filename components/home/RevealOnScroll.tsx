@@ -2,27 +2,50 @@
 
 import { useEffect } from "react";
 
-/** Adds .in to every [data-reveal] element as it enters the viewport. CSS does the motion. */
+/**
+ * Adds .in to every [data-reveal] element once it reaches the lower part of the screen.
+ * Position based (not observer based), so a fast flick or a jump link never leaves a blank patch behind.
+ */
 export function RevealOnScroll() {
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
-      els.forEach((e) => e.classList.add("in"));
+    let pending = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      pending.forEach((e) => e.classList.add("in"));
       return;
     }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((en) => {
-          if (en.isIntersecting) {
-            en.target.classList.add("in");
-            io.unobserve(en.target);
-          }
-        });
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
-    );
-    els.forEach((e) => io.observe(e));
-    return () => io.disconnect();
+    let raf = 0;
+    const check = () => {
+      raf = 0;
+      const line = window.innerHeight * 0.94;
+      pending = pending.filter((el) => {
+        if (el.getBoundingClientRect().top < line) {
+          el.classList.add("in");
+          return false;
+        }
+        return true;
+      });
+      if (pending.length === 0) detach();
+    };
+    const on = () => {
+      if (!raf) raf = requestAnimationFrame(check);
+    };
+    const detach = () => {
+      window.removeEventListener("scroll", on);
+      window.removeEventListener("resize", on);
+    };
+    window.addEventListener("scroll", on, { passive: true });
+    window.addEventListener("resize", on);
+    on();
+    // Late-mounting content (client components) is picked up on the next pass.
+    const t = window.setTimeout(() => {
+      pending = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]:not(.in)"));
+      on();
+    }, 600);
+    return () => {
+      detach();
+      clearTimeout(t);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
   return null;
 }

@@ -27,16 +27,26 @@ export function ProductSeoContent({
   const hasSpecs = specs.length > 0 || sizes.length > 0 || materials.length > 0 || variants.length > 0;
 
   return (
-    <div className="mt-12 border-t border-border pt-10 space-y-10">
-      <section>
-        <h2 className="text-xl font-semibold text-foreground mb-3">Overview</h2>
-        <div className="text-muted-foreground leading-relaxed whitespace-pre-line">{content.overview}</div>
-      </section>
+    <div className="mt-12 space-y-3 border-t border-border pt-10">
+      <details className="glass group rounded-[22px] px-5 py-4" open>
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+          <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Overview</h2>
+          <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
+        </summary>
+        <div className="mt-4">
+        <div className="text-[0.97rem] text-muted-foreground leading-relaxed whitespace-pre-line">{content.overview}</div>
+        </div>
+      </details>
 
-      <section>
-        <h2 className="text-xl font-semibold text-foreground mb-3">Uses in Indore</h2>
-        <div className="text-muted-foreground leading-relaxed whitespace-pre-line">{content.usesInIndore}</div>
-      </section>
+      <details className="glass group rounded-[22px] px-5 py-4">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+          <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Uses in Indore</h2>
+          <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
+        </summary>
+        <div className="mt-4">
+        <div className="text-[0.97rem] text-muted-foreground leading-relaxed whitespace-pre-line">{content.usesInIndore}</div>
+        </div>
+      </details>
 
       {hasSpecs && (
         <section>
@@ -67,20 +77,35 @@ export function ProductSeoContent({
         </section>
       )}
 
-      <section>
-        <h2 className="text-xl font-semibold text-foreground mb-3">Buying guide</h2>
-        <div className="text-muted-foreground leading-relaxed whitespace-pre-line">{content.buyingGuide}</div>
-      </section>
+      <details className="glass group rounded-[22px] px-5 py-4">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+          <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Buying guide</h2>
+          <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
+        </summary>
+        <div className="mt-4">
+        <div className="text-[0.97rem] text-muted-foreground leading-relaxed whitespace-pre-line">{content.buyingGuide}</div>
+        </div>
+      </details>
 
-      <section>
-        <h2 className="text-xl font-semibold text-foreground mb-3">Pricing factors</h2>
-        <div className="text-muted-foreground leading-relaxed whitespace-pre-line">{content.pricingFactors}</div>
-      </section>
+      <details className="glass group rounded-[22px] px-5 py-4">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+          <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Pricing factors</h2>
+          <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
+        </summary>
+        <div className="mt-4">
+        <div className="text-[0.97rem] text-muted-foreground leading-relaxed whitespace-pre-line">{content.pricingFactors}</div>
+        </div>
+      </details>
 
-      <section>
-        <h2 className="text-xl font-semibold text-foreground mb-3">Why buy from H.M. Ibrahim & Co.</h2>
-        <div className="text-muted-foreground leading-relaxed whitespace-pre-line">{content.whyUs}</div>
-      </section>
+      <details className="glass group rounded-[22px] px-5 py-4">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+          <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Why buy from H.M. Ibrahim & Co.</h2>
+          <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
+        </summary>
+        <div className="mt-4">
+        <div className="text-[0.97rem] text-muted-foreground leading-relaxed whitespace-pre-line">{content.whyUs}</div>
+        </div>
+      </details>
 
       {content.faqs.length > 0 && (
         <section aria-labelledby="product-faq-heading">
@@ -98,10 +123,15 @@ export function ProductSeoContent({
         </section>
       )}
 
-      <section>
-        <h2 className="text-xl font-semibold text-foreground mb-3">Service area</h2>
+      <details className="glass group rounded-[22px] px-5 py-4">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+          <h2 className="font-display text-2xl font-extrabold uppercase leading-none text-foreground">Service area</h2>
+          <span aria-hidden="true" className="text-2xl text-primary transition-transform duration-300 group-open:rotate-45">+</span>
+        </summary>
+        <div className="mt-4">
         <p className="text-muted-foreground leading-relaxed">{content.serviceArea}</p>
-      </section>
+        </div>
+      </details>
 
       {(relatedProducts.length > 0 || relatedBlogPosts.length > 0) && (
         <section className="border-t border-border pt-8">
@@ -110,7 +140,7 @@ export function ProductSeoContent({
             {category && (
               <Link
                 href={`/categories/${category.slug}`}
-                className="rounded-lg border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/40 hover:text-primary"
+                className="lift rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/50 hover:text-primary"
               >
                 {category.name}
               </Link>
@@ -119,7 +149,7 @@ export function ProductSeoContent({
               <Link
                 key={p.slug}
                 href={`/products/${p.slug}`}
-                className="rounded-lg border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/40 hover:text-primary"
+                className="lift rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/50 hover:text-primary"
               >
                 {p.name}
               </Link>
@@ -128,7 +158,7 @@ export function ProductSeoContent({
               <Link
                 key={b.slug}
                 href={`/blog/${b.slug}`}
-                className="rounded-lg border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/40 hover:text-primary"
+                className="lift rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/50 hover:text-primary"
               >
                 {b.title}
               </Link>

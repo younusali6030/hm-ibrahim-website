@@ -53,7 +53,7 @@ export default function IndoreIndexPage() {
       </PageHero>
 
       <section className="border-b border-border bg-card" aria-label="Reach">
-        <ul className="page-container grid grid-cols-2 gap-px bg-border md:grid-cols-4">
+        <ul className="page-container grid grid-cols-2 gap-px bg-border bg-clip-content md:grid-cols-4">
           {[
             { big: "Siyaganj", small: "Opposite Tijori Gali" },
             { big: "Retail + wholesale", small: "From one coil to a truckload" },

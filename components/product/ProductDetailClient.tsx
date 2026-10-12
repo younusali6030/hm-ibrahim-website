@@ -9,7 +9,6 @@ import type { Product } from "@/content/products";
 import type { Category } from "@/content/products";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import {
   Accordion,
   AccordionContent,
@@ -68,7 +67,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
   const meshWireCategorySlugs = ["wiremesh", "wires", "welded-mesh", "perforated-sheets"];
   const hasSpecs = (displaySpecs?.length ?? 0) > 0 || product.tataOfficial || product.tataAvailable || (category?.slug && meshWireCategorySlugs.includes(category.slug));
   const showBrandMessaging = category?.slug ? meshWireCategorySlugs.includes(category.slug) : false;
-  const accordionDefaults = ["specs", "sizes", "materials", "uses", "variants"].filter((key) => {
+  const accordionDefaults = ["specs", "sizes"].filter((key) => {
     if (key === "specs") return hasSpecs;
     if (key === "sizes") return displaySizes && displaySizes.length > 0;
     if (key === "materials") return displayMaterials && displayMaterials.length > 0;
@@ -78,7 +77,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
   });
 
   return (
-    <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 min-w-0">
+    <div className="grid min-w-0 gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12">
       <ProductImageGallery
         key={`${product.slug}-${selectedBrandId ?? "default"}`}
         media={media}
@@ -89,11 +88,27 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
 
       <div className="min-w-0">
         <div data-speakable>
-          <h1 className="text-xl font-bold text-foreground sm:text-2xl md:text-3xl lg:text-4xl">{product.name}</h1>
           {category && (
-            <p className="mt-2 text-muted-foreground">{category.name}</p>
+            <Link href={`/categories/${category.slug}`} className="glass-pill inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-wider">
+              {category.name}
+            </Link>
           )}
-          <p className="mt-4 text-muted-foreground leading-relaxed">{product.shortDesc}</p>
+          <h1 className="mt-3 text-[2.4rem] leading-[0.95] text-foreground sm:text-5xl lg:text-6xl">{product.name}</h1>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{product.shortDesc}</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Wholesale and retail in Indore: Siyaganj, Loha Mandi and nearby areas.
+          </p>
+        </div>
+
+        <div className="glass mt-6 rounded-[24px] p-4 sm:p-5">
+          <p className="font-mono-brand text-[11px] uppercase tracking-[0.14em] text-white/60">Rate and stock</p>
+          <p className="mt-1 text-sm text-white/80">Tell us the size and quantity. We check stock and call back with the rate.</p>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            <Link href={quoteHref} className="glass-btn glass-btn-main">Request a quote</Link>
+            <a href={getWhatsAppLink(site.whatsapp, whatsAppMessage)} target="_blank" rel="noopener noreferrer" className="glass-btn">
+              WhatsApp for price
+            </a>
+          </div>
         </div>
 
         {hasBrandVariants && (
@@ -108,7 +123,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
         <Accordion type="multiple" defaultValue={accordionDefaults} className="mt-6 w-full">
           {hasSpecs && (
             <AccordionItem value="specs" className="border-b border-border">
-              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
+              <AccordionTrigger className="flex min-h-[56px] items-center py-4 text-left font-display text-xl font-extrabold uppercase tracking-wide hover:no-underline">
                 Specifications
               </AccordionTrigger>
               <AccordionContent>
@@ -154,7 +169,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           )}
           {displaySizes && displaySizes.length > 0 && (
             <AccordionItem value="sizes" className="border-b border-border">
-              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
+              <AccordionTrigger className="flex min-h-[56px] items-center py-4 text-left font-display text-xl font-extrabold uppercase tracking-wide hover:no-underline">
                 Sizes & Thickness
               </AccordionTrigger>
               <AccordionContent>
@@ -168,7 +183,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           )}
           {displayMaterials && displayMaterials.length > 0 && (
             <AccordionItem value="materials" className="border-b border-border">
-              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
+              <AccordionTrigger className="flex min-h-[56px] items-center py-4 text-left font-display text-xl font-extrabold uppercase tracking-wide hover:no-underline">
                 Materials / Finish
               </AccordionTrigger>
               <AccordionContent>
@@ -182,7 +197,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           )}
           {product.variants && product.variants.length > 0 && (
             <AccordionItem value="variants" className="border-b border-border">
-              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
+              <AccordionTrigger className="flex min-h-[56px] items-center py-4 text-left font-display text-xl font-extrabold uppercase tracking-wide hover:no-underline">
                 Variants
               </AccordionTrigger>
               <AccordionContent>
@@ -196,7 +211,7 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           )}
           {displayUseCases && displayUseCases.length > 0 && (
             <AccordionItem value="uses" className="border-b border-border">
-              <AccordionTrigger className="text-left text-base sm:text-lg font-semibold py-4 min-h-[52px] flex items-center hover:no-underline">
+              <AccordionTrigger className="flex min-h-[56px] items-center py-4 text-left font-display text-xl font-extrabold uppercase tracking-wide hover:no-underline">
                 Common Uses
               </AccordionTrigger>
               <AccordionContent>
@@ -220,21 +235,6 @@ export function ProductDetailClient({ product, category, defaultImages }: Props)
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">Note:</strong> Available in different sizes, weights and finishes. Stock varies.
           </p>
-        </div>
-
-        <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-          <Button asChild className="w-full sm:w-auto min-h-[44px]">
-            <Link href={quoteHref}>Request a Quote</Link>
-          </Button>
-          <Button asChild variant="outline" className="w-full sm:w-auto min-h-[44px]">
-            <a
-              href={getWhatsAppLink(site.whatsapp, whatsAppMessage)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WhatsApp for price
-            </a>
-          </Button>
         </div>
 
         <LookingForMoreSection variant="product" className="mt-8" />

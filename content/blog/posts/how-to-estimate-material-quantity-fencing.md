@@ -2,14 +2,14 @@
 title: "How to Estimate Material Quantity for Fencing Projects"
 description: "Estimate chain link, barbed wire, posts, and GI pipe for fencing in Indore. Tips for Siyaganj buyers."
 date: "2025-02-08"
-image: "/blog/weldmesh-street.jpg"
-imageAlt: "Welded mesh roll being checked on a Siyaganj street"
-image2: "/products/gi-pipes.png"
-image2Alt: "GI pipe for posts"
-image3: "/products/brands/boarder/barbed-1.png"
-image3Alt: "Barbed wire"
 updated: "2026-10-11"
 category: "Fencing"
+image: "/blog/fence-estimate-1.webp"
+imageAlt: "Cutting welded wire mesh with bolt cutters"
+image2: "/blog/fence-estimate-2.webp"
+image2Alt: "Measuring a mesh roll with a tape on the ground"
+image3: "/blog/fence-estimate-3.webp"
+image3Alt: "Rolled welded mesh cylinder on a Siyaganj street"
 ---
 Estimating fencing material correctly helps you budget and order the right quantity from a Siyaganj or Loha Mandi supplier. This guide covers chain link, barbed wire, posts, and GI pipe so you can plan your fencing project in Indore, Dewas, Pithampur, or Ujjain.
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Play } from "lucide-react";
 
 type Reel = { id: string; title: string; note: string; href?: string; cta?: string };
@@ -26,6 +26,23 @@ function ReelCard({ reel }: { reel: Reel }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
+  // Warm the first bytes of a reel just before it scrolls into view, so a tap starts instantly.
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          v.preload = "metadata";
+          io.disconnect();
+        }
+      },
+      { rootMargin: "0px 400px 0px 400px" }
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+
   function toggle() {
     const v = ref.current;
     if (!v) return;
@@ -44,7 +61,7 @@ function ReelCard({ reel }: { reel: Reel }) {
         type="button"
         onClick={toggle}
         aria-label={`${playing ? "Pause" : "Play"} reel: ${reel.title}`}
-        className="group relative block aspect-[9/16] w-full overflow-hidden rounded-sm bg-[#0b121a]"
+        className="group relative block aspect-[9/16] w-full overflow-hidden rounded-[22px] bg-[#0b121a] ring-1 ring-white/10"
       >
         <video
           ref={ref}
@@ -66,7 +83,7 @@ function ReelCard({ reel }: { reel: Reel }) {
           }
           aria-hidden="true"
         >
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg">
+          <span className="glass flex h-16 w-16 items-center justify-center rounded-full">
             <Play className="ml-1 h-7 w-7" />
           </span>
         </span>

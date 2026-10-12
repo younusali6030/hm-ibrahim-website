@@ -4,12 +4,12 @@ description: "Convert SWG and BWG to millimetres, and see which gauge is used fo
 date: "2026-10-03"
 updated: "2026-10-03"
 category: "Wire"
-image: "/blog/binding-wire-coils.jpg"
-imageAlt: "Coils of annealed binding wire at H M Ibrahim & Co, Siyaganj"
-image2: "/blog/binding-wire-shelf.jpg"
-image2Alt: "Binding wire coils stacked next to Tata Wiron bundles"
-image3: "/products/gi-wire.png"
-image3Alt: "GI wire coil"
+image: "/blog/gauge-1.webp"
+imageAlt: "Binding wire coils in different gauges stacked at the shop"
+image2: "/blog/gauge-2.webp"
+image2Alt: "Heavy coil of black annealed wire in close-up"
+image3: "/blog/gauge-3.webp"
+image3Alt: "Yellow wrapped Tata Wiron coil on top of loose wire"
 ---
 
 You ask for 12 gauge wire. The shop hands you a coil. How do you know it is the 12 gauge you meant?

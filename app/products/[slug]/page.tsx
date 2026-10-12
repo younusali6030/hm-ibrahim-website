@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getProductBySlug, getCategoryBySlug, allProducts, getProductImages, getProductMedia, getRelatedProducts, type ProductWithCategory } from "@/content/products";
+import { getProductBySlug, getCategoryBySlug, allProducts, getProductImages, getRelatedProducts, type ProductWithCategory } from "@/content/products";
 import { getProductSeoContent, getRelatedBlogSlugsForProduct } from "@/content/productSeoContent";
 import { getPostBySlug } from "@/content/blog/posts";
 import { baseUrl, site } from "@/lib/site";
 import { buildProductMeta } from "@/lib/seo";
-import { getWhatsAppLink } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { ProductImageGallery } from "@/components/ProductImageGallery";
 import { ProductDetailClient } from "@/components/product/ProductDetailClient";
-import { LookingForMoreSection } from "@/components/LookingForMoreSection";
 import { ProductSeoContent } from "@/components/ProductSeoContent";
 import { TrustBadges } from "@/components/trust/TrustBadges";
 import { ReviewsList } from "@/components/trust/ReviewsList";
@@ -50,8 +45,6 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const category = getCategoryBySlug(product.categorySlug);
   const images = getProductImages(product, category);
-  const media = getProductMedia(product, category);
-  const hasBrandVariants = product.brandVariants && product.brandVariants.length > 0;
   const seoContent = getProductSeoContent(slug, product);
   const relatedProductSlugs = seoContent?.relatedProductSlugs;
   const relatedProducts: ProductWithCategory[] = relatedProductSlugs?.length
@@ -137,167 +130,18 @@ export default async function ProductDetailPage({ params }: Props) {
       }
     : null;
 
-  const sizeInfo = product.sizes && product.sizes.length > 0
-    ? ` Size: ${product.sizes.slice(0, 3).join(", ")}`
-    : "";
-  const whatsAppMessage = `Hi, I'm interested in ${product.name}.${sizeInfo} Please share price/availability.`;
-
-  const meshWireCategorySlugs = ["wiremesh", "wires", "welded-mesh", "perforated-sheets"];
-
   return (
-    <article className="page-container section-padding">
+    <article className="page-container pb-10 pt-4 md:pb-16 md:pt-6">
       <JsonLdBreadcrumb items={breadcrumbItems} />
       <SeoJsonLd data={productSchema} />
       {productFaqSchema && <SeoJsonLd data={productFaqSchema} />}
       <Breadcrumbs items={breadcrumbItems} className="mb-6" />
 
-      {hasBrandVariants ? (
-        <ProductDetailClient
-          product={product}
-          category={category ?? null}
-          defaultImages={images}
-        />
-      ) : (
-        <>
-          <div className="grid gap-8 lg:grid-cols-2">
-            <ProductImageGallery
-              key={product.slug}
-              media={media}
-              alt={product.imageAlt || product.name}
-              productName={product.name}
-              productSlug={product.slug}
-            />
-            <div>
-              <div data-speakable>
-                <h1 className="text-3xl font-bold text-foreground md:text-4xl">{product.name}</h1>
-                {category && (
-                  <p className="mt-2 text-muted-foreground">{category.name}</p>
-                )}
-                <p className="mt-4 text-muted-foreground leading-relaxed">{product.shortDesc}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Wholesale supplier and distributor for{" "}
-                  <span className="text-foreground font-medium">{product.name}</span> in Indore (Siyaganj, Loha
-                  Mandi and nearby areas).
-                </p>
-              </div>
-
-              {(product.specs && product.specs.length > 0) || product.tataOfficial || product.tataAvailable || (category?.slug && meshWireCategorySlugs.includes(category.slug)) ? (
-                <div className="mt-6">
-                  <h2 className="text-lg font-semibold text-foreground">Specifications</h2>
-                  <dl className="mt-2 space-y-2">
-                    {product.tataOfficial && (
-                      <div className="flex gap-2">
-                        <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
-                        <dd className="flex items-center gap-2 text-foreground">
-                          <span className="relative h-[18px] w-9 shrink-0">
-                            <Image src="/brands/tata.svg" alt="" width={36} height={18} className="object-contain" />
-                          </span>
-                          <span>Tata products available on request (Authorized Dealer).</span>
-                        </dd>
-                      </div>
-                    )}
-                    {product.tataAvailable && !product.tataOfficial && (
-                      <div className="flex gap-2">
-                        <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
-                        <dd className="text-foreground">Tata product available on request.</dd>
-                      </div>
-                    )}
-                    {category?.slug && meshWireCategorySlugs.includes(category.slug) && !product.tataOfficial && !product.tataAvailable && (
-                      <div className="flex gap-2">
-                        <dt className="shrink-0 text-muted-foreground">Brand availability:</dt>
-                        <dd className="text-foreground">Available in multiple trusted brands.</dd>
-                      </div>
-                    )}
-                    {category?.slug && meshWireCategorySlugs.includes(category.slug) && (product.tataOfficial || product.tataAvailable) && (
-                      <div className="flex gap-2">
-                        <dt className="shrink-0 text-muted-foreground">Brands:</dt>
-                        <dd className="text-foreground">Available in multiple trusted brands.</dd>
-                      </div>
-                    )}
-                    {product.specs?.map((spec) => (
-                      <div key={spec.label} className="flex gap-2">
-                        <dt className="text-muted-foreground">{spec.label}:</dt>
-                        <dd className="text-foreground">{spec.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              ) : null}
-
-              {product.sizes && product.sizes.length > 0 && (
-                <div className="mt-6">
-                  <h2 className="text-lg font-semibold text-foreground">Sizes & Thickness</h2>
-                  <ul className="mt-2 list-inside list-disc text-muted-foreground">
-                    {product.sizes.map((size) => (
-                      <li key={size}>{size}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {product.materials && product.materials.length > 0 && (
-                <div className="mt-6">
-                  <h2 className="text-lg font-semibold text-foreground">Materials / Finish</h2>
-                  <ul className="mt-2 list-inside list-disc text-muted-foreground">
-                    {product.materials.map((material) => (
-                      <li key={material}>{material}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {product.variants && product.variants.length > 0 && (
-                <div className="mt-6">
-                  <h2 className="text-lg font-semibold text-foreground">Variants</h2>
-                  <ul className="mt-2 list-inside list-disc text-muted-foreground">
-                    {product.variants.map((variant) => (
-                      <li key={variant}>{variant}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {product.useCases && product.useCases.length > 0 && (
-                <div className="mt-6">
-                  <h2 className="text-lg font-semibold text-foreground">Common Uses</h2>
-                  <ul className="mt-2 list-inside list-disc text-muted-foreground">
-                    {product.useCases.map((use) => (
-                      <li key={use}>{use}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {product.notes && (
-                <div className="mt-6 rounded-lg bg-muted/50 p-4">
-                  <p className="text-sm text-muted-foreground">{product.notes}</p>
-                </div>
-              )}
-
-              <div className="mt-6 rounded-lg border border-border/60 bg-card/50 p-4">
-                <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Note:</strong> Available in different sizes, weights and finishes. Stock varies.
-                </p>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button asChild>
-                  <Link href={`/contact?product=${product.slug}&category=${product.categorySlug}`}>
-                    Request a Quote
-                  </Link>
-                </Button>
-                <Button asChild variant="outline">
-                  <a href={getWhatsAppLink(site.whatsapp, whatsAppMessage)} target="_blank" rel="noopener noreferrer">
-                    WhatsApp for price
-                  </a>
-                </Button>
-              </div>
-
-              <LookingForMoreSection variant="product" className="mt-8" />
-            </div>
-          </div>
-        </>
-      )}
+      <ProductDetailClient
+        product={product}
+        category={category ?? null}
+        defaultImages={images}
+      />
 
       {relatedProducts.length > 0 && (
         <section className="mt-14 border-t border-border pt-10" aria-labelledby="related-heading">
@@ -307,7 +151,7 @@ export default async function ProductDetailPage({ params }: Props) {
               <li key={p.slug}>
                 <Link
                   href={`/products/${p.slug}`}
-                  className="rounded-lg border border-border bg-card px-4 py-2 text-small text-foreground hover:border-primary/40 hover:text-primary"
+                  className="lift rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary/50 hover:text-primary"
                 >
                   {p.name}
                 </Link>

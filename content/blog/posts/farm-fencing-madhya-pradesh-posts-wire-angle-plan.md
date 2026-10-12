@@ -4,12 +4,12 @@ description: "How to fence a farm or plot in Madhya Pradesh. Post spacing, wire 
 date: "2026-10-05"
 updated: "2026-10-05"
 category: "Fencing"
-image: "/blog/concertina-razor.jpg"
-imageAlt: "Galvanised razor coils in the godown at H M Ibrahim & Co"
-image2: "/blog/weldmesh-street.jpg"
-image2Alt: "Welded mesh roll being checked on a Siyaganj street"
-image3: "/products/ms-angle-1.png"
-image3Alt: "MS angle iron used as fence posts"
+image: "/blog/farm-1.webp"
+imageAlt: "CM chain link fencing rolls with barbed wire labels"
+image2: "/blog/farm-2.webp"
+image2Alt: "Galvanised chain link rolls stacked for farm fencing"
+image3: "/blog/farm-3.webp"
+image3Alt: "Chain link diamond weave in close-up"
 ---
 
 A farm fence is not about looks. It is about keeping cattle, nilgai, thieves and neighbours out for ten years without a repair bill every monsoon.

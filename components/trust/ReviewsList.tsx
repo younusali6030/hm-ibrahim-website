@@ -21,9 +21,9 @@ export function ReviewsList({ max = 3, title = "What buyers say on Google", clas
           <span className="font-semibold text-foreground">{site.googleReview.rating}</span> from {site.googleReview.reviewCount} reviews
         </p>
       </div>
-      <ul className="mt-6 grid gap-4 md:grid-cols-3">
+      <ul className="-mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden">
         {items.map((r) => (
-          <li key={r.author + r.text.slice(0, 12)} className="flex flex-col rounded-sm border border-border bg-card p-5">
+          <li key={r.author + r.text.slice(0, 12)} className="glass flex w-[82%] shrink-0 snap-center flex-col rounded-[22px] p-5 md:w-auto">
             <p className="text-primary" aria-label={`${r.rating} out of 5 stars`}>
               {"★".repeat(r.rating)}
               <span className="text-border">{"★".repeat(5 - r.rating)}</span>

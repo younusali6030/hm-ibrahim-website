@@ -4,14 +4,14 @@ description: "Nail length, gauge and type for wood, tin sheets, brick and concre
 date: "2026-09-27"
 updated: "2026-09-27"
 category: "Fasteners"
-image: "/blog/nails-weighing.jpg"
-imageAlt: "Nails being weighed at the H M Ibrahim & Co counter in Siyaganj"
-image2: "/products/fastener-nail-1.png"
-image2Alt: "Wire nails in assorted sizes"
-image3: "/products/roofing-nail-1.png"
-image3Alt: "Roofing nails with washers"
 video: "/videos/wire-nails-sorting.mp4"
 videoCaption: "Nails picked by hand and weighed at our counter."
+image: "/blog/nails-1.webp"
+imageAlt: "Hand sorting wire nails from a bin"
+image2: "/blog/nails-2.webp"
+image2Alt: "Nail bins filled with different lengths"
+image3: "/blog/nails-3.webp"
+image3Alt: "Nails scooped into an orange bowl for weighing"
 ---
 
 A nail looks like the simplest thing in the shop. Then a tin roof lifts in the first storm because someone used a wire nail where a roofing nail belonged.
