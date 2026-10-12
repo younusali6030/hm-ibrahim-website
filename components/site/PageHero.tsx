@@ -49,7 +49,7 @@ export function PageHero({ eyebrow, title, lede, children, image, compact, sheen
         </div>
         {image && (
           <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-2xl ring-1 ring-white/15">
-            <Image src={image.src} alt={image.alt} fill priority sizes="(max-width:1024px) 100vw, 45vw" className="object-cover" />
+            <Image src={image.src} alt={image.alt} fill priority quality={60} sizes="(max-width:1024px) 100vw, 45vw" className="object-cover" />
           </div>
         )}
       </div>
