@@ -1,6 +1,6 @@
 # Search Console findings, 12 Oct 2026
 
-Property `sc-domain:hmibrahim.net`, account younusali6030@gmail.com. Read through the signed-in Search Console UI. Figures are for 11 Jul to 10 Oct 2026.
+Property `sc-domain:hmibrahim.net`. Read through the signed-in Search Console UI. Figures are for 11 Jul to 10 Oct 2026.
 
 ## Performance
 48 clicks, 7.11k impressions, CTR 0.7%, average position 6.8 (a mean of best positions, not a fixed rank). 15 pages had any impression.
