@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { categories, getCategoryBySlug, type Category } from "@/content/products";
 import { baseUrl, site, localSeo } from "@/lib/site";
+import { buildPageMeta } from "@/lib/seo";
+import { productCopy } from "@/content/productCopy";
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
 import { ReviewsList } from "@/components/trust/ReviewsList";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
@@ -30,55 +32,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: slug } = await params;
   const category = getCategoryBySlug(slug);
   if (!category) return { title: "Category" };
-
-  const title = `${category.name} in Indore, ${localSeo.state}`; // layout template appends the site name
-  const description = `${category.description} Available in Siyaganj, Indore. Retail and wholesale. ${category.products.slice(0, 3).map((p) => p.name).join(", ")} and more. Request a quote.`;
-
-  return {
-    title,
-    description: description.substring(0, 160),
-    keywords: [
-      `${category.name} Indore`,
-      `${category.name} Siyaganj`,
-      `${category.name} ${localSeo.region}`,
-      "iron and hardware Indore",
-      site.name,
-    ].join(", "),
-    alternates: { canonical: `${baseUrl}/categories/${category.slug}` },
-    openGraph: {
-      title: `${category.name} in Indore | ${site.name}`,
-      description: description.substring(0, 200),
-      url: `${baseUrl}/categories/${category.slug}`,
-      siteName: site.name,
-      locale: "en_IN",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${category.name} in Indore | ${site.name}`,
-      description: description.substring(0, 200),
-    },
-    robots: { index: true, follow: true },
-  };
+  // Titles and descriptions for the nine ranges live in content/seoOverrides.ts and win over these defaults.
+  return buildPageMeta({
+    title: `${category.name} in Indore, ${localSeo.state}`,
+    description: `${category.description} At our Siyaganj counter in Indore, retail and wholesale. Ask for the rate.`,
+    path: `categories/${category.slug}`,
+  });
 }
 
 function buildCategoryFaqs(category: Category): FAQ[] {
-  const productFaqs: FAQ[] = category.products.map((product, index) => {
-    const sizeSnippet =
-      product.sizes && product.sizes.length > 0
-        ? ` Common sizes we usually supply include ${product.sizes.slice(0, 6).join(", ")}.`
-        : "";
-    const materialSnippet =
-      product.materials && product.materials.length > 0
-        ? ` Materials / finishes can include ${product.materials.join(", ")}.`
-        : "";
-
-    return {
-      id: `${category.slug}-${product.slug}-sizes`,
-      question: `What sizes and specifications of ${product.name} do you stock in Indore?`,
-      answer: `We keep multiple sizes and specifications of ${product.name} ready in Siyaganj, Indore for contractors, fabricators, and retailers.${sizeSnippet}${materialSnippet} Stock moves quickly, so share your exact size and quantity and we’ll confirm current availability and the best rate for your order.`,
-      category: "products",
-    };
+  // One real answer per product, written in content/productCopy.ts. Nothing here promises stock.
+  const productFaqs: FAQ[] = category.products.flatMap((product) => {
+    const pair = productCopy[product.slug]?.faqs?.[0];
+    if (!pair) return [];
+    return [{ id: `${category.slug}-${product.slug}-faq`, question: pair[0], answer: pair[1], category: "products" } as FAQ];
   });
 
   const categoryLevelFaqs: FAQ[] = [

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { baseUrl, site } from "@/lib/site";
+import { buildPageMeta } from "@/lib/seo";
 import { categories, allProducts, getProductImages } from "@/content/products";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { PageHero } from "@/components/site/PageHero";
@@ -7,20 +8,12 @@ import { ProductsIndex, type IndexCategory } from "./ProductsIndex";
 import { sizeTag, tataFlag } from "@/components/catalog/ledger";
 import { T } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Products | Iron, Steel, Wire & Mesh in Indore, Siyaganj",
+export const metadata: Metadata = buildPageMeta({
+  title: "Products: Iron, Steel, Wire and Mesh",
   description:
-    "Browse the full range at H M Ibrahim & Co, Siyaganj, Indore: TMT bars, MS angles, wire mesh, welded mesh, barbed wire, chain link, perforated sheets, wire rope, tools and more. Retail and wholesale.",
-  alternates: { canonical: `${baseUrl}/products` },
-  openGraph: {
-    title: "Products | H M Ibrahim & Co, Siyaganj, Indore",
-    description: "Iron, steel, wire and mesh. Retail and wholesale in Siyaganj, Indore.",
-    url: `${baseUrl}/products`,
-    siteName: site.name,
-    locale: "en_IN",
-    type: "website",
-  },
-};
+    "The full range at H M Ibrahim & Co, Siyaganj, Indore: TMT bars, MS angles, wire mesh, welded mesh, barbed wire, chain link, perforated sheets, wire rope and tools. Ask for the rate.",
+  path: "products",
+});
 
 function itemListSchema() {
   return {
