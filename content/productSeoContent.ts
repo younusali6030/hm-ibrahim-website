@@ -1,7 +1,10 @@
 /**
- * Unique SEO content per product page (800–1200 words).
- * Sections: Overview, Uses in Indore, Specifications, Buying guide, Pricing factors, Why us, FAQs, Service area.
- * City keywords: Indore, Siyaganj, Loha Mandi, New Siyaganj; nearby: Dewas, Pithampur, Ujjain.
+ * Product-page copy. Resolution order in getProductSeoContent():
+ *   1. hand-written entries in contentMap below (the six highest-volume products),
+ *   2. entries in content/productCopy.ts (one per remaining product),
+ *   3. a last-resort generator that only restates catalog data.
+ * whyUs and serviceArea are built per category so no two pages share a paragraph word for word.
+ * No prices anywhere: "ask for the rate".
  */
 
 export type ProductSeoFaq = { question: string; answer: string };
@@ -21,6 +24,7 @@ export type ProductSeoContent = {
 };
 
 import type { ProductWithCategory } from "./products";
+import { productCopy } from "./productCopy";
 
 const contentMap: Partial<Record<string, ProductSeoContent>> = {
   "ms-angles": {
@@ -52,7 +56,7 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
       { question: "Are MS flats suitable for welding?", answer: "Yes. Mild steel flats are commonly used for welding and fabrication. Ensure correct grade if you have specific weld requirements." },
       { question: "Do you deliver flats to Dewas or Pithampur?", answer: "We serve Indore and nearby areas including Dewas and Pithampur. Delivery can be arranged depending on order size and location." },
     ],
-    relatedBlogSlugs: ["common-mistakes-buying-steel-sections", "top-hardware-contractors-buy-siyaganj"],
+    relatedBlogSlugs: ["common-mistakes-buying-steel-sections", "top-hardware-contractors-buy-siyaganj", "how-bulk-buyers-save-cost-loha-mandi-indore"],
   },
   "tmt-bars": {
     overview: `TMT (thermo-mechanically treated) bars are the standard reinforcement for RCC construction in Indore and across India. We supply TMT bars in diameters from 6 mm to 32 mm (commonly 8, 10, 12, 16, 20, 25 mm) in grades such as Fe 500 and Fe 550, typically in 12 m length. Contractors and builders in Siyaganj, Loha Mandi, and New Siyaganj depend on consistent supply for columns, beams, slabs, and foundations. H.M. Ibrahim & Co has been supplying TMT bars and other construction steel in Indore since 1939.`,
@@ -68,7 +72,7 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
       { question: "Can I get a small quantity for a home project?", answer: "Yes. We serve both retail and wholesale. Minimum order may vary by product; contact us for details." },
       { question: "Are your TMT bars from branded manufacturers?", answer: "We stock quality TMT bars; Tata and other brands may be available on request. Ask for current availability." },
     ],
-    relatedBlogSlugs: ["how-to-choose-tmt-bars-indore", "how-bulk-buyers-save-cost-loha-mandi-indore"],
+    relatedBlogSlugs: ["how-to-choose-tmt-bars-indore", "tmt-bar-weight-chart-size-guide-indore", "frp-bars-vs-tmt-bars-where-each-belongs"],
   },
   "gi-pipes": {
     overview: `Galvanized iron (GI) pipes are used for water lines, fencing, and structural applications in Indore and the region. We supply GI pipes in NB sizes from 15 mm (1/2") to 150 mm (6") in light, medium, and heavy classes, typically 6 m length. Plumbers, contractors, and industries in Siyaganj, Loha Mandi, and New Siyaganj source GI pipes for water supply, boundary fencing, and support structures. H.M. Ibrahim & Co has been a trusted supplier of pipes and hardware in Indore since 1939.`,
@@ -98,7 +102,7 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
       { question: "Do you have Tata Wiron chain link?", answer: "Yes. Tata Wiron chain link fencing is available along with CM and Border brands. Ask for current availability." },
       { question: "How do I estimate how much chain link I need?", answer: "Measure the perimeter and height. We can help with quantity and roll sizes; see our blog for estimation tips." },
     ],
-    relatedBlogSlugs: ["wire-mesh-supplier-indore-types-uses-prices", "welded-wire-mesh-vs-chain-link"],
+    relatedBlogSlugs: ["welded-wire-mesh-vs-chain-link", "how-to-estimate-material-quantity-fencing", "farm-fencing-madhya-pradesh-posts-wire-angle-plan"],
   },
   "barbed-wire": {
     overview: `Barbed wire is used for security and boundary fencing across Indore and the region. We supply single- and double-strand barbed wire in common gauges (e.g. 12x14), in coils up to 25 kg. CM, Border, and Tata Wiron barbed wire are stocked for contractors and farmers in Siyaganj, Loha Mandi, and New Siyaganj. H.M. Ibrahim & Co has been supplying fencing material in Indore since 1939.`,
@@ -112,35 +116,79 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
       { question: "Barbed wire vs concertina: which for high security?", answer: "Concertina (coiled) is used for high-security perimeters. Barbed wire is common for boundaries. We supply both." },
       { question: "Do you deliver barbed wire?", answer: "Delivery can be arranged depending on order size and location. Mention your location when requesting a quote." },
     ],
-    relatedBlogSlugs: ["barbed-wire-vs-concertina-wire", "wire-mesh-supplier-indore-types-uses-prices"],
+    relatedBlogSlugs: ["barbed-wire-vs-concertina-wire", "farm-fencing-madhya-pradesh-posts-wire-angle-plan", "wire-gauge-chart-swg-bwg-mm-guide"],
   },
 };
 
-/** Default content generator when no custom entry exists — still unique per product using name/category/useCases. */
-function getDefaultContent(product: ProductWithCategory): ProductSeoContent {
-  const { name, categoryName: cat, useCases = [], sizes } = product;
-  const cities = "Indore, Siyaganj, Loha Mandi, and New Siyaganj";
-  const nearby = "Dewas, Pithampur, Ujjain, and Mhow";
-  const uses = useCases.slice(0, 4).join(", ");
+/** Category-specific "why buy here" lines. Facts only: counter, brands, retail and wholesale. */
+const whyUsByCategory: Record<string, string> = {
+  "structural-items":
+    "We have sold steel sections and bars across the Siyaganj counter since 1939. Retail or wholesale, cut lists welcome, and we are an authorised Tata dealer for steel.",
+  "fencing-material":
+    "CM and Border are our own fencing brands, and we also stock Tata Wiron. We have sold fencing wire and mesh across the Siyaganj counter since 1939, by the coil or by the truckload.",
+  wiremesh:
+    "Customers say the range of jali is the reason they come. We keep many meshes in stock at Siyaganj, cut from the roll to your size, retail and wholesale.",
+  "welded-mesh":
+    "We stock welded mesh in rolls and panels at Siyaganj and cut it to size. Factories, farms and builders buy it here retail and wholesale.",
+  "perforated-sheets":
+    "Choose the thickness and hole pattern at the counter and we cut the sheet to size. We have sold sheet and mesh at Siyaganj since 1939.",
+  wires:
+    "Wire is the heart of this shop. GI and binding wire, wire rope and fencing wire are kept in coils at Siyaganj, with Tata Wiron as an authorised dealer.",
+  "construction-tools":
+    "Site tools and consumables from one counter in Siyaganj, bought singly or by the carton, since 1939.",
+  nails: "Nails are sorted by length in bins at the counter and sold by weight. Siyaganj, since 1939.",
+  "safety-nets-equipments": "Nets are cut to your opening at the counter in Siyaganj, retail and wholesale.",
+};
 
+const serviceAreaTexts = [
+  "We sell from our shop at 60 Siyaganj Main Road, Indore (opposite Tijori Gali) and supply Dewas, Ujjain, Mhow and Pithampur. Delivery depends on the quantity and the distance.",
+  "Walk in at Siyaganj Main Road, Indore, or send the list. We supply Indore and nearby towns including Dewas, Ujjain, Mhow and Pithampur, with delivery arranged by quantity and distance.",
+  "Visit us on Siyaganj Main Road, Indore. Orders go to Dewas, Ujjain, Mhow and Pithampur too. Tell us the site location and the quantity and we will say how it can reach you.",
+];
+
+function stableIndex(key: string, n: number): number {
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+  return h % n;
+}
+
+/** Last resort: restates catalog data only. Every product is expected to have a productCopy entry. */
+function getDefaultContent(product: ProductWithCategory): ProductSeoContent {
+  const { name, shortDesc, useCases = [], sizes = [], materials = [], slug, categorySlug } = product;
+  const uses = useCases.slice(0, 4).join(", ");
   return {
-    overview: `${name} is used across construction, fabrication, and industrial applications in Indore and the region. At H.M. Ibrahim & Co we stock ${name} in sizes and grades suitable for contractors and industries. Buyers in ${cities} rely on us for consistent quality and availability. We have been supplying iron and hardware in Siyaganj, Indore since 1939.`,
-    usesInIndore: `In Indore, ${name} is used for ${uses || "various applications"}. Contractors and industries in Siyaganj and Loha Mandi source ${name} for projects ranging from residential to industrial. Demand from ${nearby} also keeps our supply chain active. We supply retail and wholesale to meet local and nearby demand.`,
-    buyingGuide: `Choose size, thickness or gauge, and material as per your design. Check specifications and finish. Specify quantity and any special requirements when requesting a quote. We can guide on best options for your use.`,
-    pricingFactors: `Price depends on size, material, quantity, and current market rates. Bulk orders typically get better rates. We do not publish fixed prices; request a quote with your specification for current rates in Indore.`,
-    whyUs: `H.M. Ibrahim & Co has been a trusted supplier in Siyaganj, Indore since 1939. We stock ${name} and other ${cat} and serve contractors and industries in Indore and nearby areas. Request a quote or visit our shop for availability and pricing.`,
-    serviceArea: `We serve ${cities} and nearby areas including ${nearby}. Delivery can be arranged subject to order size and location.`,
+    overview: `${name}: ${shortDesc}`,
+    usesInIndore: uses ? `Used for ${uses}.` : `Tell us the job and we will help you choose.`,
+    buyingGuide: `Tell us the size, the material and the quantity. ${sizes.length ? `Sizes we list: ${sizes.slice(0, 6).join(", ")}.` : ""} ${materials.length ? `Material: ${materials.join(", ")}.` : ""}`.trim(),
+    pricingFactors: "The rate depends on the size, the material, the quantity and the market that week. Ask us with your specification.",
+    whyUs: whyUsByCategory[categorySlug] ?? "H M Ibrahim & Co has sold iron and hardware at Siyaganj, Indore since 1939.",
+    serviceArea: serviceAreaTexts[stableIndex(slug, serviceAreaTexts.length)],
     faqs: [
-      { question: `Do you stock ${name} in Indore?`, answer: `Yes. We stock ${name} and supply retail and wholesale from our Siyaganj location. Contact us for current availability and pricing.` },
-      { question: `What sizes of ${name} are available?`, answer: sizes?.length ? `We have ${sizes.slice(0, 5).join(", ")} and more. Contact us for full range and stock in Siyaganj.` : `Contact us for sizes and availability in Indore.` },
-      { question: "Do you deliver to nearby cities?", answer: `We serve Indore and nearby areas including ${nearby}. Delivery depends on order size and location.` },
-      { question: "How can I get a price quote?", answer: "Use the Request a Quote form on the site or call/WhatsApp us with product, size, and quantity. We respond with current rates." },
-      { question: "Are you open on weekends?", answer: "We are open Monday–Saturday 9 AM–8 PM. Sunday closed. Call before visiting on holidays." },
+      { question: `Do you stock ${name}?`, answer: "Ask for stock and the rate by phone, WhatsApp or the quote form. Stock changes through the week." },
     ],
   };
 }
 
-/** Get SEO content for a product. Uses custom entry if present, else generated default. */
+function fromCopy(product: ProductWithCategory): ProductSeoContent | null {
+  const c = productCopy[product.slug];
+  if (!c) return null;
+  return {
+    overview: c.overview,
+    usesInIndore: c.usesInIndore,
+    buyingGuide: c.buyingGuide,
+    pricingFactors: c.pricingFactors,
+    whyUs: whyUsByCategory[product.categorySlug] ?? "H M Ibrahim & Co has sold iron and hardware at Siyaganj, Indore since 1939.",
+    serviceArea: serviceAreaTexts[stableIndex(product.slug, serviceAreaTexts.length)],
+    faqs: [
+      ...c.faqs.map(([question, answer]) => ({ question, answer })),
+      { question: `How do I get the rate for ${product.name}?`, answer: "Send the size and the quantity through the quote form, or call or WhatsApp us. We check stock and call back with the rate." },
+    ],
+    relatedProductSlugs: c.related,
+    relatedBlogSlugs: c.blogs.slice(0, 3),
+  };
+}
+
+/** Get SEO content for a product. */
 export function getProductSeoContent(
   slug: string,
   product: ProductWithCategory | null
@@ -150,15 +198,26 @@ export function getProductSeoContent(
   if (custom) {
     return {
       ...custom,
+      whyUs: whyUsByCategory[product.categorySlug] ?? custom.whyUs,
+      serviceArea: serviceAreaTexts[stableIndex(slug, serviceAreaTexts.length)],
       relatedProductSlugs: custom.relatedProductSlugs,
       relatedBlogSlugs: custom.relatedBlogSlugs,
     };
   }
-  return getDefaultContent(product);
+  return fromCopy(product) ?? getDefaultContent(product);
 }
 
-/** Get related blog slugs for a product (from custom content or empty). */
+/** Get related blog slugs for a product. */
 export function getRelatedBlogSlugsForProduct(slug: string): string[] {
   const custom = contentMap[slug];
-  return custom?.relatedBlogSlugs ?? [];
+  if (custom) return custom.relatedBlogSlugs ?? [];
+  return productCopy[slug]?.blogs.slice(0, 3) ?? [];
+}
+
+/** Reverse map: which products should a blog post point to (used to audit internal links). */
+export function productsForBlog(blogSlug: string): string[] {
+  const out: string[] = [];
+  for (const [slug, c] of Object.entries(productCopy)) if (c.blogs.includes(blogSlug)) out.push(slug);
+  for (const [slug, c] of Object.entries(contentMap)) if (c?.relatedBlogSlugs?.includes(blogSlug)) out.push(slug);
+  return out;
 }

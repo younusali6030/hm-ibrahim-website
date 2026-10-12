@@ -3,7 +3,15 @@ import { baseUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        // API routes and the post-submit thank-you page have nothing to index.
+        disallow: ["/api/", "/contact/success"],
+      },
+    ],
+    sitemap: [`${baseUrl}/sitemap.xml`, `${baseUrl}/sitemap-images.xml`, `${baseUrl}/sitemap-videos.xml`],
+    host: baseUrl,
   };
 }

@@ -30,96 +30,126 @@ export type IndorePage = {
 export const indorePages: Record<IndorePageSlug, IndorePage> = {
   "wire-mesh": {
     slug: "wire-mesh",
-    title: "Wire Mesh Indore | Welded & Sheet Mesh in Siyaganj",
-    description: "Wire mesh and welded wire mesh in Indore. HM Ibrahim & Co, Siyaganj, supplies welded mesh, sheet mesh, and wire mesh for construction and fencing. Retail and wholesale.",
+    // Owns: "wire mesh Indore", "wiremesh Indore", "welded wire mesh Indore". Not "jali" (see chain-link-fencing-jaali).
+    title: "Wire Mesh in Indore: Welded, GI, MS, Crimp",
+    description:
+      "Wire mesh in Indore from Siyaganj: GI and MS weldmesh, PVC-coated weldmesh, GI and MS wiremesh and crimp mesh, in rolls and panels. Ask for the rate.",
     h1: "Wire Mesh in Indore",
-    intro: "We supply wire mesh and welded wire mesh from our store in Siyaganj, Indore. Whether you need mesh for RCC slabs, partitions, fencing, or screening, we stock a range of options and can source specific sizes and gauges.",
-    intro2: "Our wire mesh range includes welded mesh in common grid sizes, sheet mesh, and related products. Available for retail and wholesale; contact us for sizes and pricing.",
+    intro:
+      "We sell wire mesh from our shop on Siyaganj Main Road, Indore. Welded mesh for slabs, cages and partitions. Woven and crimped mesh for screening and sifting. Rolls and panels, retail and wholesale.",
+    intro2:
+      "Tell us what the mesh is for, the opening size and the wire thickness. We check stock and call back with the rate. Many buyers call it weldmesh jali or wiremesh jali; it is the same family of products, and we will point you to the right one.",
     specs: [
-      "Welded mesh: 15mm x 15mm, 50x50mm to 150x150mm grid",
-      "Wire gauge and thickness as per application",
-      "Sheet mesh and custom sizes on request",
+      "Welded mesh (GI and MS): openings from 15 x 15 mm and 50 x 50 mm up to 150 x 150 mm, wire 3 to 5 mm",
+      "PVC-coated weldmesh in rolls, for fencing and cages that stand outdoors",
+      "Woven GI and MS wiremesh, and crimped wiremesh for screening and sifting",
+      "Rolls and panels; cut sizes on request",
     ],
-    useCases: ["RCC slab reinforcement", "Partition panels", "Cages and enclosures", "Screening and fencing"],
-    productSlugs: ["gi-weldmesh", "ms-weldmesh", "gi-wire", "chain-link-fencing", "ss-gi-mesh-jalies"],
+    useCases: ["RCC slab reinforcement", "Partitions and cages", "Machine guards and screening", "Sifting and filtration", "Garden and compound fencing"],
+    productSlugs: ["gi-weldmesh", "ms-weldmesh", "pvc-coated-weldmesh", "gi-wiremesh", "ms-wiremesh", "crimp-wiremesh"],
   },
   "chain-link-fencing-jaali": {
     slug: "chain-link-fencing-jaali",
-    title: "Chain Link Fencing & Jaali Indore | Jali in Siyaganj",
-    description: "Chain link fencing and jaali (jali) in Indore. HM Ibrahim & Co, Siyaganj, supplies GI and PVC-coated chain link, compound fencing, and jali. Retail and wholesale.",
-    h1: "Chain Link Fencing & Jaali in Indore",
-    intro: "Chain link fencing and jaali (jali) are among our core products in Siyaganj, Indore. We stock galvanized and PVC-coated chain link in various mesh sizes and heights for compound fencing, boundaries, and industrial use.",
-    intro2: "We also supply decorative and functional jalies for windows and grilles. Available in GI and SS options. Contact us for mesh size, height, and roll length.",
+    // Owns: "jali Indore", "jaali Indore", "chain link fencing Indore", "jali for compound wall".
+    title: "Jali and Chain Link Fencing in Indore",
+    description:
+      "Chain link jali in Indore: GI and PVC-coated rolls, 1 to 4 inch mesh, 3 to 10 ft high. CM, Border and Tata Wiron brands at our Siyaganj shop. Ask for the rate.",
+    h1: "Jali and Chain Link Fencing in Indore",
+    intro:
+      "Chain link jali (jaali) is what most compound walls, school grounds and factory boundaries in Indore are fenced with. We sell it in rolls from our shop in Siyaganj, under our own CM and Border brands and as Tata Wiron.",
+    intro2:
+      "Choose the mesh opening, the wire thickness and the height of the roll. Smaller mesh and thicker wire cost more and last longer. PVC-coated roll lasts longer where it stays wet. Send us the perimeter and the height and we will work out the number of rolls.",
     specs: [
-      "Mesh: 1\", 2\", 3\" common",
-      "Heights: 3ft to 10ft rolls",
-      "GI and PVC-coated options",
-      "Signature brands: CM, Border",
+      "Mesh opening: 1, 2, 3 and 4 inch",
+      "Wire: 1.5 mm to 4 mm",
+      "Roll heights: 3 ft to 10 ft",
+      "Finish: GI or PVC-coated, as per stock",
+      "Brands: CM, Border and Tata Wiron",
     ],
-    useCases: ["Compound fencing", "Boundary walls", "Sports grounds", "Industrial premises", "Window jali"],
-    productSlugs: ["chain-link-fencing", "barbed-wire", "ss-gi-mesh-jalies"],
+    useCases: ["Compound and boundary fencing", "Sports grounds and schools", "Factory and warehouse perimeters", "Farm and plot fencing", "Cages and enclosures"],
+    productSlugs: ["chain-link-fencing", "barbed-wire", "pvc-coated-weldmesh", "gi-wire"],
   },
   "barbed-wire": {
     slug: "barbed-wire",
-    title: "Barbed Wire Indore | Security & Boundary Fencing in Siyaganj",
-    description: "Barbed wire in Indore for boundary and security fencing. HM Ibrahim & Co, Siyaganj, supplies GI barbed wire in single and double strand. CM and Border brands. Retail and wholesale.",
-    h1: "Barbed Wire in Indore",
-    intro: "We supply barbed wire for boundary and security fencing from our Siyaganj, Indore store. Available in single and double strand, in various coil sizes, for farms, boundaries, and industrial sites.",
-    intro2: "Our signature brands CM and Border offer trusted barbed wire options. Tell us your length and height requirements for a quote.",
+    // Owns: "barbed wire Indore", "kata taar Indore", "concertina wire Indore" (product page /products/concertina-wire is the detail target).
+    title: "Barbed and Concertina Wire in Indore",
+    description:
+      "Barbed wire (kata taar) and concertina wire in Indore: single and double strand, 12x14 and 14x14 gauge, coils up to 25 kg. CM, Border, Tata Wiron. Ask for the rate.",
+    h1: "Barbed and Concertina Wire in Indore",
+    intro:
+      "Barbed wire, or kata taar as it is asked for at the counter, is a regular line at our shop in Siyaganj, Indore. Single and double strand, 2-point and 4-point, in coils for farms, plots and boundaries.",
+    intro2:
+      "For a perimeter that needs more deterrent than plain barbed wire, we also stock concertina wire in single and double coil. Tell us the length of the boundary and whether it runs on posts or along a wall, and we will suggest the wire.",
     specs: [
-      "Single strand and double strand",
-      "2-point and 4-point common",
-      "Coils: 5kg, 10kg, 20kg, 25kg (as per stock)",
-      "Galvanized finish",
+      "Type: single strand and double strand, 2-point and 4-point barbs",
+      "Common gauges: 12 x 14 and 14 x 14",
+      "Coils: 5 kg, 10 kg, 20 kg and 25 kg, as per stock",
+      "Finish: galvanised (GI)",
+      "Brands: CM, Border and Tata Wiron",
+      "Concertina wire in single and double coil",
     ],
-    useCases: ["Farm boundaries", "Security fencing", "Perimeter fencing", "Agricultural use"],
-    productSlugs: ["barbed-wire", "chain-link-fencing", "gi-wire"],
+    useCases: ["Farm boundaries", "Plot and compound fencing", "Wall-top security", "Industrial perimeters"],
+    productSlugs: ["barbed-wire", "concertina-wire", "chain-link-fencing", "gi-wire", "jhatka-machine-fencing-wire"],
   },
   "perforated-sheets": {
     slug: "perforated-sheets",
-    title: "Perforated Sheets Indore | MS & GI Perforated Sheet in Siyaganj",
-    description: "Perforated sheets in Indore. HM Ibrahim & Co, Siyaganj, supplies MS and GI perforated sheets for screening, ventilation, and filtration. Various patterns and thicknesses.",
+    // Owns: "perforated sheet Indore". Category page /categories/perforated-sheets is the range page.
+    title: "Perforated Sheets in Indore: MS and GI",
+    description:
+      "Perforated sheets in Indore: MS and GI, 0.5 to 3 mm thick, round, square, slot and hexagonal holes. Cut sizes on request from our Siyaganj shop. Ask for the rate.",
     h1: "Perforated Sheets in Indore",
-    intro: "We supply perforated sheets (MS and GI) from Siyaganj, Indore. Used for screening, ventilation, filtration, and cladding. Available in different thicknesses and hole patterns.",
+    intro:
+      "We sell perforated sheet from our shop in Siyaganj, Indore, in mild steel and galvanised iron. You pick the thickness, the hole shape and the open area. We cut it to the size you need.",
+    intro2:
+      "Hole size and pitch decide how much air or material passes through. If you are not sure, tell us what the sheet is for (a screen, a guard, ventilation, a filter) and we will suggest a pattern.",
     specs: [
-      "Thickness: 0.5mm to 3mm",
-      "Patterns: round, square, slot",
-      "MS and galvanized options",
+      "Material: mild steel (MS) and galvanised iron (GI)",
+      "Thickness: 0.5 mm to 3 mm",
+      "Holes: round, square, slot and hexagonal (GI)",
       "Custom sizes on request",
     ],
-    useCases: ["Screens and partitions", "Ventilation panels", "Filtration", "Decorative cladding"],
-    productSlugs: ["gi-perforated-sheet", "ms-perforated-sheet", "ss-gi-mesh-jalies", "gi-weldmesh", "ms-weldmesh"],
+    useCases: ["Screens and partitions", "Machine guards", "Ventilation panels", "Filtration and sieving", "Decorative cladding"],
+    productSlugs: ["gi-perforated-sheet", "ms-perforated-sheet", "expanded-metal-mesh", "gi-weldmesh"],
   },
   "gi-wire": {
     slug: "gi-wire",
-    title: "GI Wire Indore | Galvanized Iron Wire in Siyaganj",
-    description: "GI wire (galvanized iron wire) in Indore. HM Ibrahim & Co, Siyaganj, supplies GI wire for binding, fencing, and general use. Various gauges and coil weights. Retail and wholesale.",
+    // Owns: "GI wire Indore", "galvanised wire Indore". "binding wire / kala taar" -> /products/binding-wire.
+    title: "GI Wire in Indore: Gauges and Coils",
+    description:
+      "GI wire in Indore from Siyaganj: 8 to 18 SWG in coils, with Tata Wiron GI wire in stock. Binding wire (kala taar) also at the counter. Ask for the rate.",
     h1: "GI Wire in Indore",
-    intro: "We stock GI wire (galvanized iron wire) at our Siyaganj, Indore location. Used for binding, fencing, tying, and general construction. Available in multiple gauges and coil weights.",
-    intro2: "Tata GI wire is available on request. Contact us for gauge, weight, and quantity.",
+    intro:
+      "GI wire is zinc-coated steel wire. It is used for tying, fencing, hanging and general work outdoors, where plain wire would rust. We stock it in coils at our shop in Siyaganj, Indore, including Tata Wiron.",
+    intro2:
+      "For tying rebar on site the usual wire is black annealed binding wire, called kala taar at the counter, in 16 to 18 SWG. Tell us the job and we will give you the right gauge. A bigger gauge number means thinner wire.",
     specs: [
-      "Gauges: 8 SWG to 18 SWG",
-      "Coils and annealed options",
-      "Binding wire also available",
+      "GI wire: 8 SWG to 18 SWG in coils",
+      "Tata Wiron GI wire in stock",
+      "Binding wire (annealed): 16 to 18 SWG, coils up to 50 kg",
+      "Jhatka machine wire and fencing wire coils",
     ],
-    useCases: ["Binding and tying", "Fencing", "General construction", "RCC binding (binding wire)"],
-    productSlugs: ["gi-wire", "binding-wire", "barbed-wire"],
+    useCases: ["Tying and binding", "Fencing and tension lines", "Hanging and tie-downs", "Farm use", "RCC binding (annealed binding wire)"],
+    productSlugs: ["gi-wire", "binding-wire", "jhatka-machine-fencing-wire", "gi-wire-rope", "barbed-wire"],
   },
   "construction-hardware": {
     slug: "construction-hardware",
-    title: "Construction Hardware & Site Supplies Indore | Fawda, Sponge, Tools",
-    description: "Construction hardware and site supplies in Indore. HM Ibrahim & Co, Siyaganj, supplies fawda (shovel), pickaxe, crowbar, sponge, welding rods, fasteners, and more for site and fabrication.",
-    h1: "Construction Hardware & Site Supplies in Indore",
-    intro: "We supply construction hardware and site supplies from Siyaganj, Indore — including tools and consumables for daily site and fabrication work. If you need fawda (shovel), pickaxe, crowbar, sponge for cleaning and finishing, welding rods, fasteners, or nails, we can help.",
-    intro2: "Our range covers hand tools, welding consumables, and general site supplies. Retail and wholesale; contact us for specific items and quantities.",
+    title: "Construction Hardware in Indore",
+    description:
+      "Construction hardware in Indore: crowbar, pickaxe (geti), hoe (faurdha), sledge hammer, shikanja, welding rods, nails and cutting discs. Siyaganj shop, ask for the rate.",
+    h1: "Construction Hardware in Indore",
+    intro:
+      "Site tools and consumables from our shop in Siyaganj, Indore: crowbar, pickaxe (geti), hoe (faurdha), sledge hammer, shikanja for shuttering, cover blocks, welding rods, cutting discs and nails.",
+    intro2:
+      "Most of the tools are SR brand. Buy one piece or a carton for the site. Tell us what you are building or repairing and we will put the list together.",
     specs: [
-      "Fawda (shovel), pickaxe, crowbar — heavy duty",
-      "Sponge for tiling, grouting, and site cleaning",
-      "Welding rods (E6013, E7018, etc.)",
-      "Fasteners, nails, bolts, nuts",
+      "SR crowbar, pickaxe (geti), hoe (faurdha) and sledge hammer (5M, 10M, 15M)",
+      "Shikanja clamps for slab and beam shuttering",
+      "Concrete cover blocks in 20 to 50 mm cover",
+      "Welding rods, cutting discs and grinding wheels",
+      "Wire nails and roofing nails",
     ],
-    useCases: ["Site work", "Digging and demolition", "Welding and fabrication", "Tiling and finishing", "General construction"],
-    productSlugs: ["sr-crowbar", "sponge", "welding-rods", "fasteners-nails", "gi-perforated-sheet", "ms-perforated-sheet", "cutting-discs-grinding-wheels"],
+    useCases: ["Site work and digging", "Demolition", "Slab and beam shuttering", "Welding and fabrication", "General construction"],
+    productSlugs: ["sr-crowbar", "sr-pickaxe-geti", "sr-hoe-faurdha", "sr-sledge-hammer", "santing-shikanja", "concrete-cover-block", "welding-rods", "cutting-discs-grinding-wheels", "fasteners-nails"],
   },
 };
 
