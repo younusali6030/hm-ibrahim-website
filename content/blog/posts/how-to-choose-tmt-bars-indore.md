@@ -56,7 +56,7 @@ See [Structural Items](/categories/structural-items) for TMT bars and related pr
 Usually Fe 500 unless your engineer specifies Fe 550 or Fe 500D. Confirm with your structural drawing.
 
 **Do you deliver TMT bars to the site?**  
-We can arrange delivery for Indore and nearby areas. Mention your site location when requesting a quote.
+Orders accepted across India; delivery arrangements confirmed with each quotation. Mention your site location when requesting a quote.
 
 **How do I know the bars are genuine?**  
 Buy from a known dealer and ask for test certificates if required. Reputed brands are often available on request.

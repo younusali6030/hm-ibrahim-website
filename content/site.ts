@@ -9,8 +9,8 @@ export const site = {
   tagline: "Est. 1939 • Iron & Hardware Trading in Siyaganj, Indore",
   description:
     "Iron and hardware traders in Siyaganj, Indore, since 1939. Retail and wholesale supply of MS angles, TMT bars, pipes, wire, mesh and construction hardware.",
-  /** Manufacturer tagline for About and footer */
-  manufacturerTagline: "Manufacturer of Wire Mesh, Welded Wire Mesh & SS Wire Mesh.",
+  /** Manufacturer tagline for About and the catalogue. Owner-confirmed 12 Oct 2026: only these three products are made by the shop. */
+  manufacturerTagline: "We manufacture barbed wire, chain link fencing and wire mesh. The rest of our range is stocked and supplied.",
 
   address: {
     line1: "60, Siyaganj Main Road",
@@ -71,19 +71,11 @@ export const site = {
   indiamartUrl: "https://www.indiamart.com/mohhusain-haji-hm-ibrahim-and-company/?srsltid=AfmBOooSV6bbouv6mlXb45IfPpIiswPmitzqLhwk5HkFn8RKgHztjdz8",
   justdialUrl: "https://www.justdial.com/Indore/H-Mohd-Husain-H-M-Ibrahim-Co-Opposite-Tijori-Gali-Siyaganj/0731PX731-X731-180227083207-Y3W9_BZDET",
 
-  /** Areas served for SEO / schema */
-  areasServed: [
-    "Indore",
-    "Dewas",
-    "Ujjain",
-    "Mhow",
-    "Pithampur",
-    "Nearby areas",
-    "Madhya Pradesh (MP)",
-    "Maharashtra",
-    "Gujarat",
-    "Rajasthan",
-  ],
+  /** Owner-confirmed 12 Oct 2026. Use this exact sentence wherever reach or delivery is stated. */
+  orderReach: "Orders accepted across India; delivery arrangements confirmed with each quotation.",
+
+  /** Areas served for schema: orders are accepted across India. */
+  areasServed: ["India"],
 
   /** Authorised dealer information */
   authorizedDealer: {

@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { site } from "../content/site.ts";
-import { ALLOW_TRAINING_CRAWLERS, SEARCH_CRAWLERS, TRAINING_CRAWLERS, DISALLOWED_PATHS } from "../lib/crawlerPolicy.ts";
+import { ALLOW_TRAINING_CRAWLERS, SEARCH_CRAWLERS, TRAINING_CRAWLERS, NOT_SEPARABLE, DISALLOWED_PATHS, robotsRules } from "../lib/crawlerPolicy.ts";
 
 const root = path.resolve(import.meta.dirname, "..");
 const llms = fs.readFileSync(path.join(root, "public/llms.txt"), "utf8");
@@ -28,10 +28,51 @@ test("social profile URLs are real https profile URLs on the right host", () => 
   for (const v of Object.values(site.social)) assert.ok(v === "" || v.startsWith("https://"));
 });
 
-test("crawler policy: search and training lists never overlap, noindex paths are covered", () => {
-  assert.equal(typeof ALLOW_TRAINING_CRAWLERS, "boolean");
+test("crawler policy: training crawlers are blocked, search and retrieval crawlers are not", () => {
+  assert.equal(ALLOW_TRAINING_CRAWLERS, false);
   for (const bot of TRAINING_CRAWLERS) assert.ok(!SEARCH_CRAWLERS.includes(bot), `${bot} is in both lists`);
-  for (const p of ["/api/", "/contact/success", "/hi/contact/success"]) assert.ok(DISALLOWED_PATHS.includes(p), p);
+  for (const bot of NOT_SEPARABLE) assert.ok(!TRAINING_CRAWLERS.includes(bot), `${bot} cannot be blocked without losing search`);
+  const rules = robotsRules();
+  const blocked = rules.filter((r) => r.disallow === "/").flatMap((r) => [r.userAgent].flat());
+  for (const bot of TRAINING_CRAWLERS) assert.ok(blocked.includes(bot), `${bot} not blocked`);
+  for (const bot of SEARCH_CRAWLERS) assert.ok(!blocked.includes(bot), `${bot} must stay allowed`);
+  const star = rules.find((r) => r.userAgent === "*");
+  assert.equal(star.allow, "/");
+  for (const p of ["/api/", "/contact/success", "/hi/contact/success"]) assert.ok(DISALLOWED_PATHS.includes(p) && star.disallow.includes(p), p);
+});
+
+const EN_REACH = "Orders accepted across India; delivery arrangements confirmed with each quotation.";
+const HI_REACH = "पूरे भारत से ऑर्डर स्वीकार किए जाते हैं; डिलीवरी की व्यवस्था हर कोटेशन के साथ तय की जाती है।";
+
+test("the owner-confirmed reach sentence is the one in site.ts, Hindi site.ts and llms.txt", () => {
+  assert.equal(site.orderReach, EN_REACH);
+  assert.ok(llms.includes(EN_REACH));
+  assert.deepEqual([...site.areasServed], ["India"]);
+  const hiSite = fs.readFileSync(path.join(root, "content/hi/site.ts"), "utf8");
+  assert.ok(hiSite.includes(HI_REACH));
+});
+
+test("no page copy still limits delivery to nearby areas or promises free or universal delivery", () => {
+  const files = [];
+  const walk = (d) => {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const p = path.join(d, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (/\.(ts|tsx|md|txt)$/.test(e.name)) files.push(p);
+    }
+  };
+  for (const d of ["content", "app", "components", "public"]) walk(path.join(root, d));
+  const bad = [/Delivery depends on/i, /Delivery can be arranged/i, /delivery subject to/i, /free delivery/i, /deliver(y)? (to|across) (all|every)/i, /we deliver everywhere/i];
+  for (const f of files) {
+    const t = fs.readFileSync(f, "utf8");
+    for (const re of bad) assert.ok(!re.test(t), `${path.relative(root, f)}: matches ${re}`);
+  }
+});
+
+test("manufacturer claim names only barbed wire, chain link fencing and wire mesh", () => {
+  assert.match(site.manufacturerTagline, /^We manufacture barbed wire, chain link fencing and wire mesh\./);
+  assert.doesNotMatch(site.manufacturerTagline, /SS|welded|hardware|steel|TMT|pipe/i);
+  assert.match(llms, /manufactures barbed wire, chain link fencing and wire mesh/);
 });
 
 const en = path.join(root, "content/blog/posts");

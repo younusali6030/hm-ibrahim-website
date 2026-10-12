@@ -86,7 +86,7 @@ Yes. Most sell by the piece, metre or kilo as well as wholesale.
 Usually yes, because of wholesale volume and the number of shops. Compare the spec, not just the rate.
 
 **Do you deliver outside Indore?**  
-We send material to Dewas, Ujjain, Mhow, Pithampur and other nearby towns. Tell us the location.
+We send material to Dewas, Ujjain, Mhow, Pithampur and other nearby towns. Orders accepted across India; delivery arrangements confirmed with each quotation. Tell us the location.
 
 ## Related reading
 

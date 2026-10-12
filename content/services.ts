@@ -46,7 +46,7 @@ export const services: Service[] = [
     slug: "delivery",
     title: "Delivery and Transport",
     description:
-      "Delivery can be arranged, subject to stock and location. We cover Indore and nearby areas. Discuss delivery options when you place your order.",
+      "Orders accepted across India; delivery arrangements confirmed with each quotation. Discuss delivery options when you place your order.",
     icon: "Truck",
   },
   {

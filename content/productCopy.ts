@@ -70,7 +70,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "I-sections are priced by weight. The rate depends on the section, the length, the quantity and the steel market that week. Ask for the rate with the section and the tonnage.",
     [
       ["What is the difference between ISMB and ISJB?", "ISMB is the medium weight beam. ISJB is the lighter joist section. Your drawing names the one it needs."],
-      ["Can you deliver long beams to a site outside Indore?", "Delivery can be arranged depending on length, weight and distance. Give us the site location when you ask for the rate."],
+      ["Can you deliver long beams to a site outside Indore?", "Orders accepted across India; delivery arrangements confirmed with each quotation. Give us the site location when you ask for the rate."],
     ],
     ["common-mistakes-buying-steel-sections", "siyaganj-market-guide-buying-iron-hardware-indore"],
     ["ms-channels", "ms-angles", "tmt-bars"]

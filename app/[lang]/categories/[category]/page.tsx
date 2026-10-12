@@ -68,7 +68,7 @@ function buildCategoryFaqs(category: Category, lang: Lang): FAQ[] {
         {
           id: `${category.slug}-delivery`,
           question: `क्या आप इंदौर में ${category.name} की डिलीवरी करते हैं?`,
-          answer: `जी हाँ। उपयुक्त मात्रा के ऑर्डर पर हम ${category.name} की डिलीवरी इंदौर शहर और देवास, पीथमपुर व महू जैसे आसपास के औद्योगिक इलाकों में करवा सकते हैं। छोटे लोड आप सीधे हमारे सियागंज गोदाम से उठा सकते हैं। कोटेशन माँगते समय अपनी साइट की जगह बताइए ताकि हम सबसे अच्छा विकल्प सुझा सकें।`,
+          answer: `जी हाँ। पूरे भारत से ऑर्डर स्वीकार किए जाते हैं; डिलीवरी की व्यवस्था हर कोटेशन के साथ तय की जाती है। इंदौर शहर और देवास, पीथमपुर व महू जैसे आसपास के औद्योगिक इलाके हम इंदौर से सँभालते हैं। छोटे लोड आप सीधे हमारे सियागंज गोदाम से उठा सकते हैं। कोटेशन माँगते समय अपनी साइट की जगह बताइए ताकि हम सबसे अच्छा विकल्प सुझा सकें।`,
           category: "products",
         },
         {
@@ -83,7 +83,7 @@ function buildCategoryFaqs(category: Category, lang: Lang): FAQ[] {
       id: `${category.slug}-delivery`,
       question: `Do you deliver ${category.name} around Indore?`,
       answer:
-        `Yes. We can arrange delivery of ${category.name.toLowerCase()} within Indore city and nearby industrial areas such as Dewas, Pithampur and Mhow, for suitable order quantities. For small loads you can also collect directly from our Siyaganj godown. Mention your site location when you ask for a quote and we will suggest the best option.`,
+        `Yes. Orders accepted across India; delivery arrangements confirmed with each quotation. Indore city and nearby industrial areas such as Dewas, Pithampur and Mhow are served from our Siyaganj shop. For small loads you can also collect directly from our Siyaganj godown. Mention your site location when you ask for a quote and we will suggest the best option.`,
       category: "products",
     },
     {
