@@ -16,11 +16,11 @@ export type TaggedReview = {
 };
 
 export const taggedReviews: TaggedReview[] = [
-  { id: "g000", author: "Kopal Diwan", rating: 5, when: "October 2026", tags: [], text: "Purchased PVC garden fencing, really good product and material." },
+  { id: "g000", author: "Kopal Diwan", rating: 5, when: "October 2026", tags: ["pvc-coated-weldmesh"], text: "Purchased PVC garden fencing, really good product and material." },
   { id: "g001", author: "Chauhan Meenakshi", rating: 5, when: "October 2026", tags: [], text: "Very gud  understanding Very gud quality n services handled by vendors working in shop" },
-  { id: "g002", author: "Equity Research Vijitone", rating: 5, when: "October 2026", tags: [], text: "Misquito net\nAluminum grill\nWelcro\nAll type if neshes wth good variety options.\nExcellent shop in siyaganj.\nOne if uts kind in indore wholesale and retail shop.\nIron products too available." },
+  { id: "g002", author: "Equity Research Vijitone", rating: 5, when: "October 2026", tags: ["mosquito-net", "aluminium-wiremesh"], text: "Misquito net\nAluminum grill\nWelcro\nAll type if neshes wth good variety options.\nExcellent shop in siyaganj.\nOne if uts kind in indore wholesale and retail shop.\nIron products too available." },
   { id: "g006", author: "rahul parmar", rating: 5, when: "October 2026", tags: [], text: "It’s a nice shop located in main market.\nOwner is good and rates are best from market" },
-  { id: "g007", author: "Team Green House Nursery", rating: 5, when: "October 2026", tags: [], text: "Tata & Sr products huge range and best rate. Tata wire also available.\nGood shop" },
+  { id: "g007", author: "Team Green House Nursery", rating: 5, when: "October 2026", tags: ["gi-wire", "sr-crowbar", "sr-pickaxe-geti", "sr-hoe-faurdha"], text: "Tata & Sr products huge range and best rate. Tata wire also available.\nGood shop" },
   { id: "g009", author: "javed mugal", rating: 5, when: "October 2026", tags: [], text: "One stop shop for all construction hardware and wireless needs.\nFair price and really good nature of owner" },
   { id: "g011", author: "Manish Choudhary", rating: 5, when: "September 2026", tags: ["binding-wire"], text: "Must visit. Binding wire & biranji best wholesale rate" },
   { id: "g012", author: "Baban Patel", rating: 5, when: "September 2026", tags: [], text: "Excellent shop with great variety and best rates" },
@@ -95,19 +95,37 @@ export const taggedReviews: TaggedReview[] = [
   { id: "g140", author: "Mahendra singh Panwar", rating: 5, when: "March 2026", tags: ["binding-wire", "nails", "fasteners-nails", "roofing-nail"], text: "I appreciated the shop. I've been buying black wire, nails, and hole punches for the past five years. I've never had any issues with the price. It's a very good shop." },
   { id: "g141", author: "Dinesh Mathe", rating: 5, when: "March 2026", tags: [], text: "It's a very large shop. They have all kinds of iron and steel. All prices are wholesale. The staff is very skilled and knowledgeable. All iron items are available at their shop." },
   { id: "g142", author: "Mahesh Makwana", rating: 5, when: "March 2026", tags: [], text: "I bought the fish, it is a very big shop, wholesale rate is all" },
-  { id: "g143", author: "jpnshukla123 madhumadhu", rating: 5, when: "March 2026", tags: [], text: "Took a shovel. Wholesale bhao. Very good shop" },
+  { id: "g143", author: "jpnshukla123 madhumadhu", rating: 5, when: "March 2026", tags: ["construction-tools"], text: "Took a shovel. Wholesale bhao. Very good shop" },
   { id: "g146", author: "Mukesh Parmar", rating: 4, when: "March 2026", tags: ["chain-link-fencing", "wiremesh", "gi-wiremesh", "ms-wiremesh"], text: "Chainlink jaali mesh rate sahi.\nTata also available best rate" },
   { id: "g147", author: "santosh sawle", rating: 5, when: "March 2026", tags: ["nails", "fasteners-nails", "roofing-nail"], text: "Bombay kheel, tape, wire very good price. Wide variety of iron and hardware range.\nPerfect shop with owner gentleman." },
   { id: "g148", author: "Hemraj Yadav", rating: 5, when: "March 2026", tags: ["ms-wire-rope", "ss-wire-rope", "gi-wire-rope", "wire-rope-clamp"], text: "Tochan wire..turnbuckle best price. Wirerope lot of variety ss wirerope too" },
   { id: "g150", author: "Manish Sharma", rating: 5, when: "March 2026", tags: [], text: "Everything this is fine best rate and good shop" },
   { id: "g157", author: "Sanendra Tripathi", rating: 5, when: "March 2026", tags: ["gi-wire"], text: "Gi wire and tata wiron good price.\nExcellent behaviour of owner." },
+  { id: "g158", author: "SAJID KHAN", rating: 5, when: "April 2026", tags: ["mosquito-net", "wiremesh", "ms-angles", "frp-bars", "jhatka-machine-fencing-wire"], text: "Best rate for jali..ss mosquito net.\nLot of varities in meshes.\nAngel nd iron products at wholesale price.\nOne stop shop for all iron nd hardware products.\nFrp bars jhatka machine wire and insulatora too .\nExcellent behaviour of owner Mr Akbarji.\nSurely recommend to all viewers nd customer for must visit before purchasing in Siyaganj." },
 ];
 
+const MONTHS = ["january","february","march","april","may","june","july","august","september","october","november","december"];
+
+/** "March 2026" -> month index since year 0. Unparseable dates sort as old. */
+function monthIndex(when: string): number {
+  const m = when.trim().toLowerCase().match(/^([a-z]+)\s+(\d{4})$/);
+  const mo = m ? MONTHS.indexOf(m[1]) : -1;
+  return m && mo >= 0 ? Number(m[2]) * 12 + mo : 0;
+}
+
+/** Newest review in the list is "now", so ranking does not shift between builds. */
+const newest = Math.max(...taggedReviews.map((r) => monthIndex(r.when)));
+
+/**
+ * Higher is shown first. Five stars and a readable length count most, and newer reviews get a bonus that fades to
+ * nothing after about 20 months, so a fresh strong review replaces an older one without any editing.
+ */
 function score(r: TaggedReview): number {
-  // Prefer five stars and a readable length (about 120 to 320 characters).
   const len = r.text.length;
   const lenScore = len >= 120 && len <= 320 ? 2 : len < 120 ? 0.5 : 1;
-  return (r.rating === 5 ? 2 : 0) + lenScore + r.tags.length * 0.05;
+  const age = monthIndex(r.when) ? newest - monthIndex(r.when) : 99;
+  const recency = Math.max(0, 3 - age * 0.15);
+  return (r.rating === 5 ? 2 : 0) + lenScore + r.tags.length * 0.05 + recency;
 }
 
 const general = [...taggedReviews].sort((a, b) => score(b) - score(a));

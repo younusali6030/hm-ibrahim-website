@@ -13,7 +13,7 @@ import { siteHi } from "@/content/hi/site";
 import { ProductDetailClient } from "@/components/product/ProductDetailClient";
 import { ProductSeoContent } from "@/components/ProductSeoContent";
 import { TrustBadges } from "@/components/trust/TrustBadges";
-import { ReviewsList } from "@/components/trust/ReviewsList";
+import { ProductReviewsRail } from "@/components/trust/ProductReviewsRail";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
@@ -150,6 +150,7 @@ export default async function ProductDetailPage({ params }: Props) {
         category={categoryEn ?? null}
         defaultImages={getProductImages(productEn, categoryEn)}
         tx={tx}
+        reviews={<ProductReviewsRail lang={lang} productSlug={product.slug} productName={product.name} />}
       />
 
       {relatedProducts.length > 0 && (
@@ -174,7 +175,6 @@ export default async function ProductDetailPage({ params }: Props) {
 
       <section className="mt-14" aria-label={t("Shop facts and reviews", "दुकान के तथ्य और रिव्यू")}>
         <TrustBadges lang={lang} />
-        <ReviewsList lang={lang} max={3} productSlug={product.slug} title={hi ? `${product.name} के बारे में खरीदार क्या कहते हैं` : `What buyers say about ${product.name}`} className="mt-8" />
       </section>
 
       {seoContent && (
