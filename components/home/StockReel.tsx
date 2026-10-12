@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "@/components/LocaleLink";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Pause, Play } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 
 type ChapterData = {
@@ -118,11 +119,30 @@ const HI: Record<string, Pick<ChapterData, "kicker" | "title" | "body" | "facts"
 };
 
 /** One clip per product family. Each plays only while it is on screen; nothing is pinned or scroll-jacked. */
-function Chapter({ c: en, i }: { c: ChapterData; i: number }) {
+function Chapter({ c: en, i, paused }: { c: ChapterData; i: number; paused: boolean }) {
   const { lang } = useLang();
   const c: ChapterData = lang === "hi" && HI[en.id] ? { ...en, ...HI[en.id] } : en;
   const box = useRef<HTMLElement>(null);
   const video = useRef<HTMLVideoElement>(null);
+  const pausedRef = useRef(paused);
+  pausedRef.current = paused;
+
+  // The section's pause control stops every clip and keeps them stopped while scrolling.
+  useEffect(() => {
+    const v = video.current;
+    const el = box.current;
+    if (!v || !el) return;
+    if (paused) {
+      v.pause();
+      return;
+    }
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Resuming: play only the clip that is actually on screen.
+    const r = el.getBoundingClientRect();
+    const overlapY = Math.min(r.bottom, innerHeight) - Math.max(r.top, 0);
+    const overlapX = Math.min(r.right, innerWidth) - Math.max(r.left, 0);
+    if (overlapY > r.height * 0.45 && overlapX > r.width * 0.45 && v.paused) v.play().catch(() => {});
+  }, [paused]);
 
   useEffect(() => {
     const el = box.current;
@@ -131,7 +151,7 @@ function Chapter({ c: en, i }: { c: ChapterData; i: number }) {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (reduced) return;
+        if (reduced || pausedRef.current) return;
         if (e.isIntersecting) v.play().catch(() => {});
         else v.pause();
       },
@@ -206,17 +226,29 @@ function Chapter({ c: en, i }: { c: ChapterData; i: number }) {
 export function StockReel() {
   const { lang } = useLang();
   const hi = lang === "hi";
+  const [paused, setPaused] = useState(false);
   return (
     <section className="border-t border-border py-9 md:py-20" aria-labelledby="stock-heading">
       <div className="page-container">
-        <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">{hi ? "गोदाम से" : "From the godown"}</p>
+        <div className="flex items-start justify-between gap-4">
+          <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">{hi ? "गोदाम से" : "From the godown"}</p>
+          <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            aria-pressed={paused}
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border px-4 text-sm font-semibold text-foreground hover:border-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            {paused ? <Play className="h-4 w-4" aria-hidden /> : <Pause className="h-4 w-4" aria-hidden />}
+            {paused ? (hi ? "वीडियो चलाएँ" : "Play clips") : hi ? "वीडियो रोकें" : "Pause clips"}
+          </button>
+        </div>
         <h2 id="stock-heading" data-reveal className="stock-intro-title mt-3 max-w-4xl text-foreground">
           {hi ? "निर्माण को जो कुछ चाहिए" : "Everything a build needs"}
         </h2>
         <p className="mt-3 max-w-xl text-sm text-muted-foreground md:mt-4 md:text-base">{hi ? "सियागंज में हमारे अपने काउंटर और गोदाम पर फ़िल्माया गया। असली स्टॉक, आपके साइज़ में कटा हुआ।" : "Filmed at our own counter and godown in Siyaganj. Real stock, cut to your size."}</p>
         <div className="-mx-4 mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 [scrollbar-width:none] md:mx-0 md:mt-6 md:block md:divide-y md:divide-border md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
           {CHAPTERS.map((c, i) => (
-            <Chapter key={c.id} c={c} i={i} />
+            <Chapter key={c.id} c={c} i={i} paused={paused} />
           ))}
         </div>
       </div>

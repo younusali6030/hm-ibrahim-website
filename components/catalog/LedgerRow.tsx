@@ -9,7 +9,9 @@ export function NoPhoto({ name }: { name: string }) {
   return (
     <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-[repeating-linear-gradient(135deg,hsl(210_30%_10%)_0_10px,hsl(210_30%_12%)_10px_20px)] text-center">
       <span className="font-display text-xl font-extrabold uppercase leading-none text-foreground/80">{name}</span>
-      <span className="font-mono-brand text-[10px] uppercase tracking-[0.16em] text-muted-foreground">Photo on request</span>
+      <span className="font-mono-brand text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+        <T en="Photo on request" hi="फ़ोटो माँगने पर" />
+      </span>
     </span>
   );
 }

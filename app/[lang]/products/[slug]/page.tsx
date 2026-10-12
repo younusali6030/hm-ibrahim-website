@@ -72,7 +72,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const tx = collectStrings([productEn, categoryEn, inHouseBrands], lang);
   const blogSlugs = getRelatedBlogSlugsForProduct(slug);
   const relatedBlogPosts = await Promise.all(blogSlugs.map((s) => getPostBySlug(s, lang))).then((posts) =>
-    posts.filter((p): p is NonNullable<typeof p> => p != null).map((p) => ({ slug: p.slug, title: p.title }))
+    posts.filter((p): p is NonNullable<typeof p> => p != null).map((p) => ({ slug: p.slug, title: p.title, lang: p.lang }))
   );
   const firstImage = images[0]?.startsWith("http") ? images[0] : `${baseUrl}${images[0] || ""}`;
 

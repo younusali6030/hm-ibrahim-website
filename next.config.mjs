@@ -17,9 +17,13 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react'],
   },
   async headers() {
+    // Long cache for files in the media folders ONLY. Four of these folder names are also page routes
+    // (/products, /products/[slug], /brands, /blog), and a bare "/products/:path*" rule also matched the HTML pages,
+    // so browsers and the CDN kept stale pages for 7 days (+30 days stale-while-revalidate). Match by file extension.
     const media = "public, max-age=604800, stale-while-revalidate=2592000";
+    const ext = "(jpg|jpeg|png|webp|avif|gif|svg|mp4|webm|vtt)";
     return ["hero", "reels", "stock", "videos", "blog", "products", "brands"].map((dir) => ({
-      source: `/${dir}/:path*`,
+      source: `/${dir}/:path*.${ext}`,
       headers: [{ key: "Cache-Control", value: media }],
     }));
   },

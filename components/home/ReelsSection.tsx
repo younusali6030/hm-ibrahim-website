@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { homeReels } from "@/content/reels";
+import { tracksFor } from "@/content/captions";
 
 type Reel = { id: string; title: string; note: string; href?: string; cta?: string };
 
@@ -100,6 +101,9 @@ function ReelCard({ reel: base }: { reel: Reel }) {
           onPlay={() => setPlaying(true)}
         >
           <source src={`/reels/${reel.id}.mp4`} type="video/mp4" />
+          {tracksFor(reel.id).map((c) => (
+            <track key={c.src} kind="captions" srcLang={c.lang} label={c.label} src={c.src} default={c.lang === lang} />
+          ))}
         </video>
         <span
           className={
@@ -117,7 +121,7 @@ function ReelCard({ reel: base }: { reel: Reel }) {
         <span className="block font-display text-2xl font-extrabold uppercase leading-none text-foreground">{reel.title}</span>
         <span className="mt-1 block text-sm text-muted-foreground">{reel.note}</span>
         {reel.href && (
-          <Link href={reel.href} className="mt-1 inline-block text-sm font-bold text-foreground underline underline-offset-4 hover:text-primary">
+          <Link href={reel.href} className="mt-1 inline-flex min-h-[44px] items-center text-sm font-bold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
             {reel.cta}
           </Link>
         )}

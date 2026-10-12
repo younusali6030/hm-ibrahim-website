@@ -3,11 +3,12 @@
 import Link from "@/components/LocaleLink";
 import Image from "next/image";
 import type { BlogPost } from "@/content/blog/posts";
-import { T, useT } from "@/lib/i18n";
+import { T, useT, useLang } from "@/lib/i18n";
 
 /** Latest buyer's guides, so the home page leads straight into the blog. */
 export function HomeJournal({ posts }: { posts: BlogPost[] }) {
   const t = useT();
+  const { lang } = useLang();
   if (posts.length === 0) return null;
   return (
     <section className="border-t border-border py-9 md:py-20" aria-labelledby="journal-heading">
@@ -40,7 +41,7 @@ export function HomeJournal({ posts }: { posts: BlogPost[] }) {
                   {p.category && <span className="glass-pill absolute left-3 top-3 hidden px-3 py-1 md:block text-[11px] font-bold uppercase tracking-wider">{p.category}</span>}
                 </span>
                 <span className="flex min-w-0 flex-col justify-center p-3 md:block md:p-5">
-                  <span className="block font-display text-xl font-extrabold uppercase leading-[1.05] text-foreground md:text-2xl md:leading-[1.02]">{p.title}</span>
+                  <span lang={p.lang && p.lang !== lang ? p.lang : undefined} className="block font-display text-xl font-extrabold uppercase leading-[1.05] text-foreground md:text-2xl md:leading-[1.02]">{p.title}</span>
                   <span className="mt-1 block text-sm text-muted-foreground md:mt-2">{t(`${p.readingMinutes} min read`, `${p.readingMinutes} मिनट में पढ़ें`)}</span>
                 </span>
               </Link>

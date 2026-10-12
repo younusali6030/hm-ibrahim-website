@@ -18,6 +18,8 @@ type Props = {
 };
 
 const ASK = "Ask at counter";
+/** Row labels the comparison builds itself (spec labels come through L()). */
+const ROW_HI: Record<string, string> = { Sizes: "साइज़", "Used for": "कहाँ लगता है", Material: "मटेरियल" };
 
 /** Brand switcher plus a side-by-side of what the catalog actually says differs between brands. */
 export function ProductBrandPicker({ variants, selectedBrandId, onSelect, className = "", L = (s) => s, Lj = (s) => s }: Props) {
@@ -105,7 +107,7 @@ export function ProductBrandPicker({ variants, selectedBrandId, onSelect, classN
               <tr key={r.label} className="border-b border-border align-top">
                 <th scope="row" className="py-2 pr-3 font-normal text-muted-foreground">
                   {r.differs && <span className="mr-1.5 inline-block h-2 w-2 rounded-full bg-primary align-middle" aria-hidden="true" />}
-                  {L(r.label)}
+                  {hi ? ROW_HI[r.label] ?? L(r.label) : r.label}
                   {r.differs && <span className="sr-only"> {hi ? "(ब्रांड के बीच अलग)" : "(differs between brands)"}</span>}
                 </th>
                 {r.values.map((v, i) => (

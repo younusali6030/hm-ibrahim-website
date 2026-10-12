@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "@/components/LocaleLink";
-import { useEffect, useRef } from "react";
-import { ArrowRight, Star } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Pause, Play, Star } from "lucide-react";
 import { site } from "@/content/site";
 import { T, useT } from "@/lib/i18n";
 import "./home-hero.css";
@@ -21,6 +21,22 @@ export function HomeHero() {
   const rootRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
+  // WCAG 2.2.2: a film that moves for more than five seconds needs a way to stop it.
+  const userPaused = useRef(false);
+  const [filmOn, setFilmOn] = useState(false);
+  const [filmPlaying, setFilmPlaying] = useState(false);
+
+  const toggleFilm = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      userPaused.current = false;
+      v.play().catch(() => {});
+    } else {
+      userPaused.current = true;
+      v.pause();
+    }
+  };
 
   useEffect(() => {
     const root = rootRef.current!;
@@ -40,10 +56,16 @@ export function HomeHero() {
       loaded = want;
       video.src = want;
       video.load();
-      video.play().catch(() => {});
+      if (!userPaused.current) video.play().catch(() => {});
     };
-    const onPlaying = () => root.classList.add("hh-live");
+    const onPlaying = () => {
+      root.classList.add("hh-live");
+      setFilmOn(true);
+      setFilmPlaying(true);
+    };
+    const onPause = () => setFilmPlaying(false);
     video.addEventListener("playing", onPlaying);
+    video.addEventListener("pause", onPause);
 
     const frame = () => {
       raf = 0;
@@ -57,8 +79,9 @@ export function HomeHero() {
     const io = new IntersectionObserver(
       ([e]) => {
         if (lite || !loaded) return;
-        if (e.isIntersecting) video.play().catch(() => {});
-        else video.pause();
+        if (e.isIntersecting) {
+          if (!userPaused.current) video.play().catch(() => {});
+        } else video.pause();
       },
       { threshold: 0.05 }
     );
@@ -99,6 +122,7 @@ export function HomeHero() {
     return () => {
       io.disconnect();
       video.removeEventListener("playing", onPlaying);
+      video.removeEventListener("pause", onPause);
       root.removeEventListener("pointermove", onMove);
       window.removeEventListener("scroll", onScroll);
       mq.removeEventListener("change", load);
@@ -125,6 +149,16 @@ export function HomeHero() {
         </picture>
       </div>
       <div className="hh-shade" aria-hidden="true" />
+      {filmOn && (
+        <button
+          type="button"
+          onClick={toggleFilm}
+          className="hh-pause"
+          aria-label={filmPlaying ? t("Pause background video", "बैकग्राउंड वीडियो रोकें") : t("Play background video", "बैकग्राउंड वीडियो चलाएँ")}
+        >
+          {filmPlaying ? <Pause className="h-5 w-5" aria-hidden /> : <Play className="h-5 w-5" aria-hidden />}
+        </button>
+      )}
 
       <div ref={bodyRef} className="hh-body page-container">
         <p className="hh-eyebrow"><T en="Siyaganj, Indore · Since 1939" hi="सियागंज, इंदौर · 1939 से" /></p>

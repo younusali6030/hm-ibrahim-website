@@ -704,3 +704,28 @@ html[lang="hi-IN"] .stencil-tag {
 html[lang="hi-IN"] :is(p, li, dd, dt, label, a, span, button, td, th, figcaption, summary) {
   line-height: inherit;
 }
+
+/* Devanagari from the device (Nirmala UI, Kohinoor, Devanagari Sangam MN, Noto on Android), never the web font. */
+.font-deva-system {
+  font-family: "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", "Noto Sans Devanagari", "Mangal", system-ui, sans-serif;
+}
+
+/* Mobile menu: a short fade-down. CSS only, so framer-motion stays out of every page's first JavaScript. */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.mobile-menu {
+  animation: menu-in 0.22s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu {
+    animation: none;
+  }
+}

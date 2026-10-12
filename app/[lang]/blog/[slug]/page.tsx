@@ -55,8 +55,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     noIndex: lang === "hi" && post.lang !== "hi",
     ...(hi ? { hi: { title: post.title, description: post.description || post.title } } : {}),
   });
+  // No Hindi edition: do not advertise a hi-IN alternate that is an English, noindex page.
+  const hasHindiEdition = lang === "hi" ? post.lang === "hi" : (await getPostBySlug(slug, "hi"))?.lang === "hi";
+  const englishUrl = pageUrl(`blog/${slug}`, "en");
   return {
     ...base,
+    ...(hasHindiEdition
+      ? {}
+      : { alternates: { ...base.alternates, languages: { "en-IN": englishUrl, "x-default": englishUrl } } }),
     openGraph: {
       ...base.openGraph,
       type: "article",
@@ -166,7 +172,7 @@ export default async function BlogPostPage({ params }: Props) {
         compact
         eyebrow={
           <>
-            <Link href="/blog" className="hover:text-white">{t("Buyer's guide", "खरीदार की गाइड")}</Link>
+            <Link href="/blog" className="inline-flex min-h-[24px] items-center hover:text-white">{t("Buyer's guide", "खरीदार की गाइड")}</Link>
             {post.category ? <> / {post.category}</> : null}
           </>
         }

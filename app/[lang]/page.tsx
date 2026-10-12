@@ -36,7 +36,10 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
 export default async function HomePage({ params }: { params: { lang: string } }) {
   const lang = params.lang as Lang;
   const t = tt(lang);
-  const posts = (await getAllPosts(lang)).slice(0, 3);
+  // Only some guides have a Hindi edition. On the Hindi home page, lead with those so the titles read in Hindi;
+  // an English-only guide is used only to fill the row, and is marked lang="en" where it is shown.
+  const allPosts = await getAllPosts(lang);
+  const posts = (lang === "hi" ? [...allPosts.filter((p) => p.lang === "hi"), ...allPosts.filter((p) => p.lang !== "hi")] : allPosts).slice(0, 3);
   const homeFaqs = localize(faqs.slice(0, 4), lang);
   const homeFaqSchema =
     homeFaqs.length > 0

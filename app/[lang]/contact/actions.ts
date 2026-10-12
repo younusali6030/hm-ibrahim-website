@@ -6,6 +6,7 @@ import { getCatalogData, type CatalogData } from "@/lib/catalog";
 import { sendCatalogToCustomer } from "@/lib/catalog-email";
 import { sendQuoteNotification } from "@/lib/quote-notification";
 import { appendQuoteToSheet } from "@/lib/quote-sheet";
+import { normalizeIndianMobile, validEmail } from "@/lib/quoteValidation";
 
 export type QuoteResult =
   | {
@@ -76,14 +77,6 @@ function withTimeout<T>(promise: Promise<T>, ms: number, fallback: T): Promise<T
   });
 }
 
-/** Accepts 9876543210, +91 98765 43210, 098765 43210, 91-9876543210. Returns 10 digits or null. */
-function normalizeIndianMobile(raw: string): string | null {
-  let d = raw.replace(/\D/g, "");
-  if (d.length === 12 && d.startsWith("91")) d = d.slice(2);
-  if (d.length === 11 && d.startsWith("0")) d = d.slice(1);
-  return /^[6-9]\d{9}$/.test(d) ? d : null;
-}
-
 function makeReference(now = new Date()): string {
   const ist = new Date(now.getTime() + 5.5 * 3600 * 1000);
   const yy = String(ist.getUTCFullYear()).slice(2);
@@ -140,7 +133,7 @@ export async function submitQuote(formData: FormData): Promise<QuoteResult> {
   if (name.length < 2) fieldErrors.name = "Please enter your name.";
   const phone = normalizeIndianMobile(phoneRaw);
   if (!phone) fieldErrors.phone = "Enter a 10-digit mobile number, like 98260 53563.";
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) fieldErrors.email = "That email looks incomplete.";
+  if (email && !validEmail(email)) fieldErrors.email = "That email looks incomplete.";
   if (Object.keys(fieldErrors).length > 0 || !phone) {
     return { success: false, error: "Please check the highlighted fields.", code: "invalid", fieldErrors };
   }

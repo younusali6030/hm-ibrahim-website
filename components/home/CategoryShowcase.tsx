@@ -84,7 +84,7 @@ export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="inline-flex min-h-[40px] items-center text-sm text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="inline-flex min-h-[40px] min-w-[24px] items-center text-sm text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     {hi ? l.hi : l.en}
                   </Link>

@@ -18,6 +18,8 @@ npx tsc --noEmit   # type check
 ```
 
 `next lint` has no ESLint config yet and will prompt. Type checking and `next build` are the gates.
+`npm test` runs the regression tests in `tests/` with Node's built-in runner (no extra dependencies): product search
+and aliases, spec sheets, quote validation, locale paths and the cache-header rule.
 To build or serve beside a running dev server: `NEXT_DIST_DIR=.next-build npm run build` and
 `NEXT_DIST_DIR=.next-build npx next start -p 3001`.
 
@@ -49,6 +51,8 @@ Copy `.env.example` to `.env.local`. Nothing is sent anywhere until these are se
 | Design system and motifs | `docs/design/SYSTEM.md`, `components/motif/Motif.tsx` |
 | English / Hindi text | `lib/i18n.tsx` (`<T en hi>`) |
 | Quote flow, visit block, click tracking | `app/contact/`, `components/visit/`, `components/conversion/` |
+| Product search words (jali, sariya, kala taar...) | `content/productAliases.ts`, matching in `lib/productSearch.ts` |
+| Caption tracks for reels with audio | `content/captions.ts` (empty until transcripts exist) |
 
 ## Media
 

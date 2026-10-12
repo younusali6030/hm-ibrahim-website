@@ -10,7 +10,7 @@ type Props = {
 };
 
 const link =
-  "inline-flex min-h-[44px] items-center font-semibold text-primary underline underline-offset-4 hover:brightness-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
+  "inline-flex min-h-[44px] min-w-[24px] items-center font-semibold text-primary underline underline-offset-4 hover:brightness-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
 
 export function LookingForMoreSection({ variant = "page", className = "" }: Props) {
   const t = useT();

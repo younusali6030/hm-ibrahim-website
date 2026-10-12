@@ -391,6 +391,7 @@ export const catalogHi: Record<string, string> = {
   "Annealed binding wire": "एनील्ड बाइंडिंग तार",
   "Packing: coils up to 50 kg (varies by gauge and stock)": "पैकिंग: 50 kg तक के कॉइल (गेज और स्टॉक के अनुसार बदलता है)",
   "Annealed mild steel": "एनील्ड माइल्ड स्टील",
+  "Black, annealed": "काला, एनील्ड",
   "Available in different pack sizes; availability depends on stock. Specifically designed for RCC reinforcement tying work. Packing: coils up to 50 kg (varies by gauge and stock).": "अलग-अलग पैक साइज़ में उपलब्ध; उपलब्धता स्टॉक पर निर्भर। खास तौर पर आरसीसी में सरिया बाँधने के काम के लिए। पैकिंग: 50 kg तक के कॉइल (गेज और स्टॉक के अनुसार बदलता है)।",
   "Jhatka Wire": "झटका तार",
   "Jhatka machine wire for fencing and agricultural use; quality wire for boundaries and farm applications.": "फेंसिंग और खेती के लिए झटका मशीन तार; बाउंड्री और खेत के कामों के लिए बढ़िया तार।",

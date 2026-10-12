@@ -74,9 +74,22 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
         <div
           ref={scroller}
           onScroll={onScroll}
-          className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-[14px] bg-[hsl(210_30%_10%)] ring-1 ring-white/10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-[14px] bg-[hsl(210_30%_10%)] ring-1 ring-white/10 [scrollbar-width:none] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary [&::-webkit-scrollbar]:hidden"
+          role="group"
           aria-roledescription="carousel"
           aria-label={hi ? `${productName} की फ़ोटो और वीडियो` : `${productName} photos and videos`}
+          // A scroll region must be reachable by keyboard; arrow keys move between slides.
+          tabIndex={media.length > 1 ? 0 : undefined}
+          onKeyDown={(e) => {
+            if (media.length < 2 || e.target !== e.currentTarget) return;
+            if (e.key === "ArrowRight") {
+              e.preventDefault();
+              goTo(Math.min(active + 1, media.length - 1));
+            } else if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              goTo(Math.max(active - 1, 0));
+            }
+          }}
         >
           {media.map((item, i) => (
             <div key={`${item.src}-${i}`} className="relative aspect-[4/3] w-full shrink-0 snap-center snap-always">
@@ -86,7 +99,9 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
                     videos.current[i] = el;
                   }}
                   src={item.src}
-                  poster={item.src.replace(/\.mp4$/, ".jpg")}
+                  // Posters are 150 to 190 KB each: only the slide on screen fetches one, so they do not
+                  // compete with the first photo (the LCP element) on a phone connection.
+                  poster={i === active ? item.src.replace(/\.mp4$/, ".jpg") : undefined}
                   controls
                   muted
                   loop

@@ -38,6 +38,9 @@ void main(){
   gl_FragColor = vec4(steel * alpha, alpha);
 }`;
 
+/** 480 px wide WebP with alpha: 2x of the largest size it is shown at, about a sixth of the old 1000 px PNG. */
+const MARK_SRC = "/fx/hm-mark.webp";
+
 /**
  * The HM wordmark as liquid steel. Used once, as the footer seal. The plain white PNG is always in the page;
  * the canvas draws over it only when motion is allowed and WebGL works.
@@ -76,7 +79,8 @@ export function LiquidMark({ width = 320, className = "" }: { width?: number; cl
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       gl.uniform1i(gl.getUniformLocation(prog, "uMark"), 0);
-      gl.uniform2f(gl.getUniformLocation(prog, "uTexel"), 1 / img.width, 1 / img.height);
+      // The look was tuned on the 1000 x 301 original; keep that texel size so the smaller file renders the same.
+      gl.uniform2f(gl.getUniformLocation(prog, "uTexel"), 1 / 1000, 1 / 301);
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(width * ratio * dpr);
@@ -101,9 +105,19 @@ export function LiquidMark({ width = 320, className = "" }: { width?: number; cl
       cleanup = () => io.disconnect();
     };
     let cleanup = () => {};
-    img.src = "/fx/hm-mark.png";
+    // The footer is far below the fold: fetch the texture only when it is about to be seen.
+    const gate = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        gate.disconnect();
+        img.src = MARK_SRC;
+      },
+      { rootMargin: "400px" }
+    );
+    gate.observe(canvas);
     return () => {
       stopped = true;
+      gate.disconnect();
       cleanup();
       if (raf) cancelAnimationFrame(raf);
     };
@@ -113,7 +127,7 @@ export function LiquidMark({ width = 320, className = "" }: { width?: number; cl
     <div className={`relative ${className}`} style={{ width, aspectRatio: "1000 / 301" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/fx/hm-mark.png"
+        src={MARK_SRC}
         alt={t("HM Ibrahim & Co, since 1939", "एच एम इब्राहिम एंड कंपनी, 1939 से")}
         width={1000}
         height={301}

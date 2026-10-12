@@ -164,7 +164,7 @@ export default async function CategoryPage({ params }: Props) {
       <PageHero
         eyebrow={
           <>
-            <Link href="/products" className="hover:text-white"><T en="Products" hi="उत्पाद" /></Link> / {category.name}
+            <Link href="/products" className="inline-flex min-h-[24px] items-center hover:text-white"><T en="Products" hi="उत्पाद" /></Link> / {category.name}
           </>
         }
         title={hi ? `${category.name}, इंदौर` : `${category.name} in Indore`}

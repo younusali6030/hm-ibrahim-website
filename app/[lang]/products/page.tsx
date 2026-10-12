@@ -10,6 +10,8 @@ import { T } from "@/lib/i18n";
 import { localize, tr } from "@/lib/localize";
 import { tt, type Lang } from "@/lib/locale";
 import { pageUrl } from "@/lib/seo";
+import { productAliases } from "@/content/productAliases";
+import { buildProductEntries } from "@/lib/productSearch";
 
 export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
   return buildPageMeta({
@@ -39,12 +41,18 @@ function itemListSchema(lang: Lang) {
 export default function ProductsPage({ params }: { params: { lang: string } }) {
   const lang = params.lang as Lang;
   const t = tt(lang);
+  // One search entry per unique product (English and Hindi names, aliases, every category it is listed under).
+  const searchById = new Map(
+    buildProductEntries(categories, productAliases, (x) => tr(x, "hi")).map((e) => [e.id, { names: e.names, desc: e.desc }])
+  );
   const data: IndexCategory[] = categories.map((c) => ({
     slug: c.slug,
     name: tr(c.name, lang),
     description: tr(c.description, lang),
     image: getProductImages(c.products[0] ?? ({} as never), c)[0] ?? c.image ?? "",
-    products: c.products.map((p) => ({
+    // Each product is listed once, under its own category, so the rows add up to the count (cross-listings live on
+    // the category pages). 53 unique products, 53 rows.
+    products: c.products.filter((p) => p.categorySlug === c.slug).map((p) => ({
       slug: p.slug,
       name: tr(p.name, lang),
       shortDesc: tr(p.shortDesc, lang),
@@ -57,6 +65,7 @@ export default function ProductsPage({ params }: { params: { lang: string } }) {
       // "wiron" only where the catalog holds a Tata Wiron brand variant (GI wire, barbed wire, chain link).
       // Other Tata-flagged items (structural steel, binding wire) are only "available on request".
       tata: tataFlag(p),
+      search: searchById.get(p.slug)!,
     })),
   }));
 

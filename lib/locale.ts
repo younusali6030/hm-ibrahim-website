@@ -24,10 +24,18 @@ export function localePath(lang: Lang, path: string): string {
   return bare === "/" ? "/hi" : `/hi${bare}`;
 }
 
-/** Split a pathname into its language and the language-free path. "/hi/blog" -> { hi, "/blog" }. */
+/**
+ * Split a pathname into its language and the language-free path. "/hi/blog" -> { hi, "/blog" }.
+ *
+ * English pages are rewritten internally to /en/..., and during server rendering usePathname() reports that
+ * internal path, not the address in the browser. "/en" and "/en/products" therefore mean "/" and "/products":
+ * without this the server-rendered language link read /hi/en/products (a 404) until the page re-rendered.
+ */
 export function stripLocale(pathname: string): { lang: Lang; path: string } {
   const m = pathname.match(/^\/hi(\/.*)?$/);
   if (m) return { lang: "hi", path: m[1] || "/" };
+  const en = pathname.match(/^\/en(\/.*)?$/);
+  if (en) return { lang: "en", path: en[1] || "/" };
   return { lang: "en", path: pathname || "/" };
 }
 
