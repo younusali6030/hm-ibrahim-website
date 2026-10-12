@@ -1,0 +1,235 @@
+/* Story / trust family: ledgers, ruled lists, reading column. Same steel, same gauge rule as the home hero. */
+
+.st-sec {
+  padding-block: 3.5rem;
+}
+@media (min-width: 768px) {
+  .st-sec {
+    padding-block: 5rem;
+  }
+}
+.st-sec-tint {
+  background: hsl(var(--card));
+  border-top: 1px solid hsl(var(--border));
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.st-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-family: var(--font-mono-brand, "IBM Plex Mono"), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+.st-eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: hsl(var(--primary));
+}
+.st-lede {
+  max-width: 40rem;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Ledger: a ruled list that reads like the shop's day-book. */
+.st-ledger {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid hsl(var(--foreground) / 0.4);
+}
+.st-row {
+  display: grid;
+  gap: 0.6rem 2rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid hsl(var(--border));
+}
+@media (min-width: 768px) {
+  .st-row {
+    grid-template-columns: var(--st-cols, 7rem minmax(0, 1fr) minmax(0, 1.4fr));
+    padding: 2rem 0;
+  }
+}
+.st-key {
+  font-family: var(--font-display, "Big Shoulders Display"), Impact, "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1px hsl(var(--foreground) / 0.5);
+}
+.st-title {
+  margin: 0;
+  font-family: var(--font-display, "Big Shoulders Display"), Impact, "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: hsl(var(--foreground));
+}
+.st-meta {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-mono-brand, "IBM Plex Mono"), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+.st-body {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  line-height: 1.7;
+}
+
+/* Spec sheet: dt / dd pairs on rules. */
+.st-spec {
+  margin: 0;
+  border-top: 1px solid hsl(var(--foreground) / 0.4);
+}
+.st-spec > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.st-spec dt {
+  color: hsl(var(--muted-foreground));
+}
+.st-spec dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.st-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: hsl(var(--primary));
+}
+.st-link:hover {
+  color: hsl(var(--primary));
+}
+
+/* Visit / Call / Quote strip */
+.st-strip {
+  display: grid;
+  border-top: 1px solid hsl(var(--foreground) / 0.4);
+}
+@media (min-width: 768px) {
+  .st-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .st-strip > div + div {
+    border-left: 1px solid hsl(var(--border));
+    padding-left: 2rem;
+  }
+}
+.st-strip > div {
+  padding: 1.4rem 0;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.st-strip a:not(.st-btn) {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: hsl(var(--foreground));
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+.st-strip a:not(.st-btn):hover {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+
+/* Reading column */
+.blog-article .blog-prose {
+  font-size: 1.125rem;
+  line-height: 1.78;
+  max-width: 42rem;
+  color: hsl(var(--foreground) / 0.9);
+}
+.blog-article .blog-prose > p:first-of-type {
+  font-size: 1.25rem;
+  color: hsl(var(--foreground));
+}
+.blog-article .blog-prose h2 {
+  font-size: clamp(1.8rem, 3.4vw, 2.3rem);
+  border-top: 1px solid hsl(var(--foreground) / 0.35);
+}
+.blog-article .blog-prose blockquote {
+  border-radius: 10px;
+  border: 0;
+  border-left: 3px solid hsl(var(--primary));
+  background: hsl(var(--card));
+}
+.blog-article .blog-prose ol > li::before {
+  border-radius: 6px;
+}
+.blog-article .blog-prose .blog-table-scroll {
+  margin: 1.8rem 0 0.4rem;
+  overflow-x: auto;
+  border: 1px solid hsl(var(--border));
+  border-top: 1px solid hsl(var(--foreground) / 0.4);
+  border-radius: 10px;
+  background: hsl(var(--card));
+  -webkit-overflow-scrolling: touch;
+}
+.blog-article .blog-prose .blog-table-scroll:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+.blog-article .blog-prose .blog-table-scroll table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: 0.97rem;
+  font-variant-numeric: tabular-nums;
+}
+.blog-article .blog-prose .blog-table-scroll th,
+.blog-article .blog-prose .blog-table-scroll td {
+  white-space: nowrap;
+  padding: 0.65rem 0.9rem;
+}
+.blog-article .blog-prose .blog-table-scroll th {
+  background: hsl(var(--secondary));
+  font-family: var(--font-mono-brand, "IBM Plex Mono"), ui-monospace, monospace;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+}
+.blog-article .blog-prose .blog-table-scroll tbody tr:nth-child(even) td {
+  background: hsl(var(--foreground) / 0.03);
+}
+.blog-table-hint {
+  margin: 0 0 1.8rem;
+  font-family: var(--font-mono-brand, "IBM Plex Mono"), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+@media (min-width: 640px) {
+  .blog-table-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-sec * {
+    transition: none !important;
+  }
+}

@@ -9,6 +9,10 @@ import { getWhatsAppLink } from "@/lib/utils";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
 import { ReviewsList } from "@/components/trust/ReviewsList";
+import { SectionHead } from "@/components/story/SectionHead";
+import { ContactStrip } from "@/components/story/ContactStrip";
+import { T } from "@/lib/i18n";
+import "@/components/story/story.css";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -56,26 +60,26 @@ export default async function IndoreLandingPage({ params }: Props) {
         compact
         image={hero ? { src: hero, alt: `${page.h1} from H M Ibrahim & Co, Siyaganj` } : undefined}
       >
-        <Link href={`/contact?product=${page.productSlugs[0] ?? ""}`} className={btnMain}>Get a quote</Link>
+        <Link href={`/contact?product=${page.productSlugs[0] ?? ""}`} className={btnMain}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
         <a href={getWhatsAppLink(site.whatsapp, waMessage)} target="_blank" rel="noopener noreferrer" className={btnGhostDark}>
           WhatsApp for a rate
         </a>
       </PageHero>
 
-      <section className="py-14 md:py-20">
+      <section className="st-sec">
         <div className="page-container grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
           <div>
             {page.intro2 && <p className="text-lg leading-relaxed text-muted-foreground">{page.intro2}</p>}
             <p className="mt-4 text-muted-foreground">
-              We are in <strong className="text-foreground">Siyaganj, Indore</strong>, and supply Indore, Dewas, Ujjain, Mhow, Pithampur and nearby areas.
+              We are in <strong className="text-foreground">Siyaganj, Indore</strong>, and supply Siyaganj, Loha Mandi, New Siyaganj, Dewas, Ujjain, Mhow, Pithampur and nearby areas.
             </p>
 
             {page.specs.length > 0 && (
               <>
                 <h2 className="mt-12 text-foreground">What we offer</h2>
-                <ul className="mt-5 divide-y divide-border border-y border-border">
+                <ul className="st-ledger mt-5">
                   {page.specs.map((s) => (
-                    <li key={s} className="py-3.5 text-foreground">{s}</li>
+                    <li key={s} className="border-b border-border py-3.5 text-foreground">{s}</li>
                   ))}
                 </ul>
               </>
@@ -84,35 +88,34 @@ export default async function IndoreLandingPage({ params }: Props) {
 
           <aside>
             {page.useCases.length > 0 && (
-              <div className="rounded-sm border border-border bg-card p-6">
-                <h2 className="text-foreground" style={{ fontSize: "1.9rem" }}>Used for</h2>
-                <ul className="mt-4 flex flex-wrap gap-2">
+              <>
+                <p className="st-eyebrow">Used for</p>
+                <ul className="st-ledger mt-4">
                   {page.useCases.map((u) => (
-                    <li key={u} className="rounded-sm border border-border bg-background px-3 py-1.5 text-sm font-semibold text-foreground">
-                      {u}
-                    </li>
+                    <li key={u} className="border-b border-border py-3 font-semibold text-foreground">{u}</li>
                   ))}
                 </ul>
-              </div>
+              </>
             )}
           </aside>
         </div>
       </section>
 
       {products.length > 0 && (
-        <section className="border-t border-border bg-card py-14 md:py-20" aria-labelledby="related-heading">
+        <section className="st-sec st-sec-tint" aria-labelledby="related-heading">
           <div className="page-container">
-            <h2 id="related-heading" className="text-foreground">Related products</h2>
-            <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <SectionHead eyebrow="Product pages" id="related-heading" title="Related products" />
+            <ul className="st-ledger mt-8" style={{ ["--st-cols" as string]: "6rem minmax(0,1fr) auto" }}>
               {products.map((p) => {
                 const img = getProductImages(p, getCategoryBySlug(p.categorySlug))[0];
                 return (
-                  <li key={p.slug}>
-                    <Link href={`/products/${p.slug}`} className="group block overflow-hidden rounded-sm border border-border bg-background">
-                      <span className="relative block aspect-[4/3] bg-secondary">
-                        {img && <Image src={img} alt="" fill sizes="(max-width:640px) 100vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />}
-                      </span>
-                      <span className="block p-4 font-display text-2xl font-extrabold uppercase leading-none text-foreground">{p.name}</span>
+                  <li key={p.slug} className="st-row items-center !py-4">
+                    <span className="relative block aspect-[4/3] w-24 overflow-hidden rounded-[10px] bg-secondary">
+                      {img && <Image src={img} alt="" fill sizes="96px" className="object-cover" />}
+                    </span>
+                    <h3 className="st-title" style={{ fontSize: "1.5rem" }}>{p.name}</h3>
+                    <Link href={`/products/${p.slug}`} className="st-link">
+                      Ask for rate<span className="sr-only">: {p.name}</span>
                     </Link>
                   </li>
                 );
@@ -122,16 +125,15 @@ export default async function IndoreLandingPage({ params }: Props) {
         </section>
       )}
 
-      <div className="page-container py-14 md:py-20">
+      <div className="page-container st-sec">
         <ReviewsList max={3} productSlug={page.productSlugs[0]} />
       </div>
 
-      <section className="bg-nav py-14 text-white md:py-20">
-        <div className="page-container flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <h2 className="text-white">Need {page.h1.replace(/ in Indore$/, "")}?</h2>
-          <Link href={`/contact?product=${page.productSlugs[0] ?? ""}`} className={btnMain}>Get a quote</Link>
-        </div>
-      </section>
+      <ContactStrip
+        heading={`Need ${page.h1.replace(/ in Indore$/, "")}?`}
+        quoteHref={`/contact?product=${page.productSlugs[0] ?? ""}`}
+        waMessage={waMessage}
+      />
     </>
   );
 }

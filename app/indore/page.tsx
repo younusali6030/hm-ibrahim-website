@@ -7,6 +7,11 @@ import { baseUrl, site, localSeo } from "@/lib/site";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { PageHero, btnMain, btnGhostDark, btnGhost } from "@/components/site/PageHero";
 import { ReviewsList } from "@/components/trust/ReviewsList";
+import { GaugeRule } from "@/components/motif/Motif";
+import { SectionHead } from "@/components/story/SectionHead";
+import { ContactStrip } from "@/components/story/ContactStrip";
+import { T } from "@/lib/i18n";
+import "@/components/story/story.css";
 
 const schema = {
   "@context": "https://schema.org",
@@ -36,64 +41,50 @@ function imageFor(page: IndorePage) {
   return getProductImages(p, getCategoryBySlug(p.categorySlug))[0] ?? null;
 }
 
+const MARKETS = ["Siyaganj", "Loha Mandi", "New Siyaganj"];
+
 export default function IndoreIndexPage() {
   const pages = indorePageSlugs.map((s) => getIndorePage(s)).filter((p): p is IndorePage => p != null);
+  const towns = site.areasServed.filter((a) => !/^(indore|nearby areas)$/i.test(a));
 
   return (
     <>
       <SeoJsonLd data={schema} />
       <PageHero
-        eyebrow={`Indore, ${localSeo.state}`}
-        title="Iron and hardware, bought where Indore has bought it since 1939"
+        eyebrow={<T en={`Indore, ${localSeo.state}`} hi={`इंदौर, ${localSeo.state}`} />}
+        title={<T en="Iron and hardware, bought where Indore has bought it since 1939" hi="लोहा और हार्डवेयर, वहीं से जहाँ से इंदौर 1939 से ले रहा है" />}
         lede={`${site.name} sits on Siyaganj Main Road, one of Indore's oldest iron and hardware markets. Walk in, call, or send a list. We supply retail and wholesale, and deliver across Indore and nearby towns.`}
         image={{ src: "/about/storefront-hero.jpg", alt: "The H M Ibrahim & Co shopfront on Siyaganj Main Road, Indore" }}
+        compact
       >
-        <Link href="/contact" className={btnMain}>Get a quote</Link>
-        <a href="#range" className={btnGhostDark}>What we supply</a>
+        <Link href="/contact" className={btnMain}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
+        <a href="#range" className={btnGhostDark}><T en="What we supply" hi="क्या मिलता है" /></a>
       </PageHero>
 
-      <section className="border-b border-border bg-card" aria-label="Reach">
-        <ul className="page-container grid grid-cols-2 gap-px bg-border bg-clip-content md:grid-cols-4">
-          {[
-            { big: "Siyaganj", small: "Opposite Tijori Gali" },
-            { big: "Retail + wholesale", small: "From one coil to a truckload" },
-            { big: "Delivery", small: "Indore and nearby towns" },
-            { big: "Since 1939", small: "Same road, same shop" },
-          ].map((f) => (
-            <li key={f.big} className="bg-card px-4 py-6 md:py-8">
-              <p className="font-display text-3xl font-extrabold uppercase leading-none text-foreground md:text-4xl">{f.big}</p>
-              <p className="mt-2 text-sm text-muted-foreground">{f.small}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section id="range" className="scroll-mt-24 py-14 md:py-20" aria-labelledby="range-heading">
+      <section className="st-sec scroll-mt-24" id="range" aria-labelledby="range-heading">
         <div className="page-container">
-          <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">What Indore buys from us</p>
-          <h2 id="range-heading" className="mt-2 max-w-3xl text-foreground">Six things people drive to Siyaganj for</h2>
-          <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <SectionHead
+            eyebrow="What Indore buys from us"
+            id="range-heading"
+            title="Six things people come to Siyaganj for"
+          />
+          <ul className="st-ledger mt-10" style={{ ["--st-cols" as string]: "9rem minmax(0,1fr) minmax(0,1.3fr)" }}>
             {pages.map((page) => {
               const img = imageFor(page);
               return (
-                <li key={page.slug}>
-                  <Link
-                    href={`/indore/${page.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-sm border border-border bg-card transition-shadow hover:shadow-xl"
-                  >
-                    <span className="relative block aspect-[16/10] bg-secondary">
-                      {img && (
-                        <Image src={img} alt="" fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                      )}
-                    </span>
-                    <span className="flex flex-1 flex-col p-5">
-                      <span className="font-display text-3xl font-extrabold uppercase leading-none text-foreground">{page.h1}</span>
-                      <span className="mt-3 line-clamp-3 text-sm text-muted-foreground">{page.intro}</span>
-                      <span className="mt-4 text-sm font-bold text-foreground underline underline-offset-4 group-hover:text-primary">
-                        Read more
-                      </span>
-                    </span>
-                  </Link>
+                <li key={page.slug} className="st-row items-center">
+                  <span className="relative hidden aspect-[4/3] overflow-hidden rounded-[14px] bg-secondary md:block">
+                    {img && <Image src={img} alt="" fill sizes="144px" className="object-cover" />}
+                  </span>
+                  <h3 className="st-title">
+                    <Link href={`/indore/${page.slug}`} className="hover:text-primary">{page.h1}</Link>
+                  </h3>
+                  <div>
+                    <p className="st-body line-clamp-3">{page.intro}</p>
+                    <Link href={`/indore/${page.slug}`} className="st-link">
+                      Read more<span className="sr-only"> about {page.h1}</span>
+                    </Link>
+                  </div>
                 </li>
               );
             })}
@@ -101,43 +92,41 @@ export default function IndoreIndexPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-card py-14 md:py-20" aria-labelledby="areas-heading">
+      <section className="st-sec st-sec-tint" aria-labelledby="areas-heading">
         <div className="page-container grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">Where we deliver</p>
-            <h2 id="areas-heading" className="mt-2 text-foreground">Indore, and the towns around it</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Ask about delivery when you order. Dispatch depends on stock, quantity and location.
-            </p>
+            <SectionHead
+              eyebrow="Where we deliver"
+              id="areas-heading"
+              title="The iron markets, and the towns around them"
+              lede="Ask about delivery when you order. Dispatch depends on stock, quantity and location."
+            />
           </div>
-          <ul className="flex flex-wrap content-start gap-2">
-            {site.areasServed.map((a) => (
-              <li key={a} className="rounded-sm border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground">
-                {a}
-              </li>
-            ))}
-          </ul>
+          <div>
+            <GaugeRule label="Indore" />
+            <dl className="st-spec mt-4 !border-t-0">
+              <div>
+                <dt>Markets</dt>
+                <dd>{MARKETS.join(", ")}</dd>
+              </div>
+              <div>
+                <dt>Nearby towns</dt>
+                <dd>{towns.slice(0, 4).join(", ")}</dd>
+              </div>
+              <div>
+                <dt>Other states</dt>
+                <dd>{towns.slice(4).filter((a) => !/^madhya/i.test(a)).join(", ") || "On enquiry"}</dd>
+              </div>
+            </dl>
+          </div>
         </div>
       </section>
 
-      <div className="page-container py-14 md:py-20">
+      <div className="page-container st-sec">
         <ReviewsList max={3} title="What Indore buyers say" />
       </div>
 
-      <section className="bg-nav py-14 text-white md:py-20">
-        <div className="page-container flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div>
-            <h2 className="text-white">Come to the counter</h2>
-            <p className="mt-3 max-w-xl text-white/80">
-              {site.address.line1}, {site.address.line2}, {site.address.city}. Call first if you want stock confirmed.
-            </p>
-          </div>
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <Link href="/contact" className={btnMain}>Get a quote</Link>
-            <Link href="/contact#visit-heading" className={btnGhostDark}>Directions</Link>
-          </div>
-        </div>
-      </section>
+      <ContactStrip heading="Come to the counter" waMessage="Hi, I'm in Indore and would like a rate. Product, size and quantity: " />
     </>
   );
 }

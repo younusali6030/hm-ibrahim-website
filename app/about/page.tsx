@@ -7,6 +7,11 @@ import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
 import { ReviewsList } from "@/components/trust/ReviewsList";
 import { ReelsSection } from "@/components/home/ReelsSection";
+import { CounterStamp, GaugeRule } from "@/components/motif/Motif";
+import { SectionHead } from "@/components/story/SectionHead";
+import { ContactStrip } from "@/components/story/ContactStrip";
+import { T } from "@/lib/i18n";
+import "@/components/story/story.css";
 
 const aboutPageSchema = {
   "@context": "https://schema.org",
@@ -25,7 +30,7 @@ const aboutPageSchema = {
 
 export const metadata: Metadata = buildPageMeta({
   title: `About Us | ${site.name}, iron & hardware since 1939, Siyaganj Indore`,
-  description: `The story of ${site.name}: founded in 1939, four generations of leadership, one counter on Siyaganj Main Road, Indore.`,
+  description: `The story of ${site.name}: founded in 1939, now run by the third generation, one counter on Siyaganj Main Road, Indore.`,
   path: "about",
 });
 
@@ -68,23 +73,26 @@ export default function AboutPage() {
     <>
       <SeoJsonLd data={aboutPageSchema} />
       <PageHero
-        eyebrow="About"
-        title="Since 1939, one counter on Siyaganj Main Road"
+        eyebrow={<T en="About · Siyaganj, Indore" hi="हमारे बारे में · सियागंज, इंदौर" />}
+        title={<T en="Since 1939, one counter on Siyaganj Main Road" hi="1939 से, सियागंज मेन रोड का एक काउंटर" />}
         lede={site.manufacturerTagline}
         image={{
           src: "/about/storefront-hero.jpg",
           alt: "The H M Ibrahim & Co shopfront at 60 Siyaganj, Indore, with wire mesh, chain link and coils out front",
         }}
       >
-        <Link href="/contact" className={btnMain}>Get a quote</Link>
-        <Link href="/brands" className={btnGhostDark}>Our brands</Link>
+        <Link href="/contact" className={btnMain}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
+        <Link href="/brands" className={btnGhostDark}><T en="Our brands" hi="हमारे ब्रांड" /></Link>
       </PageHero>
 
-      <section className="py-14 md:py-20" aria-labelledby="story-heading">
+      {/* Story: copy is the shop's own, from the repo. */}
+      <section className="st-sec" aria-labelledby="story-heading">
         <div className="page-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
-            <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">Our story</p>
-            <h2 id="story-heading" className="mt-2 text-foreground">Eight decades of the same promise</h2>
+            <SectionHead eyebrow="Our story" id="story-heading" title="Eight decades of the same promise" />
+            <div className="mt-8">
+              <CounterStamp sub="Siyaganj, Indore">Since 1939</CounterStamp>
+            </div>
           </div>
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
             <p className="text-xl text-foreground">
@@ -99,21 +107,45 @@ export default function AboutPage() {
             <p>
               In addition to industrial materials, we also deal in durable agricultural and manual tools such as hoe, pickaxe, and crowbar, ensuring strong and dependable equipment for field and construction use.
             </p>
+            {/*
+              NEEDS-YOU (see docs/design/NEEDS-YOU-story.md): more history would help here, in the owner's words.
+              Not rendered until supplied: how the shop began, the year of the move to 60 Siyaganj Main Road,
+              what Siyaganj Main Road was like then, what CM stands for in family terms, which trades came first.
+            */}
           </div>
+        </div>
+
+        <div className="page-container mt-14">
+          <figure>
+            <div className="relative aspect-[1024/714] overflow-hidden rounded-[14px] bg-secondary ring-1 ring-border">
+              <Image
+                src="/about-storefront.png"
+                alt="The H M Ibrahim & Co shopfront on Siyaganj Main Road, Indore"
+                fill
+                sizes="(max-width:1280px) 100vw, 1200px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-3 font-mono-brand text-xs uppercase tracking-[0.14em] text-muted-foreground">
+              {site.address.line1}, {site.address.line2}
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <section className="border-y border-border bg-card py-14 md:py-20" aria-labelledby="leaders-heading">
+      {/* Leadership as a ledger, oldest first. */}
+      <section className="st-sec st-sec-tint" aria-labelledby="leaders-heading">
         <div className="page-container">
-          <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">Leadership and legacy</p>
-          <h2 id="leaders-heading" className="mt-2 text-foreground">The hands that built the counter</h2>
-          <ol className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
+          <SectionHead eyebrow="Leadership and legacy" id="leaders-heading" title="The hands that built the counter" />
+          <ol className="st-ledger mt-10" style={{ ["--st-cols" as string]: "7rem minmax(0,1fr) minmax(0,1.5fr)" }}>
             {LEADERS.map((l) => (
-              <li key={l.name} className="flex flex-col bg-background p-6">
-                <span className="font-display text-5xl font-extrabold uppercase leading-none text-primary">{l.era}</span>
-                <span className="mt-4 font-display text-2xl font-extrabold uppercase leading-tight text-foreground">{l.name}</span>
-                <span className="mt-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{l.role}</span>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{l.text}</p>
+              <li key={l.name} className="st-row">
+                <span className="st-key" aria-hidden="true">{l.era}</span>
+                <div>
+                  <h3 className="st-title">{l.name}</h3>
+                  <p className="st-meta">{l.era === "1939" ? `${l.role}, 1939` : l.role}</p>
+                </div>
+                <p className="st-body">{l.text}</p>
               </li>
             ))}
           </ol>
@@ -122,55 +154,55 @@ export default function AboutPage() {
 
       <ReelsSection />
 
-      <section className="py-14 md:py-20" aria-labelledby="values-heading">
+      <section className="st-sec" aria-labelledby="values-heading">
         <div className="page-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div>
-            <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">How we work</p>
-            <h2 id="values-heading" className="mt-2 text-foreground">Four things we hold to</h2>
-            <p className="mt-5 text-muted-foreground">
-              With decades of experience we know our products and what each job needs. We guide you to the most suitable and cost-effective choice for your application, with durability, safety and long-term value in mind.
-            </p>
-          </div>
-          <ul className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2">
-            {VALUES.map((v, i) => (
-              <li key={v.t} className="bg-card p-6">
-                <span className="font-mono-brand text-xs text-muted-foreground">0{i + 1}</span>
-                <h3 className="mt-2 font-display text-3xl font-extrabold uppercase leading-none text-foreground">{v.t}</h3>
-                <p className="mt-3 text-muted-foreground">{v.d}</p>
+          <SectionHead
+            eyebrow="How we work"
+            id="values-heading"
+            title="Four things we hold to"
+            lede="With decades of experience we know our products and what each job needs. We guide you to the most suitable and cost-effective choice for your application, with durability, safety and long-term value in mind."
+          />
+          <ul className="st-ledger self-start" style={{ ["--st-cols" as string]: "minmax(0,0.9fr) minmax(0,1.3fr)" }}>
+            {VALUES.map((v) => (
+              <li key={v.t} className="st-row">
+                <h3 className="st-title">{v.t}</h3>
+                <p className="st-body">{v.d}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="border-t border-border bg-card py-14 md:py-20" aria-labelledby="stock-heading">
+      <section className="st-sec st-sec-tint" aria-labelledby="stock-heading">
         <div className="page-container grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="grid grid-cols-2 gap-3">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-secondary">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[14px] bg-secondary">
               <Image src="/about/warehouse-stock-1.png" alt="CM and Border barbed wire and chain link coils in the warehouse" fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" />
             </div>
-            <div className="relative mt-8 aspect-[3/4] overflow-hidden rounded-sm bg-secondary">
+            <div className="relative mt-8 aspect-[3/4] overflow-hidden rounded-[14px] bg-secondary">
               <Image src="/about/warehouse-stock-2.png" alt="Barbed wire rolls, CM and Border brand stock, ready for dispatch" fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" />
             </div>
           </div>
           <div>
-            <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">What we supply</p>
-            <h2 id="stock-heading" className="mt-2 text-foreground">Stock that serves construction, fabrication and industry</h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            <SectionHead eyebrow="What we supply" id="stock-heading" title="Stock that serves construction, fabrication and industry" />
+            <GaugeRule className="mt-6" />
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
               We stock a wide range of iron and steel (MS angles, flats, bright bars, TMT bars and structural sections), plus pipes and tubes, wire and mesh (GI wire, binding wire, barbed wire, chain link, welded mesh, jalies), and hardware and tools including welding rods, fasteners, nails, crowbars, pickaxes, perforated sheets and pigeon nets. Retail and wholesale.
             </p>
             <p className="mt-4 text-muted-foreground">For over eight decades we have kept to the same values of trust, integrity and long-term relationships.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/products" className={btnMain}>Browse the range</Link>
+              <Link href="/products" className={btnMain}><T en="Browse the range" hi="पूरी रेंज देखें" /></Link>
             </div>
             {site.gstin && <p className="mt-8 text-sm text-muted-foreground">GSTIN <span className="font-mono-brand text-foreground">{site.gstin}</span></p>}
           </div>
         </div>
       </section>
 
-      <div className="page-container py-14 md:py-20">
+      <div className="page-container st-sec">
         <ReviewsList max={3} title="What our customers say" />
       </div>
+
+      <ContactStrip heading="Come to the counter" waMessage="Hi, I read about your shop and would like a rate. Product, size and quantity: " />
     </>
   );
 }

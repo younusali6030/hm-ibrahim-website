@@ -5,6 +5,10 @@ import { services } from "@/content/services";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
 import { ReviewsList } from "@/components/trust/ReviewsList";
+import { SectionHead } from "@/components/story/SectionHead";
+import { ContactStrip } from "@/components/story/ContactStrip";
+import { T } from "@/lib/i18n";
+import "@/components/story/story.css";
 
 const servicesPageSchema = {
   "@context": "https://schema.org",
@@ -31,26 +35,26 @@ export default function ServicesPage() {
     <>
       <SeoJsonLd data={servicesPageSchema} />
       <PageHero
-        eyebrow="Services"
-        title="One counter for a single coil or a whole site"
+        eyebrow={<T en="Services · Siyaganj, Indore" hi="सेवाएँ · सियागंज, इंदौर" />}
+        title={<T en="One counter for a single coil or a whole site" hi="एक काउंटर: एक कॉइल से पूरी साइट तक" />}
         lede="We serve retail customers, wholesalers, contractors and industrial buyers with supply and support to match the order."
       >
-        <Link href="/contact" className={btnMain}>Get a quote</Link>
-        <Link href="/products" className={btnGhostDark}>Browse the range</Link>
+        <Link href="/contact" className={btnMain}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
+        <Link href="/products" className={btnGhostDark}><T en="Browse the range" hi="पूरी रेंज देखें" /></Link>
       </PageHero>
 
-      <section className="py-14 md:py-20" aria-labelledby="services-heading">
+      <section className="st-sec" aria-labelledby="services-heading">
         <div className="page-container">
-          <h2 id="services-heading" className="sr-only">What we offer</h2>
-          <ol className="divide-y divide-border border-y border-border">
+          <SectionHead eyebrow="What we do" id="services-heading" title="Six ways we serve" />
+          <ol className="st-ledger mt-10">
             {services.map((s, i) => (
-              <li key={s.slug} className="grid gap-4 py-8 md:grid-cols-[6rem_minmax(0,1fr)_minmax(0,1.4fr)] md:gap-8 md:py-10">
-                <span className="font-display text-6xl font-extrabold leading-none text-primary">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="font-display text-4xl font-extrabold uppercase leading-none text-foreground">{s.title}</h3>
+              <li key={s.slug} className="st-row">
+                <span className="st-key" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="st-title">{s.title}</h3>
                 <div>
-                  <p className="text-lg leading-relaxed text-muted-foreground">{s.description}</p>
+                  <p className="st-body text-lg">{s.description}</p>
                   {(s.slug === "delivery" || s.slug === "fabrication") && (
-                    <p className="mt-2 text-sm italic text-muted-foreground">Subject to availability. Please enquire at the time of order.</p>
+                    <p className="st-meta">Subject to availability. Please enquire at the time of order.</p>
                   )}
                 </div>
               </li>
@@ -59,25 +63,28 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-card py-14 md:py-20" aria-labelledby="how-heading">
-        <div className="page-container">
-          <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">How an order works</p>
-          <h2 id="how-heading" className="mt-2 text-foreground">Three steps, no paperwork to start</h2>
-          <ol className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
+      <section className="st-sec st-sec-tint" aria-labelledby="how-heading">
+        <div className="page-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <SectionHead eyebrow="How an order works" id="how-heading" title="Three steps, no paperwork to start" />
+          <ol className="st-ledger self-start" style={{ ["--st-cols" as string]: "4rem minmax(0,1fr)" }}>
             {STEPS.map((s, i) => (
-              <li key={s.t} className="bg-background p-7">
-                <span className="font-display text-5xl font-extrabold leading-none text-primary">{i + 1}</span>
-                <h3 className="mt-4 font-display text-3xl font-extrabold uppercase leading-none text-foreground">{s.t}</h3>
-                <p className="mt-3 text-muted-foreground">{s.d}</p>
+              <li key={s.t} className="st-row">
+                <span className="st-key" aria-hidden="true">{i + 1}</span>
+                <div>
+                  <h3 className="st-title">{s.t}</h3>
+                  <p className="st-body mt-2">{s.d}</p>
+                </div>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <div className="page-container py-14 md:py-20">
+      <div className="page-container st-sec">
         <ReviewsList max={3} title="From buyers who used the counter" />
       </div>
+
+      <ContactStrip heading="Send the list" waMessage="Hi, I'd like a rate for an order. Product, size and quantity: " />
     </>
   );
 }

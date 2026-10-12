@@ -10,6 +10,12 @@ import { baseUrl, site } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { BrandVideo } from "../BrandVideo";
+import { PageHero, btnMain, btnGhostDark, btnGhost } from "@/components/site/PageHero";
+import { GaugeRule, StencilTag } from "@/components/motif/Motif";
+import { SectionHead } from "@/components/story/SectionHead";
+import { ContactStrip } from "@/components/story/ContactStrip";
+import { T } from "@/lib/i18n";
+import "@/components/story/story.css";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -61,133 +67,106 @@ export default async function BrandPage({ params }: Props) {
   return (
     <>
       <SeoJsonLd data={schema} />
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-nav text-white">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-60"
-          style={{ background: `radial-gradient(ellipse 60% 80% at 85% 40%, ${visuals.accent}33, transparent 70%)` }}
-          aria-hidden="true"
-        />
-        <div className="page-container relative grid items-center gap-10 py-12 md:py-20 lg:grid-cols-[1.05fr_1fr]">
-          <div>
-            <nav aria-label="Breadcrumb" className="font-mono-brand text-xs uppercase tracking-[0.16em] text-white/60">
-              <Link href="/" className="hover:text-white">Home</Link> / <Link href="/brands" className="hover:text-white">Brands</Link> / <span className="text-white">{brand.name}</span>
-            </nav>
-            <div className="mt-8 flex items-center gap-4">
-              <span className="relative block h-16 w-28 shrink-0">
-                <Image src={visuals.logoClear} alt={`${brand.name} logo`} fill className="object-contain object-left" priority sizes="112px" />
-              </span>
-              <span className="h-10 w-px bg-white/25" aria-hidden="true" />
-              <span className="font-mono-brand text-xs uppercase tracking-[0.16em] text-white/70">Our own brand</span>
-            </div>
-            <h1 className="mt-6 text-white" style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}>{title}</h1>
-            <p className="mt-4 max-w-xl text-lg text-white/80">{subtitle}</p>
-            {prominentTagline && (
-              <p className="mt-6 inline-block border-l-4 py-1 pl-4 text-lg font-semibold italic text-white" style={{ borderColor: visuals.accent }}>
-                {prominentTagline}
-              </p>
-            )}
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href={`/contact?brand=${brand.id}`}
-                className="inline-flex min-h-[52px] items-center justify-center rounded-sm bg-primary px-7 font-bold text-primary-foreground transition hover:brightness-110"
-              >
-                Get a {brand.name} quote
-              </Link>
-              <a
-                href="#range"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-sm border border-white/40 px-7 font-semibold text-white hover:bg-white/10"
-              >
-                See the range
-              </a>
-            </div>
+      <PageHero
+        eyebrow={
+          <>
+            <Link href="/brands" className="hover:text-white">Brands</Link> / {brand.name} / Our own brand
+          </>
+        }
+        title={title}
+        lede={subtitle}
+        image={{ src: visuals.hero.src, alt: visuals.hero.alt }}
+      >
+        <Link href={`/contact?brand=${brand.id}`} className={btnMain}>
+          <T en={`Get a ${brand.name} quote`} hi={`${brand.name} का कोटेशन पाएँ`} />
+        </Link>
+        <a href="#range" className={btnGhostDark}><T en="See the range" hi="रेंज देखें" /></a>
+      </PageHero>
+
+      {/* Brand tag and voice line */}
+      <section className="border-b border-border" aria-label={`${brand.name} at a glance`}>
+        <div className="page-container grid items-center gap-8 py-10 md:grid-cols-[auto_1fr] md:gap-14 md:py-14">
+          <div className="flex items-center gap-5">
+            <span className="relative block h-16 w-28 shrink-0">
+              <Image src={visuals.logoClear} alt={`${brand.name} logo`} fill className="object-contain object-left" sizes="112px" />
+            </span>
+            <StencilTag>{brand.name} · Own brand</StencilTag>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-2xl ring-1 ring-white/15">
-            <Image src={visuals.hero.src} alt={visuals.hero.alt} fill priority sizes="(max-width:1024px) 100vw, 45vw" className="object-cover" />
-          </div>
+          {prominentTagline ? (
+            <p className="border-l-2 border-primary pl-5 font-display text-3xl font-extrabold uppercase leading-[1.05] text-foreground md:text-5xl">
+              {prominentTagline}
+            </p>
+          ) : (
+            <p className="max-w-2xl text-lg text-muted-foreground">Barbed wire and chain link fencing (jali), sold from our shop at Siyaganj, Indore.</p>
+          )}
+        </div>
+        <div className="page-container pb-10">
+          <GaugeRule label="Catalog range" />
+          <dl className="st-spec mt-6 !border-t-0 sm:grid sm:grid-cols-3 sm:gap-x-8">
+            {visuals.facts.map((f) => (
+              <div key={f.small} className="!block">
+                <dt className="text-sm">{f.small}</dt>
+                <dd className="!text-left font-display text-3xl font-extrabold uppercase leading-none">{f.big}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
-      {/* Facts */}
-      <section className="border-b border-border bg-card" aria-label={`${brand.name} at a glance`}>
-        <ul className="page-container grid grid-cols-3 gap-px bg-border bg-clip-content">
-          {visuals.facts.map((f) => (
-            <li key={f.small} className="bg-card px-3 py-6 sm:px-6 sm:py-8">
-              <p className="font-display text-3xl font-extrabold uppercase leading-none text-foreground sm:text-5xl">{f.big}</p>
-              <p className="mt-2 text-xs text-muted-foreground sm:text-sm">{f.small}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
       {/* Range */}
-      <section id="range" className="py-14 md:py-20" aria-labelledby="range-heading">
+      <section id="range" className="st-sec scroll-mt-24" aria-labelledby="range-heading">
         <div className="page-container">
-          <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">The range</p>
-          <h2 id="range-heading" className="mt-2 text-foreground">What {brand.name} makes</h2>
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <SectionHead eyebrow="The range" id="range-heading" title={`What ${brand.name} makes`} />
+          <ul className="st-ledger mt-10" style={{ ["--st-cols" as string]: "minmax(0,0.9fr) minmax(0,1.3fr)" }}>
             {RANGE.map((r) => {
               const product = getProductBySlug(r.slug);
               const variant = product?.brandVariants?.find((v) => v.brandId === brand.id);
               if (!product || !variant) return null;
               return (
-                <article key={r.slug} className="flex flex-col overflow-hidden rounded-sm border border-border bg-card">
-                  <div className="relative aspect-[16/10] bg-secondary">
-                    <Image
-                      src={variant.images[0]}
-                      alt={`${brand.name} ${r.label}`}
-                      fill
-                      sizes="(max-width:1024px) 100vw, 50vw"
-                      className="object-contain p-4"
-                    />
+                <li key={r.slug} className="st-row">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-[14px] bg-secondary ring-1 ring-border">
+                    <Image src={variant.images[0]} alt={`${brand.name} ${r.label}`} fill sizes="(max-width:768px) 100vw, 40vw" className="object-contain p-4" />
                   </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="font-display text-3xl font-extrabold uppercase leading-none text-foreground">{r.label}</h3>
-                    <p className="mt-2 text-muted-foreground">{r.blurb}</p>
+                  <div>
+                    <h3 className="st-title">{r.label}</h3>
+                    <p className="st-body mt-2">{r.blurb}</p>
                     {variant.specs && (
-                      <dl className="mt-5 divide-y divide-border border-y border-border text-sm">
+                      <dl className="st-spec mt-5 text-sm">
                         {variant.specs.map((s) => (
-                          <div key={s.label} className="flex justify-between gap-4 py-2.5">
-                            <dt className="text-muted-foreground">{s.label}</dt>
-                            <dd className="text-right font-medium text-foreground">{s.value}</dd>
+                          <div key={s.label}>
+                            <dt>{s.label}</dt>
+                            <dd>{s.value}</dd>
                           </div>
                         ))}
                       </dl>
                     )}
                     {variant.useCases && (
-                      <p className="mt-4 text-sm text-muted-foreground">
+                      <p className="st-body mt-4 text-sm">
                         <span className="font-semibold text-foreground">Used for: </span>
                         {variant.useCases.join(", ")}
                       </p>
                     )}
-                    <div className="mt-6 flex flex-wrap gap-3">
-                      <Link
-                        href={`/contact?product=${product.slug}&category=${product.categorySlug}&brand=${brand.id}`}
-                        className="inline-flex min-h-[48px] items-center rounded-sm bg-primary px-5 font-bold text-primary-foreground hover:brightness-110"
-                      >
+                    <div className="mt-5 flex flex-wrap gap-3">
+                      <Link href={`/contact?product=${product.slug}&category=${product.categorySlug}&brand=${brand.id}`} className={btnMain}>
                         Quote this
                       </Link>
-                      <Link
-                        href={`/products/${product.slug}`}
-                        className="inline-flex min-h-[48px] items-center rounded-sm border border-input px-5 font-semibold text-foreground hover:border-foreground/50"
-                      >
+                      <Link href={`/products/${product.slug}`} className={btnGhost}>
                         Full details
                       </Link>
                     </div>
                   </div>
-                </article>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       </section>
 
       {/* Story + video */}
-      <section className="border-y border-border bg-card py-14 md:py-20" aria-labelledby="story-heading">
+      <section className="st-sec st-sec-tint" aria-labelledby="story-heading">
         <div className="page-container grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
           <div>
-            <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">The name</p>
-            <h2 id="story-heading" className="mt-2 text-foreground">Why buyers ask for {brand.name}</h2>
+            <SectionHead eyebrow="The name" id="story-heading" title={`Why buyers ask for ${brand.name}`} />
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted-foreground">
               {body.split(/\n\n+/).map((p, i) => (
                 <p key={i}>{p}</p>
@@ -202,39 +181,32 @@ export default async function BrandPage({ params }: Props) {
       </section>
 
       {/* Gallery */}
-      <section className="py-14 md:py-20" aria-labelledby="gallery-heading">
+      <section className="st-sec" aria-labelledby="gallery-heading">
         <div className="page-container">
-          <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">In stock</p>
-          <h2 id="gallery-heading" className="mt-2 text-foreground">{brand.name} on our shelves</h2>
+          <SectionHead eyebrow="In stock" id="gallery-heading" title={`${brand.name} on our shelves`} />
           <ul className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
             {visuals.gallery.map((g, i) => (
-              <li key={g.src} className={"relative overflow-hidden rounded-sm bg-secondary " + (i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square")}>
+              <li key={g.src} className={"relative overflow-hidden rounded-[14px] bg-secondary " + (i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square")}>
                 <Image src={g.src} alt={g.alt} fill sizes={i === 0 ? "(max-width:768px) 100vw, 50vw" : "(max-width:768px) 50vw, 25vw"} className="object-cover" />
               </li>
             ))}
           </ul>
+          {other && (
+            <p className="mt-8">
+              <Link href={`/brands/${other.id}`} className="st-link">See {other.name}, our other own brand</Link>
+              <span className="mx-3 text-muted-foreground" aria-hidden="true">/</span>
+              <Link href="/brands#tata-wiron" className="st-link">Tata Wiron</Link>
+            </p>
+          )}
         </div>
       </section>
 
-      {/* Close */}
-      <section className="bg-nav py-14 text-white md:py-20">
-        <div className="page-container flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div>
-            <h2 className="text-white">Need {brand.name} for your site?</h2>
-            <p className="mt-3 max-w-xl text-white/80">Send your list. We confirm stock and rates, and pack it for pickup or delivery.</p>
-          </div>
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <Link href={`/contact?brand=${brand.id}`} className="inline-flex min-h-[52px] items-center justify-center rounded-sm bg-primary px-7 font-bold text-primary-foreground hover:brightness-110">
-              Get a quote
-            </Link>
-            {other && (
-              <Link href={`/brands/${other.id}`} className="inline-flex min-h-[52px] items-center justify-center rounded-sm border border-white/40 px-7 font-semibold text-white hover:bg-white/10">
-                See {other.name}
-              </Link>
-            )}
-          </div>
-        </div>
-      </section>
+      <ContactStrip
+        heading={`Need ${brand.name} for your site?`}
+        headingId="close-heading"
+        quoteHref={`/contact?brand=${brand.id}`}
+        waMessage={`Hi, I need ${brand.name} brand wire. Product, size and quantity: `}
+      />
     </>
   );
 }

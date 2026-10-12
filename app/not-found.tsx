@@ -1,28 +1,73 @@
 import Link from "next/link";
 import { site } from "@/content/site";
+import { categories } from "@/content/products";
+import { getWhatsAppLink } from "@/lib/utils";
+import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
+import { SectionHead } from "@/components/story/SectionHead";
+import { T } from "@/lib/i18n";
+import "@/components/story/story.css";
 
 export default function NotFound() {
+  const tel = `tel:${site.phone.replace(/\s/g, "")}`;
   return (
-    <section className="bg-nav text-white">
-      <div className="page-container py-20 md:py-32">
-        <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-white/60">Page not found</p>
-        <h1 className="mt-4 text-white" style={{ fontSize: "clamp(5rem, 16vw, 12rem)", lineHeight: 0.85 }}>404</h1>
-        <p className="mt-6 max-w-xl text-xl text-white/80">
-          That shutter is down. The link may be old, or the page may have moved.
-        </p>
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <Link href="/" className="inline-flex min-h-[52px] items-center justify-center rounded-sm bg-primary px-7 font-bold text-primary-foreground hover:brightness-110">
-            Back to home
-          </Link>
-          <Link href="/products" className="inline-flex min-h-[52px] items-center justify-center rounded-sm border border-white/40 px-7 font-semibold text-white hover:bg-white/10">
-            Browse products
-          </Link>
-          <Link href="/contact" className="inline-flex min-h-[52px] items-center justify-center rounded-sm border border-white/40 px-7 font-semibold text-white hover:bg-white/10">
-            Get a quote
-          </Link>
+    <>
+      <PageHero
+        eyebrow={<T en="404 · Page not found" hi="404 · पेज नहीं मिला" />}
+        title={<T en="That shutter is down." hi="यह शटर बंद है।" />}
+        lede="The link may be old, or the page may have moved. Search the products, or ask the counter. We will find it."
+        compact
+      >
+        <form action="/products" method="get" role="search" className="flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+          <label htmlFor="nf-q" className="sr-only">Search products</label>
+          <input
+            id="nf-q"
+            name="q"
+            type="search"
+            placeholder="Wire, mesh, angle, TMT..."
+            className="min-h-[52px] w-full rounded-[6px] border border-white/40 bg-white/5 px-4 text-white placeholder:text-white/60"
+          />
+          <button type="submit" className={btnMain + " shrink-0"}>
+            <T en="Search" hi="खोजें" />
+          </button>
+        </form>
+      </PageHero>
+
+      <section className="st-sec" aria-labelledby="nf-cats">
+        <div className="page-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <SectionHead eyebrow="Or pick a shelf" id="nf-cats" title="Browse by category" />
+          <ul className="st-ledger self-start sm:columns-2 sm:gap-x-10">
+            {categories.map((c) => (
+              <li key={c.slug} className="break-inside-avoid border-b border-border">
+                <Link href={`/categories/${c.slug}`} className="flex min-h-[48px] items-center font-semibold text-foreground hover:text-primary">
+                  {c.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-        <p className="mt-10 text-sm text-white/60">{site.name}, Siyaganj, Indore.</p>
-      </div>
-    </section>
+      </section>
+
+      <section className="st-sec st-sec-tint pb-28 md:pb-20" aria-labelledby="nf-ask">
+        <div className="page-container">
+          <SectionHead eyebrow="Ask the counter" id="nf-ask" title="Still not found?" lede="Tell us what you were looking for. Mon to Sat, 9 to 8." />
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a href={tel} className={btnMain}>
+              <T en={`Call ${site.phone}`} hi={`कॉल करें ${site.phone}`} />
+            </a>
+            <a
+              href={getWhatsAppLink(site.whatsapp, "Hi, I could not find a page on your website. I was looking for: ")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={btnGhostDark}
+            >
+              WhatsApp<span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <Link href="/" className={btnGhostDark}>
+              <T en="Back to home" hi="होम पर जाएँ" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

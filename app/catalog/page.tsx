@@ -5,6 +5,8 @@ import { categories, getProductImages, getCategoryBySlug } from "@/content/produ
 import { baseUrl, site } from "@/lib/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { PrintCatalogButton } from "@/components/catalog/PrintCatalogButton";
+import { PageHero, btnGhostDark } from "@/components/site/PageHero";
+import { T } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Product Catalog",
@@ -16,24 +18,24 @@ export default function CatalogPage() {
 
   return (
     <div className="catalog-page">
-      <div className="no-print page-container section-padding">
-        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-between gap-4">
-          <div className="min-w-0">
-            <h1 className="text-xl font-bold text-foreground sm:text-2xl md:text-3xl">Product Catalog</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Download or print this catalog for reference. Contact us for pricing and availability.
-            </p>
-          </div>
-          <PrintCatalogButton />
-        </div>
+      <div className="no-print">
+        <PageHero
+          eyebrow={<T en="Catalog · Print or save" hi="कैटलॉग · प्रिंट या सेव करें" />}
+          title={<T en="Product catalog" hi="प्रोडक्ट कैटलॉग" />}
+          lede="Print this sheet or save it as a PDF for reference. Prices are not listed: ask for the rate and we will quote on the day."
+          compact
+        >
+          <span className="contents [&>button]:min-h-[52px] [&>button]:rounded-sm [&>button]:px-7 [&>button]:text-base [&>button]:font-bold"><PrintCatalogButton /></span>
+          <Link href="/contact" className={btnGhostDark}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
+        </PageHero>
       </div>
 
-      <div className="catalog-print-area bg-white text-gray-900 print:block">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 py-6 sm:py-8 print:px-8 print:py-12">
+      <div className="catalog-print-area mx-auto my-10 max-w-4xl overflow-hidden rounded-[10px] bg-white text-gray-900 shadow-2xl ring-1 ring-white/10 print:my-0 print:block print:max-w-none print:rounded-none print:shadow-none">
+        <div className="px-4 py-6 sm:px-8 sm:py-10 print:px-8 print:py-12">
           {/* Header */}
           <header className="mb-10 border-b-2 border-gray-800 pb-6">
             <Image src="/logo-dark.png" alt="" width={240} height={83} className="h-20 w-auto object-contain print:h-16" />
-            <h1 className="mt-3 text-3xl font-bold text-gray-900">{site.name}</h1>
+            <p className="mt-3 text-3xl font-bold text-gray-900">{site.name}</p>
             <p className="mt-1 text-lg text-gray-600">{site.tagline}</p>
             <p className="mt-2 text-sm text-gray-600">{site.manufacturerTagline}</p>
             <div className="mt-4 grid gap-1 text-sm text-gray-700 sm:grid-cols-2">
@@ -141,18 +143,18 @@ export default function CatalogPage() {
       </div>
 
       {/* Print button for screen view - inside printable area as duplicate for visibility */}
-      <div className="no-print container mx-auto px-4 pb-12">
+      <div className="no-print page-container pb-28 md:pb-16">
         <div className="flex flex-wrap gap-4">
-          <PrintCatalogButton />
+          <span className="contents [&>button]:min-h-[52px] [&>button]:rounded-sm [&>button]:px-7 [&>button]:text-base [&>button]:font-bold"><PrintCatalogButton /></span>
           <a
             href={getWhatsAppLink(site.whatsapp, "Hi, I'd like to request a quote. I've gone through your catalog.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent"
+            className="inline-flex min-h-[48px] items-center rounded-sm border border-input px-5 font-semibold text-foreground hover:border-foreground/50"
           >
             WhatsApp for Quote
           </a>
-          <Link href="/contact" className="inline-flex items-center rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent">
+          <Link href="/contact" className="inline-flex min-h-[48px] items-center rounded-sm border border-input px-5 font-semibold text-foreground hover:border-foreground/50">
             Request a Quote
           </Link>
         </div>

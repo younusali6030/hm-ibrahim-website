@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, MessageCircle, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { site } from "@/content/site";
 import { buildPageMeta } from "@/lib/seo";
 import { getWhatsAppLink } from "@/lib/utils";
@@ -9,6 +9,12 @@ import { stockedBrands } from "@/content/stockedBrands";
 import { brandPageVisuals } from "@/content/brandPages";
 import { categories, getProductBySlug } from "@/content/products";
 import { getBrandById, type BrandId } from "@/content/brands";
+import { PageHero, btnMain, btnGhostDark, btnGhost } from "@/components/site/PageHero";
+import { GaugeRule, StencilTag } from "@/components/motif/Motif";
+import { SectionHead } from "@/components/story/SectionHead";
+import { ContactStrip } from "@/components/story/ContactStrip";
+import { T } from "@/lib/i18n";
+import "@/components/story/story.css";
 
 // The root layout template appends " | HM Ibrahim & Co", so the title here carries no business name.
 export const metadata: Metadata = buildPageMeta({
@@ -22,27 +28,22 @@ export const metadata: Metadata = buildPageMeta({
   },
 });
 
-const btnPrimary =
-  "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm bg-primary px-6 text-base font-bold text-primary-foreground transition hover:brightness-110";
-const btnOutline =
-  "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm border border-white/40 px-6 text-base font-semibold text-white transition hover:bg-white/10";
-const btnOutlineLight =
-  "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm border border-input px-5 text-base font-semibold text-foreground transition hover:border-foreground/60";
-
-/** Spec values come straight from the product catalog's brand variants; nothing is added here. */
-function catalogFacts(brandId: BrandId) {
-  const pick = (slug: string, label: string) =>
-    getProductBySlug(slug)?.brandVariants?.find((v) => v.brandId === brandId)?.specs?.find((s) => s.label === label)?.value;
-  const facts = [
-    { label: "Chain link mesh opening", value: pick("chain-link-fencing", "Chainlink mesh opening") },
-    { label: "Chain link roll heights", value: pick("chain-link-fencing", "Heights") },
-    { label: "Barbed wire", value: pick("barbed-wire", "Type") },
-    { label: "Barbed wire coils", value: pick("barbed-wire", "Coils") },
-  ];
-  return facts.filter((f): f is { label: string; value: string } => !!f.value);
-}
 
 const waLink = (message: string) => getWhatsAppLink(site.whatsapp, message);
+
+/** One row per spec label, one column per brand, straight from the catalog's brand variants. */
+const COMPARE_LABELS = [
+  { label: "Chainlink mesh opening", name: "Mesh opening" },
+  { label: "Wire size", name: "Wire size" },
+  { label: "Heights", name: "Roll heights" },
+  { label: "Finish", name: "Finish" },
+] as const;
+
+function compareCell(brandId: BrandId, label: string) {
+  return getProductBySlug("chain-link-fencing")
+    ?.brandVariants?.find((v) => v.brandId === brandId)
+    ?.specs?.find((s) => s.label === label)?.value;
+}
 
 const wironProducts = Array.from(
   new Map(
@@ -53,134 +54,142 @@ const wironProducts = Array.from(
   ).values()
 );
 
-const SECTIONS = [
-  { href: "#own-brands", label: "Our brands" },
-  { href: "#tata-wiron", label: "Tata Wiron" },
-  { href: "#also-stocked", label: "Also stocked" },
-  { href: "#enquire", label: "Enquire" },
-];
-
 export default function BrandsPage() {
   const tata = getBrandById("tata");
   const own = (["cm", "border"] as const)
     .map((id) => ({ brand: getBrandById(id), v: brandPageVisuals[id] }))
     .filter((x) => x.brand && x.v);
+  const cols: { id: BrandId; name: string }[] = [
+    { id: "cm", name: "CM" },
+    { id: "border", name: "Border" },
+    { id: "tata", name: "Tata Wiron" },
+  ];
 
   return (
     <>
-      {/* Opening */}
-      <section className="bg-nav text-white">
-        <div className="page-container py-6 md:py-8">
-          <h1 className="text-white" style={{ fontSize: "clamp(2.25rem, 5.4vw, 4.25rem)" }}>
-            Wire &amp; fencing brands in Indore
-          </h1>
-          <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
-            CM and Border are our own barbed wire and chain link fencing brands. Alongside them we stock Tata Wiron and wire
-            and mesh from other makers.
-          </p>
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a href="#own-brands" className={btnPrimary}>
-              Explore our brands
-            </a>
-            <Link href="/contact?category=fencing-material" className={btnOutline}>
-              Check price &amp; availability
-            </Link>
-          </div>
-          <p className="mt-4 font-mono-brand text-xs uppercase tracking-[0.16em] text-white/65">
-            Since 1939 &middot; Siyaganj, Indore
-          </p>
-        </div>
-        <nav aria-label="On this page" className="border-t border-white/10 bg-black/20">
-          <ul className="page-container flex gap-1 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {SECTIONS.map((s) => (
-              <li key={s.href} className="shrink-0">
-                <a
-                  href={s.href}
-                  className="inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white"
-                >
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </section>
+      <PageHero
+        eyebrow={<T en="Brands · Siyaganj, Indore · Since 1939" hi="ब्रांड · सियागंज, इंदौर · 1939 से" />}
+        title={<T en="Wire & fencing brands in Indore" hi="इंदौर में तार और जाली के ब्रांड" />}
+        lede="CM and Border are our own barbed wire and chain link fencing brands. Alongside them we stock Tata Wiron and wire and mesh from other makers."
+        compact
+      >
+        <a href="#own-brands" className={btnMain}><T en="Explore our brands" hi="हमारे ब्रांड देखें" /></a>
+        <Link href="/contact?category=fencing-material" className={btnGhostDark}>
+          <T en="Check price & availability" hi="रेट और स्टॉक पूछें" />
+        </Link>
+      </PageHero>
 
-      {/* CM and Border */}
-      <section id="own-brands" className="py-6 md:py-8" aria-labelledby="own-heading">
+      {/* Own brands */}
+      <section id="own-brands" className="st-sec scroll-mt-24" aria-labelledby="own-heading">
         <div className="page-container">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <h2 id="own-heading" className="text-foreground" style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)" }}>Our own brands</h2>
-            <p className="text-sm text-muted-foreground">Barbed wire and chain link fencing (jali)</p>
-          </div>
-          <ul className="mt-4 grid gap-5 md:grid-cols-2 md:gap-6">
+          <SectionHead
+            eyebrow="Our own brands"
+            id="own-heading"
+            title="Two names we put on the roll"
+            lede="Barbed wire and chain link fencing (jali), sold from our shop in Siyaganj."
+          />
+          <ul className="st-ledger mt-10" style={{ ["--st-cols" as string]: "minmax(0,0.9fr) minmax(0,1.3fr)" }}>
             {own.map(({ brand, v }, index) => {
               if (!brand || !v) return null;
-              const facts = catalogFacts(brand.id);
               const uses = getProductBySlug("chain-link-fencing")?.brandVariants?.find((x) => x.brandId === brand.id)?.useCases;
               return (
-                <li key={brand.id} className="flex">
-                  <article className="flex w-full flex-col overflow-hidden rounded-sm border border-border bg-card">
-                    <div className="relative aspect-[16/6] bg-secondary">
-                      <Image
-                        src={v.hero.src}
-                        alt={v.hero.alt}
-                        fill
-                        sizes="(max-width:768px) 100vw, 50vw"
-                        priority={index === 0}
-                        className="object-cover object-center"
-                      />
-                      <span className="absolute left-3 top-3 block h-12 w-20 rounded-sm bg-[#0b121a]/85 p-1.5">
-                        <span className="relative block h-full w-full">
-                          <Image src={v.logoClear} alt={`${brand.name} logo`} fill sizes="80px" className="object-contain" />
-                        </span>
+                <li key={brand.id} className="st-row">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] bg-secondary ring-1 ring-border">
+                    <Image
+                      src={v.hero.src}
+                      alt={v.hero.alt}
+                      fill
+                      sizes="(max-width:768px) 100vw, 40vw"
+                      priority={index === 0}
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-4">
+                      <span className="relative block h-12 w-20 shrink-0">
+                        <Image src={v.logoClear} alt={`${brand.name} logo`} fill sizes="80px" className="object-contain object-left" />
                       </span>
+                      <StencilTag>{brand.name} · Own brand</StencilTag>
                     </div>
-                    <div className="flex flex-1 flex-col p-5 md:p-6">
-                      <h3 className="font-display text-5xl font-extrabold uppercase leading-none text-foreground">{brand.name}</h3>
-                      <p className="mt-2 text-base text-muted-foreground">
-                        {brand.name} barbed wire and chain link fencing (jali). {brand.pageContent?.subtitle}
+                    <h3 className="st-title mt-4" style={{ fontSize: "clamp(2.2rem, 4vw, 3.2rem)" }}>
+                      {brand.pageContent?.title ?? brand.name}
+                    </h3>
+                    <p className="mt-2 text-lg text-foreground">{brand.pageContent?.subtitle}</p>
+                    {brand.pageContent?.prominentTagline && (
+                      <p className="mt-3 border-l-2 border-primary pl-4 text-lg font-semibold italic text-foreground">
+                        {brand.pageContent.prominentTagline}
                       </p>
-                      {facts.length > 0 && (
-                        <dl className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border bg-border">
-                          {facts.map((f) => (
-                            <div key={f.label} className="bg-background/60 p-3">
-                              <dt className="text-xs text-muted-foreground">{f.label}</dt>
-                              <dd className="mt-0.5 text-sm font-semibold text-foreground">{f.value}</dd>
-                            </div>
-                          ))}
-                        </dl>
-                      )}
-                      {uses && (
-                        <p className="mt-3 text-sm text-muted-foreground">
-                          <span className="font-semibold text-foreground">Used for: </span>
-                          {uses.join(", ")}
-                        </p>
-                      )}
-                      <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row">
-                        <Link href={`/contact?brand=${brand.id}&category=fencing-material`} className={btnPrimary + " sm:flex-1"}>
-                          Enquire about {brand.name}
-                        </Link>
-                        <Link href={`/brands/${brand.id}`} className={btnOutlineLight + " sm:flex-1"}>
-                          Explore {brand.name}
-                          <ArrowRight className="h-4 w-4" aria-hidden />
-                        </Link>
-                      </div>
+                    )}
+                    {uses && (
+                      <p className="st-body mt-4">
+                        <span className="font-semibold text-foreground">Used for: </span>
+                        {uses.join(", ")}
+                      </p>
+                    )}
+                    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-1">
+                      <Link href={`/brands/${brand.id}`} className="st-link">
+                        The {brand.name} story <ArrowRight className="h-4 w-4" aria-hidden />
+                      </Link>
+                      <Link href={`/contact?brand=${brand.id}&category=fencing-material`} className="st-link">
+                        Enquire about {brand.name}
+                      </Link>
                     </div>
-                  </article>
+                  </div>
                 </li>
               );
             })}
           </ul>
-          <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-muted-foreground">
+        </div>
+      </section>
+
+      {/* Compare */}
+      <section className="st-sec st-sec-tint" aria-labelledby="compare-heading">
+        <div className="page-container">
+          <SectionHead
+            eyebrow="Side by side"
+            id="compare-heading"
+            title="Chain link, three names"
+            lede="CM and Border are listed to the same mesh and wire range. What changes is the name on the wrapper and the story behind it. Tata Wiron is the authorized Tata line."
+          />
+          <GaugeRule label="Chain link (jali)" className="mt-10" />
+          <div
+            className="mt-4 overflow-x-auto rounded-[10px] border border-border"
+            role="region"
+            aria-label="Chain link specs by brand, scrolls sideways on small screens"
+            tabIndex={0}
+          >
+            <table className="w-full min-w-[34rem] border-collapse text-left">
+              <thead>
+                <tr className="bg-secondary font-mono-brand text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                  <th scope="col" className="px-4 py-3 font-medium">Spec</th>
+                  {cols.map((c) => (
+                    <th key={c.id} scope="col" className="px-4 py-3 font-medium">{c.name}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARE_LABELS.map((r) => (
+                  <tr key={r.label} className="border-t border-border">
+                    <th scope="row" className="px-4 py-3 font-medium text-muted-foreground">{r.name}</th>
+                    {cols.map((c) => (
+                      <td key={c.id} className="px-4 py-3 text-foreground">
+                        {compareCell(c.id, r.label) ?? <span className="text-muted-foreground">Ask us</span>}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-5 flex flex-wrap items-center gap-x-3 text-muted-foreground">
             Not sure which one suits your fence?
             <a
               href={waLink("Hi, I need help choosing between CM and Border brand barbed wire / chain link. My use, size and quantity: ")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center font-semibold text-foreground underline underline-offset-4 hover:text-primary"
+              className="st-link"
             >
-              Ask us on WhatsApp
+              Ask us on WhatsApp<span className="sr-only"> (opens in a new tab)</span>
             </a>
           </p>
         </div>
@@ -188,66 +197,69 @@ export default function BrandsPage() {
 
       {/* Tata Wiron */}
       {tata && (
-        <section id="tata-wiron" className="border-y border-border bg-card py-8 md:py-12" aria-labelledby="tata-heading">
-          <div className="page-container grid items-center gap-6 md:grid-cols-[auto_1fr_auto] md:gap-8">
-            <span className="relative block h-14 w-36 md:h-16 md:w-44">
-              <Image src={tata.logo} alt="Tata Wiron logo" fill sizes="176px" className="object-contain object-left" />
-            </span>
+        <section id="tata-wiron" className="st-sec scroll-mt-24" aria-labelledby="tata-heading">
+          <div className="page-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <div>
-              <h2 id="tata-heading" className="text-foreground">Tata Wiron</h2>
-              <p className="mt-2 max-w-2xl text-base text-muted-foreground">
-                Tata Wiron lines listed in our catalog: {wironProducts.map((p) => p.name).join(", ")}. Confirm current
-                availability with us before you order.
-              </p>
+              <span className="relative block h-14 w-40">
+                <Image src={tata.logo} alt="Tata Wiron logo" fill sizes="160px" className="object-contain object-left" />
+              </span>
+              <h2 id="tata-heading" className="mt-6 text-foreground">Tata Wiron</h2>
+              <p className="mt-2 text-lg text-foreground">{tata.pageContent?.subtitle}</p>
+              <p className="st-body mt-4">{tata.pageContent?.body}</p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Link href="/products?tata=wiron" className={btnMain}>Browse Tata Wiron products</Link>
+                <Link href="/contact?brand=tata&category=wires" className={btnGhost}>Check availability</Link>
+              </div>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
-              <Link href="/products?tata=wiron" className={btnPrimary}>
-                Browse Tata Wiron products
-              </Link>
-              <Link href="/contact?brand=tata&category=wires" className={btnOutlineLight}>
-                Check availability
-              </Link>
+            <div>
+              <p className="st-eyebrow">Tata Wiron lines in our catalog</p>
+              <ul className="st-ledger mt-4">
+                {wironProducts.map((p) => (
+                  <li key={p.slug} className="border-b border-border">
+                    <Link href={`/products/${p.slug}`} className="flex min-h-[52px] items-center justify-between gap-4 py-2 font-semibold text-foreground hover:text-primary">
+                      {p.name}
+                      <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="st-meta">Confirm current availability with us before you order.</p>
             </div>
           </div>
         </section>
       )}
 
       {/* Other stocked brands */}
-      <section id="also-stocked" className="py-8 md:py-14" aria-labelledby="stock-heading">
+      <section id="also-stocked" className="st-sec st-sec-tint scroll-mt-24" aria-labelledby="stock-heading">
         <div className="page-container">
-          <p className="font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">Also on our shelves</p>
-          <h2 id="stock-heading" className="mt-1 text-foreground">Other brands we deal in</h2>
-          <p className="mt-3 max-w-2xl text-base text-muted-foreground">
-            Stock changes, so check price and availability with us for the brand you need.
-          </p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <SectionHead
+            eyebrow="Also on our shelves"
+            id="stock-heading"
+            title="Other brands we deal in"
+            lede="Stock changes, so check price and availability with us for the brand you need."
+          />
+          <ul className="st-ledger mt-10" style={{ ["--st-cols" as string]: "minmax(0,1fr) minmax(0,1.2fr) 14rem" }}>
             {stockedBrands.map((b) => {
               const firstTag = b.categoryTags?.find((t) => categories.some((c) => c.slug === t));
               const tagName = categories.find((c) => c.slug === firstTag)?.name;
               return (
-                <li key={b.name} className="flex">
-                  <article className="flex w-full flex-col overflow-hidden rounded-sm border border-border bg-card transition-colors hover:border-primary/60">
-                    <div className="flex flex-1 flex-col p-5">
-                      <h3 className="font-display text-2xl font-extrabold uppercase leading-tight text-foreground">{b.name}</h3>
-                      <p className="mt-2 text-base leading-snug text-muted-foreground">{b.specialty}</p>
-                      {b.location && <p className="mt-1 text-sm text-muted-foreground">{b.location}</p>}
-                      {firstTag && tagName && (
-                        <Link
-                          href={`/products?category=${firstTag}`}
-                          className="mt-4 inline-flex min-h-[44px] w-fit items-center rounded-full border border-border px-4 text-sm font-semibold text-foreground hover:border-foreground/60"
-                        >
-                          {tagName}
-                        </Link>
-                      )}
-                    </div>
-                    <Link
-                      href={`/contact?brand=${encodeURIComponent(b.name)}${firstTag ? `&category=${firstTag}` : ""}`}
-                      className="flex min-h-[52px] items-center justify-between gap-2 border-t border-border bg-primary/10 px-5 font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-                    >
-                      Check availability
-                      <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
-                    </Link>
-                  </article>
+                <li key={b.name} className="st-row !py-5 items-center">
+                  <h3 className="st-title" style={{ fontSize: "clamp(1.4rem, 2.4vw, 1.8rem)" }}>{b.name}</h3>
+                  <div>
+                    <p className="st-body">{b.specialty}</p>
+                    {b.location && <p className="st-meta">{b.location}</p>}
+                    {firstTag && tagName && (
+                      <Link href={`/products?category=${firstTag}`} className="st-link text-sm">
+                        {tagName}
+                      </Link>
+                    )}
+                  </div>
+                  <Link
+                    href={`/contact?brand=${encodeURIComponent(b.name)}${firstTag ? `&category=${firstTag}` : ""}`}
+                    className="st-link md:justify-self-end"
+                  >
+                    Check availability <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
                 </li>
               );
             })}
@@ -255,35 +267,12 @@ export default function BrandsPage() {
         </div>
       </section>
 
-      {/* Closing enquiry */}
-      <section id="enquire" className="bg-nav py-10 text-white md:py-14" aria-labelledby="enquire-heading">
-        <div className="page-container grid items-center gap-6 lg:grid-cols-[1fr_auto] lg:gap-12">
-          <div>
-            <h2 id="enquire-heading" className="text-white">Not sure which brand fits your requirement?</h2>
-            <p className="mt-3 max-w-xl text-base text-white/85 md:text-lg">
-              Tell us the product, size and quantity you need. We will check what we have and quote you for it.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href={waLink("Hi, I'm not sure which brand to choose. Product, size and quantity I need: ")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={btnPrimary}
-            >
-              <MessageCircle className="h-5 w-5" aria-hidden />
-              WhatsApp us
-            </a>
-            <Link href="/contact" className={btnOutline}>
-              Request a quote
-            </Link>
-            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className={btnOutline + " whitespace-nowrap"}>
-              <Phone className="h-5 w-5" aria-hidden />
-              Call {site.phone}
-            </a>
-          </div>
-        </div>
-      </section>
+      <ContactStrip
+        heading="Not sure which brand fits?"
+        headingId="enquire-heading"
+        quoteHref="/contact?category=fencing-material"
+        waMessage="Hi, I'm not sure which brand to choose. Product, size and quantity I need: "
+      />
     </>
   );
 }
