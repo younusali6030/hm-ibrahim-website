@@ -647,3 +647,15 @@ html.menu-open .sticky-cta {
     overflow: hidden;
   }
 }
+
+/* Static steel for hero panels; SteelSheen draws over it when motion is allowed. */
+.steel-sheen-fallback {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(115deg, hsl(210 38% 9%) 0%, hsl(210 30% 15%) 38%, hsl(210 34% 11%) 62%, hsl(210 42% 7%) 100%);
+}
+.steel-sheen-fallback canvas {
+  display: block;
+}

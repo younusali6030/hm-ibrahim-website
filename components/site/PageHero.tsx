@@ -1,6 +1,8 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { GaugeRule, JaliWeave } from "@/components/motif/Motif";
+import { LazySteelSheen } from "@/components/fx/Lazy";
+import { LoopFilm } from "@/components/fx/LoopFilm";
 
 type Props = {
   eyebrow: ReactNode;
@@ -10,12 +12,24 @@ type Props = {
   image?: { src: string; alt: string };
   /** Smaller headline for long titles */
   compact?: boolean;
+  /** One steel-sheen shader behind the header (static gradient when motion is off). Use on one page only. */
+  sheen?: boolean;
+  /** The rendered barbed-wire coil loop behind the header. Use on one page only. */
+  film?: boolean;
 };
 
 /** The shared dark page header: eyebrow, display headline, lede, actions, optional photo. */
-export function PageHero({ eyebrow, title, lede, children, image, compact }: Props) {
+export function PageHero({ eyebrow, title, lede, children, image, compact, sheen, film }: Props) {
   return (
     <section className="relative overflow-hidden bg-nav text-white">
+      {film ? (
+        <>
+          <LoopFilm />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070d14] via-[#070d14]/80 to-[#070d14]/20" aria-hidden="true" />
+        </>
+      ) : sheen ? (
+        <LazySteelSheen />
+      ) : null}
       {/* Jali weave, not a glow: the same mesh the shop sells, faded into the corner. */}
       <JaliWeave className="inset-y-0 right-0 w-full max-w-[56rem]" />
       <div className={"page-container relative grid items-center gap-10 py-10 md:py-20 " + (image ? "lg:grid-cols-[1.05fr_1fr]" : "")}>
