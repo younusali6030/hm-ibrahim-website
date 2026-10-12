@@ -1,7 +1,7 @@
 /**
  * Build HTML catalog and send it to the customer.
- * Email is sent FROM younusali6030@gmail.com (or QUOTE_FROM_EMAIL) TO the customer's email,
- * using Gmail SMTP (Nodemailer). Requires GMAIL_APP_PASSWORD for the sender Gmail account.
+ * Email is sent FROM QUOTE_FROM_EMAIL TO the customer's email, using Gmail SMTP (Nodemailer).
+ * Requires QUOTE_FROM_EMAIL and GMAIL_APP_PASSWORD; with either unset the send is skipped (fail-soft).
  * Logo is embedded as base64 so it displays in Gmail and other clients that block external images.
  */
 
@@ -11,8 +11,6 @@ import nodemailer from "nodemailer";
 import { site } from "@/content/site";
 import type { CatalogData } from "./catalog";
 
-/** From address for quote catalog — the customer sees this as the sender */
-const QUOTE_FROM_EMAIL = process.env.QUOTE_FROM_EMAIL || "younusali6030@gmail.com";
 
 let cachedLogoDataUrl: string | null | undefined = undefined;
 
@@ -116,9 +114,9 @@ function buildCatalogHtml(data: CatalogData): string {
       ${ratesSection}
     </div>
     <div style="padding:20px 24px;background:#eff6ff;border-top:1px solid #bfdbfe;">
-      <p style="margin:0 0 12px 0;font-size:14px;font-weight:600;color:#1e40af;">Call us ASAP at <a href="tel:+919826053563" style="color:#2563eb;">+91 9826053563</a> to book the best available rate.</p>
+      <p style="margin:0 0 12px 0;font-size:14px;font-weight:600;color:#1e40af;">Call us ASAP at <a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> to book the best available rate.</p>
       <p style="margin:0;font-size:12px;color:#6b7280;">This catalog was sent in response to your quote request. For current prices and orders, contact us:</p>
-      <p style="margin:8px 0 0 0;font-size:13px;"><a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> · <a href="mailto:${QUOTE_FROM_EMAIL}" style="color:#2563eb;">${QUOTE_FROM_EMAIL}</a></p>
+      <p style="margin:8px 0 0 0;font-size:13px;"><a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> · <a href="mailto:${site.email}" style="color:#2563eb;">${site.email}</a></p>
     </div>
     <div style="padding:20px 24px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:13px;color:#374151;">
       <p style="margin:0 0 8px 0;font-weight:600;color:#111827;">${escapeHtml(site.name)}</p>
@@ -147,16 +145,18 @@ export type SendCatalogResult = { success: true } | { success: false; error: str
 
 /**
  * Send the product catalog to the customer's email.
- * Sent FROM younusali6030@gmail.com (QUOTE_FROM_EMAIL) TO the customer's address via Gmail SMTP.
- * Requires GMAIL_APP_PASSWORD for the Gmail account (create at myaccount.google.com/apppasswords).
+ * Sent FROM QUOTE_FROM_EMAIL TO the customer's address via Gmail SMTP.
+ * Requires GMAIL_APP_PASSWORD (create at myaccount.google.com/apppasswords). Unset env means skip and log.
  */
 export async function sendCatalogToCustomer(
   toEmail: string,
   catalogData: CatalogData
 ): Promise<SendCatalogResult> {
   const appPassword = process.env.GMAIL_APP_PASSWORD;
-  if (!appPassword) {
-    return { success: false, error: "Email is not configured (GMAIL_APP_PASSWORD missing)." };
+  const QUOTE_FROM_EMAIL = process.env.QUOTE_FROM_EMAIL?.trim();
+  if (!appPassword || !QUOTE_FROM_EMAIL) {
+    console.warn("[quote] catalog email not configured (QUOTE_FROM_EMAIL / GMAIL_APP_PASSWORD): skipped");
+    return { success: false, error: "Email is not configured." };
   }
 
   const html = buildCatalogHtml(catalogData);

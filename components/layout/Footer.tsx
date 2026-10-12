@@ -2,20 +2,23 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, MessageCircle } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { categories } from "@/content/products";
+import { T } from "@/lib/i18n";
+import { VisitUs } from "@/components/visit/VisitUs";
+import { ClickTracker } from "@/components/conversion/ClickTracker";
 
 const usefulLinks = [
-  { href: "/products", label: "All products" },
-  { href: "/brands", label: "Brands" },
-  { href: "/contact", label: "Get a quote" },
-  { href: "/catalog", label: "Catalog" },
-  { href: "/indore", label: "Products in Indore" },
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About us" },
-  { href: "/blog", label: "Blog" },
+  { href: "/products", en: "All products", hi: "सभी उत्पाद" },
+  { href: "/brands", en: "Brands", hi: "ब्रांड" },
+  { href: "/contact", en: "Get a quote", hi: "कोटेशन पाएँ" },
+  { href: "/catalog", en: "Catalog", hi: "कैटलॉग" },
+  { href: "/indore", en: "Products in Indore", hi: "इंदौर में उत्पाद" },
+  { href: "/services", en: "Services", hi: "सेवाएँ" },
+  { href: "/about", en: "About us", hi: "हमारे बारे में" },
+  { href: "/blog", en: "Blog", hi: "ब्लॉग" },
 ];
 
 const linkCls =
@@ -24,11 +27,11 @@ const linkCls =
 const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
 
 export function Footer() {
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`;
-
   return (
-    <footer className="border-t border-white/15 bg-nav pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] print:hidden md:pb-0">
+    <footer data-track="footer" className="border-t border-white/15 bg-nav pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] print:hidden md:pb-0">
+      <ClickTracker />
       <div className="page-container py-10 md:py-14">
+        <VisitUs variant="strip" source="footer_visit" className="mb-10" />
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_0.9fr_1.4fr] lg:gap-10">
           {/* Business identity */}
           <div className="min-w-0 sm:col-span-2 lg:col-span-1">
@@ -42,17 +45,8 @@ export function Footer() {
 
           {/* Contact and location: second on mobile (right after the logo); last column on desktop */}
           <div className="lg:order-4">
-            <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white">Contact &amp; location</h3>
+            <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white"><T en="Contact" hi="संपर्क" /></h3>
             <ul className="mt-4 space-y-4 text-[15px] text-white/85">
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                <span>
-                  {site.address.line1}, {site.address.line2}, {site.address.city}, {site.address.state} {site.address.pincode}
-                  <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-1 block min-h-[44px] py-2 font-semibold text-primary hover:underline lg:min-h-0 lg:py-0">
-                    Get directions
-                  </a>
-                </span>
-              </li>
               {[
                 { n: site.phone, l: site.phoneLabel },
                 { n: String(site.phoneAlt), l: site.phoneAltLabel },
@@ -68,7 +62,7 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MessageCircle className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
                 <a href={getWhatsAppLink(site.whatsapp)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center font-semibold text-white hover:text-primary lg:min-h-0">
-                  WhatsApp us
+                  <T en="WhatsApp us" hi="व्हाट्सएप करें" />
                 </a>
               </li>
               {[
@@ -83,24 +77,16 @@ export function Footer() {
                   </a>
                 </li>
               ))}
-              <li className="flex items-start gap-3">
-                <Clock className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                <span>
-                  {site.hours.weekdays}
-                  <br />
-                  {site.hours.sunday}
-                </span>
-              </li>
             </ul>
           </div>
 
           {/* Useful links */}
           <nav aria-label="Useful links">
-            <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white">Useful links</h3>
+            <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white"><T en="Useful links" hi="काम के लिंक" /></h3>
             <ul className="mt-3 grid grid-cols-2 gap-x-4 sm:grid-cols-1">
               {usefulLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className={linkCls}>{l.label}</Link>
+                  <Link href={l.href} className={linkCls}><T en={l.en} hi={l.hi} /></Link>
                 </li>
               ))}
             </ul>
@@ -108,7 +94,7 @@ export function Footer() {
 
           {/* Product categories */}
           <nav aria-label="Product categories" className="sm:col-span-2 lg:col-span-1">
-            <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white">Product categories</h3>
+            <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white"><T en="Product categories" hi="उत्पाद श्रेणियाँ" /></h3>
             <ul className="mt-3 grid grid-cols-2 gap-x-4 sm:grid-cols-3 lg:grid-cols-1">
               {categories.map((c) => (
                 <li key={c.slug}>

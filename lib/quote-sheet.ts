@@ -71,7 +71,9 @@ function submissionToRow(data: QuoteSubmission, submittedAt: Date): Record<strin
   };
 }
 
-export type AppendQuoteToSheetResult = { success: true } | { success: false; error: string };
+export type AppendQuoteToSheetResult =
+  | { success: true }
+  | { success: false; error: string; /** Sheet env is not set: nothing was attempted. */ notConfigured?: boolean };
 
 /**
  * Append one quote submission as a new row in the configured Google Sheet.
@@ -84,7 +86,11 @@ export async function appendQuoteToSheet(data: QuoteSubmission): Promise<AppendQ
   const privateKey = getNormalizedPrivateKey(process.env.GOOGLE_PRIVATE_KEY);
 
   if (!sheetId || !email || !privateKey) {
-    return { success: false, error: "Google Sheet not configured (missing GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, or GOOGLE_PRIVATE_KEY)." };
+    return {
+      success: false,
+      notConfigured: true,
+      error: "Google Sheet not configured (missing GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, or GOOGLE_PRIVATE_KEY).",
+    };
   }
 
   try {

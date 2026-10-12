@@ -1,77 +1,29 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { MapPin } from "lucide-react";
-import { site } from "@/content/site";
-import { Button } from "@/components/ui/button";
+import { GaugeRule } from "@/components/motif/Motif";
+import { VisitUs } from "@/components/visit/VisitUs";
 
+/** Home "Visit us": the shared VisitUs block beside the storefront. One address, one set of hours, everywhere. */
 export function LocationPreview() {
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`;
-
   return (
-    <section className="py-16 md:py-20" aria-labelledby="location-heading">
-      <div className="page-container section-padding">
-        <motion.h2
-          id="location-heading"
-          className="text-center text-3xl font-bold text-foreground md:text-4xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Visit Us
-        </motion.h2>
-        <div className="mx-auto mt-8 grid max-w-4xl gap-8 md:grid-cols-2 md:gap-10">
-          <motion.div
-            className="overflow-hidden rounded-2xl border border-border bg-card shadow-lg"
-            initial={{ opacity: 0, x: -16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
+    <section className="py-16 md:py-20">
+      <div className="page-container">
+        <div className="grid items-center gap-10 md:grid-cols-[1fr_1.1fr] md:gap-14">
+          <div className="overflow-hidden rounded-[14px] border border-border bg-card">
             <Image
               src="/about-storefront.png"
               alt="HM Ibrahim & Co storefront at Siyaganj, Indore"
               width={600}
               height={400}
-              className="h-56 w-full object-cover md:h-64"
+              className="h-64 w-full object-cover md:h-80"
             />
-          </motion.div>
-          <motion.div
-            className="flex flex-col justify-center text-center md:text-left"
-            initial={{ opacity: 0, x: 16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
-          >
-            <p className="text-muted-foreground">{site.fullAddress}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{site.landmark}</p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
-              <Button asChild variant="outline" size="lg">
-                <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
-                  <MapPin className="mr-2 h-4 w-4" aria-hidden />
-                  Get Directions
-                </a>
-              </Button>
-              <Button asChild size="lg">
-                <Link href="/contact">Contact & map</Link>
-              </Button>
-            </div>
-            {"indiamartUrl" in site && site.indiamartUrl && "justdialUrl" in site && site.justdialUrl && (
-              <p className="mt-4 text-sm text-muted-foreground">
-                You can also contact us on{" "}
-                <a href={site.indiamartUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                  IndiaMART
-                </a>{" "}
-                or{" "}
-                <a href={site.justdialUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                  JustDial
-                </a>.
-              </p>
-            )}
-          </motion.div>
+          </div>
+          <div>
+            <VisitUs variant="full" source="home_visit" />
+          </div>
         </div>
+        <GaugeRule className="mt-12" />
       </div>
     </section>
   );

@@ -10,19 +10,21 @@ import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
+import { LangToggle, T, useT } from "@/lib/i18n";
 
 // One contact path: the primary "Get a quote" button leads to /contact (quote form + visit info).
 const navLinks = [
-  { href: "/products", label: "Products" },
-  { href: "/brands", label: "Brands" },
-  { href: "/about", label: "About" },
-  { href: "/indore", label: "Indore" },
-  { href: "/services", label: "Services" },
-  { href: "/blog", label: "Blog" },
+  { href: "/products", en: "Products", hi: "उत्पाद" },
+  { href: "/brands", en: "Brands", hi: "ब्रांड" },
+  { href: "/about", en: "About", hi: "हमारे बारे में" },
+  { href: "/indore", en: "Indore", hi: "इंदौर" },
+  { href: "/services", en: "Services", hi: "सेवाएँ" },
+  { href: "/blog", en: "Blog", hi: "ब्लॉग" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
+  const t = useT();
   const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -94,13 +96,13 @@ export function Navbar() {
         <div className="relative mx-auto max-w-[1280px]">
           <nav
             className="flex h-16 items-center justify-between px-4 md:h-[72px] md:px-6"
-            aria-label="Main navigation"
+            aria-label={t("Main navigation", "मुख्य मेन्यू")}
           >
             <Link
               href="/"
               className="group flex min-h-[44px] items-center gap-2.5 text-white"
               onClick={() => setOpen(false)}
-              aria-label="H M Ibrahim and Co, home"
+              aria-label={t("H M Ibrahim and Co, home", "H M Ibrahim and Co, होम")}
             >
               <Image
                 src="/logo-wordmark.png"
@@ -125,7 +127,7 @@ export function Navbar() {
                         on ? "text-white" : "text-white/75 hover:text-white"
                       )}
                     >
-                      {link.label}
+                      <T en={link.en} hi={link.hi} />
                       <span
                         className={cn(
                           "absolute inset-x-0 -bottom-0.5 h-[2px] origin-left rounded-full bg-primary transition-transform duration-300",
@@ -139,32 +141,36 @@ export function Navbar() {
             </ul>
 
             <div className="hidden md:flex md:items-center md:gap-2">
+              <LangToggle className="mr-1 [&_button]:min-h-[40px] [&_button]:min-w-[44px]" />
               <a
                 href={`tel:${site.phone.replace(/\s/g, "")}`}
                 onClick={() => trackCallClick("navbar")}
-                aria-label="Call us"
+                aria-label={t("Call us", "कॉल करें")}
                 className="inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold text-white/90 lg:px-4 transition hover:bg-white/10"
               >
-                Call
+                <T en="Call" hi="कॉल करें" />
               </a>
               <Link
                 href="/contact"
                 className="inline-flex h-10 items-center whitespace-nowrap rounded-full bg-primary px-4 text-sm font-bold lg:px-5 text-primary-foreground transition hover:brightness-110"
               >
-                Get a quote
+                <T en="Get a quote" hi="कोटेशन पाएँ" />
               </Link>
             </div>
 
+            <div className="flex items-center gap-1 md:hidden">
+            <LangToggle className="[&_button]:min-h-[40px] [&_button]:min-w-[44px]" />
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-full text-white transition hover:bg-white/10 md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-white transition hover:bg-white/10"
               onClick={() => setOpen(!open)}
               aria-expanded={open}
               aria-controls="mobile-nav-menu"
-              aria-label={open ? "Close menu" : "Open menu"}
+              aria-label={open ? t("Close menu", "मेन्यू बंद करें") : t("Open menu", "मेन्यू खोलें")}
             >
               {open ? <X className="h-6 w-6" aria-hidden /> : <Menu className="h-6 w-6" aria-hidden />}
             </button>
+            </div>
           </nav>
           <span
             ref={barRef}
@@ -180,7 +186,7 @@ export function Navbar() {
               <motion.div
                 id="mobile-nav-menu"
                 role="dialog"
-                aria-label="Mobile navigation"
+                aria-label={t("Mobile navigation", "मोबाइल मेन्यू")}
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
@@ -205,7 +211,7 @@ export function Navbar() {
                           )}
                           onClick={() => setOpen(false)}
                         >
-                          {link.label}
+                          <T en={link.en} hi={link.hi} />
                           <span aria-hidden="true" className="text-white/30">›</span>
                         </Link>
                       </motion.li>
@@ -217,7 +223,7 @@ export function Navbar() {
                       onClick={() => trackCallClick("navbar_mobile")}
                       className="flex h-11 items-center justify-center rounded-full border border-white/15 text-sm font-semibold"
                     >
-                      Call
+                      <T en="Call" hi="कॉल करें" />
                     </a>
                     <a
                       href={getWhatsAppLink(site.whatsapp, "Hi, I'm interested in your products. Please share price/availability.")}
@@ -226,7 +232,7 @@ export function Navbar() {
                       rel="noopener noreferrer"
                       className="flex h-11 items-center justify-center rounded-full border border-white/15 text-sm font-semibold"
                     >
-                      WhatsApp
+                      <T en="WhatsApp" hi="व्हाट्सएप" />
                     </a>
                   </li>
                   <li className="mt-2">
@@ -235,7 +241,7 @@ export function Navbar() {
                       onClick={() => setOpen(false)}
                       className="flex h-11 w-full items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
                     >
-                      Get a quote
+                      <T en="Get a quote" hi="कोटेशन पाएँ" />
                     </Link>
                   </li>
                 </ul>

@@ -5,8 +5,10 @@
 
 import nodemailer from "nodemailer";
 
-const QUOTE_FROM_EMAIL = process.env.QUOTE_FROM_EMAIL || "younusali6030@gmail.com";
-const QUOTE_NOTIFY_EMAIL = process.env.QUOTE_NOTIFY_EMAIL || "hmibrahimco1939@gmail.com";
+/**
+ * Sender and recipient come only from env (QUOTE_FROM_EMAIL, QUOTE_NOTIFY_EMAIL, GMAIL_APP_PASSWORD).
+ * There are deliberately no defaults: if any is unset the email is skipped and logged, never sent anywhere else.
+ */
 
 export type QuoteSubmission = {
   name: string;
@@ -71,18 +73,24 @@ const DELIVERY_LABELS: Record<string, string> = {
   flexible: "Flexible",
 };
 
-export type SendQuoteNotificationResult = { success: true } | { success: false; error: string };
+export type SendQuoteNotificationResult =
+  | { success: true }
+  | { success: false; error: string; /** Email is not configured: nothing was attempted. */ skipped?: boolean };
 
 /**
- * Send an email to younusali6030@gmail.com with the quote details, the price/rate shared with the customer, and a CSV attachment.
+ * Email the shop (QUOTE_NOTIFY_EMAIL) the quote details, the rate shared with the customer, and a CSV attachment.
+ * Fail-soft: when email env is not set this logs once and returns `skipped`, it never throws and never sends.
  */
 export async function sendQuoteNotification(
   data: QuoteSubmission,
   rateSharedWithCustomer?: string
 ): Promise<SendQuoteNotificationResult> {
   const appPassword = process.env.GMAIL_APP_PASSWORD;
-  if (!appPassword) {
-    return { success: false, error: "GMAIL_APP_PASSWORD is not set." };
+  const QUOTE_FROM_EMAIL = process.env.QUOTE_FROM_EMAIL?.trim();
+  const QUOTE_NOTIFY_EMAIL = process.env.QUOTE_NOTIFY_EMAIL?.trim();
+  if (!appPassword || !QUOTE_FROM_EMAIL || !QUOTE_NOTIFY_EMAIL) {
+    console.warn("[quote] email not configured (QUOTE_FROM_EMAIL / QUOTE_NOTIFY_EMAIL / GMAIL_APP_PASSWORD): notification skipped");
+    return { success: false, error: "Email is not configured.", skipped: true };
   }
 
   const csvContent = buildQuoteCsv(data);

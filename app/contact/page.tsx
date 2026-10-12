@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { baseUrl, entityIds, site } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { PageHero } from "@/components/site/PageHero";
+import { VisitUs } from "@/components/visit/VisitUs";
+import { T } from "@/lib/i18n";
 import { QuoteFormWrapper } from "./QuoteFormWrapper";
 
 // Quote submissions email the business and the customer; allow time on serverless hosts.
@@ -40,86 +43,62 @@ export default function ContactPage() {
   const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
   return (
     <>
-      <div className="page-container section-padding" id="quote">
-        <SeoJsonLd data={contactPageSchema} />
-        <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-          H M Ibrahim &amp; Co, Siyaganj, Indore
-        </p>
-        <h1 className="mt-2 text-foreground">Get a quote</h1>
-        <p className="mt-4 max-w-2xl text-sm text-muted-foreground md:text-base">
-          Send your list. We check stock and call you back with rates, usually the same working day. Prefer to talk? Call
-          or WhatsApp us, or walk in.
-        </p>
+      <SeoJsonLd data={contactPageSchema} />
+      <PageHero
+        eyebrow={<T en="H M Ibrahim & Co, Siyaganj, Indore" hi="H M Ibrahim & Co, सियागंज, इंदौर" />}
+        title={<T en="Get a quote" hi="कोटेशन पाएँ" />}
+        lede={
+          <T
+            en="Send your list, or just your name and number. We check stock and call you back with rates during shop hours. Prefer to talk? Call or WhatsApp, or walk in."
+            hi="अपनी लिस्ट भेजिए, या सिर्फ़ नाम और नंबर। हम स्टॉक देखकर दुकान के समय में रेट के साथ कॉल करते हैं। सीधे बात करनी हो तो कॉल या व्हाट्सएप कीजिए, या दुकान पर आइए।"
+          />
+        }
+        compact
+      />
+
+      <div className="page-container section-padding pb-14 md:pb-20" id="quote" data-track="contact_page">
         <QuoteFormWrapper />
       </div>
 
-      <section className="border-t border-border bg-card py-14 md:py-20" aria-labelledby="visit-heading">
-        <div className="page-container grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-14">
+      <section className="border-t border-border bg-card py-14 md:py-20">
+        <div className="page-container grid gap-12 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-14">
+          <VisitUs variant="full" source="contact_visit" embed />
           <div>
-            <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-              Visit the shop
-            </p>
-            <h2 id="visit-heading" className="mt-2 text-foreground">
-              Find us on Siyaganj Main Road
+            <h2 className="text-foreground">
+              <T en="Call, WhatsApp or write" hi="कॉल, व्हाट्सएप या ईमेल" />
             </h2>
-            <dl className="mt-8 space-y-5 text-base">
+            <dl className="mt-6 space-y-5 text-base" data-track="contact_details">
               <div>
-                <dt className="text-sm font-semibold text-foreground">Address</dt>
+                <dt className="text-sm font-semibold text-foreground">
+                  <T en="Phone" hi="फ़ोन" />
+                </dt>
                 <dd className="mt-1 text-muted-foreground">
-                  {site.address.line1}, {site.address.line2}, {site.address.city}, {site.address.state} {site.address.pincode}
-                  <br />
-                  Opposite Tijori Gali. Ask for H M Ibrahim &amp; Co.
-                </dd>
-              </div>
-              <div>
-                <dt className="text-sm font-semibold text-foreground">Hours</dt>
-                <dd className="mt-1 text-muted-foreground">
-                  {site.hours.weekdays}
-                  <br />
-                  {site.hours.sunday}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-sm font-semibold text-foreground">Phone</dt>
-                <dd className="mt-1 text-muted-foreground">
-                  <a href={tel(site.phone)} className="inline-block py-2.5 font-semibold text-foreground underline underline-offset-4">
+                  <a href={tel(site.phone)} className="inline-block min-h-[44px] py-2.5 font-semibold text-foreground underline underline-offset-4">
                     {site.phone}
                   </a>{" "}
                   ({site.phoneLabel})
                   <br />
-                  <a href={tel(site.phoneAlt)} className="inline-block py-2.5 font-semibold text-foreground underline underline-offset-4">
+                  <a href={tel(site.phoneAlt)} className="inline-block min-h-[44px] py-2.5 font-semibold text-foreground underline underline-offset-4">
                     {site.phoneAlt}
                   </a>{" "}
                   ({site.phoneAltLabel})
                 </dd>
               </div>
               <div>
-                <dt className="text-sm font-semibold text-foreground">Email</dt>
+                <dt className="text-sm font-semibold text-foreground">
+                  <T en="Email" hi="ईमेल" />
+                </dt>
                 <dd className="mt-1 break-words text-muted-foreground">
-                  <a href={`mailto:${site.email}`} className="inline-block py-2.5 underline underline-offset-4">{site.email}</a>
+                  <a href={`mailto:${site.email}`} className="inline-block min-h-[44px] py-2.5 underline underline-offset-4">
+                    {site.email}
+                  </a>
                   <br />
-                  <a href={`mailto:${site.emailAlt}`} className="inline-block py-2.5 underline underline-offset-4">{site.emailAlt}</a>
+                  <a href={`mailto:${site.emailAlt}`} className="inline-block min-h-[44px] py-2.5 underline underline-offset-4">
+                    {site.emailAlt}
+                  </a>
                 </dd>
               </div>
             </dl>
-            <a
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-sm border border-input bg-background px-6 font-semibold text-foreground hover:border-foreground/50"
-            >
-              Get directions
-            </a>
-          </div>
-          <div className="aspect-[4/3] w-full overflow-hidden rounded-sm border border-border bg-muted lg:aspect-auto lg:min-h-[28rem]">
-            <iframe
-              title="H M Ibrahim & Co on the map, Siyaganj, Indore"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(site.fullAddress)}&output=embed`}
-              className="h-full w-full"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
           </div>
         </div>
       </section>
