@@ -20,6 +20,13 @@ const SHEET_HEADERS = [
   "delivery",
   "additional notes",
   "reference",
+  // Appended after the original columns so existing rows stay aligned.
+  "delivery location",
+  "needed by",
+  "product",
+  "landing page",
+  "traffic source",
+  "attachment",
 ] as const;
 
 function getNormalizedPrivateKey(raw: string | undefined | null): string | null {
@@ -68,6 +75,12 @@ function submissionToRow(data: QuoteSubmission, submittedAt: Date): Record<strin
     "delivery": data.delivery,
     "additional notes": data.additionalNotes,
     "reference": data.reference ?? "",
+    "delivery location": data.deliveryLocation ?? "",
+    "needed by": data.neededBy ?? "",
+    "product": data.productSlug ?? "",
+    "landing page": data.landingPage ?? "",
+    "traffic source": data.trafficSource ?? "",
+    "attachment": data.attachment ? `${data.attachment.filename} (sent by email)` : "",
   };
 }
 

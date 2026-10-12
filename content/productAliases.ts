@@ -33,14 +33,16 @@ const JALI_FAMILY = [
 
 const SPECIFIC: Record<string, string[]> = {
   // Binding wire: "kala taar" is the market name (productCopy FAQ, reel title).
-  "binding-wire": ["kala taar", "kala tar", "black wire", "annealed wire", "काला तार", "बाइंडिंग तार"],
+  // "biranji" is how buyers write binding wire in their Google reviews (g011, g111, g125).
+  "binding-wire": ["kala taar", "kala tar", "black wire", "annealed wire", "biranji", "बिरंजी", "काला तार", "बाइंडिंग तार"],
   "barbed-wire": ["kata taar", "kanta taar", "कांटेदार तार", "काँटेदार तार", "कांटा तार"],
   "concertina-wire": ["razor wire", "razor coil", "concertina coil", "रेज़र तार", "कंसर्टिना"],
   "gi-wire": ["galvanised wire", "galvanized wire", "gi taar", "जीआई तार", "गैल्वनाइज़्ड तार"],
   "jhatka-machine-fencing-wire": ["jhatka machine wire", "jhatka taar", "झटका तार", "झटका मशीन"],
   "chain-link-fencing": ["chainlink", "chain link wire", "chainlink wire", "chain link jali", "compound wall jali", "fencing jali", "चेन लिंक", "चैन लिंक", "फेंसिंग जाली"],
   "mosquito-net": ["machhar jali", "machhar net", "mosquito mesh", "window jali", "window mesh", "मच्छर जाली", "मच्छरदानी", "मच्छर जाल"],
-  "ss-fine-mesh": ["ss mosquito net", "stainless mesh", "stainless steel jali", "एसएस जाली"],
+  "ms-holepass": ["hole pass", "holepass bracket", "होलपास"],
+  "ss-fine-mesh": ["ss wire mesh", "ss jali", "ss mesh", "ss mosquito net", "stainless mesh", "stainless steel jali", "एसएस जाली"],
   "chicken-net": ["murga jali", "murga net", "chicken mesh", "chicken wire", "poultry jali", "poultry mesh", "मुर्गा जाली", "मुर्गी जाली", "चिकन मेश"],
   "plastic-hexagonal-poultry-mesh": ["pvc hexa mesh", "plastic jali", "garden jali", "poultry fencing", "हेक्सा मेश"],
   "pigeon-nets": ["kabootar jali", "kabutar jali", "kabootar net", "balcony net", "balcony jali", "pigeon jali", "कबूतर जाली", "कबूतर जाल", "बालकनी जाली"],
@@ -62,7 +64,8 @@ const SPECIFIC: Record<string, string[]> = {
   "frp-bars": ["frp rod", "fibre bar", "fiber bar", "एफआरपी"],
   "fiber-mesh": ["fibre mesh", "fibreglass mesh", "plaster mesh", "फाइबर मेश"],
   "concrete-cover-block": ["cover block", "cover blocks", "spacer block", "कवर ब्लॉक"],
-  "fasteners-nails": ["wire nail", "कील", "तार की कील"],
+  // "kheel" and "Bombay kheel" appear in review g147.
+  "fasteners-nails": ["wire nail", "kheel", "bombay kheel", "कील", "तार की कील"],
   "roofing-nail": ["roof nail", "छत की कील"],
   "sr-hoe-faurdha": ["phawda", "phavda", "fawda", "faurdha", "fauda", "hoe", "फावड़ा", "फौड़ा"],
   "sr-hoe-faurdha-with-handle": ["phawda", "phavda", "fawda", "faurdha", "fauda", "hoe with handle", "फावड़ा", "फौड़ा"],

@@ -10,7 +10,8 @@ import { getWhatsAppLink } from "@/lib/utils";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { faqPage } from "@/lib/schema";
+import { faqPage, itemList } from "@/lib/schema";
+import { localePath } from "@/lib/locale";
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
 import { ReviewsList } from "@/components/trust/ReviewsList";
 import { SectionHead } from "@/components/story/SectionHead";
@@ -56,10 +57,16 @@ export default async function IndoreLandingPage({ params }: Props) {
     ? `नमस्ते, मुझे ${topic} में रुचि है। कृपया भाव और उपलब्धता बताइए।`
     : `Hi, I'm interested in ${topic}. Please share price and availability.`;
   const productsL = localize(products, lang);
+  // The products this page points to, as a list: they are visible below, so the markup matches the page.
+  const productList = itemList(
+    hi ? `${page.h1}: संबंधित उत्पाद` : `${page.h1}: related products`,
+    productsL.map((p) => ({ name: p.name, url: localePath(lang, `/products/${p.slug}`) }))
+  );
 
   return (
     <>
       {faqSchema && <SeoJsonLd data={faqSchema} lang={lang} />}
+      {productsL.length > 0 && <SeoJsonLd data={productList} lang={lang} />}
       <JsonLdBreadcrumb
         lang={lang}
         items={[
@@ -142,7 +149,7 @@ export default async function IndoreLandingPage({ params }: Props) {
                     </span>
                     <h3 className="st-title" style={{ fontSize: "1.5rem" }}>{p.name}</h3>
                     <Link href={`/products/${p.slug}`} className="st-link">
-                      {t("Ask for rate", "रेट पूछें")}<span className="sr-only">: {p.name}</span>
+                      {t("Sizes and rate", "साइज़ और रेट")}<span className="sr-only">: {p.name}</span>
                     </Link>
                   </li>
                 );

@@ -15,6 +15,8 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: ['lucide-react'],
+    // The quote form accepts one photo or PDF of up to 3 MB; the default 1 MB would reject it before the action runs.
+    serverActions: { bodySizeLimit: '4mb' },
   },
   async headers() {
     // Long cache for files in the media folders ONLY. Four of these folder names are also page routes

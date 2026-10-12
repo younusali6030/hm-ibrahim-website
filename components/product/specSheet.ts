@@ -1,13 +1,13 @@
 import type { BrandVariant, Product } from "@/content/products";
 
-/** Spec-sheet rows built ONLY from content/products.ts. A core row the data does not fill is null ("Ask at counter"); rows that do not apply to the kind of item are never offered. */
+/** Spec-sheet rows built ONLY from content/products.ts. A core row the data does not fill is null (the page lists it once, as something confirmed with the rate); rows that do not apply to the kind of item are never offered. */
 
 export type SheetRow = { key: string; label: string; hi: string; value: string | null };
 
 /** What kind of item this is decides which fields make sense. */
 export type SheetKind = "wire" | "rope" | "mesh" | "net" | "sheet" | "tool" | "nails" | "section";
 
-type Def = { key: string; label: string; hi: string; match: RegExp; /** Shown as "Ask at counter" when the data has no value. Non-core rows are left out instead. */ core?: boolean };
+type Def = { key: string; label: string; hi: string; match: RegExp; /** Listed under "confirmed when you ask for the rate" when the data has no value. Non-core rows are left out instead. */ core?: boolean; /** Products for which a non-core row is core (sold by the roll, so its length matters). */ coreFor?: string[] };
 
 const SINGLE_WIRE = ["binding-wire", "gi-wire", "jhatka-machine-fencing-wire", "clutch-wire", "barbed-wire", "concertina-wire"];
 const MESH_SLUGS = ["chain-link-fencing", "chicken-net", "plastic-hexagonal-poultry-mesh", "square-mesh", "expanded-metal-mesh"];
@@ -30,6 +30,10 @@ export function sheetKind(p: { slug: string; categorySlug: string }): SheetKind 
 
 const GAUGE = /gauge|swg|wire (size|diameter)|diameter|thickness|wire$/i;
 const PACK = /roll|coil|packing|supplied|form|spool|length|height|width/i;
+/** Meshes: height is across the roll, length is along it, and neither is the pack or the weight. */
+const ROLL_HEIGHT = /height/i;
+const ROLL_LENGTH = /(roll|coil)?\s*length/i;
+const MESH_PACK = /packing|supplied|weight|per roll|coil|spool|form|width/i;
 const FINISH = /finish|coating|galvan/i;
 
 /**
@@ -49,7 +53,15 @@ const DEFS: Record<SheetKind, Def[]> = {
   mesh: [
     { key: "gauge", label: "Gauge / wire size", hi: "गेज / तार साइज़", match: GAUGE, core: true },
     { key: "mesh", label: "Mesh / hole size", hi: "जाली / छेद का साइज़", match: /mesh|hole|opening|pattern|aperture/i, core: true },
-    { key: "pack", label: "Roll length / pack", hi: "रोल लंबाई / पैक", match: PACK, core: true },
+    { key: "height", label: "Roll height", hi: "रोल की ऊँचाई", match: ROLL_HEIGHT },
+    {
+      key: "length",
+      label: "Roll length",
+      hi: "रोल की लंबाई",
+      match: ROLL_LENGTH,
+      coreFor: ["chain-link-fencing", "chicken-net", "plastic-hexagonal-poultry-mesh", "square-mesh", "pvc-coated-weldmesh"],
+    },
+    { key: "pack", label: "Pack / roll", hi: "पैक / रोल", match: MESH_PACK, core: true },
   ],
   net: [
     { key: "mesh", label: "Mesh / hole size", hi: "जाली / छेद का साइज़", match: /mesh|hole|opening|pattern|aperture/i },
@@ -124,7 +136,8 @@ export function buildSheet(
   const rows: SheetRow[] = [];
   for (const d of DEFS[kind]) {
     const value = take(d.match);
-    if (value === null && !d.core) continue;
+    const core = d.core || d.coreFor?.includes(product.slug);
+    if (value === null && !core) continue;
     rows.push({ key: d.key, label: d.label, hi: d.hi, value });
   }
 
@@ -172,6 +185,16 @@ export function buildSheet(
   // Nothing on file: say so once instead of rendering an empty table.
   if (rows.length === 0 && extras.length === 0) rows.push({ key: "details", label: "Size and details", hi: "साइज़ और जानकारी", value: null });
   return { rows, extras, kind };
+}
+
+/**
+ * Rows with no value on file are not shown as rows of placeholder text. They are listed once,
+ * as what the customer should confirm when asking for the rate.
+ */
+export function splitSheetRows(rows: SheetRow[]): { known: SheetRow[]; unknown: SheetRow[] } {
+  const known = rows.filter((r) => r.value !== null || r.key === "availability");
+  const unknown = rows.filter((r) => r.value === null && r.key !== "availability" && r.key !== "details");
+  return { known, unknown };
 }
 
 /** A trailing "Packing: ..." sentence repeats the pack row above; drop it from the free-text note. */

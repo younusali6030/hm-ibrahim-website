@@ -1,0 +1,274 @@
+{
+  "categories/construction-tools": {
+    "hash": "b03749ce87a8",
+    "date": "2026-10-12"
+  },
+  "categories/fencing-material": {
+    "hash": "4362e232d78d",
+    "date": "2026-10-12"
+  },
+  "categories/nails": {
+    "hash": "3d1fc21d42c7",
+    "date": "2026-10-12"
+  },
+  "categories/perforated-sheets": {
+    "hash": "f83118901ace",
+    "date": "2026-10-12"
+  },
+  "categories/safety-nets-equipments": {
+    "hash": "a13c085a6ca2",
+    "date": "2026-10-12"
+  },
+  "categories/structural-items": {
+    "hash": "2d3a2b436426",
+    "date": "2026-10-12"
+  },
+  "categories/welded-mesh": {
+    "hash": "c7461faaf2b5",
+    "date": "2026-10-12"
+  },
+  "categories/wiremesh": {
+    "hash": "83805b437d37",
+    "date": "2026-10-12"
+  },
+  "categories/wires": {
+    "hash": "70ef13cf235b",
+    "date": "2026-10-12"
+  },
+  "indore/barbed-wire": {
+    "hash": "4877a4d386a1",
+    "date": "2026-10-12"
+  },
+  "indore/chain-link-fencing-jaali": {
+    "hash": "59d0867fac46",
+    "date": "2026-10-12"
+  },
+  "indore/construction-hardware": {
+    "hash": "f04ee6c0f9ba",
+    "date": "2026-10-12"
+  },
+  "indore/gi-wire": {
+    "hash": "75e9fe821706",
+    "date": "2026-10-12"
+  },
+  "indore/perforated-sheets": {
+    "hash": "93302372ea0c",
+    "date": "2026-10-12"
+  },
+  "indore/wire-mesh": {
+    "hash": "ce1c35f191b3",
+    "date": "2026-10-12"
+  },
+  "products/aluminium-wiremesh": {
+    "hash": "b9ebcf1e4d57",
+    "date": "2026-10-12"
+  },
+  "products/barbed-wire": {
+    "hash": "da4d72a6c2b8",
+    "date": "2026-10-12"
+  },
+  "products/binding-wire": {
+    "hash": "e76323550dff",
+    "date": "2026-10-12"
+  },
+  "products/bright-bars": {
+    "hash": "4ac6b32d4c1e",
+    "date": "2026-10-12"
+  },
+  "products/chain-link-fencing": {
+    "hash": "c6d1cfdd1a0c",
+    "date": "2026-10-12"
+  },
+  "products/chicken-net": {
+    "hash": "f18e27d8261a",
+    "date": "2026-10-12"
+  },
+  "products/clutch-wire": {
+    "hash": "d7fb58ba8e41",
+    "date": "2026-10-12"
+  },
+  "products/concertina-wire": {
+    "hash": "ec738187da00",
+    "date": "2026-10-12"
+  },
+  "products/concrete-cover-block": {
+    "hash": "fcd9f2c37e8c",
+    "date": "2026-10-12"
+  },
+  "products/crimp-wiremesh": {
+    "hash": "e4082d33c71f",
+    "date": "2026-10-12"
+  },
+  "products/cutting-discs-grinding-wheels": {
+    "hash": "957bcef4d2af",
+    "date": "2026-10-12"
+  },
+  "products/expanded-metal-mesh": {
+    "hash": "44557e45a933",
+    "date": "2026-10-12"
+  },
+  "products/fasteners-nails": {
+    "hash": "5a1242f936ba",
+    "date": "2026-10-12"
+  },
+  "products/fiber-mesh": {
+    "hash": "53ad592bb820",
+    "date": "2026-10-12"
+  },
+  "products/frp-bars": {
+    "hash": "c1ae3d297b1f",
+    "date": "2026-10-12"
+  },
+  "products/gi-perforated-sheet": {
+    "hash": "29d08293c9d8",
+    "date": "2026-10-12"
+  },
+  "products/gi-pipes": {
+    "hash": "8f46788e8e88",
+    "date": "2026-10-12"
+  },
+  "products/gi-weldmesh": {
+    "hash": "b016f119e947",
+    "date": "2026-10-12"
+  },
+  "products/gi-wire": {
+    "hash": "4c20ef2fa2e1",
+    "date": "2026-10-12"
+  },
+  "products/gi-wire-rope": {
+    "hash": "4b1689949c16",
+    "date": "2026-10-12"
+  },
+  "products/gi-wiremesh": {
+    "hash": "0fecd4b419db",
+    "date": "2026-10-12"
+  },
+  "products/jhatka-machine-fencing-wire": {
+    "hash": "15bdda47c7bf",
+    "date": "2026-10-12"
+  },
+  "products/mosquito-net": {
+    "hash": "786b31616141",
+    "date": "2026-10-12"
+  },
+  "products/ms-angles": {
+    "hash": "bd2c7d49fd48",
+    "date": "2026-10-12"
+  },
+  "products/ms-channels": {
+    "hash": "a3a2c0904cf4",
+    "date": "2026-10-12"
+  },
+  "products/ms-flats": {
+    "hash": "4522e9a7101b",
+    "date": "2026-10-12"
+  },
+  "products/ms-holepass": {
+    "hash": "aa0747b80790",
+    "date": "2026-10-12"
+  },
+  "products/ms-i-beams-joists": {
+    "hash": "14f6b6407657",
+    "date": "2026-10-12"
+  },
+  "products/ms-perforated-sheet": {
+    "hash": "2e7b7e5378b1",
+    "date": "2026-10-12"
+  },
+  "products/ms-pipes": {
+    "hash": "3e9dbbc220a5",
+    "date": "2026-10-12"
+  },
+  "products/ms-round-bars": {
+    "hash": "3a6730808e0e",
+    "date": "2026-10-12"
+  },
+  "products/ms-weldmesh": {
+    "hash": "fd0e1a3fe4d4",
+    "date": "2026-10-12"
+  },
+  "products/ms-wire-rope": {
+    "hash": "cd9961fa2608",
+    "date": "2026-10-12"
+  },
+  "products/ms-wiremesh": {
+    "hash": "c2f37d7ee06c",
+    "date": "2026-10-12"
+  },
+  "products/pigeon-nets": {
+    "hash": "85b6c54c971d",
+    "date": "2026-10-12"
+  },
+  "products/pigeon-spikes": {
+    "hash": "9469fda5aecc",
+    "date": "2026-10-12"
+  },
+  "products/plastic-hexagonal-poultry-mesh": {
+    "hash": "81d93e2276e8",
+    "date": "2026-10-12"
+  },
+  "products/pvc-coated-weldmesh": {
+    "hash": "251ba939ae81",
+    "date": "2026-10-12"
+  },
+  "products/roofing-nail": {
+    "hash": "1b40669e8574",
+    "date": "2026-10-12"
+  },
+  "products/safety-net": {
+    "hash": "8d5801088ef2",
+    "date": "2026-10-12"
+  },
+  "products/santing-shikanja": {
+    "hash": "59fbe09376e6",
+    "date": "2026-10-12"
+  },
+  "products/sponge": {
+    "hash": "a3e51ba37e26",
+    "date": "2026-10-12"
+  },
+  "products/square-mesh": {
+    "hash": "010dfc06baf9",
+    "date": "2026-10-12"
+  },
+  "products/sr-crowbar": {
+    "hash": "c1eb79fd06e1",
+    "date": "2026-10-12"
+  },
+  "products/sr-hoe-faurdha": {
+    "hash": "cee96ae72b3a",
+    "date": "2026-10-12"
+  },
+  "products/sr-hoe-faurdha-with-handle": {
+    "hash": "cb8e25231dc1",
+    "date": "2026-10-12"
+  },
+  "products/sr-pickaxe-geti": {
+    "hash": "fbfcead43cd5",
+    "date": "2026-10-12"
+  },
+  "products/sr-sledge-hammer": {
+    "hash": "ea8803b75c91",
+    "date": "2026-10-12"
+  },
+  "products/ss-fine-mesh": {
+    "hash": "09778c18129c",
+    "date": "2026-10-12"
+  },
+  "products/ss-wire-rope": {
+    "hash": "71d33fd846ce",
+    "date": "2026-10-12"
+  },
+  "products/tmt-bars": {
+    "hash": "8eeefcd941b1",
+    "date": "2026-10-12"
+  },
+  "products/welding-rods": {
+    "hash": "084d9e82e459",
+    "date": "2026-10-12"
+  },
+  "products/wire-rope-clamp": {
+    "hash": "45fdd16c3371",
+    "date": "2026-10-12"
+  }
+}

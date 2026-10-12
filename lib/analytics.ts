@@ -51,14 +51,45 @@ export function trackProductView(productSlug: string, productName: string, categ
   });
 }
 
-/** When user submits a quote request that includes a list of items */
-export function trackQuoteRequest(source = "quote_form") {
-  trackEvent("quote_request", { method: "website", source });
+/** What a successful enquiry carries into GA4, so it can be split by landing page, channel and product. */
+export type LeadContext = {
+  landing?: string;
+  channel?: string;
+  product?: string;
+  category?: string;
+  delivery?: string;
+  hasAttachment?: boolean;
+};
+
+function leadParams(source: string, c: LeadContext = {}): Record<string, string | number | boolean> {
+  return {
+    method: "website",
+    source,
+    ...(c.landing && { landing_page: c.landing }),
+    ...(c.channel && { traffic_channel: c.channel }),
+    ...(c.product && { item_id: c.product }),
+    ...(c.category && { item_category: c.category }),
+    ...(c.delivery && { delivery_mode: c.delivery }),
+    ...(typeof c.hasAttachment === "boolean" && { has_attachment: c.hasAttachment }),
+  };
 }
 
-/** When user submits the form with just a name and number (a call-back request, no list) */
-export function trackContactSubmit(source = "quote_form") {
-  trackEvent("contact_submit", { method: "website", source });
+/**
+ * When a quote request that includes a list of items was actually saved. Fired only after the server confirms,
+ * never on a button click: clicks are "click_quote_cta".
+ */
+export function trackQuoteRequest(source = "quote_form", context?: LeadContext) {
+  trackEvent("quote_request", leadParams(source, context));
+}
+
+/** When a form with just a name and number (a call-back request, no list) was saved. */
+export function trackContactSubmit(source = "quote_form", context?: LeadContext) {
+  trackEvent("contact_submit", leadParams(source, context));
+}
+
+/** When user clicks any link that opens the quote form. This is intent, not an enquiry. */
+export function trackQuoteCtaClick(source: string) {
+  trackEvent("click_quote_cta", { source });
 }
 
 /** When user clicks Call */

@@ -89,7 +89,7 @@ const ownCategories: Category[] = [
     products: [
       {
         slug: "ms-angles",
-        name: "Angle",
+        name: "MS Angles",
         shortDesc: "Mild steel angles in various sizes for fabrication and structural use.",
         categorySlug: "structural-items",
         alsoIn: ["fencing-material"],
@@ -113,7 +113,7 @@ const ownCategories: Category[] = [
       },
       {
         slug: "ms-flats",
-        name: "Flats",
+        name: "MS Flat Bars",
         shortDesc: "Mild steel flat bars for welding and fabrication.",
         categorySlug: "structural-items",
         images: ["/products/v2/ms-flats-1.webp", "/products/v2/ms-flats-2.webp", "/products/ms-flat.png"],
@@ -200,7 +200,7 @@ const ownCategories: Category[] = [
       },
       {
         slug: "ms-channels",
-        name: "Channels",
+        name: "MS Channels",
         shortDesc: "Mild steel channel sections for structural and fabrication use.",
         categorySlug: "structural-items",
         images: ["/products/v2/ms-channels-1.webp", "/products/v2/ms-channels-plate.webp"],
@@ -244,7 +244,7 @@ const ownCategories: Category[] = [
       },
       {
         slug: "gi-pipes",
-        name: "Pipes (GI)",
+        name: "GI Pipes",
         shortDesc: "Galvanised iron pipes for water and general use.",
         categorySlug: "structural-items",
         specs: [
@@ -264,7 +264,7 @@ const ownCategories: Category[] = [
       },
       {
         slug: "ms-pipes",
-        name: "Pipes (MS)",
+        name: "MS Pipes",
         shortDesc: "Mild steel pipes for structural and industrial applications.",
         categorySlug: "structural-items",
         images: ["/products/v2/ms-pipes-1.webp", "/products/gi-pipes.png"],
@@ -357,7 +357,7 @@ const ownCategories: Category[] = [
         specs: [
           { label: "Chain link mesh opening", value: "1\" to 4\"" },
           { label: "Wire size", value: "1.5 mm to 4 mm" },
-          { label: "Height", value: "3 ft to 10 ft rolls" },
+          { label: "Roll height", value: "3 ft to 10 ft" },
           { label: "Finish", value: "GI / PVC coated" },
         ],
         images: [
@@ -382,7 +382,7 @@ const ownCategories: Category[] = [
             specs: [
               { label: "Chain link mesh opening", value: "1\" to 4\" (common)" },
               { label: "Wire size", value: "1.5 mm to 4 mm" },
-              { label: "Heights", value: "3 ft to 10 ft rolls" },
+              { label: "Roll height", value: "3 ft to 10 ft" },
               { label: "Finish", value: "GI / PVC coated (available depending on stock)" },
             ],
             sizes: ["Mesh: 1\"", "2\"", "3\"", "4\"", "Height: 3 ft", "4 ft", "5 ft", "6 ft", "8 ft", "10 ft"],
@@ -401,7 +401,7 @@ const ownCategories: Category[] = [
             specs: [
               { label: "Chain link mesh opening", value: "1\" to 4\" (common)" },
               { label: "Wire size", value: "1.5 mm to 4 mm" },
-              { label: "Heights", value: "3 ft to 10 ft rolls" },
+              { label: "Roll height", value: "3 ft to 10 ft" },
               { label: "Finish", value: "GI / PVC coated (available depending on stock)" },
             ],
             sizes: ["Mesh: 1\"", "2\"", "3\"", "4\"", "Height: 3 ft", "4 ft", "5 ft", "6 ft", "8 ft", "10 ft"],
@@ -639,7 +639,7 @@ const ownCategories: Category[] = [
       },
       {
         slug: "plastic-hexagonal-poultry-mesh",
-        name: "Hexa Mesh",
+        name: "Plastic Hexa Mesh",
         shortDesc: "Plastic hexagonal mesh for poultry, garden fencing, and light barriers.",
         categorySlug: "wiremesh",
         alsoIn: ["fencing-material"],
@@ -654,7 +654,7 @@ const ownCategories: Category[] = [
       },
       {
         slug: "square-mesh",
-        name: "Square Mesh",
+        name: "Plastic Square Mesh",
         shortDesc: "Plastic square mesh available in different hole sizes and colours.",
         categorySlug: "wiremesh",
         alsoIn: ["fencing-material"],
@@ -1061,7 +1061,7 @@ const ownCategories: Category[] = [
       },
       {
         slug: "concrete-cover-block",
-        name: "Coverblock",
+        name: "Concrete Cover Blocks",
         shortDesc: "Concrete cover blocks (spacers) for RCC rebar cover.",
         categorySlug: "construction-tools",
         alsoIn: ["structural-items"],
@@ -1094,7 +1094,7 @@ const ownCategories: Category[] = [
       },
       {
         slug: "sponge",
-        name: "Sponge",
+        name: "Construction Sponge",
         shortDesc: "Sponge for cleaning, finishing, and site work.",
         categorySlug: "construction-tools",
         specs: [

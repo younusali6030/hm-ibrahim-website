@@ -159,6 +159,15 @@ export function getReviewsForProduct(productSlug: string, limit = 3): TaggedRevi
   return picked;
 }
 
+/**
+ * Same picks as getReviewsForProduct, plus how many of them name this exact product. The page uses it to
+ * label the block honestly: a product heading only when every review shown really names the product.
+ */
+export function getProductReviewSet(productSlug: string, limit = 3): { items: TaggedReview[]; directCount: number } {
+  const items = getReviewsForProduct(productSlug, limit);
+  return { items, directCount: items.filter((r) => r.tags.includes(productSlug)).length };
+}
+
 /** Reviews for a category page. */
 export function getReviewsForCategory(categorySlug: string, limit = 3): TaggedReview[] {
   const list = taggedReviews

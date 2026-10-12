@@ -12,7 +12,7 @@ import { ProductImageGallery } from "@/components/ProductImageGallery";
 import { ProductBrandPicker } from "@/components/product/ProductBrandPicker";
 import { LookingForMoreSection } from "@/components/LookingForMoreSection";
 import { StencilTag, CounterStamp, GaugeRule } from "@/components/motif/Motif";
-import { buildSheet, isCutToSize, trimRepeatedPacking } from "@/components/product/specSheet";
+import { buildSheet, isCutToSize, splitSheetRows, trimRepeatedPacking } from "@/components/product/specSheet";
 import type { BrandId } from "@/content/brands";
 import { trackProductView, trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
 import { T, useT, useLang } from "@/lib/i18n";
@@ -25,13 +25,16 @@ type Props = {
   tx?: Record<string, string>;
   /** Server-rendered reviews, shown under the photos. */
   reviews?: ReactNode;
+  /** Server-rendered pointer to the local-supply page that owns "<product> Indore", shown under the summary. */
+  localNote?: ReactNode;
+  /** Server-rendered trade reference, shown straight after the spec sheet. */
+  afterSpecs?: ReactNode;
 };
 
-const ASK = "Ask at counter";
 const btn =
   "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm px-5 font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
-export function ProductDetailClient({ product, category, tx = {}, reviews }: Props) {
+export function ProductDetailClient({ product, category, tx = {}, reviews, localNote, afterSpecs }: Props) {
   const t = useT();
   const { lang } = useLang();
   const hi = lang === "hi";
@@ -78,6 +81,8 @@ export function ProductDetailClient({ product, category, tx = {}, reviews }: Pro
     [variant, product, category?.slug, displayUseCases, displayNotes, tataLine]
   );
 
+  const { known: knownRows, unknown: unknownRows } = splitSheetRows(sheet.rows);
+  const nothingOnFile = knownRows.length === 0 && sheet.extras.length === 0;
   const packShown = sheet.rows.some((r) => r.key === "pack" && r.value);
   // Built from translated parts: the joined English sentence is not a dictionary key.
   const baseAlt = product.imageAlt ? L(product.imageAlt) : `${L(product.name)} – ${L(product.shortDesc)}`;
@@ -113,6 +118,7 @@ export function ProductDetailClient({ product, category, tx = {}, reviews }: Pro
             hi="इंदौर में थोक और रिटेल: सियागंज, लोहा मंडी और आसपास।"
           />
         </p>
+        {localNote}
       </header>
 
       <div className="mt-8 grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-12">
@@ -186,26 +192,45 @@ export function ProductDetailClient({ product, category, tx = {}, reviews }: Pro
             <T en="Specifications" hi="स्पेसिफ़िकेशन" />
             {brandName && <span className="ml-2 text-primary">{brandName}</span>}
           </h2>
-          <dl className="mt-3 border-t border-border">
-            {sheet.rows.map((r) => (
-              <div key={r.key} className="grid grid-cols-[8.5rem_minmax(0,1fr)] gap-x-4 border-b border-border py-3 sm:grid-cols-[11rem_minmax(0,1fr)]">
-                <dt className="font-mono-brand text-xs uppercase tracking-[0.1em] text-muted-foreground">{hi ? (r.hi !== r.label ? r.hi : L(r.label)) : r.label}</dt>
-                <dd className={r.value ? "text-foreground" : "text-muted-foreground"}>
-                  {r.key === "availability"
-                    ? t("Depends on stock. Confirm at the counter.", "स्टॉक पर निर्भर। काउंटर पर पुष्टि कर लीजिए।")
-                    : r.value
-                      ? Lj(r.value)
-                      : t(ASK, "काउंटर पर पूछें")}
-                </dd>
-              </div>
-            ))}
-            {sheet.extras.map((r) => (
-              <div key={r.key} className="grid grid-cols-[8.5rem_minmax(0,1fr)] gap-x-4 border-b border-border py-3 sm:grid-cols-[11rem_minmax(0,1fr)]">
-                <dt className="font-mono-brand text-xs uppercase tracking-[0.1em] text-muted-foreground">{hi ? (r.hi !== r.label ? r.hi : L(r.label)) : r.label}</dt>
-                <dd className="text-foreground">{r.value ? Lj(r.value) : r.value}</dd>
-              </div>
-            ))}
-          </dl>
+          {knownRows.length + sheet.extras.length > 0 && (
+            <dl className="mt-3 border-t border-border">
+              {knownRows.map((r) => (
+                <div key={r.key} className="grid grid-cols-[8.5rem_minmax(0,1fr)] gap-x-4 border-b border-border py-3 sm:grid-cols-[11rem_minmax(0,1fr)]">
+                  <dt className="font-mono-brand text-xs uppercase tracking-[0.1em] text-muted-foreground">{hi ? (r.hi !== r.label ? r.hi : L(r.label)) : r.label}</dt>
+                  <dd className="text-foreground">
+                    {r.key === "availability"
+                      ? t("Depends on stock. Confirm at the counter.", "स्टॉक पर निर्भर। काउंटर पर पुष्टि कर लीजिए।")
+                      : r.value
+                        ? Lj(r.value)
+                        : null}
+                  </dd>
+                </div>
+              ))}
+              {sheet.extras.map((r) => (
+                <div key={r.key} className="grid grid-cols-[8.5rem_minmax(0,1fr)] gap-x-4 border-b border-border py-3 sm:grid-cols-[11rem_minmax(0,1fr)]">
+                  <dt className="font-mono-brand text-xs uppercase tracking-[0.1em] text-muted-foreground">{hi ? (r.hi !== r.label ? r.hi : L(r.label)) : r.label}</dt>
+                  <dd className="text-foreground">{r.value ? Lj(r.value) : r.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          {(unknownRows.length > 0 || nothingOnFile) && (
+            <p className="mt-3 border-l-2 border-border pl-4 text-sm leading-relaxed text-muted-foreground" data-spec-gap>
+              {nothingOnFile && unknownRows.length === 0 ? (
+                <T
+                  en="Size and pack details for this item are confirmed when you ask for the rate. Tell us the size and quantity you need."
+                  hi="इस आइटम का साइज़ और पैक रेट पूछते समय पक्का किया जाता है। अपनी ज़रूरत का साइज़ और मात्रा बताइए।"
+                />
+              ) : (
+                <>
+                  <T en="Confirmed when you ask for the rate: " hi="रेट पूछते समय पक्का किया जाता है: " />
+                  {unknownRows.map((r) => (hi ? (r.hi !== r.label ? r.hi : L(r.label)) : r.label)).join(hi ? ", " : ", ")}.
+                </>
+              )}
+            </p>
+          )}
+
+          {afterSpecs}
 
           {displayUseCases && displayUseCases.length > 0 && (
             <>
