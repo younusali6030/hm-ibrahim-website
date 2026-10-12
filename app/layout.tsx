@@ -5,6 +5,9 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 import { baseUrl, site } from "@/lib/site";
+import { ogImage } from "@/lib/seo";
+
+const ogDefault = ogImage("default");
 import { JsonLd } from "@/components/JsonLd";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { LangProvider } from "@/lib/i18n";
@@ -34,9 +37,9 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: `${baseUrl}/logo-dark.png`,
-        width: 1200,
-        height: 630,
+        url: ogDefault.url,
+        width: ogDefault.width ?? 1200,
+        height: ogDefault.height ?? 630,
         alt: `${site.name} - Iron & Hardware Trading in Indore`,
       },
     ],
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
-    images: [`${baseUrl}/logo-dark.png`],
+    images: [ogDefault.url],
   },
   robots: {
     index: true,
@@ -72,6 +75,7 @@ const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-heading",
   display: "swap",
+  preload: false,
   weight: ["400", "500", "600", "700"],
 });
 
@@ -93,6 +97,7 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--font-mono-brand",
   display: "swap",
+  preload: false,
   weight: ["500"],
 });
 

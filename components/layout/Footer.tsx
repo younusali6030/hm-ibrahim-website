@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { LazyLiquidMark } from "@/components/fx/Lazy";
 import { Phone, Mail, MessageCircle } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
@@ -36,7 +36,7 @@ export function Footer() {
           {/* Business identity */}
           <div className="min-w-0 sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block" aria-label="HM Ibrahim & Co, home">
-              <Image src="/logo-wordmark.png" alt="HM Ibrahim & Co, since 1939" width={900} height={258} className="h-14 w-auto" />
+              <LazyLiquidMark width={240} />
             </Link>
             <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-white/80">
               Iron and hardware trading in Siyaganj, Indore. Retail and wholesale since 1939.

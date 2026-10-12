@@ -107,9 +107,8 @@ export function Navbar() {
               <Image
                 src="/logo-wordmark.png"
                 alt="H M Ibrahim & Co, since 1939"
-                width={900}
-                height={258}
-                priority
+                width={336}
+                height={96}
                 sizes="(min-width:768px) 168px, 154px"
                 className="h-11 w-auto md:h-12"
               />
