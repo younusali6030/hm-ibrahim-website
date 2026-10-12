@@ -93,11 +93,12 @@ function Chapter({ c, i }: { c: ChapterData; i: number }) {
     const warm = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
+          v.poster = `/stock/${c.id}.jpg`;
           v.preload = "auto";
           warm.disconnect();
         }
       },
-      { rootMargin: "700px 0px" }
+      { rootMargin: "250px 0px" }
     );
     io.observe(el);
     warm.observe(el);
@@ -105,7 +106,7 @@ function Chapter({ c, i }: { c: ChapterData; i: number }) {
       io.disconnect();
       warm.disconnect();
     };
-  }, []);
+  }, [c.id]);
 
   const flip = i % 2 === 1;
   return (
@@ -119,7 +120,6 @@ function Chapter({ c, i }: { c: ChapterData; i: number }) {
           <video
             ref={video}
             className="h-full w-full object-cover"
-            poster={`/stock/${c.id}.jpg`}
             muted
             loop
             playsInline

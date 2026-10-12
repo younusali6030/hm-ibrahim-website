@@ -8,6 +8,11 @@ import "./home-hero.css";
 
 const WIDE = "(min-width: 821px)";
 const SRC = { wide: "/hero/hero-wide.mp4?v=5", narrow: "/hero/hero-scrub.mp4?v=5" } as const;
+/**
+ * The poster owns the first paint. Chrome counts a video's first frame as an LCP candidate, so the film
+ * waits for the first touch, scroll or key (which also freezes LCP), or ten quiet seconds after load.
+ */
+const FILM_IDLE_MS = 10000;
 
 /** One film, one statement, two ways in. Everything else on the page earns its own section below. */
 export function HomeHero() {
@@ -21,7 +26,8 @@ export function HomeHero() {
     const body = bodyRef.current!;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    const lite = reduced || !!conn?.saveData;
+    const slow = !!conn && /(^|-)(2g|3g)$/.test((conn as { effectiveType?: string }).effectiveType ?? "");
+    const lite = reduced || !!conn?.saveData || slow;
     let raf = 0;
     let loaded = "";
 
@@ -68,7 +74,25 @@ export function HomeHero() {
     window.addEventListener("scroll", onScroll, { passive: true });
     const mq = matchMedia(WIDE);
     mq.addEventListener("change", load);
-    load();
+
+    // Poster first. The film starts on the first touch, scroll or key, or after a long idle.
+    let started = false;
+    let timer = 0;
+    const start = () => {
+      if (started) return;
+      started = true;
+      window.clearTimeout(timer);
+      window.removeEventListener("load", onLoad);
+      ["pointerdown", "keydown", "wheel", "touchstart", "scroll"].forEach((t) => window.removeEventListener(t, start));
+      load();
+    };
+    const onLoad = () => {
+      timer = window.setTimeout(start, FILM_IDLE_MS);
+    };
+    if (document.readyState === "complete") onLoad();
+    else window.addEventListener("load", onLoad);
+    ["pointerdown", "keydown", "wheel", "touchstart"].forEach((t) => window.addEventListener(t, start, { once: true, passive: true }));
+    window.addEventListener("scroll", start, { once: true, passive: true });
 
     return () => {
       io.disconnect();
@@ -76,6 +100,9 @@ export function HomeHero() {
       root.removeEventListener("pointermove", onMove);
       window.removeEventListener("scroll", onScroll);
       mq.removeEventListener("change", load);
+      window.clearTimeout(timer);
+      window.removeEventListener("load", onLoad);
+      ["pointerdown", "keydown", "wheel", "touchstart", "scroll"].forEach((t) => window.removeEventListener(t, start));
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
@@ -85,8 +112,13 @@ export function HomeHero() {
   return (
     <section ref={rootRef} className="hh" aria-label="H M Ibrahim & Co, Siyaganj, Indore, since 1939">
       <div className="hh-media" aria-hidden="true">
-        <div className="hh-poster" />
-        <video ref={videoRef} className="hh-video" muted loop playsInline preload="auto" tabIndex={-1} />
+        <video ref={videoRef} className="hh-video" muted loop playsInline preload="none" tabIndex={-1} />
+        {/* Real <img>, fetchpriority high: the browser finds it in the HTML and paints it first. Same box as the film, so the film never becomes the LCP element. */}
+        <picture className="hh-poster">
+          <source media="(min-width: 821px)" srcSet="/hero/poster-wide.jpg?v=5" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/poster.jpg?v=5" alt="" fetchPriority="high" decoding="async" width={720} height={1280} />
+        </picture>
       </div>
       <div className="hh-shade" aria-hidden="true" />
 

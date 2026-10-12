@@ -15,24 +15,23 @@
   z-index: -2;
 }
 .hh-poster,
+.hh-poster img,
 .hh-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background-size: cover;
-  background-position: 50% 40%;
+  object-position: 50% 40%;
 }
+/* Film sits underneath at full opacity; the poster fades off it once it is playing. */
 .hh-poster {
-  background-image: url("/hero/poster.jpg?v=5");
-}
-.hh-video {
-  opacity: 0;
+  z-index: 1;
   transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.hh.hh-live .hh-video {
-  opacity: 1;
+.hh.hh-live .hh-poster {
+  opacity: 0;
+  pointer-events: none;
 }
 /* Light on top, weight at the bottom where the words sit. */
 .hh-shade {
@@ -109,9 +108,13 @@
 }
 
 @media (min-width: 821px) {
+  .hh-poster img {
+    object-position: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
   .hh-poster {
-    background-image: url("/hero/poster-wide.jpg?v=5");
-    background-position: center;
+    transition: none;
   }
 }
 
