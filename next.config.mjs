@@ -3,6 +3,8 @@ const nextConfig = {
   // Lets a verification build run beside a dev server without sharing .next.
   distDir: process.env.NEXT_DIST_DIR || ".next",
   images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
       {
         protocol: 'https',
