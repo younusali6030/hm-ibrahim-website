@@ -49,6 +49,7 @@ export default function IndoreIndexPage() {
         lede={`${site.name} sits on Siyaganj Main Road, one of Indore's oldest iron and hardware markets. Walk in, call, or send a list. We supply retail and wholesale, and deliver across Indore and nearby towns.`}
         image={{ src: "/about/storefront-hero.jpg", alt: "The H M Ibrahim & Co shopfront on Siyaganj Main Road, Indore" }}
         compact
+        sheen
       >
         <Link href="/contact" className={btnMain}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
         <a href="#range" className={btnGhostDark}><T en="What we supply" hi="क्या मिलता है" /></a>
