@@ -53,7 +53,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     // Owns: "jali Indore", "jaali Indore", "chain link fencing Indore", "jali for compound wall".
     title: "Jali and Chain Link Fencing in Indore",
     description:
-      "Chain link jali in Indore: GI and PVC-coated rolls, 1 to 4 inch mesh, 3 to 10 ft high. CM, Border and Tata Wiron brands at our Siyaganj shop. Ask for the rate.",
+      "Chain link jali in Indore: GI and PVC-coated rolls, 1 to 4 inch mesh, 3 to 10 ft high. CM, Border and Tata Wiron at our Siyaganj shop. Ask for the rate.",
     h1: "Jali and Chain Link Fencing in Indore",
     intro:
       "Chain link jali (jaali) is what most compound walls, school grounds and factory boundaries in Indore are fenced with. We sell it in rolls from our shop in Siyaganj, under our own CM and Border brands and as Tata Wiron.",
@@ -74,7 +74,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     // Owns: "barbed wire Indore", "kata taar Indore", "concertina wire Indore" (product page /products/concertina-wire is the detail target).
     title: "Barbed and Concertina Wire in Indore",
     description:
-      "Barbed wire (kata taar) and concertina wire in Indore: single and double strand, 12x14 and 14x14 gauge, coils up to 25 kg. CM, Border, Tata Wiron. Ask for the rate.",
+      "Barbed wire (kata taar) and concertina wire in Indore: single and double strand, 12x14 and 14x14 gauge, coils to 25 kg. CM, Border, Tata Wiron.",
     h1: "Barbed and Concertina Wire in Indore",
     intro:
       "Barbed wire, or kata taar as it is asked for at the counter, is a regular line at our shop in Siyaganj, Indore. Single and double strand, 2-point and 4-point, in coils for farms, plots and boundaries.",
@@ -96,7 +96,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     // Owns: "perforated sheet Indore". Category page /categories/perforated-sheets is the range page.
     title: "Perforated Sheets in Indore: MS and GI",
     description:
-      "Perforated sheets in Indore: MS and GI, 0.5 to 3 mm thick, round, square, slot and hexagonal holes. Cut sizes on request from our Siyaganj shop. Ask for the rate.",
+      "Perforated sheets in Indore: MS and GI, 0.5 to 3 mm thick, round, square, slot and hexagonal holes. Cut to size at our Siyaganj shop. Ask for the rate.",
     h1: "Perforated Sheets in Indore",
     intro:
       "We sell perforated sheet from our shop in Siyaganj, Indore, in mild steel and galvanised iron. You pick the thickness, the hole shape and the open area. We cut it to the size you need.",
@@ -135,7 +135,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     slug: "construction-hardware",
     title: "Construction Hardware in Indore",
     description:
-      "Construction hardware in Indore: crowbar, pickaxe (geti), hoe (faurdha), sledge hammer, shikanja, welding rods, nails and cutting discs. Siyaganj shop, ask for the rate.",
+      "Construction hardware in Indore: crowbar, pickaxe (geti), hoe (faurdha), sledge hammer, shikanja, welding rods, nails, cutting discs. Siyaganj shop.",
     h1: "Construction Hardware in Indore",
     intro:
       "Site tools and consumables from our shop in Siyaganj, Indore: crowbar, pickaxe (geti), hoe (faurdha), sledge hammer, shikanja for shuttering, cover blocks, welding rods, cutting discs and nails.",
