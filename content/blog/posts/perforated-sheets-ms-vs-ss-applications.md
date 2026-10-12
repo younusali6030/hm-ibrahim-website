@@ -1,6 +1,6 @@
 ---
 title: "Perforated Sheets: MS vs GI, Hole Patterns, Applications"
-description: "Guide to perforated sheets in Indore. MS and GI perforated sheets, hole patterns, uses. Buy from Siyaganj."
+description: "MS or GI perforated sheet? Material choice, hole patterns, thickness and typical uses, from a perforated sheet stockist in Siyaganj, Indore."
 date: "2025-02-05"
 updated: "2026-10-11"
 category: "Sheets"
@@ -17,8 +17,8 @@ Perforated sheets are metal sheets with a regular pattern of holes. In Indore, S
 
 ## Materials: MS vs GI Perforated Sheets
 
-- **MS (mild steel) perforated sheets** — Economical; suitable for indoor use or where they will be painted or galvanized later. Used for screens, machine guards, and ventilation in Indore and nearby areas.
-- **GI (galvanized iron) perforated sheets** — Zinc-coated; better for outdoor and humid conditions. Common for external screens, ducts, and industrial applications in Siyaganj and Loha Mandi.
+- **MS (mild steel) perforated sheets:** Economical; suitable for indoor use or where they will be painted or galvanised later. Used for screens, machine guards, and ventilation in Indore and nearby areas.
+- **GI (galvanised iron) perforated sheets:** Zinc-coated; better for outdoor and humid conditions. Common for external screens, ducts, and industrial applications in Siyaganj and Loha Mandi.
 
 [GI Perforated Sheet](/products/gi-perforated-sheet) and [MS Perforated Sheet](/products/ms-perforated-sheet) are available in various thicknesses and patterns.
 
@@ -26,10 +26,10 @@ Perforated sheets are metal sheets with a regular pattern of holes. In Indore, S
 
 Common patterns include:
 
-- **Round holes** — Most common; various diameters and pitch.
-- **Square holes** — For screening and certain architectural looks.
-- **Slot holes** — Elongated; good for airflow and directional screening.
-- **Hexagonal** — Less common; used for specific designs.
+- **Round holes:** Most common; various diameters and pitch.
+- **Square holes:** For screening and certain architectural looks.
+- **Slot holes:** Elongated; good for airflow and directional screening.
+- **Hexagonal:** Less common; used for specific designs.
 
 Thickness typically ranges from 0.5 mm to 3 mm. Choice depends on load, visibility, and airflow needs.
 
@@ -37,10 +37,10 @@ Thickness typically ranges from 0.5 mm to 3 mm. Choice depends on load, visibili
 
 In Indore, Dewas, Pithampur, and Ujjain, perforated sheets are used for:
 
-- **Ventilation** — Ducts, grilles, and machine enclosures.
-- **Screening** — Partitions, facades, and security screens.
-- **Filtration** — Sieves and industrial filters.
-- **Architectural** — Sun screens and decorative panels.
+- **Ventilation:** Ducts, grilles, and machine enclosures.
+- **Screening:** Partitions, facades, and security screens.
+- **Filtration:** Sieves and industrial filters.
+- **Architectural:** Sun screens and decorative panels.
 
 We stock MS and GI perforated sheets at Siyaganj in standard and cut sizes.
 
@@ -50,10 +50,10 @@ Price depends on material (MS vs GI), thickness, hole pattern, open area, and qu
 
 ## How to Choose
 
-- **Indoor / painted** — MS is often enough.
-- **Outdoor / humid** — Prefer GI for corrosion resistance.
-- **Ventilation** — Consider open area and slot vs round holes.
-- **Strength** — Thicker sheet and smaller holes increase strength.
+- **Indoor / painted:** MS is often enough.
+- **Outdoor / humid:** Prefer GI for corrosion resistance.
+- **Ventilation:** Consider open area and slot vs round holes.
+- **Strength:** Thicker sheet and smaller holes increase strength.
 
 See [Perforated Sheets](/categories/perforated-sheets) for the full range.
 

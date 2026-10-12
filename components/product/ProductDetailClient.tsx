@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { Phone, MessageCircle } from "lucide-react";
 import { getProductImages, getProductMedia, getBrandVariant } from "@/content/products";
 import { getBrandById } from "@/content/brands";
@@ -15,20 +15,27 @@ import { StencilTag, CounterStamp, GaugeRule } from "@/components/motif/Motif";
 import { buildSheet, isCutToSize } from "@/components/product/specSheet";
 import type { BrandId } from "@/content/brands";
 import { trackProductView, trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
-import { T, useT } from "@/lib/i18n";
+import { T, useT, useLang } from "@/lib/i18n";
 
 type Props = {
   product: Product;
   category: Category | null;
   defaultImages: string[];
+  /** { english: hindi } for the strings of this product, category and brands. Empty in English. */
+  tx?: Record<string, string>;
 };
 
 const ASK = "Ask at counter";
 const btn =
   "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm px-5 font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
-export function ProductDetailClient({ product, category }: Props) {
+export function ProductDetailClient({ product, category, tx = {} }: Props) {
   const t = useT();
+  const { lang } = useLang();
+  const hi = lang === "hi";
+  // The page logic below runs on the English record (spec labels are matched by pattern); only display is translated.
+  const L = (s: string): string => tx[s] ?? s;
+  const Lj = (s: string): string => (tx[s] ? tx[s] : s.includes(", ") ? s.split(", ").map(L).join(", ") : s);
   useEffect(() => {
     trackProductView(product.slug, product.name, category?.name);
   }, [product.slug, product.name, category?.name]);
@@ -47,9 +54,9 @@ export function ProductDetailClient({ product, category }: Props) {
   const displayNotes = variant?.notes ?? product.notes;
 
   const tataLine = product.tataOfficial
-    ? "Tata products available on request (authorised dealer)."
+    ? t("Tata products available on request (authorised dealer).", "टाटा उत्पाद माँगने पर उपलब्ध (अधिकृत डीलर)।")
     : product.tataAvailable
-      ? "Tata product available on request."
+      ? t("Tata product available on request.", "टाटा उत्पाद माँगने पर उपलब्ध।")
       : null;
   const sheet = useMemo(
     () =>
@@ -70,9 +77,12 @@ export function ProductDetailClient({ product, category }: Props) {
   );
 
   const baseAlt = product.imageAlt || `${product.name} – ${product.shortDesc}`;
-  const sizeInfo = (variant?.sizes ?? product.sizes)?.length ? ` Size: ${(variant?.sizes ?? product.sizes)!.slice(0, 3).join(", ")}` : "";
-  const brandName = selectedBrandId ? getBrandById(selectedBrandId)?.name : "";
-  const whatsAppMessage = `Hi, I'm interested in ${product.name}${brandName ? ` (${brandName} brand)` : ""}.${sizeInfo} Please share price/availability.`;
+  const sizeList = (variant?.sizes ?? product.sizes)?.slice(0, 3).map(L).join(", ");
+  const sizeInfo = sizeList ? (hi ? ` साइज़: ${sizeList}।` : ` Size: ${sizeList}`) : "";
+  const brandName = selectedBrandId ? L(getBrandById(selectedBrandId)?.name ?? "") : "";
+  const whatsAppMessage = hi
+    ? `नमस्ते, मुझे ${L(product.name)}${brandName ? ` (${brandName} ब्रांड)` : ""} में रुचि है।${sizeInfo} कृपया भाव और उपलब्धता बताइए।`
+    : `Hi, I'm interested in ${product.name}${brandName ? ` (${brandName} brand)` : ""}.${sizeInfo} Please share the price and availability.`;
   const quoteHref = `/contact?product=${product.slug}&category=${product.categorySlug}${selectedBrandId ? `&brand=${selectedBrandId}` : ""}`;
   const cutToSize = isCutToSize(product);
   const code = product.slug.toUpperCase();
@@ -87,12 +97,12 @@ export function ProductDetailClient({ product, category }: Props) {
               href={`/categories/${category.slug}`}
               className="inline-flex min-h-[44px] items-center font-mono-brand text-xs uppercase tracking-[0.14em] text-muted-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              {category.name}
+              {L(category.name)}
             </Link>
           )}
         </div>
-        <h1 className="mt-1 text-[2.6rem] leading-[0.95] text-foreground sm:text-5xl lg:text-6xl">{product.name}</h1>
-        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">{product.shortDesc}</p>
+        <h1 className="mt-1 text-[2.6rem] leading-[0.95] text-foreground sm:text-5xl lg:text-6xl">{L(product.name)}</h1>
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">{L(product.shortDesc)}</p>
         <p className="mt-2 text-sm text-muted-foreground">
           <T
             en="Wholesale and retail in Indore: Siyaganj, Loha Mandi and nearby areas."
@@ -105,8 +115,8 @@ export function ProductDetailClient({ product, category }: Props) {
         <ProductImageGallery
           key={`${product.slug}-${selectedBrandId ?? "default"}`}
           media={media}
-          alt={baseAlt}
-          productName={product.name}
+          alt={L(baseAlt)}
+          productName={L(product.name)}
           productSlug={product.slug}
         />
 
@@ -126,8 +136,8 @@ export function ProductDetailClient({ product, category }: Props) {
               </p>
             </div>
             {cutToSize && (
-              <CounterStamp sub="Siyaganj counter" className="shrink-0">
-                Cut to size
+              <CounterStamp sub={t("Siyaganj counter", "सियागंज काउंटर")} className="shrink-0">
+                {t("Cut to size", "नाप से कटाई")}
               </CounterStamp>
             )}
           </div>
@@ -152,7 +162,7 @@ export function ProductDetailClient({ product, category }: Props) {
               className={`${btn} border border-input bg-card text-foreground hover:border-foreground/50`}
             >
               <MessageCircle className="h-4 w-4" aria-hidden="true" />
-              WhatsApp
+              <T en="WhatsApp" hi="व्हाट्सएप" />
             </a>
           </div>
 
@@ -161,6 +171,8 @@ export function ProductDetailClient({ product, category }: Props) {
               variants={product.brandVariants!}
               selectedBrandId={selectedBrandId}
               onSelect={setSelectedBrandId}
+              L={L}
+              Lj={Lj}
               className="mt-8"
             />
           )}
@@ -172,14 +184,14 @@ export function ProductDetailClient({ product, category }: Props) {
           <dl className="mt-3 border-t border-border">
             {sheet.rows.map((r) => (
               <div key={r.key} className="grid grid-cols-[8.5rem_minmax(0,1fr)] gap-x-4 border-b border-border py-3 sm:grid-cols-[11rem_minmax(0,1fr)]">
-                <dt className="font-mono-brand text-xs uppercase tracking-[0.1em] text-muted-foreground">{t(r.label, r.hi)}</dt>
-                <dd className={r.value ? "text-foreground" : "text-muted-foreground"}>{r.value ?? t(ASK, "काउंटर पर पूछें")}</dd>
+                <dt className="font-mono-brand text-xs uppercase tracking-[0.1em] text-muted-foreground">{hi ? (r.hi !== r.label ? r.hi : L(r.label)) : r.label}</dt>
+                <dd className={r.value ? "text-foreground" : "text-muted-foreground"}>{r.value ? Lj(r.value) : t(ASK, "काउंटर पर पूछें")}</dd>
               </div>
             ))}
             {sheet.extras.map((r) => (
               <div key={r.key} className="grid grid-cols-[8.5rem_minmax(0,1fr)] gap-x-4 border-b border-border py-3 sm:grid-cols-[11rem_minmax(0,1fr)]">
-                <dt className="font-mono-brand text-xs uppercase tracking-[0.1em] text-muted-foreground">{t(r.label, r.hi)}</dt>
-                <dd className="text-foreground">{r.value}</dd>
+                <dt className="font-mono-brand text-xs uppercase tracking-[0.1em] text-muted-foreground">{hi ? (r.hi !== r.label ? r.hi : L(r.label)) : r.label}</dt>
+                <dd className="text-foreground">{r.value ? Lj(r.value) : r.value}</dd>
               </div>
             ))}
           </dl>
@@ -192,14 +204,14 @@ export function ProductDetailClient({ product, category }: Props) {
               <ul className="mt-3 border-t border-border">
                 {displayUseCases.map((u) => (
                   <li key={u} className="border-b border-border py-2.5 text-foreground">
-                    {u}
+                    {L(u)}
                   </li>
                 ))}
               </ul>
             </>
           )}
 
-          {displayNotes && <p className="mt-6 border-l-2 border-primary/60 pl-4 text-sm leading-relaxed text-foreground/85">{displayNotes}</p>}
+          {displayNotes && <p className="mt-6 border-l-2 border-primary/60 pl-4 text-sm leading-relaxed text-foreground/85">{L(displayNotes)}</p>}
 
           <LookingForMoreSection variant="product" className="mt-8" />
         </div>

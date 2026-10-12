@@ -6,9 +6,9 @@
 export const site = {
   name: "HM Ibrahim & Co",
   legalName: "H Mohammed Husain HM Ibrahim & Co",
-  tagline: "Est. 1939 • Trusted Iron & Hardware Trading in Siyaganj, Indore",
+  tagline: "Est. 1939 • Iron & Hardware Trading in Siyaganj, Indore",
   description:
-    "Legacy iron and hardware trading in Siyaganj, Indore. Retail and wholesale supply of MS angles, TMT bars, pipes, wire, mesh, and construction hardware.",
+    "Iron and hardware traders in Siyaganj, Indore, since 1939. Retail and wholesale supply of MS angles, TMT bars, pipes, wire, mesh and construction hardware.",
   /** Manufacturer tagline for About and footer */
   manufacturerTagline: "Manufacturer of Wire Mesh, Welded Wire Mesh & SS Wire Mesh.",
 
@@ -50,9 +50,9 @@ export const site = {
 
   /** Opening hours - editable. Format: "Day: Time" or "Day: Closed" */
   hours: {
-    weekdays: "Mon - Sat: 9:00 AM - 8:00 PM",
-    sunday: "Sun: Closed",
-    note: "Hours may vary on holidays.",
+    weekdays: "Mon to Sat: 9 am to 8 pm",
+    sunday: "Sunday: Closed",
+    note: "Hours may vary on public holidays.",
   },
 
   /** Optional: GSTIN. Set to empty string to hide from About/footer */
@@ -87,11 +87,11 @@ export const site = {
     "Rajasthan",
   ],
 
-  /** Authorized dealer information */
+  /** Authorised dealer information */
   authorizedDealer: {
     brand: "Tata",
     enabled: true,
-    note: "Authorized Tata dealer • Tata products available on request",
+    note: "Authorised Tata dealer • Tata products available on request",
   },
 
   /** Signature brands (CM, Border) for Barbed Wire & Chain Link Fencing */

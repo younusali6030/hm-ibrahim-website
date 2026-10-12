@@ -78,11 +78,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans, 'Source Sans 3')", "system-ui", "ui-sans-serif", "sans-serif"],
-        heading: ["var(--font-heading, 'Plus Jakarta Sans')", "system-ui", "ui-sans-serif", "sans-serif"],
+        sans: ["var(--font-sans, 'Source Sans 3')", "var(--font-deva, 'Noto Sans Devanagari')", "system-ui", "ui-sans-serif", "sans-serif"],
+        heading: ["var(--font-heading, 'Plus Jakarta Sans')", "var(--font-deva, 'Noto Sans Devanagari')", "system-ui", "ui-sans-serif", "sans-serif"],
         mono: ["ui-monospace", "monospace"],
-        display: ["var(--font-display, 'Big Shoulders Display')", "Impact", "Arial Narrow", "sans-serif"],
-        "mono-brand": ["var(--font-mono-brand, 'IBM Plex Mono')", "ui-monospace", "monospace"],
+        display: ["var(--font-display, 'Big Shoulders Display')", "var(--font-deva, 'Noto Sans Devanagari')", "Impact", "Arial Narrow", "sans-serif"],
+        "mono-brand": ["var(--font-mono-brand, 'IBM Plex Mono')", "var(--font-deva, 'Noto Sans Devanagari')", "ui-monospace", "monospace"],
       },
       fontSize: {
         "page-title": ["2rem", { lineHeight: "1.2", fontWeight: "700" }],

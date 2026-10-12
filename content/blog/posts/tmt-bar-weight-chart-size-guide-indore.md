@@ -1,5 +1,5 @@
 ---
-title: "TMT Bar Weight Chart: 8mm to 32mm, and How to Check What You Were Sent"
+title: "TMT Bar Weight Chart: 8 mm to 32 mm, and How to Check What You Were Sent"
 description: "TMT bar weight per metre and per piece for every common diameter, the formula behind it, and a simple way to check a delivery at the gate. From the counter at Siyaganj, Indore."
 date: "2026-10-11"
 updated: "2026-10-11"

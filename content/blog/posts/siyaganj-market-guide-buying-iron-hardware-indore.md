@@ -5,7 +5,7 @@ date: "2026-09-20"
 updated: "2026-09-20"
 category: "Buying guide"
 image: "/blog/siyaganj-1.webp"
-imageAlt: "The H M Ibrahim shopfront in Siyaganj lit at night"
+imageAlt: "The HM Ibrahim shopfront in Siyaganj lit at night"
 image2: "/blog/siyaganj-2.webp"
 image2Alt: "A Siyaganj street early in the morning"
 image3: "/blog/siyaganj-3.webp"
@@ -20,7 +20,7 @@ This guide is the one we wish every first-time buyer had.
 
 Siyaganj is Indore's old wholesale trading quarter. Wire, mesh, pipes, tools, nails, fasteners, sheets and construction hardware are sold from shops that line the lanes, many of them run by the same families for generations. Loha Mandi, the iron market, is close by for structural steel.
 
-Our shop, H M Ibrahim & Co, has been at 60 Siyaganj Main Road, opposite Tijori Gali, since 1939.
+Our shop, HM Ibrahim & Co, has been at 60 Siyaganj Main Road, opposite Tijori Gali, since 1939.
 
 ## When to go
 
@@ -74,7 +74,7 @@ You can send us a list at any time. See [our product range](/products), or [cont
 ## FAQs
 
 **Where is Siyaganj in Indore?**  
-In Indore's old city. H M Ibrahim & Co is at 60 Siyaganj Main Road, opposite Tijori Gali.
+In Indore's old city. HM Ibrahim & Co is at 60 Siyaganj Main Road, opposite Tijori Gali.
 
 **What is Siyaganj known for?**  
 Wholesale hardware, wire, mesh, sheets, tools and fasteners.

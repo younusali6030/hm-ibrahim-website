@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { StencilTag } from "@/components/motif/Motif";
@@ -43,7 +43,7 @@ export function LedgerRow({ item, index, anchor }: { item: LedgerItem; index: nu
         <p className="mt-2 line-clamp-2 text-sm leading-snug text-muted-foreground">{item.shortDesc}</p>
         {item.tata && (
           <p className="mt-1.5 font-mono-brand text-[11px] uppercase tracking-[0.12em] text-primary">
-            {item.tata === "wiron" ? <T en="Tata Wiron available" hi="Tata Wiron उपलब्ध" /> : <T en="Tata on request" hi="Tata माँगने पर" />}
+            {item.tata === "wiron" ? <T en="Tata Wiron available" hi="टाटा वायरॉन उपलब्ध" /> : <T en="Tata on request" hi="टाटा माँगने पर" />}
           </p>
         )}
       </div>

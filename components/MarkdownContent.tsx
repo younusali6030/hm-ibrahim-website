@@ -1,10 +1,11 @@
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { slugifyHeading } from "@/content/blog/toc";
 import "@/components/story/story.css";
+import type { Lang } from "@/lib/locale";
 
-type Props = { content: string; className?: string };
+type Props = { content: string; className?: string; lang?: Lang };
 
 function textOf(node: React.ReactNode): string {
   if (typeof node === "string" || typeof node === "number") return String(node);
@@ -14,7 +15,8 @@ function textOf(node: React.ReactNode): string {
 }
 
 /** Server-rendered Markdown with anchored headings, scrollable tables and callouts. */
-export function MarkdownContent({ content, className = "" }: Props) {
+export function MarkdownContent({ content, className = "", lang = "en" }: Props) {
+  const hi = lang === "hi";
   const seen = new Map<string, number>();
   const idFor = (children: React.ReactNode) => {
     const base = slugifyHeading(textOf(children)) || "section";
@@ -40,10 +42,10 @@ export function MarkdownContent({ content, className = "" }: Props) {
           ),
           table: ({ children }) => (
             <>
-              <div className="blog-table-scroll" role="region" aria-label="Table, scrolls sideways on small screens" tabIndex={0}>
+              <div className="blog-table-scroll" role="region" aria-label={hi ? "तालिका, छोटी स्क्रीन पर बगल में खिसकती है" : "Table, scrolls sideways on small screens"} tabIndex={0}>
                 <table>{children}</table>
               </div>
-              <p className="blog-table-hint" aria-hidden="true">Table scrolls sideways</p>
+              <p className="blog-table-hint" aria-hidden="true">{hi ? "तालिका बगल में खिसकती है" : "Table scrolls sideways"}</p>
             </>
           ),
           img: ({ src, alt }) => (

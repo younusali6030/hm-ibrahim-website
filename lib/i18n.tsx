@@ -1,48 +1,21 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, type ReactNode } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { localePath, stripLocale, type Lang } from "@/lib/locale";
 
-export type Lang = "en" | "hi";
-const KEY = "hm_lang";
+export type { Lang } from "@/lib/locale";
 
-type Ctx = { lang: Lang; setLang: (l: Lang) => void };
-const LangContext = createContext<Ctx>({ lang: "en", setLang: () => {} });
+type Ctx = { lang: Lang };
+const LangContext = createContext<Ctx>({ lang: "en" });
 
 /**
- * Light EN / हिं switch for the key surfaces. Same URL, no duplicate pages: the server always renders English,
- * and the choice is applied after hydration from localStorage. Keep `lang` on <html> in step for screen readers.
+ * The language comes from the URL (/hi/... is Hindi), so every Hindi page is server-rendered in Hindi,
+ * indexable, and has its own canonical and hreflang. There is no client-side swap and no flash of English.
  */
-export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(KEY);
-      if (saved === "hi" || saved === "en") setLangState(saved);
-    } catch {
-      /* private mode: stay on English */
-    }
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.lang = lang === "hi" ? "hi-IN" : "en-IN";
-  }, [lang]);
-
-  const value = useMemo<Ctx>(
-    () => ({
-      lang,
-      setLang: (l) => {
-        setLangState(l);
-        try {
-          localStorage.setItem(KEY, l);
-        } catch {
-          /* ignore */
-        }
-      },
-    }),
-    [lang]
-  );
-  return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
+export function LangProvider({ lang, children }: { lang: Lang; children: ReactNode }) {
+  return <LangContext.Provider value={{ lang }}>{children}</LangContext.Provider>;
 }
 
 export function useLang() {
@@ -64,26 +37,61 @@ export function useT() {
   return (en: string, hi?: string) => (lang === "hi" && hi ? hi : en);
 }
 
+/** Path of the current page in the other language, e.g. /hi/products <-> /products. */
+export function useAltLangPath(): { lang: Lang; target: Lang; href: string } {
+  const pathname = usePathname() || "/";
+  const { lang, path } = stripLocale(pathname);
+  const target: Lang = lang === "hi" ? "en" : "hi";
+  return { lang, target, href: localePath(target, path) };
+}
+
 export function LangToggle({ className = "" }: { className?: string }) {
-  const { lang, setLang } = useLang();
+  const { lang } = useLang();
+  const { href } = useAltLangPath();
+  const router = useRouter();
+
+  // Real links so crawlers see the alternate-language URL; the click keeps ?query and #hash.
+  const go = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    const extra = window.location.search + window.location.hash;
+    if (!extra) return;
+    e.preventDefault();
+    router.push(href + extra);
+  };
+
   return (
-    <div className={`inline-flex items-center rounded-full border border-white/15 p-0.5 text-xs font-bold ${className}`} role="group" aria-label="Language">
-      {(["en", "hi"] as const).map((l) => (
-        <button
-          key={l}
-          type="button"
-          onClick={() => setLang(l)}
-          aria-pressed={lang === l}
-          lang={l === "hi" ? "hi" : "en"}
-          style={lang === l ? { color: "#0b121a", backgroundColor: "#fff" } : { color: "rgba(255,255,255,0.88)" }}
-          className={
-            "min-h-8 min-w-9 rounded-full px-2.5 transition-colors " +
-            (lang === l ? "bg-white text-[#0b121a]" : "text-white/85 hover:text-white")
-          }
-        >
-          {l === "en" ? "EN" : "हिं"}
-        </button>
-      ))}
+    <div
+      className={`inline-flex items-center rounded-full border border-white/15 p-0.5 text-xs font-bold ${className}`}
+      role="group"
+      aria-label={lang === "hi" ? "भाषा" : "Language"}
+    >
+      {(["en", "hi"] as const).map((l) => {
+        const on = lang === l;
+        const style = on ? { color: "#0b121a", backgroundColor: "#fff" } : { color: "rgba(255,255,255,0.88)" };
+        const cls =
+          "inline-flex min-h-8 min-w-9 items-center justify-center rounded-full px-2.5 transition-colors " +
+          (on ? "bg-white text-[#0b121a]" : "text-white/85 hover:text-white");
+        const label = l === "en" ? "EN" : "हिं";
+        return on ? (
+          <span key={l} aria-current="true" lang={l} style={style} className={cls}>
+            {label}
+          </span>
+        ) : (
+          <Link
+            key={l}
+            href={href}
+            prefetch={false}
+            hrefLang={l === "hi" ? "hi-IN" : "en-IN"}
+            lang={l}
+            onClick={go}
+            style={style}
+            className={cls}
+            aria-label={l === "hi" ? "हिंदी में देखें" : "View in English"}
+          >
+            {label}
+          </Link>
+        );
+      })}
     </div>
   );
 }

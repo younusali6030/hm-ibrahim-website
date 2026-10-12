@@ -7,18 +7,20 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import type { FAQ } from "@/content/faqs";
+import type { ReactNode } from "react";
+import { T } from "@/lib/i18n";
 
 type Props = {
   faqs: FAQ[];
-  title?: string;
-  description?: string;
+  title?: ReactNode;
+  description?: ReactNode;
   /** When true, renders just the accordion (no outer section/heading). */
   inline?: boolean;
 };
 
 export function FAQAccordion({
   faqs,
-  title = "Frequently Asked Questions",
+  title = <T en="Frequently Asked Questions" hi="अक्सर पूछे जाने वाले सवाल" />,
   description,
   inline = false,
 }: Props) {

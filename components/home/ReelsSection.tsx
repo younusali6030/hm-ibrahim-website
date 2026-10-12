@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { useEffect, useRef, useState } from "react";
 import { Play } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 type Reel = { id: string; title: string; note: string; href?: string; cta?: string };
 
@@ -18,11 +19,28 @@ const REELS: Reel[] = [
   { id: "weldmesh-jali", title: "Weldmesh jali", note: "Rolls and panels, any gauge.", href: "/categories/welded-mesh", cta: "Welded mesh" },
   { id: "kabootar-jali", title: "Kabootar jali", note: "Pigeon net for balconies and shafts.", href: "/products/pigeon-nets", cta: "Pigeon nets" },
   { id: "pvc-hexa-mesh", title: "PVC hexa mesh", note: "Garden and poultry fencing.", href: "/products/plastic-hexagonal-poultry-mesh", cta: "Hexa mesh" },
-  { id: "tata-wire-rate", title: "Tata wire, solid rate", note: "Tata Wiron, straight from the shelf.", href: "/products/gi-wire", cta: "GI wire" },
+  { id: "tata-wire-rate", title: "Tata wire, firm rate", note: "Tata Wiron, straight from the shelf.", href: "/products/gi-wire", cta: "GI wire" },
   { id: "rat-jaali-customer", title: "A customer, on camera", note: "Rat jaali, from our customer." },
 ];
 
-function ReelCard({ reel }: { reel: Reel }) {
+const REELS_HI: Record<string, Pick<Reel, "title" | "note" | "cta">> = {
+  "shop-par-bharosa": { title: "दुकान पर भरोसा", note: "आइए। माल देखिए। फिर तय कीजिए।" },
+  "check-the-strength": { title: "मज़बूती परखिए", note: "तार और जाली, आपके सामने जाँची गई।" },
+  "machhar-full-stop": { title: "मच्छर का फुल स्टॉप", note: "मच्छरदानी जाली, काउंटर पर कटती हुई।", cta: "मच्छरदानी जाली" },
+  "perforated-sheet-customer": { title: "परफोरेटेड शीट", note: "एक ग्राहक बताते हैं कि यहीं से क्यों लेते हैं।", cta: "परफोरेटेड शीट" },
+  "nail-reel": { title: "कीलें, वज़न के हिसाब से", note: "हर लंबाई डिब्बों में।", cta: "कीलें" },
+  "kala-taar-wholesale": { title: "काला तार, थोक में", note: "कॉइल के हिसाब से बाइंडिंग तार।", cta: "बाइंडिंग तार" },
+  "frp-bars": { title: "एफआरपी बार", note: "हल्के, ज़ंग-रहित, नाप से कटे।", cta: "एफआरपी बार" },
+  "weldmesh-jali": { title: "वेल्डमेश जाली", note: "रोल और पैनल, हर गेज।", cta: "वेल्डेड मेश" },
+  "kabootar-jali": { title: "कबूतर जाली", note: "बालकनी और शाफ्ट के लिए कबूतर रोकने वाली जाली।", cta: "कबूतर जाली" },
+  "pvc-hexa-mesh": { title: "पीवीसी हेक्सा मेश", note: "बगीचे और पोल्ट्री की फेंसिंग।", cta: "हेक्सा मेश" },
+  "tata-wire-rate": { title: "टाटा तार, पक्का रेट", note: "टाटा वायरॉन, सीधे शेल्फ से।", cta: "जीआई तार" },
+  "rat-jaali-customer": { title: "एक ग्राहक, कैमरे पर", note: "चूहा जाली, हमारे ग्राहक की ज़ुबानी।" },
+};
+
+function ReelCard({ reel: base }: { reel: Reel }) {
+  const { lang } = useLang();
+  const reel: Reel = lang === "hi" && REELS_HI[base.id] ? { ...base, ...REELS_HI[base.id] } : base;
   // The poster is fetched only when the card is near the viewport, not for all twelve at page load.
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -62,7 +80,7 @@ function ReelCard({ reel }: { reel: Reel }) {
       <button
         type="button"
         onClick={toggle}
-        aria-label={`${playing ? "Pause" : "Play"} reel: ${reel.title}`}
+        aria-label={lang === "hi" ? `रील ${playing ? "रोकें" : "चलाएँ"}: ${reel.title}` : `${playing ? "Pause" : "Play"} reel: ${reel.title}`}
         className="group relative block aspect-[9/16] w-full overflow-hidden rounded-[22px] bg-[#0b121a] ring-1 ring-white/10"
       >
         <video
@@ -103,20 +121,24 @@ function ReelCard({ reel }: { reel: Reel }) {
 }
 
 export function ReelsSection() {
+  const { lang } = useLang();
+  const hi = lang === "hi";
   return (
     <section className="border-y border-border py-14 md:py-20" aria-labelledby="reels-heading">
       <div className="page-container">
         <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-          From the shop floor
+          {hi ? "दुकान के फ़र्श से" : "From the shop floor"}
         </p>
         <h2 id="reels-heading" data-reveal className="mt-2 max-w-3xl text-foreground">
-          See it before you buy it
+          {hi ? "खरीदने से पहले देख लीजिए" : "See it before you buy it"}
         </h2>
         <p className="mt-4 max-w-2xl text-muted-foreground">
-          Real stock, real customers, filmed at our Siyaganj counter in full resolution. Tap a reel to play with sound, and scroll sideways for more.
+          {hi
+            ? "असली स्टॉक, असली ग्राहक, हमारे सियागंज काउंटर पर पूरी क्वालिटी में फ़िल्माए गए। आवाज़ के साथ चलाने के लिए रील पर टैप कीजिए, और ज़्यादा देखने के लिए बगल में स्क्रोल कीजिए।"
+            : "Real stock, real customers, filmed at our Siyaganj counter in full resolution. Tap a reel to play with sound, and scroll sideways for more."}
         </p>
       </div>
-      <div className="mt-10 overflow-x-auto pb-4 [scrollbar-width:thin]" tabIndex={0} aria-label="Reels, scroll sideways">
+      <div className="mt-10 overflow-x-auto pb-4 [scrollbar-width:thin]" tabIndex={0} aria-label={hi ? "रील, बगल में स्क्रोल करें" : "Reels, scroll sideways"}>
         <div className="page-container">
           <div className="flex snap-x snap-mandatory gap-4 sm:gap-6">
             {REELS.map((r) => (

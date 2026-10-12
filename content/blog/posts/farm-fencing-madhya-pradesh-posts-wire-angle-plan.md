@@ -28,19 +28,19 @@ Most failures come from one of three mistakes: posts too far apart, wire too thi
 
 ## Step 2: pick the wire
 
-- **[Barbed wire](/products/barbed-wire)** — The cheap, fast boundary. It marks a line and stops cattle. Not for nilgai, which jump.
-- **[Jhatka machine wire](/products/jhatka-machine-fencing-wire)** — High tensile wire that carries a small charge from a jhatka machine. It holds off wild boar and nilgai without a tall fence.
-- **[Chain link](/products/chain-link-fencing)** — Strong, tall and long lasting. The best all-round choice for a house plot or orchard.
-- **[Welded mesh](/products/gi-weldmesh)** — Stiff panels or rolls for gates and enclosures.
-- **[Concertina coil](/products/concertina-wire)** — For the top of a wall or for sites where security matters.
+- **[Barbed wire](/products/barbed-wire):** The cheap, fast boundary. It marks a line and stops cattle. Not for nilgai, which jump.
+- **[Jhatka machine wire](/products/jhatka-machine-fencing-wire):** High tensile wire that carries a small charge from a jhatka machine. It holds off wild boar and nilgai without a tall fence.
+- **[Chain link](/products/chain-link-fencing):** Strong, tall and long lasting. The best all-round choice for a house plot or orchard.
+- **[Welded mesh](/products/gi-weldmesh):** Stiff panels or rolls for gates and enclosures.
+- **[Concertina coil](/products/concertina-wire):** For the top of a wall or for sites where security matters.
 
 ## Step 3: choose the posts
 
 Posts decide how long the fence lives.
 
-- **[MS angle](/products/ms-angles)** — The standard post. 40 x 40 or 50 x 50 mm for most farms. Angle takes holes for wire, is easy to weld, and is strong in the ground. Paint or galvanise it.
-- **[FRP rods](/products/frp-bars)** — Light and rust free. Good for barbed wire and jhatka runs.
-- **Concrete posts** — Good for the permanent compound.
+- **[MS angle](/products/ms-angles):** The standard post. 40 x 40 or 50 x 50 mm for most farms. Angle takes holes for wire, is easy to weld, and is strong in the ground. Paint or galvanise it.
+- **[FRP rods](/products/frp-bars):** Light and rust free. Good for barbed wire and jhatka runs.
+- **Concrete posts:** Good for the permanent compound.
 
 A rough guide:
 

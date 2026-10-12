@@ -1,12 +1,16 @@
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { categories, getCategoryThumbnails } from "@/content/products";
 import { GaugeRule, StencilTag } from "@/components/motif/Motif";
 import { T } from "@/lib/i18n";
+import { localize } from "@/lib/localize";
+import type { Lang } from "@/lib/locale";
 
 /** The counter as a ledger: one ruled row per range, a few real photos, a count, and a way in. */
-export function CategoryShowcase() {
+export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
+  const cats = localize(categories, lang);
+  const hi = lang === "hi";
   return (
     <section className="py-14 md:py-20" aria-labelledby="categories-heading">
       <div className="page-container">
@@ -21,9 +25,9 @@ export function CategoryShowcase() {
         </p>
 
         <div className="mt-10">
-          <GaugeRule label={`${categories.length} ranges`} />
+          <GaugeRule label={hi ? `${cats.length} श्रेणियाँ` : `${cats.length} ranges`} />
           <ol className="mt-2">
-            {categories.map((cat, i) => {
+            {cats.map((cat, i) => {
               const thumbs = getCategoryThumbnails(cat, 3);
               return (
                 <li key={cat.slug} data-reveal className="border-b border-border">
@@ -38,7 +42,7 @@ export function CategoryShowcase() {
                       </span>
                       <span className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1">
                         <StencilTag className="text-muted-foreground">
-                          {cat.products.length} {cat.products.length === 1 ? "item" : "items"}
+                          {cat.products.length} {hi ? "आइटम" : cat.products.length === 1 ? "item" : "items"}
                         </StencilTag>
                         <span className="line-clamp-1 text-sm text-muted-foreground">
                           {cat.products.slice(0, 3).map((p) => p.name).join(" · ")}

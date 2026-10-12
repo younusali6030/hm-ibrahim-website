@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { useEffect, useRef } from "react";
 import { ArrowRight, Star } from "lucide-react";
 import { site } from "@/content/site";
-import { T } from "@/lib/i18n";
+import { T, useT } from "@/lib/i18n";
 import "./home-hero.css";
 
 const WIDE = "(min-width: 821px)";
@@ -17,6 +17,7 @@ const FILM_IDLE_MS = 10000;
 
 /** One film, one statement, two ways in. Everything else on the page earns its own section below. */
 export function HomeHero() {
+  const t = useT();
   const rootRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -111,7 +112,7 @@ export function HomeHero() {
   const rating = site.googleReview;
 
   return (
-    <section ref={rootRef} className="hh" aria-label="H M Ibrahim & Co, Siyaganj, Indore, since 1939">
+    <section ref={rootRef} className="hh" aria-label={t("HM Ibrahim & Co, Siyaganj, Indore, since 1939", "एच एम इब्राहिम एंड कंपनी, सियागंज, इंदौर, 1939 से")}>
       <div className="hh-media" aria-hidden="true">
         <video ref={videoRef} className="hh-video" muted loop playsInline preload="none" tabIndex={-1} />
         {/* Real <img>, fetchpriority high: the browser finds it in the HTML and paints it first. Same box as the film, so the film never becomes the LCP element. */}
@@ -147,7 +148,7 @@ export function HomeHero() {
             <a href={rating.profileUrl} target="_blank" rel="noopener noreferrer" className="hh-rating">
               <Star className="h-4 w-4 fill-primary text-primary" aria-hidden />
               <strong>{rating.rating}</strong>
-              <span>{rating.reviewCount} <T en="Google reviews" hi="Google रिव्यू" /></span>
+              <span>{rating.reviewCount} <T en="Google reviews" hi="गूगल रिव्यू" /></span>
             </a>
           )}
         </div>

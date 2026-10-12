@@ -59,7 +59,7 @@ export function buildSheet(
   });
   if (src.sizes?.length) extras.push({ key: "sizes", label: "Sizes", hi: "साइज़", value: src.sizes.join(", ") });
   if (src.variants?.length) extras.push({ key: "variants", label: "Types", hi: "किस्में", value: src.variants.join(", ") });
-  if (tataLine) extras.push({ key: "tata", label: "Tata", hi: "Tata", value: tataLine });
+  if (tataLine) extras.push({ key: "tata", label: "Tata", hi: "टाटा", value: tataLine });
   return { rows, extras };
 }
 

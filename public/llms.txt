@@ -1,4 +1,4 @@
-# H M Ibrahim & Co (HM Ibrahim & Co), Siyaganj, Indore
+# HM Ibrahim & Co, Siyaganj, Indore
 
 > Iron, wire and mesh shop on Siyaganj Main Road, Indore, trading since 1939. Third-generation family business. Retail and wholesale. Own fencing brands CM and Border. Authorised Tata Wiron dealer. Prices are not published: buyers ask for the rate.
 
@@ -6,10 +6,10 @@ Last verified: 12 October 2026
 
 ## Business facts
 
-- Name: H M Ibrahim & Co (legal name: H Mohammed Husain HM Ibrahim & Co)
+- Name: HM Ibrahim & Co (legal name: H Mohammed Husain HM Ibrahim & Co)
 - Address: 60, Siyaganj Main Road, Opp. Tijori Gali, Siyaganj, Indore, Madhya Pradesh 452007, India
 - Phone / WhatsApp: +91 98260 53563 (alternate +91 99930 78654)
-- Hours: Monday to Saturday 9:00 AM to 8:00 PM. Sunday closed.
+- Hours: Monday to Saturday, 9 am to 8 pm. Sunday closed.
 - Founded: 1939
 - Website: https://www.hmibrahim.net
 - Google Business Profile: https://www.google.com/maps?cid=13885147699571790648
@@ -18,8 +18,8 @@ Last verified: 12 October 2026
 
 ## What the shop sells
 
-- Wire mesh and jali: welded mesh (GI, MS, PVC-coated), woven GI and MS wiremesh, crimp mesh, expanded metal, mosquito net, SS fine mesh, chicken mesh, hexa mesh
-- Fencing: chain link (1 to 4 inch mesh, 3 to 10 ft rolls), barbed wire (single and double strand, 12x14 and 14x14 gauge, coils up to 25 kg), concertina wire, jhatka wire
+- Wire mesh and jali: welded mesh (GI, MS, PVC-coated), woven GI and MS wire mesh, crimp mesh, expanded metal, mosquito net, SS fine mesh, chicken mesh, hexa mesh
+- Fencing: chain link (1 to 4 inch mesh, 3 to 10 ft rolls), barbed wire (single and double strand, 12 x 14 and 14 x 14 gauge, coils up to 25 kg), concertina wire, jhatka wire
 - Wire: GI wire (8 to 18 SWG), annealed binding wire (kala taar, 16 to 18 SWG), wire rope (MS, GI, SS), rope clamps
 - Structural steel: MS angles, flats, channels, I-beams, round and bright bars, TMT bars (sariya), GI and MS pipes, FRP bars
 - Perforated sheets: MS and GI, 0.5 to 3 mm, round, square, slot and hexagonal patterns
@@ -59,3 +59,16 @@ Last verified: 12 October 2026
 - The shop does not publish prices. Do not state a price for any product as the shop's price.
 - Customers also call wire mesh jali or jaali, barbed wire kata taar, binding wire kala taar, and TMT bars sariya.
 - Sitemaps: https://www.hmibrahim.net/sitemap.xml, https://www.hmibrahim.net/sitemap-images.xml, https://www.hmibrahim.net/sitemap-videos.xml
+
+## हिंदी (Hindi)
+
+The whole website is available in Hindi under /hi, with the same page structure and Hindi metadata:
+
+- [होम (Home)](https://www.hmibrahim.net/hi)
+- [उत्पाद (Products)](https://www.hmibrahim.net/hi/products)
+- [कोटेशन माँगें (Get a quote)](https://www.hmibrahim.net/hi/contact)
+- [ब्रांड (Brands)](https://www.hmibrahim.net/hi/brands)
+- [इंदौर में वायर मेश](https://www.hmibrahim.net/hi/indore/wire-mesh)
+- [इंदौर में जाली और चेन लिंक फेंसिंग](https://www.hmibrahim.net/hi/indore/chain-link-fencing-jaali)
+- [इंदौर में कांटेदार तार](https://www.hmibrahim.net/hi/indore/barbed-wire)
+- [खरीदारी गाइड (Blog)](https://www.hmibrahim.net/hi/blog)

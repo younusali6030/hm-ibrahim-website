@@ -92,7 +92,7 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "GI wire or MS (black) wire? Which one for tying rebar, fencing and farm work, what the zinc coat does, and what to ask for at the counter in Indore.",
   },
   "blog/how-bulk-buyers-save-cost-loha-mandi-indore": {
-    title: "How Bulk Buyers Save Cost in Loha Mandi, Indore",
+    title: "How Bulk Buyers Save Money in Loha Mandi, Indore",
     description:
       "How contractors and dealers cut the cost of iron and wire in Indore's Loha Mandi: combine the list, buy by weight, ask for the rate on repeat orders.",
   },

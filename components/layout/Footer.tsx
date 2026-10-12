@@ -1,12 +1,14 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { LazyLiquidMark } from "@/components/fx/Lazy";
 import { Phone, Mail, MessageCircle, MapPin } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { categories } from "@/content/products";
-import { T } from "@/lib/i18n";
+import { T, useT } from "@/lib/i18n";
+import { catNameHi } from "@/content/hi/names";
+import { siteHi } from "@/content/hi/site";
 import { ShopStatus } from "@/components/visit/VisitUs";
 import { ClickTracker } from "@/components/conversion/ClickTracker";
 
@@ -28,6 +30,8 @@ const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`;
 
 export function Footer() {
+  const t = useT();
+  const hi = t("en", "hi") === "hi";
   return (
     <footer data-track="footer" className="border-t border-white/15 bg-nav pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] print:hidden md:pb-0">
       <ClickTracker />
@@ -35,16 +39,18 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.65fr_1.15fr_1.1fr] lg:gap-10">
           {/* Business identity */}
           <div className="min-w-0 sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-block" aria-label="HM Ibrahim & Co, home">
+            <Link href="/" className="inline-block" aria-label={t("HM Ibrahim & Co, home", "एचएम इब्राहिम एंड कंपनी, होम")}>
               <LazyLiquidMark width={240} />
             </Link>
             <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-white/80">
-              Iron and hardware trading in Siyaganj, Indore. Retail and wholesale since 1939.
+              <T en="Iron and hardware trading in Siyaganj, Indore. Retail and wholesale since 1939." hi="सियागंज, इंदौर में लोहा और हार्डवेयर का व्यापार। रिटेल और थोक, 1939 से।" />
             </p>
             <address data-track="footer_visit" className="mt-5 flex items-start gap-3 not-italic">
               <MapPin className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
               <span className="min-w-0 text-[15px] leading-relaxed text-white/85">
-                {site.address.line1}, {site.address.line2}, {site.address.city} {site.address.pincode}
+                {hi
+                  ? `${siteHi.address.line1}, ${siteHi.address.line2}, ${siteHi.address.city} ${siteHi.address.pincode}`
+                  : `${site.address.line1}, ${site.address.line2}, ${site.address.city} ${site.address.pincode}`}
                 <ShopStatus tone="dark" className="mt-1 !text-sm" />
                 <a
                   href={mapsUrl}
@@ -53,8 +59,8 @@ export function Footer() {
                   data-track="footer_visit_map"
                   className="mt-1 inline-flex min-h-[44px] items-center font-semibold text-white underline decoration-primary underline-offset-4 hover:text-primary lg:min-h-0"
                 >
-                  <T en="Open in Google Maps" hi="Google Maps पर खोलें" />
-                  <span className="sr-only"> (opens in a new tab)</span>
+                  <T en="Open in Google Maps" hi="गूगल मैप्स पर खोलें" />
+                  <span className="sr-only"> {t("(opens in a new tab)", "(नए टैब में खुलेगा)")}</span>
                 </a>
               </span>
             </address>
@@ -65,8 +71,8 @@ export function Footer() {
             <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white"><T en="Contact" hi="संपर्क" /></h3>
             <ul className="mt-3 space-y-3 text-[15px] text-white/85">
               {[
-                { n: site.phone, l: site.phoneLabel },
-                { n: String(site.phoneAlt), l: site.phoneAltLabel },
+                { n: site.phone, l: hi ? siteHi.phoneLabel : site.phoneLabel },
+                { n: String(site.phoneAlt), l: hi ? siteHi.phoneAltLabel : site.phoneAltLabel },
               ].map((p) => (
                 <li key={p.n} className="flex items-start gap-3">
                   <Phone className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
@@ -83,8 +89,8 @@ export function Footer() {
                 </a>
               </li>
               {[
-                { e: site.email, l: site.emailLabel },
-                { e: site.emailAlt, l: site.emailAltLabel },
+                { e: site.email, l: hi ? siteHi.emailLabel : site.emailLabel },
+                { e: site.emailAlt, l: hi ? siteHi.emailAltLabel : site.emailAltLabel },
               ].map((m) => (
                 <li key={m.e} className="flex items-start gap-3">
                   <Mail className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
@@ -98,7 +104,7 @@ export function Footer() {
           </div>
 
           {/* Useful links */}
-          <nav aria-label="Useful links">
+          <nav aria-label={t("Useful links", "काम के लिंक")}>
             <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white"><T en="Useful links" hi="काम के लिंक" /></h3>
             <ul className="mt-3 grid grid-cols-2 gap-x-4 sm:grid-cols-1">
               {usefulLinks.map((l) => (
@@ -110,12 +116,12 @@ export function Footer() {
           </nav>
 
           {/* Product categories */}
-          <nav aria-label="Product categories" className="sm:col-span-2 lg:col-span-1">
+          <nav aria-label={t("Product categories", "उत्पाद श्रेणियाँ")} className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white"><T en="Product categories" hi="उत्पाद श्रेणियाँ" /></h3>
             <ul className="mt-3 grid grid-cols-2 gap-x-4 sm:grid-cols-3 lg:grid-cols-2">
               {categories.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/products?category=${c.slug}`} className={linkCls}>{c.name}</Link>
+                  <Link href={`/products?category=${c.slug}`} className={linkCls}>{hi ? catNameHi[c.slug] ?? c.name : c.name}</Link>
                 </li>
               ))}
             </ul>
@@ -123,7 +129,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-white/15 pt-5 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
-          <p>&copy; {new Date().getFullYear()} HM Ibrahim &amp; Co. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} <T en="HM Ibrahim & Co. All rights reserved." hi="एचएम इब्राहिम एंड कंपनी। सर्वाधिकार सुरक्षित।" /></p>
           <ul className="flex flex-wrap gap-x-5">
             <li>
               <a href={site.indiamartUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0">IndiaMART</a>
@@ -131,8 +137,8 @@ export function Footer() {
             <li>
               <a href={site.justdialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0">JustDial</a>
             </li>
-            <li><Link href="/privacy" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0">Privacy</Link></li>
-            <li><Link href="/terms" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0">Terms</Link></li>
+            <li><Link href="/privacy" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0"><T en="Privacy" hi="गोपनीयता" /></Link></li>
+            <li><Link href="/terms" className="inline-flex min-h-[44px] items-center hover:text-primary lg:min-h-0"><T en="Terms" hi="शर्तें" /></Link></li>
           </ul>
         </div>
       </div>

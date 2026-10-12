@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -11,6 +11,7 @@ import { getWhatsAppLink } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
 import { LangToggle, T, useT } from "@/lib/i18n";
+import { stripLocale } from "@/lib/locale";
 
 // One contact path: the primary "Get a quote" button leads to /contact (quote form + visit info).
 const navLinks = [
@@ -23,7 +24,7 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const pathname = usePathname();
+  const pathname = stripLocale(usePathname() || "/").path;
   const t = useT();
   const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
@@ -102,11 +103,11 @@ export function Navbar() {
               href="/"
               className="group flex min-h-[44px] items-center gap-2.5 text-white"
               onClick={() => setOpen(false)}
-              aria-label={t("H M Ibrahim and Co, home", "H M Ibrahim and Co, होम")}
+              aria-label={t("HM Ibrahim & Co, home", "एच एम इब्राहिम एंड कंपनी, होम")}
             >
               <Image
                 src="/logo-wordmark.png"
-                alt="H M Ibrahim & Co, since 1939"
+                alt={t("HM Ibrahim & Co, since 1939", "एच एम इब्राहिम एंड कंपनी, 1939 से")}
                 width={336}
                 height={96}
                 sizes="(min-width:768px) 168px, 154px"
@@ -225,7 +226,7 @@ export function Navbar() {
                       <T en="Call" hi="कॉल करें" />
                     </a>
                     <a
-                      href={getWhatsAppLink(site.whatsapp, "Hi, I'm interested in your products. Please share price/availability.")}
+                      href={getWhatsAppLink(site.whatsapp, t("Hi, I'm interested in your products. Please share prices and availability.", "नमस्ते, मुझे आपके उत्पादों में रुचि है। कृपया भाव और उपलब्धता बताइए।"))}
                       onClick={() => trackWhatsAppClick("navbar_mobile")}
                       target="_blank"
                       rel="noopener noreferrer"

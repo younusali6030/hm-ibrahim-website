@@ -1,22 +1,28 @@
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import Image from "next/image";
 import type { Product, ProductWithCategory } from "@/content/products";
 import { getCategoryBySlug, getProductImages } from "@/content/products";
 import { StencilTag } from "@/components/motif/Motif";
 import { sizeTag } from "@/components/catalog/ledger";
 import { T } from "@/lib/i18n";
+import { getProductBySlug } from "@/content/products";
+import { tr } from "@/lib/localize";
+import type { Lang } from "@/lib/locale";
 
 type Props = {
   product: Product | ProductWithCategory;
   /** Kept for existing callers; cards no longer animate in. */
   index?: number;
+  /** Pass an already-localized product together with its language. */
+  lang?: Lang;
 };
 
 /** A counter-ledger tile: same 4/3 dark-steel photo crop as the catalog rows, name, size tag, rate link. */
-export function ProductCard({ product }: Props) {
+export function ProductCard({ product, lang = "en" }: Props) {
   const category = getCategoryBySlug(product.categorySlug);
   const imgSrc = getProductImages(product, category)[0];
-  const tag = sizeTag(product);
+  // The size tag is picked by matching English spec labels, so it is built from the English record and then translated.
+  const tag = sizeTag(getProductBySlug(product.slug) ?? product, (s) => tr(s, lang));
   const imgAlt = product.imageAlt || product.name;
 
   return (

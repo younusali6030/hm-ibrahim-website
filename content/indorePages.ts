@@ -74,7 +74,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     // Owns: "barbed wire Indore", "kata taar Indore", "concertina wire Indore" (product page /products/concertina-wire is the detail target).
     title: "Barbed and Concertina Wire in Indore",
     description:
-      "Barbed wire (kata taar) and concertina wire in Indore: single and double strand, 12x14 and 14x14 gauge, coils to 25 kg. CM, Border, Tata Wiron.",
+      "Barbed wire (kata taar) and concertina wire in Indore: single and double strand, 12 x 14 and 14 x 14 gauge, coils to 25 kg. CM, Border, Tata Wiron.",
     h1: "Barbed and Concertina Wire in Indore",
     intro:
       "Barbed wire, or kata taar as it is asked for at the counter, is a regular line at our shop in Siyaganj, Indore. Single and double strand, 2-point and 4-point, in coils for farms, plots and boundaries.",

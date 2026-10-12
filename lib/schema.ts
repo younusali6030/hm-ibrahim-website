@@ -11,6 +11,9 @@
 
 import { baseUrl, entityIds, site, nap } from "@/lib/site";
 import { categories } from "@/content/products";
+import { localePath, htmlLang, type Lang } from "@/lib/locale";
+import { siteHi } from "@/content/hi/site";
+import { catalogHi } from "@/content/hi/catalog";
 
 type Json = Record<string, unknown>;
 
@@ -60,7 +63,8 @@ export function postalAddress(): Json {
 }
 
 /** Global @graph: Organization, HardwareStore (LocalBusiness) and WebSite. Rendered once, in the root layout. */
-export function globalGraph(): Json {
+export function globalGraph(lang: Lang = "en"): Json {
+  const hi = lang === "hi";
   const cityNames = new Set(["Indore", "Dewas", "Ujjain", "Mhow", "Pithampur"]);
   const stateNames: Record<string, string> = {
     "Madhya Pradesh (MP)": "Madhya Pradesh",
@@ -88,10 +92,11 @@ export function globalGraph(): Json {
         url: baseUrl,
         logo: { "@type": "ImageObject", url: `${baseUrl}/logo-dark.png` },
         foundingDate: "1939",
-        description: site.description,
+        description: hi ? siteHi.description : site.description,
+        ...(hi ? { alternateName: [siteHi.name, siteHi.legalName] } : {}),
         brand: [
-          { "@type": "Brand", name: "CM", url: `${baseUrl}/brands/cm` },
-          { "@type": "Brand", name: "Border", url: `${baseUrl}/brands/border` },
+          { "@type": "Brand", name: "CM", url: `${baseUrl}${localePath(lang, "/brands/cm")}` },
+          { "@type": "Brand", name: "Border", url: `${baseUrl}${localePath(lang, "/brands/border")}` },
         ],
         contactPoint: [
           { "@type": "ContactPoint", contactType: "sales", telephone: phone, areaServed: "IN", availableLanguage: ["en", "hi"] },
@@ -103,8 +108,8 @@ export function globalGraph(): Json {
         "@type": ["HardwareStore", "LocalBusiness"],
         "@id": ids.localBusiness,
         name: site.name,
-        alternateName: site.legalName,
-        description: site.description,
+        alternateName: hi ? [site.legalName, siteHi.name] : site.legalName,
+        description: hi ? siteHi.description : site.description,
         url: baseUrl,
         image: [`${baseUrl}/about-storefront.png`, `${baseUrl}/logo-dark.png`],
         logo: `${baseUrl}/logo-dark.png`,
@@ -127,11 +132,11 @@ export function globalGraph(): Json {
         ...(sameAs.length ? { sameAs } : {}),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Iron and hardware range",
+          name: hi ? "लोहा और हार्डवेयर की रेंज" : "Iron and hardware range",
           itemListElement: categories.map((c) => ({
             "@type": "OfferCatalog",
-            name: c.name,
-            url: `${baseUrl}/categories/${c.slug}`,
+            name: hi ? catalogHi[c.name] ?? c.name : c.name,
+            url: `${baseUrl}${localePath(lang, `/categories/${c.slug}`)}`,
           })),
         },
       },
@@ -141,7 +146,7 @@ export function globalGraph(): Json {
         name: site.name,
         alternateName: site.legalName,
         url: baseUrl,
-        inLanguage: "en-IN",
+        inLanguage: htmlLang[lang],
         publisher: { "@id": ids.organization },
       },
     ],
@@ -309,4 +314,35 @@ export function sanitizeJsonLd<T>(node: T, parentKey?: string): T {
     if (types.includes("Organization")) return { "@id": ids.organization } as unknown as T;
   }
   return out as unknown as T;
+}
+
+const ENTITY_ID = /#(organization|localbusiness|website)$/;
+
+/**
+ * Point a page-level schema node at the Hindi URLs. Internal page URLs (no file extension, not an entity @id)
+ * gain the /hi prefix and inLanguage becomes hi-IN. Images, logos and external links are untouched.
+ */
+export function localizeSchema<T>(node: T, lang: Lang): T {
+  if (lang === "en") return node;
+  const walk = (v: unknown, key?: string): unknown => {
+    if (typeof v === "string") {
+      if (key === "inLanguage" && /^en/i.test(v)) return htmlLang.hi;
+      if (v.startsWith(baseUrl) && !ENTITY_ID.test(v)) {
+        const rest = v.slice(baseUrl.length);
+        const pathOnly = rest.split("#")[0].split("?")[0];
+        if ((rest === "" || rest.startsWith("/")) && !/\.[a-z0-9]{2,5}$/i.test(pathOnly) && !pathOnly.startsWith("/hi")) {
+          const hash = rest.includes("#") ? rest.slice(rest.indexOf("#")) : "";
+          const q = rest.includes("?") ? rest.slice(rest.indexOf("?"), hash ? rest.indexOf("#") : undefined) : "";
+          return `${baseUrl}${localePath("hi", pathOnly || "/")}${q}${hash}`;
+        }
+      }
+      return v;
+    }
+    if (Array.isArray(v)) return v.map((x) => walk(x, key));
+    if (v && typeof v === "object") {
+      return Object.fromEntries(Object.entries(v as Record<string, unknown>).map(([k, x]) => [k, walk(x, k)]));
+    }
+    return v;
+  };
+  return walk(node) as T;
 }

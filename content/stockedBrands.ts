@@ -1,6 +1,6 @@
 /**
  * Brands we stock. Used for "Brands We Stock" section and messaging.
- * Only set isAuthorized: true for brands we are truly authorized dealers for.
+ * Only set isAuthorized: true for brands we are truly authorised dealers for.
  */
 
 export type StockedBrand = {
@@ -16,7 +16,7 @@ export const stockedBrands: StockedBrand[] = [
   {
     name: "Tata",
     specialty: "Steel products, TMT bars",
-    note: "Authorized dealer. Tata products available on request.",
+    note: "Authorised dealer. Tata products available on request.",
     isAuthorized: true,
     categoryTags: ["structural-items", "tmt-bars"],
   },
@@ -29,7 +29,7 @@ export const stockedBrands: StockedBrand[] = [
   },
   {
     name: "H D Wires Pvt Ltd",
-    specialty: "Welded wire mesh and galvanized cables",
+    specialty: "Welded wire mesh and galvanised cables",
     categoryTags: ["wiremesh", "wires"],
   },
   {
@@ -39,7 +39,7 @@ export const stockedBrands: StockedBrand[] = [
   },
   {
     name: "Hamrahi Wiremesh Industries",
-    specialty: "GI barbed wire, aluminum mesh, and concertina wire",
+    specialty: "GI barbed wire, aluminium mesh, and concertina wire",
     categoryTags: ["fencing-material", "barbed-wire", "wires"],
   },
   {

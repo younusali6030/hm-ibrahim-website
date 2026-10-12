@@ -3,7 +3,8 @@
 type SpecLike = { label: string; value: string };
 
 /** A short size range for the stencil tag, taken only from specs / sizes in content/products.ts. */
-export function sizeTag(p: { specs?: SpecLike[]; sizes?: string[] }): string | null {
+/** `translate`, when given, is applied before truncation so a Hindi tag is cut at a word of its own text. */
+export function sizeTag(p: { specs?: SpecLike[]; sizes?: string[] }, translate?: (s: string) => string): string | null {
   const spec = p.specs?.find((s) => /size|width|thickness|diameter|gauge|mesh|opening|hole/i.test(s.label));
   let v: string | undefined = spec?.value;
   if (!v && p.sizes?.length) {
@@ -13,6 +14,7 @@ export function sizeTag(p: { specs?: SpecLike[]; sizes?: string[] }): string | n
   }
   if (!v || /various|as per|stock/i.test(v)) return null;
   v = v.split(/\s*\(/)[0].trim();
+  if (translate) v = translate(v);
   return v.length > 30 ? v.slice(0, 28).replace(/[\s,;/]+\S*$/, "") + "…" : v;
 }
 

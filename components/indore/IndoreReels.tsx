@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Play } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 const REELS = [
   { id: "shop-par-bharosa", title: "Shop par bharosa", note: "Walk in. See the stock. Decide." },
@@ -9,7 +10,17 @@ const REELS = [
   { id: "weldmesh-jali", title: "Weldmesh jali", note: "Rolls and panels, any gauge." },
 ];
 
-function Reel({ id, title, note }: (typeof REELS)[number]) {
+const REELS_HI: Record<string, { title: string; note: string }> = {
+  "shop-par-bharosa": { title: "दुकान पर भरोसा", note: "आइए। माल देखिए। फिर तय कीजिए।" },
+  "check-the-strength": { title: "मज़बूती परखिए", note: "तार और जाली, आपके सामने जाँची गई।" },
+  "weldmesh-jali": { title: "वेल्डमेश जाली", note: "रोल और पैनल, हर गेज।" },
+};
+
+function Reel({ id, title: titleEn, note: noteEn }: (typeof REELS)[number]) {
+  const { lang } = useLang();
+  const hi = lang === "hi";
+  const title = hi ? REELS_HI[id]?.title ?? titleEn : titleEn;
+  const note = hi ? REELS_HI[id]?.note ?? noteEn : noteEn;
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -29,7 +40,7 @@ function Reel({ id, title, note }: (typeof REELS)[number]) {
       <button
         type="button"
         onClick={toggle}
-        aria-label={`${playing ? "Pause" : "Play"} reel: ${title}`}
+        aria-label={hi ? `रील ${playing ? "रोकें" : "चलाएँ"}: ${title}` : `${playing ? "Pause" : "Play"} reel: ${title}`}
         className="group relative block aspect-[9/16] w-full overflow-hidden rounded-[18px] bg-[#0b121a] ring-1 ring-white/10"
       >
         <video
@@ -67,8 +78,9 @@ function Reel({ id, title, note }: (typeof REELS)[number]) {
 
 /** Three reels from the Siyaganj counter. Posters only until someone taps; nothing autoplays. */
 export function IndoreReels() {
+  const { lang } = useLang();
   return (
-    <div className="-mx-4 overflow-x-auto px-4 pb-3 [scrollbar-width:thin] sm:mx-0 sm:px-0" tabIndex={0} aria-label="Reels from the counter, scroll sideways">
+    <div className="-mx-4 overflow-x-auto px-4 pb-3 [scrollbar-width:thin] sm:mx-0 sm:px-0" tabIndex={0} aria-label={lang === "hi" ? "काउंटर की रील, बगल में स्क्रोल करें" : "Reels from the counter, scroll sideways"}>
       <div className="flex snap-x snap-mandatory gap-4">
         {REELS.map((r) => (
           <Reel key={r.id} {...r} />

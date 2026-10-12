@@ -17,7 +17,7 @@ export const brandPageVisuals: Partial<Record<BrandId, BrandPageVisuals>> = {
   cm: {
     accent: "#d4202c",
     logoClear: "/brands/cm-logo-clear.png",
-    hero: { src: "/brands/cm-chainlink.jpg", alt: "CM brand chain link fencing rolls stacked at the H M Ibrahim & Co shop" },
+    hero: { src: "/brands/cm-chainlink.jpg", alt: "CM brand chain link fencing rolls stacked at the HM Ibrahim & Co shop" },
     gallery: [
       { src: "/brands/cm-barbed.jpg", alt: "CM barbed wire and chain link label on a coil" },
       { src: "/brands/cm-chainlink-wide.jpg", alt: "Rolls of CM chain link fencing in rows" },

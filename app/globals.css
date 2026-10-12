@@ -47,7 +47,7 @@
   }
 
   html {
-    font-family: var(--font-sans, "Source Sans 3"), system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family: var(--font-sans, "Source Sans 3"), var(--font-deva, "Noto Sans Devanagari"), system-ui, -apple-system, "Segoe UI", sans-serif;
     @apply scroll-smooth;
     /* Anchors clear the fixed header; focused controls clear the mobile sticky contact bar. */
     scroll-padding-top: 5.5rem;
@@ -61,7 +61,7 @@
     @apply bg-background text-foreground antialiased;
     background-image: radial-gradient(ellipse 80% 50% at 80% -10%, hsl(24 95% 53% / 0.07), transparent 60%), radial-gradient(ellipse 70% 40% at 0% 30%, hsl(210 60% 40% / 0.10), transparent 60%);
     background-attachment: fixed;
-    font-family: var(--font-sans, "Source Sans 3"), system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family: var(--font-sans, "Source Sans 3"), var(--font-deva, "Noto Sans Devanagari"), system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size: var(--text-body);
     line-height: var(--leading-relaxed);
     letter-spacing: var(--tracking-normal);
@@ -72,13 +72,13 @@
 
   /* Consistent typography: headings use heading font, type scale, spacing rhythm */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading, "Plus Jakarta Sans"), system-ui, sans-serif;
+    font-family: var(--font-heading, "Plus Jakarta Sans"), var(--font-deva, "Noto Sans Devanagari"), system-ui, sans-serif;
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);
   }
   h1,
   h2 {
-    font-family: var(--font-display, "Big Shoulders Display"), Impact, "Arial Narrow", sans-serif;
+    font-family: var(--font-display, "Big Shoulders Display"), var(--font-deva, "Noto Sans Devanagari"), Impact, "Arial Narrow", sans-serif;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 0.005em;
@@ -140,7 +140,7 @@
     position: absolute;
     right: 0;
     top: -1.5rem;
-    font-family: var(--font-mono-brand, "IBM Plex Mono"), ui-monospace, monospace;
+    font-family: var(--font-mono-brand, "IBM Plex Mono"), var(--font-deva, "Noto Sans Devanagari"), ui-monospace, monospace;
     font-size: 0.68rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -160,7 +160,7 @@
 
   .stencil-tag {
     display: inline-block;
-    font-family: var(--font-display, "Big Shoulders Display"), Impact, "Arial Narrow", sans-serif;
+    font-family: var(--font-display, "Big Shoulders Display"), var(--font-deva, "Noto Sans Devanagari"), Impact, "Arial Narrow", sans-serif;
     font-weight: 800;
     font-size: 0.95rem;
     letter-spacing: 0.14em;
@@ -182,7 +182,7 @@
     border-radius: 4px;
     color: hsl(var(--primary));
     transform: rotate(var(--tilt, -3deg));
-    font-family: var(--font-display, "Big Shoulders Display"), Impact, "Arial Narrow", sans-serif;
+    font-family: var(--font-display, "Big Shoulders Display"), var(--font-deva, "Noto Sans Devanagari"), Impact, "Arial Narrow", sans-serif;
     text-transform: uppercase;
     -webkit-mask-image: radial-gradient(circle at 20% 30%, #000 60%, rgba(0, 0, 0, 0.8) 100%);
     mask-image: radial-gradient(circle at 20% 30%, #000 60%, rgba(0, 0, 0, 0.8) 100%);
@@ -195,7 +195,7 @@
     line-height: 1;
   }
   .counter-stamp-sub {
-    font-family: var(--font-mono-brand, "IBM Plex Mono"), ui-monospace, monospace;
+    font-family: var(--font-mono-brand, "IBM Plex Mono"), var(--font-deva, "Noto Sans Devanagari"), ui-monospace, monospace;
     font-size: 0.62rem;
     letter-spacing: 0.18em;
     opacity: 0.85;
@@ -480,7 +480,7 @@
   right: -0.05em;
   top: 50%;
   transform: translateY(-50%);
-  font-family: var(--font-display), "Big Shoulders Display", sans-serif;
+  font-family: var(--font-display), "Big Shoulders Display", var(--font-deva), sans-serif;
   font-weight: 800;
   font-size: clamp(7rem, 22vw, 15rem);
   line-height: 0.8;
@@ -658,4 +658,49 @@ html.menu-open .sticky-cta {
 }
 .steel-sheen-fallback canvas {
   display: block;
+}
+
+
+/* ------------------------------------------------------------------------------------------------
+   Hindi (Devanagari). Everything here is scoped to <html lang="hi-IN">, so English is untouched.
+   Devanagari joins letters with a headline bar, stacks vowel signs above and below the line, and breaks
+   when letters are spread apart or forced to capitals. So: no tracking, no text-transform, more line height,
+   and display type that is sized for a wider script.
+   ------------------------------------------------------------------------------------------------ */
+html[lang="hi-IN"] {
+  --leading-tight: 1.3;
+  --leading-snug: 1.45;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+  --tracking-tight: 0;
+  --tracking-wide: 0;
+  font-feature-settings: "kern" 1;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+html[lang="hi-IN"] *,
+html[lang="hi-IN"] *::before,
+html[lang="hi-IN"] *::after {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+html[lang="hi-IN"] body {
+  line-height: 1.75;
+}
+html[lang="hi-IN"] :is(h1, h2, h3, h4, h5, h6, .font-display, [class*="font-display"]) {
+  line-height: 1.3 !important;
+  font-family: var(--font-deva), var(--font-heading, "Plus Jakarta Sans"), system-ui, sans-serif !important;
+  font-weight: 700;
+}
+html[lang="hi-IN"] :is(.font-mono-brand, [class*="font-mono-brand"], .st-eyebrow, .stencil-tag, .counter-stamp, .counter-stamp-main, .counter-stamp-sub) {
+  font-family: var(--font-deva), var(--font-sans, "Source Sans 3"), system-ui, sans-serif !important;
+  line-height: 1.5 !important;
+}
+/* The stencil mask cuts two hairlines across a glyph; it would slice Devanagari. */
+html[lang="hi-IN"] .stencil-tag {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+html[lang="hi-IN"] :is(p, li, dd, dt, label, a, span, button, td, th, figcaption, summary) {
+  line-height: inherit;
 }

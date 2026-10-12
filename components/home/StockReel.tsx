@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { useEffect, useRef } from "react";
+import { useLang } from "@/lib/i18n";
 
 type ChapterData = {
   id: string;
@@ -37,7 +38,7 @@ const CHAPTERS: ChapterData[] = [
     id: "perforated",
     kicker: "Sheets",
     title: "Perforated sheet, cut to size",
-    body: "MS and GI sheets in round, square and slotted holes. Cut outside the shop while you wait.",
+    body: "MS and GI sheets in round, square and slotted holes. Cut to size while you wait.",
     facts: ["MS and GI", "Many hole patterns", "Cut to size"],
     href: "/categories/perforated-sheets",
     cta: "See perforated sheets",
@@ -71,8 +72,55 @@ const CHAPTERS: ChapterData[] = [
   },
 ];
 
+const HI: Record<string, Pick<ChapterData, "kicker" | "title" | "body" | "facts" | "cta">> = {
+  concertina: {
+    kicker: "फेंसिंग",
+    title: "रेज़र और कंसर्टिना कॉइल",
+    body: "गोदाम में रखे गैल्वनाइज़्ड कॉइल, मीटर के हिसाब से कटकर या पूरे रोल में भेजे जाते हैं।",
+    facts: ["सिंगल और डबल कॉइल", "कांटेदार और रेज़र", "रिटेल और थोक"],
+    cta: "फेंसिंग सामग्री देखें",
+  },
+  "binding-wire": {
+    kicker: "निर्माण का तार",
+    title: "बाइंडिंग तार, कॉइल पर कॉइल",
+    body: "सरिया और सेंट्रिंग के लिए काला एनील्ड बाइंडिंग तार। टाटा वायरॉन के कॉइल शेल्फ पर इसके बगल में रखे हैं।",
+    facts: ["काला एनील्ड", "टाटा वायरॉन स्टॉक में", "कॉइल या किलो के हिसाब से"],
+    cta: "बाइंडिंग तार के रेट",
+  },
+  perforated: {
+    kicker: "शीट",
+    title: "परफोरेटेड शीट, नाप से कटी",
+    body: "गोल, चौकोर और स्लॉट छेदों वाली एमएस और जीआई शीट। दुकान के बाहर आपके सामने कटती है।",
+    facts: ["एमएस और जीआई", "छेदों के कई पैटर्न", "नाप से कटाई"],
+    cta: "परफोरेटेड शीट देखें",
+  },
+  weldmesh: {
+    kicker: "जाली",
+    title: "स्लैब और फेंस के लिए वेल्डेड मेश",
+    body: "जीआई, एमएस और पीवीसी कोटेड वेल्ड मेश रोल और पैनल में। गेज और खाने का साइज़ बताइए।",
+    facts: ["जीआई, एमएस, पीवीसी कोटेड", "रोल और पैनल", "कई गेज"],
+    cta: "वेल्डेड मेश देखें",
+  },
+  expanded: {
+    kicker: "जाली",
+    title: "एक्सपैंडेड मेटल, एक पीस, बिना वेल्ड",
+    body: "एक ही शीट से खींची डायमंड जाली। गेट, ग्रिल, गार्ड और प्लास्टर के लिए।",
+    facts: ["सादी और गैल्वनाइज़्ड", "रोल और शीट", "कड़ी और हल्की"],
+    cta: "एक्सपैंडेड मेटल मेश",
+  },
+  nails: {
+    kicker: "फास्टनर",
+    title: "कीलें, डिब्बे से तौलकर",
+    body: "हर लंबाई की तार की कील और छत की कील, हाथ से छाँटकर और वज़न के हिसाब से।",
+    facts: ["1 इंच से 6 इंच", "तार और छत की कील", "किलो के हिसाब से"],
+    cta: "कीलें देखें",
+  },
+};
+
 /** One clip per product family. Each plays only while it is on screen; nothing is pinned or scroll-jacked. */
-function Chapter({ c, i }: { c: ChapterData; i: number }) {
+function Chapter({ c: en, i }: { c: ChapterData; i: number }) {
+  const { lang } = useLang();
+  const c: ChapterData = lang === "hi" && HI[en.id] ? { ...en, ...HI[en.id] } : en;
   const box = useRef<HTMLElement>(null);
   const video = useRef<HTMLVideoElement>(null);
 
@@ -156,14 +204,16 @@ function Chapter({ c, i }: { c: ChapterData; i: number }) {
 }
 
 export function StockReel() {
+  const { lang } = useLang();
+  const hi = lang === "hi";
   return (
     <section className="border-t border-border py-14 md:py-20" aria-labelledby="stock-heading">
       <div className="page-container">
-        <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">From the godown</p>
+        <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">{hi ? "गोदाम से" : "From the godown"}</p>
         <h2 id="stock-heading" data-reveal className="stock-intro-title mt-3 max-w-4xl text-foreground">
-          Everything a build needs
+          {hi ? "निर्माण को जो कुछ चाहिए" : "Everything a build needs"}
         </h2>
-        <p className="mt-4 max-w-xl text-muted-foreground">Filmed at our own counter and godown in Siyaganj. Real stock, cut to your size.</p>
+        <p className="mt-4 max-w-xl text-muted-foreground">{hi ? "सियागंज में हमारे अपने काउंटर और गोदाम पर फ़िल्माया गया। असली स्टॉक, आपके साइज़ में कटा हुआ।" : "Filmed at our own counter and godown in Siyaganj. Real stock, cut to your size."}</p>
         <div className="mt-6 divide-y divide-border">
           {CHAPTERS.map((c, i) => (
             <Chapter key={c.id} c={c} i={i} />

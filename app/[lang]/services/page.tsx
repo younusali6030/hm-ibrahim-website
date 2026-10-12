@@ -1,0 +1,104 @@
+import type { Metadata } from "next";
+import { buildPageMeta, pageUrl } from "@/lib/seo";
+import { localize } from "@/lib/localize";
+import { tt, type Lang } from "@/lib/locale";
+import { siteHi } from "@/content/hi/site";
+import Link from "@/components/LocaleLink";
+import { baseUrl, site } from "@/lib/site";
+import { services } from "@/content/services";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
+import { ReviewsList } from "@/components/trust/ReviewsList";
+import { SectionHead } from "@/components/story/SectionHead";
+import { ContactStrip } from "@/components/story/ContactStrip";
+import { T } from "@/lib/i18n";
+import "@/components/story/story.css";
+
+function servicesPageSchema(lang: Lang) {
+  const hi = lang === "hi";
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: hi ? `सेवाएँ, ${siteHi.name}` : `Services, ${site.name}`,
+    description: hi
+      ? `${siteHi.name}, सियागंज, इंदौर से रिटेल, थोक, बल्क ऑर्डर, गोदाम और डिलीवरी।`
+      : `Retail, wholesale, bulk orders, warehouse and delivery from ${site.name}, Siyaganj, Indore.`,
+    url: pageUrl("services", lang),
+  };
+}
+
+export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+  return buildPageMeta({
+    lang: params.lang as Lang,
+    title: "Services: Retail, Wholesale and Bulk Orders",
+    description: `Retail, wholesale, bulk orders, warehouse and delivery. How ${site.name} serves builders, contractors and customers in Indore.`,
+    path: "services",
+  });
+}
+
+export default function ServicesPage({ params }: { params: { lang: string } }) {
+  const lang = params.lang as Lang;
+  const t = tt(lang);
+  const items = localize(services, lang);
+  const STEPS = [
+    { t: t("Tell us what you need", "बताइए आपको क्या चाहिए"), d: t("Send a list, call, or walk in. Sizes and quantities help us quote exactly.", "सूची भेजिए, कॉल कीजिए या सीधे आइए। साइज़ और मात्रा से हम सही भाव बता पाते हैं।") },
+    { t: t("We confirm stock and rate", "हम स्टॉक और रेट पक्का करते हैं"), d: t("We check the shelf and come back with a rate and what is available today.", "हम शेल्फ देखते हैं और रेट के साथ बताते हैं कि आज क्या उपलब्ध है।") },
+    { t: t("Collect it, or we dispatch", "खुद ले जाइए, या हम भेज देते हैं"), d: t("Pick up from our Siyaganj counter, or ask about delivery for your location.", "हमारे सियागंज काउंटर से उठाइए, या अपनी जगह के लिए डिलीवरी के बारे में पूछिए।") },
+  ];
+  return (
+    <>
+      <SeoJsonLd data={servicesPageSchema(lang)} lang={lang} />
+      <PageHero
+        eyebrow={<T en="Services · Siyaganj, Indore" hi="सेवाएँ · सियागंज, इंदौर" />}
+        title={<T en="One counter for a single coil or a whole site" hi="एक काउंटर: एक कॉइल से पूरी साइट तक" />}
+        lede={t("We serve retail customers, wholesalers, contractors and industrial buyers with supply and support to match the order.", "हम रिटेल ग्राहकों, थोक व्यापारियों, ठेकेदारों और औद्योगिक खरीदारों को ऑर्डर के हिसाब से सप्लाई और सहयोग देते हैं।")}
+      >
+        <Link href="/contact" className={btnMain}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
+        <Link href="/products" className={btnGhostDark}><T en="Browse the range" hi="पूरी रेंज देखें" /></Link>
+      </PageHero>
+
+      <section className="st-sec" aria-labelledby="services-heading">
+        <div className="page-container">
+          <SectionHead eyebrow={t("What we do", "हम क्या करते हैं")} id="services-heading" title={t("Six ways we serve", "सेवा के छह तरीके")} />
+          <ol className="st-ledger mt-10">
+            {items.map((s, i) => (
+              <li key={s.slug} className="st-row">
+                <span className="st-key" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="st-title">{s.title}</h3>
+                <div>
+                  <p className="st-body text-lg">{s.description}</p>
+                  {(s.slug === "delivery" || s.slug === "fabrication") && (
+                    <p className="st-meta">{t("Subject to availability. Please enquire at the time of order.", "उपलब्धता के अनुसार। कृपया ऑर्डर के समय पूछ लें।")}</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="st-sec st-sec-tint" aria-labelledby="how-heading">
+        <div className="page-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <SectionHead eyebrow={t("How an order works", "ऑर्डर कैसे चलता है")} id="how-heading" title={t("Three steps, no paperwork to start", "तीन कदम, शुरुआत में कोई कागज़ी कार्रवाई नहीं")} />
+          <ol className="st-ledger self-start" style={{ ["--st-cols" as string]: "4rem minmax(0,1fr)" }}>
+            {STEPS.map((s, i) => (
+              <li key={s.t} className="st-row">
+                <span className="st-key" aria-hidden="true">{i + 1}</span>
+                <div>
+                  <h3 className="st-title">{s.t}</h3>
+                  <p className="st-body mt-2">{s.d}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <div className="page-container st-sec">
+        <ReviewsList lang={lang} max={3} title={t("From buyers who used the counter", "काउंटर से माल लेने वाले खरीदारों की ज़ुबानी")} />
+      </div>
+
+      <ContactStrip heading={t("Send the list", "अपनी सूची भेजिए")} waMessage={t("Hi, I'd like a rate for an order. Product, size and quantity: ", "नमस्ते, मुझे एक ऑर्डर का रेट चाहिए। उत्पाद, साइज़ और मात्रा: ")} />
+    </>
+  );
+}

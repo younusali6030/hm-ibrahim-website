@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import type { ProductMediaItem } from "@/content/products";
+import { useLang } from "@/lib/i18n";
 
 type Props = {
   /** When provided, gallery shows both images and videos (images first). */
@@ -21,6 +22,8 @@ function isVideoSrc(src: string): boolean {
 
 /** Swipeable on phones (scroll-snap, native momentum), arrows and thumbnails on larger screens. Only the visible video plays. */
 export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt, productName, productSlug }: Props) {
+  const { lang } = useLang();
+  const hi = lang === "hi";
   const [active, setActive] = useState(0);
   const scroller = useRef<HTMLDivElement>(null);
   const videos = useRef<(HTMLVideoElement | null)[]>([]);
@@ -72,7 +75,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
           onScroll={onScroll}
           className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-[14px] bg-[hsl(210_30%_10%)] ring-1 ring-white/10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           aria-roledescription="carousel"
-          aria-label={`${productName} photos and videos`}
+          aria-label={hi ? `${productName} की फ़ोटो और वीडियो` : `${productName} photos and videos`}
         >
           {media.map((item, i) => (
             <div key={`${item.src}-${i}`} className="relative aspect-[4/3] w-full shrink-0 snap-center snap-always">
@@ -89,12 +92,12 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
                   playsInline
                   preload={i === active ? "auto" : "none"}
                   className="h-full w-full bg-black object-contain"
-                  aria-label={`${alt || productName} video`}
+                  aria-label={hi ? `${alt || productName} वीडियो` : `${alt || productName} video`}
                 />
               ) : (
                 <ImageWithFallback
                   src={item.src}
-                  alt={i === 0 ? alt || productName : `${alt || productName}, view ${i + 1}`}
+                  alt={i === 0 ? alt || productName : hi ? `${alt || productName}, दृश्य ${i + 1}` : `${alt || productName}, view ${i + 1}`}
                   fill
                   className="object-cover"
                   priority={i === 0}
@@ -111,7 +114,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
               type="button"
               onClick={() => goTo((active - 1 + media.length) % media.length)}
               className="border border-white/20 bg-background/80 absolute left-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:flex"
-              aria-label="Previous"
+              aria-label={hi ? "पिछला" : "Previous"}
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -119,7 +122,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
               type="button"
               onClick={() => goTo((active + 1) % media.length)}
               className="border border-white/20 bg-background/80 absolute right-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:flex"
-              aria-label="Next"
+              aria-label={hi ? "अगला" : "Next"}
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -145,7 +148,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
               className={`relative overflow-hidden rounded-[6px] border-2 bg-[hsl(210_30%_10%)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                 active === idx ? "border-primary" : "border-transparent opacity-70 hover:opacity-100"
               }`}
-              aria-label={item.type === "video" ? `Show video ${idx + 1}` : `Show image ${idx + 1}`}
+              aria-label={hi ? (item.type === "video" ? `वीडियो ${idx + 1} दिखाएँ` : `फ़ोटो ${idx + 1} दिखाएँ`) : item.type === "video" ? `Show video ${idx + 1}` : `Show image ${idx + 1}`}
             >
               {item.type === "video" ? (
                 <>

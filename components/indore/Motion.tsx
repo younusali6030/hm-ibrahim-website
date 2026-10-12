@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useLang } from "@/lib/i18n";
 import { useEffect, useRef, type ReactNode } from "react";
 import {
   animate,
@@ -184,8 +185,9 @@ export type RingPhoto = { src: string; alt: string; label: string };
 
 /** Five photos on a slowly turning 3D drum. Pauses on hover or focus; a plain grid with reduced motion. */
 export function PhotoRing({ photos }: { photos: RingPhoto[] }) {
+  const { lang } = useLang();
   return (
-    <div className="ind-ring-scene" role="group" aria-label="Photos of Indore, turning slowly" tabIndex={0}>
+    <div className="ind-ring-scene" role="group" aria-label={lang === "hi" ? "इंदौर की तस्वीरें, धीरे-धीरे घूमती हुई" : "Photos of Indore, turning slowly"} tabIndex={0}>
       <div className="ind-ring-tilt">
         <div className="ind-ring">
           {photos.map((p, i) => (

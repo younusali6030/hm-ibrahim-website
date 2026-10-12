@@ -2,6 +2,8 @@ import { allProducts } from "@/content/products";
 import { getAllPosts } from "@/content/blog/posts";
 import { homeReels, brandVideos, type SiteVideo } from "@/content/reels";
 import { baseUrl } from "@/lib/site";
+import { tr } from "@/lib/localize";
+import { getHindiPostSlugs } from "@/content/blog/posts";
 
 export const dynamic = "force-static";
 
@@ -22,7 +24,7 @@ export async function GET() {
       vids.push({
         src: noExt(v),
         title: `${p.name}: ${human(base(v))}`,
-        description: `${p.name} at the H M Ibrahim & Co counter, Siyaganj, Indore. ${p.shortDesc}`,
+        description: `${p.name} at the HM Ibrahim & Co counter, Siyaganj, Indore. ${p.shortDesc}`,
         page: `/products/${p.slug}`,
         uploadDate: "2026-10-11",
       });
@@ -38,6 +40,18 @@ export async function GET() {
       uploadDate: "2026-10-11",
     });
   }
+
+  // Hindi copies of every page that embeds a video, with Hindi titles where the dictionary has them.
+  const hiSlugs = new Set(await getHindiPostSlugs());
+  const hiVids: SiteVideo[] = vids
+    .filter((v) => !v.page.startsWith("/blog/") || hiSlugs.has(v.page.replace("/blog/", "")))
+    .map((v) => ({
+      ...v,
+      page: v.page === "/" ? "/hi" : `/hi${v.page}`,
+      title: tr(v.title, "hi"),
+      description: tr(v.description, "hi"),
+    }));
+  vids.push(...hiVids);
 
   const byPage = new Map<string, SiteVideo[]>();
   const seen = new Set<string>();

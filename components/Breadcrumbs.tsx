@@ -1,17 +1,19 @@
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { ChevronRight } from "lucide-react";
+import type { Lang } from "@/lib/locale";
 
 export type BreadcrumbItem = { name: string; url: string };
 
 type Props = {
   items: BreadcrumbItem[];
   className?: string;
+  lang?: Lang;
 };
 
-export function Breadcrumbs({ items, className = "" }: Props) {
+export function Breadcrumbs({ items, className = "", lang = "en" }: Props) {
   if (items.length === 0) return null;
   return (
-    <nav aria-label="Breadcrumb" className={`text-sm text-muted-foreground ${className}`}>
+    <nav aria-label={lang === "hi" ? "ब्रेडक्रम्ब (नेविगेशन पथ)" : "Breadcrumb"} className={`text-sm text-muted-foreground ${className}`}>
       <ol className="flex flex-wrap items-center gap-1">
         {items.map((item, i) => {
           const isLast = i === items.length - 1;

@@ -72,8 +72,8 @@ function buildCatalogHtml(data: CatalogData): string {
   const ratesSection = hasRates
     ? `
     <div style="margin-top:20px;padding:14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;">
-      <h3 style="margin:0 0 10px 0;font-size:14px;color:#166534;">Live indicative range (Indore / Siyaganj)</h3>
-      <p style="margin:0 0 10px 0;font-size:12px;color:#6b7280;">From recent web search for: ${escapeHtml(searchContext)}. Confirm with us for current price and availability.</p>
+      <h3 style="margin:0 0 10px 0;font-size:14px;color:#166534;">Indicative range (Indore / Siyaganj)</h3>
+      <p style="margin:0 0 10px 0;font-size:12px;color:#6b7280;">Based on a recent web search for: ${escapeHtml(searchContext)}. Please confirm the current price and availability with us.</p>
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <tr style="border-bottom:1px solid #bbf7d0;"><th style="text-align:left;padding:6px 8px 6px 0;">Source</th><th style="text-align:left;padding:6px 0;">Rate</th><th style="text-align:left;padding:6px 0;">Note</th></tr>
         ${tentativeRates.map((r) => `<tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:6px 8px 6px 0;">${escapeHtml(r.supplier ?? "—")}</td><td style="padding:6px 0;">${escapeHtml(r.rate ?? "—")}</td><td style="padding:6px 0;color:#6b7280;">${escapeHtml(r.note ?? "")}</td></tr>`).join("")}
@@ -88,7 +88,7 @@ function buildCatalogHtml(data: CatalogData): string {
     </div>`
       : `
     <div style="margin-top:20px;padding:14px;background:#fefce8;border:1px solid #fef08a;border-radius:8px;">
-      <p style="margin:0;font-size:13px;color:#854d0e;">Tentative rates for <strong>${escapeHtml(productName)}</strong> in Indore / Siyaganj depend on quantity and current market. We will confirm exact price and availability when you contact us.</p>
+      <p style="margin:0;font-size:13px;color:#854d0e;">Rates for <strong>${escapeHtml(productName)}</strong> in Indore / Siyaganj depend on quantity and the current market. Contact us and we will confirm the exact price and availability.</p>
     </div>`;
 
   return `
@@ -99,7 +99,7 @@ function buildCatalogHtml(data: CatalogData): string {
   <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
     ${logoHtml}
     <div style="padding:0 24px 16px;border-bottom:1px solid #e5e7eb;">
-      <p style="margin:0 0 16px 0;font-size:15px;color:#374151;">Thanks for contacting us. Please refer to the reference prices below. You can call us for immediate assistance or wait for us to reach back to you.</p>
+      <p style="margin:0 0 16px 0;font-size:15px;color:#374151;">Thank you for your enquiry. The product details and indicative rates are below. Call us if you need an answer sooner; otherwise we will get back to you during shop hours.</p>
       <h1 style="margin:0 0 4px 0;font-size:20px;color:#111827;">${escapeHtml(productName)}</h1>
       <p style="margin:0;font-size:13px;color:#6b7280;">${escapeHtml(categoryName)} — HM Ibrahim & Co, Siyaganj, Indore</p>
     </div>
@@ -114,7 +114,7 @@ function buildCatalogHtml(data: CatalogData): string {
       ${ratesSection}
     </div>
     <div style="padding:20px 24px;background:#eff6ff;border-top:1px solid #bfdbfe;">
-      <p style="margin:0 0 12px 0;font-size:14px;font-weight:600;color:#1e40af;">Call us ASAP at <a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> to book the best available rate.</p>
+      <p style="margin:0 0 12px 0;font-size:14px;font-weight:600;color:#1e40af;">Call us on <a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> for the best available rate.</p>
       <p style="margin:0;font-size:12px;color:#6b7280;">This catalog was sent in response to your quote request. For current prices and orders, contact us:</p>
       <p style="margin:8px 0 0 0;font-size:13px;"><a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> · <a href="mailto:${site.email}" style="color:#2563eb;">${site.email}</a></p>
     </div>

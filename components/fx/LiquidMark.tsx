@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useT } from "@/lib/i18n";
 import { FULLSCREEN_VS, bindQuad, makeProgram, motionAllowed } from "./gl";
 
 const FS = `
@@ -42,6 +43,7 @@ void main(){
  * the canvas draws over it only when motion is allowed and WebGL works.
  */
 export function LiquidMark({ width = 320, className = "" }: { width?: number; className?: string }) {
+  const t = useT();
   const ref = useRef<HTMLCanvasElement>(null);
   const [live, setLive] = useState(false);
   const ratio = 301 / 1000;
@@ -112,7 +114,7 @@ export function LiquidMark({ width = 320, className = "" }: { width?: number; cl
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/fx/hm-mark.png"
-        alt="H M Ibrahim & Co, since 1939"
+        alt={t("HM Ibrahim & Co, since 1939", "एच एम इब्राहिम एंड कंपनी, 1939 से")}
         width={1000}
         height={301}
         loading="lazy"

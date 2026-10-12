@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { MapPin, Phone } from "lucide-react";
 import { site } from "@/content/site";
-import { T, useT } from "@/lib/i18n";
+import { T, useT, useLang } from "@/lib/i18n";
+import { siteHi } from "@/content/hi/site";
 import { cn } from "@/lib/utils";
 import { getShopState, type ShopState } from "./shopStatus";
 
@@ -76,7 +77,7 @@ function MapEmbed() {
     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px] border border-border bg-muted lg:aspect-auto lg:min-h-[22rem]">
       {on ? (
         <iframe
-          title={t("H M Ibrahim & Co on the map, Siyaganj, Indore", "नक्शे पर H M Ibrahim & Co, सियागंज, इंदौर")}
+          title={t("HM Ibrahim & Co on the map, Siyaganj, Indore", "नक्शे पर एच एम इब्राहिम एंड कंपनी, सियागंज, इंदौर")}
           src={embedUrl}
           className="absolute inset-0 h-full w-full"
           allowFullScreen
@@ -117,6 +118,8 @@ type Props = {
  */
 export function VisitUs({ variant = "full", source = "visit_us", embed = false, className }: Props) {
   const t = useT();
+  const { lang } = useLang();
+  const a = lang === "hi" ? siteHi.address : site.address;
 
   if (variant === "strip") {
     return (
@@ -131,10 +134,10 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
               <T en="Visit us" hi="दुकान पर आइए" />
             </p>
             <p className="mt-1 text-base font-semibold text-white">
-              {site.address.line1}, {site.address.line2}, {site.address.city} {site.address.pincode}
+              {a.line1}, {a.line2}, {a.city} {a.pincode}
             </p>
             <p className="mt-0.5 text-[15px] text-white/75">
-              <T en="Landmark: Opp. Tijori Gali" hi="पहचान: तिजोरी गली के सामने" />
+              <T en="Landmark: Opposite Tijori Gali" hi="पहचान: तिजोरी गली के सामने" />
             </p>
             <ShopStatus tone="dark" className="mt-2" />
           </div>
@@ -145,11 +148,11 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
             target="_blank"
             rel="noopener noreferrer"
             data-track={`${source}_map`}
-            aria-label={t("Open in Google Maps (opens in a new tab)", "Google Maps पर खोलें (नई टैब में)")}
+            aria-label={t("Open in Google Maps (opens in a new tab)", "गूगल मैप्स पर खोलें (नए टैब में)")}
             className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm bg-primary px-5 font-bold text-primary-foreground transition hover:brightness-110"
           >
             <MapPin className="h-4 w-4" aria-hidden />
-            <T en="Open in Google Maps" hi="Google Maps पर खोलें" />
+            <T en="Open in Google Maps" hi="गूगल मैप्स पर खोलें" />
           </a>
           <a
             href={telHref}
@@ -179,7 +182,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
               <T en="Address" hi="पता" />
             </dt>
             <dd className="mt-1 text-muted-foreground">
-              {site.address.line1}, {site.address.line2}, {site.address.city}, {site.address.state} {site.address.pincode}
+              {a.line1}, {a.line2}, {a.city}, {a.state} {a.pincode}
             </dd>
           </div>
           <div>
@@ -187,7 +190,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
               <T en="Landmark" hi="पहचान" />
             </dt>
             <dd className="mt-1 text-muted-foreground">
-              <T en="Opp. Tijori Gali. Ask for H M Ibrahim & Co." hi="तिजोरी गली के सामने। H M Ibrahim & Co पूछ लीजिए।" />
+              <T en="Opposite Tijori Gali. Ask for HM Ibrahim & Co." hi="तिजोरी गली के सामने। एच एम इब्राहिम एंड कंपनी पूछ लीजिए।" />
             </dd>
           </div>
           <div>
@@ -206,11 +209,11 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
             target="_blank"
             rel="noopener noreferrer"
             data-track={`${source}_map`}
-            aria-label={t("Open in Google Maps (opens in a new tab)", "Google Maps पर खोलें (नई टैब में)")}
+            aria-label={t("Open in Google Maps (opens in a new tab)", "गूगल मैप्स पर खोलें (नए टैब में)")}
             className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-sm bg-primary px-6 font-bold text-primary-foreground transition hover:brightness-110"
           >
             <MapPin className="h-5 w-5" aria-hidden />
-            <T en="Open in Google Maps" hi="Google Maps पर खोलें" />
+            <T en="Open in Google Maps" hi="गूगल मैप्स पर खोलें" />
           </a>
           <a
             href={telHref}

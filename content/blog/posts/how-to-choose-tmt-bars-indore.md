@@ -1,6 +1,6 @@
 ---
 title: "How to Choose TMT Bars in Indore: Grades, Brands, Use"
-description: "Guide to selecting TMT bars in Indore. Fe 500, Fe 550, sizes, and where to buy from Siyaganj. Request a quote."
+description: "How to choose TMT bars in Indore: Fe 500, Fe 550 and Fe 500D grades, common sizes, what to check, and where to buy in Siyaganj."
 date: "2025-02-04"
 updated: "2026-10-11"
 category: "Structural steel"
@@ -13,7 +13,7 @@ image3Alt: "Tied bundles of TMT bar next to wire coils"
 ---
 **Quick answer:** For most houses in Indore the engineer specifies Fe 500. Fe 500D is chosen where ductility matters, such as seismic zones. Fe 550 is used where a design needs more strength per bar. Follow the drawing for grade and diameter. 8, 10, 12, 16 and 20 mm are the common sizes.
 
-TMT (thermo-mechanically treated) bars, called sariya in the market, are the standard reinforcement for RCC construction in Indore, Siyaganj, and across Madhya Pradesh. This guide explains grades, common sizes, and how to choose the right TMT bars for your project—and where to get them in Siyaganj or Loha Mandi.
+TMT (thermo-mechanically treated) bars, called sariya in the market, are the standard reinforcement for RCC construction in Indore, Siyaganj, and across Madhya Pradesh. This guide explains grades, common sizes, and how to choose the right TMT bars for your project, and where to get them in Siyaganj or Loha Mandi.
 
 ## What Are TMT Bars?
 
@@ -23,9 +23,9 @@ TMT bars are steel bars that are heat-treated to improve strength and ductility.
 
 Common grades available in Indore include:
 
-- **Fe 500** — Most common for general RCC work. Meets IS 1786.
-- **Fe 550** — Higher strength; used where the design calls for it.
-- **Fe 500D** — Better ductility; suitable for seismic zones.
+- **Fe 500:** Most common for general RCC work. Meets IS 1786.
+- **Fe 550:** Higher strength; used where the design calls for it.
+- **Fe 500D:** Better ductility; suitable for seismic zones.
 
 Your structural engineer will specify the grade. For most buildings in Indore and nearby Dewas, Pithampur, and Ujjain, Fe 500 is standard.
 
@@ -35,10 +35,10 @@ TMT bars are supplied in diameters such as 6 mm, 8 mm, 10 mm, 12 mm, 16 mm, 20 m
 
 ## How to Choose
 
-1. **Follow the design** — Use the grade and sizes specified in your structural drawing.
-2. **Check rib pattern** — Proper deformation (ribs) ensures bond with concrete.
-3. **Source from a known supplier** — Buy from established dealers in Siyaganj or Loha Mandi who stock quality bars.
-4. **Quantity** — Order in bulk where possible for better rates; confirm delivery to site.
+1. **Follow the design:** Use the grade and sizes specified in your structural drawing.
+2. **Check rib pattern:** Proper deformation (ribs) ensures bond with concrete.
+3. **Source from a known supplier:** Buy from established dealers in Siyaganj or Loha Mandi who stock quality bars.
+4. **Quantity:** Order in bulk where possible for better rates; confirm delivery to site.
 
 ## Price Factors (No Fixed Prices)
 

@@ -6,7 +6,7 @@ export function slugifyHeading(text: string): string {
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/[`*_]/g, "")
     .replace(/&/g, " and ")
-    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/[^a-z0-9\u0900-\u097F]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
 
@@ -22,9 +22,6 @@ export function extractToc(md: string): TocItem[] {
     const m = line.match(/^##\s+(.+?)\s*$/);
     if (!m) continue;
     const text = m[1].replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[`*_]/g, "");
-    if (/^(faqs?|frequently asked questions)/i.test(text)) {
-      // keep FAQs in the list as well
-    }
     let id = slugifyHeading(text) || "section";
     let n = 2;
     while (seen.has(id)) id = `${slugifyHeading(text)}-${n++}`;

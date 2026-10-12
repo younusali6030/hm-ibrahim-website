@@ -1,6 +1,8 @@
+"use client";
+
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
-import { T } from "@/lib/i18n";
+import { T, useT } from "@/lib/i18n";
 
 type Props = {
   variant?: "page" | "product";
@@ -11,6 +13,7 @@ const link =
   "inline-flex min-h-[44px] items-center font-semibold text-primary underline underline-offset-4 hover:brightness-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
 
 export function LookingForMoreSection({ variant = "page", className = "" }: Props) {
+  const t = useT();
   const tel = `tel:${site.phone.replace(/\s/g, "")}`;
   if (variant === "product") {
     return (
@@ -22,12 +25,12 @@ export function LookingForMoreSection({ variant = "page", className = "" }: Prop
         <a href={tel} className={link}><T en="Call" hi="कॉल करें" /></a>
         <span className="mx-2" aria-hidden="true">/</span>
         <a
-          href={getWhatsAppLink(site.whatsapp, "Hi, I'm looking for a product. Do you have it available?")}
+          href={getWhatsAppLink(site.whatsapp, t("Hi, I'm looking for a product. Do you have it available?", "नमस्ते, मुझे एक उत्पाद चाहिए। क्या यह उपलब्ध है?"))}
           target="_blank"
           rel="noopener noreferrer"
           className={link}
         >
-          WhatsApp
+          <T en="WhatsApp" hi="व्हाट्सएप" />
         </a>
       </p>
     );
@@ -45,15 +48,15 @@ export function LookingForMoreSection({ variant = "page", className = "" }: Prop
         />
       </p>
       <div className="mt-2 flex flex-wrap gap-x-6">
-        <a href={tel} className={link} aria-label="Call us"><T en="Call" hi="कॉल करें" /></a>
+        <a href={tel} className={link} aria-label={t("Call us", "कॉल करें")}><T en="Call" hi="कॉल करें" /></a>
         <a
-          href={getWhatsAppLink(site.whatsapp, "Hi, I'm looking for [item]. Do you have it available?")}
+          href={getWhatsAppLink(site.whatsapp, t("Hi, I'm looking for [item]. Do you have it available?", "नमस्ते, मुझे [आइटम] चाहिए। क्या यह उपलब्ध है?"))}
           target="_blank"
           rel="noopener noreferrer"
           className={link}
-          aria-label="WhatsApp us"
+          aria-label={t("WhatsApp us", "व्हाट्सएप करें")}
         >
-          WhatsApp
+          <T en="WhatsApp" hi="व्हाट्सएप" />
         </a>
       </div>
     </section>

@@ -1,14 +1,15 @@
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import Image from "next/image";
 import type { BlogPost } from "@/content/blog/posts";
+import type { Lang } from "@/lib/locale";
 
-export function formatDate(iso: string) {
+export function formatDate(iso: string, lang: Lang = "en") {
   if (!iso) return "";
   const d = new Date(iso + "T00:00:00Z");
-  return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  return d.toLocaleDateString(lang === "hi" ? "hi-IN" : "en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 }
 
-export function PostCard({ post, priority = false }: { post: BlogPost; priority?: boolean }) {
+export function PostCard({ post, priority = false, lang = "en" }: { post: BlogPost; priority?: boolean; lang?: Lang }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -35,8 +36,8 @@ export function PostCard({ post, priority = false }: { post: BlogPost; priority?
         <span className="font-display text-[1.7rem] font-extrabold uppercase leading-[1.02] text-foreground">{post.title}</span>
         {post.description && <span className="mt-3 line-clamp-3 text-[0.95rem] text-muted-foreground">{post.description}</span>}
         <span className="mt-auto flex items-center justify-between pt-4 font-mono-brand text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-          <span>{post.readingMinutes} min read</span>
-          <span className="text-foreground underline decoration-primary underline-offset-4">Read</span>
+          <span>{lang === "hi" ? `${post.readingMinutes} मिनट में पढ़ें` : `${post.readingMinutes} min read`}</span>
+          <span className="text-foreground underline decoration-primary underline-offset-4">{lang === "hi" ? "पढ़ें" : "Read"}</span>
         </span>
       </span>
     </Link>

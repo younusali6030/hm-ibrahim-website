@@ -1,6 +1,7 @@
 import { allProducts, getCategoryBySlug, getProductImages } from "@/content/products";
 import { getAllPosts } from "@/content/blog/posts";
 import { baseUrl } from "@/lib/site";
+import { getHindiPostSlugs } from "@/content/blog/posts";
 import { indorePhotos } from "@/content/indoreStory";
 
 export const dynamic = "force-static";
@@ -14,12 +15,19 @@ export async function GET() {
 
   for (const p of allProducts) {
     const imgs = getProductImages(p, getCategoryBySlug(p.categorySlug)).filter((i) => !i.endsWith(".svg"));
-    if (imgs.length) rows.push({ page: `${baseUrl}/products/${p.slug}`, images: imgs });
+    if (imgs.length) {
+      rows.push({ page: `${baseUrl}/products/${p.slug}`, images: imgs });
+      rows.push({ page: `${baseUrl}/hi/products/${p.slug}`, images: imgs });
+    }
   }
   rows.push({ page: `${baseUrl}/indore`, images: Object.values(indorePhotos).map((p) => p.src) });
+  rows.push({ page: `${baseUrl}/hi/indore`, images: Object.values(indorePhotos).map((p) => p.src) });
+  const hiSlugs = new Set(await getHindiPostSlugs());
   for (const post of await getAllPosts()) {
     const imgs = [post.image, post.image2, post.image3].filter(Boolean) as string[];
-    if (imgs.length) rows.push({ page: `${baseUrl}/blog/${post.slug}`, images: imgs });
+    if (!imgs.length) continue;
+    rows.push({ page: `${baseUrl}/blog/${post.slug}`, images: imgs });
+    if (hiSlugs.has(post.slug)) rows.push({ page: `${baseUrl}/hi/blog/${post.slug}`, images: imgs });
   }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

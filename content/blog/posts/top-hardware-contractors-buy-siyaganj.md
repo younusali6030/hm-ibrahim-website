@@ -1,6 +1,6 @@
 ---
 title: "Top Hardware Items Contractors Buy in Siyaganj (Checklist)"
-description: "Checklist of hardware and steel items contractors buy in Siyaganj, Indore. Angles, TMT, mesh, wires, tools."
+description: "A checklist of the steel, mesh, wire and tools contractors usually buy in Siyaganj, Indore, grouped so you can send one list and get one rate."
 date: "2025-02-07"
 updated: "2026-10-11"
 category: "Buying guide"
@@ -17,41 +17,41 @@ Contractors and builders in Siyaganj, Loha Mandi, and New Siyaganj regularly buy
 
 ## Structural Steel (Indore / Siyaganj)
 
-- **[TMT Bars](/products/tmt-bars)** — For RCC columns, beams, slabs. Sizes 8 mm to 32 mm; grades Fe 500, Fe 550.
-- **[MS Angles](/products/ms-angles)** — For frames, brackets, and fabrication. 25x25 to 100x100 mm and more.
-- **[MS Flats](/products/ms-flats)** — For grills, base plates, and brackets.
-- **[MS Channels](/products/ms-channels)** — For purlins and structural frames.
-- **[MS Round Bars](/products/ms-round-bars)** — For anchors and general fabrication.
+- **[TMT Bars](/products/tmt-bars):** For RCC columns, beams, slabs. Sizes 8 mm to 32 mm; grades Fe 500, Fe 550.
+- **[MS Angles](/products/ms-angles):** For frames, brackets, and fabrication. 25 x 25 to 100 x 100 mm and more.
+- **[MS Flats](/products/ms-flats):** For grills, base plates, and brackets.
+- **[MS Channels](/products/ms-channels):** For purlins and structural frames.
+- **[MS Round Bars](/products/ms-round-bars):** For anchors and general fabrication.
 
 See [Structural Items](/categories/structural-items) for the full range.
 
 ## Pipes and Conduits
 
-- **[GI Pipes](/products/gi-pipes)** — For water lines and fencing. NB 15 mm to 150 mm.
-- **[MS Pipes](/products/ms-pipes)** — For structural and handrail use.
+- **[GI Pipes](/products/gi-pipes):** For water lines and fencing. NB 15 mm to 150 mm.
+- **[MS Pipes](/products/ms-pipes):** For structural and handrail use.
 
 ## Fencing and Mesh
 
-- **[Chain Link Fencing](/products/chain-link-fencing)** — For compound boundaries. Mesh 1" to 4", heights 3 ft to 10 ft.
-- **[Barbed Wire](/products/barbed-wire)** — For boundary tops and farm fencing.
-- **[GI Weldmesh](/products/gi-weldmesh)** / **[MS Weldmesh](/products/ms-weldmesh)** — For RCC slabs, partitions, cages.
-- **[GI Wire](/products/gi-wire)** — For binding and fencing.
+- **[Chain Link Fencing](/products/chain-link-fencing):** For compound boundaries. Mesh 1" to 4", heights 3 ft to 10 ft.
+- **[Barbed Wire](/products/barbed-wire):** For boundary tops and farm fencing.
+- **[GI Weldmesh](/products/gi-weldmesh)** / **[MS Weldmesh](/products/ms-weldmesh)**: For RCC slabs, partitions, cages.
+- **[GI Wire](/products/gi-wire):** For binding and fencing.
 
 See [Fencing Material](/categories/fencing-material), [Wiremesh](/categories/wiremesh), and [Welded Mesh](/categories/welded-mesh).
 
 ## Wires and Ropes
 
-- **[Binding Wire](/products/binding-wire)** — For RCC tying.
-- **[GI Wire](/products/gi-wire)** — For general tying and fencing.
-- **[MS Wire Rope](/products/ms-wire-rope)** / **[GI Wire Rope](/products/gi-wire-rope)** — For lifting and rigging.
+- **[Binding Wire](/products/binding-wire):** For RCC tying.
+- **[GI Wire](/products/gi-wire):** For general tying and fencing.
+- **[MS Wire Rope](/products/ms-wire-rope)** / **[GI Wire Rope](/products/gi-wire-rope)**: For lifting and rigging.
 
 ## Construction Tools and Consumables
 
-- **[Welding Rods](/products/welding-rods)** — E6013, E7018, etc.
-- **[Cutting Disc & Grinding Wheels](/products/cutting-discs-grinding-wheels)** — For metal cutting and grinding.
-- **[Coverblock](/products/concrete-cover-block)** — For rebar cover in RCC.
-- **[Shikanja](/products/santing-shikanja)** — For formwork and shuttering.
-- **[Wire Nails](/products/fasteners-nails)** and **[Roofing Nails](/products/roofing-nail)** — For structural and roofing.
+- **[Welding Rods](/products/welding-rods):** E6013, E7018, etc.
+- **[Cutting Disc & Grinding Wheels](/products/cutting-discs-grinding-wheels):** For metal cutting and grinding.
+- **[Cover block](/products/concrete-cover-block):** For rebar cover in RCC.
+- **[Shikanja](/products/santing-shikanja):** For formwork and shuttering.
+- **[Wire Nails](/products/fasteners-nails)** and **[Roofing Nails](/products/roofing-nail)**: For structural and roofing.
 
 See [Construction Tools](/categories/construction-tools) and [Nails](/categories/nails).
 

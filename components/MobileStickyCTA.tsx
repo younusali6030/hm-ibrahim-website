@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { Phone, MessageCircle, FileText } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
@@ -62,7 +62,7 @@ export function MobileStickyCTA() {
         <Phone className="h-5 w-5" aria-hidden />
       </a>
       <a
-        href={getWhatsAppLink(site.whatsapp, "Hi, I'm interested in your products. Please share price/availability.")}
+        href={getWhatsAppLink(site.whatsapp, t("Hi, I'm interested in your products. Please share prices and availability.", "नमस्ते, मुझे आपके उत्पादों में रुचि है। कृपया भाव और उपलब्धता बताइए।"))}
         onClick={() => trackWhatsAppClick("mobile_sticky")}
         target="_blank"
         rel="noopener noreferrer"
