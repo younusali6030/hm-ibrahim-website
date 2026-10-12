@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { categories, getCategoryThumbnails } from "@/content/products";
 import { GaugeRule, StencilTag } from "@/components/motif/Motif";
+import { T } from "@/lib/i18n";
 
 /** The counter as a ledger: one ruled row per range, a few real photos, a count, and a way in. */
 export function CategoryShowcase() {
@@ -10,13 +11,13 @@ export function CategoryShowcase() {
     <section className="py-14 md:py-20" aria-labelledby="categories-heading">
       <div className="page-container">
         <p data-reveal className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-          The counter
+          <T en="The counter" hi="काउंटर" />
         </p>
         <h2 id="categories-heading" data-reveal className="mt-2 max-w-3xl text-foreground">
-          Every wire, mesh, sheet and bar a build calls for
+          <T en="Every wire, mesh, sheet and bar a build calls for" hi="तार, जाली, शीट और सरिया: जो भी निर्माण को चाहिए" />
         </h2>
         <p className="mt-4 max-w-2xl text-muted-foreground">
-          In stock at our Siyaganj counter, for retail and wholesale. Pick a range, then ask for a rate.
+          <T en="In stock at our Siyaganj counter, for retail and wholesale. Pick a range, then ask for a rate." hi="सियागंज काउंटर पर स्टॉक में, रिटेल और थोक दोनों के लिए। रेंज चुनें, फिर रेट पूछें।" />
         </p>
 
         <div className="mt-10">
@@ -59,7 +60,7 @@ export function CategoryShowcase() {
           </ol>
           <div className="mt-6">
             <Link href="/products" className="glass-btn glass-btn-main">
-              Browse all products <span aria-hidden="true">→</span>
+              <T en="Browse all products" hi="सभी प्रोडक्ट देखें" /> <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>

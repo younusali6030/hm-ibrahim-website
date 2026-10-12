@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ArrowRight, Star } from "lucide-react";
 import { site } from "@/content/site";
+import { T } from "@/lib/i18n";
 import "./home-hero.css";
 
 const WIDE = "(min-width: 821px)";
@@ -123,27 +124,28 @@ export function HomeHero() {
       <div className="hh-shade" aria-hidden="true" />
 
       <div ref={bodyRef} className="hh-body page-container">
-        <p className="hh-eyebrow">Siyaganj, Indore · Since 1939</p>
+        <p className="hh-eyebrow"><T en="Siyaganj, Indore · Since 1939" hi="सियागंज, इंदौर · 1939 से" /></p>
         <h1 className="hh-title">
-          Iron, wire &amp; mesh<span className="hh-title-sub">from Siyaganj.</span>
+          <T en="Iron, wire & mesh" hi="लोहा, तार और जाली" />
+          <span className="hh-title-sub"><T en="from Siyaganj." hi="सियागंज से।" /></span>
         </h1>
-        <p className="hh-sub">Retail and wholesale. Every roll cut to your size while you wait.</p>
+        <p className="hh-sub"><T en="Retail and wholesale. Every roll cut to your size while you wait." hi="रिटेल और थोक। हर रोल आपकी नाप से, आपके सामने कटता है।" /></p>
 
         <div className="hh-row">
           <div className="hh-cta">
             <Link href="/contact" className="glass-btn glass-btn-main">
-              Get a quote
+              <T en="Get a quote" hi="कोटेशन पाएँ" />
               <ArrowRight className="h-5 w-5" aria-hidden />
             </Link>
             <Link href="/products" className="glass-btn">
-              Browse products
+              <T en="Browse products" hi="प्रोडक्ट देखें" />
             </Link>
           </div>
           {rating.verified && (
             <a href={rating.profileUrl} target="_blank" rel="noopener noreferrer" className="hh-rating">
               <Star className="h-4 w-4 fill-primary text-primary" aria-hidden />
               <strong>{rating.rating}</strong>
-              <span>{rating.reviewCount} Google reviews</span>
+              <span>{rating.reviewCount} <T en="Google reviews" hi="Google रिव्यू" /></span>
             </a>
           )}
         </div>
