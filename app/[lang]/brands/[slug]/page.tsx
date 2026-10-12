@@ -41,14 +41,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isTata = brand.id === "tata";
   const description = isTata
     ? lang === "hi"
-      ? `टाटा वायरॉन जीआई तार, कांटेदार तार और चेन लिंक फेंसिंग (जाली), ${siteHi.name}, सियागंज, इंदौर से। अधिकृत टाटा वायरॉन पार्टनर। रेट पूछें।`
-      : `Tata Wiron GI wire, barbed wire and chain link fencing (jali) from ${site.name}, Siyaganj, Indore. Authorised Tata Wiron partner. Ask for the rate.`
+      ? `सियागंज, इंदौर में अधिकृत टाटा वायरॉन डीलर: जीआई तार, बाइंडिंग तार, कांटेदार तार और चेन लिंक फेंसिंग (जाली), ${siteHi.name} से। रेट पूछें।`
+      : `Authorised Tata Wiron dealer at Siyaganj, Indore: GI wire, binding wire, barbed wire and chain link fencing (jali) from ${site.name}. Ask for the rate.`
     : lang === "hi"
       ? `${brand.pageContent.subtitle} ${brand.name} कांटेदार तार और चेन लिंक फेंसिंग (जाली), ${siteHi.name}, सियागंज, इंदौर द्वारा 1939 से निर्मित और विक्रीत।`
       : `${brand.pageContent.subtitle} ${brand.name} barbed wire and chain link fencing (jali), made and sold by ${site.name}, Siyaganj, Indore since 1939.`;
   return buildPageMeta({
     lang,
-    title: isTata ? "Tata Wiron Wire & Fencing in Indore" : `${brand.name} Barbed Wire & Chain Link Fencing in Indore`,
+    title: isTata
+      ? lang === "hi"
+        ? "इंदौर में टाटा वायरॉन डीलर: तार, कांटेदार तार, जाली"
+        : "Tata Wiron Dealer in Indore: Wire, Barbed, Chain Link"
+      : `${brand.name} Barbed Wire & Chain Link Fencing in Indore`,
     description,
     path: `brands/${brand.id}`,
     ...(visuals ? { image: { url: visuals.hero.src, alt: visuals.hero.alt } } : {}),

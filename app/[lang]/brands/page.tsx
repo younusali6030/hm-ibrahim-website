@@ -265,7 +265,7 @@ export default function BrandsPage({ params }: { params: { lang: string } }) {
                     <p className="st-body">{b.specialty}</p>
                     {b.location && <p className="st-meta">{b.location}</p>}
                     {firstTag && tagName && (
-                      <Link href={`/products?category=${firstTag}`} className="st-link text-sm">
+                      <Link href={`/categories/${firstTag}`} className="st-link text-sm">
                         {tagName}
                       </Link>
                     )}

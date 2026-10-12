@@ -25,20 +25,32 @@ export type IndorePage = {
   productSlugs: string[];
   /** Optional second paragraph */
   intro2?: string;
+  /** Short product phrase for the WhatsApp message and contact strip, when the H1 is not a clean "<topic> in Indore". */
+  topic?: string;
+  /** Visible FAQs; also emitted as FAQPage JSON-LD. Only on pages whose questions are answered on the page. */
+  faqs?: { question: string; answer: string }[];
 };
+
+/**
+ * Manufacturing scope, owner-confirmed 12 Oct 2026: the shop manufactures barbed wire, chain link fencing and wire mesh.
+ * Everything else is stocked and supplied. The word "manufacture" may only appear on pages for these three families;
+ * tests/seo.test.mjs fails if it shows up in product or Indore copy for anything else.
+ */
+export const manufacturedProductSlugs = ["barbed-wire", "chain-link-fencing"] as const;
 
 export const indorePages: Record<IndorePageSlug, IndorePage> = {
   "wire-mesh": {
     slug: "wire-mesh",
     // Owns: "wire mesh Indore", "wiremesh Indore", "welded wire mesh Indore". Not "jali" (see chain-link-fencing-jaali).
-    title: "Wire Mesh in Indore: Welded, GI, MS, Crimp",
+    title: "Wire Mesh Manufacturer and Supplier in Indore",
     description:
-      "Wire mesh in Indore from Siyaganj: GI and MS weldmesh, PVC-coated weldmesh, GI and MS wiremesh and crimp mesh, in rolls and panels. Ask for the rate.",
-    h1: "Wire Mesh in Indore",
+      "We manufacture wire mesh: GI and MS weldmesh, PVC-coated weldmesh, woven and crimp mesh, in rolls and panels. Siyaganj, Indore. Ask for the rate.",
+    h1: "Wire Mesh Manufacturer in Indore",
+    topic: "wire mesh",
     intro:
-      "We sell wire mesh from our shop on Siyaganj Main Road, Indore. Welded mesh for slabs, cages and partitions. Woven and crimped mesh for screening and sifting. Rolls and panels, retail and wholesale.",
+      "We manufacture wire mesh and sell it from our shop on Siyaganj Main Road, Indore. Welded mesh for slabs, cages and partitions. Woven and crimped mesh for screening and sifting. Rolls and panels, retail and wholesale, with orders accepted across India.",
     intro2:
-      "Tell us what the mesh is for, the opening size and the wire thickness. We check stock and call back with the rate. Many buyers call it weldmesh jali or wiremesh jali; it is the same family of products, and we will point you to the right one.",
+      "Tell us what the mesh is for, the opening size and the wire thickness. We check stock and call back with the rate. Many buyers call it weldmesh jali or wiremesh jali; it is the same family of products, and we will point you to the right one. Other mesh in our range, such as expanded metal, mosquito net and SS fine mesh, is stocked and supplied rather than made by us.",
     specs: [
       "Welded mesh (GI and MS): openings from 15 x 15 mm and 50 x 50 mm up to 150 x 150 mm, wire 3 to 5 mm",
       "PVC-coated weldmesh in rolls, for fencing and cages that stand outdoors",
@@ -47,16 +59,38 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     ],
     useCases: ["RCC slab reinforcement", "Partitions and cages", "Machine guards and screening", "Sifting and filtration", "Garden and compound fencing"],
     productSlugs: ["gi-weldmesh", "ms-weldmesh", "pvc-coated-weldmesh", "gi-wiremesh", "ms-wiremesh", "crimp-wiremesh"],
+    faqs: [
+      {
+        question: "Do you manufacture wire mesh in Indore?",
+        answer:
+          "Yes. We manufacture wire mesh and sell it from our shop on Siyaganj Main Road, Indore. Expanded metal, mosquito net, SS fine mesh and perforated sheet are stocked and supplied, not made by us.",
+      },
+      {
+        question: "What is the difference between weldmesh and wiremesh?",
+        answer:
+          "Weldmesh has its wires welded at every crossing, so it is stiff and holds its shape. It is used for slab reinforcement, cages, partitions and fence panels. Wiremesh is woven or crimped from wire, and it is used for screening, sifting and guards.",
+      },
+      {
+        question: "What should I tell you to get a rate for wire mesh?",
+        answer:
+          "Tell us what it is for, the opening size, the wire thickness, whether you want GI, MS or PVC-coated, roll or panel, and the quantity. We check stock and call back with the rate.",
+      },
+      {
+        question: "Do you supply wire mesh outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
   },
   "chain-link-fencing-jaali": {
     slug: "chain-link-fencing-jaali",
     // Owns: "jali Indore", "jaali Indore", "chain link fencing Indore", "jali for compound wall".
-    title: "Jali and Chain Link Fencing in Indore",
+    title: "Chain Link Fencing Manufacturer, Jali in Indore",
     description:
-      "Chain link jali in Indore: GI and PVC-coated rolls, 1 to 4 inch mesh, 3 to 10 ft high. CM, Border and Tata Wiron at our Siyaganj shop. Ask for the rate.",
-    h1: "Jali and Chain Link Fencing in Indore",
+      "We manufacture chain link fencing (jali): GI and PVC-coated rolls, 1 to 4 inch mesh, 3 to 10 ft high. CM, Border and Tata Wiron at Siyaganj, Indore.",
+    h1: "Chain Link Fencing and Jali Manufacturer in Indore",
+    topic: "chain link fencing (jali)",
     intro:
-      "Chain link jali (jaali) is what most compound walls, school grounds and factory boundaries in Indore are fenced with. We sell it in rolls from our shop in Siyaganj, under our own CM and Border brands and as Tata Wiron.",
+      "Chain link jali (jaali) is what most compound walls, school grounds and factory boundaries in Indore are fenced with. We manufacture chain link fencing and sell it in rolls from our shop in Siyaganj, under our own CM and Border brands. Tata Wiron, also in stock, is Tata's product, which we supply as an authorised dealer.",
     intro2:
       "Choose the mesh opening, the wire thickness and the height of the roll. Smaller mesh and thicker wire cost more and last longer. PVC-coated roll lasts longer where it stays wet. Send us the perimeter and the height and we will work out the number of rolls.",
     specs: [
@@ -68,18 +102,40 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     ],
     useCases: ["Compound and boundary fencing", "Sports grounds and schools", "Factory and warehouse perimeters", "Farm and plot fencing", "Cages and enclosures"],
     productSlugs: ["chain-link-fencing", "barbed-wire", "pvc-coated-weldmesh", "gi-wire"],
+    faqs: [
+      {
+        question: "Do you manufacture chain link fencing in Indore?",
+        answer:
+          "Yes. We manufacture chain link fencing and sell it from our shop on Siyaganj Main Road, Indore. Tata Wiron chain link, which we also stock, is made by Tata and supplied by us as an authorised dealer.",
+      },
+      {
+        question: "Which mesh size and wire thickness should I choose?",
+        answer:
+          "A smaller opening and thicker wire cost more and last longer. We have 1, 2, 3 and 4 inch openings in wire from 1.5 mm to 4 mm. PVC-coated roll lasts longer where the fence stays wet.",
+      },
+      {
+        question: "How do I work out how many rolls I need?",
+        answer:
+          "Measure the perimeter and the height you want, then allow for the gate and the corners. Send us the perimeter and the height and we will work out the number of rolls and the posts.",
+      },
+      {
+        question: "Do you supply chain link outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
   },
   "barbed-wire": {
     slug: "barbed-wire",
     // Owns: "barbed wire Indore", "kata taar Indore", "concertina wire Indore" (product page /products/concertina-wire is the detail target).
-    title: "Barbed and Concertina Wire in Indore",
+    title: "Barbed Wire Manufacturer in Indore | Kata Taar",
     description:
-      "Barbed wire (kata taar) and concertina wire in Indore: single and double strand, 12 x 14 and 14 x 14 gauge, coils to 25 kg. CM, Border, Tata Wiron.",
-    h1: "Barbed and Concertina Wire in Indore",
+      "We manufacture barbed wire (kata taar): single and double strand, 12 x 14 and 14 x 14 gauge, coils to 25 kg. Concertina also stocked. Siyaganj, Indore.",
+    h1: "Barbed Wire Manufacturer in Indore",
+    topic: "barbed wire (kata taar)",
     intro:
-      "Barbed wire, or kata taar as it is asked for at the counter, is a regular line at our shop in Siyaganj, Indore. Single and double strand, 2-point and 4-point, in coils for farms, plots and boundaries.",
+      "We manufacture barbed wire, or kata taar as it is asked for at the counter, and sell it from our shop in Siyaganj, Indore. Single and double strand, 2-point and 4-point, in coils for farms, plots and boundaries. Orders accepted across India.",
     intro2:
-      "For a perimeter that needs more deterrent than plain barbed wire, we also stock concertina wire in single and double coil. Tell us the length of the boundary and whether it runs on posts or along a wall, and we will suggest the wire.",
+      "For a perimeter that needs more deterrent than plain barbed wire, we also stock concertina wire in single and double coil. Concertina is supplied by us, not made by us. Tell us the length of the boundary and whether it runs on posts or along a wall, and we will suggest the wire.",
     specs: [
       "Type: single strand and double strand, 2-point and 4-point barbs",
       "Common gauges: 12 x 14 and 14 x 14",
@@ -90,6 +146,27 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     ],
     useCases: ["Farm boundaries", "Plot and compound fencing", "Wall-top security", "Industrial perimeters"],
     productSlugs: ["barbed-wire", "concertina-wire", "chain-link-fencing", "gi-wire", "jhatka-machine-fencing-wire"],
+    faqs: [
+      {
+        question: "Do you manufacture barbed wire in Indore?",
+        answer:
+          "Yes. We manufacture barbed wire and sell it from our shop on Siyaganj Main Road, Indore. Tata Wiron barbed wire, which we also stock, is made by Tata and supplied by us as an authorised dealer.",
+      },
+      {
+        question: "What does 12 x 14 mean on barbed wire?",
+        answer:
+          "The first number is the gauge of the main line wire and the second is the gauge of the barb wire wound round it. A smaller gauge number is thicker wire. On the SWG scale 12 is about 2.64 mm and 14 is about 2.03 mm. Ask us to confirm the diameter of the coil you are buying.",
+      },
+      {
+        question: "Which is better for a boundary, barbed wire or concertina wire?",
+        answer:
+          "Barbed wire is the usual choice for farms, plots and compound boundaries. Concertina is coiled and gives a stronger deterrent on wall tops and industrial perimeters, at a higher cost. Our guide on barbed wire versus concertina wire compares them.",
+      },
+      {
+        question: "Do you supply barbed wire outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
   },
   "perforated-sheets": {
     slug: "perforated-sheets",

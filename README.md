@@ -62,5 +62,5 @@ Open Graph cards: `public/og/<type>.png`, 1200 x 630, one per page type.
 
 ## Docs
 
-`docs/seo/REPORT.md` (audit and backlog), `docs/design/*` (system, handoffs, security notes, analytics check),
+`docs/seo/REPORT.md` (audit and backlog), `docs/seo/visibility-audit-2026-10.md` (SERP evidence, query map, product table, measurement plan), `docs/design/*` (system, handoffs, security notes, analytics check),
 `DEPLOY.md` (Vercel). Older notes are in `docs/archive`.
