@@ -344,13 +344,13 @@ export const productCopy: Record<string, ProductCopy> = {
     ["gi-wire", "tmt-bars", "concrete-cover-block"]
   ),
   "jhatka-machine-fencing-wire": c(
-    "Jhatka wire is high-tensile fencing wire used in jhatka (shock) machines and for farm boundaries. It comes in coils and is hard and springy, not meant for tying.",
+    "Jhatka wire is GI steel fencing wire used in jhatka (shock) machines and for farm boundaries. We supply it at 1.5 mm in 100 m cut-length coils. It is hard and springy, not meant for tying.",
     "Farmers use it to run fence lines on posts and to carry the electric charge on jhatka fencing against animals. It also works as a tension line on a boundary.",
-    "Tell us the gauge, the length of the fence and the coil weight. Do not use soft binding wire for a tension line; it will stretch. For a plain physical fence, barbed wire may do the job.",
-    "The rate depends on the gauge, the coil weight and the market. Ask us with the gauge and the weight.",
+    "Tell us the length of the fence and how many 100 m coils you need. Do not use soft binding wire for a tension line; it will stretch. For a plain physical fence, barbed wire may do the job.",
+    "The rate depends on the wire diameter, the length of the coil and the market. Ask us with the length you need.",
     [
       ["What is jhatka wire used for?", "Boundary and agricultural fencing, and electrified jhatka machine lines against animals."],
-      ["What gauge is common?", "12 to 14 SWG high-tensile wire is common for tension lines. Tell us the job and we will suggest one."],
+      ["What diameter do you sell?", "1.5 mm GI steel fencing wire, in 100 m cut-length coils."],
     ],
     ["farm-fencing-madhya-pradesh-posts-wire-angle-plan", "wire-gauge-chart-swg-bwg-mm-guide"],
     ["barbed-wire", "gi-wire", "ms-angles"]
@@ -581,13 +581,14 @@ export const productCopy: Record<string, ProductCopy> = {
     ["pigeon-nets", "gi-wire", "fasteners-nails"]
   ),
   "safety-net": c(
-    "Safety net is a heavy-duty net used on construction sites to catch falling people and debris. We supply nylon and polyethylene nets.",
+    "Safety net is a heavy-duty nylon or polyethylene net used on construction sites and scaffolding to hold debris and loose material. We supply it in 5 x 10 m nets with a 50 x 50 mm mesh.",
     "Contractors fit it on scaffolding and building edges, around stairwells and over work areas where tools or material can fall.",
-    "Tell us the area and how it will be fixed. A net for fall protection must be fixed and rated as the site rules say; ask your safety officer for the standard. Debris netting is a lighter net for catching material only.",
+    "Tell us the area and how it will be fixed. We do not claim a maker's test certificate for this net, so we do not offer it as personnel fall protection. If your site needs fall-arrest netting, ask your safety officer for the standard and buy a net that carries the maker's test certificate.",
     "The rate depends on the material, the mesh, the strength and the area. Ask us with the dimensions.",
     [
       ["Is safety net the same as pigeon net?", "No. Safety net is a heavy-duty net for sites. Pigeon net is a light net for keeping birds out."],
-      ["Can you supply it to size?", "Tell us the dimensions and we will confirm what is possible."],
+      ["Is this a fall-arrest net?", "No. We do not claim a maker's test certificate for it, so we sell it for debris containment on scaffolding and sites, not as personnel fall protection."],
+      ["Can you supply it to size?", "It comes as 5 x 10 m nets with a 50 x 50 mm mesh. Tell us the dimensions you need and we will confirm what is possible."],
     ],
     ["pigeon-spikes-netting-installation-guide"],
     ["pigeon-nets", "gi-wire-rope", "wire-rope-clamp"]

@@ -91,3 +91,48 @@ test("values already on file fill their rows: pipe length, rope supply, pigeon n
   for (const slug of ["ms-wire-rope", "gi-wire-rope", "ss-wire-rope"]) assert.match(sheetOf(slug).rows.find((r) => r.key === "pack").value, /metre/);
   assert.equal(sheetOf("pigeon-nets").rows.find((r) => r.key === "size").value, "3 ft to 20 ft");
 });
+
+test("owner-selected catalogue: roll, sheet, coil and pack rows are filled and kept separate", () => {
+  const row = (slug, key) => sheetOf(slug).rows.find((r) => r.key === key)?.value;
+  assert.equal(row("bright-bars", "length"), "6 m");
+  assert.match(row("chain-link-fencing", "length"), /^15 m/);
+  assert.match(row("gi-wire", "pack"), /5, 10 and 25 kg/);
+  for (const slug of ["ms-wiremesh", "gi-wiremesh", "crimp-wiremesh"]) {
+    assert.equal(row(slug, "width"), "1.2 m (about 3.94 ft)", slug);
+    assert.equal(row(slug, "length"), "15 m", slug);
+  }
+  assert.match(row("ms-wiremesh", "gauge"), /1\.2 mm on 15 x 15 mm; 1\.6 mm on 25 x 25 mm; 2\.5 mm on 50 x 50 mm/);
+  assert.match(row("crimp-wiremesh", "gauge"), /2\.5 mm on 25 x 25 mm; 3\.0 mm on 50 x 50 mm/);
+  assert.equal(row("aluminium-wiremesh", "mesh"), "18 x 16 per inch");
+  assert.equal(row("aluminium-wiremesh", "width"), "3 ft and 4 ft");
+  assert.equal(row("expanded-metal-mesh", "gauge"), "0.5, 1.0 and 1.5 mm");
+  assert.equal(row("chicken-net", "gauge"), "0.7 mm");
+  assert.equal(row("chicken-net", "length"), "30 m");
+  assert.equal(row("plastic-hexagonal-poultry-mesh", "height"), "1.2 m (about 3.94 ft)");
+  assert.equal(row("square-mesh", "length"), "25 m");
+  assert.equal(row("pvc-coated-weldmesh", "length"), "15 m");
+  assert.equal(row("gi-perforated-sheet", "sheet"), "1,220 x 2,440 mm (4 x 8 ft)");
+  assert.equal(row("jhatka-machine-fencing-wire", "gauge"), "1.5 mm");
+  assert.equal(row("santing-shikanja", "overall"), "600 mm (23.6 in) and 900 mm (35.4 in)");
+  assert.equal(row("pigeon-spikes", "size"), "30 cm");
+});
+
+test("rope reels: MS and GI 500 m, SS 305 m", () => {
+  const pack = (slug) => sheetOf(slug).rows.find((r) => r.key === "pack").value;
+  assert.match(pack("ms-wire-rope"), /500 m/);
+  assert.match(pack("gi-wire-rope"), /500 m/);
+  assert.match(pack("ss-wire-rope"), /305 m/);
+});
+
+test("safety net is not described as fall protection", () => {
+  const p = allProducts.find((x) => x.slug === "safety-net");
+  const text = JSON.stringify(p);
+  assert.ok(!/fall protection"?\]|for fall protection/i.test(p.shortDesc + p.useCases.join(" ")), text);
+  assert.match(p.specs.find((s) => s.label === "Test certificate").value, /None claimed/);
+});
+
+test("held attributes stay off the pages until the maker's spec is on file", () => {
+  const all = JSON.stringify(allProducts);
+  assert.ok(!/6 x 19|6x19|BTO-22|SS ?304 (wire )?rope|steel core|0\.2 mm radial/i.test(all));
+  assert.ok(!/PVC-coated fibreglass mosquito mesh/i.test(all));
+});

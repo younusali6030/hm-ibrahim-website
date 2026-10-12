@@ -6,6 +6,8 @@ Prepared 12 Oct 2026 for the 28 products listed by `node scripts/spec-gaps.mjs -
 
 **Applied 12 Oct 2026:** every supported value in Part 1 is now in `content/products.ts`, with Hindi in `content/hi/catalogExtra.ts`. The gap script went from 28 products and 43 open rows to 20 products and 28 open rows. The Part 3 questions were not answered by guesswork: no source read in this session holds those values, so those rows stay out of the pages until the counter supplies them.
 
+**Part 3 answered 12 Oct 2026:** the owner supplied the "HM Ibrahim: Proposed Standard Catalog" (50 items). Every value is now in `content/products.ts`, with Hindi in `content/hi/catalogExtra.ts` and a test for each row group in `tests/specSheet.test.mjs`. The gap script went from 20 products and 28 open rows to 4 products and 4 open rows. See "Part 3 answers: what was applied and what is held" at the end of this file.
+
 How to read this file:
 
 - **Part 1** is publish-ready copy. Every value in it is backed by our own site, our own IndiaMART listing, our own shop photos, the maker's own page for a brand we sell (Tata Wiron), or a property of the material itself. A field we could not establish is left out of Part 1 and listed in Part 3.
@@ -647,3 +649,59 @@ Counted by field rather than by product, the script lists 43 missing fields:
 - 3 closed by removing or renaming a row that does not apply: plastic hexa mesh, plastic square mesh, expanded metal mesh.
 - 8 part-filled: "Pack / roll" now states the supplied form on MS, GI and crimp wiremesh and on GI and MS weldmesh, with roll dimensions still open (5); chain link roll length and pack, and GI wire pack, are filled for Tata Wiron only (3).
 - 27 still fully open and waiting on Part 3.
+
+
+---
+
+## Part 3 answers: what was applied and what is held
+
+Source: the owner's "HM Ibrahim: Proposed Standard Catalog", an owner-selected specification proposal. It is not an inspection record or a manufacturer certification, and the site claims neither.
+
+### Applied to the pages
+
+| # | Product | Rows now on the page |
+|---|---|---|
+| 1 | Bright bars | Length 6 m |
+| 2 | MS pipes | Black MS pipe 6 m: already shown, confirmed |
+| 3-4 | Chain link, CM and Border | Roll length 15 m; sold by weight (kg); packed in rolls |
+| 5 | Chain link, Tata Wiron | Stocked configuration kept on the Tata variant: 4 x 4 in mesh, 2.5 mm wire, 5 ft height, 15 m bundle. Tata's own range rows are unchanged |
+| 6-7 | GI wire | Loose packs 5, 10 and 25 kg, weighed from bulk coils; Tata pack we stock: 10 kg bundle of 4.0 mm GI farming wire |
+| 8-11 | MS, GI, crimp wiremesh | MS and GI: 1.2 mm on 15 x 15, 1.6 mm on 25 x 25, 2.5 mm on 50 x 50. Crimp: 2.5 mm on 25 x 25, 3.0 mm on 50 x 50. Roll 1.2 m (about 3.94 ft) x 15 m. MS panel 1.2 x 2.4 m. The combinations are listed as selected, not as a grid |
+| 12-13 | Aluminium wiremesh | 18 x 16 per inch; roll widths 3 ft and 4 ft |
+| 14-16 | Expanded metal | Thickness 0.5, 1.0, 1.5 mm; pitch 10 x 20 and 20 x 40 mm (stated as pitch, not clear opening); 1.2 x 2.4 m sheets, 0.5 mm in 1 m x 10 m rolls |
+| 17-18 | Mosquito net | Counts: fibreglass 18 x 16, aluminium 18 x 16, GI 16 x 16, SS 20 x 20; widths 3 ft and 4 ft for each |
+| 20-21 | SS fine mesh | 20, 40 and 60 per inch; roll width 1 m |
+| 22-24 | GI chicken mesh | 0.7 mm wire; 25 mm nominal hexagon (about 1 in); 1 m x 30 m |
+| 25-27 | Plastic hexa and square mesh | Hexa 25 mm, 1.2 m high; square 10 x 10 mm, 1 m high; 25 m each |
+| 28-29 | GI and MS weldmesh | Roll 1.5 m x 15 m, 25 x 25 mm, 2.5 mm wire; panel 1.2 x 2.4 m, 50 x 50 mm, 3 mm wire. The old "3-5 mm" wire row is removed because it contradicts the 2.5 mm roll |
+| 30, 32 | PVC coated weldmesh | 25 x 25 mm finished opening; 3 ft x 15 m |
+| 33-34 | GI and MS perforated sheet | Sheet 1,220 x 2,440 mm (4 x 8 ft); round holes 2, 3, 5, 6 mm in 1 mm sheet; hole pitch and open area stay with the manufacturer's specification |
+| 35-37 | Jhatka wire | GI steel fencing wire, 1.5 mm, 100 m cut-length coils. Page copy no longer says "high-tensile" or "12 to 14 SWG" |
+| 38 | Wire ropes | Full reel: MS 500 m, GI 500 m, SS 305 m |
+| 41-42 | Concertina wire | Coil 450 and 600 mm; 8 m and 9 m opened length, with a note not to stretch a coil past its length |
+| 44 | Shikanja | Overall length 600 mm (23.6 in) and 900 mm (35.4 in). Labelled overall length, not jaw opening |
+| 45 | Pigeon net | Mesh 50 x 50 mm (about 2 x 2 in) |
+| 46-47 | Pigeon spikes | Strip 30 cm; retail pack 10 strips, 3 m in total |
+| 48-50 | Safety net | 5 x 10 m, 50 x 50 mm mesh. No maker's test certificate is claimed, so "fall protection" is removed from the short description, the use list, the overview, the buying guide and the FAQs (English and Hindi), and a "Is this a fall-arrest net?" answer is added |
+
+### Held until the maker's specification is on file
+
+The owner's own rule: obtain matching supplier specifications for grades, wire construction and coating measurements before publishing those attributes. These items are therefore not on any page. `tests/specSheet.test.mjs` fails if they appear.
+
+| # | Held value | Needs |
+|---|---|---|
+| 31 | PVC weldmesh wire: 1.0 mm steel core, 1.4 mm finished, 0.2 mm radial coating | Maker's data sheet for the coated wire |
+| 39 | SS rope grade 304 | Maker's mill or product sheet |
+| 40 | Rope construction 6 x 19 (core type and strength grade stay separate attributes) | Maker's rope sheet |
+| 43 | Concertina blade profile BTO-22 | Maker's coil specification |
+| 19 | Mosquito net variants "PVC-coated fibreglass, 18 x 16" and "SS304, 20 x 20" | Grade and coating from the maker, and a fresh rate for each. These are IndiaMART listing names, not site rows |
+
+### Needs doing outside the website
+
+- Make up the proposed retail packs and cut lengths before they are quoted: GI wire 5, 10 and 25 kg, jhatka 100 m coils, pigeon spike 10-strip packs.
+- The two IndiaMART mosquito-mesh listings need the new variant names and a fresh, explained rate each. No old rate is carried over here.
+- Not claimed anywhere: manufacturer certification, safe working load, structural suitability, fall-protection performance.
+
+### Still open after this pass
+
+Wire diameter is not selected for aluminium wiremesh, mosquito net and SS fine mesh, so the gap script still lists them. PVC weldmesh wire is held (row 31).

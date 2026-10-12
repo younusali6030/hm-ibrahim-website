@@ -65,6 +65,8 @@ const DEFS: Record<SheetKind, Def[]> = {
       match: ROLL_LENGTH,
       coreFor: ["chain-link-fencing", "chicken-net", "plastic-hexagonal-poultry-mesh", "square-mesh", "pvc-coated-weldmesh"],
     },
+    /** Roll width is its own row so it is not read as the pack. */
+    { key: "width", label: "Roll width", hi: "रोल की चौड़ाई", match: /roll width|^width$/i },
     { key: "pack", label: "Pack / roll", hi: "पैक / रोल", match: MESH_PACK, core: true },
   ],
   net: [
@@ -80,6 +82,7 @@ const DEFS: Record<SheetKind, Def[]> = {
   /** Hand tools: brand, head or blade size, and what comes fitted. */
   tool: [
     { key: "brand", label: "Brand", hi: "ब्रांड", match: /^brand$/i },
+    { key: "overall", label: "Overall length", hi: "कुल लंबाई", match: /overall length/i },
     { key: "size", label: "Size / weight", hi: "साइज़ / वज़न", match: /size|weight|length/i },
     { key: "handle", label: "Handle", hi: "दस्ता", match: /handle/i },
   ],

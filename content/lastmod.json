@@ -16,7 +16,7 @@
     "date": "2026-10-12"
   },
   "categories/safety-nets-equipments": {
-    "hash": "4495cc8e537d",
+    "hash": "162b8ce7636e",
     "date": "2026-10-13"
   },
   "categories/structural-items": {
@@ -60,7 +60,7 @@
     "date": "2026-10-12"
   },
   "products/aluminium-wiremesh": {
-    "hash": "06d159666b7f",
+    "hash": "5ae4c93083ed",
     "date": "2026-10-13"
   },
   "products/barbed-wire": {
@@ -72,15 +72,15 @@
     "date": "2026-10-12"
   },
   "products/bright-bars": {
-    "hash": "03b0a7ada74e",
+    "hash": "4f2fbe0215bf",
     "date": "2026-10-13"
   },
   "products/chain-link-fencing": {
-    "hash": "787f70e1cb2b",
+    "hash": "26cf1b625937",
     "date": "2026-10-13"
   },
   "products/chicken-net": {
-    "hash": "813bc56a49a5",
+    "hash": "5a66b45c7d73",
     "date": "2026-10-13"
   },
   "products/clutch-wire": {
@@ -88,7 +88,7 @@
     "date": "2026-10-12"
   },
   "products/concertina-wire": {
-    "hash": "019693a85f2f",
+    "hash": "a673fbf64a47",
     "date": "2026-10-13"
   },
   "products/concrete-cover-block": {
@@ -96,7 +96,7 @@
     "date": "2026-10-12"
   },
   "products/crimp-wiremesh": {
-    "hash": "765f542179a3",
+    "hash": "1804d6eb9868",
     "date": "2026-10-13"
   },
   "products/cutting-discs-grinding-wheels": {
@@ -104,7 +104,7 @@
     "date": "2026-10-12"
   },
   "products/expanded-metal-mesh": {
-    "hash": "4ace19f251ea",
+    "hash": "c2f2d3bf641a",
     "date": "2026-10-13"
   },
   "products/fasteners-nails": {
@@ -120,7 +120,7 @@
     "date": "2026-10-12"
   },
   "products/gi-perforated-sheet": {
-    "hash": "da556924e97c",
+    "hash": "9e4ec745696b",
     "date": "2026-10-13"
   },
   "products/gi-pipes": {
@@ -128,27 +128,27 @@
     "date": "2026-10-12"
   },
   "products/gi-weldmesh": {
-    "hash": "161afc7d6670",
+    "hash": "96e418df5e60",
     "date": "2026-10-13"
   },
   "products/gi-wire": {
-    "hash": "8e6ba2639a14",
+    "hash": "bc2565d453fa",
     "date": "2026-10-13"
   },
   "products/gi-wire-rope": {
-    "hash": "269066cbe97f",
+    "hash": "cecdfba4aac6",
     "date": "2026-10-13"
   },
   "products/gi-wiremesh": {
-    "hash": "06d9d30dcc00",
+    "hash": "faba7e0a2a17",
     "date": "2026-10-13"
   },
   "products/jhatka-machine-fencing-wire": {
-    "hash": "fcb87510031b",
+    "hash": "a2f250c2b9ae",
     "date": "2026-10-13"
   },
   "products/mosquito-net": {
-    "hash": "bfbd1095f7e2",
+    "hash": "c69e36f800f6",
     "date": "2026-10-13"
   },
   "products/ms-angles": {
@@ -172,7 +172,7 @@
     "date": "2026-10-12"
   },
   "products/ms-perforated-sheet": {
-    "hash": "f7f903a9d4e8",
+    "hash": "d126fa96a77c",
     "date": "2026-10-13"
   },
   "products/ms-pipes": {
@@ -184,31 +184,31 @@
     "date": "2026-10-12"
   },
   "products/ms-weldmesh": {
-    "hash": "dbda2482cbfd",
+    "hash": "3534c3ae1c55",
     "date": "2026-10-13"
   },
   "products/ms-wire-rope": {
-    "hash": "58aaad1e3b06",
+    "hash": "494d0f65df8c",
     "date": "2026-10-13"
   },
   "products/ms-wiremesh": {
-    "hash": "c213144268d9",
+    "hash": "9d19cbd5911b",
     "date": "2026-10-13"
   },
   "products/pigeon-nets": {
-    "hash": "845753489986",
+    "hash": "9ddd231f54d0",
     "date": "2026-10-13"
   },
   "products/pigeon-spikes": {
-    "hash": "e22eee9c0666",
+    "hash": "e6e14084b0ff",
     "date": "2026-10-13"
   },
   "products/plastic-hexagonal-poultry-mesh": {
-    "hash": "13adc7053d71",
+    "hash": "fedf2e9badd0",
     "date": "2026-10-13"
   },
   "products/pvc-coated-weldmesh": {
-    "hash": "ae63ca368fc4",
+    "hash": "a8bd83ddc413",
     "date": "2026-10-13"
   },
   "products/roofing-nail": {
@@ -216,11 +216,11 @@
     "date": "2026-10-12"
   },
   "products/safety-net": {
-    "hash": "4d9e33294893",
+    "hash": "d0d68ceae975",
     "date": "2026-10-13"
   },
   "products/santing-shikanja": {
-    "hash": "19acc2560bd9",
+    "hash": "905eb292c8ed",
     "date": "2026-10-13"
   },
   "products/sponge": {
@@ -228,7 +228,7 @@
     "date": "2026-10-12"
   },
   "products/square-mesh": {
-    "hash": "8dd40227319d",
+    "hash": "4dddc5fa19bf",
     "date": "2026-10-13"
   },
   "products/sr-crowbar": {
@@ -252,11 +252,11 @@
     "date": "2026-10-12"
   },
   "products/ss-fine-mesh": {
-    "hash": "6cad1a8d98cd",
+    "hash": "338bdc2c8071",
     "date": "2026-10-13"
   },
   "products/ss-wire-rope": {
-    "hash": "fef2937e50ff",
+    "hash": "1e845571583d",
     "date": "2026-10-13"
   },
   "products/tmt-bars": {
