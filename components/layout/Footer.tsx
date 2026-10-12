@@ -24,7 +24,7 @@ const usefulLinks = [
 ];
 
 const linkCls =
-  "inline-flex min-h-[40px] items-center text-[15px] text-white/80 transition-colors hover:text-primary lg:min-h-[34px]";
+  "inline-flex min-h-[40px] min-w-[24px] items-center text-[15px] text-white/80 transition-colors hover:text-primary lg:min-h-[34px]";
 
 
 const groupHead = "font-display text-xl font-extrabold uppercase tracking-wide text-white";
@@ -153,13 +153,13 @@ export function Footer() {
           <p>&copy; {new Date().getFullYear()} <T en="HM Ibrahim & Co. All rights reserved." hi="एचएम इब्राहिम एंड कंपनी। सर्वाधिकार सुरक्षित।" /></p>
           <ul className="flex flex-wrap gap-x-5">
             <li>
-              <a href={site.indiamartUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[40px] items-center hover:text-primary lg:min-h-0">IndiaMART</a>
+              <a href={site.indiamartUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-0">IndiaMART</a>
             </li>
             <li>
-              <a href={site.justdialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[40px] items-center hover:text-primary lg:min-h-0">JustDial</a>
+              <a href={site.justdialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-0">JustDial</a>
             </li>
-            <li><Link href="/privacy" className="inline-flex min-h-[40px] items-center hover:text-primary lg:min-h-0"><T en="Privacy" hi="गोपनीयता" /></Link></li>
-            <li><Link href="/terms" className="inline-flex min-h-[40px] items-center hover:text-primary lg:min-h-0"><T en="Terms" hi="शर्तें" /></Link></li>
+            <li><Link href="/privacy" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-0"><T en="Privacy" hi="गोपनीयता" /></Link></li>
+            <li><Link href="/terms" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-0"><T en="Terms" hi="शर्तें" /></Link></li>
           </ul>
         </div>
       </div>

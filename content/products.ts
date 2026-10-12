@@ -842,6 +842,7 @@ const ownCategories: Category[] = [
         alsoIn: ["structural-items"],
         specs: [
           { label: "Gauge", value: "16–18 SWG" },
+          { label: "Finish", value: "Black, annealed" },
           { label: "Packing", value: "Coils up to 50 kg (varies by gauge and stock)" },
         ],
         images: ["/products/binding-wire-main.png", "/products/binding-wire.png", "/videos/binding-wire.jpg", "/videos/binding-wire-closeup.jpg"],

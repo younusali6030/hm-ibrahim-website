@@ -120,13 +120,19 @@
 
 /* Phones: the sticky bar below already carries the actions, so the hero stays to the statement. */
 @media (max-width: 820px) {
+  /* Not a full screen of photograph: on a tall phone the next section (proof strip) starts inside the first view. */
+  .hh {
+    min-height: min(100svh, 40rem);
+  }
   .hh-body {
     padding-top: 6rem;
     padding-bottom: calc(6.6rem + env(safe-area-inset-bottom, 0px));
   }
   .hh-eyebrow {
-    font-size: 0.64rem;
-    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: rgba(242, 246, 250, 0.94);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.75);
   }
   .hh-title {
     max-width: none;
@@ -140,6 +146,8 @@
   .hh-sub {
     margin-top: 1rem;
     font-size: 1rem;
+    color: rgba(242, 246, 250, 0.92);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
   }
   .hh-row {
     margin-top: 1.4rem;
@@ -156,4 +164,26 @@
     transform: none !important;
     opacity: 1 !important;
   }
+}
+
+/* Pause / play for the background film. Sits under the header, clear of the sticky quote bar. */
+.hh-pause {
+  position: absolute;
+  top: 5rem;
+  right: 1rem;
+  z-index: 3;
+  display: inline-flex;
+  height: 44px;
+  width: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(7, 13, 20, 0.62);
+  color: #fff;
+  backdrop-filter: blur(8px);
+}
+.hh-pause:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
 }

@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { useLang } from "@/lib/i18n";
+import { tracksFor } from "@/content/captions";
 
 const REELS = [
   { id: "shop-par-bharosa", title: "Shop par bharosa", note: "Walk in. See the stock. Decide." },
@@ -55,6 +56,9 @@ function Reel({ id, title: titleEn, note: noteEn }: (typeof REELS)[number]) {
           onPause={() => setPlaying(false)}
         >
           <source src={`/reels/${id}.mp4`} type="video/mp4" />
+          {tracksFor(id).map((c) => (
+            <track key={c.src} kind="captions" srcLang={c.lang} label={c.label} src={c.src} default={c.lang === lang} />
+          ))}
         </video>
         <span
           className={

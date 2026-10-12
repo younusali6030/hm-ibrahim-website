@@ -1,35 +1,88 @@
 import type { BrandVariant, Product } from "@/content/products";
 
-/** Spec-sheet rows built ONLY from content/products.ts. A value the data does not hold is null ("Ask at counter"). */
+/** Spec-sheet rows built ONLY from content/products.ts. A core row the data does not fill is null ("Ask at counter"); rows that do not apply to the kind of item are never offered. */
 
 export type SheetRow = { key: string; label: string; hi: string; value: string | null };
 
-const WIRE_CATEGORIES = ["wiremesh", "welded-mesh", "wires", "fencing-material", "nails", "safety-nets-equipments"];
+/** What kind of item this is decides which fields make sense. */
+export type SheetKind = "wire" | "rope" | "mesh" | "net" | "sheet" | "tool" | "nails" | "section";
 
-type Def = { key: string; label: string; hi: string; match: RegExp };
+type Def = { key: string; label: string; hi: string; match: RegExp; /** Shown as "Ask at counter" when the data has no value. Non-core rows are left out instead. */ core?: boolean };
 
-const WIRE_ROWS: Def[] = [
-  { key: "gauge", label: "Gauge / wire size", hi: "गेज / तार साइज़", match: /gauge|swg|wire (size|diameter)|diameter|thickness|wire$/i },
-  { key: "mesh", label: "Mesh / hole size", hi: "जाली / छेद का साइज़", match: /mesh|hole|opening|pattern|aperture/i },
-  { key: "roll", label: "Roll length / pack", hi: "रोल लंबाई / पैक", match: /roll|length|coil|packing|supplied|form|height|width/i },
-];
-/** Punched sheet is sold by thickness and sheet size, not by wire gauge or roll length. */
-const SHEET_ROWS: Def[] = [
-  { key: "thickness", label: "Thickness", hi: "मोटाई", match: /thickness|gauge/i },
-  { key: "hole", label: "Hole shape / size", hi: "छेद का आकार / साइज़", match: /hole|pattern|aperture|opening/i },
-  { key: "sheet", label: "Sheet size", hi: "शीट साइज़", match: /sheet size|size|length|width|dimension|supplied/i },
-];
-/** Hand tools: brand, head or blade size, and what comes fitted. */
-const TOOL_ROWS: Def[] = [
-  { key: "brand", label: "Brand", hi: "ब्रांड", match: /^brand$/i },
-  { key: "size", label: "Size / weight", hi: "साइज़ / वज़न", match: /size|weight|length/i },
-  { key: "handle", label: "Handle", hi: "दस्ता", match: /handle|type/i },
-];
-const SECTION_ROWS: Def[] = [
-  { key: "size", label: "Size", hi: "साइज़", match: /size|width|diameter|dimension/i },
-  { key: "thickness", label: "Thickness / gauge", hi: "मोटाई", match: /thickness|gauge|wall/i },
-  { key: "length", label: "Length", hi: "लंबाई", match: /length|roll|packing|supplied/i },
-];
+const SINGLE_WIRE = ["binding-wire", "gi-wire", "jhatka-machine-fencing-wire", "clutch-wire", "barbed-wire", "concertina-wire"];
+const MESH_SLUGS = ["chain-link-fencing", "chicken-net", "plastic-hexagonal-poultry-mesh", "square-mesh", "expanded-metal-mesh"];
+const NET_SLUGS = ["pigeon-nets", "safety-net", "fiber-mesh", "pigeon-spikes"];
+
+/** Fittings and accessories: sold by piece, no length or roll. */
+const PIECE_ITEMS = ["wire-rope-clamp", "ms-holepass", "concrete-cover-block"];
+
+export function sheetKind(p: { slug: string; categorySlug: string }): SheetKind {
+  if (PIECE_ITEMS.includes(p.slug)) return "tool";
+  if (p.categorySlug === "perforated-sheets") return "sheet";
+  if (p.categorySlug === "construction-tools") return "tool";
+  if (p.categorySlug === "nails") return "nails";
+  if (/wire-rope$/.test(p.slug)) return "rope";
+  if (SINGLE_WIRE.includes(p.slug)) return "wire";
+  if (NET_SLUGS.includes(p.slug)) return "net";
+  if (MESH_SLUGS.includes(p.slug) || ["wiremesh", "welded-mesh"].includes(p.categorySlug)) return "mesh";
+  return "section";
+}
+
+const GAUGE = /gauge|swg|wire (size|diameter)|diameter|thickness|wire$/i;
+const PACK = /roll|coil|packing|supplied|form|spool|length|height|width/i;
+const FINISH = /finish|coating|galvan/i;
+
+/**
+ * Rows per kind. A single wire (binding wire, GI wire, barbed wire) has a gauge and a pack, never a mesh or hole
+ * size; a mesh has all three. Rows that do not apply to a kind are not offered at all.
+ */
+const DEFS: Record<SheetKind, Def[]> = {
+  wire: [
+    { key: "gauge", label: "Gauge", hi: "गेज", match: GAUGE, core: true },
+    { key: "pack", label: "Pack / coil", hi: "पैक / कॉइल", match: PACK, core: true },
+  ],
+  rope: [
+    { key: "dia", label: "Diameter", hi: "व्यास", match: /diameter|size|thickness/i, core: true },
+    { key: "construction", label: "Construction", hi: "बनावट", match: /construction|strand|core|type/i },
+    { key: "pack", label: "Length / pack", hi: "लंबाई / पैक", match: PACK, core: true },
+  ],
+  mesh: [
+    { key: "gauge", label: "Gauge / wire size", hi: "गेज / तार साइज़", match: GAUGE, core: true },
+    { key: "mesh", label: "Mesh / hole size", hi: "जाली / छेद का साइज़", match: /mesh|hole|opening|pattern|aperture/i, core: true },
+    { key: "pack", label: "Roll length / pack", hi: "रोल लंबाई / पैक", match: PACK, core: true },
+  ],
+  net: [
+    { key: "mesh", label: "Mesh / hole size", hi: "जाली / छेद का साइज़", match: /mesh|hole|opening|pattern|aperture/i },
+    { key: "size", label: "Size", hi: "साइज़", match: /size|width|length|dimension|supplied|packing/i, core: true },
+  ],
+  /** Punched sheet is sold by thickness and sheet size, not by wire gauge or roll length. */
+  sheet: [
+    { key: "thickness", label: "Thickness", hi: "मोटाई", match: /thickness|gauge/i, core: true },
+    { key: "hole", label: "Hole shape / size", hi: "छेद का आकार / साइज़", match: /hole|pattern|aperture|opening/i, core: true },
+    { key: "sheet", label: "Sheet size", hi: "शीट साइज़", match: /sheet size|size|length|width|dimension|supplied/i, core: true },
+  ],
+  /** Hand tools: brand, head or blade size, and what comes fitted. */
+  tool: [
+    { key: "brand", label: "Brand", hi: "ब्रांड", match: /^brand$/i },
+    { key: "size", label: "Size / weight", hi: "साइज़ / वज़न", match: /size|weight|length/i },
+    { key: "handle", label: "Handle", hi: "दस्ता", match: /handle/i },
+  ],
+  nails: [
+    { key: "size", label: "Length", hi: "लंबाई", match: /length|size/i, core: true },
+    { key: "pack", label: "Pack", hi: "पैक", match: /packing|pack|weight|sold/i },
+  ],
+  section: [
+    { key: "size", label: "Size", hi: "साइज़", match: /size|width|diameter|dimension|\bnb\b/i, core: true },
+    // Solid bars and beams have no wall thickness: shown only where the data gives one.
+    { key: "thickness", label: "Thickness / gauge", hi: "मोटाई", match: /thickness|gauge|wall/i },
+    { key: "length", label: "Length", hi: "लंबाई", match: /length|roll|packing|supplied/i, core: true },
+  ],
+};
+
+/** Material is a core row for everything except hand tools and nets, where it is only shown when known. */
+const MATERIAL_CORE: Record<SheetKind, boolean> = { wire: true, rope: true, mesh: true, net: false, sheet: true, tool: false, nails: false, section: true };
+/** Finish is only ever shown when the data holds a value. */
+const SHOW_FINISH = true;
 
 export function isSheetKind(categorySlug?: string | null): boolean {
   return categorySlug === "perforated-sheets";
@@ -40,7 +93,7 @@ export function isToolKind(categorySlug?: string | null): boolean {
 }
 
 export function isWireKind(categorySlug?: string | null): boolean {
-  return !!categorySlug && WIRE_CATEGORIES.includes(categorySlug);
+  return !!categorySlug && ["wiremesh", "welded-mesh", "wires", "fencing-material", "nails", "safety-nets-equipments"].includes(categorySlug);
 }
 
 /** Only categories and items where the counter really cuts to the customer's size. */
@@ -51,11 +104,14 @@ export function isCutToSize(p: { slug: string; categorySlug: string }): boolean 
 
 type Source = Pick<Product, "specs" | "sizes" | "materials" | "variants" | "useCases" | "notes">;
 
+const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9\u0900-\u097f]+/g, " ").trim();
+
 export function buildSheet(
   src: Source,
-  categorySlug: string | undefined,
+  product: { slug: string; categorySlug: string },
   tataLine: string | null,
-): { rows: SheetRow[]; extras: SheetRow[] } {
+): { rows: SheetRow[]; extras: SheetRow[]; kind: SheetKind } {
+  const kind = sheetKind(product);
   const specs = [...(src.specs ?? [])];
   const used = new Set<number>();
   const take = (re: RegExp) => {
@@ -65,28 +121,63 @@ export function buildSheet(
     return specs[i].value;
   };
 
-  const defs = isSheetKind(categorySlug)
-    ? SHEET_ROWS
-    : isToolKind(categorySlug)
-      ? TOOL_ROWS
-      : isWireKind(categorySlug)
-        ? WIRE_ROWS
-        : SECTION_ROWS;
-  const rows: SheetRow[] = defs.map((d) => ({ key: d.key, label: d.label, hi: d.hi, value: take(d.match) }));
+  const rows: SheetRow[] = [];
+  for (const d of DEFS[kind]) {
+    const value = take(d.match);
+    if (value === null && !d.core) continue;
+    rows.push({ key: d.key, label: d.label, hi: d.hi, value });
+  }
 
   const materialSpec = take(/material|grade/i);
   const materials = src.materials?.length ? src.materials.join(", ") : materialSpec;
-  rows.push({ key: "material", label: "Material", hi: "मटेरियल", value: materials });
-  rows.push({ key: "finish", label: "Finish", hi: "फिनिश", value: take(/finish|coating|galvan/i) });
+  if (materials || MATERIAL_CORE[kind]) rows.push({ key: "material", label: "Material", hi: "मटेरियल", value: materials });
+  const finish = take(FINISH);
+  if (SHOW_FINISH && finish) rows.push({ key: "finish", label: "Finish", hi: "फिनिश", value: finish });
+
+  // Availability only where the product copy itself says so.
+  if (src.notes && /availability depends on stock/i.test(src.notes)) {
+    rows.push({ key: "availability", label: "Availability", hi: "उपलब्धता", value: "Depends on stock. Confirm at the counter." });
+  }
+
+  const shown = rows.map((r) => (r.value ? norm(r.value) : "")).filter(Boolean);
+  const alreadyShown = (v: string) => {
+    const n = norm(v);
+    return !n || shown.some((s) => s === n || (n.length >= 12 && s.includes(n)));
+  };
 
   const extras: SheetRow[] = [];
   specs.forEach((s, idx) => {
-    if (!used.has(idx)) extras.push({ key: `x-${idx}`, label: s.label, hi: s.label, value: s.value });
+    if (used.has(idx)) return;
+    // "Use" repeats the Common uses list; a value already in a row above is not listed twice.
+    if (/^uses?$/i.test(s.label) && src.useCases?.length) return;
+    // A "Types" spec and the Types list below say the same thing; keep the fuller list.
+    if (/^types?$/i.test(s.label) && src.variants?.length) return;
+    if (alreadyShown(s.value)) return;
+    extras.push({ key: `x-${idx}`, label: s.label, hi: s.label, value: s.value });
   });
-  if (src.sizes?.length) extras.push({ key: "sizes", label: "Sizes", hi: "साइज़", value: src.sizes.join(", ") });
-  if (src.variants?.length) extras.push({ key: "variants", label: "Types", hi: "किस्में", value: src.variants.join(", ") });
+
+  // Sizes: "Packing: ..." entries are pack lines (already a row); gauges are already in the gauge row.
+  const gaugeShown = rows.some((r) => r.key === "gauge" && r.value);
+  const sizes = (src.sizes ?? []).filter((x) => !/^packing:/i.test(x) && !alreadyShown(x));
+  const allGauges = sizes.length > 0 && sizes.every((x) => /\b(swg|bwg)\b|gauge/i.test(x));
+  const joined = norm(sizes.join(", "));
+  const everything = [...shown, ...extras.map((e) => norm(e.value ?? ""))];
+  const sizesRepeat = everything.some((v) => v === joined || (joined.length >= 12 && (v.includes(joined) || joined.includes(v))));
+  if (sizes.length && !sizesRepeat && !(gaugeShown && allGauges)) extras.push({ key: "sizes", label: "Sizes", hi: "साइज़", value: sizes.join(", ") });
+  if (src.variants?.length) {
+    const v = src.variants.filter((x) => !alreadyShown(x));
+    if (v.length) extras.push({ key: "variants", label: "Types", hi: "किस्में", value: v.join(", ") });
+  }
   if (tataLine) extras.push({ key: "tata", label: "Tata", hi: "टाटा", value: tataLine });
-  return { rows, extras };
+  // Nothing on file: say so once instead of rendering an empty table.
+  if (rows.length === 0 && extras.length === 0) rows.push({ key: "details", label: "Size and details", hi: "साइज़ और जानकारी", value: null });
+  return { rows, extras, kind };
+}
+
+/** A trailing "Packing: ..." sentence repeats the pack row above; drop it from the free-text note. */
+export function trimRepeatedPacking(note: string, packRowShown: boolean): string {
+  if (!packRowShown) return note;
+  return note.replace(/\s*(?:Packing|पैकिंग):[^.।]*[.।]\s*$/, "").trim();
 }
 
 export type CompareRow = { label: string; values: (string | null)[]; differs: boolean };

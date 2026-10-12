@@ -20,8 +20,9 @@ export function GoogleAnalytics() {
     <>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
+      {/* Tiny inline stub: gtag() exists straight away and queues events, so nothing is lost while gtag.js loads late. */}
       <Script id="ga-config" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];

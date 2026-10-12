@@ -4,7 +4,6 @@ import Link from "@/components/LocaleLink";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
@@ -45,6 +44,9 @@ export function Navbar() {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
+
+  // A new page always starts with the menu closed.
+  useEffect(() => setOpen(false), [pathname]);
 
   // While the menu is open: lock page scroll and tuck the sticky quote bar away.
   useEffect(() => {
@@ -111,6 +113,7 @@ export function Navbar() {
                 width={336}
                 height={96}
                 sizes="(min-width:768px) 168px, 154px"
+                priority
                 className="h-11 w-auto md:h-12"
               />
             </Link>
@@ -141,7 +144,7 @@ export function Navbar() {
             </ul>
 
             <div className="hidden md:flex md:items-center md:gap-2">
-              <LangToggle className="mr-1 [&_button]:min-h-[40px] [&_button]:min-w-[44px]" />
+              <LangToggle className="mr-1" />
               <a
                 href={`tel:${site.phone.replace(/\s/g, "")}`}
                 onClick={() => trackCallClick("navbar")}
@@ -159,7 +162,7 @@ export function Navbar() {
             </div>
 
             <div className="flex items-center gap-1 md:hidden">
-            <LangToggle className="[&_button]:min-h-[40px] [&_button]:min-w-[44px]" />
+            <LangToggle />
             <button
               type="button"
               className="flex h-11 w-11 items-center justify-center rounded-full text-white transition hover:bg-white/10"
@@ -181,73 +184,58 @@ export function Navbar() {
             )}
           />
 
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                id="mobile-nav-menu"
-                role="dialog"
-                aria-label={t("Mobile navigation", "मोबाइल मेन्यू")}
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.28, ease: [0.22, 0.61, 0.36, 1] }}
-                className="overflow-hidden px-2 pb-3 md:hidden"
-              >
-                <ul className="flex flex-col px-2 pb-1 pt-1">
-                  {navLinks.map((link, i) => {
-                    const on = pathname === link.href || pathname.startsWith(link.href + "/");
-                    return (
-                      <motion.li
-                        key={link.href}
-                        initial={{ opacity: 0, y: -6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.03 * i + 0.04 }}
+          {open && (
+            <div id="mobile-nav-menu" className="mobile-menu px-2 pb-3 md:hidden">
+              <ul className="flex flex-col px-2 pb-1 pt-1">
+                {navLinks.map((link) => {
+                  const on = pathname === link.href || pathname.startsWith(link.href + "/");
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "flex h-12 items-center justify-between border-b border-white/[0.07] px-2 text-[15px] font-semibold uppercase tracking-[0.1em] text-white/85 transition hover:text-white",
+                          on && "text-primary"
+                        )}
+                        onClick={() => setOpen(false)}
+                        aria-current={on ? "page" : undefined}
                       >
-                        <Link
-                          href={link.href}
-                          className={cn(
-                            "flex h-12 items-center justify-between border-b border-white/[0.07] px-2 text-[15px] font-semibold uppercase tracking-[0.1em] text-white/85 transition hover:text-white",
-                            on && "text-primary"
-                          )}
-                          onClick={() => setOpen(false)}
-                        >
-                          <T en={link.en} hi={link.hi} />
-                          <span aria-hidden="true" className="text-white/30">›</span>
-                        </Link>
-                      </motion.li>
-                    );
-                  })}
-                  <li className="mt-3 grid grid-cols-2 gap-2">
-                    <a
-                      href={`tel:${site.phone.replace(/\s/g, "")}`}
-                      onClick={() => trackCallClick("navbar_mobile")}
-                      className="flex h-11 items-center justify-center rounded-full border border-white/15 text-sm font-semibold"
-                    >
-                      <T en="Call" hi="कॉल करें" />
-                    </a>
-                    <a
-                      href={getWhatsAppLink(site.whatsapp, t("Hi, I'm interested in your products. Please share prices and availability.", "नमस्ते, मुझे आपके उत्पादों में रुचि है। कृपया भाव और उपलब्धता बताइए।"))}
-                      onClick={() => trackWhatsAppClick("navbar_mobile")}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-11 items-center justify-center rounded-full border border-white/15 text-sm font-semibold"
-                    >
-                      <T en="WhatsApp" hi="व्हाट्सएप" />
-                    </a>
-                  </li>
-                  <li className="mt-2">
-                    <Link
-                      href="/contact"
-                      onClick={() => setOpen(false)}
-                      className="flex h-11 w-full items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
-                    >
-                      <T en="Get a quote" hi="कोटेशन पाएँ" />
-                    </Link>
-                  </li>
-                </ul>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                        <T en={link.en} hi={link.hi} />
+                        <span aria-hidden="true" className="text-white/30">›</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+                <li className="mt-3 grid grid-cols-2 gap-2">
+                  <a
+                    href={`tel:${site.phone.replace(/\s/g, "")}`}
+                    onClick={() => trackCallClick("navbar_mobile")}
+                    className="flex h-11 items-center justify-center rounded-full border border-white/15 text-sm font-semibold"
+                  >
+                    <T en="Call" hi="कॉल करें" />
+                  </a>
+                  <a
+                    href={getWhatsAppLink(site.whatsapp, t("Hi, I'm interested in your products. Please share prices and availability.", "नमस्ते, मुझे आपके उत्पादों में रुचि है। कृपया भाव और उपलब्धता बताइए।"))}
+                    onClick={() => trackWhatsAppClick("navbar_mobile")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-11 items-center justify-center rounded-full border border-white/15 text-sm font-semibold"
+                  >
+                    <T en="WhatsApp" hi="व्हाट्सएप" />
+                  </a>
+                </li>
+                <li className="mt-2">
+                  <Link
+                    href="/contact"
+                    onClick={() => setOpen(false)}
+                    className="flex h-11 w-full items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
+                  >
+                    <T en="Get a quote" hi="कोटेशन पाएँ" />
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </header>
     </>

@@ -9,8 +9,9 @@
  */
 import type { Lang } from "@/lib/locale";
 import { catalogHi } from "@/content/hi/catalog";
+import { catalogExtraHi } from "@/content/hi/catalogExtra";
 
-const dictionary: Record<string, string> = { ...catalogHi };
+const dictionary: Record<string, string> = { ...catalogHi, ...catalogExtraHi };
 
 /** Register more dictionaries (kept separate per area so files stay readable). */
 export function addDictionary(d: Record<string, string>) {

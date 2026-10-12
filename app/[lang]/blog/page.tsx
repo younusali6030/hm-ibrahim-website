@@ -31,7 +31,9 @@ export default async function BlogIndexPage({ params }: { params: { lang: string
   const lang = params.lang as Lang;
   const t = tt(lang);
   const hi = lang === "hi";
-  const posts = await getAllPosts(lang);
+  const everyPost = await getAllPosts(lang);
+  // Hindi editions first: the lead and the top of each group should read in Hindi. English-only guides follow (lang="en").
+  const posts = hi ? [...everyPost.filter((p) => p.lang === "hi"), ...everyPost.filter((p) => p.lang !== "hi")] : everyPost;
   const [lead, ...rest] = posts;
 
   const groups = new Map<string, typeof posts>();
@@ -100,7 +102,7 @@ export default async function BlogIndexPage({ params }: { params: { lang: string
               </span>
               <span className="flex flex-col justify-center p-7 md:p-10">
                 <span className="st-eyebrow">{t("Latest", "ताज़ा")}{lead.category ? ` · ${lead.category}` : ""}</span>
-                <span className="mt-4 font-display text-4xl font-extrabold uppercase leading-[0.98] text-foreground md:text-5xl">{lead.title}</span>
+                <span lang={lead.lang !== lang ? lead.lang : undefined} className="mt-4 font-display text-4xl font-extrabold uppercase leading-[0.98] text-foreground md:text-5xl">{lead.title}</span>
                 {lead.description && <span className="mt-4 line-clamp-4 text-muted-foreground">{lead.description}</span>}
                 <span className="mt-6 font-mono-brand text-xs uppercase tracking-[0.14em] text-muted-foreground">
                   {formatDate(lead.date, lang)} · {hi ? `${lead.readingMinutes} मिनट में पढ़ें` : `${lead.readingMinutes} min read`}

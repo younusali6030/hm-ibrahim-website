@@ -69,7 +69,10 @@ export function LangToggle({ className = "" }: { className?: string }) {
         const on = lang === l;
         const style = on ? { color: "#0b121a", backgroundColor: "#fff" } : { color: "rgba(255,255,255,0.88)" };
         const cls =
-          "inline-flex min-h-8 min-w-9 items-center justify-center rounded-full px-2.5 transition-colors " +
+          "inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-full px-2.5 transition-colors " +
+          // The two Devanagari letters of the label use the device's own font: on an English page they would
+          // otherwise pull in the 120 KB Noto Sans Devanagari web font for two characters.
+          (l === "hi" ? "font-deva-system " : "") +
           (on ? "bg-white text-[#0b121a]" : "text-white/85 hover:text-white");
         const label = l === "en" ? "EN" : "हिं";
         return on ? (
@@ -86,7 +89,8 @@ export function LangToggle({ className = "" }: { className?: string }) {
             onClick={go}
             style={style}
             className={cls}
-            aria-label={l === "hi" ? "हिंदी में देखें" : "View in English"}
+            // The accessible name starts with the visible label (WCAG 2.5.3), then says what it does.
+            aria-label={l === "hi" ? "हिं, हिंदी में देखें" : "EN, view in English"}
           >
             {label}
           </Link>

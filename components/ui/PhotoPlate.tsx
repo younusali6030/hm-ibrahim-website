@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { blurFor, isIllustration } from "@/lib/media";
 import { cn } from "@/lib/utils";
+import { T } from "@/lib/i18n";
 
 type Props = {
   src: string;
@@ -56,7 +57,7 @@ export function PhotoPlate({ src, alt, src2, sizes, priority, className, positio
       />
       {drawing && (
         <span className="absolute bottom-1.5 left-1.5 rounded-[4px] bg-[#070d14]/85 px-1.5 py-0.5 font-mono-brand text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-          Drawing
+          <T en="Drawing" hi="चित्र" />
         </span>
       )}
     </>

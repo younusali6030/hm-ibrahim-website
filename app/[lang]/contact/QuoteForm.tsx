@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MessageCircle, Phone } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,9 +18,12 @@ import { getWhatsAppLink } from "@/lib/utils";
 import { T, useT, useLang } from "@/lib/i18n";
 import { localePath } from "@/lib/locale";
 import { ShopStatus } from "@/components/visit/VisitUs";
+import { validateQuoteFields } from "@/lib/quoteValidation";
 
 export const QUOTE_STORAGE_KEY = "hmQuoteSuccess";
 const DRAFT_KEY = "hmQuoteDraft";
+/** An unsent draft older than this is dropped, so a shared phone does not keep someone's number for ever. */
+const DRAFT_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
 type FieldKey = "name" | "phone" | "email" | "items";
 type FieldErrors = Partial<Record<FieldKey, string>>;
@@ -37,14 +40,6 @@ function resolveBrand(raw: string): { key: string; name: string; id?: BrandId } 
   if (own) return { key: own.id, name: own.name, id: own.id };
   const stocked = stockedBrands.find((b) => b.name.toLowerCase() === clean.toLowerCase());
   return stocked ? { key: stocked.name, name: stocked.name } : null;
-}
-
-/** Same rule as the server: 10 digits starting 6-9, with an optional +91 / 0 prefix. */
-function validPhone(raw: string): boolean {
-  let d = raw.replace(/\D/g, "");
-  if (d.length === 12 && d.startsWith("91")) d = d.slice(2);
-  if (d.length === 11 && d.startsWith("0")) d = d.slice(1);
-  return /^[6-9]\d{9}$/.test(d);
 }
 
 function buildQuoteMessage(v: Record<string, string>, categoryName: string, reference?: string, brandName?: string, hi = false): string {
@@ -114,37 +109,48 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
     quantity: prefilledQty,
   });
   const [honeypot, setHoneypot] = useState("");
+  const submitting = useRef(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [failed, setFailed] = useState(false);
 
-  // Restore an unsent draft, so a dropped network never costs the customer their typing.
+  // What this page was opened for, independent of language. A draft is only merged into the same context.
+  const context = `${productParam}|${prefilledCategory}|${prefilledBrand}`;
+
+  // Restore an unsent draft, so a dropped network or a language switch never costs the customer their typing.
+  // The list is restored only if the customer edited it: an untouched prefill is rebuilt in the current language.
   useEffect(() => {
     try {
       const raw = localStorage.getItem(DRAFT_KEY);
       if (!raw) return;
-      const d = JSON.parse(raw) as Record<string, string>;
+      const d = JSON.parse(raw) as Record<string, string> & { ts?: number };
+      if (typeof d.ts === "number" && Date.now() - d.ts > DRAFT_MAX_AGE_MS) {
+        localStorage.removeItem(DRAFT_KEY);
+        return;
+      }
+      const edited = !!d.items && d.items !== d.defaultItems;
+      const sameContext = d.context === context;
       setValues((prev) => ({
         ...prev,
         name: d.name || prev.name,
         phone: d.phone || prev.phone,
         email: d.email || prev.email,
         quantity: prev.quantity || d.quantity || "",
-        items: prev.items || d.items || "",
+        items: !prev.items || (edited && sameContext) ? d.items || prev.items : prev.items,
       }));
     } catch {
       /* storage unavailable: the form still works */
     }
-  }, []);
+  }, [context]);
 
   useEffect(() => {
     try {
-      localStorage.setItem(DRAFT_KEY, JSON.stringify(values));
+      localStorage.setItem(DRAFT_KEY, JSON.stringify({ ...values, defaultItems: itemsDefault, context, ts: Date.now() }));
     } catch {
       /* ignore */
     }
-  }, [values]);
+  }, [values, itemsDefault, context]);
 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setValues((v) => ({ ...v, [k]: e.target.value }));
@@ -172,15 +178,14 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (loading || honeypot) return;
+    if (submitting.current || honeypot) return;
     setError(null);
     setFailed(false);
 
     // Check on the phone first: no network round trip for a typo.
     const local: FieldErrors = {};
-    if (values.name.trim().length < 2) local.name = msg.name;
-    if (!validPhone(values.phone)) local.phone = msg.phone;
-    if (values.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim())) local.email = msg.email;
+    const bad = validateQuoteFields({ name: values.name, phone: values.phone, email: values.email });
+    (Object.keys(bad) as FieldKey[]).forEach((k) => (local[k] = msg[k]));
     if (Object.keys(local).length) {
       setFieldErrors(local);
       setError(t("Please check the highlighted fields.", "कृपया लाल निशान वाले खाने देख लीजिए।"));
@@ -197,10 +202,13 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
     }
     fd.set("category", prefilledCategory);
     fd.set("website", honeypot);
-    if (prefilledProduct) fd.set("product", prefilledProduct);
+    // The server looks the product up by slug (catalogue email); the visible name is already in the list.
+    if (productParam) fd.set("product", productParam);
     if (prefilledBrand) fd.set("brand", prefilledBrand);
 
+    submitting.current = true;
     setLoading(true);
+    let navigating = false;
     try {
       const res = await submitQuote(fd);
       if (res.success) {
@@ -220,6 +228,8 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
         } catch {
           /* ignore */
         }
+        // Stay locked while the success page loads: a second tap must not send a second request.
+        navigating = true;
         router.push(localePath(lang, "/contact/success"));
         return;
       }
@@ -258,7 +268,10 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
       );
       setFailed(true);
     } finally {
-      setLoading(false);
+      if (!navigating) {
+        submitting.current = false;
+        setLoading(false);
+      }
     }
   }
 
@@ -275,6 +288,7 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
         data-track="quote_form"
         className="w-full space-y-6 rounded-[10px] border border-border bg-card p-5 shadow-sm sm:p-8"
         aria-describedby={error ? "quote-error" : undefined}
+        aria-busy={loading}
       >
         <input
           type="text"
@@ -443,11 +457,18 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
         <div className="space-y-3">
           <button
             type="submit"
-            disabled={loading}
-            className="inline-flex min-h-[54px] w-full items-center justify-center rounded-sm bg-primary px-6 text-base font-bold text-primary-foreground transition hover:brightness-110 disabled:cursor-wait disabled:opacity-70"
+            aria-disabled={loading}
+            className="inline-flex min-h-[54px] w-full items-center justify-center rounded-sm bg-primary px-6 text-base font-bold text-primary-foreground transition hover:brightness-110 aria-disabled:cursor-wait aria-disabled:opacity-70"
           >
-            {loading ? t("Sending your request…", "आपका अनुरोध भेज रहे हैं…") : t("Get my quote", "मेरा कोटेशन भेजें")}
+            {loading
+              ? t("Sending your request…", "आपका अनुरोध भेज रहे हैं…")
+              : failed
+                ? t("Try again", "फिर कोशिश करें")
+                : t("Get my quote", "मेरा कोटेशन भेजें")}
           </button>
+          <p className="sr-only" role="status" aria-live="polite">
+            {loading ? t("Sending your request", "आपका अनुरोध भेज रहे हैं") : ""}
+          </p>
           <a
             href={getWhatsAppLink(site.whatsapp, waMessage)}
             target="_blank"

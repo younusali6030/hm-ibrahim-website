@@ -2,10 +2,12 @@
 
 import { useRef, useState } from "react";
 import { Play } from "lucide-react";
-import { useT } from "@/lib/i18n";
+import { useLang, useT } from "@/lib/i18n";
+import { tracksFor } from "@/content/captions";
 
 export function BrandVideo() {
   const t = useT();
+  const { lang } = useLang();
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -35,6 +37,9 @@ export function BrandVideo() {
           onPause={() => setPlaying(false)}
         >
           <source src="/reels/chainlink-walkthrough.mp4" type="video/mp4" />
+          {tracksFor("chainlink-walkthrough").map((c) => (
+            <track key={c.src} kind="captions" srcLang={c.lang} label={c.label} src={c.src} default={c.lang === lang} />
+          ))}
         </video>
         <span
           className={"absolute inset-0 flex items-center justify-center bg-black/25 transition-opacity " + (playing ? "opacity-0 group-hover:opacity-100" : "")}

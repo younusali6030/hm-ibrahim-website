@@ -35,7 +35,7 @@ export function PostCard({ post, priority = false, lang = "en" }: { post: BlogPo
         )}
       </span>
       <span className="flex min-w-0 flex-1 flex-col justify-center p-3 sm:justify-start sm:p-5">
-        <span className="font-display text-xl font-extrabold uppercase leading-[1.05] text-foreground sm:text-[1.7rem] sm:leading-[1.02]">{post.title}</span>
+        <span lang={post.lang !== lang ? post.lang : undefined} className="font-display text-xl font-extrabold uppercase leading-[1.05] text-foreground sm:text-[1.7rem] sm:leading-[1.02]">{post.title}</span>
         {post.description && <span className="mt-3 line-clamp-3 text-[0.95rem] text-muted-foreground max-sm:hidden">{post.description}</span>}
         <span className="mt-1 flex items-center justify-between font-mono-brand sm:mt-auto sm:pt-4 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
           <span>{lang === "hi" ? `${post.readingMinutes} मिनट में पढ़ें` : `${post.readingMinutes} min read`}</span>

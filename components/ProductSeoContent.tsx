@@ -11,7 +11,7 @@ type Props = {
   product: ProductWithCategory;
   category: Category | null;
   relatedProducts: ProductWithCategory[];
-  relatedBlogPosts: { slug: string; title: string }[];
+  relatedBlogPosts: { slug: string; title: string; lang?: Lang }[];
   lang?: Lang;
 };
 
@@ -24,12 +24,6 @@ export function ProductSeoContent({
   lang = "en",
 }: Props) {
   const t = tt(lang);
-
-  const specs = product.specs ?? [];
-  const sizes = product.sizes ?? [];
-  const materials = product.materials ?? [];
-  const variants = product.variants ?? [];
-  const hasSpecs = specs.length > 0 || sizes.length > 0 || materials.length > 0 || variants.length > 0;
 
   return (
     <div className="mt-12 space-y-3 border-t-2 border-border pt-8">
@@ -52,35 +46,6 @@ export function ProductSeoContent({
         <div className="text-[0.97rem] text-muted-foreground leading-relaxed whitespace-pre-line">{content.usesInIndore}</div>
         </div>
       </details>
-
-      {hasSpecs && (
-        <section>
-          <h2 className="mb-3 font-display text-2xl font-extrabold uppercase leading-none text-foreground">{t("Specifications / Variants", "स्पेसिफ़िकेशन / किस्में")}</h2>
-          <ul className="border-t border-border text-muted-foreground [&>li]:border-b [&>li]:border-border [&>li]:py-2">
-            {specs.map((s) => (
-              <li key={s.label}>
-                <span className="text-foreground font-medium">{s.label}:</span> {s.value}
-              </li>
-            ))}
-            {sizes.length > 0 && (
-              <li>
-                <span className="text-foreground font-medium">{t("Sizes", "साइज़")}:</span> {sizes.slice(0, 10).join(", ")}
-                {sizes.length > 10 ? t(" and more", " और भी") : ""}
-              </li>
-            )}
-            {materials.length > 0 && (
-              <li>
-                <span className="text-foreground font-medium">{t("Materials", "सामग्री")}:</span> {materials.join(", ")}
-              </li>
-            )}
-            {variants.length > 0 && (
-              <li>
-                <span className="text-foreground font-medium">{t("Variants", "किस्में")}:</span> {variants.join(", ")}
-              </li>
-            )}
-          </ul>
-        </section>
-      )}
 
       <details className="group border-b border-border py-4">
         <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
@@ -163,6 +128,8 @@ export function ProductSeoContent({
               <Link
                 key={b.slug}
                 href={`/blog/${b.slug}`}
+                // A guide that has no Hindi edition keeps its English title; mark it so screen readers switch voice.
+                lang={b.lang && b.lang !== lang ? b.lang : undefined}
                 className="inline-flex min-h-[44px] items-center border-b border-border py-2 text-sm text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 {b.title}

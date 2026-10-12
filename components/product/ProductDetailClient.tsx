@@ -12,7 +12,7 @@ import { ProductImageGallery } from "@/components/ProductImageGallery";
 import { ProductBrandPicker } from "@/components/product/ProductBrandPicker";
 import { LookingForMoreSection } from "@/components/LookingForMoreSection";
 import { StencilTag, CounterStamp, GaugeRule } from "@/components/motif/Motif";
-import { buildSheet, isCutToSize } from "@/components/product/specSheet";
+import { buildSheet, isCutToSize, trimRepeatedPacking } from "@/components/product/specSheet";
 import type { BrandId } from "@/content/brands";
 import { trackProductView, trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
 import { T, useT, useLang } from "@/lib/i18n";
@@ -69,14 +69,16 @@ export function ProductDetailClient({ product, category, tx = {} }: Props) {
           useCases: displayUseCases,
           notes: displayNotes,
         },
-        category?.slug ?? product.categorySlug,
+        { slug: product.slug, categorySlug: product.categorySlug },
         // brand variant of Tata already says it in its own specs
         variant ? null : tataLine
       ),
     [variant, product, category?.slug, displayUseCases, displayNotes, tataLine]
   );
 
-  const baseAlt = product.imageAlt || `${product.name} – ${product.shortDesc}`;
+  const packShown = sheet.rows.some((r) => r.key === "pack" && r.value);
+  // Built from translated parts: the joined English sentence is not a dictionary key.
+  const baseAlt = product.imageAlt ? L(product.imageAlt) : `${L(product.name)} – ${L(product.shortDesc)}`;
   const sizeList = (variant?.sizes ?? product.sizes)?.slice(0, 3).map(L).join(", ");
   const sizeInfo = sizeList ? (hi ? ` साइज़: ${sizeList}।` : ` Size: ${sizeList}`) : "";
   const brandName = selectedBrandId ? L(getBrandById(selectedBrandId)?.name ?? "") : "";
@@ -115,7 +117,7 @@ export function ProductDetailClient({ product, category, tx = {} }: Props) {
         <ProductImageGallery
           key={`${product.slug}-${selectedBrandId ?? "default"}`}
           media={media}
-          alt={L(baseAlt)}
+          alt={baseAlt}
           productName={L(product.name)}
           productSlug={product.slug}
         />
@@ -185,7 +187,13 @@ export function ProductDetailClient({ product, category, tx = {} }: Props) {
             {sheet.rows.map((r) => (
               <div key={r.key} className="grid grid-cols-[8.5rem_minmax(0,1fr)] gap-x-4 border-b border-border py-3 sm:grid-cols-[11rem_minmax(0,1fr)]">
                 <dt className="font-mono-brand text-xs uppercase tracking-[0.1em] text-muted-foreground">{hi ? (r.hi !== r.label ? r.hi : L(r.label)) : r.label}</dt>
-                <dd className={r.value ? "text-foreground" : "text-muted-foreground"}>{r.value ? Lj(r.value) : t(ASK, "काउंटर पर पूछें")}</dd>
+                <dd className={r.value ? "text-foreground" : "text-muted-foreground"}>
+                  {r.key === "availability"
+                    ? t("Depends on stock. Confirm at the counter.", "स्टॉक पर निर्भर। काउंटर पर पुष्टि कर लीजिए।")
+                    : r.value
+                      ? Lj(r.value)
+                      : t(ASK, "काउंटर पर पूछें")}
+                </dd>
               </div>
             ))}
             {sheet.extras.map((r) => (
@@ -211,7 +219,11 @@ export function ProductDetailClient({ product, category, tx = {} }: Props) {
             </>
           )}
 
-          {displayNotes && <p className="mt-6 border-l-2 border-primary/60 pl-4 text-sm leading-relaxed text-foreground/85">{L(displayNotes)}</p>}
+          {displayNotes && (
+            <p className="mt-6 border-l-2 border-primary/60 pl-4 text-sm leading-relaxed text-foreground/85">
+              {trimRepeatedPacking(L(displayNotes), packShown)}
+            </p>
+          )}
 
           <LookingForMoreSection variant="product" className="mt-8" />
         </div>
