@@ -1,0 +1,148 @@
+[
+ {
+  "id": "ms-flats-1",
+  "slug": "ms-flats",
+  "src": "angle pati.jpeg",
+  "dest": "/products/v2/ms-flats-1",
+  "alt": "MS flat bars stacked in long lengths",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "ms-flats-2",
+  "slug": "ms-flats",
+  "src": "angle.jpeg",
+  "dest": "/products/v2/ms-flats-2",
+  "alt": "MS flats in bundles at the yard",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "ms-channels-1",
+  "slug": "ms-channels",
+  "src": "angle pati 2.jpeg",
+  "dest": "/products/v2/ms-channels-1",
+  "alt": "Structural steel sections stacked in long lengths",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "tmt-bars-1",
+  "slug": "tmt-bars",
+  "src": "tmt bar-Photoroom.png",
+  "dest": "/products/v2/tmt-bars-1",
+  "alt": "TMT bars with ribbed surface in a stack",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "tmt-bars-2",
+  "slug": "tmt-bars",
+  "src": "tmt bar 2-Photoroom.png",
+  "dest": "/products/v2/tmt-bars-2",
+  "alt": "TMT bar coils and bundles with tag",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "tmt-bars-3",
+  "slug": "tmt-bars",
+  "src": "tmt bar 1.jpg",
+  "dest": "/products/v2/tmt-bars-3",
+  "alt": "Upright TMT bars showing rib pattern",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "aluminium-wiremesh-1",
+  "slug": "aluminium-wiremesh",
+  "src": "ss fine mesh 1.jpeg",
+  "dest": "/products/v2/aluminium-wiremesh-1",
+  "alt": "Roll of fine woven wire cloth",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "aluminium-wiremesh-2",
+  "slug": "aluminium-wiremesh",
+  "src": "ss fine mesh.jpeg",
+  "dest": "/products/v2/aluminium-wiremesh-2",
+  "alt": "Fine woven wire cloth unrolling off a core",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "aluminium-wiremesh-3",
+  "slug": "aluminium-wiremesh",
+  "src": "mosquto net-Photoroom.png",
+  "dest": "/products/v2/aluminium-wiremesh-3",
+  "alt": "Woven wire cloth rolls in three widths",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "ms-wiremesh-1",
+  "slug": "ms-wiremesh",
+  "src": "welded-wire-mesh.jpg",
+  "dest": "/products/v2/ms-wiremesh-1",
+  "alt": "Square-grid welded wire mesh panel",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "ms-wiremesh-2",
+  "slug": "ms-wiremesh",
+  "src": "unnamed.jpg",
+  "dest": "/products/v2/ms-wiremesh-2",
+  "alt": "Rolls of welded and woven mesh on a shelf",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "ms-wire-rope-1",
+  "slug": "ms-wire-rope",
+  "src": "ms wire rope 2.jpeg",
+  "dest": "/products/v2/ms-wire-rope-1",
+  "alt": "Steel wire rope wound on a large drum",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "ms-wire-rope-2",
+  "slug": "ms-wire-rope",
+  "src": "Ms wire rope.jpeg",
+  "dest": "/products/v2/ms-wire-rope-2",
+  "alt": "Wire rope on a wooden drum",
+  "source": "client media folder (HM pictures)",
+  "license": "client-supplied; third-party origin not verified"
+ },
+ {
+  "id": "ms-pipes-1",
+  "slug": "ms-pipes",
+  "abs": "/private/tmp/claude-501/-Users-younusali-Desktop-HM-Data--HM-Website/be24e629-778f-4230-ba1e-47cd808e7646/scratchpad/stock/beams.jpg",
+  "src": "stock/steel-hollow-sections.jpg",
+  "dest": "/products/v2/ms-pipes-1",
+  "alt": "Stacked square and rectangular hollow steel sections with tags",
+  "source": "Wikimedia Commons: Steel beams stacked beside a building in a construction yard.jpg",
+  "credit": "Shixart1985, CC BY 2.0",
+  "license": "CC BY 2.0 (attribution required)"
+ },
+ {
+  "id": "ms-i-beams-joists-1",
+  "slug": "ms-i-beams-joists",
+  "generated": true,
+  "dest": "/products/v2/ms-i-beams-joists-1",
+  "alt": "Technical section-profile drawing of an I-beam (not a photograph)",
+  "source": "scripts/media/profile-plates.mjs",
+  "license": "own illustration"
+ },
+ {
+  "id": "ms-channels-plate",
+  "slug": "ms-channels",
+  "generated": true,
+  "dest": "/products/v2/ms-channels-plate",
+  "alt": "Technical section-profile drawing of a channel (not a photograph)",
+  "source": "scripts/media/profile-plates.mjs",
+  "license": "own illustration"
+ }
+]

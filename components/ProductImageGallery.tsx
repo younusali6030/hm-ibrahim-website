@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import type { ProductMediaItem } from "@/content/products";
 import { useLang } from "@/lib/i18n";
+import { blurFor, creditFor, isIllustration } from "@/lib/media";
 
 type Props = {
   /** When provided, gallery shows both images and videos (images first). */
@@ -95,14 +96,24 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
                   aria-label={hi ? `${alt || productName} वीडियो` : `${alt || productName} video`}
                 />
               ) : (
-                <ImageWithFallback
-                  src={item.src}
-                  alt={i === 0 ? alt || productName : hi ? `${alt || productName}, दृश्य ${i + 1}` : `${alt || productName}, view ${i + 1}`}
-                  fill
-                  className="object-cover"
-                  priority={i === 0}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+                <div
+                  className="group/zoom absolute inset-0 overflow-hidden motion-safe:lg:cursor-zoom-in"
+                  onMouseMove={(e) => {
+                    const r = e.currentTarget.getBoundingClientRect();
+                    e.currentTarget.style.setProperty("--zx", `${((e.clientX - r.left) / r.width) * 100}%`);
+                    e.currentTarget.style.setProperty("--zy", `${((e.clientY - r.top) / r.height) * 100}%`);
+                  }}
+                >
+                  <ImageWithFallback
+                    src={item.src}
+                    alt={i === 0 ? alt || productName : hi ? `${alt || productName}, दृश्य ${i + 1}` : `${alt || productName}, view ${i + 1}`}
+                    fill
+                    className={`${isIllustration(item.src) ? "object-contain p-6" : "object-cover"} [transform-origin:var(--zx,50%)_var(--zy,50%)] motion-safe:transition-transform motion-safe:duration-300 motion-safe:lg:group-hover/zoom:scale-[1.9]`}
+                    priority={i === 0}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    {...(blurFor(item.src) ? { placeholder: "blur" as const, blurDataURL: blurFor(item.src) } : {})}
+                  />
+                </div>
               )}
             </div>
           ))}
@@ -137,6 +148,18 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
           </>
         )}
       </div>
+
+      {(() => {
+        const cur = media[active];
+        const credit = cur && cur.type === "image" ? creditFor(cur.src) : undefined;
+        const drawing = cur && cur.type === "image" && isIllustration(cur.src);
+        if (!credit && !drawing) return null;
+        return (
+          <p className="mt-2 font-mono-brand text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+            {drawing ? (hi ? "चित्र: सेक्शन प्रोफ़ाइल (फ़ोटो नहीं)" : "Drawing: section profile, not a photograph") : `${hi ? "फ़ोटो" : "Photo"}: ${credit}`}
+          </p>
+        );
+      })()}
 
       {media.length > 1 && (
         <div className="mt-3 hidden gap-2 sm:grid sm:grid-cols-5 [&>button]:aspect-[4/3]">
