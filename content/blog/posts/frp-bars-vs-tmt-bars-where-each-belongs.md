@@ -78,3 +78,10 @@ Yes, with a hacksaw or a cutting disc. Wear a mask because the dust irritates.
 
 **What is FRP used for in farms?**  
 Fence posts and crop supports. It does not rust in soil and it is light to carry.
+
+## Related reading
+
+- [How to choose TMT bars (sariya)](/blog/how-to-choose-tmt-bars-indore)
+- [TMT bar weight chart](/blog/tmt-bar-weight-chart-size-guide-indore)
+- [TMT bars](/products/tmt-bars)
+- [Farm fencing in Madhya Pradesh](/blog/farm-fencing-madhya-pradesh-posts-wire-angle-plan)

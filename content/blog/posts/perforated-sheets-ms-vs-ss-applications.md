@@ -1,5 +1,5 @@
 ---
-title: "Perforated Sheets: MS vs SS, Hole Patterns, Applications"
+title: "Perforated Sheets: MS vs GI, Hole Patterns, Applications"
 description: "Guide to perforated sheets in Indore. MS and GI perforated sheets, hole patterns, uses. Buy from Siyaganj."
 date: "2025-02-05"
 updated: "2026-10-11"
@@ -11,7 +11,9 @@ image2Alt: "Rolling out a perforated sheet before cutting"
 image3: "/blog/perf-ms-ss-3.webp"
 image3Alt: "Slotted and perforated sheet cylinders in stock"
 ---
-Perforated sheets are metal sheets with a regular pattern of holes. In Indore, Siyaganj, and Loha Mandi they are used for screens, ventilation, filtration, and architectural facades. This guide covers material choice (MS vs GI), hole patterns, and typical applications so you can order the right product from a Siyaganj supplier.
+**Quick answer:** MS perforated sheet is the cheaper choice for indoor use or where you will paint it. GI perforated sheet has a zinc coat and is the better choice outdoors. Thickness runs from 0.5 to 3 mm. Choose the hole shape and open area for the airflow or the screening you need.
+
+Perforated sheets are metal sheets with a regular pattern of holes. In Indore, Siyaganj, and Loha Mandi they are used for screens, ventilation, filtration, and architectural facades. This guide covers material choice (MS vs GI), hole patterns, and typical applications so you can order the right sheet from us at Siyaganj.
 
 ## Materials: MS vs GI Perforated Sheets
 
@@ -40,7 +42,7 @@ In Indore, Dewas, Pithampur, and Ujjain, perforated sheets are used for:
 - **Filtration** — Sieves and industrial filters.
 - **Architectural** — Sun screens and decorative panels.
 
-Suppliers in Siyaganj and New Siyaganj stock MS and GI perforated sheets in standard and custom sizes.
+We stock MS and GI perforated sheets at Siyaganj in standard and cut sizes.
 
 ## What Affects Price?
 
@@ -58,10 +60,10 @@ See [Perforated Sheets](/categories/perforated-sheets) for the full range.
 ## FAQs
 
 **Do you have stainless steel perforated sheets?**  
-MS and GI are most common in Siyaganj. SS may be available on request; contact the supplier.
+We keep MS and GI. Stainless steel perforated sheet may be possible on request; ask us.
 
 **Can I get custom hole size or pattern?**  
-Many suppliers can source or order custom patterns. Share your requirement for a quote.
+Custom patterns may be possible. Send us the pattern and the size.
 
 **How do I get a quote for perforated sheet?**  
 Specify material (MS/GI), thickness, hole pattern, size, and quantity. Request a quote for Indore/Siyaganj.
@@ -69,3 +71,11 @@ Specify material (MS/GI), thickness, hole pattern, size, and quantity. Request a
 ## Request a Quote in Indore / Siyaganj
 
 For perforated sheets in Indore, Siyaganj, or Loha Mandi, request a quote with material, thickness, pattern, and dimensions for availability and pricing.
+
+## Related reading
+
+- [Perforated sheets in Indore](/indore/perforated-sheets)
+- [Hole patterns and open area explained](/blog/perforated-sheet-hole-patterns-open-area-guide)
+- [Expanded metal mesh (jali)](/blog/expanded-metal-mesh-uses-types-indore)
+
+*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*

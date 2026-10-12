@@ -91,3 +91,10 @@ Fence energisers that give a low-power pulse are sold for farm use. Follow the m
 
 **Can you deliver fencing material to my farm?**  
 We arrange delivery in Indore and the districts around it. Tell us the location.
+
+## Related reading
+
+- [Barbed and concertina wire in Indore](/indore/barbed-wire)
+- [How to estimate fencing material](/blog/how-to-estimate-material-quantity-fencing)
+- [Barbed wire vs concertina wire](/blog/barbed-wire-vs-concertina-wire)
+- [Jali and chain link fencing in Indore](/indore/chain-link-fencing-jaali)

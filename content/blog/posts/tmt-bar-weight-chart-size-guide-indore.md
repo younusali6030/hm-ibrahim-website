@@ -11,6 +11,7 @@ image2Alt: "Gloved hand checking a bundle of bars"
 image3: "/blog/tmt-weight-3.webp"
 image3Alt: "TMT bars with the rib detail visible"
 ---
+**Quick answer:** A TMT bar weighs diameter squared divided by 162, in kg per metre. A 12 mm bar is 0.889 kg per metre, so a 12 m bar is about 10.7 kg. Weigh five random one-metre pieces and compare with the chart.
 
 Every contractor in Indore has had the argument. The invoice says 2 tonnes. The truck feels light. Nobody wants to say it out loud.
 
@@ -91,3 +92,12 @@ Yes. Bars are sold by weight, and a few pieces are fine for a small job. Tell us
 
 **How do I know a TMT bar is genuine?**  
 Look for the maker's name, grade and size rolled into the bar, ask for the bundle tag, and weigh a sample against the chart.
+
+## Related reading
+
+- [How to choose TMT bars (sariya)](/blog/how-to-choose-tmt-bars-indore)
+- [FRP bars vs TMT bars](/blog/frp-bars-vs-tmt-bars-where-each-belongs)
+- [Concrete cover blocks](/blog/concrete-cover-blocks-why-cover-matters-slab-beam-column)
+- [Wire gauge chart](/blog/wire-gauge-chart-swg-bwg-mm-guide)
+
+*Last verified: 12 October 2026. The table and the formula were recalculated and checked against our current product list.*

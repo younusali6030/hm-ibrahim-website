@@ -100,3 +100,9 @@ Yes. We cut on the counter by the metre or by the piece.
 
 **Is fibreglass mesh safe for children?**  
 It is non-toxic. It is also soft and can tear, so pick SS for the lower floor windows children lean on.
+
+## Related reading
+
+- [Wire mesh in Indore](/indore/wire-mesh)
+- [SS fine mesh](/products/ss-fine-mesh)
+- [Pigeon net for balconies](/blog/pigeon-net-balcony-indore-mesh-size-fixing-guide)

@@ -86,3 +86,9 @@ Yes, alkali resistant mesh embedded in cement plaster is used on external walls.
 
 **How much fibre mesh do I need?**  
 Measure the total length of beam, column and chase joints. Add 10% for overlap.
+
+## Related reading
+
+- [Expanded metal mesh (jali)](/blog/expanded-metal-mesh-uses-types-indore)
+- [Wire mesh in Indore](/indore/wire-mesh)
+- [Structural items range](/categories/structural-items)

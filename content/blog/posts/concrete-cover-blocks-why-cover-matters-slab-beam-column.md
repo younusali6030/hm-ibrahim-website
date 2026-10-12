@@ -1,6 +1,6 @@
 ---
 title: "Concrete Cover Blocks: Why 20 mm of Cover Decides How Long Your Slab Lasts"
-description: "What concrete cover is, typical cover for slabs, beams, columns and footings, and how many cover blocks you need. A site guide from a Siyaganj supplier."
+description: "What concrete cover is, typical cover for slabs, beams, columns and footings, and how many cover blocks you need. A site guide from the Siyaganj counter."
 date: "2026-09-24"
 updated: "2026-09-24"
 category: "Construction"
@@ -91,3 +91,9 @@ Tied to the rebar with binding wire, or pushed in with built-in wire.
 
 **Are plastic cover blocks good?**  
 They are used too and are easy to fix. Concrete blocks bond better with the pour.
+
+## Related reading
+
+- [TMT bar weight chart](/blog/tmt-bar-weight-chart-size-guide-indore)
+- [How to choose TMT bars (sariya)](/blog/how-to-choose-tmt-bars-indore)
+- [Construction hardware in Indore](/indore/construction-hardware)

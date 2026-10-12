@@ -11,7 +11,9 @@ image2Alt: "Close view of galvanised razor blades on a concertina coil"
 image3: "/blog/barbed-concertina-3.webp"
 image3Alt: "Concertina coils with the shop owner at the Siyaganj godown"
 ---
-Choosing between barbed wire and concertina wire for your boundary or perimeter in Indore depends on the level of security you need, your budget, and how the fence will be installed. Here we compare both and point you to options available in Siyaganj and Loha Mandi.
+**Quick answer:** Use barbed wire (kata taar) for farm boundaries and the top of a compound wall. Use concertina wire where you need a stronger deterrent, such as an industrial or warehouse perimeter. Barbed wire costs less per metre. Concertina is a coil and costs more.
+
+Choosing between barbed wire (kata taar) and concertina wire for your boundary or perimeter in Indore depends on the level of security you need, your budget, and how the fence will be installed. Here we compare both and point you to options available in Siyaganj and Loha Mandi.
 
 ## What is Barbed Wire?
 
@@ -30,7 +32,7 @@ Concertina wire is coiled barbed or razor wire that is stretched along a perimet
 | **Installation** | Simpler; strands on posts | Coils; may need frames |
 | **Typical use** | Farms, compound tops, boundaries | High-security perimeters |
 
-For [Barbed Wire](/products/barbed-wire) and [Concertina Wire](/products/concertina-wire) in Indore, contact a Siyaganj supplier for types and current price factors.
+For [Barbed Wire](/products/barbed-wire) and [Concertina Wire](/products/concertina-wire) in Indore, ask us at the Siyaganj counter for types and the current rate.
 
 ## Where They Are Used in Indore
 
@@ -49,11 +51,20 @@ See our [Fencing Material](/categories/fencing-material) and [Wires](/categories
 Yes. Some sites use barbed wire on the main boundary and concertina on critical stretches for extra security.
 
 **Do you supply concertina wire in Indore?**  
-Yes. Suppliers in Siyaganj and Loha Mandi stock barbed and concertina wire. Request a quote with length and type.
+Yes. Yes. We stock both barbed and concertina wire at Siyaganj. Send us the length and the type.
 
 **What affects concertina wire price?**  
-Coil type (single/double), wire gauge, and quantity. Prices are indicative; get a quote for your requirement.
+Coil type (single/double), wire gauge, and quantity. We do not print prices; ask for the rate with the length and type.
 
 ## Request a Quote in Indore / Siyaganj
 
 For barbed wire or concertina wire in Indore, Siyaganj, or Loha Mandi, send your requirement (type, length, and quantity) for a quote and availability.
+
+## Related reading
+
+- [Barbed and concertina wire in Indore](/indore/barbed-wire)
+- [Farm fencing in Madhya Pradesh: posts, wire, angle](/blog/farm-fencing-madhya-pradesh-posts-wire-angle-plan)
+- [How to estimate fencing material](/blog/how-to-estimate-material-quantity-fencing)
+- [Wire gauge chart](/blog/wire-gauge-chart-swg-bwg-mm-guide)
+
+*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*

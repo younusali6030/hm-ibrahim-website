@@ -11,6 +11,7 @@ import fs from "fs";
 import path from "path";
 import type { Metadata } from "next";
 import { baseUrl, site } from "@/lib/site";
+import { getSeoOverride } from "@/content/seoOverrides";
 
 export type OgType = "default" | "home" | "product" | "category" | "indore" | "blog" | "brand" | "about" | "contact";
 
@@ -56,7 +57,10 @@ export function trimAtWord(text: string, max: number): string {
   const sentence = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("; "));
   if (sentence > max * 0.6) return cut.slice(0, sentence + 1).trim();
   const space = cut.lastIndexOf(" ");
-  return cut.slice(0, space > 0 ? space : max).replace(/[,;:\-–(]+$/, "").trim();
+  let out = cut.slice(0, space > 0 ? space : max).replace(/[,;:\-–(]+$/, "").trim();
+  // Do not end on a dangling connector ("... for GI, Binding and").
+  out = out.replace(/(\s+(and|or|for|of|in|to|the|a|with|vs|&))+$/i, "").replace(/[,;:\-–(]+$/, "").trim();
+  return out;
 }
 
 /**
@@ -109,9 +113,11 @@ export function buildPageMeta(input: PageMetaInput): Metadata {
     ? { url: image.url.startsWith("http") ? image.url : `${baseUrl}${image.url}` }
     : tpl;
   const alt = image?.alt || `${site.name}, Siyaganj, Indore`;
-  const metaTitle = fitTitle(title);
+  const override = getSeoOverride(p);
+  const metaTitle: Metadata["title"] = override ? { absolute: override.title } : fitTitle(title);
   const full = titleText(metaTitle);
-  const desc = trimAtWord(description, 158);
+  const finalDescription = override?.description ?? description;
+  const desc = trimAtWord(finalDescription, 158);
 
   return {
     title: metaTitle,
@@ -120,7 +126,7 @@ export function buildPageMeta(input: PageMetaInput): Metadata {
     alternates: { canonical: url },
     openGraph: {
       title: full,
-      description: trimAtWord(description, 200),
+      description: trimAtWord(finalDescription, 200),
       url,
       siteName: site.name,
       locale: "en_IN",
@@ -130,7 +136,7 @@ export function buildPageMeta(input: PageMetaInput): Metadata {
     twitter: {
       card: "summary_large_image",
       title: full,
-      description: trimAtWord(description, 200),
+      description: trimAtWord(finalDescription, 200),
       images: [img.url],
     },
     robots: noIndex ? { index: false, follow: true } : ROBOTS_INDEX,

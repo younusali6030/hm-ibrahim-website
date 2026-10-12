@@ -88,3 +88,9 @@ Standard has angled strands and a rough surface. Flattened has a flat face and i
 
 **Do you sell expanded mesh by the roll or by the sheet?**  
 Both. Tell us the size.
+
+## Related reading
+
+- [Wire mesh in Indore](/indore/wire-mesh)
+- [Welded mesh vs chain link](/blog/welded-wire-mesh-vs-chain-link)
+- [Perforated sheets in Indore](/indore/perforated-sheets)

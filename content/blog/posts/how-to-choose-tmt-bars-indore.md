@@ -11,7 +11,9 @@ image2Alt: "TMT bar with the rib pattern in close-up"
 image3: "/blog/tmt-choose-3.webp"
 image3Alt: "Tied bundles of TMT bar next to wire coils"
 ---
-TMT (thermo-mechanically treated) bars are the standard reinforcement for RCC construction in Indore, Siyaganj, and across Madhya Pradesh. This guide explains grades, common sizes, and how to choose the right TMT bars for your project—and where to get them in Siyaganj or Loha Mandi.
+**Quick answer:** For most houses in Indore the engineer specifies Fe 500. Fe 500D is chosen where ductility matters, such as seismic zones. Fe 550 is used where a design needs more strength per bar. Follow the drawing for grade and diameter. 8, 10, 12, 16 and 20 mm are the common sizes.
+
+TMT (thermo-mechanically treated) bars, called sariya in the market, are the standard reinforcement for RCC construction in Indore, Siyaganj, and across Madhya Pradesh. This guide explains grades, common sizes, and how to choose the right TMT bars for your project—and where to get them in Siyaganj or Loha Mandi.
 
 ## What Are TMT Bars?
 
@@ -29,7 +31,7 @@ Your structural engineer will specify the grade. For most buildings in Indore an
 
 ## Common Sizes in Indore
 
-TMT bars are supplied in diameters such as 6 mm, 8 mm, 10 mm, 12 mm, 16 mm, 20 mm, 25 mm, and 32 mm, typically in 12 m length. The most used sizes for columns, beams, and slabs are 8 mm, 10 mm, 12 mm, 16 mm, and 20 mm. [TMT Bars](/products/tmt-bars) in these sizes are available from Siyaganj suppliers.
+TMT bars are supplied in diameters such as 6 mm, 8 mm, 10 mm, 12 mm, 16 mm, 20 mm, 25 mm, and 32 mm, typically in 12 m length. The most used sizes for columns, beams, and slabs are 8 mm, 10 mm, 12 mm, 16 mm, and 20 mm. [TMT Bars](/products/tmt-bars) in these sizes are at our counter.
 
 ## How to Choose
 
@@ -44,7 +46,7 @@ TMT bar rates in Indore depend on diameter, grade, quantity, and market. Larger 
 
 ## Where to Buy TMT Bars in Indore
 
-Iron and hardware suppliers in Siyaganj and Loha Mandi stock TMT bars in multiple sizes and grades. Some are authorized dealers for branded steel. Visit or request a quote with your requirement for availability and pricing.
+We stock TMT bars in several sizes and grades at Siyaganj, and we are an authorised Tata dealer for steel. Visit us or send your list and we will check stock and call back with the rate.
 
 See [Structural Items](/categories/structural-items) for TMT bars and related products like [MS Angles](/products/ms-angles) and [MS Flats](/products/ms-flats).
 
@@ -54,11 +56,20 @@ See [Structural Items](/categories/structural-items) for TMT bars and related pr
 Usually Fe 500 unless your engineer specifies Fe 550 or Fe 500D. Confirm with your structural drawing.
 
 **Do you deliver TMT bars to the site?**  
-Many Siyaganj suppliers arrange delivery for Indore and nearby areas. Mention your site location when requesting a quote.
+We can arrange delivery for Indore and nearby areas. Mention your site location when requesting a quote.
 
 **How do I know the bars are genuine?**  
 Buy from a known dealer and ask for test certificates if required. Reputed brands are often available on request.
 
 ## Request a Quote in Indore / Siyaganj
 
-For TMT bars in Indore, Siyaganj, or Loha Mandi, request a quote with diameter, grade, and quantity. A trusted supplier can confirm stock and current rates.
+For TMT bars in Indore, Siyaganj, or Loha Mandi, request a quote with diameter, grade, and quantity. We will check stock and call back with the rate.
+
+## Related reading
+
+- [TMT bar weight chart: 8 mm to 32 mm](/blog/tmt-bar-weight-chart-size-guide-indore)
+- [FRP bars vs TMT bars](/blog/frp-bars-vs-tmt-bars-where-each-belongs)
+- [Concrete cover blocks](/blog/concrete-cover-blocks-why-cover-matters-slab-beam-column)
+- [Binding wire (kala taar)](/products/binding-wire)
+
+*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*

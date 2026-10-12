@@ -88,3 +88,9 @@ A tight net with a small mesh does not trap birds. A loose net with large holes 
 
 **Do you give a pigeon net frame or wire?**  
 We stock the net, the wire, the hooks and binding wire. Tell us the size.
+
+## Related reading
+
+- [Pigeon spikes and netting installation](/blog/pigeon-spikes-netting-installation-guide)
+- [Wire gauge chart](/blog/wire-gauge-chart-swg-bwg-mm-guide)
+- [Safety nets and bird spikes range](/categories/safety-nets-equipments)

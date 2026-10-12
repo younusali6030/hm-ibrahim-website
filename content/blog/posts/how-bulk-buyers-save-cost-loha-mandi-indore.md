@@ -74,3 +74,9 @@ See [Products](/products) and category pages for [Structural Items](/categories/
 ## Request a Quote in Indore / Siyaganj
 
 For bulk supply of steel, wire, or mesh in Indore, Siyaganj, or Loha Mandi, request a quote with your consolidated list (product, size, quantity) for better rates and delivery options.
+
+## Related reading
+
+- [Siyaganj market guide](/blog/siyaganj-market-guide-buying-iron-hardware-indore)
+- [Contractor checklist](/blog/top-hardware-contractors-buy-siyaganj)
+- [TMT bar weight chart](/blog/tmt-bar-weight-chart-size-guide-indore)

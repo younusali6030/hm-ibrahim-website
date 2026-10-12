@@ -110,3 +110,9 @@ Yes. We weigh them on the counter, any length from 1 to 6 inch.
 
 **Are galvanised nails worth it?**  
 For outdoor and roof work, yes. The zinc coat stops rust at the head and shank.
+
+## Related reading
+
+- [Construction hardware in Indore](/indore/construction-hardware)
+- [Wire nails and roofing nails range](/categories/nails)
+- [Contractor checklist](/blog/top-hardware-contractors-buy-siyaganj)

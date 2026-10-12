@@ -93,3 +93,9 @@ GI for outdoors and damp places. MS for indoor use or when you will paint it.
 
 **Can you make a custom hole pattern?**  
 We stock the common patterns and can arrange others. Send us the drawing.
+
+## Related reading
+
+- [Perforated sheets in Indore](/indore/perforated-sheets)
+- [Perforated sheets: MS vs GI](/blog/perforated-sheets-ms-vs-ss-applications)
+- [Expanded metal mesh (jali)](/blog/expanded-metal-mesh-uses-types-indore)

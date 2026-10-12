@@ -87,3 +87,11 @@ Usually yes, because of wholesale volume and the number of shops. Compare the sp
 
 **Do you deliver outside Indore?**  
 We send material to Dewas, Ujjain, Mhow, Pithampur and other nearby towns. Tell us the location.
+
+## Related reading
+
+- [Iron and hardware in Indore](/indore)
+- [Contractor checklist](/blog/top-hardware-contractors-buy-siyaganj)
+- [How bulk buyers save cost](/blog/how-bulk-buyers-save-cost-loha-mandi-indore)
+- [Wire mesh in Indore](/indore/wire-mesh)
+- [TMT bars](/products/tmt-bars)

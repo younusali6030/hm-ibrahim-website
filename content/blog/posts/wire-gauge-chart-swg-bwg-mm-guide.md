@@ -11,6 +11,7 @@ image2Alt: "Heavy coil of black annealed wire in close-up"
 image3: "/blog/gauge-3.webp"
 image3Alt: "Yellow wrapped Tata Wiron coil on top of loose wire"
 ---
+**Quick answer:** A higher gauge number means thinner wire. 12 SWG is 2.64 mm, 14 SWG is 2.03 mm, 16 SWG is 1.63 mm and 18 SWG is 1.22 mm. Rebar tying uses 16 to 18 SWG annealed binding wire. Fence tying uses 12 to 14 SWG GI.
 
 You ask for 12 gauge wire. The shop hands you a coil. How do you know it is the 12 gauge you meant?
 
@@ -95,3 +96,12 @@ They are two different measuring systems with slightly different diameters at ea
 
 **How much binding wire do I need per tonne of steel?**  
 Sites commonly budget about 8 to 10 kg per tonne of rebar. Your engineer's bar schedule decides the real number.
+
+## Related reading
+
+- [GI wire vs MS wire](/blog/gi-wire-vs-ms-wire-binding-fencing)
+- [Barbed wire vs concertina wire](/blog/barbed-wire-vs-concertina-wire)
+- [GI wire in Indore](/indore/gi-wire)
+- [TMT bar weight chart](/blog/tmt-bar-weight-chart-size-guide-indore)
+
+*Last verified: 12 October 2026. The table and the formula were recalculated and checked against our current product list.*

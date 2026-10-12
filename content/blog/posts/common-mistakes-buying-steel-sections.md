@@ -11,7 +11,9 @@ image2Alt: "Steel rods stacked in an open yard before loading"
 image3: "/blog/steel-sections-3.webp"
 image3Alt: "Bundled steel sections laid out on the ground for counting"
 ---
-Buying MS angles, flats, channels, and other sections in Indore, Siyaganj, or Loha Mandi can go wrong if you don’t specify size, quantity, and quality clearly. Here are common mistakes and how to avoid them—so you get the right material from your Siyaganj supplier.
+**Quick answer:** Check the section size and thickness against the drawing, buy by weight and check the weight, and ask for straight lengths. Do not swap a section for a cheaper one without your engineer's approval.
+
+Buying MS angles, flats, channels, and other sections in Indore, Siyaganj, or Loha Mandi can go wrong if you don’t specify size, quantity, and quality clearly. Here are common mistakes and how to avoid them—so you get the right material at the counter.
 
 ## 1. Not Specifying Size and Thickness Precisely
 
@@ -35,7 +37,7 @@ Bent or twisted angles and flats cause rework on site. Surface scale or rust may
 
 Cutting and fitting always produce some waste. Ordering exact length with no extra leads to shortage.
 
-**Fix:** Add 5–10% for wastage (or more for complex fabrication). Discuss with your fabricator or supplier in Siyaganj.
+**Fix:** Add 5–10% for wastage (or more for complex fabrication). Discuss it with your fabricator or engineer, and tell us at the counter.
 
 ## 5. Choosing Black MS for Outdoor Without Protection
 
@@ -51,8 +53,15 @@ Rates change. Verbal “approximate” prices can differ from final bill.
 
 ## Where to Buy in Indore
 
-Trusted suppliers in Siyaganj and Loha Mandi stock [MS Angles](/products/ms-angles), [MS Flats](/products/ms-flats), [MS Round Bars](/products/ms-round-bars), [Bright Bars](/products/bright-bars), and [MS Channels](/products/ms-channels). See [Structural Items](/categories/structural-items) for the full range. Request a quote with clear specifications for current rates.
+We stock [MS Angles](/products/ms-angles), [MS Flats](/products/ms-flats), [MS Round Bars](/products/ms-round-bars), [Bright Bars](/products/bright-bars), and [MS Channels](/products/ms-channels). See [Structural Items](/categories/structural-items) for the full range. Request a quote with clear specifications for current rates.
 
 ## Request a Quote in Indore / Siyaganj
 
 For MS angles, flats, or channels in Indore, Siyaganj, or Loha Mandi, request a quote with size, thickness, length, and quantity to avoid mistakes and get the right material.
+
+## Related reading
+
+- [TMT bar weight chart](/blog/tmt-bar-weight-chart-size-guide-indore)
+- [How bulk buyers save cost in Loha Mandi](/blog/how-bulk-buyers-save-cost-loha-mandi-indore)
+- [Contractor checklist for Siyaganj](/blog/top-hardware-contractors-buy-siyaganj)
+- [Steel angles, flats and channels range](/categories/structural-items)

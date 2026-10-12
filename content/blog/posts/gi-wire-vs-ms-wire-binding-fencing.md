@@ -1,6 +1,6 @@
 ---
 title: "GI Wire vs MS Wire: Which One for Binding & Fencing?"
-description: "Compare GI wire and MS wire for binding and fencing in Indore. Uses, durability, price factors. Siyaganj supplier."
+description: "Compare GI wire and MS wire for binding and fencing in Indore. Uses, durability, price factors. Indore stockist."
 date: "2025-02-06"
 updated: "2026-10-11"
 category: "Wire"
@@ -11,7 +11,9 @@ image2Alt: "Large coil of black wire up close"
 image3: "/blog/giwire-3.webp"
 image3Alt: "Tata Wiron coils in yellow packing next to loose black wire"
 ---
-In Indore, Siyaganj, and Loha Mandi, both **GI (galvanized iron) wire** and **MS (mild steel) wire** are used for binding, tying, and fencing. Choosing the right type saves cost and improves durability. This guide compares them and points you to products you can order from a Siyaganj supplier.
+**Quick answer:** Use GI (galvanised) wire outdoors and for fencing. Use black annealed binding wire (kala taar) to tie rebar. MS wire costs less, but it rusts if it stays wet.
+
+In Indore, Siyaganj, and Loha Mandi, both **GI (galvanized iron) wire** and **MS (mild steel) wire** are used for binding, tying, and fencing. Choosing the right type saves cost and improves durability. This guide compares them and points you to what we stock at Siyaganj. Black annealed binding wire is called kala taar at the counter.
 
 ## What is GI Wire?
 
@@ -37,7 +39,7 @@ GI wire costs more per kg than MS but lasts longer outdoors. For fencing and ext
 
 ## Where to Buy in Indore
 
-Suppliers in Siyaganj and Loha Mandi stock GI wire and binding wire in various gauges and pack sizes. Request a quote with gauge and quantity for current rates. See [Wires](/categories/wires) for the full range including [Concertina Wire](/products/concertina-wire) and wire ropes.
+We stock GI wire and binding wire in various gauges and pack sizes. Ask for the rate with the gauge and the quantity. See [Wires](/categories/wires) for the full range including [Concertina Wire](/products/concertina-wire) and wire ropes.
 
 ## FAQs
 
@@ -48,8 +50,17 @@ MS will rust. For outdoor fencing in Indore, use GI wire or coated wire for long
 Binding for RCC uses annealed binding wire (e.g. 16–18 SWG), not general GI wire. For other tying, choose gauge as per load.
 
 **Do you have Tata Wiron GI wire?**  
-Some Siyaganj suppliers stock Tata Wiron GI wire. Ask when requesting a quote.
+Yes. We are an authorised Tata dealer and stock Tata Wiron GI wire. Ask for the gauge you need.
 
 ## Request a Quote in Indore / Siyaganj
 
 For GI wire, binding wire, or fencing wire in Indore, Siyaganj, or Loha Mandi, request a quote with gauge and quantity for availability and pricing.
+
+## Related reading
+
+- [Wire gauge chart: SWG, BWG and mm](/blog/wire-gauge-chart-swg-bwg-mm-guide)
+- [GI wire in Indore](/indore/gi-wire)
+- [Barbed wire vs concertina wire](/blog/barbed-wire-vs-concertina-wire)
+- [Binding wire](/products/binding-wire)
+
+*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*
