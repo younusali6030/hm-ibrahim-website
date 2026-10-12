@@ -1,0 +1,201 @@
+/* /indore: tighter rhythm plus the motion layer. Transform and opacity only; all of it stands down for reduced motion. */
+
+.ind-sec {
+  padding-block: 2.5rem;
+}
+@media (min-width: 768px) {
+  .ind-sec {
+    padding-block: 3.75rem;
+  }
+}
+.ind-tint {
+  background: hsl(var(--card));
+  border-block: 1px solid hsl(var(--border));
+}
+
+/* Hero image: slow push-in. */
+.ind-kb {
+  animation: ind-kb 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes ind-kb {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+/* Day into night: the second photo fades over the first on a slow loop. */
+.ind-xfade {
+  animation: ind-xfade 18s ease-in-out infinite;
+}
+.ind-xfade-rev {
+  animation: ind-xfade-rev 18s ease-in-out infinite;
+}
+@keyframes ind-xfade {
+  0%,
+  36% {
+    opacity: 0;
+  }
+  50%,
+  86% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ind-xfade-rev {
+  0%,
+  36% {
+    opacity: 1;
+  }
+  50%,
+  86% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* The stamp that floats over the hero photo. */
+.ind-float {
+  animation: ind-float 7s ease-in-out infinite;
+}
+@keyframes ind-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-4deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(-2deg);
+  }
+}
+
+/* Places ticker. */
+.ind-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ind-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ind-mq 46s linear infinite;
+}
+.ind-marquee:hover .ind-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes ind-mq {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* 3D photo ring: five photos on a turning drum. */
+.ind-ring-scene {
+  --w: clamp(200px, 56vw, 420px);
+  --h: calc(var(--w) * 0.75);
+  perspective: 1500px;
+  perspective-origin: 50% 35%;
+  height: calc(var(--h) + 2.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ind-ring-tilt {
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--w) * -0.688 - 28px)) rotateX(-7deg);
+}
+.ind-ring {
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  transform-style: preserve-3d;
+  animation: ind-spin 56s linear infinite;
+}
+.ind-ring-scene:hover .ind-ring,
+.ind-ring-scene:focus-within .ind-ring {
+  animation-play-state: paused;
+}
+.ind-card {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: hsl(var(--secondary));
+  box-shadow: 0 28px 60px -24px rgb(0 0 0 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(calc(var(--i) * 72deg)) translateZ(calc(var(--w) * 0.688 + 28px));
+}
+@keyframes ind-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-360deg);
+  }
+}
+
+/* Grid tiles lift on hover. */
+.ind-tile {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.ind-tile:hover {
+  transform: translateY(-4px);
+  border-color: hsl(var(--primary) / 0.7);
+  box-shadow: 0 18px 40px -22px rgb(0 0 0 / 0.8);
+}
+
+/* Orange rule that draws itself under a heading when it scrolls in. */
+.ind-draw {
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ind-kb,
+  .ind-float,
+  .ind-xfade,
+  .ind-xfade-rev,
+  .ind-marquee-track {
+    animation: none;
+  }
+  .ind-marquee-track {
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .ind-marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .ind-ring-scene {
+    height: auto;
+    display: block;
+    perspective: none;
+  }
+  .ind-ring-tilt {
+    transform: none;
+  }
+  .ind-ring {
+    animation: none;
+    transform: none;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .ind-card {
+    position: relative;
+    transform: none;
+    aspect-ratio: 4 / 3;
+  }
+  .ind-tile {
+    transition: none;
+  }
+}

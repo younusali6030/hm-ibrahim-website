@@ -1,6 +1,7 @@
 import { allProducts, getCategoryBySlug, getProductImages } from "@/content/products";
 import { getAllPosts } from "@/content/blog/posts";
 import { baseUrl } from "@/lib/site";
+import { indorePhotos } from "@/content/indoreStory";
 
 export const dynamic = "force-static";
 
@@ -15,6 +16,7 @@ export async function GET() {
     const imgs = getProductImages(p, getCategoryBySlug(p.categorySlug)).filter((i) => !i.endsWith(".svg"));
     if (imgs.length) rows.push({ page: `${baseUrl}/products/${p.slug}`, images: imgs });
   }
+  rows.push({ page: `${baseUrl}/indore`, images: Object.values(indorePhotos).map((p) => p.src) });
   for (const post of await getAllPosts()) {
     const imgs = [post.image, post.image2, post.image3].filter(Boolean) as string[];
     if (imgs.length) rows.push({ page: `${baseUrl}/blog/${post.slug}`, images: imgs });

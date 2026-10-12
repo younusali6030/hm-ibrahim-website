@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { LazyLiquidMark } from "@/components/fx/Lazy";
-import { Phone, Mail, MessageCircle } from "lucide-react";
+import { Phone, Mail, MessageCircle, MapPin } from "lucide-react";
 import { site } from "@/content/site";
 import { getWhatsAppLink } from "@/lib/utils";
 import { categories } from "@/content/products";
 import { T } from "@/lib/i18n";
-import { VisitUs } from "@/components/visit/VisitUs";
+import { ShopStatus } from "@/components/visit/VisitUs";
 import { ClickTracker } from "@/components/conversion/ClickTracker";
 
 const usefulLinks = [
@@ -25,14 +25,14 @@ const linkCls =
   "inline-flex min-h-[44px] items-center text-[15px] text-white/80 transition-colors hover:text-primary lg:min-h-[36px]";
 
 const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`;
 
 export function Footer() {
   return (
     <footer data-track="footer" className="border-t border-white/15 bg-nav pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] print:hidden md:pb-0">
       <ClickTracker />
-      <div className="page-container py-10 md:py-14">
-        <VisitUs variant="strip" source="footer_visit" className="mb-10" />
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_0.9fr_1.4fr] lg:gap-10">
+      <div className="page-container py-9 md:py-11">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.65fr_1.15fr_1.1fr] lg:gap-10">
           {/* Business identity */}
           <div className="min-w-0 sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block" aria-label="HM Ibrahim & Co, home">
@@ -41,12 +41,29 @@ export function Footer() {
             <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-white/80">
               Iron and hardware trading in Siyaganj, Indore. Retail and wholesale since 1939.
             </p>
+            <address data-track="footer_visit" className="mt-5 flex items-start gap-3 not-italic">
+              <MapPin className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
+              <span className="min-w-0 text-[15px] leading-relaxed text-white/85">
+                {site.address.line1}, {site.address.line2}, {site.address.city} {site.address.pincode}
+                <ShopStatus tone="dark" className="mt-1 !text-sm" />
+                <a
+                  href={mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track="footer_visit_map"
+                  className="mt-1 inline-flex min-h-[44px] items-center font-semibold text-white underline decoration-primary underline-offset-4 hover:text-primary lg:min-h-0"
+                >
+                  <T en="Open in Google Maps" hi="Google Maps पर खोलें" />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </span>
+            </address>
           </div>
 
           {/* Contact and location: second on mobile (right after the logo); last column on desktop */}
           <div className="lg:order-4">
             <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white"><T en="Contact" hi="संपर्क" /></h3>
-            <ul className="mt-4 space-y-4 text-[15px] text-white/85">
+            <ul className="mt-3 space-y-3 text-[15px] text-white/85">
               {[
                 { n: site.phone, l: site.phoneLabel },
                 { n: String(site.phoneAlt), l: site.phoneAltLabel },
@@ -95,7 +112,7 @@ export function Footer() {
           {/* Product categories */}
           <nav aria-label="Product categories" className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-display text-xl font-extrabold uppercase tracking-wide text-white"><T en="Product categories" hi="उत्पाद श्रेणियाँ" /></h3>
-            <ul className="mt-3 grid grid-cols-2 gap-x-4 sm:grid-cols-3 lg:grid-cols-1">
+            <ul className="mt-3 grid grid-cols-2 gap-x-4 sm:grid-cols-3 lg:grid-cols-2">
               {categories.map((c) => (
                 <li key={c.slug}>
                   <Link href={`/products?category=${c.slug}`} className={linkCls}>{c.name}</Link>
@@ -105,7 +122,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-white/15 pt-6 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-white/15 pt-5 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
           <p>&copy; {new Date().getFullYear()} HM Ibrahim &amp; Co. All rights reserved.</p>
           <ul className="flex flex-wrap gap-x-5">
             <li>

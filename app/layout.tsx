@@ -11,6 +11,7 @@ const ogDefault = ogImage("default");
 import { JsonLd } from "@/components/JsonLd";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { LangProvider } from "@/lib/i18n";
+import { PageCredits } from "@/components/indore/PageCredits";
 
 export const metadata: Metadata = {
   title: {
@@ -114,6 +115,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1 w-full min-w-0">{children}</main>
           <Footer />
+          <PageCredits />
           <MobileStickyCTA />
           <JsonLd />
         </LangProvider>
