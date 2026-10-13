@@ -6,7 +6,8 @@ One goal: a call, a WhatsApp, a quote request or a walk-in.
 ## Stack
 
 Next.js 14 (App Router), TypeScript, Tailwind, Framer Motion (light use). Content lives in `content/*.ts` and
-`content/blog/posts/*.md`. No CMS. Quote requests go through a server action in `app/contact/actions.ts`.
+`content/blog/posts/*.md`. No CMS. Quote requests go through a server action in `app/[lang]/contact/actions.ts`.
+Fonts are self-hosted in `app/fonts` (no build-time download). Security headers and the CSP live in `next.config.mjs`.
 
 ## Run it
 
@@ -17,9 +18,9 @@ npm run build      # production build
 npx tsc --noEmit   # type check
 ```
 
-`next lint` has no ESLint config yet and will prompt. Type checking and `next build` are the gates.
+`npm run lint`, `npx tsc --noEmit` and `npm test` are the gates before a deploy.
 `npm test` runs the regression tests in `tests/` with Node's built-in runner (no extra dependencies): product search
-and aliases, spec sheets, quote validation, locale paths and the cache-header rule.
+and aliases, spec sheets, quote validation, locale paths, the cache-header and security-header rules, and the rate limit.
 To build or serve beside a running dev server: `NEXT_DIST_DIR=.next-build npm run build` and
 `NEXT_DIST_DIR=.next-build npx next start -p 3001`.
 
@@ -31,8 +32,7 @@ Copy `.env.example` to `.env.local`. Nothing is sent anywhere until these are se
 |---|---|
 | `QUOTE_FROM_EMAIL`, `GMAIL_APP_PASSWORD` | Sends the catalog to the customer |
 | `QUOTE_NOTIFY_EMAIL` | Where quote requests are emailed |
-| `CONTACT_TO_EMAIL` | Contact form messages |
-| `RESEND_API_KEY`, `RESEND_FROM_EMAIL` | Optional Resend path |
+| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` (or the Vercel KV pair) | Optional shared rate limit for the quote form. Without them the limit is per server instance |
 | `SERPER_API_KEY`, `OPENAI_API_KEY` | Optional indicative-rate lookup |
 | `NEXT_PUBLIC_GA_ID` | GA4 measurement ID. Without it no analytics runs |
 
@@ -50,7 +50,7 @@ Copy `.env.example` to `.env.local`. Nothing is sent anywhere until these are se
 | JSON-LD builders | `lib/schema.ts` |
 | Design system and motifs | `docs/design/SYSTEM.md`, `components/motif/Motif.tsx` |
 | English / Hindi text | `lib/i18n.tsx` (`<T en hi>`) |
-| Quote flow, visit block, click tracking | `app/contact/`, `components/visit/`, `components/conversion/` |
+| Quote flow, visit block, click tracking | `app/[lang]/contact/`, `components/visit/`, `components/conversion/` |
 | Product search words (jali, sariya, kala taar...) | `content/productAliases.ts`, matching in `lib/productSearch.ts` |
 | Caption tracks for reels with audio | `content/captions.ts` (empty until transcripts exist) |
 

@@ -78,7 +78,7 @@ export function ProductDetailClient({ product, category, tx = {}, reviews, local
         // brand variant of Tata already says it in its own specs
         variant ? null : tataLine
       ),
-    [variant, product, category?.slug, displayUseCases, displayNotes, tataLine]
+    [variant, product, displayUseCases, displayNotes, tataLine]
   );
 
   const { known: knownRows, unknown: unknownRows } = splitSheetRows(sheet.rows);

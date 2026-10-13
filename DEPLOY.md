@@ -55,7 +55,9 @@ If Vercel is already connected to GitHub and you just need to push local changes
    | `GMAIL_APP_PASSWORD` | Your 16-char Gmail App Password | [Create one](https://myaccount.google.com/apppasswords) for this Gmail account |
    | `NEXT_PUBLIC_SITE_URL` | _not needed_ | The production URL (`https://www.hmibrahim.net`) is fixed in `lib/site.ts`. Remove this variable in Vercel if it is set to anything else. |
 
-   **Contact form** uses the same Gmail as the quote catalog: messages are sent to `<your-sending-address>` via `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD`. No separate Resend setup needed.
+   **Contact form** is the same quote form on `/contact`: it uses the same Gmail (`QUOTE_FROM_EMAIL`, `GMAIL_APP_PASSWORD`) and the notification goes to `QUOTE_NOTIFY_EMAIL`.
+
+   **Optional, recommended: shared rate limit.** Set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (an Upstash Redis database, or the Vercel KV integration, which sets `KV_REST_API_URL` / `KV_REST_API_TOKEN`). Without them the form's limit of 5 requests per 10 minutes is counted per server instance only.
 
    **Optional — live rate range in catalog:** Add `SERPER_API_KEY` ([serper.dev](https://serper.dev), free tier 2500 queries) so the catalog email shows a **live indicative range** from recent web search (Indore/Siyaganj). Add `OPENAI_API_KEY` for richer extraction (multiple supplier rates); without it, a single live range is still derived from search.
 
@@ -111,7 +113,7 @@ To see **how many times the site was opened**, **which products were viewed**, a
 2. Set in Vercel (and in `.env.local` for local): **`NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX`**.
 3. Redeploy. Reports appear in GA4 within 24–48 hours.
 
-See **[ANALYTICS.md](./ANALYTICS.md)** for setup steps and where to find each report (pages, products, events).
+See `docs/archive/ANALYTICS.md` for older setup notes and `docs/design/analytics-verification.md` for the events that are sent (`click_call`, `click_whatsapp`, `click_directions`, `quote_request`, `contact_submit`).
 
 ---
 
@@ -119,20 +121,9 @@ See **[ANALYTICS.md](./ANALYTICS.md)** for setup steps and where to find each re
 
 - [ ] Remove any stale `NEXT_PUBLIC_SITE_URL` in Vercel; the production URL lives in `lib/site.ts`.
 - [ ] Add `QUOTE_FROM_EMAIL` and `GMAIL_APP_PASSWORD` so both the quote catalog and contact form emails work (sent from your Gmail to <your-sending-address>).
-- [ ] Replace `site.googleReview.profileUrl` in `content/site.ts` with your real Google Business profile URL.
-- [ ] (Optional) Set `NEXT_PUBLIC_GA_ID` for full analytics — see [ANALYTICS.md](./ANALYTICS.md).
+- [ ] (Optional) Set `NEXT_PUBLIC_GA_ID` for full analytics — see `docs/design/analytics-verification.md`.
 - [ ] Add `public/favicon.ico` if you want a custom favicon.
 
-## Post-purchase form storage (Google Sheet)
+## Apex domain
 
-The `/post-purchase` form can store submissions either in:
-
-1. **A separate Google Sheet just for post-purchase data** — recommended  
-   - Set `GOOGLE_PURCHASE_SHEET_ID` to the Sheet ID for your post-purchase spreadsheet.  
-   - Also set `GOOGLE_SERVICE_ACCOUNT_EMAIL` and `GOOGLE_PRIVATE_KEY` as for the quote sheet.
-
-2. **The same Google Sheet used for quotes** (fallback)  
-   - If `GOOGLE_PURCHASE_SHEET_ID` is **not** set, the form will use `GOOGLE_SHEET_ID`.
-
-Each post-purchase submission is appended as a new row with a `customer type` value tagged `(post-purchase)`,
-so you can still filter them separately inside Google Sheets even if you use a single sheet.
+`hmibrahim.net` redirects (308) to `https://www.hmibrahim.net`. The production host is fixed in `lib/site.ts`.

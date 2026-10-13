@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Source_Sans_3, Big_Shoulders_Display, IBM_Plex_Mono, Noto_Sans_Devanagari } from "next/font/google";
+import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { Navbar } from "@/components/layout/Navbar";
@@ -31,44 +31,46 @@ export const viewport = {
   viewportFit: "cover",
 };
 
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
+// Fonts are self-hosted (app/fonts, variable files from Google Fonts, OFL). next/font/google downloaded them at build
+// time, and a failed download once broke a production deploy. Latin subset only; Devanagari only for the Hindi site.
+const plusJakarta = localFont({
+  src: "../fonts/PlusJakartaSans-latin.woff2",
   variable: "--font-heading",
   display: "swap",
   preload: false,
-  weight: ["400", "500", "600", "700"],
+  weight: "400 700",
 });
 
-const sourceSans = Source_Sans_3({
-  subsets: ["latin"],
+const sourceSans = localFont({
+  src: "../fonts/SourceSans3-latin.woff2",
   variable: "--font-sans",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: "400 700",
 });
 
-const bigShoulders = Big_Shoulders_Display({
-  subsets: ["latin"],
+const bigShoulders = localFont({
+  src: "../fonts/BigShouldersDisplay-latin.woff2",
   variable: "--font-display",
   display: "swap",
-  weight: ["700", "800"],
+  weight: "700 800",
 });
 
 // Devanagari glyphs for the Hindi site. Listed after the Latin fonts in every stack, so English pages never
 // download it and Hindi pages use it only for Devanagari characters.
-const notoDeva = Noto_Sans_Devanagari({
-  subsets: ["devanagari"],
+const notoDeva = localFont({
+  src: "../fonts/NotoSansDevanagari-devanagari.woff2",
   variable: "--font-deva",
   display: "swap",
   preload: false,
-  weight: ["400", "500", "600", "700", "800"],
+  weight: "400 800",
 });
 
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
+const plexMono = localFont({
+  src: "../fonts/IBMPlexMono-500-latin.woff2",
   variable: "--font-mono-brand",
   display: "swap",
   preload: false,
-  weight: ["500"],
+  weight: "500",
 });
 
 export default function RootLayout({

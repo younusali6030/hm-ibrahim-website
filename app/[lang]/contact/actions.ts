@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { getCategoryBySlug } from "@/content/products";
 import { getCatalogData, type CatalogData } from "@/lib/catalog";
 import { sendCatalogToCustomer } from "@/lib/catalog-email";
+import { rateLimited } from "@/lib/rateLimit";
 import { sendQuoteNotification } from "@/lib/quote-notification";
 import { appendQuoteToSheet } from "@/lib/quote-sheet";
 import {
@@ -33,29 +34,11 @@ export type QuoteResult =
     };
 
 /**
- * Best-effort rate limit: in-memory, per server instance. On serverless hosts each instance has its own
- * memory and instances are recycled, so this slows down a script on one instance but is not a guarantee.
- * Real protection would need a shared store (Upstash, Vercel KV) or the platform firewall. See docs/design/SECURITY-NOTES.md.
+ * Rate limit: 5 requests per 10 minutes, per IP and per phone number. Shared across instances when a Redis REST
+ * store is configured (lib/rateLimit.ts), otherwise per-instance memory. See docs/design/SECURITY-NOTES.md.
  */
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const RATE_MAX = 5;
-const hits = new Map<string, number[]>();
-
-function rateLimited(key: string, now = Date.now()): boolean {
-  const recent = (hits.get(key) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
-  if (recent.length >= RATE_MAX) {
-    hits.set(key, recent);
-    return true;
-  }
-  recent.push(now);
-  hits.set(key, recent);
-  if (hits.size > 2000) {
-    hits.forEach((v, k) => {
-      if (v.every((t) => now - t >= RATE_WINDOW_MS)) hits.delete(k);
-    });
-  }
-  return false;
-}
 
 async function clientIp(): Promise<string> {
   try {
@@ -156,7 +139,7 @@ export async function submitQuote(formData: FormData): Promise<QuoteResult> {
 
   // Per IP and per phone, only for requests that would otherwise be processed.
   const ip = await clientIp();
-  if (rateLimited(`ip:${ip}`) || rateLimited(`phone:${phone}`)) {
+  if ((await rateLimited(`ip:${ip}`, RATE_MAX, RATE_WINDOW_MS)) || (await rateLimited(`phone:${phone}`, RATE_MAX, RATE_WINDOW_MS))) {
     console.warn("[quote] rate limited");
     return {
       success: false,

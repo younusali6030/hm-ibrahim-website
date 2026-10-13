@@ -3,7 +3,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import config from "../next.config.mjs";
 
-const rules = await config.headers();
+const allRules = await config.headers();
+const rules = allRules.filter((r) => r.headers.some((h) => h.key === "Cache-Control"));
 // Next compiles "/dir/:path*.(ext|ext)" to a regex; this mirrors that for the one pattern shape used here.
 function toRegex(source) {
   const m = source.match(/^\/([a-z]+)\/:path\*\.\(([^)]+)\)$/);
@@ -22,4 +23,16 @@ test("real files in the media folders still get the long cache", () => {
   for (const file of ["/products/v2/ms-flats-1.webp", "/hero/poster.avif", "/reels/nail-reel.mp4", "/blog/some-image.jpg", "/brands/cm.png", "/videos/binding-wire.jpg"]) {
     assert.equal(matches(file), true, file);
   }
+});
+
+test("every route gets the security headers", () => {
+  const rule = allRules.find((r) => r.source === "/:path*");
+  assert.ok(rule, "catch-all security rule");
+  const keys = rule.headers.map((h) => h.key);
+  for (const k of ["Content-Security-Policy", "X-Content-Type-Options", "X-Frame-Options", "Referrer-Policy", "Permissions-Policy"]) {
+    assert.ok(keys.includes(k), k);
+  }
+  const csp = rule.headers.find((h) => h.key === "Content-Security-Policy").value;
+  assert.match(csp, /object-src 'none'/);
+  assert.match(csp, /frame-ancestors 'self'/);
 });

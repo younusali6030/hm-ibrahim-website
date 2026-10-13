@@ -7,6 +7,7 @@ import { useT } from "@/lib/i18n";
 import { useCategoryFocus } from "./CategoryFocus";
 import type { ShowroomApi } from "@/components/fx/products/showroom";
 import { SHOWROOM_ITEMS } from "@/components/fx/products/showroomItems";
+import { whenEngaged } from "@/components/fx/whenEngaged";
 
 export type ShowcaseItem = { slug: string; name: string; shortDesc: string; categorySlug: string; categoryName: string };
 
@@ -55,7 +56,7 @@ export function ProductsHero({ eyebrow, title, lede, actions, items }: Props) {
   const bySlug = useMemo(() => new Map(items.map((i) => [i.slug, i])), [items]);
   const lit = picked ? null : focused ?? hovered;
 
-  /* ------------------------------------------------------------ boot the scene once the page is idle */
+  /* ------------------------------------------------------------ boot the scene on first input (or after 12 s) */
   useEffect(() => {
     const host = stageRef.current;
     const cv = canvasRef.current;
@@ -128,15 +129,12 @@ export function ProductsHero({ eyebrow, title, lede, actions, items }: Props) {
         if (!disposed) setFallback(true);
       }
     };
-    const schedule = () => {
-      const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
-      if (ric) idle = ric(boot, { timeout: 250 });
-      else timer = window.setTimeout(boot, 120);
-    };
-    // Start as soon as the hero has mounted: waiting for window load left the scene unresponsive for seconds.
-    schedule();
+    // Starts on the first input, or after 12 s (see whenEngaged). The poster and the product list below are a
+    // complete page without the scene.
+    const cancelEngaged = whenEngaged(boot);
     return () => {
       disposed = true;
+      cancelEngaged();
       document.removeEventListener("visibilitychange", onVis);
       window.clearTimeout(timer);
       const cic = (window as unknown as { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback;

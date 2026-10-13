@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motionAllowed } from "./gl";
+import { whenEngaged } from "./whenEngaged";
 
 /**
  * The barbed wire and chain link scene behind the Brands header, drawn live with three.js.
@@ -71,11 +72,10 @@ export function WireHero({
       }
     };
 
+    // Starts on the first input, or after 12 s (see whenEngaged): the poster is the finished picture until then.
+    let cancelEngaged = () => {};
     const schedule = () => {
-      const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number })
-        .requestIdleCallback;
-      if (ric) idle = ric(boot, { timeout: 2500 });
-      else timer = window.setTimeout(boot, 600);
+      cancelEngaged = whenEngaged(boot);
     };
     if (document.readyState === "complete") schedule();
     else window.addEventListener("load", schedule, { once: true });
@@ -83,6 +83,7 @@ export function WireHero({
     return () => {
       disposed = true;
       window.removeEventListener("load", schedule);
+      cancelEngaged();
       document.removeEventListener("visibilitychange", onVisibility);
       window.clearTimeout(timer);
       const cic = (window as unknown as { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback;

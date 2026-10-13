@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import { motionAllowed } from "./gl";
+import { whenEngaged } from "./whenEngaged";
 import type { SceneController, SceneFactory } from "./three/stage";
 
 type Props = {
@@ -34,7 +35,7 @@ type Props = {
 
 /**
  * The shared stage for every 3D hero: a poster that is the loading, reduced-motion and no-WebGL picture, and a
- * canvas that fades in over it once three.js has loaded and the browser is idle. The scene pauses off-screen and
+ * canvas that fades in over it once three.js has loaded (started on the first input, or after 12 s). The scene pauses off-screen and
  * in a hidden tab, and is disposed (GL context released) when the page unmounts.
  */
 export function SceneHost({
@@ -128,10 +129,10 @@ export function SceneHost({
       }
     };
 
+    // Starts on the first input, or after 12 s (see whenEngaged): the poster is the finished picture until then.
+    let cancelEngaged = () => {};
     const schedule = () => {
-      const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
-      if (ric) idle = ric(boot, { timeout: 2500 });
-      else timer = window.setTimeout(boot, 600);
+      cancelEngaged = whenEngaged(boot);
     };
     if (document.readyState === "complete") schedule();
     else window.addEventListener("load", schedule, { once: true });
@@ -139,6 +140,7 @@ export function SceneHost({
     return () => {
       disposed = true;
       window.removeEventListener("load", schedule);
+      cancelEngaged();
       document.removeEventListener("visibilitychange", onVisibility);
       host.removeEventListener("scene-pause", onPauseRequest);
       window.clearTimeout(timer);
@@ -163,7 +165,7 @@ export function SceneHost({
 
   return (
     <div ref={wrap} className={`absolute inset-0 overflow-hidden ${className}`} data-scene-live={live ? "1" : "0"}>
-      <picture aria-hidden="true">
+      <picture>
         {posterNarrow && <source media="(max-width: 1023px)" type="image/avif" srcSet={`${posterNarrow}.avif`} />}
         {posterNarrow && <source media="(max-width: 1023px)" srcSet={`${posterNarrow}.jpg`} />}
         <source type="image/avif" srcSet={`${poster}.avif`} />
@@ -180,7 +182,7 @@ export function SceneHost({
         />
       </picture>
       {focusPosters && focus && focusPosters[focus] && !live && (
-        <picture aria-hidden="true" key={focus}>
+        <picture key={focus}>
           <source type="image/avif" srcSet={`${focusPosters[focus]}.avif`} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

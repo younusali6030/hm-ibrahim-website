@@ -33,7 +33,7 @@ function servicesPageSchema(lang: Lang) {
 export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
   return buildPageMeta({
     lang: params.lang as Lang,
-    title: "Services: Retail, Wholesale and Bulk Orders",
+    title: "Services: Retail, Wholesale and Bulk Supply",
     description: `Retail, wholesale, bulk orders, warehouse and delivery. How ${site.name} serves builders, contractors and customers in Indore.`,
     path: "services",
   });

@@ -234,11 +234,8 @@ export function buildRootMeta(lang: Lang): Metadata {
       ],
     },
     twitter: { card: "summary_large_image", title: `${name} | ${tagline}`, description, images: [og.url] },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
-    },
+    // No robots here: every page sets its own (ROBOTS_INDEX). A root value would also reach the 404 page, which
+    // Next marks noindex, and the two tags would contradict each other.
     icons: { icon: "/favicon.svg" },
   };
 }
