@@ -1,4 +1,3 @@
-import type { MetadataRoute } from "next";
 import { allProducts, categories } from "@/content/products";
 import { getAllPosts, getHindiPostSlugs } from "@/content/blog/posts";
 import { localePath } from "@/lib/locale";
@@ -13,7 +12,12 @@ import lastmodLedger from "@/content/lastmod.json";
  * priority, so they are not emitted.
  *
  * Companion sitemaps (listed in robots.txt): /sitemap-images.xml and /sitemap-videos.xml.
+ *
+ * Written as a route handler, not Next's sitemap.ts: Next 14 emits <xhtml:link> before <lastmod>, which breaks the
+ * element order in the sitemap schema (loc, lastmod, then other namespaces). Search Console read the two companion
+ * sitemaps but reported this one as "could not be read", so it now uses the same output path and headers as they do.
  */
+export const dynamic = "force-static";
 const staticPages: { path: string; date: string }[] = [
   { path: "", date: CONTENT_DATES.home },
   { path: "about", date: CONTENT_DATES.about },
@@ -37,7 +41,7 @@ const staticPages: { path: string; date: string }[] = [
 const ledger = lastmodLedger as Record<string, { hash: string; date: string }>;
 const pageDate = (key: string, fallback: string) => new Date(ledger[key]?.date ?? fallback);
 
-type Entry = MetadataRoute.Sitemap[number];
+type Entry = { url: string; lastModified: Date; alternates?: { languages: Record<string, string> } };
 
 /** One entry per language, each declaring the other as its alternate (hreflang), plus x-default. */
 function both(path: string, date: Date): Entry[] {
@@ -51,12 +55,14 @@ function both(path: string, date: Date): Entry[] {
   ];
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+export async function GET() {
   const posts = await getAllPosts();
   const hiSlugs = new Set(await getHindiPostSlugs());
   const latestPost = posts.reduce<string>((m, p) => ((p.updated || p.date) > m ? p.updated || p.date : m), CONTENT_DATES.blogIndex);
 
-  const entries: MetadataRoute.Sitemap = [];
+  const entries: Entry[] = [];
 
   for (const { path, date } of staticPages) entries.push(...both(path, new Date(date)));
   entries.push(...both("blog", new Date(latestPost)));
@@ -70,5 +76,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     else entries.push({ url: `${baseUrl}/blog/${post.slug}`, lastModified: d });
   }
 
-  return entries;
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${entries
+  .map(
+    (e) =>
+      `<url><loc>${esc(e.url)}</loc><lastmod>${e.lastModified.toISOString().slice(0, 10)}</lastmod>${Object.entries(e.alternates?.languages ?? {})
+        .map(([lang, href]) => `<xhtml:link rel="alternate" hreflang="${lang}" href="${esc(href)}"/>`)
+        .join("")}</url>`
+  )
+  .join("\n")}
+</urlset>`;
+
+  return new Response(xml, {
+    headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "public, max-age=3600, s-maxage=86400" },
+  });
 }

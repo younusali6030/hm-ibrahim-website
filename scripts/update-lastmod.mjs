@@ -2,7 +2,7 @@
 /**
  * Keeps content/lastmod.json honest. For every product, category and Indore page it hashes the content that
  * is shown on the page. When the hash differs from the one on record, the page's date moves to today (India
- * time). When it does not, the date is left alone. app/sitemap.ts reads the file, so a page's <lastmod>
+ * time). When it does not, the date is left alone. app/sitemap.xml/route.ts reads the file, so a page's <lastmod>
  * changes only when its content really changed, not on every deploy.
  *
  *   node scripts/update-lastmod.mjs            update the ledger
