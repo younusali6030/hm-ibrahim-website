@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { baseUrl, site } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
-import { categories, allProducts, getProductImages } from "@/content/products";
+import { categories, allProducts, getProductImages, getProductBySlug } from "@/content/products";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
-import { PageHero } from "@/components/site/PageHero";
+import { btnMain, btnGhostDark } from "@/components/site/PageHero";
+import Link from "@/components/LocaleLink";
 import { ProductsIndex, type IndexCategory } from "./ProductsIndex";
+import { CategoryFocusProvider } from "./CategoryFocus";
+import { ProductsHero, type ShowcaseItem } from "./ProductsHero";
+import { SHOWROOM_ITEMS } from "@/components/fx/products/showroomItems";
 import { sizeTag, tataFlag } from "@/components/catalog/ledger";
 import { T } from "@/lib/i18n";
 import { localize, tr } from "@/lib/localize";
@@ -69,10 +73,19 @@ export default function ProductsPage({ params }: { params: { lang: string } }) {
     })),
   }));
 
+  // The 3D showroom's products, in catalogue order, with the same names and links as the ledger below.
+  const showcase: ShowcaseItem[] = SHOWROOM_ITEMS.flatMap(({ slug }) => {
+    const p = getProductBySlug(slug);
+    const c = p ? categories.find((x) => x.slug === p.categorySlug) : undefined;
+    return p && c
+      ? [{ slug, name: tr(p.name, lang), shortDesc: tr(p.shortDesc, lang), categorySlug: c.slug, categoryName: tr(c.name, lang) }]
+      : [];
+  });
+
   return (
-    <>
+    <CategoryFocusProvider>
       <SeoJsonLd data={itemListSchema(lang)} lang={lang} />
-      <PageHero
+      <ProductsHero
         eyebrow={<T en="The range" hi="पूरा माल" />}
         title={<T en="Every wire, mesh and bar. One counter." hi="हर तार, जाली और सरिया। एक काउंटर।" />}
         lede={
@@ -81,8 +94,15 @@ export default function ProductsPage({ params }: { params: { lang: string } }) {
             hi={`${categories.length} श्रेणी, ${allProducts.length} आइटम, सियागंज की दुकान पर। जो चाहिए ढूँढिए, फिर रेट पूछिए।`}
           />
         }
+        actions={
+          <>
+            <a href="#product-search" className={btnMain}><T en="Search the range" hi="रेंज में खोजें" /></a>
+            <Link href="/contact" className={btnGhostDark}><T en="Ask for a rate" hi="रेट पूछें" /></Link>
+          </>
+        }
+        items={showcase}
       />
       <ProductsIndex categories={data} />
-    </>
+    </CategoryFocusProvider>
   );
 }

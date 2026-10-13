@@ -2,6 +2,7 @@
 
 import Link from "@/components/LocaleLink";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCategoryFocus } from "./CategoryFocus";
 import { MessageCircle, Search, X } from "lucide-react";
 import { GaugeRule } from "@/components/motif/Motif";
 import { LedgerRow, type LedgerItem } from "@/components/catalog/LedgerRow";
@@ -16,10 +17,45 @@ export type IndexCategory = { slug: string; name: string; description: string; i
 type TataFilter = "off" | "wiron" | "any";
 
 /** ?q= and ?tata= (wiron | 1) from the address bar. Same params the old links used. */
-function readUrlState(): { q: string; tata: TataFilter } {
+function readUrlState(): { q: string; tata: TataFilter; category: string | null } {
   const sp = new URLSearchParams(window.location.search);
   const tata = sp.get("tata");
-  return { q: (sp.get("q") ?? "").slice(0, 80), tata: tata === "wiron" ? "wiron" : tata === "1" ? "any" : "off" };
+  return {
+    q: (sp.get("q") ?? "").slice(0, 80),
+    tata: tata === "wiron" ? "wiron" : tata === "1" ? "any" : "off",
+    category: sp.get("category"),
+  };
+}
+
+function CategoryChip({
+  pressed,
+  onClick,
+  onPreview,
+  onLeave,
+  children,
+}: {
+  pressed: boolean;
+  onClick: () => void;
+  onPreview: () => void;
+  onLeave?: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={pressed}
+      onClick={onClick}
+      onPointerEnter={(e) => e.pointerType === "mouse" && onPreview()}
+      onFocus={onPreview}
+      onBlur={onLeave}
+      className={
+        "inline-flex min-h-[44px] shrink-0 items-center rounded-[6px] border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary " +
+        (pressed ? "border-primary bg-primary/15 text-white" : "border-white/15 bg-white/[0.04] text-white/90 hover:border-white/40")
+      }
+    >
+      {children}
+    </button>
+  );
 }
 
 export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
@@ -27,6 +63,7 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
   const [q, setQ] = useState("");
   // "wiron": only products with a Tata Wiron variant. "any": every Tata-flagged product (includes steel lines).
   const [tataFilter, setTataFilter] = useState<TataFilter>("off");
+  const { selected, setSelected, setPreview } = useCategoryFocus();
   const searchRef = useRef<HTMLInputElement>(null);
   // True once ?q= / ?tata= have been read into state. Until then the address bar is left alone: writing it from the
   // initial (empty) state would erase the very parameters we are about to read.
@@ -45,15 +82,14 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
       const s = readUrlState();
       setQ(s.q);
       setTataFilter(s.tata);
+      // ?category=slug is the old deep link; it now selects that category (the ledger narrows to it).
+      setSelected(s.category && categories.some((c) => c.slug === s.category) ? s.category : null);
     };
     apply();
     setHydrated(true);
-    const cat = new URLSearchParams(window.location.search).get("category");
-    if (cat) {
-      requestAnimationFrame(() => document.getElementById(`c-${cat}`)?.scrollIntoView({ behavior: "auto", block: "start" }));
-    }
     window.addEventListener("popstate", apply);
     return () => window.removeEventListener("popstate", apply);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Keep ?q= and ?tata= in the address bar (replace, no new history entry) so a refresh, a shared link and the
@@ -67,13 +103,16 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
     if (tataFilter === "wiron") url.searchParams.set("tata", "wiron");
     else if (tataFilter === "any") url.searchParams.set("tata", "1");
     else url.searchParams.delete("tata");
+    if (selected) url.searchParams.set("category", selected);
+    else url.searchParams.delete("category");
     if (url.search !== window.location.search) window.history.replaceState(window.history.state, "", url);
-  }, [q, tataFilter, hydrated]);
+  }, [q, tataFilter, selected, hydrated]);
 
   const matched = useMemo(() => new Set(searchProducts(entries, q)), [entries, q]);
-  const filtering = q.trim() !== "" || tataFilter !== "off";
+  const filtering = q.trim() !== "" || tataFilter !== "off" || selected !== null;
 
-  const view = useMemo(() => {
+  // Categories that still have a match for the current search and Tata toggle: these are the chips.
+  const matchView = useMemo(() => {
     return categories
       .map((c) => ({
         ...c,
@@ -85,6 +124,7 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
       }))
       .filter((c) => c.products.length > 0);
   }, [categories, matched, tataFilter]);
+  const view = useMemo(() => (selected ? matchView.filter((c) => c.slug === selected) : matchView), [matchView, selected]);
 
   // Cross-listed products appear under more than one category; count each once.
   const total = new Set(view.flatMap((c) => c.products.map((p) => p.slug))).size;
@@ -92,8 +132,9 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
   const clear = useCallback(() => {
     setQ("");
     setTataFilter("off");
+    setSelected(null);
     searchRef.current?.focus();
-  }, []);
+  }, [setSelected]);
 
   const askText = q.trim();
   const askHref = askText ? `/contact?product=${encodeURIComponent(askText)}` : "/contact";
@@ -101,7 +142,7 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
   return (
     <>
       {/* Rail: search, category jumps, Tata filter. Sticky on desktop only; on a phone it scrolls away so the ledger gets the screen. */}
-      <div className="z-30 border-b border-border bg-background lg:sticky lg:top-0">
+      <div className="z-30 border-b border-white/10 border-t border-t-white/10 bg-nav lg:sticky lg:top-0">
         <div className="page-container flex flex-wrap items-center gap-x-3 gap-y-3 py-3 lg:flex-nowrap">
           <div className="relative block min-w-0 flex-1 basis-[12rem] lg:max-w-xs lg:flex-none">
             <label htmlFor="product-search" className="sr-only">{t("Search products", "प्रोडक्ट खोजें")}</label>
@@ -134,15 +175,21 @@ export function ProductsIndex({ categories }: { categories: IndexCategory[] }) {
           <nav
             aria-label={t("Categories", "श्रेणियाँ")}
             className="order-last -mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:order-none lg:mx-0 lg:w-auto lg:min-w-0 lg:flex-1 lg:px-0 lg:pb-0"
+            onPointerLeave={() => setPreview(null)}
           >
-            {view.map((c) => (
-              <a
+            <CategoryChip pressed={selected === null} onClick={() => setSelected(null)} onPreview={() => setPreview(null)}>
+              {t("All", "सभी")}
+            </CategoryChip>
+            {matchView.map((c) => (
+              <CategoryChip
                 key={c.slug}
-                href={`#c-${c.slug}`}
-                className="inline-flex min-h-[44px] shrink-0 items-center rounded-[6px] border border-border bg-card px-4 text-sm font-semibold text-foreground hover:border-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                pressed={selected === c.slug}
+                onClick={() => setSelected(selected === c.slug ? null : c.slug)}
+                onPreview={() => setPreview(c.slug)}
+                onLeave={() => setPreview(null)}
               >
                 {c.name}
-              </a>
+              </CategoryChip>
             ))}
           </nav>
           <div className="flex shrink-0 gap-2" role="group" aria-label={t("Tata filter", "टाटा फ़िल्टर")}>

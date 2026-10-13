@@ -10,7 +10,9 @@ export function formatDate(iso: string, lang: Lang = "en") {
   return d.toLocaleDateString(lang === "hi" ? "hi-IN" : "en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 }
 
-export function PostCard({ post, priority = false, lang = "en" }: { post: BlogPost; priority?: boolean; lang?: Lang }) {
+export type PostCardData = Pick<BlogPost, "slug" | "title" | "description" | "date" | "image" | "imageAlt" | "imagePosition" | "category" | "readingMinutes" | "lang">;
+
+export function PostCard({ post, priority = false, lang = "en" }: { post: PostCardData; priority?: boolean; lang?: Lang }) {
   return (
     <Link
       href={`/blog/${post.slug}`}

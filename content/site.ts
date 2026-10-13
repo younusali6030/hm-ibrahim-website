@@ -76,6 +76,13 @@ export const site = {
 
   /** Shop pin from the Google Business Profile (Maps place data, read 13 Oct 2026). */
   geo: { latitude: 22.7163264, longitude: 75.8655796 },
+  /**
+   * Google Place ID of the shop's listing "H Mohammed Husain HM Ibrahim & Co (CM)" (the same listing as
+   * googleReview.profileUrl; checked October 2026 by opening Google Maps with this ID). Used as the routing destination.
+   */
+  googlePlaceId: "ChIJ____Dw79YjkROBPPHkT0scA",
+  /** The listing's name on Google Maps, used with the address as the readable routing destination. */
+  googleListingName: "H Mohammed Husain HM Ibrahim & Co (CM)",
 
   /** Areas served for schema: orders are accepted across India. */
   areasServed: ["India"],

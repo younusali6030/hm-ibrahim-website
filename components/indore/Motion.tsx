@@ -46,12 +46,11 @@ export function Reveal({
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.3 });
-  const reduce = useReducedMotion();
-  if (reduce) return null;
+  // Always render the element: returning null here on the client only (reduced motion) broke hydration of the page.
   return (
     <motion.div
       aria-hidden="true"
-      className="fixed inset-x-0 top-0 z-[70] h-[3px] origin-left bg-primary"
+      className="fixed inset-x-0 top-0 z-[70] h-[3px] origin-left bg-primary motion-reduce:invisible"
       style={{ scaleX }}
     />
   );

@@ -12,6 +12,10 @@ import { baseUrl, localSeo } from "@/lib/site";
 import { breadcrumbList, faqPage } from "@/lib/schema";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { btnMain, btnGhostDark } from "@/components/site/PageHero";
+import { IndoreHero } from "@/components/indore/IndoreHero";
+import { RegionBackdrop, distanceKm } from "@/components/indore/RegionBackdrop";
+import { regionPlaces } from "@/content/indoreRegion";
+import { site } from "@/content/site";
 import { ReviewsList } from "@/components/trust/ReviewsList";
 import { CounterStamp, GaugeRule, JaliWeave } from "@/components/motif/Motif";
 import { LazySteelSheen } from "@/components/fx/Lazy";
@@ -89,6 +93,9 @@ function imageFor(page: IndorePage) {
   return getProductImages(p, getCategoryBySlug(p.categorySlug))[0] ?? null;
 }
 
+/** The shop on Google Maps: the same destination the footer and the visit block use. */
+const SHOP_MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`;
+
 const PLACES = [
   "Siyaganj", "Loha Mandi", "Rajwada", "Sarafa Bazaar", "Chhappan Dukan", "Lal Bagh", "Khajrana",
   "Palasia", "Vijay Nagar", "Rau", "Mhow", "Pithampur", "Dewas", "Ujjain",
@@ -101,6 +108,10 @@ export default function IndoreIndexPage({ params }: { params: { lang: string } }
   const pages = indorePageSlugs.map((s) => getIndorePage(s)).filter((p): p is IndorePage => p != null);
   const faqSource = hi ? indoreFaqsHi : indoreFaqs;
   const faqs = faqSource.map((f, i) => ({ ...f, id: `indore-${i + 1}` }));
+  const reach = regionPlaces
+    .map((p) => ({ id: p.id, name: hi ? p.nameHi : p.name, km: distanceKm(p.lat, p.lon) }))
+    .sort((a, b) => a.km - b.km);
+  const reachMax = Math.max(...reach.map((r) => r.km));
   const pageH1 = (page: IndorePage) => (hi ? indorePagesHi[page.slug].h1 : page.h1);
 
   return (
@@ -119,91 +130,62 @@ export default function IndoreIndexPage({ params }: { params: { lang: string } }
         ]}
       />
 
-      {/* Hero: one photo that turns from night to day, and the three facts that matter */}
-      <section className="relative overflow-hidden bg-nav text-white">
-        <LazySteelSheen />
-        <JaliWeave className="inset-y-0 right-0 w-full max-w-[56rem]" />
-        <div className="page-container relative grid items-center gap-8 py-8 md:py-12 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
-          <div>
-            <p className="flex items-center gap-3 font-mono-brand text-xs uppercase tracking-[0.16em] text-white/60">
-              <span className="h-px w-8 bg-primary" aria-hidden="true" />
-              <T en={`Indore, ${localSeo.state}`} hi="इंदौर, मध्य प्रदेश" />
-            </p>
-            <h1 className="mt-3 text-white" style={{ fontSize: "clamp(2.1rem, 4.6vw, 4.1rem)" }}>
-              <T
-                en="We have sold iron to Indore since 1939. We watched it grow."
-                hi="हम 1939 से इंदौर को लोहा बेच रहे हैं। हमने इसे बढ़ते देखा है।"
-              />
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/80">
-              <T
-                en="One counter in Siyaganj, Indore's iron and hardware market. The same promise since the day it opened: the right material, a fair rate, and a straight answer."
-                hi="सियागंज, इंदौर के लोहा-हार्डवेयर बाज़ार में एक काउंटर। जिस दिन खुला, उसी दिन से एक ही वादा: सही माल, सही रेट, सीधा जवाब।"
-              />
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link href="/contact" className={btnMain}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
-              <a href="#supplied" className={btnGhostDark}><T en="Who we have supplied" hi="हमने किसे सप्लाई किया" /></a>
-            </div>
-            <dl className="mt-7 grid max-w-xl grid-cols-3 border-t border-white/20">
-              {[
-                { v: <CountUp to={1939} from={1900} />, k: "Counter opened", kHi: "काउंटर खुला" },
-                { v: <CountUp to={600} suffix="+" duration={1.4} />, k: "Google reviews", kHi: "गूगल रिव्यू" },
-                { v: hi ? "9 से 8" : "9AM–8PM", k: "Monday to Saturday", kHi: "सोमवार से शनिवार" },
-              ].map((s) => (
-                <div key={s.k} className="py-3 pr-3">
-                  <dd className="font-display text-2xl font-extrabold leading-none text-white sm:text-3xl md:text-[2.1rem]">{s.v}</dd>
-                  <dt className="mt-1 font-mono-brand text-[10px] uppercase tracking-[0.12em] text-white/60 sm:text-[11px]">
-                    <T en={s.k} hi={s.kHi} />
-                  </dt>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <Tilt>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-black shadow-2xl ring-1 ring-white/15">
-              <div className="ind-kb absolute inset-0">
-                <Image
-                  src={rajwadaNight.src}
-                  alt={hi ? indorePhotosHi.rajwadaNight.alt : rajwadaNight.alt}
-                  fill
-                  priority
-                  sizes="(max-width:1024px) 100vw, 46vw"
-                  className="object-cover"
-                />
-                <Image
-                  src={rajwadaDay.src}
-                  alt=""
-                  aria-hidden="true"
-                  fill
-                  sizes="(max-width:1024px) 100vw, 46vw"
-                  className="ind-xfade object-cover"
-                  style={{ objectPosition: "50% 60%" }}
-                />
+      {/* Hero: the shop at the centre of its region */}
+      <IndoreHero
+        eyebrow={<T en={`Indore, ${localSeo.state}`} hi="इंदौर, मध्य प्रदेश" />}
+        title={<T en="We have sold iron to Indore since 1939. We watched it grow." hi="हम 1939 से इंदौर को लोहा बेच रहे हैं। हमने इसे बढ़ते देखा है।" />}
+        lede={t(
+          "One counter in Siyaganj, Indore's iron and hardware market. The same promise since the day it opened: the right material, a fair rate, and a straight answer.",
+          "सियागंज, इंदौर के लोहा-हार्डवेयर बाज़ार में एक काउंटर। जिस दिन खुला, उसी दिन से एक ही वादा: सही माल, सही रेट, सीधा जवाब।"
+        )}
+        actions={
+          <>
+        <Link href="/contact" className={btnMain}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
+        <a href={SHOP_MAPS_URL} target="_blank" rel="noopener noreferrer" className={btnGhostDark}>
+          <T en="Visit our Siyaganj shop" hi="हमारी सियागंज दुकान पर आइए" />
+          <span className="sr-only"> <T en="(opens Google Maps in a new tab)" hi="(गूगल मैप्स नए टैब में खुलेगा)" /></span>
+        </a>
+          </>
+        }
+        stats={
+          <dl className="mt-7 grid max-w-xl grid-cols-3 border-t border-white/20">
+            {[
+              { v: <CountUp to={1939} from={1900} />, k: "Counter opened", kHi: "काउंटर खुला" },
+              { v: <CountUp to={600} suffix="+" duration={1.4} />, k: "Google reviews", kHi: "गूगल रिव्यू" },
+              { v: hi ? "9 से 8" : "9AM–8PM", k: "Monday to Saturday", kHi: "सोमवार से शनिवार" },
+            ].map((s) => (
+              <div key={s.k} className="py-3 pr-3">
+                <dd className="font-display text-2xl font-extrabold leading-none text-white sm:text-3xl md:text-[2.1rem]">{s.v}</dd>
+                <dt className="mt-1 font-mono-brand text-[10px] uppercase tracking-[0.12em] text-white/60 sm:text-[11px]">
+                  <T en={s.k} hi={s.kHi} />
+                </dt>
               </div>
-              <span className="ind-float absolute bottom-4 left-4 bg-nav/80 p-1 backdrop-blur-sm">
-                <CounterStamp sub={t("Siyaganj, Indore", "सियागंज, इंदौर")}>{t("Since 1939", "1939 से")}</CounterStamp>
-              </span>
-              <span className="absolute right-3 top-3 whitespace-nowrap bg-nav/70 px-2 py-1 font-mono-brand text-[10px] uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
-                {t("Rajwada", "राजवाड़ा")}
-                <span className="relative ml-1 inline-block w-14 align-bottom">
-                  <span className="ind-xfade-rev">· {t("night", "रात")}</span>
-                  <span className="ind-xfade absolute left-0 top-0">· {t("day", "दिन")}</span>
-                </span>
-              </span>
-            </div>
-          </Tilt>
-        </div>
-        <div className="page-container relative pb-0">
-          <GaugeRule />
-        </div>
-      </section>
+            ))}
+          </dl>
+        }
+        city={{ src: rajwadaNight.src, alt: hi ? indorePhotosHi.rajwadaNight.alt : rajwadaNight.alt, label: t("Rajwada, Indore", "राजवाड़ा, इंदौर"), position: "50% 58%" }}
+        second={{ src: chhatri.src, alt: hi ? indorePhotosHi.chhatri.alt : chhatri.alt, label: t("Krishnapura Chhatris", "कृष्णपुरा छत्रियाँ") }}
+        counter={{
+          src: "/about/storefront-hero.jpg",
+          alt: t(
+            "The HM Ibrahim & Co counter at 60 Siyaganj Main Road, Indore, with wire mesh and chain link out front",
+            "60 सियागंज मेन रोड, इंदौर पर एच एम इब्राहिम एंड कंपनी का काउंटर, आगे वायर मेश और चेन लिंक"
+          ),
+          label: t("Our counter, Siyaganj", "हमारा काउंटर, सियागंज"),
+          position: "50% 30%",
+        }}
+        places={regionPlaces.map((p) => ({ id: p.id, name: hi ? p.nameHi : p.name }))}
+        backdrop={
+          <RegionBackdrop
+            names={Object.fromEntries(regionPlaces.map((p) => [p.id, hi ? p.nameHi : p.name]))}
+          />
+        }
+      />
 
-      {/* Places ticker */}
-      <div className="border-b border-border" aria-label={t("Places we serve", "जिन जगहों पर हम सेवा देते हैं")}>
+      {/* Where the work is: the places run past as a banner. The list is real text, read once by assistive tech. */}
+      <nav className="border-b border-border" aria-label={t("Places we serve", "जिन जगहों पर हम सेवा देते हैं")}>
         <PlaceMarquee items={hi ? placesHi : PLACES} />
-      </div>
+      </nav>
 
       {/* Our story in Indore */}
       <section className="ind-sec" aria-labelledby="story-heading">
@@ -216,6 +198,18 @@ export default function IndoreIndexPage({ params }: { params: { lang: string } }
                 hi="मध्य प्रदेश की व्यावसायिक राजधानी, और वह काउंटर जो 1939 से इसे सप्लाई कर रहा है"
               />
             </h2>
+            {/* City imagery: Rajwada is a landmark of Indore, shown for the city, not as a place we supplied. */}
+            <figure className="mt-6">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[10px] bg-black ring-1 ring-white/15">
+                <div className="ind-kb absolute inset-0">
+                  <Image src={rajwadaNight.src} alt={hi ? indorePhotosHi.rajwadaNight.alt : rajwadaNight.alt} fill sizes="(max-width:1024px) 100vw, 34vw" className="object-cover" />
+                  <Image src={rajwadaDay.src} alt="" aria-hidden="true" fill sizes="(max-width:1024px) 100vw, 34vw" className="ind-xfade object-cover" style={{ objectPosition: "50% 60%" }} />
+                </div>
+              </div>
+              <figcaption className="mt-2 font-mono-brand text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                {t("Rajwada, Indore: the city we supply", "राजवाड़ा, इंदौर: वह शहर जिसे हम सप्लाई करते हैं")}
+              </figcaption>
+            </figure>
           </div>
           <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
             <Reveal>
@@ -284,6 +278,40 @@ export default function IndoreIndexPage({ params }: { params: { lang: string } }
               hi="पुराने शहर में राजवाड़ा और सराफा बाज़ार, छप्पन दुकान और पलासिया, लाल बाग पैलेस, खजराना, कृष्णपुरा छत्रियाँ, डैली कॉलेज, और आगे राऊ, महू, चोरल डैम और पीथमपुर औद्योगिक क्षेत्र तक। इन सब जगहों पर काम करने वाले बिल्डर और फैब्रिकेटर लोहा, तार और जाली के लिए सियागंज आते हैं।"
             />
           </p>
+        </div>
+      </section>
+
+      {/* How far the counter is from the towns it supplies: straight-line distances from the same coordinates as the map. */}
+      <section className="ind-sec" aria-labelledby="reach-heading">
+        <div className="page-container grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <Reveal>
+            <p className="st-eyebrow"><T en="From Siyaganj to the region" hi="सियागंज से पूरे इलाके तक" /></p>
+            <h2 id="reach-heading" className="mt-3 text-foreground">
+              <T en="How far our Indore counter is from Dewas, Ujjain, Mhow and Pithampur" hi="हमारा इंदौर काउंटर देवास, उज्जैन, महू और पीथमपुर से कितनी दूर है" />
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+              <T
+                en="Straight-line distance from 60 Siyaganj Main Road to each town centre. The road is longer. Delivery arrangements are confirmed with each quotation."
+                hi="60 सियागंज मेन रोड से हर शहर के केंद्र तक की सीधी दूरी। सड़क से दूरी इससे ज़्यादा होती है। डिलीवरी की व्यवस्था हर कोटेशन के साथ तय होती है।"
+              />
+            </p>
+          </Reveal>
+          <figure className="m-0 self-center">
+            <ul className="border-t border-foreground/40">
+              {reach.map((r) => (
+                <li key={r.id} className="ind-reach-row">
+                  <Link href={`/contact?location=${encodeURIComponent(r.name)}`} className="st-title !text-[1.4rem]">{r.name}</Link>
+                  <span className="ind-reach-bar" aria-hidden="true"><i style={{ ["--w" as string]: `${Math.round((r.km / reachMax) * 100)}%` }} /></span>
+                  <span className="font-display text-2xl font-extrabold tabular-nums text-foreground">
+                    {r.km}<span className="ml-1 font-mono-brand text-[11px] font-normal uppercase tracking-[0.12em] text-muted-foreground">{t("km", "किमी")}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <figcaption className="mt-3 font-mono-brand text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              {t("Straight-line distance from our counter. Choose a town to enquire for it.", "हमारे काउंटर से सीधी दूरी। पूछताछ के लिए कोई शहर चुनिए।")}
+            </figcaption>
+          </figure>
         </div>
       </section>
 

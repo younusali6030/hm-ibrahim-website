@@ -4,7 +4,7 @@ import Link from "@/components/LocaleLink";
 import { baseUrl, entityIds, site } from "@/lib/site";
 import { buildPageMeta } from "@/lib/seo";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
-import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
+import { btnMain, btnGhostDark } from "@/components/site/PageHero";
 import { ReviewsList } from "@/components/trust/ReviewsList";
 import { ReelsSection } from "@/components/home/ReelsSection";
 import { CounterStamp, GaugeRule } from "@/components/motif/Motif";
@@ -14,6 +14,10 @@ import { T } from "@/lib/i18n";
 import { tt, type Lang } from "@/lib/locale";
 import { pageUrl } from "@/lib/seo";
 import { siteHi } from "@/content/hi/site";
+import { AboutHero } from "@/components/about/AboutHero";
+import { Reveal } from "@/components/about/Reveal";
+import { categories, allProducts } from "@/content/products";
+import { ArrowRight } from "lucide-react";
 import "@/components/story/story.css";
 
 function aboutPageSchema(lang: Lang) {
@@ -108,29 +112,62 @@ export default function AboutPage({ params }: { params: { lang: string } }) {
   return (
     <>
       <SeoJsonLd data={aboutPageSchema(lang)} lang={lang} />
-      <PageHero
+      <Reveal />
+      <AboutHero
         eyebrow={<T en="About · Siyaganj, Indore" hi="हमारे बारे में · सियागंज, इंदौर" />}
-        title={<T en="Since 1939, one counter on Siyaganj Main Road" hi="1939 से, सियागंज मेन रोड का एक काउंटर" />}
-        lede={hi ? siteHi.manufacturerTagline : site.manufacturerTagline}
-        image={{
+        title={
+          hi ? (
+            <>
+              एक काउंटर।
+              <br />
+              1939 से।
+            </>
+          ) : (
+            <>
+              One counter.
+              <br />
+              Since 1939.
+            </>
+          )
+        }
+        lede={
+          <>
+            {t(
+              `${addr.line1}, ${addr.line2}, Indore. H Mohammed Husain HM Ibrahim & Co (CM), run today by the third generation. `,
+              `${addr.line1}, ${addr.line2}, इंदौर। एच. मोहम्मद हुसैन एचएम इब्राहिम एंड कंपनी (सीएम), आज तीसरी पीढ़ी के हाथों में। `
+            )}
+            {hi ? siteHi.manufacturerTagline : site.manufacturerTagline}
+          </>
+        }
+        photo={{
           src: "/about/storefront-hero.jpg",
           alt: t("The HM Ibrahim & Co shopfront at 60 Siyaganj, Indore, with wire mesh, chain link and coils out front", "60 सियागंज, इंदौर पर एच एम इब्राहिम एंड कंपनी की दुकान, आगे वायर मेश, चेन लिंक और कॉइल रखे हुए"),
         }}
+        place={t("60 Siyaganj Main Road, Indore", "60 सियागंज मेन रोड, इंदौर")}
+        stats={[
+          { value: 1939, from: 1900, label: t("Founded in Siyaganj", "सियागंज में स्थापना") },
+          hi ? { text: "तीसरी", label: "पीढ़ी आज काउंटर पर" } : { value: 3, suffix: "rd", label: "Generation at the counter" },
+          { value: allProducts.length, label: t(`Products in ${categories.length} categories`, `आइटम, ${categories.length} श्रेणियों में`) },
+          { value: site.googleReview.rating, decimals: 1, suffix: "★", label: t(`On Google, ${site.googleReview.reviewCount} reviews`, `गूगल पर, ${site.googleReview.reviewCount} समीक्षाएँ`) },
+        ]}
       >
         <Link href="/contact" className={btnMain}><T en="Get a quote" hi="कोटेशन पाएँ" /></Link>
         <Link href="/brands" className={btnGhostDark}><T en="Our brands" hi="हमारे ब्रांड" /></Link>
-      </PageHero>
+      </AboutHero>
 
       {/* Story: copy is the shop's own, from the repo. */}
       <section className="st-sec" aria-labelledby="story-heading">
         <div className="page-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div>
+          <div data-reveal>
             <SectionHead eyebrow={t("Our story", "हमारी कहानी")} id="story-heading" title={t("Eight decades of the same promise", "आठ दशक, वही एक वादा")} />
-            <div className="mt-8">
-              <CounterStamp sub={t("Siyaganj, Indore", "सियागंज, इंदौर")}>{t("Since 1939", "1939 से")}</CounterStamp>
-            </div>
+            <p className="ab-year mt-8" aria-hidden="true">
+              1939
+            </p>
+            <p className="mt-3 font-mono-brand text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              {t("Founded · Siyaganj, Indore", "स्थापना · सियागंज, इंदौर")}
+            </p>
           </div>
-          <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
+          <div data-reveal style={{ ["--i" as string]: 1 }} className="space-y-5 text-lg leading-relaxed text-muted-foreground">
             {hi ? (
               <>
                 <p className="text-xl text-foreground">
@@ -170,21 +207,21 @@ export default function AboutPage({ params }: { params: { lang: string } }) {
           </div>
         </div>
 
-        <div className="page-container mt-14">
-          <figure>
-            <div className="relative aspect-[1024/714] overflow-hidden rounded-[14px] bg-secondary ring-1 ring-border">
-              <Image
-                src="/about-storefront.png"
-                alt={t("The HM Ibrahim & Co shopfront on Siyaganj Main Road, Indore", "सियागंज मेन रोड, इंदौर पर एच एम इब्राहिम एंड कंपनी की दुकान")}
-                fill
-                sizes="(max-width:1280px) 100vw, 1200px"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="mt-3 font-mono-brand text-xs uppercase tracking-[0.14em] text-muted-foreground">
-              {addr.line1}, {addr.line2}
-            </figcaption>
-          </figure>
+        <div className="page-container mt-14 grid gap-4 md:grid-cols-3">
+          {[
+            { href: "/brands", k: t("Brands", "ब्रांड"), h: t("CM, Border and Tata Wiron", "सीएम, बॉर्डर और टाटा वायरॉन"), d: t("The names on the rolls we sell.", "हमारे बेचे रोल पर लगे नाम।") },
+            { href: "/products", k: t("The range", "पूरा माल"), h: t("Wire, mesh, steel and hardware", "तार, जाली, स्टील और हार्डवेयर"), d: t("Every category, with a rate on request.", "हर श्रेणी, रेट पूछने पर।") },
+            { href: "/contact", k: t("Contact", "संपर्क"), h: t("Come to the counter, or send a list", "काउंटर पर आइए, या सूची भेजिए"), d: `${addr.line1}, ${addr.line2}` },
+          ].map((c, i) => (
+            <Link key={c.href} href={c.href} data-reveal style={{ ["--i" as string]: i }} className="ab-card group flex flex-col rounded-[10px] border border-border bg-card p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              <span className="font-mono-brand text-xs uppercase tracking-[0.16em] text-primary">{c.k}</span>
+              <span className="mt-3 font-display text-2xl font-extrabold uppercase leading-[1.05] text-foreground">{c.h}</span>
+              <span className="mt-2 text-sm text-muted-foreground">{c.d}</span>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-foreground">
+                <T en="Open" hi="खोलें" /> <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -192,9 +229,9 @@ export default function AboutPage({ params }: { params: { lang: string } }) {
       <section className="st-sec st-sec-tint" aria-labelledby="leaders-heading">
         <div className="page-container">
           <SectionHead eyebrow={t("Leadership and legacy", "नेतृत्व और विरासत")} id="leaders-heading" title={t("The hands that built the counter", "वे हाथ जिन्होंने यह काउंटर बनाया")} />
-          <ol className="st-ledger mt-10" style={{ ["--st-cols" as string]: "7rem minmax(0,1fr) minmax(0,1.5fr)" }}>
+          <ol className="st-ledger ab-timeline mt-10" style={{ ["--st-cols" as string]: "7rem minmax(0,1fr) minmax(0,1.5fr)" }}>
             {LEADERS.map((l) => (
-              <li key={l.name} className="st-row">
+              <li key={l.name} className="st-row" data-reveal>
                 <span className="st-key" aria-hidden="true">{l.era}</span>
                 <div>
                   <h3 className="st-title">{l.name}</h3>
@@ -222,7 +259,7 @@ export default function AboutPage({ params }: { params: { lang: string } }) {
           />
           <ul className="st-ledger self-start" style={{ ["--st-cols" as string]: "minmax(0,0.9fr) minmax(0,1.3fr)" }}>
             {VALUES.map((v) => (
-              <li key={v.t} className="st-row">
+              <li key={v.t} className="st-row" data-reveal>
                 <h3 className="st-title">{v.t}</h3>
                 <p className="st-body">{v.d}</p>
               </li>
@@ -234,10 +271,10 @@ export default function AboutPage({ params }: { params: { lang: string } }) {
       <section className="st-sec st-sec-tint" aria-labelledby="stock-heading">
         <div className="page-container grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="grid grid-cols-2 gap-3">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-[14px] bg-secondary">
+            <div data-reveal className="ab-zoom relative aspect-[3/4] overflow-hidden rounded-[14px] bg-secondary">
               <Image src="/about/warehouse-stock-1.png" alt={t("CM and Border barbed wire and chain link coils in the warehouse", "गोदाम में सीएम और बॉर्डर के कांटेदार तार और चेन लिंक के कॉइल")} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" />
             </div>
-            <div className="relative mt-8 aspect-[3/4] overflow-hidden rounded-[14px] bg-secondary">
+            <div data-reveal style={{ ["--i" as string]: 1 }} className="ab-zoom relative mt-8 aspect-[3/4] overflow-hidden rounded-[14px] bg-secondary">
               <Image src="/about/warehouse-stock-2.png" alt={t("Barbed wire rolls, CM and Border brand stock, ready for dispatch", "कांटेदार तार के रोल, सीएम और बॉर्डर ब्रांड का स्टॉक, भेजने के लिए तैयार")} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" />
             </div>
           </div>

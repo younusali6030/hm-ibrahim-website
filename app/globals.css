@@ -729,3 +729,12 @@ html[lang="hi-IN"] :is(p, li, dd, dt, label, a, span, button, td, th, figcaption
     animation: none;
   }
 }
+
+@keyframes scene-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

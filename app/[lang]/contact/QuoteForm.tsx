@@ -101,6 +101,8 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
   const prefilledProduct =
     L(categories.flatMap((c) => c.products).find((p) => p.slug === productParam)?.name ?? productParam);
   const prefilledQty = (searchParams.get("qty") ?? searchParams.get("quantity") ?? "").replace(/[\u0000-\u001f]/g, "").slice(0, 60);
+  // ?location=Dewas (from the Indore regional map) pre-fills the delivery town; the customer can still change it.
+  const prefilledLocation = (searchParams.get("location") ?? "").replace(/[\u0000-\u001f]/g, "").trim().slice(0, 60);
   // Resolves our own brand ids (old "boarder" links included) and stocked-brand names.
   const brand = resolveBrand(searchParams.get("brand") ?? "");
   const prefilledBrand = brand?.key ?? "";
@@ -118,7 +120,7 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
     items: itemsDefault,
     quantity: prefilledQty,
     delivery: "",
-    deliveryLocation: "",
+    deliveryLocation: prefilledLocation,
     neededBy: "",
     customerType: "",
   });

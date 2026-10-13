@@ -4,12 +4,12 @@ description: "TMT bar weight per metre and per piece for every common diameter, 
 date: "2026-10-11"
 updated: "2026-10-12"
 category: "Structural steel"
-image: "/blog/tmt-weight-1.webp"
-imageAlt: "TMT bars on the counter table ready to be weighed"
+image: "/blog/tmt-weight-3.webp"
+imageAlt: "TMT bars with the rib detail visible"
 image2: "/blog/tmt-weight-2.webp"
-image2Alt: "Gloved hand checking a bundle of bars"
-image3: "/blog/tmt-weight-3.webp"
-image3Alt: "TMT bars with the rib detail visible"
+image2Alt: "Gloved hand checking a bundle of steel bars"
+image3: "/blog/tmt-weight-1.webp"
+image3Alt: "A bundle of steel bars tied and laid out on the counter table for weighing"
 ---
 **Quick answer:** A TMT bar weighs diameter squared divided by 162, in kg per metre. A 12 mm bar is 0.889 kg per metre, so a 12 m bar is about 10.7 kg. Weigh five random one-metre pieces and compare with the chart.
 
