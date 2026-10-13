@@ -18,6 +18,8 @@ npm run build      # production build
 npx tsc --noEmit   # type check
 ```
 
+`npm run test:smoke` runs seven browser journeys (quote flow, language switch, mobile menu, 404, overflow) against a running server; set `SMOKE_BASE_URL` to aim it elsewhere. The CI workflow template is in `ci/github-workflow-ci.yml` (add it as `.github/workflows/ci.yml`, which needs a token with the `workflow` scope).
+
 `npm run lint` (plain ESLint; `next lint` no longer exists in Next 16), `npx tsc --noEmit` and `npm test` are the gates before a deploy.
 `npm test` runs the regression tests in `tests/` with Node's built-in runner (no extra dependencies): product search
 and aliases, spec sheets, quote validation, locale paths, the cache-header and security-header rules, and the rate limit.

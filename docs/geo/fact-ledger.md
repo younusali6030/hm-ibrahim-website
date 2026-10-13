@@ -49,3 +49,11 @@ published by `app/robots.ts`. Tokens verified against each operator's own page o
 What this does **not** do: robots.txt is a request. It does not stop a crawler that ignores it, does not remove
 anything already collected, and says nothing about licensed or third-party copies (for example the shop's pages on
 IndiaMART or Justdial).
+
+## Added 13 Oct 2026 (owner statement in chat)
+| Fact | Wording used | Status | Where |
+|---|---|---|---|
+| Warehouses | Structural items (TMT bars, MS flat bars, MS round bars, MS channels, MS pipes, GI pipes, angles) are handled from warehouses in Loha Mandi and New Loha Mandi. Street addresses not published. | Confirmed by owner 13 Oct 2026 | FAQ 11 (EN/HI), services "Warehouse Availability", structural-items category Q&A, `public/llms.txt` |
+| Retail at Siyaganj | Retail quantities of the structural items are also stocked at the Siyaganj shop. | Confirmed by owner 13 Oct 2026 | same |
+| Customers | Bulk orders, retail quantities, walk-in customers, shop owners (plus contractors, traders, industrial buyers). | Confirmed by owner 13 Oct 2026 | FAQ 2 |
+| Phawda | Sold with and without handle, wood / metal / plastic handles, different weights and qualities. Not yet reflected in product specs. | Owner statement; spec details not entered | product pages `sr-hoe-faurdha*` |

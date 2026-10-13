@@ -1,13 +1,15 @@
 /**
  * Which automated crawlers may fetch the site, in one place (read by app/robots.ts and tests/geo.test.mjs).
  *
- * Owner decision, 12 Oct 2026: block model-training crawlers; keep search, discovery and user-requested retrieval.
+ * Owner decision, 13 Oct 2026 (reverses the 12 Oct decision): allow every crawler, training crawlers included, so the
+ * shop's products can be found and cited by AI assistants and answer engines in Hindi and English. Set
+ * ALLOW_TRAINING_CRAWLERS back to false to publish the block list below again.
  * Tokens below were checked against each operator's own documentation on 12 Oct 2026 (sources in docs/geo/fact-ledger.md).
  *
  * robots.txt is a request that well-behaved crawlers honour. It is not access control and it does not guarantee
  * that content is never used for training.
  */
-export const ALLOW_TRAINING_CRAWLERS = false;
+export const ALLOW_TRAINING_CRAWLERS = true;
 
 /**
  * Training-only controls, each documented by its operator as separate from search:

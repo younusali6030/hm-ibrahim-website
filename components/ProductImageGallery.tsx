@@ -71,7 +71,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
   }
 
   return (
-    <div className={"min-w-0 " + (footer ? "" : "lg:sticky lg:top-28 lg:self-start")}>
+    <div className={"min-w-0 lg:sticky lg:top-28 lg:self-start"}>
       <div className="relative">
         <div
           ref={scroller}
@@ -94,7 +94,7 @@ export function ProductImageGallery({ media: mediaProp, images: imagesProp, alt,
           }}
         >
           {media.map((item, i) => (
-            <div key={`${item.src}-${i}`} className="relative aspect-[4/3] w-full shrink-0 snap-center snap-always">
+            <div key={`${item.src}-${i}`} className="relative aspect-[2/1] w-full sm:aspect-[4/3] shrink-0 snap-center snap-always">
               {item.type === "video" ? (
                 <video
                   ref={(el) => {

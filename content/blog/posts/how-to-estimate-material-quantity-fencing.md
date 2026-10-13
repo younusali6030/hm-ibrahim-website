@@ -71,4 +71,4 @@ For chain link, barbed wire, GI pipe, or binding wire in Indore, Siyaganj, or Lo
 - [Barbed wire vs concertina wire](/blog/barbed-wire-vs-concertina-wire)
 - [Welded mesh vs chain link](/blog/welded-wire-mesh-vs-chain-link)
 
-*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*
+*Sizes, gauges and ranges on this page were compared with our product list on 12 October 2026. This is a catalogue check, not an independent technical review.*

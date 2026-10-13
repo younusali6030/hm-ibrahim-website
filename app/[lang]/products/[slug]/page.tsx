@@ -12,7 +12,6 @@ import { inHouseBrands, getBrandById } from "@/content/brands";
 import { ProductDetailClient } from "@/components/product/ProductDetailClient";
 import { ProductSeoContent } from "@/components/ProductSeoContent";
 import { ProductReference } from "@/components/product/ProductReference";
-import { TrustBadges } from "@/components/trust/TrustBadges";
 import { ProductReviewsRail } from "@/components/trust/ProductReviewsRail";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -20,7 +19,6 @@ import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { ids, productJsonLd } from "@/lib/schema";
 import { manufacturedProductSlugs, localPageForProductSlug, getIndorePage } from "@/content/indorePages";
 import { indorePagesHi } from "@/content/hi/indore";
-import { GaugeRule } from "@/components/motif/Motif";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -96,6 +94,29 @@ export default async function ProductDetailPage(props: Props) {
     .map((v) => getBrandById(v.brandId)?.name)
     .filter((n): n is string => !!n);
 
+  // Per-make variants, each with its own brand and maker. Shop-made brands point at the organisation by @id.
+  const variantNodes = (productEn.brandVariants ?? []).length > 1
+    ? (productEn.brandVariants ?? [])
+        .map((v) => {
+          const b = getBrandById(v.brandId);
+          if (!b) return null;
+          const madeByShop = v.brandId !== "tata";
+          const first = v.images?.[0];
+          return {
+            "@type": "Product",
+            "@id": `${productUrl}#${v.brandId}`,
+            name: `${product.name} (${b.name})`,
+            brand: { "@type": "Brand", name: b.name },
+            manufacturer: madeByShop ? { "@id": ids.organization } : { "@type": "Organization", name: "Tata Steel (Tata Wiron)" },
+            ...(first ? { image: (first.startsWith("http") ? first : `${baseUrl}${first}`) } : {}),
+            ...(v.specs?.length
+              ? { additionalProperty: v.specs.filter((sp) => sp.label !== "Brand").map((sp) => ({ "@type": "PropertyValue", name: sp.label, value: sp.value })) }
+              : {}),
+          };
+        })
+        .filter((n): n is NonNullable<typeof n> => !!n)
+    : [];
+
   const productSchema = {
     ...productJsonLd({
       slug: product.slug,
@@ -109,8 +130,14 @@ export default async function ProductDetailPage(props: Props) {
     }),
     "@id": `${productUrl}#product`,
     url: productUrl,
-    // Only the product families the owner confirmed the shop makes (12 Oct 2026). Everything else is stocked.
-    ...((manufacturedProductSlugs as readonly string[]).includes(product.slug) ? { manufacturer: { "@id": ids.organization } } : {}),
+    // A family listing several makes carries no blanket manufacturer: each make is a variant with its own maker
+    // (CM and Border are made by the shop, Tata Wiron by Tata). A single-make family the owner confirmed the shop
+    // makes (12 Oct 2026) keeps the shop as manufacturer. Everything else is stocked.
+    ...(variantNodes.length > 0
+      ? { hasVariant: variantNodes }
+      : (manufacturedProductSlugs as readonly string[]).includes(product.slug)
+        ? { manufacturer: { "@id": ids.organization } }
+        : {}),
     isRelatedTo: relatedProducts.slice(0, 4).map((r) => ({ "@id": `${pageUrl(`products/${r.slug}`, lang)}#product` })),
   };
 
@@ -149,7 +176,7 @@ export default async function ProductDetailPage(props: Props) {
       <JsonLdBreadcrumb items={breadcrumbItems} lang={lang} />
       <SeoJsonLd data={productSchema} lang={lang} />
       {productFaqSchema && <SeoJsonLd data={productFaqSchema} lang={lang} />}
-      <Breadcrumbs items={breadcrumbItems} className="mb-6" lang={lang} />
+      <Breadcrumbs items={breadcrumbItems} className="mb-3 md:mb-6" lang={lang} />
 
       <ProductDetailClient
         product={productEn}
@@ -158,32 +185,7 @@ export default async function ProductDetailPage(props: Props) {
         tx={tx}
         localNote={localNote}
         afterSpecs={<ProductReference slug={product.slug} lang={lang} />}
-        reviews={<ProductReviewsRail lang={lang} productSlug={product.slug} productName={product.name} />}
       />
-
-      {relatedProducts.length > 0 && (
-        <section className="mt-14" aria-labelledby="related-heading">
-          <GaugeRule label={`${relatedProducts.length}`} />
-          <h2 id="related-heading" className="mt-3 text-foreground">{t("Related products", "संबंधित उत्पाद")}</h2>
-          <ul className="mt-4 grid border-t border-border sm:grid-cols-2 sm:gap-x-10">
-            {relatedProducts.map((p) => (
-              <li key={p.slug} className="border-b border-border">
-                <Link
-                  href={`/products/${p.slug}`}
-                  className="flex min-h-[48px] items-center justify-between gap-3 py-3 text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                >
-                  <span className="font-display text-xl font-extrabold uppercase leading-none">{p.name}</span>
-                  <span className="font-mono-brand text-[11px] uppercase tracking-[0.12em] text-muted-foreground">{p.categoryName}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      <section className="mt-14" aria-label={t("Shop facts and reviews", "दुकान के तथ्य और रिव्यू")}>
-        <TrustBadges lang={lang} />
-      </section>
 
       {seoContent && (
         <ProductSeoContent
@@ -192,6 +194,7 @@ export default async function ProductDetailPage(props: Props) {
           category={category ?? null}
           relatedProducts={relatedProducts}
           relatedBlogPosts={relatedBlogPosts}
+          reviews={<ProductReviewsRail lang={lang} productSlug={product.slug} productName={product.name} max={3} />}
           lang={lang}
         />
       )}

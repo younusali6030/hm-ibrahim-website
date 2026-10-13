@@ -16,6 +16,18 @@ type Props = {
 };
 
 /**
+ * "Used for" for a product with no use list: the use its own description already states ("... for reinforcement and
+ * screening."). Nothing is guessed; a description that names no use gives an empty cell.
+ */
+function statedUse(descEn: string, descLocal: string, hi: boolean): string {
+  const m = descEn.match(/\bfor\s+(.+?)\.?\s*$/i);
+  if (!m) return "";
+  if (hi) return descLocal;
+  const v = m[1].replace(/\s+(in|with)\s+.*$/i, "").trim();
+  return v.charAt(0).toUpperCase() + v.slice(1);
+}
+
+/**
  * What a buyer needs to decide, in the order they need it: the choice, a comparison drawn from the catalogue
  * data, what to send with the enquiry, how it reaches them, and the guides that go deeper.
  * Everything is data or reviewed copy; no price, stock level or delivery date is promised.
@@ -34,7 +46,7 @@ export function CategoryGuide({ categoryEn, category, lang, guides }: Props) {
       material: p.materials?.slice(0, 3).join(", ") ?? "",
       types: p.variants?.slice(0, 3).join(", ") ?? "",
       unit: quoteUnit(en?.indicativeRate, hi),
-      use: p.useCases?.slice(0, 2).join(", ") ?? "",
+      use: p.useCases?.slice(0, 2).join(", ") || statedUse(en?.shortDesc ?? "", p.shortDesc, hi),
     };
   });
   const showMaterial = rows.some((r) => r.material);
@@ -71,7 +83,7 @@ export function CategoryGuide({ categoryEn, category, lang, guides }: Props) {
                   {rows.map((r) => (
                     <tr key={r.slug} className="border-b border-border">
                       <th scope="row" className={`${td} font-semibold`}>
-                        <Link href={`/products/${r.slug}`} className="underline-offset-4 hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                        <Link href={`/products/${r.slug}`} className="inline-flex min-h-[24px] items-center underline-offset-4 hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
                           {r.name}
                         </Link>
                       </th>

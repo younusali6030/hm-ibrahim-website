@@ -4,7 +4,7 @@ import Link from "@/components/LocaleLink";
 import { LazyLiquidMark } from "@/components/fx/Lazy";
 import { Phone, Mail, MessageCircle, MapPin, ChevronDown } from "lucide-react";
 import { site } from "@/content/site";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getWhatsAppLink, telHref } from "@/lib/utils";
 import { categories } from "@/content/products";
 import { T, useT } from "@/lib/i18n";
 import { catNameHi } from "@/content/hi/names";
@@ -48,7 +48,7 @@ function FooterGroup({ label, children, className = "" }: { label: string; child
   );
 }
 
-const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
+const tel = (n: string) => telHref(n);
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`;
 
 export function Footer() {
@@ -80,7 +80,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-track="footer_visit_map"
-                  className="inline-flex min-h-[40px] items-center font-semibold text-white underline decoration-primary underline-offset-4 hover:text-primary lg:min-h-0"
+                  className="inline-flex min-h-[40px] items-center font-semibold text-white underline decoration-primary underline-offset-4 hover:text-primary lg:min-h-[24px]"
                 >
                   <T en="Open in Google Maps" hi="गूगल मैप्स पर खोलें" />
                   <span className="sr-only"> {t("(opens in a new tab)", "(नए टैब में खुलेगा)")}</span>
@@ -100,7 +100,7 @@ export function Footer() {
               ].map((p) => (
                 <li key={p.n} className="flex items-start gap-3">
                   <Phone className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                  <a href={tel(p.n)} className="block min-h-[40px] hover:text-primary lg:min-h-0">
+                  <a href={tel(p.n)} className="block min-h-[40px] hover:text-primary lg:min-h-[24px]">
                     <span className="block whitespace-nowrap text-base font-semibold text-white">{p.n}</span>
                     <span className="block text-xs text-white/60 sm:text-sm">{p.l}</span>
                   </a>
@@ -108,7 +108,7 @@ export function Footer() {
               ))}
               <li className="col-span-2 flex items-start gap-3 sm:col-span-1">
                 <MessageCircle className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                <a href={getWhatsAppLink(site.whatsapp)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center font-semibold text-white hover:text-primary lg:min-h-0">
+                <a href={getWhatsAppLink(site.whatsapp)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center font-semibold text-white hover:text-primary lg:min-h-[24px]">
                   <T en="WhatsApp us" hi="व्हाट्सएप करें" />
                 </a>
               </li>
@@ -118,7 +118,7 @@ export function Footer() {
               ].map((m) => (
                 <li key={m.e} className="col-span-2 flex items-start gap-3 sm:col-span-1 [&:last-child]:hidden sm:[&:last-child]:flex">
                   <Mail className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                  <a href={`mailto:${m.e}`} className="block min-h-[40px] min-w-0 hover:text-primary lg:min-h-0">
+                  <a href={`mailto:${m.e}`} className="block min-h-[40px] min-w-0 hover:text-primary lg:min-h-[24px]">
                     <span className="block break-words text-[15px] text-white">{m.e}</span>
                     <span className="hidden text-sm text-white/60 sm:block">{m.l}</span>
                   </a>
@@ -153,13 +153,13 @@ export function Footer() {
           <p>&copy; {new Date().getFullYear()} <T en="HM Ibrahim & Co. All rights reserved." hi="एचएम इब्राहिम एंड कंपनी। सर्वाधिकार सुरक्षित।" /></p>
           <ul className="flex flex-wrap gap-x-5">
             <li>
-              <a href={site.indiamartUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-0">IndiaMART</a>
+              <a href={site.indiamartUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-[24px]">IndiaMART</a>
             </li>
             <li>
-              <a href={site.justdialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-0">JustDial</a>
+              <a href={site.justdialUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-[24px]">JustDial</a>
             </li>
-            <li><Link href="/privacy" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-0"><T en="Privacy" hi="गोपनीयता" /></Link></li>
-            <li><Link href="/terms" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-0"><T en="Terms" hi="शर्तें" /></Link></li>
+            <li><Link href="/privacy" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-[24px]"><T en="Privacy" hi="गोपनीयता" /></Link></li>
+            <li><Link href="/terms" className="inline-flex min-h-[40px] min-w-[24px] items-center hover:text-primary lg:min-h-[24px]"><T en="Terms" hi="शर्तें" /></Link></li>
           </ul>
         </div>
       </div>

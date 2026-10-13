@@ -11,17 +11,19 @@ image2Alt: "Porter carrying a boxed load through Siyaganj market"
 image3: "/blog/bulk-3.webp"
 image3Alt: "Wire and tape being weighed and packed at the counter"
 ---
-Bulk buyers of steel, wire, mesh, and hardware in Loha Mandi, Siyaganj, and New Siyaganj can often get better rates and smoother supply. This guide outlines practical ways to save cost and plan orders when buying in volume from Indore's iron and hardware market.
+Bulk buyers of steel, wire, mesh, and hardware in Loha Mandi, Siyaganj, and New Siyaganj may be able to get better rates and smoother supply. This guide outlines practical ways to plan orders when buying in volume from Indore's iron and hardware market. What we ourselves offer is stated separately below.
 
 ## Why Bulk Buying Helps in Indore
 
-Suppliers in Siyaganj and Loha Mandi typically offer:
+What buyers can often negotiate in the market (not a promise from any one supplier):
 
 - **Better per-kg or per-unit rates** for larger quantities.
 - **Dedicated loading and delivery** for truck loads.
 - **Stable supply** when you have ongoing projects in Indore, Dewas, Pithampur, or Ujjain.
 
 Planning your requirement and consolidating orders improves your negotiating position.
+
+**Our own terms:** at HM Ibrahim & Co, rates, delivery and payment terms are confirmed with each quotation. We do not publish a standing bulk discount.
 
 ## 1. Consolidate Your List
 
@@ -46,7 +48,7 @@ Rates for steel and wire move with market. If your project allows, track rough t
 Sticking with a trusted supplier in Siyaganj or Loha Mandi can lead to:
 
 - Priority on stock during shortage.
-- Credit or payment terms for regular bulk buyers.
+- Possibly credit or payment terms for regular bulk buyers, where a supplier offers them.
 - Better communication on availability and delivery.
 
 Visit the market, compare a few dealers, then focus on one or two for consistency.

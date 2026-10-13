@@ -1,4 +1,4 @@
-// Usage: SRC_DIR="<media folder>" node scripts/media/build-images.mjs   (needs `sharp`: NODE_PATH or npm i -D sharp)
+// Usage: [ONLY=id1,id2] SRC_DIR="<media folder>" node scripts/media/build-images.mjs   (needs `sharp`: NODE_PATH or npm i -D sharp)
 // Reads content/media/manifest.json, writes <dest>.webp + <dest>.avif (max 1600px, never upscaled) into public/,
 // and updates content/media/blur.json with a tiny base64 placeholder per image.
 import { createRequire } from "node:module";
@@ -11,8 +11,10 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, "content/media/manif
 const blurFile = path.join(root, "content/media/blur.json");
 const blur = fs.existsSync(blurFile) ? JSON.parse(fs.readFileSync(blurFile, "utf8")) : {};
 const srcDir = process.env.SRC_DIR;
+const only = process.env.ONLY ? new Set(process.env.ONLY.split(",")) : null;
 for (const m of manifest) {
   if (m.generated) continue;
+  if (only && !only.has(m.id)) continue;
   const input = m.abs ?? path.join(srcDir, m.src);
   const out = path.join(root, "public", m.dest);
   fs.mkdirSync(path.dirname(out), { recursive: true });

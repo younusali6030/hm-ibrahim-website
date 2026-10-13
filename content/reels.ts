@@ -27,7 +27,7 @@ export const homeReels: SiteVideo[] = [
   { src: "/reels/weldmesh-jali", title: "Weldmesh jali: rolls and panels", description: "Welded wire mesh (weldmesh jali) rolls and panels at the Siyaganj shop.", page: "/", uploadDate: UPLOADED },
   { src: "/reels/kabootar-jali", title: "Kabootar jali: pigeon net for balconies and shafts", description: "Pigeon net (kabootar jali) for balconies and shafts.", page: "/", uploadDate: UPLOADED },
   { src: "/reels/pvc-hexa-mesh", title: "PVC hexa mesh for garden and poultry fencing", description: "Plastic hexagonal mesh for garden and poultry fencing.", page: "/", uploadDate: UPLOADED },
-  { src: "/reels/tata-wire-rate", title: "Tata Wiron wire, straight from the shelf", description: "Tata Wiron GI wire stocked at HM Ibrahim & Co, an authorised Tata dealer.", page: "/", uploadDate: UPLOADED },
+  { src: "/reels/tata-wire-rate", title: "Tata Wiron wire, straight from the shelf", description: "Tata Wiron GI wire stocked at HM Ibrahim & Co, an authorised Tata Wiron dealer.", page: "/", uploadDate: UPLOADED },
   { src: "/reels/rat-jaali-customer", title: "Rat jaali: a customer on camera", description: "A customer talks about rat jaali bought from the Siyaganj shop.", page: "/", uploadDate: UPLOADED },
 ];
 

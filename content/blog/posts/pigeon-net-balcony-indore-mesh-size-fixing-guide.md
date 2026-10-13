@@ -22,8 +22,10 @@ A net is the surest fix, but only if it is the right net and fixed the right way
 
 Pigeon nets are made of nylon or HDPE (a polyethylene). They are knotted or knotless, and come in several mesh sizes and thicknesses.
 
-- **Nylon** is soft, strong and long lasting in sun. The usual choice for balconies.
-- **HDPE** is lighter and cheaper, and is fine for short-term or shaded use.
+- **Nylon** is soft and strong and is a common choice for balconies.
+- **HDPE** is lighter and usually cheaper.
+
+How long either lasts in sun depends on the maker's UV stabilisation, not on the polymer name alone. Ask for the maker's UV-stabilisation and warranty details before you compare.
 - **Colour:** white, green and black. Dark nets are less visible from a distance.
 
 ## Mesh size
@@ -48,7 +50,7 @@ Most bad jobs fail on one of these points.
 
 1. **Measure the opening** and add 6 inches on each side so the net can be tensioned.
 2. **Fix a frame** of GI wire or thin rope around the edge. Use [GI wire](/products/gi-wire) or [wire rope](/products/gi-wire-rope) for a strong anchor.
-3. **Use eye hooks or J-hooks** at every foot. Drill, plug and screw them in. Do not nail.
+3. **Fix hooks or eyes to the frame line.** Spacing and anchor type depend on the wall (brick, concrete, metal) and on the net maker's instructions. Use anchors suited to the surface rather than nails.
 4. **Thread the net** onto the frame with [binding wire](/products/binding-wire) at every eye.
 5. **Pull it tight.** A loose net lets birds in at the gaps, and it flaps and wears.
 6. **Close every gap.** A bird will find a hole of 2 inches.
@@ -68,7 +70,7 @@ Use both. A net closes the opening, spikes keep birds off the ledge outside it.
 
 ## Life and care
 
-A good nylon net lasts 3 to 5 years in Indore sun. Check it after each monsoon, clip loose edges and tighten the frame. Replace it before it starts to fray, because a damaged net is an invitation.
+How long a net lasts depends on its UV stabilisation, the strand thickness, the sun it sees and how well it is fixed. Ask the maker for the warranty or expected life. Check it after each monsoon, clip loose edges and tighten the frame. Replace it before it starts to fray, because a damaged net is an invitation.
 
 See [pigeon nets](/products/pigeon-nets) and [pigeon spikes](/products/pigeon-spikes). Send us the opening size and we will tell you how much to order.
 
@@ -78,13 +80,13 @@ See [pigeon nets](/products/pigeon-nets) and [pigeon spikes](/products/pigeon-sp
 1 inch for pigeons. 0.75 inch if you also have sparrows.
 
 **How long does a pigeon net last?**  
-Three to five years for a good nylon net in sun, if it is fixed tight.
+It depends on the net's UV stabilisation, thickness, sun exposure and fixing. Ask for the maker's warranty or expected life.
 
 **Can I fix pigeon net without drilling?**  
 For a rented flat, use adhesive hooks and a tension wire. A drilled frame is stronger.
 
 **Is pigeon net safe for birds?**  
-A tight net with a small mesh does not trap birds. A loose net with large holes can. Fix it tight.
+No net can be guaranteed bird-safe. A tight net of the right mesh with no gaps lowers the risk of entanglement; a loose, torn or oversized-mesh net raises it. Fix it tight and check it regularly.
 
 **Do you give a pigeon net frame or wire?**  
 We stock the net, the wire, the hooks and binding wire. Tell us the size.

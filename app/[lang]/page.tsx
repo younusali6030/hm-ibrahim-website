@@ -42,7 +42,8 @@ export default async function HomePage(props: { params: Promise<{ lang: string }
   // an English-only guide is used only to fill the row, and is marked lang="en" where it is shown.
   const allPosts = await getAllPosts(lang);
   const posts = (lang === "hi" ? [...allPosts.filter((p) => p.lang === "hi"), ...allPosts.filter((p) => p.lang !== "hi")] : allPosts).slice(0, 3);
-  const homeFaqs = localize(faqs.slice(0, 4), lang);
+  // Where we are, who we supply, how orders reach you, and which warehouse holds what (ids 1, 2, 4, 11).
+  const homeFaqs = localize(["1", "2", "4", "11"].map((id) => faqs.find((f) => f.id === id)!), lang);
   const homeFaqSchema =
     homeFaqs.length > 0
       ? {

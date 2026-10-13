@@ -16,7 +16,7 @@ export function TrustBadges({ className = "", lang = "en" }: Props) {
   const facts = [
     t("Since 1939", "1939 से"),
     hi ? `${siteHi.address.line1}, ${siteHi.address.city}` : `${site.address.line1}, ${site.address.city}`,
-    t("Mon to Sat, 9 am to 8 pm. Sunday closed", "सोम से शनि, 9 से 8। रविवार बंद"),
+    t("Mon to Sat, 10 am to 8 pm. Sunday closed", "सोम से शनि, 10 से 8। रविवार बंद"),
     hi
       ? `गूगल पर ${site.googleReview.reviewCount} रिव्यू से ${site.googleReview.rating}`
       : `Google ${site.googleReview.rating} from ${site.googleReview.reviewCount} reviews`,

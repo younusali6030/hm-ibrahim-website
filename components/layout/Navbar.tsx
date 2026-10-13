@@ -6,10 +6,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { site } from "@/content/site";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getWhatsAppLink, telHref } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { trackCallClick, trackWhatsAppClick } from "@/lib/analytics";
-import { LangToggle, T, useT } from "@/lib/i18n";
+import { LangToggle, T, useT, useLang } from "@/lib/i18n";
+import { useEnquiryLinks } from "@/lib/enquiryStore";
 import { stripLocale } from "@/lib/locale";
 
 // One contact path: the primary "Get a quote" button leads to /contact (quote form + visit info).
@@ -25,6 +26,11 @@ const navLinks = [
 export function Navbar() {
   const pathname = stripLocale(usePathname() || "/").path;
   const t = useT();
+  const { lang: navLang } = useLang();
+  const enq = useEnquiryLinks(
+    navLang,
+    t("Hi, I'm interested in your products. Please share prices and availability.", "नमस्ते, मुझे आपके उत्पादों में रुचि है। कृपया भाव और उपलब्धता बताइए।")
+  );
   const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -146,7 +152,7 @@ export function Navbar() {
             <div className="hidden md:flex md:items-center md:gap-2">
               <LangToggle className="mr-1" />
               <a
-                href={`tel:${site.phone.replace(/\s/g, "")}`}
+                href={telHref(site.phone)}
                 onClick={() => trackCallClick("navbar")}
                 aria-label={t("Call us", "कॉल करें")}
                 className="inline-flex h-10 items-center rounded-full px-3 text-sm font-semibold text-white/90 lg:px-4 transition hover:bg-white/10"
@@ -154,7 +160,7 @@ export function Navbar() {
                 <T en="Call" hi="कॉल करें" />
               </a>
               <Link
-                href="/contact"
+                href={enq.quoteHref}
                 className="inline-flex h-10 items-center whitespace-nowrap rounded-full bg-primary px-4 text-sm font-bold lg:px-5 text-primary-foreground transition hover:brightness-110"
               >
                 <T en="Get a quote" hi="कोटेशन पाएँ" />
@@ -208,14 +214,14 @@ export function Navbar() {
                 })}
                 <li className="mt-3 grid grid-cols-2 gap-2">
                   <a
-                    href={`tel:${site.phone.replace(/\s/g, "")}`}
+                    href={telHref(site.phone)}
                     onClick={() => trackCallClick("navbar_mobile")}
                     className="flex h-11 items-center justify-center rounded-full border border-white/15 text-sm font-semibold"
                   >
                     <T en="Call" hi="कॉल करें" />
                   </a>
                   <a
-                    href={getWhatsAppLink(site.whatsapp, t("Hi, I'm interested in your products. Please share prices and availability.", "नमस्ते, मुझे आपके उत्पादों में रुचि है। कृपया भाव और उपलब्धता बताइए।"))}
+                    href={getWhatsAppLink(site.whatsapp, enq.waText)}
                     onClick={() => trackWhatsAppClick("navbar_mobile")}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -226,7 +232,7 @@ export function Navbar() {
                 </li>
                 <li className="mt-2">
                   <Link
-                    href="/contact"
+                    href={enq.quoteHref}
                     onClick={() => setOpen(false)}
                     className="flex h-11 w-full items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
                   >

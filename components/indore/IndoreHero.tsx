@@ -6,6 +6,7 @@ import { ArrowRight, ArrowUpRight, LocateFixed, MapPin } from "lucide-react";
 import Link from "@/components/LocaleLink";
 import { useLang } from "@/lib/i18n";
 import { site } from "@/content/site";
+import { SHOP_DEST_TEXT, shopDirectionsUrl } from "@/lib/maps";
 
 type Photo = { src: string; alt: string; label: string; position?: string };
 type Place = { id: string; name: string };
@@ -27,9 +28,16 @@ type Props = {
 
 /** Optional. With it the official Maps Embed API is used; without it the page falls back to Google's keyless embed. */
 const EMBED_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY;
-const DEST_TEXT = `${site.googleListingName}, ${site.fullAddress}`;
+const DEST_TEXT = SHOP_DEST_TEXT;
 
-/** Embedded Google map: the listing on its own, or driving directions from `origin`. Real Google tiles and routing. */
+/** True when the official directions embed (driving mode) is configured. */
+const HAS_DIRECTIONS_EMBED = !!EMBED_KEY;
+
+/**
+ * Embedded Google map. Driving directions are embedded only through the official Maps Embed API (`mode=driving`).
+ * Without that key the embed shows the shop's own listing and the route opens in Google Maps in driving mode:
+ * the keyless legacy route embed has no mode setting and was observed to return rail routes.
+ */
 function embedSrc(origin: string | null, hl: string) {
   if (EMBED_KEY) {
     const base = "https://www.google.com/maps/embed/v1/";
@@ -38,16 +46,7 @@ function embedSrc(origin: string | null, hl: string) {
       ? `${base}directions?key=${EMBED_KEY}&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(dest)}&mode=driving&language=${hl}`
       : `${base}place?key=${EMBED_KEY}&q=${encodeURIComponent(dest)}&zoom=15&language=${hl}`;
   }
-  return origin
-    ? `https://www.google.com/maps?saddr=${encodeURIComponent(origin)}&daddr=${encodeURIComponent(DEST_TEXT)}&hl=${hl}&output=embed`
-    : `https://www.google.com/maps?q=${encodeURIComponent(DEST_TEXT)}&z=15&hl=${hl}&output=embed`;
-}
-
-/** Google Maps itself, with the destination pinned to the shop's listing. Without an origin Google asks for one. */
-function directionsUrl(origin: string | null) {
-  const q = new URLSearchParams({ api: "1", destination: DEST_TEXT, destination_place_id: site.googlePlaceId, travelmode: "driving" });
-  if (origin) q.set("origin", origin);
-  return `https://www.google.com/maps/dir/?${q.toString()}`;
+  return `https://www.google.com/maps?q=${encodeURIComponent(DEST_TEXT)}&z=15&hl=${hl}&output=embed`;
 }
 
 /**
@@ -234,15 +233,19 @@ export function IndoreHero({ eyebrow, title, lede, actions, stats, city, second,
                   : geo === "unavailable"
                     ? t("We could not read your location here. Type where you are starting from, or open Google Maps below.", "यहाँ आपकी लोकेशन नहीं मिल सकी। जहाँ से चल रहे हैं वह जगह लिखिए, या नीचे गूगल मैप्स खोलिए।")
                     : origin
-                      ? origin.mine
-                        ? t("Route from your current location to our counter.", "आपकी मौजूदा लोकेशन से हमारे काउंटर तक का रास्ता।")
-                        : t(`Route from ${origin.value} to our counter.`, `${origin.value} से हमारे काउंटर तक का रास्ता।`)
+                      ? HAS_DIRECTIONS_EMBED
+                        ? origin.mine
+                          ? t("Driving route from your current location to our counter.", "आपकी मौजूदा लोकेशन से हमारे काउंटर तक का ड्राइविंग रास्ता।")
+                          : t(`Driving route from ${origin.value} to our counter.`, `${origin.value} से हमारे काउंटर तक का ड्राइविंग रास्ता।`)
+                        : origin.mine
+                          ? t("Map shows our counter. Open driving directions from your location in Google Maps below.", "मैप में हमारा काउंटर है। अपनी लोकेशन से ड्राइविंग रास्ता नीचे गूगल मैप्स में खोलिए।")
+                          : t(`Map shows our counter. Open driving directions from ${origin.value} in Google Maps below.`, `मैप में हमारा काउंटर है। ${origin.value} से ड्राइविंग रास्ता नीचे गूगल मैप्स में खोलिए।`)
                       : t("Our counter on Google Maps. Add a starting point to see the route.", "गूगल मैप्स पर हमारा काउंटर। रास्ता देखने के लिए शुरू की जगह जोड़िए।")}
               </p>
               <div className="ih-map">
                 {mapSeen && (
                   <iframe
-                    key={origin?.value ?? "place"}
+                    key={HAS_DIRECTIONS_EMBED ? origin?.value ?? "place" : "place"}
                     src={embedSrc(origin?.value ?? null, hi ? "hi" : "en")}
                     title={t("Google map: route to HM Ibrahim & Co, 60 Siyaganj Main Road, Indore", "गूगल मैप: एचएम इब्राहिम एंड कंपनी, 60 सियागंज मेन रोड, इंदौर का रास्ता")}
                     loading="lazy"
@@ -251,8 +254,8 @@ export function IndoreHero({ eyebrow, title, lede, actions, stats, city, second,
                   />
                 )}
               </div>
-              <a href={directionsUrl(origin?.value ?? null)} target="_blank" rel="noopener noreferrer" className="ih-open">
-                {t("Open in Google Maps", "गूगल मैप्स में खोलें")}
+              <a href={shopDirectionsUrl(origin?.value ?? null)} target="_blank" rel="noopener noreferrer" className="ih-open">
+                {origin ? t("Open driving directions in Google Maps", "ड्राइविंग रास्ता गूगल मैप्स में खोलें") : t("Open in Google Maps", "गूगल मैप्स में खोलें")}
                 <ArrowUpRight className="h-4 w-4" aria-hidden />
                 <span className="sr-only">{t("(opens in a new tab)", "(नए टैब में खुलेगा)")}</span>
               </a>

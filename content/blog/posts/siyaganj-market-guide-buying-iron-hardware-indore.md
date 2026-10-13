@@ -27,7 +27,7 @@ Our shop, HM Ibrahim & Co, has been at 60 Siyaganj Main Road, opposite Tijori Ga
 - **Weekday mornings** are the best time to come. The lanes are quieter, stock has just been put out and the staff are free to talk.
 - **Avoid** the hour before closing and the day before festivals, when the whole market is buying.
 - **Sunday** most shops are closed.
-- **Check hours**: we are open Monday to Saturday, 9 AM to 8 PM.
+- **Check hours**: we are open Monday to Saturday, 10 AM to 8 PM.
 
 ## What to bring
 

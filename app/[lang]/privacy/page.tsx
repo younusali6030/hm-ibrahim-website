@@ -64,8 +64,8 @@ export default async function PrivacyPage(props: { params: Promise<{ lang: strin
         <h2>{t("Cookies and analytics", "कुकीज़ और एनालिटिक्स")}</h2>
         <p>
           {t(
-            "Our website may use cookies or similar technologies for basic functionality. If we use analytics (e.g. Google Analytics), we may collect anonymised usage data to improve the site.",
-            "हमारी वेबसाइट बुनियादी काम के लिए कुकीज़ या ऐसी ही तकनीकों का उपयोग कर सकती है। अगर हम एनालिटिक्स (जैसे गूगल एनालिटिक्स) इस्तेमाल करें, तो साइट सुधारने के लिए बिना पहचान वाला उपयोग-डेटा ले सकते हैं।"
+            "We use Google Analytics to count visits and see which pages help buyers. It stays in a no-cookie mode until you press Allow in the banner; your choice is saved in your browser and you can clear it by clearing site data. Without your permission Google only receives anonymous, cookie-free pings. The site also keeps your landing page in your browser for the visit so a quote request can be traced to the page you came from.",
+            "हम विज़िट गिनने और यह देखने के लिए गूगल एनालिटिक्स इस्तेमाल करते हैं कि कौन से पेज खरीदारों के काम आते हैं। जब तक आप बैनर में 'अनुमति दें' नहीं दबाते, यह बिना कुकीज़ वाले मोड में रहता है; आपकी पसंद आपके ब्राउज़र में सेव होती है और साइट डेटा साफ़ करके हटाई जा सकती है। अनुमति के बिना गूगल को केवल बिना पहचान वाले, कुकी-रहित संकेत मिलते हैं। साइट विज़िट के दौरान आपका लैंडिंग पेज भी आपके ब्राउज़र में रखती है ताकि कोटेशन अनुरोध को उस पेज से जोड़ा जा सके जहाँ से आप आए।"
           )}
         </p>
 

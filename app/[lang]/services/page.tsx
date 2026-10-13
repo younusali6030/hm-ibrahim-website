@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { buildPageMeta, pageUrl } from "@/lib/seo";
 import { localize } from "@/lib/localize";
+import { allProducts } from "@/content/products";
+import { isCutToSize } from "@/components/product/specSheet";
 import { tt, type Lang } from "@/lib/locale";
 import { siteHi } from "@/content/hi/site";
 import Link from "@/components/LocaleLink";
@@ -133,6 +135,8 @@ export default async function ServicesPage(props: { params: Promise<{ lang: stri
   const lang = params.lang as Lang;
   const t = tt(lang);
   const items = localize(services, lang);
+  // One source for "what the counter cuts": the same rule that puts the "Cut to size" stamp on a product page.
+  const cutNames = allProducts.filter(isCutToSize).map((p) => localize(p, lang).name);
   const PREP: PrepStep[] = [
     { key: "list", label: t("Send your list", "अपनी सूची भेजिए"), line: t("Share the product, size and quantity.", "उत्पाद, साइज़ और मात्रा बताइए।") },
     { key: "check", label: t("We check the details", "हम ब्योरा जाँचते हैं"), line: t("We confirm specifications, stock and the quotation.", "हम स्पेसिफ़िकेशन, स्टॉक और कोटेशन पक्का करते हैं।") },
@@ -153,12 +157,6 @@ export default async function ServicesPage(props: { params: Promise<{ lang: stri
       { term: t("Delivery", "डिलीवरी"), detail: t("Confirmed with your quotation", "कोटेशन के साथ तय") },
     ],
   };
-  const STEPS = [
-    { t: PREP[0].label, d: t("Send a list, call, or walk in. Sizes and quantities help us quote exactly.", "सूची भेजिए, कॉल कीजिए या सीधे आइए। साइज़ और मात्रा से हम सही भाव बता पाते हैं।") },
-    { t: PREP[1].label, d: t("We check the shelf and come back with a rate and what is available today.", "हम शेल्फ देखते हैं और रेट के साथ बताते हैं कि आज क्या उपलब्ध है।") },
-    { t: PREP[2].label, d: t("Your confirmed order is measured, counted or packed as appropriate. Cut-to-length may be possible for some products: ask when you order.", "आपका पक्का ऑर्डर ज़रूरत के हिसाब से नापा, गिना या पैक किया जाता है। कुछ उत्पादों में लंबाई में कटाई हो सकती है: ऑर्डर के समय पूछिए।") },
-    { t: PREP[3].label, d: t("Pick up from our Siyaganj counter, or ask about delivery for your location. Delivery arrangements are confirmed with each quotation.", "हमारे सियागंज काउंटर से उठाइए, या अपनी जगह की डिलीवरी के बारे में पूछिए। डिलीवरी की व्यवस्था हर कोटेशन के साथ तय होती है।") },
-  ];
   return (
     <>
       <SeoJsonLd data={servicesPageSchema(lang)} lang={lang} />
@@ -192,6 +190,13 @@ export default async function ServicesPage(props: { params: Promise<{ lang: stri
                   <div className={`lg:col-span-6 ${i % 2 ? "lg:order-1" : ""}`}>
                     <h3 className="font-display text-[2rem] font-extrabold uppercase leading-[1.02] text-foreground sm:text-[2.4rem]">{s.title}</h3>
                     <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{s.description}</p>
+                    {s.slug === "fabrication" && cutNames.length > 0 && (
+                      <p className="mt-3 text-base leading-relaxed text-foreground/85">
+                        {t("Cut to size at the counter: ", "काउंटर पर नाप से काटा जाता है: ")}
+                        {cutNames.join(", ")}
+                        {t(". Everything else is sold in its standard length or pack.", "। बाकी सब कुछ उसकी मानक लंबाई या पैक में बिकता है।")}
+                      </p>
+                    )}
                     {(s.slug === "delivery" || s.slug === "fabrication") && (
                       <p className="st-meta mt-3">{t("Subject to availability. Please enquire at the time of order.", "उपलब्धता के अनुसार। कृपया ऑर्डर के समय पूछ लें।")}</p>
                     )}
@@ -199,23 +204,6 @@ export default async function ServicesPage(props: { params: Promise<{ lang: stri
                 </li>
               );
             })}
-          </ol>
-        </div>
-      </section>
-
-      <section className="st-sec st-sec-tint" aria-labelledby="how-heading">
-        <div className="page-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <SectionHead eyebrow={t("How an order works", "ऑर्डर कैसे चलता है")} id="how-heading" title={t("Four steps, no paperwork to start", "चार कदम, शुरुआत में कोई कागज़ी कार्रवाई नहीं")} />
-          <ol className="st-ledger self-start" style={{ ["--st-cols" as string]: "4rem minmax(0,1fr)" }}>
-            {STEPS.map((s, i) => (
-              <li key={s.t} className="st-row">
-                <span className="st-key" aria-hidden="true">{i + 1}</span>
-                <div>
-                  <h3 className="st-title">{s.t}</h3>
-                  <p className="st-body mt-2">{s.d}</p>
-                </div>
-              </li>
-            ))}
           </ol>
         </div>
       </section>

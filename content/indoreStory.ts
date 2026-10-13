@@ -153,7 +153,7 @@ export const indoreFaqs = [
   {
     question: "Where is HM Ibrahim & Co in Indore?",
     answer:
-      "60, Siyaganj Main Road, opposite Tijori Gali, Siyaganj, Indore 452007, in the old iron and hardware market known as Loha Mandi. We are open Monday to Saturday, 9 AM to 8 PM.",
+      "60, Siyaganj Main Road, opposite Tijori Gali, Siyaganj, Indore 452007, in the old iron and hardware market known as Loha Mandi. We are open Monday to Saturday, 10 AM to 8 PM.",
   },
   {
     question: "What do you sell, retail or wholesale?",

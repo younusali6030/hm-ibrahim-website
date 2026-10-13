@@ -80,10 +80,11 @@ export default async function BlogIndexPage(props: { params: Promise<{ lang: str
         <PageHero
           eyebrow={<T en="The buyer's guide" hi="खरीदार की गाइड" />}
           title={<T en="Know the material before you buy it" hi="माल खरीदने से पहले उसे जान लीजिए" />}
-          titleSize="clamp(2.2rem, 4.2vw, 4rem)"
-          lede={t("Plain guides from the counter on wire mesh, TMT bars, fencing, perforated sheets and hardware. Written for people buying in Indore.", "वायर मेश, टीएमटी सरिया, फेंसिंग, परफोरेटेड शीट और हार्डवेयर पर काउंटर से सीधी-सादी गाइड। इंदौर में खरीदने वालों के लिए लिखी गई।")}
+          dense
+          titleSize="clamp(1.9rem, 4vw, 3.6rem)"
+          lede={t("Plain guides from the counter, written for people buying in Indore.", "काउंटर से सीधी-सादी गाइड, इंदौर में खरीदने वालों के लिए।")}
           art={<BlogHeroArt art={topicArt} />}
-          artSize={{ aspect: "1.14", mobileAspect: "5 / 4" }}
+          artSize={{ aspect: "1.14", mobileAspect: "3 / 1" }}
           footer={<BlogTopicChips topics={topics} total={posts.length} />}
         />
 

@@ -48,7 +48,7 @@ This is especially important when you have multiple sizes of [MS Angles](/produc
 
 - Keep in **boxes or bins** with labels.
 - **Dry store:** Nails and fasteners rust in humidity; keep in dry area.
-- **Welding rods:** Store in dry place; once opened, use or reseal to avoid moisture.
+- **Welding electrodes:** Follow the electrode maker's storage instructions for that type and grade. Some types need dry or heated storage or re-drying before use; resealing a packet is not a universal answer.
 
 See [Nails](/categories/nails), [Construction Tools](/categories/construction-tools), and [Wires](/categories/wires) for products that need careful storage.
 

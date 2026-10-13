@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "@/components/LocaleLink";
+import NextLink from "next/link";
 import Image from "next/image";
 import { useMemo } from "react";
 import { PostCard, formatDate, type PostCardData } from "@/components/blog/PostCard";
@@ -15,6 +16,19 @@ type Props = {
 };
 
 /** The featured guide and the reference grid. The topic chips in the hero narrow it; nothing reloads or jumps. */
+/** Lead card link: an English-only guide seen from the Hindi site goes straight to the English page. */
+function LeadLink({ slug, englishOnly, className, children }: { slug: string; englishOnly: boolean; className: string; children: React.ReactNode }) {
+  return englishOnly ? (
+    <NextLink href={`/blog/${slug}`} hrefLang="en" className={className}>
+      {children}
+    </NextLink>
+  ) : (
+    <Link href={`/blog/${slug}`} className={className}>
+      {children}
+    </Link>
+  );
+}
+
 export function BlogLibrary({ posts, leadSlug }: Props) {
   const { lang } = useLang();
   const hi = lang === "hi";
@@ -37,11 +51,12 @@ export function BlogLibrary({ posts, leadSlug }: Props) {
   return (
     <div>
       {lead && !selected && (
-        <Link
-          href={`/blog/${lead.slug}`}
+        <LeadLink
+          slug={lead.slug}
+          englishOnly={hi && lead.lang !== "hi"}
           className="group grid overflow-hidden rounded-[14px] border border-border bg-card shadow-[0_24px_50px_-28px_rgba(0,0,0,0.9)] transition-colors hover:border-foreground/40 lg:grid-cols-[1.1fr_1fr]"
         >
-          <span className="relative block aspect-[16/10] bg-secondary lg:aspect-auto lg:min-h-[19rem]">
+          <span className="relative block aspect-[3/1] bg-secondary sm:aspect-[16/10] lg:aspect-auto lg:min-h-[19rem]">
             {lead.image && (
               <Image
                 src={lead.image}
@@ -64,11 +79,11 @@ export function BlogLibrary({ posts, leadSlug }: Props) {
             </span>
             {lead.description && <span className="mt-3 line-clamp-3 text-muted-foreground">{lead.description}</span>}
             <span className="mt-5 font-mono-brand text-xs uppercase tracking-[0.14em] text-muted-foreground">
-              <time dateTime={lead.date}>{formatDate(lead.date, lang)}</time> · {hi ? `${lead.readingMinutes} मिनट में पढ़ें` : `${lead.readingMinutes} min read`}
+              {hi ? "प्रकाशित" : "Published"} <time dateTime={lead.date}>{formatDate(lead.date, lang)}</time> · {hi ? `${lead.readingMinutes} मिनट में पढ़ें` : `${lead.readingMinutes} min read`}
             </span>
             <span className="mt-4 text-sm font-bold text-foreground underline decoration-primary underline-offset-4">{hi ? "गाइड पढ़ें" : "Read the guide"}</span>
           </span>
-        </Link>
+        </LeadLink>
       )}
 
       {groups.map(([cat, list]) => (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { telHref } from "@/lib/utils";
 import { baseUrl, entityIds, site } from "@/lib/site";
 import { buildPageMeta, pageUrl } from "@/lib/seo";
 import { siteHi } from "@/content/hi/site";
@@ -59,7 +60,7 @@ export default async function ContactPage(props: { params: Promise<{ lang: strin
   const params = await props.params;
   const lang = params.lang as Lang;
   const hi = lang === "hi";
-  const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;
+  const tel = (n: string) => telHref(n);
   return (
     <>
       <SeoJsonLd data={contactPageSchema(lang)} lang={lang} />

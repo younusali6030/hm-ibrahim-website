@@ -64,4 +64,4 @@ For welded wire mesh or chain link in Indore, Siyaganj, or Loha Mandi, request a
 - [Wire mesh in Indore](/indore/wire-mesh)
 - [How to estimate fencing material](/blog/how-to-estimate-material-quantity-fencing)
 
-*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*
+*Sizes, gauges and ranges on this page were compared with our product list on 12 October 2026. This is a catalogue check, not an independent technical review.*

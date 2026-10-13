@@ -1,6 +1,6 @@
 ---
-title: "Fibre Mesh for Plaster: Stop Cracks Where Brick Meets Concrete"
-description: "Why plaster cracks along beams and columns, and how fibreglass mesh tape stops it. Width, where to fix it and how to apply it. From an Indore mesh stockist."
+title: "Fibre Mesh for Plaster: Control Cracks Where Brick Meets Concrete"
+description: "Why plaster cracks along beams and columns, and how fibreglass mesh tape can help control it. Width, where to fix it and how to apply it. From an Indore mesh stockist."
 date: "2026-09-16"
 updated: "2026-09-16"
 category: "Mesh and nets"
@@ -16,7 +16,7 @@ image3Alt: "Fibre mesh rolls beside GI wire mesh in the godown"
 
 Look at the plaster on any building in Indore. Find the line where a brick wall meets a concrete beam or column. If there is a hairline crack running along it, you have found the most common plaster fault there is.
 
-It is not bad workmanship. It is physics. And a strip of fibre mesh is what fixes it.
+It is not bad workmanship. It is physics. A strip of fibre mesh, specified and fixed properly, can help control it.
 
 ## Why the crack appears
 
@@ -26,7 +26,7 @@ The crack repeats on every joint in the building, which is why it looks so syste
 
 ## What fibre mesh does
 
-Fibre mesh is a net of glass fibre coated to resist the alkali in cement. Embedded in the plaster, it spreads the stress over a wider strip so no single line takes the full pull. The plaster still moves, but it does not open into a visible crack.
+Fibre mesh is a net of glass fibre coated to resist the alkali in cement. Embedded in the plaster, it spreads the stress over a wider strip so no single line takes the full pull. The plaster still moves, but the mesh can help keep that movement from opening into a visible crack.
 
 ## Where to use it
 
@@ -73,7 +73,7 @@ See [fibre mesh](/products/fiber-mesh) for the widths in stock.
 ## FAQs
 
 **Does fibre mesh stop all plaster cracks?**  
-It stops cracks caused by movement at joints. It does not fix structural movement or bad plaster mix.
+No. It can help control cracking when specified and installed appropriately. It does not eliminate every joint-movement crack, and it does not fix structural movement or a poor plaster mix.
 
 **What width fibre mesh for a beam?**  
 6 inch is the usual width, with 8 inch for wide joints.

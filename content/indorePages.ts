@@ -212,14 +212,14 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     slug: "construction-hardware",
     title: "Construction Hardware in Indore",
     description:
-      "Construction hardware in Indore: crowbar (sabbal), pickaxe (geti), hoe (faurdha, phawda), sledge hammer, shikanja, welding rods, nails, cutting discs. Siyaganj.",
+      "Construction hardware in Indore: crowbar (sabbal), pickaxe (geti), shovel (faurdha, phawda), sledge hammer, shikanja, welding rods, nails, cutting discs. Siyaganj.",
     h1: "Construction Hardware in Indore",
     intro:
-      "Site tools and consumables from our shop in Siyaganj, Indore: crowbar (sabbal), pickaxe (geti), hoe (faurdha or phawda), sledge hammer (ghan), shikanja for shuttering, cover blocks, welding rods, cutting discs and nails.",
+      "Site tools and consumables from our shop in Siyaganj, Indore: crowbar (sabbal), pickaxe (geti), shovel (faurdha or phawda), sledge hammer (ghan), shikanja for shuttering, cover blocks, welding rods, cutting discs and nails.",
     intro2:
       "Most of the tools are SR brand. Buy one piece or a carton for the site. Tell us what you are building or repairing and we will put the list together.",
     specs: [
-      "SR crowbar (sabbal), pickaxe (geti), hoe (faurdha, phawda; blade or with handle) and sledge hammer (5M, 10M, 15M)",
+      "SR crowbar (sabbal), pickaxe (geti), shovel (faurdha, phawda; blade or with handle) and sledge hammer (5M, 10M, 15M)",
       "Shikanja clamps for slab and beam shuttering",
       "Concrete cover blocks in 20 to 50 mm cover",
       "Welding rods, cutting discs and grinding wheels",

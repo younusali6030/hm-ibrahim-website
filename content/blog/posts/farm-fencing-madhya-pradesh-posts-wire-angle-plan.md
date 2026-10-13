@@ -12,7 +12,7 @@ image3: "/blog/farm-3.webp"
 image3Alt: "Chain link diamond weave in close-up"
 ---
 
-A farm fence is not about looks. It is about keeping cattle, nilgai, thieves and neighbours out for ten years without a repair bill every monsoon.
+A farm fence is not about looks. It is about keeping cattle, nilgai, thieves and neighbours out season after season. How long it lasts depends on the materials, how it is installed and how it is maintained.
 
 Most failures come from one of three mistakes: posts too far apart, wire too thin for the animal, or no plan for the corners. This guide sets out a plan you can hand to a contractor.
 
@@ -58,18 +58,18 @@ Pull the wire tight with a strainer before you tie it. Tie it to the posts with 
 
 ## A sample material list
 
-For a 100 metre boundary with a 5 foot chain link fence on angle posts:
+For a closed 100 metre perimeter (four sides of 25 m, no gate opening) with a 5 foot chain link fence on angle posts, line posts about every 3 m:
 
 | Item | Quantity |
 |---|---|
 | 5 ft chain link, in rolls | About 100 m |
-| MS angle 40 x 40, 7 ft posts | 33 line posts plus 4 corners |
+| MS angle 40 x 40, 7 ft posts | About 33 posts in all: 4 corner posts and about 29 line posts |
 | Cement and sand | For corner post footings |
 | 2 or 3 rows of GI tension wire | 300 m |
 | Binding wire | 5 kg |
 | Barbed wire on top | Optional, 100 m x 3 strands |
 
-These are working numbers. For your plot, tell us the length, the height and the animal, and we will make the list.
+These are working numbers for the assumptions above. Each gate opening adds two heavier gate posts and takes its width out of the roll length; a plot that is not square changes the corner count. For your plot, tell us the length, the height and the animal, and we will make the list.
 
 ## Send us your plot
 

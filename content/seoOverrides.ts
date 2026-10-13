@@ -42,7 +42,7 @@ export const seoOverrides: Record<string, SeoOverride> = {
   "categories/construction-tools": {
     title: "Sabbal, Geti, Faurdha, Ghan: Site Tools | HM Ibrahim",
     description:
-      "Crowbar (sabbal), sledge hammer (ghan), pickaxe (geti), hoe (faurdha, phawda), shikanja, cover blocks, welding rods and cutting discs at Siyaganj, Indore.",
+      "Crowbar (sabbal), sledge hammer (ghan), pickaxe (geti), shovel (faurdha, phawda), shikanja, cover blocks, welding rods and cutting discs at Siyaganj, Indore.",
   },
   "categories/nails": {
     title: "Wire Nails and Roofing Nails, 1 to 6 Inch | HM Ibrahim",
@@ -59,14 +59,14 @@ export const seoOverrides: Record<string, SeoOverride> = {
   // Barbed wire and chain link are made by the shop (owner-confirmed 12 Oct 2026). The /indore/* pages own the
   // "<product> manufacturer Indore" intent; these product pages own the specification and "supplied across India" intent.
   "products/barbed-wire": {
-    title: "Barbed Wire: 12 x 14 Gauge, Coils, Rate | HM Ibrahim",
+    title: "Barbed Wire in Indore: 12 x 14 Gauge, Coils | HM Ibrahim",
     description:
-      "Barbed wire we manufacture: single and double strand, 12 x 14 and 14 x 14 gauge, coils to 25 kg. Orders accepted across India. Ask for the rate.",
+      "Barbed wire we manufacture in Indore: single and double strand, 12 x 14 and 14 x 14 gauge, coils to 25 kg. Orders accepted across India. Ask for the rate.",
   },
   "products/chain-link-fencing": {
-    title: "Chain Link Fencing: Mesh, Wire, Height | HM Ibrahim",
+    title: "Chain Link Fencing in Indore: Mesh, Wire, Height | HM Ibrahim",
     description:
-      "Chain link fencing we manufacture: 1 to 4 inch mesh, 1.5 to 4 mm wire, 3 to 10 ft rolls, GI or PVC-coated. Orders accepted across India. Ask for the rate.",
+      "Chain link fencing we manufacture in Indore: 1 to 4 inch mesh, 1.5 to 4 mm wire, 3 to 10 ft rolls, GI or PVC-coated. Orders accepted across India. Ask for the rate.",
   },
   "products/mosquito-net": {
     title: "Mosquito Net (Machhar Jali) in Indore | HM Ibrahim",
@@ -94,14 +94,14 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "SR brand crowbar (sabbal) for demolition, prying and hard-ground digging, in stock at the Siyaganj counter, Indore. Tell us the length for a rate.",
   },
   "products/sr-hoe-faurdha": {
-    title: "SR Hoe Blade (Faurdha, Phawda) in Indore | HM Ibrahim",
+    title: "SR Shovel Blade (Faurdha, Phawda) in Indore | HM Ibrahim",
     description:
-      "SR brand hoe blade (faurdha, phawda) for farm, garden and site digging, from Siyaganj, Indore. Need it ready to use? See the hoe with handle.",
+      "SR brand shovel blade (faurdha, phawda) for farm, garden and site digging, from Siyaganj, Indore. Need it ready to use? See the shovel with handle.",
   },
   "products/sr-hoe-faurdha-with-handle": {
-    title: "SR Hoe (Faurdha, Phawda) with Handle, Indore | HM Ibrahim",
+    title: "SR Shovel (Faurdha, Phawda) with Handle, Indore | HM Ibrahim",
     description:
-      "SR carbon steel hoe (faurdha, phawda) with fitted handle, ready to use for farm, garden and site work. Green and black as per stock. Siyaganj, Indore.",
+      "SR carbon steel shovel (faurdha, phawda) with fitted handle, ready to use for farm, garden and site work. Green and black as per stock. Siyaganj, Indore.",
   },
   "products/sr-pickaxe-geti": {
     title: "SR Pickaxe (Geti) in Indore | HM Ibrahim, Siyaganj",
@@ -191,7 +191,7 @@ export const seoOverrides: Record<string, SeoOverride> = {
     title: "Siyaganj Iron Market Guide: Buying Hardware in Indore",
   },
   "blog/tmt-bar-weight-chart-size-guide-indore": {
-    title: "TMT Bar Weight Chart: 8 mm to 32 mm, Per Metre and Bar",
+    title: "TMT Bar Weight Chart: 6 mm to 32 mm, Per Metre and Bar",
   },
   "blog/top-hardware-contractors-buy-siyaganj": {
     title: "Hardware Contractors Buy in Siyaganj: Checklist",

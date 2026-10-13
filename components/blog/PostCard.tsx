@@ -1,4 +1,5 @@
 import Link from "@/components/LocaleLink";
+import NextLink from "next/link";
 import Image from "next/image";
 import type { BlogPost } from "@/content/blog/posts";
 import type { Lang } from "@/lib/locale";
@@ -13,11 +14,10 @@ export function formatDate(iso: string, lang: Lang = "en") {
 export type PostCardData = Pick<BlogPost, "slug" | "title" | "description" | "date" | "image" | "imageAlt" | "imagePosition" | "category" | "readingMinutes" | "lang">;
 
 export function PostCard({ post, priority = false, lang = "en" }: { post: PostCardData; priority?: boolean; lang?: Lang }) {
-  return (
-    <Link
-      href={`/blog/${post.slug}`}
-      className="group flex h-full overflow-hidden rounded-[14px] border border-border bg-card transition-colors hover:border-foreground/40 sm:flex-col"
-    >
+  // A guide with no Hindi edition links straight to the English page and says so, instead of a Hindi URL with English text.
+  const englishOnly = lang === "hi" && post.lang !== "hi";
+  const inner = (
+    <>
       <span className="relative block aspect-square w-28 shrink-0 overflow-hidden bg-secondary sm:aspect-[16/10] sm:w-auto">
         {post.image && (
           <Image
@@ -41,9 +41,22 @@ export function PostCard({ post, priority = false, lang = "en" }: { post: PostCa
         {post.description && <span className="mt-3 line-clamp-3 text-[0.95rem] text-muted-foreground max-sm:hidden">{post.description}</span>}
         <span className="mt-1 flex items-center justify-between font-mono-brand sm:mt-auto sm:pt-4 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
           <span>{lang === "hi" ? `${post.readingMinutes} मिनट में पढ़ें` : `${post.readingMinutes} min read`}</span>
-          <span className="text-foreground underline decoration-primary underline-offset-4">{lang === "hi" ? "पढ़ें" : "Read"}</span>
+          <span className="text-foreground underline decoration-primary underline-offset-4">
+            {englishOnly ? "अंग्रेज़ी में उपलब्ध" : lang === "hi" ? "पढ़ें" : "Read"}
+          </span>
         </span>
       </span>
+    </>
+  );
+  const cls =
+    "group flex h-full overflow-hidden rounded-[14px] border border-border bg-card transition-colors hover:border-foreground/40 sm:flex-col";
+  return englishOnly ? (
+    <NextLink href={`/blog/${post.slug}`} hrefLang="en" className={cls}>
+      {inner}
+    </NextLink>
+  ) : (
+    <Link href={`/blog/${post.slug}`} className={cls}>
+      {inner}
     </Link>
   );
 }

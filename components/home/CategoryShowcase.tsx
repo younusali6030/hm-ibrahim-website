@@ -16,7 +16,7 @@ const OFTEN_ASKED: { href: string; en: string; hi: string }[] = [
   { href: "/products/gi-perforated-sheet", en: "GI perforated sheet", hi: "जीआई परफोरेटेड शीट" },
   { href: "/products/sr-crowbar", en: "Crowbar (sabbal)", hi: "सब्बल" },
   { href: "/products/sr-pickaxe-geti", en: "Pickaxe (geti)", hi: "गेंती" },
-  { href: "/products/sr-hoe-faurdha-with-handle", en: "Hoe (faurdha, phawda) with handle", hi: "दस्ते सहित फौड़ा" },
+  { href: "/products/sr-hoe-faurdha-with-handle", en: "Shovel (faurdha, phawda) with handle", hi: "दस्ते सहित फौड़ा" },
   { href: "/products/sr-sledge-hammer", en: "Sledge hammer", hi: "घन (स्लेज हैमर)" },
 ];
 

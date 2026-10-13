@@ -3,13 +3,13 @@ import { notFound } from "next/navigation";
 import Link from "@/components/LocaleLink";
 import Image from "next/image";
 import { blogBlur } from "@/lib/media-blog";
-import { MessageCircle, Phone, ArrowRight } from "lucide-react";
+import { Phone, ArrowRight } from "lucide-react";
 import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/content/blog/posts";
 import { extractToc, extractProductSlugs } from "@/content/blog/toc";
 import { getProductBySlug, getRelatedProducts } from "@/content/products";
 import { baseUrl, site as siteLib } from "@/lib/site";
 import { site } from "@/content/site";
-import { getWhatsAppLink } from "@/lib/utils";
+import { telHref } from "@/lib/utils";
 import { buildPageMeta, pageUrl } from "@/lib/seo";
 import { tt, type Lang } from "@/lib/locale";
 import { localize } from "@/lib/localize";
@@ -17,12 +17,13 @@ import { siteHi } from "@/content/hi/site";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { MarkdownContent } from "@/components/MarkdownContent";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
-import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
+import { PageHero } from "@/components/site/PageHero";
 import { ContactStrip } from "@/components/story/ContactStrip";
 import { GaugeRule } from "@/components/motif/Motif";
 import "@/components/story/story.css";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { PostCard, formatDate } from "@/components/blog/PostCard";
+import { splitGuideTail } from "@/content/blog/tail";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -63,7 +64,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     ...base,
     ...(hasHindiEdition
       ? {}
-      : { alternates: { ...base.alternates, languages: { "en-IN": englishUrl, "x-default": englishUrl } } }),
+      : {
+          // English-only guide: the Hindi URL is a noindex courtesy page whose canonical is the English guide.
+          alternates: {
+            ...base.alternates,
+            ...(lang === "hi" ? { canonical: englishUrl } : {}),
+            languages: { "en-IN": englishUrl, "x-default": englishUrl },
+          },
+        }),
     openGraph: {
       ...base.openGraph,
       type: "article",
@@ -90,7 +98,12 @@ export default async function BlogPostPage(props: Props) {
     { name: post.title, url: `/blog/${slug}` },
   ];
 
-  const toc = extractToc(post.content).filter((t) => !/^(faqs?|frequently asked)/i.test(t.text) || true);
+  // The guide's own "Request a Quote" and "Related reading" blocks repeat the page's closing blocks, so they are
+  // lifted out: their guide links feed the one "Keep reading" row, and the "Last verified" note stays in the body.
+  const tail = splitGuideTail(post.content);
+  const body = tail.body;
+
+  const toc = extractToc(body).filter((t) => !/^(faqs?|frequently asked)/i.test(t.text) || true);
   // Products the guide links to, in order; topped up from the catalog's related mapping when the guide names fewer than three.
   const linked = extractProductSlugs(post.content, 6)
     .map((s) => getProductBySlug(s))
@@ -154,13 +167,14 @@ export default async function BlogPostPage(props: Props) {
       }
     : null;
 
-  const related = (await getAllPosts(lang))
-    .filter((p) => p.slug !== slug)
-    .sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category))
-    .slice(0, 3);
+  const allPosts = (await getAllPosts(lang)).filter((p) => p.slug !== slug);
+  const curated = tail.guideSlugs.map((g) => allPosts.find((p) => p.slug === g)).filter((p): p is (typeof allPosts)[number] => !!p);
+  const filler = allPosts
+    .filter((p) => !curated.includes(p))
+    .sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category));
+  const related = [...curated, ...filler].slice(0, 3);
 
   const waShare = `https://wa.me/?text=${encodeURIComponent(`${post.title} ${url}`)}`;
-  const waAsk = getWhatsAppLink(site.whatsapp, hi ? `नमस्ते, मैंने आपके ब्लॉग पर "${post.title}" पढ़ा। कृपया भाव और उपलब्धता बताइए।` : `Hi, I read "${post.title}" on your blog. Please share the price and availability.`);
 
   return (
     <article className="blog-article">
@@ -187,7 +201,13 @@ export default async function BlogPostPage(props: Props) {
         <p className="font-mono-brand text-xs uppercase tracking-[0.14em] text-muted-foreground">
           {post.date && (
             <>
-              <time dateTime={post.updated || post.date}>{formatDate(post.updated || post.date, lang)}</time>
+              {t("Published", "प्रकाशित")} <time dateTime={post.date}>{formatDate(post.date, lang)}</time>
+              {post.updated && post.updated !== post.date && (
+                <>
+                  <span aria-hidden="true"> · </span>
+                  {t("Updated", "अपडेट")} <time dateTime={post.updated}>{formatDate(post.updated, lang)}</time>
+                </>
+              )}
               <span aria-hidden="true"> · </span>
             </>
           )}
@@ -195,6 +215,15 @@ export default async function BlogPostPage(props: Props) {
           <span aria-hidden="true"> · </span>
           {hi ? `${siteHi.name}, सियागंज, इंदौर, 1939 से` : `${siteLib.name}, Siyaganj, Indore, since 1939`}
         </p>
+
+        {hi && bodyLang !== "hi" && (
+          <p role="note" className="mt-6 rounded-[10px] border border-border bg-secondary/60 px-4 py-3 text-sm text-foreground">
+            यह गाइड अभी सिर्फ़ अंग्रेज़ी में उपलब्ध है।{" "}
+            <a href={`/blog/${slug}`} lang="en" hrefLang="en" className="font-semibold underline underline-offset-4 hover:text-primary">
+              Read the English guide
+            </a>
+          </p>
+        )}
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[13rem_minmax(0,42rem)] lg:justify-center lg:gap-16">
           <aside className="min-w-0 lg:order-first lg:sticky lg:top-28 lg:self-start" aria-label={t("Guide tools", "गाइड के औज़ार")}>
@@ -230,7 +259,7 @@ export default async function BlogPostPage(props: Props) {
               <a href={waShare} target="_blank" rel="noopener noreferrer" className="st-link text-sm">
                 {t("Share on WhatsApp", "व्हाट्सएप पर शेयर करें")}<span className="sr-only"> {t("(opens in a new tab)", "(नए टैब में खुलेगा)")}</span>
               </a>
-              <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="st-link text-sm">
+              <a href={telHref(site.phone)} className="st-link text-sm">
                 <Phone className="h-4 w-4" aria-hidden /> {t("Call the counter", "काउंटर पर कॉल करें")}
               </a>
             </div>
@@ -254,15 +283,15 @@ export default async function BlogPostPage(props: Props) {
             )}
 
             {(() => {
-              const chunks = post.content.split(/\n(?=## )/);
+              const chunks = body.split(/\n(?=## )/);
               const figs = [
-                { src: post.image2, alt: post.image2Alt, at: 1 },
-                { src: post.image3, alt: post.image3Alt, at: 3 },
+                { src: post.image2, alt: post.image2Alt, at: post.image2At ?? 1 },
+                { src: post.image3, alt: post.image3Alt, at: post.image3At ?? 3 },
               ].filter((f) => f.src) as { src: string; alt?: string; at: number }[];
               const inline = chunks.length >= 4 && figs.length > 0;
               return (
                 <div lang={bodyLang === "hi" ? "hi" : "en"}>
-                  {(inline ? chunks : [post.content]).map((c, ci) => (
+                  {(inline ? chunks : [body]).map((c, ci) => (
                     <div key={ci}>
                       <MarkdownContent content={c} className="blog-prose" lang={bodyLang} />
                       {inline &&
@@ -289,7 +318,7 @@ export default async function BlogPostPage(props: Props) {
               );
             })()}
 
-            {(post.image2 || post.image3) && post.content.split(/\n(?=## )/).length < 4 && (
+            {(post.image2 || post.image3) && body.split(/\n(?=## )/).length < 4 && (
               <div className="mt-12 grid gap-3 sm:grid-cols-2">
                 {[
                   { src: post.image2, alt: post.image2Alt },
@@ -335,21 +364,6 @@ export default async function BlogPostPage(props: Props) {
               </section>
             )}
 
-            <div className="mt-12 flex flex-col gap-4 border-y border-foreground/30 py-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="font-display text-2xl font-extrabold uppercase leading-none">{t("Buying this in Indore?", "इंदौर में यह खरीद रहे हैं?")}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{t("Send your list. We check stock and call back with rates.", "अपनी सूची भेजिए। हम स्टॉक देखकर रेट के साथ वापस कॉल करते हैं।")}</p>
-              </div>
-              <div className="flex flex-col gap-2 sm:flex-row">
-                <Link href={`/contact${productCards[0] ? `?product=${productCards[0].slug}` : ""}`} className={btnMain}>
-                  {t("Get a quote", "कोटेशन पाएँ")}
-                </Link>
-                <a href={waAsk} target="_blank" rel="noopener noreferrer" className={btnGhostDark}>
-                  <MessageCircle className="mr-2 h-5 w-5" aria-hidden /> {t("WhatsApp", "व्हाट्सएप")}
-                  <span className="sr-only"> {t("(opens in a new tab)", "(नए टैब में खुलेगा)")}</span>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>

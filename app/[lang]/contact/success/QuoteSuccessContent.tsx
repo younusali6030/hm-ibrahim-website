@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "@/components/LocaleLink";
 import { MapPin, MessageCircle, Phone } from "lucide-react";
 import { site } from "@/content/site";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getWhatsAppLink, telHref } from "@/lib/utils";
 import { trackWhatsAppClick, trackCallClick } from "@/lib/analytics";
 import { T, useT, useLang } from "@/lib/i18n";
 import { siteHi } from "@/content/hi/site";
@@ -52,8 +52,8 @@ export function QuoteSuccessContent() {
         </h1>
         <p className="mt-4 text-base text-muted-foreground">
           <T
-            en="Your request is with the Siyaganj shop. We call you back during shop hours, Monday to Saturday, 9 am to 8 pm."
-            hi="आपका अनुरोध सियागंज की दुकान पर पहुँच गया है। हम दुकान के समय में, सोमवार से शनिवार सुबह 9 से रात 8 बजे के बीच, आपको वापस कॉल करेंगे।"
+            en="Your request is with the Siyaganj shop. We call you back during shop hours, Monday to Saturday, 10 am to 8 pm."
+            hi="आपका अनुरोध सियागंज की दुकान पर पहुँच गया है। हम दुकान के समय में, सोमवार से शनिवार सुबह 10 से रात 8 बजे के बीच, आपको वापस कॉल करेंगे।"
           />
         </p>
 
@@ -88,7 +88,7 @@ export function QuoteSuccessContent() {
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <a
-              href={`tel:${site.phone.replace(/\s/g, "")}`}
+              href={telHref(site.phone)}
               onClick={() => trackCallClick("quote_success")}
               className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-sm bg-primary px-5 font-bold text-primary-foreground"
             >

@@ -21,7 +21,7 @@ export const faqs: FAQ[] = [
     id: "2",
     question: "Do you supply retail as well as wholesale?",
     answer:
-      "Yes. We serve retail customers, wholesalers, contractors and industrial buyers. The minimum order varies by product, so contact us for details.",
+      "Yes. We supply bulk orders, retail quantities, walk-in customers and shop owners, along with contractors, traders and industrial buyers. The minimum order varies by product, so contact us for details.",
     category: "general",
   },
   {
@@ -35,21 +35,21 @@ export const faqs: FAQ[] = [
     id: "4",
     question: "Do you deliver or do I need to pick up?",
     answer:
-      "Orders accepted across India; delivery arrangements confirmed with each quotation. You can also collect from our warehouse in Siyaganj. Tell us which you prefer when you ask for a quote.",
+      "Orders accepted across India; delivery arrangements confirmed with each quotation. You can also collect from our Siyaganj shop, or from our Loha Mandi and New Loha Mandi warehouses for structural items. Tell us which you prefer when you ask for a quote.",
     category: "orders",
   },
   {
     id: "5",
     question: "What are your business hours?",
     answer:
-      "We are open Monday to Saturday, 9 am to 8 pm, and closed on Sunday. Hours may vary on public holidays, so call before you visit if you are unsure.",
+      "We are open Monday to Saturday, 10 am to 8 pm, and closed on Sunday. Hours may vary on public holidays, so call before you visit if you are unsure.",
     category: "general",
   },
   {
     id: "6",
     question: "Do you stock TMT bars and what grades?",
     answer:
-      "Yes. We stock TMT bars from 8 mm to 32 mm in grades such as Fe 500 and Fe 550. Tell us your requirement when you enquire.",
+      "Yes. We stock TMT bars from 6 mm to 32 mm in grades such as Fe 500 and Fe 550. Tell us your requirement when you enquire.",
     category: "products",
   },
   {
@@ -78,6 +78,13 @@ export const faqs: FAQ[] = [
     question: "Do you have a printed catalog?",
     answer:
       "We can share product lists and specifications. Tell us what you need through the quote form or WhatsApp and we will send the relevant details. A printable catalog is also available on this website.",
+    category: "general",
+  },
+  {
+    id: "11",
+    question: "Where are your warehouses, and what is stocked where?",
+    answer:
+      "Our structural items (TMT bars, MS flat bars, MS round bars, MS channels, MS pipes, GI pipes and angles) are handled from our warehouses in Loha Mandi and New Loha Mandi. Retail quantities of these are also stocked at our Siyaganj shop, where the wire, mesh, tools and the rest of the range are sold. Tell us what you need and we will confirm where it is stocked.",
     category: "general",
   },
 ];

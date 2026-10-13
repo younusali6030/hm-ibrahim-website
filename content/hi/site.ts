@@ -29,7 +29,7 @@ export const siteHi = {
   emailLabel: "शोएब अली",
   emailAltLabel: "अकबर अली",
   hours: {
-    weekdays: "सोम – शनि: सुबह 9:00 – रात 8:00",
+    weekdays: "सोम – शनि: सुबह 10:00 – रात 8:00",
     sunday: "रविवार: बंद",
     note: "त्योहार और छुट्टियों पर समय बदल सकता है।",
   },

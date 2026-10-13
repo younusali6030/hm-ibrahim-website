@@ -129,7 +129,7 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
 /** Category-specific "why buy here" lines. Facts only: counter, brands, retail and wholesale. */
 const whyUsByCategory: Record<string, string> = {
   "structural-items":
-    "We have sold steel sections and bars across the Siyaganj counter since 1939. Retail or wholesale, cut lists welcome, and we are an authorised Tata dealer for steel.",
+    "We have sold steel sections and bars across the Siyaganj counter since 1939. Retail or wholesale, cut lists welcome, and Tata steel is available on request.",
   "fencing-material":
     "CM and Border are our own fencing brands, and we also stock Tata Wiron. We have sold fencing wire and mesh across the Siyaganj counter since 1939, by the coil or by the truckload.",
   wiremesh:

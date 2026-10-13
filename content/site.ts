@@ -50,7 +50,7 @@ export const site = {
 
   /** Opening hours - editable. Format: "Day: Time" or "Day: Closed" */
   hours: {
-    weekdays: "Mon to Sat: 9 am to 8 pm",
+    weekdays: "Mon to Sat: 10 am to 8 pm",
     sunday: "Sunday: Closed",
     note: "Hours may vary on public holidays.",
   },
@@ -91,7 +91,7 @@ export const site = {
   authorizedDealer: {
     brand: "Tata",
     enabled: true,
-    note: "Authorised Tata dealer • Tata products available on request",
+    note: "Authorised Tata Wiron dealer (wire and fencing) • Other Tata products available on request",
   },
 
   /** Signature brands (CM, Border) for Barbed Wire & Chain Link Fencing */

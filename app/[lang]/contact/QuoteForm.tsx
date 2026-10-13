@@ -14,7 +14,7 @@ import { baseUrl } from "@/lib/site";
 import { stockedBrands } from "@/content/stockedBrands";
 import { submitQuote } from "./actions";
 import { trackQuoteRequest, trackContactSubmit, trackWhatsAppClick, trackCallClick } from "@/lib/analytics";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getWhatsAppLink, telHref } from "@/lib/utils";
 import { T, useT, useLang } from "@/lib/i18n";
 import { localePath } from "@/lib/locale";
 import { ShopStatus } from "@/components/visit/VisitUs";
@@ -127,6 +127,7 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
   const [file, setFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const optionalRef = useRef<HTMLDetailsElement>(null);
   // Today, in India, as YYYY-MM-DD: the earliest "needed by" date the picker offers.
   const today = new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
   const [honeypot, setHoneypot] = useState("");
@@ -219,6 +220,8 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
 
   function focusField(id: string) {
     const el = document.getElementById(id);
+    // Optional fields live in a collapsed section: open it so the error is visible.
+    if (el && optionalRef.current?.contains(el)) optionalRef.current.open = true;
     el?.focus();
     el?.scrollIntoView({ block: "center", behavior: "smooth" });
   }
@@ -336,7 +339,7 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
     }
   }
 
-  const tel = `tel:${site.phone.replace(/\s/g, "")}`;
+  const tel = telHref(site.phone);
   const inputCls = "mt-1.5 w-full min-h-[48px] text-base scroll-mb-32";
   const describe = (...ids: (string | false | undefined)[]) => ids.filter(Boolean).join(" ") || undefined;
 
@@ -423,8 +426,72 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
 
         <fieldset className="space-y-5">
           <legend className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            <T en="2. Delivery and timing (optional)" hi="2. डिलीवरी और समय (ज़रूरी नहीं)" />
+            <T en="2. How to reach you" hi="2. आपसे बात कैसे हो" />
           </legend>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <Label htmlFor="name">
+                <T en="Your name" hi="आपका नाम" />
+                <Req />
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                value={values.name}
+                onChange={set("name")}
+                autoComplete="name"
+                enterKeyHint="next"
+                className={inputCls}
+                aria-required="true"
+                aria-invalid={!!fieldErrors.name}
+                aria-describedby={describe(fieldErrors.name && "name-error")}
+              />
+              <FieldError id="name-error" message={fieldErrors.name} />
+            </div>
+            <div>
+              <Label htmlFor="phone">
+                <T en="Mobile number" hi="मोबाइल नंबर" />
+                <Req />
+              </Label>
+              <div className="relative mt-1.5">
+                <span
+                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-base font-semibold text-muted-foreground"
+                  aria-hidden="true"
+                >
+                  +91
+                </span>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel-national"
+                  value={values.phone}
+                  onChange={set("phone")}
+                  placeholder="98260 53563"
+                  className="min-h-[48px] w-full scroll-mb-32 pl-12 text-base"
+                  aria-required="true"
+                  aria-invalid={!!fieldErrors.phone}
+                  aria-describedby={describe(fieldErrors.phone && "phone-error")}
+                />
+              </div>
+              <FieldError id="phone-error" message={fieldErrors.phone} />
+            </div>
+          </div>
+        </fieldset>
+
+        <details
+          ref={optionalRef}
+          className="group rounded-sm border border-border bg-background/60"
+          data-optional-details
+        >
+          <summary className="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+            <span>
+              <T en="Add delivery details or a drawing (optional)" hi="डिलीवरी की जानकारी या ड्रॉइंग जोड़ें (ज़रूरी नहीं)" />
+            </span>
+            <span aria-hidden="true" className="text-lg leading-none transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div className="space-y-5 border-t border-border px-4 py-5">
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <Label htmlFor="delivery">
@@ -516,62 +583,6 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
             />
             <FieldError id="attachment-error" message={fileError ?? undefined} />
           </div>
-        </fieldset>
-
-        <fieldset className="space-y-5">
-          <legend className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            <T en="3. How to reach you" hi="3. आपसे बात कैसे हो" />
-          </legend>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <Label htmlFor="name">
-                <T en="Your name" hi="आपका नाम" />
-                <Req />
-              </Label>
-              <Input
-                id="name"
-                name="name"
-                value={values.name}
-                onChange={set("name")}
-                autoComplete="name"
-                enterKeyHint="next"
-                className={inputCls}
-                aria-required="true"
-                aria-invalid={!!fieldErrors.name}
-                aria-describedby={describe(fieldErrors.name && "name-error")}
-              />
-              <FieldError id="name-error" message={fieldErrors.name} />
-            </div>
-            <div>
-              <Label htmlFor="phone">
-                <T en="Mobile number" hi="मोबाइल नंबर" />
-                <Req />
-              </Label>
-              <div className="relative mt-1.5">
-                <span
-                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-base font-semibold text-muted-foreground"
-                  aria-hidden="true"
-                >
-                  +91
-                </span>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  inputMode="tel"
-                  autoComplete="tel-national"
-                  value={values.phone}
-                  onChange={set("phone")}
-                  placeholder="98260 53563"
-                  className="min-h-[48px] w-full scroll-mb-32 pl-12 text-base"
-                  aria-required="true"
-                  aria-invalid={!!fieldErrors.phone}
-                  aria-describedby={describe(fieldErrors.phone && "phone-error")}
-                />
-              </div>
-              <FieldError id="phone-error" message={fieldErrors.phone} />
-            </div>
-          </div>
           <div>
             <Label htmlFor="email">
               <T en="Email (optional)" hi="ईमेल (ज़रूरी नहीं)" />
@@ -593,7 +604,8 @@ export function QuoteForm({ tx = {} }: { tx?: Record<string, string> }) {
             />
             <FieldError id="email-error" message={fieldErrors.email} />
           </div>
-        </fieldset>
+          </div>
+        </details>
 
         {error && (
           <div id="quote-error" role="alert" className="rounded-sm border border-destructive/40 bg-destructive/10 p-4">

@@ -1,6 +1,6 @@
 ---
-title: "TMT Bar Weight Chart: 8 mm to 32 mm, and How to Check What You Were Sent"
-description: "TMT bar weight per metre and per piece for every common diameter, the formula behind it, and a simple way to check a delivery at the gate. From the counter at Siyaganj, Indore."
+title: "TMT Bar Weight Chart: 6–32 mm, and How to Check a Delivery"
+description: "TMT bar weight per metre and per piece for every common diameter, the formula behind it, and how to check a delivery against the paperwork. From the counter at Siyaganj, Indore."
 date: "2026-10-11"
 updated: "2026-10-12"
 category: "Structural steel"
@@ -11,11 +11,11 @@ image2Alt: "Gloved hand checking a bundle of steel bars"
 image3: "/blog/tmt-weight-1.webp"
 image3Alt: "A bundle of steel bars tied and laid out on the counter table for weighing"
 ---
-**Quick answer:** A TMT bar weighs diameter squared divided by 162, in kg per metre. A 12 mm bar is 0.889 kg per metre, so a 12 m bar is about 10.7 kg. Weigh five random one-metre pieces and compare with the chart.
+**Quick answer:** A TMT bar weighs diameter squared divided by 162, in kg per metre. A 12 mm bar is 0.889 kg per metre, so a 12 m bar is about 10.7 kg. Use the chart to estimate what a delivery should weigh, then check it against the weighing records.
 
 Every contractor in Indore has had the argument. The invoice says 2 tonnes. The truck feels light. Nobody wants to say it out loud.
 
-You do not need a weighbridge to settle this. You need a weight chart, a tape and ten minutes. This page gives you the chart and the method.
+This chart estimates theoretical weight per metre. Checking a sample can help identify a size or weight discrepancy; it does not establish the total weight of a truck delivery. Check the delivery quantity against the weighing records and compare any sample result with the applicable product standard and manufacturer's documentation.
 
 ## The formula
 
@@ -42,14 +42,13 @@ Some charts print 0.888 kg per metre because they cut the decimals instead of ro
 
 IS 1786 allows a small tolerance on mass, so a real bar can sit a little under or over these numbers. A bar that is clearly lighter on every piece is not within tolerance.
 
-## How to check a delivery in ten minutes
+## How to check a delivery
 
-1. **Pick five bars at random** from different bundles. Do not let the loader pick them.
-2. **Cut one metre** from the end of each, or measure and mark it.
-3. **Weigh the pieces together** on any shop scale, then divide by five.
-4. **Compare with the chart.** A 12 mm piece should be close to 0.89 kg.
+1. **Total weight:** compare the invoiced quantity with the weighing records for the vehicle (the loaded and empty weight slips). A chart cannot settle the total of a truck.
+2. **Size and count:** check the diameter and the number of bars in each bundle against the invoice and the bundle tags.
+3. **Sample, if needed:** a sample can show that a size or weight is off. The sampling method, the scale and the permitted tolerance should be agreed with your engineer or the supplier and checked against IS 1786 and the manufacturer's documentation.
 
-If your average is more than a few percent under, stop unloading and call the supplier. Photograph the bundle tags before you do.
+If something does not match, stop unloading and call the supplier. Photograph the bundle tags and the weight slips first.
 
 ## Read the bar, not just the paper
 
@@ -93,7 +92,7 @@ The D stands for ductile. These bars stretch more before breaking and have bette
 Yes. Bars are sold by weight, and a few pieces are fine for a small job. Tell us the diameter and the length.
 
 **How do I know a TMT bar is genuine?**  
-Look for the maker's name, grade and size rolled into the bar, ask for the bundle tag, and weigh a sample against the chart.
+Look for the maker's name, grade and size rolled into the bar, ask for the bundle tag, and compare the size and weight with the chart and the manufacturer's documentation.
 
 ## Related reading
 
@@ -102,4 +101,4 @@ Look for the maker's name, grade and size rolled into the bar, ask for the bundl
 - [Concrete cover blocks](/blog/concrete-cover-blocks-why-cover-matters-slab-beam-column)
 - [Wire gauge chart](/blog/wire-gauge-chart-swg-bwg-mm-guide)
 
-*Last verified: 12 October 2026. The table and the formula were recalculated and checked against our current product list.*
+*The table and the formula were recalculated and compared with our product list on 12 October 2026. This is a catalogue check, not an independent technical review.*

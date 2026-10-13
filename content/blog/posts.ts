@@ -5,7 +5,7 @@
 
 import path from "path";
 import fs from "fs/promises";
-import matter from "gray-matter";
+import { parseFrontMatter as matter } from "@/lib/frontMatter";
 import type { Lang } from "@/lib/locale";
 
 export type BlogPost = {
@@ -21,6 +21,9 @@ export type BlogPost = {
   /** Extra images shown below hero (1–2). Optional. */
   image2?: string;
   image2Alt?: string;
+  /** Index of the `##` section after which image2 / image3 sit (default 1 and 3). */
+  image2At?: number;
+  image3At?: number;
   image3?: string;
   image3Alt?: string;
   /** Last edit date (ISO). Falls back to `date`. */
@@ -109,6 +112,8 @@ export async function getPostBySlug(slug: string, lang: Lang = "en"): Promise<Bl
       imagePosition: (data.imagePosition as string) || undefined,
       image2: (data.image2 as string) || undefined,
       image2Alt: (data.image2Alt as string) || undefined,
+      image2At: typeof data.image2At === "number" ? data.image2At : undefined,
+      image3At: typeof data.image3At === "number" ? data.image3At : undefined,
       image3: (data.image3 as string) || undefined,
       image3Alt: (data.image3Alt as string) || undefined,
       updated: (data.updated as string) || undefined,

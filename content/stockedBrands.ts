@@ -1,6 +1,8 @@
 /**
  * Brands we stock. Used for "Brands We Stock" section and messaging.
- * Only set isAuthorized: true for brands we are truly authorised dealers for.
+ * Only set isAuthorized: true for brands whose dealer authorisation is documented. Tata is split by scope:
+ * Tata Wiron (wire and fencing) is the documented authorised line, see content/brands.ts; other Tata steel is stocked
+ * or obtained on request, and is not described as an authorised-dealer relationship until a document says so.
  */
 
 export type StockedBrand = {
@@ -16,8 +18,8 @@ export const stockedBrands: StockedBrand[] = [
   {
     name: "Tata",
     specialty: "Steel products, TMT bars",
-    note: "Authorised dealer. Tata products available on request.",
-    isAuthorized: true,
+    note: "Tata steel products available on request. Authorised for Tata Wiron wire and fencing.",
+    isAuthorized: false,
     categoryTags: ["structural-items", "tmt-bars"],
   },
   {

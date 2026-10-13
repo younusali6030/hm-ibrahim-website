@@ -41,7 +41,7 @@ FRP (fibre reinforced polymer) bar is made of glass fibre set in resin. It looks
 | Stirrups and bent shapes | TMT | FRP cannot be bent on site |
 | Sewage, drain covers, septic tanks | FRP | No rust in wet, chemical conditions |
 | Seawall, jetty, salty environments | FRP | Does not corrode |
-| Compound wall pillars | FRP or TMT | Either works at this scale |
+| Compound wall pillars | Depends on the design | Either material needs a suitable design and detailing. Ask your engineer |
 | Fence posts for barbed wire and mesh | FRP | Light, no rust, easy to carry and set |
 | Near sensitive electrical equipment | FRP | Non-conductive |
 
@@ -49,7 +49,7 @@ FRP (fibre reinforced polymer) bar is made of glass fibre set in resin. It looks
 
 Much of the FRP we sell goes to farms. A 4, 5 or 6 foot FRP rod makes a post that does not rust in the soil, weighs next to nothing and is driven in by hand. Strung with [barbed wire](/products/barbed-wire) or [jhatka wire](/products/jhatka-machine-fencing-wire), it is a clean fence for orchards and fields. This is why FRP also sits in our [fencing material](/categories/fencing-material) range.
 
-Common lengths and weights in our stock: 4 ft (about 530 g), 5 ft (about 660 g) and 6 ft (about 790 g).
+Common lengths in our stock are 4 ft, 5 ft and 6 ft. The weights we have on file for a post rod (about 530 g, 660 g and 790 g) belong to a particular diameter and model, which we confirm when you ask. They do not apply across the 6 mm to 20 mm range.
 
 ## What to ask before you buy
 

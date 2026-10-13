@@ -46,7 +46,7 @@ TMT bar rates in Indore depend on diameter, grade, quantity, and market. Larger 
 
 ## Where to Buy TMT Bars in Indore
 
-We stock TMT bars in several sizes and grades at Siyaganj, and we are an authorised Tata dealer for steel. Visit us or send your list and we will check stock and call back with the rate.
+We stock TMT bars in several sizes and grades at Siyaganj, and Tata steel is available on request. Visit us or send your list and we will check stock and call back with the rate.
 
 See [Structural Items](/categories/structural-items) for TMT bars and related products like [MS Angles](/products/ms-angles) and [MS Flats](/products/ms-flats).
 
@@ -67,9 +67,9 @@ For TMT bars in Indore, Siyaganj, or Loha Mandi, request a quote with diameter, 
 
 ## Related reading
 
-- [TMT bar weight chart: 8 mm to 32 mm](/blog/tmt-bar-weight-chart-size-guide-indore)
+- [TMT bar weight chart: 6–32 mm](/blog/tmt-bar-weight-chart-size-guide-indore)
 - [FRP bars vs TMT bars](/blog/frp-bars-vs-tmt-bars-where-each-belongs)
 - [Concrete cover blocks](/blog/concrete-cover-blocks-why-cover-matters-slab-beam-column)
 - [Binding wire (kala taar)](/products/binding-wire)
 
-*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*
+*Sizes, gauges and ranges on this page were compared with our product list on 12 October 2026. This is a catalogue check, not an independent technical review.*

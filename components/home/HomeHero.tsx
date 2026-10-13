@@ -165,7 +165,7 @@ export function HomeHero() {
           <T en="Iron, wire & mesh" hi="लोहा, तार और जाली" />
           <span className="hh-title-sub"><T en="from Siyaganj." hi="सियागंज से।" /></span>
         </h1>
-        <p className="hh-sub"><T en="Retail and wholesale. Every roll cut to your size while you wait." hi="रिटेल और थोक। हर रोल आपकी नाप से, आपके सामने कटता है।" /></p>
+        <p className="hh-sub"><T en="Retail and wholesale from Siyaganj, Indore. Send your sizes and quantities for a quote." hi="सियागंज, इंदौर से रिटेल और थोक। अपने साइज़ और मात्रा भेजिए, हम कोटेशन देंगे।" /></p>
 
         <div className="hh-row">
           <div className="hh-cta">

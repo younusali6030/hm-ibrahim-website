@@ -3,7 +3,7 @@
 import Link from "@/components/LocaleLink";
 import { site } from "@/content/site";
 import { categories } from "@/content/products";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getWhatsAppLink, telHref } from "@/lib/utils";
 import { PageHero, btnMain, btnGhostDark } from "@/components/site/PageHero";
 import { SectionHead } from "@/components/story/SectionHead";
 import { T, useT } from "@/lib/i18n";
@@ -13,7 +13,7 @@ import "@/components/story/story.css";
 export default function NotFound() {
   const t = useT();
   const hi = t("en", "hi") === "hi";
-  const tel = `tel:${site.phone.replace(/\s/g, "")}`;
+  const tel = telHref(site.phone);
   return (
     <>
       <PageHero
@@ -54,7 +54,7 @@ export default function NotFound() {
 
       <section className="st-sec st-sec-tint pb-28 md:pb-20" aria-labelledby="nf-ask">
         <div className="page-container">
-          <SectionHead eyebrow={t("Ask the counter", "काउंटर से पूछिए")} id="nf-ask" title={t("Still not found?", "अब भी नहीं मिला?")} lede={t("Tell us what you were looking for. Mon to Sat, 9 am to 8 pm.", "बताइए आप क्या ढूँढ रहे थे। सोम से शनि, 9 से 8।")} />
+          <SectionHead eyebrow={t("Ask the counter", "काउंटर से पूछिए")} id="nf-ask" title={t("Still not found?", "अब भी नहीं मिला?")} lede={t("Tell us what you were looking for. Mon to Sat, 10 am to 8 pm.", "बताइए आप क्या ढूँढ रहे थे। सोम से शनि, 10 से 8।")} />
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a href={tel} className={btnMain}>
               <T en={`Call ${site.phone}`} hi={`कॉल करें ${site.phone}`} />

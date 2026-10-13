@@ -37,7 +37,7 @@ India mainly uses SWG (Standard Wire Gauge, also called Imperial). BWG (Birmingh
 | 20 | 0.91 | 0.89 |
 | 22 | 0.71 | 0.71 |
 
-Always confirm which gauge system your supplier uses, or ask for the diameter in millimetres. A micrometer or vernier caliper settles it in seconds.
+Always confirm which gauge system your supplier uses, or ask for the diameter in millimetres. Our product pages use SWG unless a line says BWG or gives millimetres; barbed wire is written "12 x 14" for line wire × barb wire, both in SWG. A micrometer or vernier caliper settles it in seconds.
 
 ## What gauge for what job
 
@@ -49,9 +49,8 @@ Always confirm which gauge system your supplier uses, or ask for the diameter in
 | Barbed wire | 12 to 14 SWG, two strands twisted |
 | Jhatka machine wire | 12 to 14 SWG high tensile |
 | Binding for mesh and cages | 18 to 20 SWG |
-| Heavy tie-downs, hanging | 8 to 10 SWG GI |
 
-These are the usual ranges. A designer or the project specification can ask for something different.
+These are the usual ranges for tying and fencing. They are not load ratings: wire is not a substitute for a rated hanging, lifting or tie-down assembly, and a designer or the project specification can ask for something different.
 
 ## GI, black and annealed: what the finish means
 
@@ -104,4 +103,4 @@ Sites commonly budget about 8 to 10 kg per tonne of rebar. Your engineer's bar s
 - [GI wire in Indore](/indore/gi-wire)
 - [TMT bar weight chart](/blog/tmt-bar-weight-chart-size-guide-indore)
 
-*Last verified: 12 October 2026. The table and the formula were recalculated and checked against our current product list.*
+*The table and the formula were recalculated and compared with our product list on 12 October 2026. This is a catalogue check, not an independent technical review.*

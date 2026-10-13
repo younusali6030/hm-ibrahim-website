@@ -39,7 +39,7 @@ const CHAPTERS: ChapterData[] = [
     id: "perforated",
     kicker: "Sheets",
     title: "Perforated sheet, cut to size",
-    body: "MS and GI sheets in round, square and slotted holes. Cut to size while you wait.",
+    body: "MS and GI sheets in round, square and slotted holes. Cut to size at the counter.",
     facts: ["MS and GI", "Many hole patterns", "Cut to size"],
     href: "/categories/perforated-sheets",
     cta: "See perforated sheets",
@@ -91,7 +91,7 @@ const HI: Record<string, Pick<ChapterData, "kicker" | "title" | "body" | "facts"
   perforated: {
     kicker: "शीट",
     title: "परफोरेटेड शीट, नाप से कटी",
-    body: "गोल, चौकोर और स्लॉट छेदों वाली एमएस और जीआई शीट। दुकान के बाहर आपके सामने कटती है।",
+    body: "गोल, चौकोर और स्लॉट छेदों वाली एमएस और जीआई शीट। काउंटर पर नाप से काटी जाती है।",
     facts: ["एमएस और जीआई", "छेदों के कई पैटर्न", "नाप से कटाई"],
     cta: "परफोरेटेड शीट देखें",
   },

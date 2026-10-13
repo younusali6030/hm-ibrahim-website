@@ -8,6 +8,7 @@ import { getWhatsAppLink } from "@/lib/utils";
 import { stockedBrands } from "@/content/stockedBrands";
 import { brandPageVisuals } from "@/content/brandPages";
 import { categories, getProductBySlug } from "@/content/products";
+import { compareBrands } from "@/components/product/specSheet";
 import { getBrandById, type BrandId } from "@/content/brands";
 import { PageHero, btnMain, btnGhostDark, btnGhost } from "@/components/site/PageHero";
 import { GaugeRule, StencilTag } from "@/components/motif/Motif";
@@ -41,19 +42,14 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
 
 const waLink = (message: string) => getWhatsAppLink(site.whatsapp, message);
 
-/** One row per spec label, one column per brand, straight from the catalog's brand variants. */
-const COMPARE_LABELS = [
-  { label: "Chain link mesh opening", name: "Mesh opening", hi: "जाली का खाना" },
-  { label: "Wire size", name: "Wire size", hi: "तार का साइज़" },
-  { label: "Heights", name: "Roll heights", hi: "रोल की ऊँचाई" },
-  { label: "Finish", name: "Finish", hi: "फिनिश" },
-] as const;
-
-function compareCell(brandId: BrandId, label: string) {
-  return getProductBySlug("chain-link-fencing")
-    ?.brandVariants?.find((v) => v.brandId === brandId)
-    ?.specs?.find((s) => s.label === label)?.value;
-}
+/**
+ * One row per common field, one column per brand, from the catalogue's brand variants through the same field
+ * normaliser the product page uses ("Roll height" and "Height" are one row). The stocked Tata configuration is its own row.
+ */
+const COMPARE_FIELDS = ["Opening", "Wire size", "Height", "Length", "Finish", "Pack type", "Stocked configuration"];
+const chainLinkVariants = getProductBySlug("chain-link-fencing")?.brandVariants ?? [];
+const compareRows = compareBrands(chainLinkVariants).filter((r) => COMPARE_FIELDS.includes(r.label));
+const compareCol = (brandId: BrandId) => chainLinkVariants.findIndex((v) => v.brandId === brandId);
 
 const wironProducts = Array.from(
   new Map(
@@ -186,14 +182,17 @@ export default async function BrandsPage(props: { params: Promise<{ lang: string
                 </tr>
               </thead>
               <tbody>
-                {COMPARE_LABELS.map((r) => (
+                {compareRows.map((r) => (
                   <tr key={r.label} className="border-t border-border">
-                    <th scope="row" className="px-4 py-3 font-medium text-muted-foreground">{hi ? r.hi : r.name}</th>
-                    {cols.map((c) => (
-                      <td key={c.id} className="px-4 py-3 text-foreground">
-                        {((v) => (v ? localize(v, lang) : undefined))(compareCell(c.id, r.label)) ?? <span className="text-muted-foreground">{t("Ask us", "हमसे पूछें")}</span>}
-                      </td>
-                    ))}
+                    <th scope="row" className="px-4 py-3 font-medium text-muted-foreground">{hi ? r.hi ?? r.label : r.label}</th>
+                    {cols.map((c) => {
+                      const v = r.values[compareCol(c.id)];
+                      return (
+                        <td key={c.id} className="px-4 py-3 text-foreground">
+                          {v ? localize(v, lang) : <span className="text-muted-foreground">{t("Ask us", "हमसे पूछें")}</span>}
+                        </td>
+                      );
+                    })}
                   </tr>
                 ))}
               </tbody>

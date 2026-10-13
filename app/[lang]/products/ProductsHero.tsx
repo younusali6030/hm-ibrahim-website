@@ -240,17 +240,17 @@ export function ProductsHero({ eyebrow, title, lede, actions, items }: Props) {
     <section className="relative isolate overflow-hidden bg-nav text-white" onKeyDown={onKey} aria-label={t("Product range", "प्रोडक्ट रेंज")}>
       <div className="relative">
         {/* Copy. Pointer events pass through to the scene except on the actions. */}
-        <div className="page-container pointer-events-none relative z-10 py-8 md:py-14 lg:flex lg:min-h-[clamp(580px,74vh,720px)] lg:items-center">
+        <div className="page-container pointer-events-none relative z-10 py-6 md:py-9 lg:flex lg:min-h-[clamp(380px,46vh,460px)] lg:items-center">
           <div className="min-w-0 lg:max-w-[min(46%,40rem)]">
             <p className="flex items-center gap-3 font-mono-brand text-xs uppercase tracking-[0.16em] text-white/60">
               <span className="h-px w-8 bg-primary" aria-hidden="true" />
               {eyebrow}
             </p>
-            <h1 className="mt-3 text-white" style={{ fontSize: "clamp(2.3rem, 4.6vw, 4.5rem)" }}>
+            <h1 className="mt-3 text-white" style={{ fontSize: "clamp(2rem, 3.6vw, 3.4rem)" }}>
               {title}
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/80">{lede}</p>
-            <div className="pointer-events-auto mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">{actions}</div>
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-white/80 md:mt-4 md:text-lg">{lede}</p>
+            <div className="pointer-events-auto mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">{actions}</div>
           </div>
         </div>
 
@@ -278,7 +278,7 @@ export function ProductsHero({ eyebrow, title, lede, actions, items }: Props) {
           }
           onClick={interactive ? onClick : undefined}
           style={{ touchAction: "pan-y", cursor: interactive ? (picked ? "grab" : hovered ? "pointer" : undefined) : undefined }}
-          className="relative z-0 h-[clamp(380px,128vw,620px)] w-full lg:absolute lg:inset-y-0 lg:left-[33%] lg:right-0 lg:h-auto lg:w-auto"
+          className="relative z-0 h-[clamp(220px,62vw,320px)] w-full lg:absolute lg:inset-y-0 lg:left-[33%] lg:right-0 lg:h-auto lg:w-auto"
         >
           <div
             className="absolute inset-0 [mask-image:linear-gradient(180deg,transparent_0,#000_16%,#000_88%,transparent_100%)] lg:[-webkit-mask-composite:source-in] lg:[mask-composite:intersect] lg:[mask-image:linear-gradient(90deg,transparent_0,rgba(0,0,0,0.5)_10%,#000_26%,#000_100%),linear-gradient(180deg,transparent_0,#000_12%,#000_86%,transparent_100%)]"

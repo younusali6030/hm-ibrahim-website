@@ -24,6 +24,8 @@ Three numbers and one choice describe every perforated sheet. Learn them and you
 2. **Pitch (p).** The distance between the centres of two neighbouring holes.
 3. **Thickness (t).** The thickness of the sheet, in mm or in gauge.
 
+Pitch is centre to centre, so a 5 mm pitch is not a 5 mm opening: the clear opening is the hole size (d). Always say which one you mean.
+
 The solid strip between two holes is called the bridge. Pitch minus hole size gives you the bridge width. A bridge narrower than the sheet thickness makes a weak, wavy sheet.
 
 ## The one choice: straight or staggered
@@ -50,16 +52,20 @@ Worked example. 5 mm holes at 8 mm pitch, staggered: (5 ÷ 8)² = 0.39, so open 
 | 10 mm | 15 mm | Staggered | 40% |
 | 10 mm | 15 mm | Straight | 35% |
 
+## Open area is not a safety rating
+
+Open area tells you how much air or light passes. It does not tell you whether a sheet is suitable as a machine guard. A guard must meet the machine's own safety requirements for opening size and distance from the hazard. Have a competent person specify that before you order.
+
 ## Which pattern for which job
 
 | Job | Pattern | Why |
 |---|---|---|
 | Ventilation grille, cooler panel | Round, staggered, high open area | Maximum airflow |
-| Machine guard | Round or square, 30 to 40% open | Safe and visible |
+| Machine guard | Chosen to the machine's guarding rules | Open area does not decide guard suitability (see below) |
 | Screen or partition | Round, small holes | Privacy and light |
 | Facade and decorative panels | Mix of sizes, designer pattern | Look |
 | Sieve, filter, grain cleaning | Round or slot, matched to particle | Size control |
-| Acoustic panel | Small holes, 20 to 30% open | Sound passes through, dampens |
+| Acoustic panel | Small holes, matched to the acoustic design | Performance depends on the backing and the design, not open area alone |
 
 ## Material and thickness
 

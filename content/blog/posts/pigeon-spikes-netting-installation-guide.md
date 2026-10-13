@@ -17,7 +17,7 @@ Pigeons are a nuisance on ledges, ducts and balconies in Indore and nearby areas
 
 ## Pigeon Spikes (Bird Spikes)
 
-Pigeon spikes are strips of plastic or stainless steel with upward-pointing spikes. They are fixed on ledges, parapets, sign boards, and beams so birds cannot land. They don't harm birds but discourage perching.
+Pigeon spikes are strips of plastic or stainless steel with upward-pointing spikes. They are fixed on ledges, parapets, sign boards, and beams so birds cannot land. They are designed to discourage perching, not to injure birds.
 
 - **Plastic spikes:** UV-stabilised; economical; suitable for most ledges.
 - **SS (stainless steel) spikes:** Stronger and more durable; used where appearance or long life matters.
@@ -47,12 +47,12 @@ Projects in Dewas, Pithampur, and Ujjain also use spikes and netting for similar
 ## Installation Basics
 
 **Spikes:**  
-- Clean the surface. Use adhesive (recommended by manufacturer) or cable ties to fix the spike strip. Ensure full coverage so birds can't land between strips.
+- Clean the surface and fix the strip the way the spike maker specifies for that surface (adhesive, screws or clips). Cover the whole ledge so there is no gap to land in.
 
 **Netting:**  
-- Measure the opening. Fix hooks or frame at the perimeter. Stretch and attach the net. Keep tension even so it doesn't sag.
+- Measure the opening. Fix hooks or a frame at the perimeter with anchors suited to the wall and the net maker's instructions. Stretch and attach the net, keeping the tension even.
 
-For large or high areas, consider professional installers. We can suggest the fixing method; installers are usually found locally.
+We supply the spikes and nets; we do not install them. For large or high areas use a professional installer. We can describe the product's fixing method; the installer decides the method for your site.
 
 ## What Affects Price?
 
@@ -71,10 +71,10 @@ For construction safety, see [Safety Net](/products/safety-net). For full range,
 Spikes suit ledges and flat surfaces where you want to prevent perching. Netting suits openings like balconies and ducts where you need to block entry.
 
 **Do spikes harm birds?**  
-No. They only make landing uncomfortable so birds move elsewhere.
+They are designed to make landing uncomfortable, not to injure. A damaged or badly fitted strip can still hurt birds, so fit it as the maker directs and check it.
 
 **Can I install pigeon spikes myself?**  
-Yes, on low ledges with adhesive or cable ties. For high or large areas, professional installation is safer.
+On a low, easy-to-reach ledge, yes, using the maker's fixing method. For high or large areas, use a professional installer.
 
 ## Request a Quote in Indore / Siyaganj
 

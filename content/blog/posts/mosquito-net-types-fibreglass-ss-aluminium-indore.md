@@ -25,7 +25,7 @@ The material you pick decides how long the net lasts and what it does for your a
 The everyday choice for house windows. Woven glass fibre strands are coated in PVC, so the mesh is soft, light and cannot rust. It cuts with ordinary scissors and fits into a plastic or aluminium frame with a spline.
 
 - **Good for:** bedrooms, living rooms, normal window frames.
-- **Watch for:** tears from pets, sharp objects or children. It sags if the frame is not pulled tight.
+- **Watch for:** tears from pets or sharp objects. It sags if the frame is not pulled tight.
 - **Colours:** grey, black, green and white.
 
 ### Stainless steel (SS) wire mesh
@@ -38,7 +38,7 @@ Fine woven steel wire. Much tougher than fibreglass. It resists chewing, cats an
 
 ### Aluminium wire mesh
 
-Soft, bright and does not rust. It is lighter than steel and a good middle option.
+Soft, bright and does not rust like steel. It is lighter than steel and a good middle option.
 
 - **Good for:** humid rooms and balconies where rust is the problem.
 - **Watch for:** it dents and creases more easily than steel.
@@ -50,7 +50,7 @@ Mild steel with a zinc coat. The cheapest metal option and the usual choice for 
 
 - **Good for:** desert coolers, godowns, vents, areas where cost matters more than looks.
 - **Watch for:** the zinc coat wears. Near the sea or in a damp bathroom it will rust in a few seasons.
-- See [GI wiremesh](/products/gi-wiremesh).
+- For insect screening see [mosquito net](/products/mosquito-net) (fine count, cut to your window). The [GI wiremesh](/products/gi-wiremesh) page is the coarse 15–100 mm range, not insect mesh.
 
 ## Mesh count: what 16 x 16 means
 
@@ -68,7 +68,7 @@ Ask the shop to show the roll labelled. If a seller cannot tell you the count, d
 
 | | Fibreglass | SS | Aluminium | GI |
 |---|---|---|---|---|
-| Rust | No | No | No | Yes, over time |
+| Rust | Does not rust | Resists rust; depends on grade and conditions | Does not rust; can corrode in harsh conditions | Yes, over time |
 | Strength | Low | High | Medium | High |
 | Cost | Low | High | Medium | Low |
 | Airflow | Good | Good | Good | Good |
@@ -87,7 +87,7 @@ We keep fibreglass, SS, aluminium and GI rolls at the counter and will cut to yo
 ## FAQs
 
 **Which mosquito net lasts longest in Indore?**  
-Stainless steel mesh lasts longest. Fibreglass lasts several seasons with care. GI mesh near damp areas rusts first.
+Stainless steel mesh of a suitable grade usually lasts longest, though life depends on the grade and the conditions. Fibreglass lasts several seasons with care. GI mesh near damp areas rusts first.
 
 **Can I fit a mosquito net myself?**  
 Yes. A frame, a spline roller and scissors are enough for a window. Pull the mesh evenly, and trim after the spline is in.
@@ -99,7 +99,7 @@ Yes. A frame, a spline roller and scissors are enough for a window. Pull the mes
 Yes. We cut on the counter by the metre or by the piece.
 
 **Is fibreglass mesh safe for children?**  
-It is non-toxic. It is also soft and can tear, so pick SS for the lower floor windows children lean on.
+Insect mesh is for insect screening. It is not a child fall-prevention barrier. Where fall protection is needed, use appropriate window guards or another purpose-designed system.
 
 ## Related reading
 

@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
-    "prebuild": "node --no-warnings scripts/update-lastmod.mjs",
+    "prebuild": "node --no-warnings scripts/update-lastmod.mjs && node --no-warnings scripts/build-llms.mjs",
     "build": "next build",
     "lastmod:check": "node --no-warnings scripts/update-lastmod.mjs --check",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --test --no-warnings \"tests/*.test.mjs\""
+    "test": "node --test --no-warnings \"tests/*.test.mjs\"",
+    "test:smoke": "node --test --no-warnings \"tests/smoke/*.test.mjs\""
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.2",
@@ -25,7 +26,6 @@
     "framer-motion": "^11.11.17",
     "google-auth-library": "^10.5.0",
     "google-spreadsheet": "^5.2.0",
-    "gray-matter": "^4.0.3",
     "lucide-react": "^0.460.0",
     "next": "^16.4.0",
     "nodemailer": "^10.1.0",
@@ -47,6 +47,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.0",
     "ffmpeg-static": "^5.3.0",
+    "playwright-core": "^1.49.1",
     "postcss": "^8.4.49",
     "sharp": "^0.35.5",
     "tailwindcss": "^3.4.15",

@@ -1,9 +1,13 @@
+import type { ReactNode } from "react";
 import Link from "@/components/LocaleLink";
+import NextLink from "next/link";
+import { ContextQuoteLinks } from "@/components/product/ContextQuoteLinks";
+import { sheetKind } from "@/components/product/specSheet";
+import { enquiryFields } from "@/lib/enquiry";
 import type { ProductSeoContent as ProductSeoContentType } from "@/content/productSeoContent";
 import type { ProductWithCategory } from "@/content/products";
 import type { Category } from "@/content/products";
 import { getCategoryBySlug } from "@/content/products";
-import { site } from "@/lib/site";
 import { tt, type Lang } from "@/lib/locale";
 
 type Props = {
@@ -12,6 +16,8 @@ type Props = {
   category: Category | null;
   relatedProducts: ProductWithCategory[];
   relatedBlogPosts: { slug: string; title: string; lang?: Lang }[];
+  /** Two or three shop reviews, placed after the FAQs and before the related links. */
+  reviews?: ReactNode;
   lang?: Lang;
 };
 
@@ -21,6 +27,7 @@ export function ProductSeoContent({
   category,
   relatedProducts,
   relatedBlogPosts,
+  reviews,
   lang = "en",
 }: Props) {
   const t = tt(lang);
@@ -106,6 +113,8 @@ export function ProductSeoContent({
         </div>
       </details>
 
+      {reviews}
+
       {(relatedProducts.length > 0 || relatedBlogPosts.length > 0) && (
         <section className="border-t border-border pt-8">
           <h2 className="mb-3 font-display text-2xl font-extrabold uppercase leading-none text-foreground">{t("Related products and reading", "संबंधित उत्पाद और पढ़ने की सामग्री")}</h2>
@@ -128,35 +137,39 @@ export function ProductSeoContent({
               </Link>
             ))}
             {relatedBlogPosts.map((b) => (
-              <Link
-                key={b.slug}
-                href={`/blog/${b.slug}`}
-                // A guide that has no Hindi edition keeps its English title; mark it so screen readers switch voice.
-                lang={b.lang && b.lang !== lang ? b.lang : undefined}
-                className="inline-flex min-h-[44px] items-center border-b border-border py-2 text-sm text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                {b.title}
-              </Link>
+              b.lang && b.lang !== lang ? (
+                // No Hindi edition: link the English guide directly and say so, instead of a Hindi URL with English text.
+                <NextLink
+                  key={b.slug}
+                  href={`/blog/${b.slug}`}
+                  hrefLang="en"
+                  lang="en"
+                  className="inline-flex min-h-[44px] items-center border-b border-border py-2 text-sm text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  {b.title}
+                  <span lang="hi" className="ml-2 text-xs text-muted-foreground">(अंग्रेज़ी में उपलब्ध)</span>
+                </NextLink>
+              ) : (
+                <Link
+                  key={b.slug}
+                  href={`/blog/${b.slug}`}
+                  className="inline-flex min-h-[44px] items-center border-b border-border py-2 text-sm text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  {b.title}
+                </Link>
+              )
             ))}
           </div>
         </section>
       )}
 
-      <p className="text-sm text-muted-foreground">
-        {t("Request a quote in Indore or Siyaganj:", "इंदौर या सियागंज में कोटेशन माँगें:")}{" "}
-        <Link href="/contact" className="inline-flex min-h-[44px] items-center text-primary underline underline-offset-4">
-          {t("Request a Quote", "कोटेशन माँगें")}
-        </Link>
-        {" · "}
-        <a
-          href={`https://wa.me/${site.whatsapp}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex min-h-[44px] items-center text-primary underline underline-offset-4"
-        >
-          {t("WhatsApp", "व्हाट्सएप")}
-        </a>
-      </p>
+      <ContextQuoteLinks
+        productSlug={product.slug}
+        productName={product.name}
+        categorySlug={product.categorySlug}
+        fields={enquiryFields(sheetKind(product))}
+        lang={lang}
+      />
     </div>
   );
 }

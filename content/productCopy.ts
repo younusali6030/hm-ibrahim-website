@@ -127,13 +127,13 @@ export const productCopy: Record<string, ProductCopy> = {
 
   // ---------------------------------------------------------------- Wiremesh
   "ms-wiremesh": c(
-    "MS wiremesh is woven or welded mild steel wire in a square grid. It is the cheapest mesh we sell and it is meant for indoor or painted use. Openings run from 15 mm to 150 mm.",
+    "MS wiremesh is square-grid mild steel wire mesh. It is the cheapest mesh we sell and it is meant for indoor or painted use. Openings run from 15 mm to 150 mm. Whether a given roll is woven or welded is confirmed with the rate; see MS weldmesh for welded rolls and panels.",
     "Fabricators use it for guards, partitions, trays and cages inside buildings. It is also used for screening and as a base for plaster work indoors.",
     "Specify the opening, the wire thickness and the roll or panel size. If the mesh will see rain or damp, choose GI or PVC-coated mesh instead of MS, or paint it after fixing.",
     "The rate depends on the opening, the wire gauge, the roll size and the quantity. A smaller opening and a thicker wire mean more steel and a higher rate. Ask us with the grid and the area.",
     [
       ["Will MS wiremesh rust?", "Yes, if it stays wet. Use it indoors or paint it. For outdoor use choose GI or PVC-coated mesh."],
-      ["What openings do you keep?", "15 x 15 mm, 50 x 50 mm, 75 x 75 mm, 100 x 100 mm and 150 x 150 mm, as per stock."],
+      ["What openings do you keep?", "15 x 15 mm, 25 x 25 mm, 50 x 50 mm, 75 x 75 mm, 100 x 100 mm and 150 x 150 mm, as per stock."],
     ],
     ["wire-mesh-supplier-indore-types-uses-prices", "welded-wire-mesh-vs-chain-link"],
     ["gi-wiremesh", "ms-weldmesh", "crimp-wiremesh"]
@@ -206,7 +206,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "Tell us the aperture in mesh count or mm, the wire diameter and the width. For ordinary windows fibreglass or aluminium mosquito mesh is cheaper. Pay for stainless where corrosion, heat or rats are the problem.",
     "Stainless costs more than GI or MS. The rate depends on the grade of steel, the mesh count, the wire diameter and the width. Ask us with the mesh and the area.",
     [
-      ["Is SS mesh good for mosquito screens?", "Yes. It does not rust, it is hard to cut, and it keeps its shape for years."],
+      ["Is SS mesh good for mosquito screens?", "Yes, it is used for insect screens. SS 304 resists rust well in most home conditions, it is hard to cut, and it holds its shape. Life depends on the conditions."],
       ["Which grade of stainless do you supply?", "SS 304."],
     ],
     ["mosquito-net-types-fibreglass-ss-aluminium-indore"],
@@ -324,7 +324,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "The rate depends on the gauge, the zinc coat, the coil weight and the market. It is sold by weight. Ask us with the gauge and the kg.",
     [
       ["What is the difference between GI wire and binding wire?", "GI wire is galvanised and hard for outdoor use. Binding wire is black annealed wire, soft and easy to twist, for tying rebar."],
-      ["Do you stock Tata Wiron GI wire?", "Yes, as an authorised Tata dealer. Ask for the gauge you need."],
+      ["Do you stock Tata Wiron GI wire?", "Yes, as an authorised Tata Wiron dealer. Ask for the size you need."],
       ["How many metres are in a kg of GI wire?", "It depends on the gauge. A 12 SWG wire is about 23 m per kg."],
     ],
     ["wire-gauge-chart-swg-bwg-mm-guide", "gi-wire-vs-ms-wire-binding-fencing", "best-practices-storing-steel-wire-warehouse"],
@@ -448,11 +448,11 @@ export const productCopy: Record<string, ProductCopy> = {
     ["sr-crowbar", "sr-pickaxe-geti", "santing-shikanja"]
   ),
   "sr-hoe-faurdha": c(
-    "The hoe, called faurdha or phawda, is a digging and weeding tool with a flat steel blade. We stock the SR brand blade, which is fitted with a handle after purchase.",
+    "The shovel, called faurdha or phawda, is a digging and levelling tool with a flat steel blade. We stock the SR brand blade, which is fitted with a handle after purchase.",
     "It is used in farms and gardens for digging, weeding and levelling, and on sites for light digging and mixing.",
     "Choose the blade size by the soil: a heavier blade for hard ground. If you want a ready tool, ask for the faurdha with handle.",
     "The rate depends on the blade size and the number of pieces. Ask us with the size.",
-    [["Is faurdha the same as phawda?", "Yes. Faurdha and phawda are two names for the hoe."], ["Is the handle included?", "This listing is for the blade. A hoe with a fitted handle is listed separately."], ["Which brand?", "SR brand."]],
+    [["Is faurdha the same as phawda?", "Yes. Faurdha and phawda are two names for the shovel."], ["Is the handle included?", "This listing is for the blade. A shovel with a fitted handle is listed separately."], ["Which brand?", "SR brand."]],
     [],
     ["sr-hoe-faurdha-with-handle", "sr-pickaxe-geti", "sr-crowbar"]
   ),
@@ -520,7 +520,7 @@ export const productCopy: Record<string, ProductCopy> = {
     ["welding-rods", "ms-angles", "sponge"]
   ),
   "sr-hoe-faurdha-with-handle": c(
-    "This is the SR hoe (faurdha or phawda) with the handle already fitted, with a carbon steel blade and a green, black or other finish as per stock. It is ready to use from the shop.",
+    "This is the SR shovel (faurdha or phawda) with the handle already fitted, with a carbon steel blade and a green, black or other finish as per stock. It is ready to use from the shop.",
     "It is used for digging, weeding and levelling in farms and gardens, and for light site work.",
     "Choose a handle length that suits the user's height. Carbon steel holds an edge but should be wiped dry to stop rust.",
     "The rate depends on the blade size and the handle. Ask us for the current rate.",

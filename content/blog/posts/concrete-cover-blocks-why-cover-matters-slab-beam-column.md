@@ -35,7 +35,7 @@ These values are the usual starting points under IS 456 for mild exposure. Your 
 | Members in moderate exposure | 30 mm and up |
 | Members in severe exposure (coastal, drainage) | 45 mm and up |
 
-Always follow your structural drawing. These numbers are for orientation only.
+Always follow your structural drawing and specification. These numbers are for orientation only: cover also depends on exposure, fire rating and bar diameter, and your engineer should confirm any table you use.
 
 ## What a cover block does
 
@@ -43,21 +43,21 @@ A cover block is a small precast concrete block, with tie wire cast in or a hole
 
 Without blocks, bars sag onto the shuttering. After the pour, the bar is at the surface, with no cover at all.
 
-## What is wrong with brick bits and stones
+## Why improvised spacers are a problem
 
-Many sites use broken brick, stone chips or wooden pieces. They go wrong in three ways:
+Broken brick, stone chips and wooden pieces are not specified spacers. They go wrong in three ways:
 
-- **They absorb water** and become a path for it to the steel.
+- **They can absorb water** and become a path for it to the steel.
 - **They are uneven**, so cover varies from bar to bar.
-- **They bond poorly** to the pour, leaving a weak patch.
+- **They may bond poorly** to the pour, leaving a weak patch.
 
-A cover block of the same grade as the slab does not have any of these problems.
+Use spacers that the engineer's specification approves, such as precast cover blocks of the specified grade or approved plastic spacers.
 
 ## How many blocks do you need
 
-A rough rule for a slab is about one block every 0.5 to 1 metre in each direction, with bars supported so they do not sag between blocks. For a typical 1,000 sq ft slab that means several hundred blocks.
+A rough rule for a slab is about one block every 0.5 to 1 metre in each direction, with bars supported so they do not sag between blocks. For a typical 1,000 sq ft slab that means several hundred blocks. Treat this as a budgeting figure only.
 
-Ask the site engineer for the spacing. For beams, use blocks on the sides and the bottom at every 1 metre or so. For columns, place blocks on every face at each stirrup level.
+The spacing comes from the site engineer's specification. For beams, use blocks on the sides and the bottom at every 1 metre or so. For columns, place blocks on every face at each stirrup level.
 
 ## Sizes
 
@@ -69,7 +69,7 @@ Cover blocks are made in the common cover sizes: 20, 25, 30, 40 and 50 mm. The b
 2. **Blocks tied** to the bars with [binding wire](/products/binding-wire) so they do not shift.
 3. **Spacing** even, with no sagging bars between blocks.
 4. **Chairs** (bar supports) under top steel in slabs.
-5. **Walk the steel** after fixing. Tread on it and see if blocks move.
+5. **Check the blocks** by eye and with a tape after fixing. Keep planks as walkways so people do not stand on the steel and push bars down onto the blocks.
 
 ## Buying cover blocks in Indore
 
@@ -84,7 +84,7 @@ Typically 20 mm for mild exposure. Check your drawing.
 Typically 40 mm, or the bar diameter, whichever is larger.
 
 **Can I use broken bricks as cover?**  
-You can, but cover blocks of concrete are better. Brick absorbs water and gives uneven cover.
+Not unless your specification approves it. Use the specified cover blocks or approved spacers; brick absorbs water and gives uneven cover.
 
 **How are cover blocks fixed?**  
 Tied to the rebar with binding wire, or pushed in with built-in wire.

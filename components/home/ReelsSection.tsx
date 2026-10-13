@@ -17,7 +17,7 @@ const REEL_UI: Record<string, Omit<Reel, "id">> = {
   "perforated-sheet-customer": { title: "Perforated sheet", note: "A customer on why he buys it here.", href: "/categories/perforated-sheets", cta: "Perforated sheets" },
   "nail-reel": { title: "Nails, by weight", note: "Every length in the bins.", href: "/categories/nails", cta: "Nails" },
   "kala-taar-wholesale": { title: "Kala taar, wholesale", note: "Binding wire by the coil.", href: "/products/binding-wire", cta: "Binding wire" },
-  "frp-bars": { title: "FRP bars", note: "Light, rust-proof, cut to length.", href: "/products/frp-bars", cta: "FRP bars" },
+  "frp-bars": { title: "FRP bars", note: "Light and rust-proof.", href: "/products/frp-bars", cta: "FRP bars" },
   "weldmesh-jali": { title: "Weldmesh jali", note: "Rolls and panels, any gauge.", href: "/categories/welded-mesh", cta: "Welded mesh" },
   "kabootar-jali": { title: "Kabootar jali", note: "Pigeon net for balconies and shafts.", href: "/products/pigeon-nets", cta: "Pigeon nets" },
   "pvc-hexa-mesh": { title: "PVC hexa mesh", note: "Garden and poultry fencing.", href: "/products/plastic-hexagonal-poultry-mesh", cta: "Hexa mesh" },

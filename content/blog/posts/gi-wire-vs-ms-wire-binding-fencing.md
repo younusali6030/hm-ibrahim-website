@@ -50,7 +50,7 @@ MS will rust. For outdoor fencing in Indore, use GI wire or coated wire for long
 Binding for RCC uses annealed binding wire (e.g. 16–18 SWG), not general GI wire. For other tying, choose gauge as per load.
 
 **Do you have Tata Wiron GI wire?**  
-Yes. We are an authorised Tata dealer and stock Tata Wiron GI wire. Ask for the gauge you need.
+Yes. We stock Tata Wiron GI wire, including a 10 kg bundle of 4.0 mm farming wire. Ask for the size you need.
 
 ## Request a Quote in Indore / Siyaganj
 
@@ -63,4 +63,4 @@ For GI wire, binding wire, or fencing wire in Indore, Siyaganj, or Loha Mandi, r
 - [Barbed wire vs concertina wire](/blog/barbed-wire-vs-concertina-wire)
 - [Binding wire](/products/binding-wire)
 
-*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*
+*Sizes, gauges and ranges on this page were compared with our product list on 12 October 2026. This is a catalogue check, not an independent technical review.*

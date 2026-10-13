@@ -17,7 +17,7 @@ Contractors and builders in Siyaganj, Loha Mandi, and New Siyaganj regularly buy
 
 ## Structural Steel (Indore / Siyaganj)
 
-- **[TMT Bars](/products/tmt-bars):** For RCC columns, beams, slabs. Sizes 8 mm to 32 mm; grades Fe 500, Fe 550.
+- **[TMT Bars](/products/tmt-bars):** For RCC columns, beams, slabs. Sizes 6 mm to 32 mm; grades Fe 500, Fe 550.
 - **[MS Angles](/products/ms-angles):** For frames, brackets, and fabrication. 25 x 25 to 100 x 100 mm and more.
 - **[MS Flats](/products/ms-flats):** For grills, base plates, and brackets.
 - **[MS Channels](/products/ms-channels):** For purlins and structural frames.

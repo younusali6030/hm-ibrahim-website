@@ -22,6 +22,7 @@ import { LazySteelSheen } from "@/components/fx/Lazy";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { ContactStrip } from "@/components/story/ContactStrip";
 import { IndoreReels } from "@/components/indore/IndoreReels";
+import { VisitUs } from "@/components/visit/VisitUs";
 import { CountUp, PhotoRing, PlaceMarquee, Reveal, ScrollProgress, Tilt } from "@/components/indore/Motion";
 import { T } from "@/lib/i18n";
 import "@/components/story/story.css";
@@ -152,9 +153,9 @@ export default async function IndoreIndexPage(props: { params: Promise<{ lang: s
         stats={
           <dl className="mt-7 grid max-w-xl grid-cols-3 border-t border-white/20">
             {[
-              { v: <CountUp to={1939} from={1900} />, k: "Counter opened", kHi: "काउंटर खुला" },
+              { v: "1939", k: "Counter opened", kHi: "काउंटर खुला" },
               { v: <CountUp to={600} suffix="+" duration={1.4} />, k: "Google reviews", kHi: "गूगल रिव्यू" },
-              { v: hi ? "9 से 8" : "9AM–8PM", k: "Monday to Saturday", kHi: "सोमवार से शनिवार" },
+              { v: hi ? "10 से 8" : "10AM–8PM", k: "Monday to Saturday", kHi: "सोमवार से शनिवार" },
             ].map((s) => (
               <div key={s.k} className="py-3 pr-3">
                 <dd className="font-display text-2xl font-extrabold leading-none text-white sm:text-3xl md:text-[2.1rem]">{s.v}</dd>
@@ -184,8 +185,13 @@ export default async function IndoreIndexPage(props: { params: Promise<{ lang: s
         }
       />
 
+      {/* Practical visit information first (address, hours, directions), before the city-name banner. */}
+      <section className="page-container py-8 md:py-10" aria-label={t("Visit the counter", "काउंटर पर आइए")}>
+        <VisitUs variant="full" source="indore_visit" />
+      </section>
+
       {/* Where the work is: the places run past as a banner. The list is real text, read once by assistive tech. */}
-      <nav className="border-b border-border" aria-label={t("Places we serve", "जिन जगहों पर हम सेवा देते हैं")}>
+      <nav className="border-y border-border" aria-label={t("Places we serve", "जिन जगहों पर हम सेवा देते हैं")}>
         <PlaceMarquee items={hi ? placesHi : PLACES} />
       </nav>
 
@@ -302,7 +308,7 @@ export default async function IndoreIndexPage(props: { params: Promise<{ lang: s
             <ul className="border-t border-foreground/40">
               {reach.map((r) => (
                 <li key={r.id} className="ind-reach-row">
-                  <Link href={`/contact?location=${encodeURIComponent(r.name)}`} className="st-title !text-[1.4rem]">{r.name}</Link>
+                  <Link href={`/contact?location=${encodeURIComponent(r.name)}`} className="st-title block min-h-[28px] !text-[1.4rem]">{r.name}</Link>
                   <span className="ind-reach-bar" aria-hidden="true"><i style={{ ["--w" as string]: `${Math.round((r.km / reachMax) * 100)}%` }} /></span>
                   <span className="font-display text-2xl font-extrabold tabular-nums text-foreground">
                     {r.km}<span className="ml-1 font-mono-brand text-[11px] font-normal uppercase tracking-[0.12em] text-muted-foreground">{t("km", "किमी")}</span>

@@ -5,12 +5,12 @@ import { MapPin, Phone } from "lucide-react";
 import { site } from "@/content/site";
 import { T, useT, useLang } from "@/lib/i18n";
 import { siteHi } from "@/content/hi/site";
-import { cn } from "@/lib/utils";
+import { cn, telHref } from "@/lib/utils";
 import { getShopState, type ShopState } from "./shopStatus";
 
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`;
 const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(site.fullAddress)}&output=embed`;
-const telHref = `tel:${site.phone.replace(/\s/g, "")}`;
+const phoneHref = telHref(site.phone);
 
 function useShopState(): ShopState | null {
   // null on the server and for the first client render, so markup matches and hydration stays quiet.
@@ -31,7 +31,7 @@ function useShopState(): ShopState | null {
 export function ShopStatus({ className = "", tone = "auto" }: { className?: string; tone?: "auto" | "dark" }) {
   const state = useShopState();
   const t = useT();
-  let text = t("Mon to Sat, 9 am to 8 pm. Sunday closed.", "सोम से शनि, सुबह 9 से रात 8 बजे। रविवार बंद।");
+  let text = t("Mon to Sat, 10 am to 8 pm. Sunday closed.", "सोम से शनि, सुबह 10 से रात 8 बजे। रविवार बंद।");
   let open = false;
   if (state) {
     switch (state.kind) {
@@ -40,16 +40,16 @@ export function ShopStatus({ className = "", tone = "auto" }: { className?: stri
         text = t("Open now. Closes 8 pm", "अभी खुला है। रात 8 बजे बंद होगा");
         break;
       case "before-open":
-        text = t("Closed now. Opens 9 am", "अभी बंद है। सुबह 9 बजे खुलेगी");
+        text = t("Closed now. Opens 10 am", "अभी बंद है। सुबह 10 बजे खुलेगी");
         break;
       case "after-close":
         text =
           state.reopens === "monday"
-            ? t("Closed now. Opens Monday 9 am", "अभी बंद है। सोमवार सुबह 9 बजे खुलेगी")
-            : t("Closed now. Opens 9 am tomorrow", "अभी बंद है। कल सुबह 9 बजे खुलेगी");
+            ? t("Closed now. Opens Monday 10 am", "अभी बंद है। सोमवार सुबह 10 बजे खुलेगी")
+            : t("Closed now. Opens 10 am tomorrow", "अभी बंद है। कल सुबह 10 बजे खुलेगी");
         break;
       case "sunday":
-        text = t("Closed on Sunday. Opens Monday 9 am", "आज रविवार है, दुकान बंद। सोमवार सुबह 9 बजे खुलेगी");
+        text = t("Closed on Sunday. Opens Monday 10 am", "आज रविवार है, दुकान बंद। सोमवार सुबह 10 बजे खुलेगी");
         break;
     }
   }
@@ -155,7 +155,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
             <T en="Open in Google Maps" hi="गूगल मैप्स पर खोलें" />
           </a>
           <a
-            href={telHref}
+            href={phoneHref}
             data-track={`${source}_call`}
             className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm border border-white/40 px-5 font-semibold text-white hover:bg-white/10"
           >
@@ -198,7 +198,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
               <T en="Hours" hi="समय" />
             </dt>
             <dd className="mt-1 text-muted-foreground">
-              <T en="Mon to Sat, 9 am to 8 pm. Sunday closed." hi="सोम से शनि, सुबह 9 से रात 8 बजे। रविवार बंद।" />
+              <T en="Mon to Sat, 10 am to 8 pm. Sunday closed." hi="सोम से शनि, सुबह 10 से रात 8 बजे। रविवार बंद।" />
               <ShopStatus className="mt-2" />
             </dd>
           </div>
@@ -216,7 +216,7 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
             <T en="Open in Google Maps" hi="गूगल मैप्स पर खोलें" />
           </a>
           <a
-            href={telHref}
+            href={phoneHref}
             data-track={`${source}_call`}
             className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-sm border border-input bg-card px-6 font-semibold text-foreground hover:border-foreground/50"
           >

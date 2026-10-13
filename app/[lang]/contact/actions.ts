@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { getCategoryBySlug } from "@/content/products";
 import { getCatalogData, type CatalogData } from "@/lib/catalog";
 import { sendCatalogToCustomer } from "@/lib/catalog-email";
+import { storeFailedLead } from "@/lib/leadFallback";
 import { rateLimited } from "@/lib/rateLimit";
 import { sendQuoteNotification } from "@/lib/quote-notification";
 import { appendQuoteToSheet } from "@/lib/quote-sheet";
@@ -217,6 +218,11 @@ export async function submitQuote(formData: FormData): Promise<QuoteResult> {
   }
 
   if (!notified && !sheeted) {
+    // Third channel: a Redis list the owner can read. Only if that is also unavailable does the lead go to the log.
+    if (await storeFailedLead(submission)) {
+      console.error("[quote] lead saved to fallback store", reference);
+      return { success: true, reference, catalogSent: false };
+    }
     console.error("[quote] LEAD NOT SAVED", JSON.stringify(submission));
     return {
       success: false,

@@ -535,9 +535,11 @@
 }
 
 /* ------------------------------------------------------------------ hero backdrop: the region, to scale */
+/* Confined to the illustration side: rings and town names never sit under the headline, figures or controls. */
 .ih-backdrop {
   position: absolute;
-  inset: 0;
+  inset: 0 0 0 auto;
+  width: 56%;
   z-index: -1;
   pointer-events: none;
   -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.6) 30%, #000 50%), linear-gradient(180deg, #000 80%, transparent);
@@ -636,9 +638,18 @@
   }
 }
 @media (max-width: 1023px) {
+  /* Stacked layout: the backdrop would sit under the text, so it is reduced to a faint graticule. */
   .ih-backdrop {
+    inset: 0;
+    width: auto;
+    opacity: 0.45;
     -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.5) 60%, transparent);
     mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.5) 60%, transparent);
+  }
+  .ihb-ring,
+  .ihb-ring-label,
+  .ihb-pulse {
+    display: none;
   }
 }
 

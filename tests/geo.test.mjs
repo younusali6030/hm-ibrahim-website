@@ -17,8 +17,8 @@ test("llms.txt repeats the same business facts as content/site.ts", () => {
   assert.ok(llms.includes(site.address.pincode), "pincode");
   assert.ok(llms.includes(site.googleReview.profileUrl), "Google profile");
   assert.ok(llms.includes(site.social.instagram), "Instagram");
-  assert.match(llms, /Monday to Saturday, 9 am to 8 pm/);
-  assert.match(site.hours.weekdays, /9 am to 8 pm/);
+  assert.match(llms, /Monday to Saturday, 10 am to 8 pm/);
+  assert.match(site.hours.weekdays, /10 am to 8 pm/);
 });
 
 test("social profile URLs are real https profile URLs on the right host", () => {
@@ -28,17 +28,26 @@ test("social profile URLs are real https profile URLs on the right host", () => 
   for (const v of Object.values(site.social)) assert.ok(v === "" || v.startsWith("https://"));
 });
 
-test("crawler policy: training crawlers are blocked, search and retrieval crawlers are not", () => {
-  assert.equal(ALLOW_TRAINING_CRAWLERS, false);
+test("crawler policy: owner allows AI crawlers; only API and thank-you pages are disallowed", () => {
+  assert.equal(ALLOW_TRAINING_CRAWLERS, true);
   for (const bot of TRAINING_CRAWLERS) assert.ok(!SEARCH_CRAWLERS.includes(bot), `${bot} is in both lists`);
-  for (const bot of NOT_SEPARABLE) assert.ok(!TRAINING_CRAWLERS.includes(bot), `${bot} cannot be blocked without losing search`);
+  for (const bot of NOT_SEPARABLE) assert.ok(!TRAINING_CRAWLERS.includes(bot), `${bot} is listed as not separable`);
   const rules = robotsRules();
   const blocked = rules.filter((r) => r.disallow === "/").flatMap((r) => [r.userAgent].flat());
-  for (const bot of TRAINING_CRAWLERS) assert.ok(blocked.includes(bot), `${bot} not blocked`);
-  for (const bot of SEARCH_CRAWLERS) assert.ok(!blocked.includes(bot), `${bot} must stay allowed`);
+  assert.deepEqual(blocked, [], "no crawler may be blocked from the whole site");
+  assert.equal(rules.length, 1);
   const star = rules.find((r) => r.userAgent === "*");
   assert.equal(star.allow, "/");
   for (const p of ["/api/", "/contact/success", "/hi/contact/success"]) assert.ok(DISALLOWED_PATHS.includes(p) && star.disallow.includes(p), p);
+});
+
+test("llms.txt lists every product with its English and Hindi page", async () => {
+  const { allProducts } = await import("../content/products.ts");
+  for (const p of allProducts) {
+    assert.ok(llms.includes(`https://www.hmibrahim.net/products/${p.slug})`), `${p.slug} en`);
+    assert.ok(llms.includes(`https://www.hmibrahim.net/hi/products/${p.slug})`), `${p.slug} hi`);
+  }
+  assert.match(llms, /wholesale or in bulk to shop owners, traders/);
 });
 
 const EN_REACH = "Orders accepted across India; delivery arrangements confirmed with each quotation.";

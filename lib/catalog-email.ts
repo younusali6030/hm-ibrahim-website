@@ -6,6 +6,7 @@
  */
 
 import fs from "fs";
+import { telHref } from "@/lib/utils";
 import path from "path";
 import nodemailer from "nodemailer";
 import { site } from "@/content/site";
@@ -114,15 +115,15 @@ function buildCatalogHtml(data: CatalogData): string {
       ${ratesSection}
     </div>
     <div style="padding:20px 24px;background:#eff6ff;border-top:1px solid #bfdbfe;">
-      <p style="margin:0 0 12px 0;font-size:14px;font-weight:600;color:#1e40af;">Call us on <a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> for the best available rate.</p>
+      <p style="margin:0 0 12px 0;font-size:14px;font-weight:600;color:#1e40af;">Call us on <a href="${telHref(site.phone)}" style="color:#2563eb;">${site.phone}</a> for the best available rate.</p>
       <p style="margin:0;font-size:12px;color:#6b7280;">This catalog was sent in response to your quote request. For current prices and orders, contact us:</p>
-      <p style="margin:8px 0 0 0;font-size:13px;"><a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> · <a href="mailto:${site.email}" style="color:#2563eb;">${site.email}</a></p>
+      <p style="margin:8px 0 0 0;font-size:13px;"><a href="${telHref(site.phone)}" style="color:#2563eb;">${site.phone}</a> · <a href="mailto:${site.email}" style="color:#2563eb;">${site.email}</a></p>
     </div>
     <div style="padding:20px 24px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:13px;color:#374151;">
       <p style="margin:0 0 8px 0;font-weight:600;color:#111827;">${escapeHtml(site.name)}</p>
       <p style="margin:0 0 4px 0;">${escapeHtml(site.fullAddress)}</p>
       <p style="margin:0 0 4px 0;">Landmark: ${escapeHtml(site.landmark)}</p>
-      <p style="margin:0 0 4px 0;">Phone: <a href="tel:${site.phone.replace(/\s/g, "")}" style="color:#2563eb;">${site.phone}</a> (${escapeHtml(site.phoneLabel)}) · <a href="tel:${site.phoneAlt.replace(/\s/g, "")}" style="color:#2563eb;">${site.phoneAlt}</a> (${escapeHtml(site.phoneAltLabel)})</p>
+      <p style="margin:0 0 4px 0;">Phone: <a href="${telHref(site.phone)}" style="color:#2563eb;">${site.phone}</a> (${escapeHtml(site.phoneLabel)}) · <a href="${telHref(site.phoneAlt)}" style="color:#2563eb;">${site.phoneAlt}</a> (${escapeHtml(site.phoneAltLabel)})</p>
       <p style="margin:0 0 4px 0;">Email: <a href="mailto:${site.email}" style="color:#2563eb;">${site.email}</a> (${escapeHtml(site.emailLabel)}) · <a href="mailto:${site.emailAlt}" style="color:#2563eb;">${site.emailAlt}</a> (${escapeHtml(site.emailAltLabel)})</p>
       <p style="margin:0 0 4px 0;">WhatsApp: <a href="https://wa.me/${site.whatsapp}" style="color:#2563eb;">${site.phone}</a></p>
       <p style="margin:8px 0 0 0;font-size:12px;color:#6b7280;">${escapeHtml(site.hours.weekdays)} · ${escapeHtml(site.hours.sunday)} · ${escapeHtml(site.hours.note)}</p>

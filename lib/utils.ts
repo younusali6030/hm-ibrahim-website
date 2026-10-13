@@ -16,3 +16,10 @@ export function getWhatsAppLink(phone: string, message?: string): string {
   }
   return base;
 }
+
+/** International tel: link, always `tel:+91XXXXXXXXXX`, whatever form the stored number takes. */
+export function telHref(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  const national = digits.length > 10 ? digits.slice(-10) : digits;
+  return `tel:+91${national}`;
+}

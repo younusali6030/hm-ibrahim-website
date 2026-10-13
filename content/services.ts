@@ -39,7 +39,7 @@ export const services: Service[] = [
     slug: "warehouse",
     title: "Warehouse Availability",
     description:
-      "Our depot and warehouse in Siyaganj hold stock across the main categories. Standard items go out quickly; special sizes and grades can be arranged on order.",
+      "Our Siyaganj shop and our warehouses in Loha Mandi and New Loha Mandi hold stock across the main categories. Standard items go out quickly; special sizes and grades can be arranged on order.",
     icon: "Warehouse",
   },
   {

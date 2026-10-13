@@ -6,6 +6,7 @@ updated: "2026-10-11"
 category: "Fencing"
 image: "/blog/barbed-concertina-1.webp"
 imageAlt: "Razor concertina wire coils stacked in the HM Ibrahim godown, Siyaganj"
+image2At: 2
 image2: "/blog/barbed-concertina-2.webp"
 image2Alt: "Close view of galvanised razor blades on a concertina coil"
 image3: "/blog/barbed-concertina-3.webp"
@@ -67,4 +68,4 @@ For barbed wire or concertina wire in Indore, Siyaganj, or Loha Mandi, send your
 - [How to estimate fencing material](/blog/how-to-estimate-material-quantity-fencing)
 - [Wire gauge chart](/blog/wire-gauge-chart-swg-bwg-mm-guide)
 
-*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*
+*Sizes, gauges and ranges on this page were compared with our product list on 12 October 2026. This is a catalogue check, not an independent technical review.*

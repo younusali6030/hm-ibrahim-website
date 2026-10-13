@@ -1,7 +1,7 @@
 "use client";
 
 import { site } from "@/content/site";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getWhatsAppLink, telHref } from "@/lib/utils";
 import { T, useT } from "@/lib/i18n";
 
 type Props = {
@@ -14,7 +14,7 @@ const link =
 
 export function LookingForMoreSection({ variant = "page", className = "" }: Props) {
   const t = useT();
-  const tel = `tel:${site.phone.replace(/\s/g, "")}`;
+  const tel = telHref(site.phone);
   if (variant === "product") {
     return (
       <p className={`border-t border-border pt-4 text-sm text-muted-foreground ${className}`}>

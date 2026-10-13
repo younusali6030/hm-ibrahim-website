@@ -197,7 +197,7 @@ export default async function AboutPage(props: { params: Promise<{ lang: string 
                   We specialise in wire mesh, weldmesh, perforated sheets (MS and SS), steel sections, GI and MS wire, fencing material and industrial hardware. Our fencing range includes barbed wire, chain link fencing and jhatka wire, for both construction and agriculture.
                 </p>
                 <p>
-                  Alongside industrial material, we sell farm and hand tools such as the hoe (faurdha), pickaxe (geti) and crowbar, for field and construction work.
+                  Alongside industrial material, we sell farm and hand tools such as the shovel (faurdha), pickaxe (geti) and crowbar, for field and construction work.
                 </p>
               </>
             )}

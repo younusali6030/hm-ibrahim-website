@@ -1,13 +1,13 @@
 /**
- * Shop hours and the live open/closed state. Mon to Sat 9 am to 8 pm, Sunday closed (see content/site.ts).
+ * Shop hours and the live open/closed state. Mon to Sat 10 am to 8 pm, Sunday closed (see content/site.ts).
  * Always computed in Asia/Kolkata so a visitor's own timezone never matters.
  */
-export const OPEN_HOUR = 9;
+export const OPEN_HOUR = 10;
 export const CLOSE_HOUR = 20;
 
 export type ShopState =
   | { kind: "open" }
-  | { kind: "before-open" } // a working day, before 9 am: "Opens 9 am"
+  | { kind: "before-open" } // a working day, before 10 am: "Opens 10 am"
   | { kind: "after-close"; reopens: "tomorrow" | "monday" } // after 8 pm
   | { kind: "sunday" };
 

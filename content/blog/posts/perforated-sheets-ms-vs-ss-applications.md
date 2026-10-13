@@ -17,7 +17,7 @@ Perforated sheets are metal sheets with a regular pattern of holes. In Indore, S
 
 ## Materials: MS vs GI Perforated Sheets
 
-- **MS (mild steel) perforated sheets:** Economical; suitable for indoor use or where they will be painted or galvanised later. Used for screens, machine guards, and ventilation in Indore and nearby areas.
+- **MS (mild steel) perforated sheets:** Economical; suitable for indoor use or where they will be painted or galvanised later. Used for screens and ventilation in Indore and nearby areas.
 - **GI (galvanised iron) perforated sheets:** Zinc-coated; better for outdoor and humid conditions. Common for external screens, ducts, and industrial applications in Siyaganj and Loha Mandi.
 
 [GI Perforated Sheet](/products/gi-perforated-sheet) and [MS Perforated Sheet](/products/ms-perforated-sheet) are available in various thicknesses and patterns.
@@ -54,6 +54,7 @@ Price depends on material (MS vs GI), thickness, hole pattern, open area, and qu
 - **Outdoor / humid:** Prefer GI for corrosion resistance.
 - **Ventilation:** Consider open area and slot vs round holes.
 - **Strength:** Thicker sheet and smaller holes increase strength.
+- **Guards:** Whether a sheet is suitable as a machine guard depends on the machine's safety requirements, not on open area alone. See [open area explained](/blog/perforated-sheet-hole-patterns-open-area-guide).
 
 See [Perforated Sheets](/categories/perforated-sheets) for the full range.
 
@@ -78,4 +79,4 @@ For perforated sheets in Indore, Siyaganj, or Loha Mandi, request a quote with m
 - [Hole patterns and open area explained](/blog/perforated-sheet-hole-patterns-open-area-guide)
 - [Expanded metal mesh (jali)](/blog/expanded-metal-mesh-uses-types-indore)
 
-*Last verified: 12 October 2026. Sizes, gauges and ranges on this page were checked against our current product list.*
+*Sizes, gauges and ranges on this page were compared with our product list on 12 October 2026. This is a catalogue check, not an independent technical review.*

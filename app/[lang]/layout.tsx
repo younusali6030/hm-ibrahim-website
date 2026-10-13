@@ -10,6 +10,7 @@ import { isLang, htmlLang, LANGS, type Lang } from "@/lib/locale";
 
 import { JsonLd } from "@/components/JsonLd";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { ConsentBanner } from "@/components/ConsentBanner";
 import { LangProvider } from "@/lib/i18n";
 import { PageCredits } from "@/components/indore/PageCredits";
 
@@ -98,6 +99,7 @@ export default async function RootLayout(
           <Footer />
           <PageCredits />
           <MobileStickyCTA />
+          <ConsentBanner />
           <JsonLd lang={lang} />
         </LangProvider>
       </body>

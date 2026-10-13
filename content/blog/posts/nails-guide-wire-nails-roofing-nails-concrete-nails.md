@@ -61,10 +61,11 @@ For a 1 inch plank fixed to a post, use 3 inch nails.
 | Shuttering and formwork | 2 to 4 inch wire nail, plain |
 | Carpentry, doors, frames | 2 to 3 inch wire nail |
 | Wooden packing box | 1.5 to 2 inch wire nail |
-| GI or tin roof sheets | Roofing nail with washer |
-| Asbestos or cement sheet | Roofing nail with J-bolt or hook, as the roof demands |
+| GI or tin roof sheets | The fixing the sheet maker and the roof design specify. A roofing nail with a washer is one common option |
+| Existing asbestos-cement sheet | Do not nail, drill, cut or break it yourself. Use a qualified contractor and follow the applicable safety rules |
+| New cement or fibre-cement sheet | The maker's fixing instructions (fasteners, washers and spacing) |
 | Brick wall, block wall | Concrete nail |
-| False ceiling frames | 1.5 inch wire nail or clout |
+| False ceiling frames | The ceiling system maker's hangers and anchors, matched to the slab. Not a casual nail |
 | Fixing wire on a post | U-nail (staple) |
 
 ## Gauge: thin or thick
@@ -100,7 +101,7 @@ You can buy a handful or a bag. Tell us the length, what you are fixing, and whe
 A wire nail has a small flat head and a smooth shank. A roofing nail has a wide head, usually with a washer, so it holds a thin sheet down without tearing through.
 
 **Which nail for a concrete wall?**  
-A hardened concrete nail. For a long term hold use a plug and screw instead.
+It depends on the base and the load. A hardened concrete nail suits light, non-structural fixing in sound concrete or block. For anything that carries load, use an anchor or plug and screw chosen to the manufacturer's rating.
 
 **How long should a nail be?**  
 Long enough to go through the top piece and about twice that thickness into the base.

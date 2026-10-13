@@ -144,5 +144,113 @@
   "alt": "Technical section-profile drawing of a channel (not a photograph)",
   "source": "scripts/media/profile-plates.mjs",
   "license": "own illustration"
+ },
+ {
+  "id": "chain-link-fencing-stock-1",
+  "slug": "chain-link-fencing",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/chain-link-rolls-GI_IMG_7377.jpg",
+  "dest": "/products/v2/chain-link-fencing-stock-1",
+  "alt": "Rolls of galvanised chain link fencing standing in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "chicken-net-stock-1",
+  "slug": "chicken-net",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/hexagonal-netting-chicken-mesh-rolls_IMG_7378.jpg",
+  "dest": "/products/v2/chicken-net-stock-1",
+  "alt": "Rolls of hexagonal wire netting (chicken mesh) in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "pvc-coated-weldmesh-stock-1",
+  "slug": "pvc-coated-weldmesh",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/welded-mesh-rolls-GI-and-black-PVC_IMG_7369.jpg",
+  "dest": "/products/v2/pvc-coated-weldmesh-stock-1",
+  "alt": "Welded mesh rolls, galvanised and black PVC-coated, in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "gi-weldmesh-stock-1",
+  "slug": "gi-weldmesh",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/welded-mesh-and-hexa-netting-rolls_IMG_7375.jpg",
+  "dest": "/products/v2/gi-weldmesh-stock-1",
+  "alt": "Welded mesh and hexagonal netting rolls in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "ms-perforated-sheet-stock-1",
+  "slug": "ms-perforated-sheet",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/perforated-sheet-rolls-stock-2_IMG_7368.jpg",
+  "dest": "/products/v2/ms-perforated-sheet-stock-1",
+  "alt": "Perforated sheet rolls in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "gi-perforated-sheet-stock-1",
+  "slug": "gi-perforated-sheet",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/perforated-sheet-rolls-stock-1_IMG_7367.jpg",
+  "dest": "/products/v2/gi-perforated-sheet-stock-1",
+  "alt": "Perforated sheet rolls of different hole patterns in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "sponge-1",
+  "slug": "sponge",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/packaged-goods-stacked-colour-packs_IMG_7373.jpg",
+  "dest": "/products/v2/sponge-1",
+  "alt": "Packs of construction sponge stacked in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "aluminium-wiremesh-stock-1",
+  "slug": "aluminium-wiremesh",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/boxed-nets-stock-godown_IMG_7376.jpg",
+  "dest": "/products/v2/aluminium-wiremesh-stock-1",
+  "alt": "Cartons and rolls of aluminium wire mesh in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "sr-hoe-faurdha-stock-1",
+  "slug": "sr-hoe-faurdha",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/tools-shovels-handles-closer_IMG_7344.jpg",
+  "dest": "/products/v2/sr-hoe-faurdha-stock-1",
+  "alt": "Phawda (faurdha) blades and handles lined up in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "sr-hoe-faurdha-with-handle-1",
+  "slug": "sr-hoe-faurdha-with-handle",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/shovel-close-ZYPLY-top-view_IMG_7351.jpg",
+  "dest": "/products/v2/sr-hoe-faurdha-with-handle-1",
+  "alt": "Phawda with wooden handle, close view of the blade",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "sr-hoe-faurdha-with-handle-2",
+  "slug": "sr-hoe-faurdha-with-handle",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/shovel-close-red-KW-top-view_IMG_7352.jpg",
+  "dest": "/products/v2/sr-hoe-faurdha-with-handle-2",
+  "alt": "Red phawda blade with wooden handle among other blades",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
+ },
+ {
+  "id": "sr-pickaxe-geti-stock-1",
+  "slug": "sr-pickaxe-geti",
+  "src": "2026-03 Godown and Shop (added Oct 2026)/_web-ready/pickaxe-and-shovels-top-view_IMG_7353.jpg",
+  "dest": "/products/v2/sr-pickaxe-geti-stock-1",
+  "alt": "Pickaxe (geti) and phawda blades in stock",
+  "source": "owner photo, shot March 2026 (IMG_73xx), added 13 Oct 2026",
+  "license": "owner-held; location metadata stripped"
  }
 ]

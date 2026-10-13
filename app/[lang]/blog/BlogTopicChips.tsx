@@ -12,7 +12,7 @@ export function BlogTopicChips({ topics, total }: { topics: { name: string; coun
   return (
     <div className="border-t border-white/10 bg-nav">
       <div className="page-container py-3">
-        <ul className="flex flex-wrap gap-2" aria-label={t("Topics", "विषय")} onPointerLeave={() => setPreview(null)}>
+        <ul className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden [&>li]:shrink-0" aria-label={t("Topics", "विषय")} onPointerLeave={() => setPreview(null)}>
           <li>
             <button
               type="button"

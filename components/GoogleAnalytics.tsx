@@ -44,6 +44,8 @@ export function GoogleAnalytics() {
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+          var c; try { c = localStorage.getItem('hm-consent'); } catch (e) {}
+          gtag('consent', 'default', { analytics_storage: c === 'granted' ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
           gtag('js', new Date());
           gtag('config', '${GA_ID}', { send_page_view: false });
         `}

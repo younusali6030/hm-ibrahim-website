@@ -212,21 +212,65 @@ export function trimRepeatedPacking(note: string, packRowShown: boolean): string
   return note.replace(/\s*(?:Packing|पैकिंग):[^.।]*[.।]\s*$/, "").trim();
 }
 
-export type CompareRow = { label: string; values: (string | null)[]; differs: boolean };
+export type CompareRow = { label: string; hi?: string; values: (string | null)[]; differs: boolean; /** Informational rows (uses) are shown but never counted as a difference. */ informational?: boolean };
+
+/**
+ * Common comparison fields. Labels from different brands ("Roll height" / "Height", "Roll length" / "Bundle
+ * length") map to one field so comparable values land on one row and are not reported as missing.
+ * Order here is the order of the rows.
+ */
+const CANON: { field: string; label: string; hi: string; match: RegExp }[] = [
+  { field: "opening", label: "Opening", hi: "छेद / जाली का साइज़", match: /opening|aperture|mesh size|hole/i },
+  { field: "wireDiameter", label: "Wire size", hi: "तार का साइज़", match: /wire (size|diameter)|^diameter|^gauge$|common gauges?|^gauge\b/i },
+  { field: "height", label: "Height", hi: "ऊँचाई", match: /height/i },
+  { field: "length", label: "Length", hi: "लंबाई", match: /(roll|bundle|coil)?\s*length/i },
+  { field: "finish", label: "Finish", hi: "फिनिश", match: /^finish$|coating|galvan/i },
+  { field: "type", label: "Type", hi: "किस्म", match: /^type$/i },
+  { field: "packWeight", label: "Pack weight", hi: "पैक का वज़न", match: /^coils?$|weight/i },
+  { field: "packType", label: "Pack type", hi: "पैक का प्रकार", match: /^pack(ing)?$|farming wire pack/i },
+  { field: "soldBy", label: "Sold by", hi: "बिक्री", match: /sold by/i },
+];
+
+const flat = (v: string) => v.toLowerCase().replace(/[^a-z0-9.\u0900-\u097f]+/g, " ").trim();
 
 /** Side-by-side of brand variants: every row is a value the data holds for at least one brand. */
 export function compareBrands(variants: BrandVariant[]): CompareRow[] {
-  const labels: string[] = [];
-  variants.forEach((v) => v.specs?.forEach((s) => s.label !== "Brand" && !labels.includes(s.label) && labels.push(s.label)));
-  const rows: CompareRow[] = labels.map((label) => ({
-    label,
-    values: variants.map((v) => v.specs?.find((s) => s.label === label)?.value ?? null),
-    differs: false,
-  }));
-  rows.push({ label: "Material", values: variants.map((v) => v.materials?.join(", ") ?? null), differs: false });
-  rows.push({ label: "Sizes", values: variants.map((v) => v.sizes?.join(", ") ?? null), differs: false });
-  rows.push({ label: "Used for", values: variants.map((v) => v.useCases?.join(", ") ?? null), differs: false });
+  const byField = new Map<string, CompareRow>();
+  const other = new Map<string, CompareRow>();
+  const place = (label: string, vi: number, value: string) => {
+    const c = CANON.find((x) => x.match.test(label));
+    const store = c ? byField : other;
+    const key = c ? c.field : label;
+    let row = store.get(key);
+    if (!row) {
+      row = { label: c ? c.label : label, hi: c?.hi, values: variants.map(() => null), differs: false };
+      store.set(key, row);
+    }
+    // Two source labels for one field in one brand (e.g. "Pack" and "Packing"): keep both values, once each.
+    const prev = row.values[vi];
+    row.values[vi] = prev && !flat(prev).includes(flat(value)) ? `${prev}; ${value}` : prev ?? value;
+  };
+  variants.forEach((v, vi) =>
+    v.specs?.forEach((s) => {
+      if (s.label === "Brand") return;
+      place(s.label, vi, s.value);
+    })
+  );
+  const rows: CompareRow[] = [
+    ...CANON.map((c) => byField.get(c.field)).filter((r): r is CompareRow => !!r),
+    ...Array.from(other.values()),
+  ];
+  rows.push({ label: "Material", hi: "मटेरियल", values: variants.map((v) => v.materials?.join(", ") ?? null), differs: false });
+  // A sizes list only adds a row where a brand has no spec rows of its own (otherwise it repeats them).
+  if (variants.some((v) => v.sizes?.length && !v.specs?.length)) {
+    rows.push({ label: "Sizes", hi: "साइज़", values: variants.map((v) => (v.specs?.length ? null : v.sizes?.join(", ") ?? null)), differs: false });
+  }
+  rows.push({ label: "Used for", hi: "कहाँ लगता है", values: variants.map((v) => v.useCases?.join(", ") ?? null), differs: false, informational: true });
   return rows
     .filter((r) => r.values.some((v) => v))
-    .map((r) => ({ ...r, differs: new Set(r.values.map((v) => v ?? "")).size > 1 }));
+    .map((r) => {
+      // A difference needs two real values that disagree; an absent value is not a difference.
+      const present = r.values.filter((v): v is string => !!v).map(flat);
+      return { ...r, differs: !r.informational && new Set(present).size > 1 };
+    });
 }

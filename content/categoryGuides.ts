@@ -252,6 +252,13 @@ export const categoryGuides: Record<string, CategoryGuide> = {
           hi: "सेक्शन, साइज़ (जैसे 50 x 50 mm), मोटाई, लंबाई (6 m या 12 m), काला या ब्राइट फिनिश, मात्रा, और खुद उठाएँगे या डिलीवरी चाहिए। स्ट्रक्चरल गाइड में आम साइज़ और वज़न की टेबल हैं।",
         },
       },
+      {
+        q: { en: "Where is structural steel stocked, and can I buy small quantities?", hi: "स्ट्रक्चरल स्टील कहाँ रखा है, और क्या थोड़ी मात्रा मिल सकती है?" },
+        a: {
+          en: "TMT bars, MS flats, MS round bars, MS channels, MS and GI pipes and angles are handled from our warehouses in Loha Mandi and New Loha Mandi, and retail quantities are also stocked at our Siyaganj shop. We supply bulk orders, walk-in buyers and shop owners. Tell us the quantity and we will confirm where it is stocked.",
+          hi: "टीएमटी सरिया, एमएस फ्लैट, एमएस गोल बार, एमएस चैनल, एमएस और जीआई पाइप और एंगल लोहा मंडी और न्यू लोहा मंडी के हमारे गोदामों से संभाले जाते हैं, और खुदरा मात्रा सियागंज की हमारी दुकान पर भी रखी जाती है। हम थोक ऑर्डर, वॉक-इन खरीदार और दुकानदारों को माल देते हैं। मात्रा बताइए, हम पक्का करेंगे कि वह कहाँ रखा है।",
+        },
+      },
     ],
     send: [
       { en: "Section: angle, flat, channel, beam, bar or pipe", hi: "सेक्शन: एंगल, फ्लैट, चैनल, बीम, बार या पाइप" },
