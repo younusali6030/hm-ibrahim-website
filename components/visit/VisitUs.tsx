@@ -109,6 +109,8 @@ type Props = {
   source?: string;
   /** Tap-to-load Google map beside the details (full only). */
   embed?: boolean;
+  /** full only, no map: one compact bordered row (address, landmark, hours, actions) instead of the tall stacked block. */
+  compact?: boolean;
   className?: string;
 };
 
@@ -116,7 +118,7 @@ type Props = {
  * The shop's address as a first-class thing: map pin out to Google Maps, landmark, hours and a live open/closed line.
  * No parking or entry notes are shown because none exist in the repo copy yet (see docs/design/handoff-C.md).
  */
-export function VisitUs({ variant = "full", source = "visit_us", embed = false, className }: Props) {
+export function VisitUs({ variant = "full", source = "visit_us", embed = false, compact = false, className }: Props) {
   const t = useT();
   const { lang } = useLang();
   const a = lang === "hi" ? siteHi.address : site.address;
@@ -161,6 +163,68 @@ export function VisitUs({ variant = "full", source = "visit_us", embed = false, 
           >
             <Phone className="h-4 w-4" aria-hidden />
             <T en="Call the shop" hi="दुकान पर कॉल करें" />
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  if (compact && !embed) {
+    return (
+      <div
+        data-track={source}
+        className={cn(
+          "grid gap-5 rounded-[14px] border border-border bg-card p-5 md:p-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_minmax(0,1fr)_auto] lg:items-center lg:gap-8",
+          className
+        )}
+      >
+        <div>
+          <p className="font-mono-brand text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            <T en="Visit the shop" hi="दुकान पर आइए" />
+          </p>
+          <h2 className="mt-1 text-2xl text-foreground md:text-3xl">
+            <T en="Find us on Siyaganj Main Road" hi="सियागंज मेन रोड पर आइए" />
+          </h2>
+          <p className="mt-2 text-[15px] text-muted-foreground">
+            {a.line1}, {a.line2}, {a.city}, {a.state} {a.pincode}
+          </p>
+        </div>
+        <div className="text-[15px]">
+          <p className="text-sm font-semibold text-foreground">
+            <T en="Landmark" hi="पहचान" />
+          </p>
+          <p className="mt-1 text-muted-foreground">
+            <T en="Opposite Tijori Gali. Ask for HM Ibrahim & Co." hi="तिजोरी गली के सामने। एच एम इब्राहिम एंड कंपनी पूछ लीजिए।" />
+          </p>
+        </div>
+        <div className="text-[15px]">
+          <p className="text-sm font-semibold text-foreground">
+            <T en="Hours" hi="समय" />
+          </p>
+          <p className="mt-1 text-muted-foreground">
+            <T en="Mon to Sat, 10 am to 8 pm. Sunday closed." hi="सोम से शनि, सुबह 10 से रात 8 बजे। रविवार बंद।" />
+          </p>
+          <ShopStatus className="mt-1" />
+        </div>
+        <div className="flex flex-col gap-2 sm:flex-row lg:flex-col">
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track={`${source}_map`}
+            aria-label={t("Open in Google Maps (opens in a new tab)", "गूगल मैप्स पर खोलें (नए टैब में)")}
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-sm bg-primary px-5 font-bold text-primary-foreground transition hover:brightness-110"
+          >
+            <MapPin className="h-4 w-4" aria-hidden />
+            <T en="Open in Google Maps" hi="गूगल मैप्स पर खोलें" />
+          </a>
+          <a
+            href={phoneHref}
+            data-track={`${source}_call`}
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-sm border border-input bg-card px-5 font-semibold text-foreground hover:border-foreground/50"
+          >
+            <Phone className="h-4 w-4" aria-hidden />
+            <T en="Call before you come" hi="आने से पहले कॉल करें" />
           </a>
         </div>
       </div>

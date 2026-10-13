@@ -186,8 +186,8 @@ export default async function IndoreIndexPage(props: { params: Promise<{ lang: s
       />
 
       {/* Practical visit information first (address, hours, directions), before the city-name banner. */}
-      <section className="page-container py-8 md:py-10" aria-label={t("Visit the counter", "काउंटर पर आइए")}>
-        <VisitUs variant="full" source="indore_visit" />
+      <section className="page-container py-6 md:py-8" aria-label={t("Visit the counter", "काउंटर पर आइए")}>
+        <VisitUs variant="full" compact source="indore_visit" />
       </section>
 
       {/* Where the work is: the places run past as a banner. The list is real text, read once by assistive tech. */}
