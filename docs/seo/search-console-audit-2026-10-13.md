@@ -9,9 +9,9 @@ Property `sc-domain:hmibrahim.net`. Builds on `search-console-findings-2026-10-1
 |---|---|---|---|---|---|
 | 1 | Old build declared every canonical on a host that does not exist | Every page crawled before 12 Oct | Google's stored HTML for `/quote` (crawled 20 Sep) and `/` (10 Oct) contains `<link rel="canonical" href="https://hm-ibrahim-website.verce/...">`, and the same host in `og:url` and schema (54 to 60 times per page). GitHub deployment records show no production deploy between Feb and 12 Oct, so this build served every Jul to Sep crawl. Google reported it as "User-declared canonical: None". | Already fixed in code on 12 Oct (`lib/site.ts` hard-codes `https://www.hmibrahim.net`). Verified live on all 196 URLs. | Remove or correct `NEXT_PUBLIC_SITE_URL` in Vercel so the bad value cannot return (owner; production code no longer reads it). |
 | 2 | Google chose `https://www.747live.bet/` as canonical for four pages | `/products`, `/indore/gi-wire`, `/products/ms-wire-rope`, `/blog/top-hardware-contractors-buy-siyaganj` | Inspected today: still "Duplicate without user-selected canonical", last crawls 14 Aug to 19 Sep. See section below. | Two pages from the same group (`/products/chicken-net`, `/categories/fencing-material`) were recrawled 12 Oct with the valid canonical and are now indexed as themselves. | Four pages await recrawl. Request indexing when Search Console accepts it; "Validate fix" not started. |
-| 3 | Main sitemap: "Sitemap could not be read" | `https://www.hmibrahim.net/sitemap.xml` (196 URLs) | Last read 13 Oct, type "Unknown", 0 discovered. Live test by Googlebot on 13 Oct: "URL is available to Google". Server returns 200, well-formed XML. The two companion sitemaps read fine. | Resubmitted 13 Oct (accepted, still failing). Candidate fix prepared on branch `fix/sitemap-strict-order`, not committed or deployed. | Decide whether to deploy the branch, then resubmit once. |
+| 3 | Main sitemap: "Sitemap could not be read" | `https://www.hmibrahim.net/sitemap.xml` (196 URLs) | Last read 13 Oct, type "Unknown", 0 discovered. Live test by Googlebot on 13 Oct: "URL is available to Google". Server returns 200, well-formed XML. The two companion sitemaps read fine. | Fix deployed 13 Oct (commit `a8a6725`, production deploy `1f1a33e`), then resubmitted once. Search Console now shows Success, type Sitemap, 196 discovered pages. | None. Cause not proven: see Sitemap section. Rollback tag `pre-sitemap-fix-2026-10-13`. |
 | 4 | Apex domain does not resolve | `hmibrahim.net` | Authoritative GoDaddy nameservers return no A or AAAA record; only NS, SOA and the Google verification TXT. Vercel reports the domain as misconfigured. `www` is a CNAME to Vercel and works. | None possible: the connected Vercel account does not contain this project, and DNS is at GoDaddy. | Owner: see "Apex domain" below. |
-| 5 | Most pages not yet discovered | 175 of 196 sitemap URLs have no confirmed Google status | Sampled pages show "URL is unknown to Google" or "Discovered, currently not indexed". Inspections show the main sitemap as "No referring sitemaps detected" or "Temporary processing error". | Homepage indexing requested (it links to the main hubs). | Depends on issue 3. |
+| 5 | Most pages not yet discovered | 175 of 196 sitemap URLs have no confirmed Google status | Sampled pages show "URL is unknown to Google" or "Discovered, currently not indexed". Inspections show the main sitemap as "No referring sitemaps detected" or "Temporary processing error". | Homepage indexing requested (it links to the main hubs). | Sitemap now read; discovery and indexing still take days to weeks and are not guaranteed. |
 | 6 | Stale legacy URLs in the index | 6 `/products?category=...`, 2 `/quote...` | Listed as indexed in the report; live they canonicalise to `/products` or 308 to `/contact`. | None needed. | Legitimate exclusions; they drop out on recrawl. Do not use Removals. |
 | 7 | Product rich results flagged invalid | 1 item (old markup) | "Either offers, review or aggregateRating should be specified". Live schema deliberately has no price or rating (`lib/schema.ts`). | Left as is. No prices invented. | Will stay "invalid" for product snippets; does not affect indexing. |
 
@@ -35,7 +35,13 @@ Status: not resolved. It is resolved per URL only when an inspection shows "Goog
 - Exact URL submitted: `https://www.hmibrahim.net/sitemap.xml`. It is the same URL listed in robots.txt.
 - Not a blocking problem: Googlebot fetches it, robots.txt allows it, no `X-Robots-Tag`, no redirect.
 - Differences from the two sitemaps that work: element order (Next 14 writes `<xhtml:link>` before `<lastmod>`, which is out of order in the sitemap schema), `Content-Type: application/xml` without a charset, and `max-age=0`.
-- The branch rewrites it as a route handler like the other two: `loc`, `lastmod`, then `xhtml:link`; `application/xml; charset=utf-8`. Built and checked locally: same 196 URLs, valid XML. This is a likely cause, not a confirmed one.
+- Validation against the official schema (sitemaps.org `sitemap.xsd` plus W3C `xhtml1-strict.xsd`, `xmllint`): the old file failed with 180 errors ("Element 'lastmod': This element is not expected"); the new file validates.
+- The fix (commit `a8a6725`) rewrites it as a route handler like the other two: `loc`, `lastmod`, then `xhtml:link`; `application/xml; charset=utf-8`; one-hour cache.
+- Live check after deploy: 200, 76,853 bytes, byte-identical (SHA-256) to the validated build, same 196 URLs. All 196 URLs rechecked on the new deployment: 200, self-canonical, `index, follow`, hreflang present.
+- Result: resubmitted once; status changed from "Sitemap could not be read" to Success with 196 discovered pages.
+- What this does and does not show: the status changed right after the deploy, which fits the fix. Three things changed together (element order, charset, cache header) and the earlier resubmission of the old file was only hours old, so which change mattered, or whether Google would have read the old file on a later attempt, is not proven.
+- Rollback: `git revert a8a6725` and push, or promote deployment `860615e` in Vercel. Tag `pre-sitemap-fix-2026-10-13` marks the previous release.
+- First deploy attempt (`e69ce49`) failed in Vercel's build because Google Fonts could not be downloaded; production was unaffected and the retry succeeded.
 
 ## Apex domain (issue 4)
 
@@ -62,7 +68,7 @@ Of the 175 unconfirmed, 132 are listed in the image or video sitemap (which Goog
 
 | Action | Status |
 |---|---|
-| `sitemap.xml` | Submitted (resubmitted 13 Oct). Not read by Google. |
+| `sitemap.xml` | Submitted (resubmitted once after the fix, 13 Oct). Read: 196 pages. |
 | `sitemap-images.xml`, `sitemap-videos.xml` | Submitted 12 Oct. Read: 138 and 49 pages. |
 | Request indexing `/` | Submitted 13 Oct. |
 | Request indexing `/products` | Failed twice: "Oops! Something went wrong". Whether this is the daily quota is not confirmed. |
