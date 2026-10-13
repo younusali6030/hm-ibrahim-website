@@ -1,7 +1,7 @@
 # 00 Executive summary
 
 **Baseline:** 13 Oct 2026 · Site: https://www.hmibrahim.net (production) + local repo `HM/` (HEAD `a1abac4`, 1 untracked file) · Auditor: Claude (single pass; see 14 for limits)
-**Checkpoint:** audit COMPLETE for this pass. Resume point for future sessions: start at `10-MASTER-ROADMAP.md`, then `11-TASK-REGISTER.md`.
+**Checkpoint (updated end of 13 Oct 2026):** audit COMPLETE; first implementation wave released to production (`main` a6ca5c8). See "Status" below. Resume point for future sessions: start at `10-MASTER-ROADMAP.md`, then `11-TASK-REGISTER.md`.
 
 ## What the site is
 Bilingual (EN/HI) marketing + lead-generation site for H M Ibrahim & Co, an iron/wire/mesh trader at Siyaganj, Indore (since 1939). No checkout, no prices, no accounts, no admin UI, no database. **Conversion = call, WhatsApp, quote form, walk-in** (README). Next.js 16 App Router, content in TS/Markdown files, quote form is a server action that emails the owner and appends to a Google Sheet. Hosted on Vercel.
@@ -60,3 +60,23 @@ TASK-002 → TASK-001 → TASK-004 → TASK-005 → TASK-003 (TASK-003 is calend
 
 ## Unknowns
 See `14-VALIDATION-AND-TESTING.md` §Unknowns. Biggest: real-user CWV, Search Console current numbers, Vercel env state, lead inbox delivery, GA4 data quality.
+
+
+## Status at end of 13 Oct 2026 (after the first implementation wave)
+| Finding | Status |
+|---|---|
+| AUD-001 apex domain | Fixed (resolves, 308 to www); confirm target in Search Console |
+| AUD-002 foreign canonical (4 URLs) | OPEN: owner to request indexing / recrawl (TASK-003) |
+| AUD-003 credential in git history | OPEN: owner to rotate/confirm Gmail app password (TASK-002) |
+| AUD-004 low index coverage | OPEN: sitemap now 212 URLs; owner resubmits; monitor weekly |
+| AUD-005 mobile LCP | Diagnosed; lab-only; no change (D-003); reopen on field data |
+| AUD-006 `/hi/products` size | Closed: ~45 KB compressed (D-004) |
+| AUD-007 npm audit | FIXED: 0 advisories |
+| AUD-008 no CI / e2e | PARTIAL: smoke tests added; CI workflow written but not active (TASK-026) |
+| AUD-009 lead delivery / fallback | PARTIAL: fallback store shipped (needs Upstash env); Sheet path confirmed by owner; inbox not confirmed |
+| AUD-011 image rights | Closed on owner attestation |
+| AUD-012 AI crawler policy | FIXED: allowed by owner decision; `llms.txt` lists all products |
+| AUD-015 analytics consent | FIXED: Consent Mode banner |
+| AUD-019 / AUD-023 targets and contrast | FIXED |
+| AUD-025 Hindi guides | FIXED: all 24 have Hindi editions (native review pending) |
+Not yet re-measured: Lighthouse and the expert scorecard (09) still show the 13 Oct baseline; re-run after the next deploy settles.
