@@ -19,7 +19,8 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const lang: Lang = isLang(params.lang) ? params.lang : "en";
   return buildRootMeta(lang);
 }
@@ -73,13 +74,15 @@ const plexMono = localFont({
   weight: "500",
 });
 
-export default function RootLayout({
-  children,
-  params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: { lang: string };
-}>) {
+export default async function RootLayout(
+  props: Readonly<{
+    children: React.ReactNode;
+    params: Promise<{ lang: string }>;
+  }>
+) {
+  const { children } = props;
+  const params = await props.params;
+
   if (!isLang(params.lang)) notFound();
   const lang: Lang = params.lang;
   return (

@@ -22,7 +22,7 @@ import { ContactStrip } from "@/components/story/ContactStrip";
 import { T } from "@/lib/i18n";
 import "@/components/story/story.css";
 
-type Props = { params: { lang: string; slug: string } };
+type Props = { params: Promise<{ lang: string; slug: string }> };
 
 const validSlugs: BrandId[] = ["cm", "border", "tata"];
 
@@ -32,7 +32,8 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const { slug } = params;
   const lang = params.lang as Lang;
   const brand = localize(getBrandById(slug as BrandId), lang);
@@ -59,7 +60,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-export default async function BrandPage({ params }: Props) {
+export default async function BrandPage(props: Props) {
+  const params = await props.params;
   const { slug } = params;
   const lang = params.lang as Lang;
   const t = tt(lang);

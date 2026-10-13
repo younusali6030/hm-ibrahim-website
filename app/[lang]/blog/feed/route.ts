@@ -4,7 +4,8 @@ import { pageUrl } from "@/lib/seo";
 import { siteHi } from "@/content/hi/site";
 import type { Lang } from "@/lib/locale";
 
-export async function GET(_req: Request, { params }: { params: { lang: string } }) {
+export async function GET(_req: Request, props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const hi = lang === "hi";
   const posts = await getAllPosts(lang);

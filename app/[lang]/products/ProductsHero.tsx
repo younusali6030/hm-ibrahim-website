@@ -288,7 +288,6 @@ export function ProductsHero({ eyebrow, title, lede, actions, items }: Props) {
               <source media="(max-width: 1023px)" type="image/avif" srcSet="/fx/products-showroom-m.avif" />
               <source media="(max-width: 1023px)" srcSet="/fx/products-showroom-m.jpg" />
               <source type="image/avif" srcSet="/fx/products-showroom.avif" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/fx/products-showroom.jpg"
                 alt=""

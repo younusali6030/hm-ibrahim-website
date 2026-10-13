@@ -21,7 +21,8 @@ import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { slugifyHeading } from "@/content/blog/toc";
 
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   return buildPageMeta({
     lang: params.lang as Lang,
     title: "Hardware Buying Guides, Indore",
@@ -32,7 +33,8 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
   });
 }
 
-export default async function BlogIndexPage({ params }: { params: { lang: string } }) {
+export default async function BlogIndexPage(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const t = tt(lang);
   const hi = lang === "hi";

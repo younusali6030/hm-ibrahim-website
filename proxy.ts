@@ -7,7 +7,7 @@ import { NextResponse, type NextRequest } from "next/server";
  *   /en/products   -> 308 to /products (one URL per page, no duplicate English)
  * Static files, _next, api and the root sitemap/robots routes are excluded by the matcher.
  */
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (pathname === "/en" || pathname.startsWith("/en/")) {

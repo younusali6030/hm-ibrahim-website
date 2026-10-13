@@ -45,7 +45,8 @@ function contactPageSchema(lang: Lang) {
   };
 }
 
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   return buildPageMeta({
     lang: params.lang as Lang,
     title: `Get a Quote & Contact | ${site.name}, Siyaganj, Indore`,
@@ -54,7 +55,8 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
   });
 }
 
-export default function ContactPage({ params }: { params: { lang: string } }) {
+export default async function ContactPage(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const hi = lang === "hi";
   const tel = (n: string) => `tel:${n.replace(/\s/g, "")}`;

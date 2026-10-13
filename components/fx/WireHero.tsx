@@ -100,7 +100,6 @@ export function WireHero({
         <source media="(max-width: 699px)" type="image/avif" srcSet={`${poster}-tall.avif`} />
         <source media="(max-width: 699px)" srcSet={`${poster}-tall.jpg`} />
         <source type="image/avif" srcSet={`${poster}-wide.avif`} />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`${poster}-wide.jpg`}
           alt=""

@@ -144,7 +144,6 @@ export function HomeHero() {
           <source media="(min-width: 821px)" type="image/avif" srcSet="/hero/poster-wide.avif?v=5" />
           <source media="(min-width: 821px)" srcSet="/hero/poster-wide.jpg?v=5" />
           <source type="image/avif" srcSet="/hero/poster.avif?v=5" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/poster.jpg?v=5" alt="" fetchPriority="high" decoding="async" width={720} height={1280} />
         </picture>
       </div>

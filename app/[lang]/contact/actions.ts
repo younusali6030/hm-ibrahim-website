@@ -42,7 +42,7 @@ const RATE_MAX = 5;
 
 async function clientIp(): Promise<string> {
   try {
-    const h = headers();
+    const h = await headers();
     const fwd = h.get("x-forwarded-for")?.split(",")[0]?.trim();
     return fwd || h.get("x-real-ip") || "unknown";
   } catch {

@@ -36,6 +36,8 @@ const nextConfig = {
   distDir: process.env.NEXT_DIST_DIR || ".next",
   images: {
     formats: ['image/avif', 'image/webp'],
+    // Next 16 only serves the qualities listed here (default [75]); these are the ones used in components.
+    qualities: [60, 70, 72, 75, 78],
     minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
       {

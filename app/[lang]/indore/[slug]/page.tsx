@@ -22,7 +22,7 @@ import { localize } from "@/lib/localize";
 import { tt, type Lang } from "@/lib/locale";
 import "@/components/story/story.css";
 
-type Props = { params: { lang: string; slug: string } };
+type Props = { params: Promise<{ lang: string; slug: string }> };
 
 export function generateStaticParams() {
   return indorePageSlugs.map((slug) => ({ slug }));
@@ -30,7 +30,8 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const { slug } = params;
   const lang = params.lang as Lang;
   const base = getIndorePage(slug);
@@ -39,7 +40,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMeta({ lang, title: page.title, description: page.description, path: `indore/${page.slug}` });
 }
 
-export default async function IndoreLandingPage({ params }: Props) {
+export default async function IndoreLandingPage(props: Props) {
+  const params = await props.params;
   const { slug } = params;
   const lang = params.lang as Lang;
   const t = tt(lang);

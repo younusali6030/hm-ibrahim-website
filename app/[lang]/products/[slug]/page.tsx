@@ -22,7 +22,7 @@ import { manufacturedProductSlugs, localPageForProductSlug, getIndorePage } from
 import { indorePagesHi } from "@/content/hi/indore";
 import { GaugeRule } from "@/components/motif/Motif";
 
-type Props = { params: { lang: string; slug: string } };
+type Props = { params: Promise<{ lang: string; slug: string }> };
 
 export function generateStaticParams() {
   return allProducts.map((p) => ({ slug: p.slug }));
@@ -30,7 +30,8 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const { slug } = params;
   const lang = params.lang as Lang;
   const found = getProductBySlug(slug);
@@ -51,7 +52,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-export default async function ProductDetailPage({ params }: Props) {
+export default async function ProductDetailPage(props: Props) {
+  const params = await props.params;
   const { slug } = params;
   const lang = params.lang as Lang;
   const t = tt(lang);

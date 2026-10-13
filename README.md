@@ -5,7 +5,7 @@ One goal: a call, a WhatsApp, a quote request or a walk-in.
 
 ## Stack
 
-Next.js 14 (App Router), TypeScript, Tailwind, Framer Motion (light use). Content lives in `content/*.ts` and
+Next.js 16 (App Router, React 19), TypeScript, Tailwind, Framer Motion (light use). Content lives in `content/*.ts` and
 `content/blog/posts/*.md`. No CMS. Quote requests go through a server action in `app/[lang]/contact/actions.ts`.
 Fonts are self-hosted in `app/fonts` (no build-time download). Security headers and the CSP live in `next.config.mjs`.
 
@@ -18,7 +18,7 @@ npm run build      # production build
 npx tsc --noEmit   # type check
 ```
 
-`npm run lint`, `npx tsc --noEmit` and `npm test` are the gates before a deploy.
+`npm run lint` (plain ESLint; `next lint` no longer exists in Next 16), `npx tsc --noEmit` and `npm test` are the gates before a deploy.
 `npm test` runs the regression tests in `tests/` with Node's built-in runner (no extra dependencies): product search
 and aliases, spec sheets, quote validation, locale paths, the cache-header and security-header rules, and the rate limit.
 To build or serve beside a running dev server: `NEXT_DIST_DIR=.next-build npm run build` and

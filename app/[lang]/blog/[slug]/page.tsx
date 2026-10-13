@@ -24,7 +24,7 @@ import "@/components/story/story.css";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { PostCard, formatDate } from "@/components/blog/PostCard";
 
-type Props = { params: { lang: string; slug: string } };
+type Props = { params: Promise<{ lang: string; slug: string }> };
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
@@ -33,7 +33,8 @@ export async function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const { slug } = params;
   const lang = params.lang as Lang;
   const post = await getPostBySlug(slug, lang);
@@ -73,7 +74,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage(props: Props) {
+  const params = await props.params;
   const { slug } = params;
   const lang = params.lang as Lang;
   const t = tt(lang);

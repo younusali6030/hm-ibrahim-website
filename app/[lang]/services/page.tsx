@@ -30,7 +30,8 @@ function servicesPageSchema(lang: Lang) {
   };
 }
 
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   return buildPageMeta({
     lang: params.lang as Lang,
     title: "Services: Retail, Wholesale and Bulk Supply",
@@ -106,7 +107,6 @@ function ServiceVisual({ slug, lang, num }: { slug: string; lang: Lang; num: str
         {Num}
         <picture>
           <source type="image/avif" srcSet="/fx/services-art-handover.avif" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/fx/services-art-handover.jpg" alt={t("A tied bundle of steel sections and a packing label, ready to collect", "बंधा हुआ स्टील सेक्शन का बंडल और पैकिंग लेबल, ले जाने के लिए तैयार")} width={1368} height={1200} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
         </picture>
       </div>
@@ -128,7 +128,8 @@ function ServiceVisual({ slug, lang, num }: { slug: string; lang: Lang; num: str
   );
 }
 
-export default function ServicesPage({ params }: { params: { lang: string } }) {
+export default async function ServicesPage(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const t = tt(lang);
   const items = localize(services, lang);

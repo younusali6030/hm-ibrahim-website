@@ -17,7 +17,8 @@ import { pageUrl } from "@/lib/seo";
 import { productAliases } from "@/content/productAliases";
 import { buildProductEntries } from "@/lib/productSearch";
 
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   return buildPageMeta({
     lang: params.lang as Lang,
     title: "Products: Iron, Steel, Wire and Mesh",
@@ -42,7 +43,8 @@ function itemListSchema(lang: Lang) {
   };
 }
 
-export default function ProductsPage({ params }: { params: { lang: string } }) {
+export default async function ProductsPage(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const t = tt(lang);
   // One search entry per unique product (English and Hindi names, aliases, every category it is listed under).

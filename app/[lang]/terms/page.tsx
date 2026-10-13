@@ -7,7 +7,8 @@ import { PageHero } from "@/components/site/PageHero";
 import { tt, type Lang } from "@/lib/locale";
 import { siteHi } from "@/content/hi/site";
 
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   return buildPageMeta({
     lang: params.lang as Lang,
     title: "Terms of Use",
@@ -16,7 +17,8 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
   });
 }
 
-export default function TermsPage({ params }: { params: { lang: string } }) {
+export default async function TermsPage(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const t = tt(lang);
   const hi = lang === "hi";

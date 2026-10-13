@@ -70,7 +70,8 @@ const imageSchemas = (lang: Lang) => Object.entries(indorePhotos).map(([key, p])
   acquireLicensePage: p.sourceUrl,
 }));
 
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const lang = params.lang as Lang;
   return buildPageMeta({
     lang,
@@ -101,7 +102,8 @@ const PLACES = [
   "Palasia", "Vijay Nagar", "Rau", "Mhow", "Pithampur", "Dewas", "Ujjain",
 ];
 
-export default function IndoreIndexPage({ params }: { params: { lang: string } }) {
+export default async function IndoreIndexPage(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const t = tt(lang);
   const hi = lang === "hi";

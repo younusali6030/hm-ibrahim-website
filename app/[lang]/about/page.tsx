@@ -41,7 +41,8 @@ function aboutPageSchema(lang: Lang) {
   };
 }
 
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   return buildPageMeta({
     lang: params.lang as Lang,
     title: `About Us | ${site.name}, Iron & Hardware Since 1939, Siyaganj, Indore`,
@@ -102,7 +103,8 @@ function values(lang: Lang) {
   ];
 }
 
-export default function AboutPage({ params }: { params: { lang: string } }) {
+export default async function AboutPage(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const t = tt(lang);
   const hi = lang === "hi";

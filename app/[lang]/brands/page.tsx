@@ -19,7 +19,8 @@ import { tt, type Lang } from "@/lib/locale";
 import "@/components/story/story.css";
 
 // The root layout template appends " | HM Ibrahim & Co", so the title here carries no business name.
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const lang = params.lang as Lang;
   return buildPageMeta({
     lang,
@@ -63,7 +64,8 @@ const wironProducts = Array.from(
   ).values()
 );
 
-export default function BrandsPage({ params }: { params: { lang: string } }) {
+export default async function BrandsPage(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const t = tt(lang);
   const hi = lang === "hi";

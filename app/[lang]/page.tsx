@@ -23,7 +23,8 @@ import { tt, type Lang } from "@/lib/locale";
 const FAQAccordion = dynamic(() => import("@/components/FAQAccordion").then((m) => ({ default: m.FAQAccordion })), { ssr: true });
 const CTASection = dynamic(() => import("@/components/CTASection").then((m) => ({ default: m.CTASection })), { ssr: true });
 
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   return buildPageMeta({
     lang: params.lang as Lang,
     title: "Iron, Wire and Mesh in Indore since 1939",
@@ -33,7 +34,8 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
   });
 }
 
-export default async function HomePage({ params }: { params: { lang: string } }) {
+export default async function HomePage(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
   const lang = params.lang as Lang;
   const t = tt(lang);
   // Only some guides have a Hindi edition. On the Hindi home page, lead with those so the titles read in Hindi;

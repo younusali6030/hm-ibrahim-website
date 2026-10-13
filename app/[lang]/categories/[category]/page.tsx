@@ -32,7 +32,7 @@ import { LedgerRow } from "@/components/catalog/LedgerRow";
 import { sizeTag, tataFlag } from "@/components/catalog/ledger";
 import { T } from "@/lib/i18n";
 
-type Props = { params: { lang: string; category: string } };
+type Props = { params: Promise<{ lang: string; category: string }> };
 
 export function generateStaticParams() {
   return categories.map((c) => ({ category: c.slug }));
@@ -40,7 +40,8 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const slug = params.category;
   const lang = params.lang as Lang;
   const found = getCategoryBySlug(slug);
@@ -146,7 +147,8 @@ function getCategoryItemListSchema(category: { name: string; slug: string; descr
   };
 }
 
-export default async function CategoryPage({ params }: Props) {
+export default async function CategoryPage(props: Props) {
+  const params = await props.params;
   const slug = params.category;
   const lang = params.lang as Lang;
   const t = tt(lang);

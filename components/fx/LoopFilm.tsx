@@ -75,7 +75,6 @@ export function LoopFilm({
       {/* Above the fold on its page: eager, high priority, AVIF first. */}
       <picture>
         <source type="image/avif" srcSet={poster.replace(/\.jpg$/, ".avif")} />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={poster} alt="" className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" decoding="async" />
       </picture>
       <video ref={video} className="absolute inset-0 h-full w-full object-cover" muted loop playsInline preload="none" tabIndex={-1} />

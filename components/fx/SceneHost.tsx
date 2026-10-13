@@ -169,7 +169,6 @@ export function SceneHost({
         {posterNarrow && <source media="(max-width: 1023px)" type="image/avif" srcSet={`${posterNarrow}.avif`} />}
         {posterNarrow && <source media="(max-width: 1023px)" srcSet={`${posterNarrow}.jpg`} />}
         <source type="image/avif" srcSet={`${poster}.avif`} />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`${poster}.jpg`}
           alt=""
@@ -184,7 +183,6 @@ export function SceneHost({
       {focusPosters && focus && focusPosters[focus] && !live && (
         <picture key={focus}>
           <source type="image/avif" srcSet={`${focusPosters[focus]}.avif`} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`${focusPosters[focus]}.jpg`}
             alt=""

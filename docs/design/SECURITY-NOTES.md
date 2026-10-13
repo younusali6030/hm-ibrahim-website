@@ -22,7 +22,7 @@
 CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy and COOP on every route. Scripts and styles keep `'unsafe-inline'` because Next.js inlines its bootstrap and the JSON-LD blocks; the policy still blocks framing, plugins, base-tag and cross-site form posts, and limits script, XHR, image and frame origins to the site, Google Tag Manager / GA4 and the Google Maps embed. A new third-party script or embed must be added to the policy or the browser will block it.
 
 ## Dependencies
-`npm audit --omit=dev` (13 Oct 2026): nodemailer and source-map-js fixed. Left: Next.js 14 advisories and its bundled postcss (fix is Next 16), and gray-matter's js-yaml chain (parses only our own markdown). Plan the Next upgrade on its own branch.
+`npm audit --omit=dev` (13 Oct 2026, after the Next 16 upgrade): 5 left, all in gray-matter's js-yaml chain (it parses only our own markdown front matter, never visitor input). Next.js 16.4 and its postcss are clean. Replace gray-matter if the audit must be zero.
 
 ## Other things seen (not changed, not in this scope)
 - `README.md` and `DEPLOY.md` still name a personal Gmail address as the default sender.
