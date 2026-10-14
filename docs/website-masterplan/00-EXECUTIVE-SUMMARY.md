@@ -80,3 +80,18 @@ See `14-VALIDATION-AND-TESTING.md` §Unknowns. Biggest: real-user CWV, Search Co
 | AUD-019 / AUD-023 targets and contrast | FIXED |
 | AUD-025 Hindi guides | FIXED: all 24 have Hindi editions (native review pending) |
 Not yet re-measured: Lighthouse and the expert scorecard (09) still show the 13 Oct baseline; re-run after the next deploy settles.
+
+## Still remaining (as of end of 13 Oct 2026)
+**Owner actions**
+1. Rotate / confirm the Gmail app password (TASK-002).
+2. Confirm owner inbox and customer catalogue email receive a test quote (TASK-001).
+3. Search Console: request indexing for the 4 pages mapped to `747live.bet`, resubmit the 212-URL sitemap, log coverage weekly (TASK-003).
+4. Add CI workflow via GitHub UI or a token with `workflow` scope (TASK-026).
+5. Set Upstash/KV env vars in Vercel so the lead fallback and shared rate limit work (TASK-002).
+6. Send warehouse street addresses and phawda specifications (handle types, weights, qualities).
+7. Native read of the 15 new Hindi guides; update Google Business Profile hours and warehouses.
+8. Decide catalogue-editing approach (TASK-020).
+**Engineering (next)**
+9. Re-run Lighthouse x3 and refresh the scorecard (09) after the deploy settles.
+10. TASK-015 content plan from Search Console data (needs 4+ weeks); TASK-017 Lighthouse CI budget (needs CI).
+11. Optional: shop-front video on About, tap-to-load map on `/indore`, wholesale/bulk landing page (needs owner terms).
