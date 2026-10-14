@@ -30,6 +30,7 @@ Status: ☐ open · ◐ in progress · ☑ done (only with evidence recorded in 
 | TASK-024 | 0 | P1 | Resolve opening-hours conflict: shop opens 10 am everywhere | GEO F1 | S | Low | – | ☑ deployed 13 Oct |
 | TASK-025 | 4 | P2 | Publish warehouse facts (Loha Mandi, New Loha Mandi), customer types; rename hoe to shovel (phawda) | – | S | Low | owner | ☑ deployed 13 Oct; warehouse addresses and phawda specs still owed by owner |
 | TASK-026 | 1 | P1 | Add CI workflow to `.github/workflows` (needs token with `workflow` scope or GitHub web UI) | AUD-008 | S | Low | owner | ☐ |
+| TASK-027 | 4 | P1 | Mesh-family SEO pass 1: manufacturer wording for MS/GI wiremesh, jali-intent titles for weldmesh/crimp/chicken mesh, EN+HI | AUD-004, product-opportunity rows 3-5, 8-10, 14 | S | Low | owner D-009 | ◐ code + tests done locally, not built/deployed; needs owner review of Hindi wording and the two conflicts logged in 13 |
 
 ## Acceptance + verification (selected)
 - **TASK-001** Accept: one test lead with a distinctive name appears in owner inbox and Sheet within 2 min, reference matches, success page shows; catalog email arrives if email given; remove test row. Verify: screenshot of inbox/Sheet recorded in 13. Rollback: n/a.

@@ -65,11 +65,11 @@ Extra stock ties up money and space. Order what you need for the next phase plus
 
 ## What to Buy in Bulk (Typical)
 
-- **TMT bars:** For full building or phase.
-- **MS angles, flats, channels:** For fabrication lot.
-- **Chain link, barbed wire, GI wire:** For full boundary.
-- **Weldmesh, binding wire:** For slab and RCC work.
-- **GI pipes:** For water line or fencing in one go.
+- **[TMT bars](/products/tmt-bars):** For full building or phase.
+- **[MS angles](/products/ms-angles), [flats](/products/ms-flats), [channels](/products/ms-channels):** For fabrication lot.
+- **[Chain link](/products/chain-link-fencing), [barbed wire](/products/barbed-wire), [GI wire](/products/gi-wire):** For full boundary.
+- **[Weldmesh](/products/gi-weldmesh), [binding wire](/products/binding-wire):** For slab and RCC work.
+- **[GI pipes](/products/gi-pipes):** For water line or fencing in one go.
 
 See [Products](/products) and category pages for [Structural Items](/categories/structural-items), [Fencing Material](/categories/fencing-material), and [Wires](/categories/wires).
 

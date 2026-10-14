@@ -52,12 +52,12 @@ test("manufacturing-scope pages that claim it also draw the boundary and have ma
   assert.match(pageText(indorePages["wire-mesh"]), /stocked and supplied/);
 });
 
-test("product SEO copy mentions manufacturing only under barbed-wire and chain-link-fencing", () => {
+test("product SEO copy mentions manufacturing only under the owner-confirmed product slugs", () => {
   for (const file of ["content/productSeoContent.ts", "content/productCopy.ts", "content/hi/productSeo.ts", "content/hi/productCopy.ts"]) {
     const lines = read(file).split("\n");
     let key = "";
     lines.forEach((line, i) => {
-      const m = line.match(/^  ["']?([a-z0-9-]+)["']?: \{/);
+      const m = line.match(/^  ["']?([a-z0-9-]+)["']?: (\{|[ch]\()/);
       if (m) key = m[1];
       if (EN_CLAIM.test(line) || /हम[^।]{0,60}बनाते|निर्माता हैं|बनाता हूँ|हमारा बनाया|हमारी बनाई/.test(line)) {
         assert.ok(
@@ -70,7 +70,7 @@ test("product SEO copy mentions manufacturing only under barbed-wire and chain-l
 });
 
 test("product schema manufacturer is limited to the confirmed families", () => {
-  assert.deepEqual([...manufacturedProductSlugs].sort(), ["barbed-wire", "chain-link-fencing"]);
+  assert.deepEqual([...manufacturedProductSlugs].sort(), ["barbed-wire", "chain-link-fencing", "gi-wiremesh", "ms-wiremesh"]);
 });
 
 test("search-result titles stay within the display budget", () => {

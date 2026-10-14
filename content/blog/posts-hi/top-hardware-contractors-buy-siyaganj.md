@@ -38,7 +38,9 @@ image3Alt: "नारंगी कटोरे में कील और ता
 
 - **[बाइंडिंग तार](/products/binding-wire):** RCC बाँधने के लिए।
 - **[GI तार](/products/gi-wire):** आम बाँधने और फेंसिंग के लिए।
-- **[MS वायर रोप](/products/ms-wire-rope)** / **[GI वायर रोप](/products/gi-wire-rope)**: उठाने और रिगिंग के लिए।
+- **[MS वायर रोप](/products/ms-wire-rope)** / **[GI वायर रोप](/products/gi-wire-rope)** / **[SS वायर रोप](/products/ss-wire-rope)**: उठाने और रिगिंग के लिए, नाप से कटी।
+- **[वायर रोप क्लैंप](/products/wire-rope-clamp):** रस्सी जोड़ने या सिरा बाँधने के लिए गैल्वनाइज़्ड U-बोल्ट क्लिप।
+- **[क्लच वायर](/products/clutch-wire):** स्पूल में पतला तार।
 
 ## निर्माण के औज़ार और खपत का सामान
 
@@ -46,6 +48,12 @@ image3Alt: "नारंगी कटोरे में कील और ता
 - **[कटिंग डिस्क और ग्राइंडिंग व्हील](/products/cutting-discs-grinding-wheels):** धातु काटने और घिसने के लिए।
 - **[कवर ब्लॉक](/products/concrete-cover-block):** RCC में सरिया का कवर रखने के लिए।
 - **[शिकंजा](/products/santing-shikanja):** फॉर्मवर्क और शटरिंग के लिए।
+- **[सब्बल (क्रोबार)](/products/sr-crowbar):** तोड़-फोड़, उखाड़ने और खुदाई के लिए।
+- **[घन (स्लेज हैमर)](/products/sr-sledge-hammer):** तोड़-फोड़ और खूँटे ठोकने के लिए।
+- **[गेती (पिकैक्स)](/products/sr-pickaxe-geti):** सख़्त ज़मीन और नाली की खुदाई के लिए।
+- **[फावड़ा](/products/sr-hoe-faurdha):** साइट पर खुदाई के लिए; [हैंडल के साथ](/products/sr-hoe-faurdha-with-handle) भी।
+- **[कंस्ट्रक्शन स्पंज](/products/sponge):** सफ़ाई और फिनिशिंग के लिए।
+- **[MS होलपास](/products/ms-holepass):** पाइप सपोर्ट और माउंटिंग के लिए गैल्वनाइज़्ड L-ब्रैकेट।
 - **[वायर कील](/products/fasteners-nails)** और **[रूफिंग कील](/products/roofing-nail):** स्ट्रक्चरल और छत के लिए।
 
 देखिए [निर्माण के औज़ार](/categories/construction-tools) और [कील](/categories/nails)।

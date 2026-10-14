@@ -541,7 +541,7 @@ const ownCategories: Category[] = [
         categorySlug: "wiremesh",
         images: ["/products/v2/ms-wiremesh-1.webp", "/products/v2/ms-wiremesh-2.webp"],
         image: "/products/v2/ms-wiremesh-1.webp",
-        imageAlt: "Square-grid welded wire mesh panel",
+        imageAlt: "MS wiremesh, square-grid mild steel mesh",
         specs: [
           { label: "Mesh opening", value: "15 x 15 mm to 150 x 150 mm" },
           { label: "Supplied as", value: "Rolls and panels, cut to size at the counter" },

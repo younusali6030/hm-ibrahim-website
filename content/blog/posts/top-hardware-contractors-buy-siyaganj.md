@@ -2,7 +2,7 @@
 title: "Top Hardware Items Contractors Buy in Siyaganj (Checklist)"
 description: "A checklist of the steel, mesh, wire and tools contractors usually buy in Siyaganj, Indore, grouped so you can send one list and get one rate."
 date: "2025-02-07"
-updated: "2026-10-11"
+updated: "2026-10-13"
 category: "Buying guide"
 image: "/blog/contractors-1.webp"
 imageAlt: "Bins of nuts, bolts and wire rope clips"
@@ -43,7 +43,9 @@ See [Fencing Material](/categories/fencing-material), [Wiremesh](/categories/wir
 
 - **[Binding Wire](/products/binding-wire):** For RCC tying.
 - **[GI Wire](/products/gi-wire):** For general tying and fencing.
-- **[MS Wire Rope](/products/ms-wire-rope)** / **[GI Wire Rope](/products/gi-wire-rope)**: For lifting and rigging.
+- **[MS Wire Rope](/products/ms-wire-rope)** / **[GI Wire Rope](/products/gi-wire-rope)** / **[SS Wire Rope](/products/ss-wire-rope)**: For lifting and rigging, cut to length.
+- **[Wire Rope Clamp](/products/wire-rope-clamp):** Galvanised U-bolt clips to join or end the rope.
+- **[Clutch Wire](/products/clutch-wire):** Thin-gauge wire in spools.
 
 ## Construction Tools and Consumables
 
@@ -51,6 +53,12 @@ See [Fencing Material](/categories/fencing-material), [Wiremesh](/categories/wir
 - **[Cutting Disc & Grinding Wheels](/products/cutting-discs-grinding-wheels):** For metal cutting and grinding.
 - **[Cover block](/products/concrete-cover-block):** For rebar cover in RCC.
 - **[Shikanja](/products/santing-shikanja):** For formwork and shuttering.
+- **[Crowbar (sabbal)](/products/sr-crowbar):** For demolition, prying and digging.
+- **[Sledge Hammer](/products/sr-sledge-hammer):** For demolition and driving stakes.
+- **[Pickaxe (geti)](/products/sr-pickaxe-geti):** For hard ground and trench work.
+- **[Shovel (faurdha)](/products/sr-hoe-faurdha):** For site digging; also [with handle](/products/sr-hoe-faurdha-with-handle).
+- **[Construction Sponge](/products/sponge):** For cleaning and finishing.
+- **[MS Holepass](/products/ms-holepass):** Galvanised L-brackets for pipe support and mounting.
 - **[Wire Nails](/products/fasteners-nails)** and **[Roofing Nails](/products/roofing-nail)**: For structural and roofing.
 
 See [Construction Tools](/categories/construction-tools) and [Nails](/categories/nails).

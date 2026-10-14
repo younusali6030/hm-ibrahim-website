@@ -64,9 +64,219 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "Barbed wire we manufacture in Indore: single and double strand, 12 x 14 and 14 x 14 gauge, coils to 25 kg. Orders accepted across India. Ask for the rate.",
   },
   "products/chain-link-fencing": {
-    title: "Chain Link Fencing in Indore: Mesh, Wire, Height | HM Ibrahim",
+    title: "Chain Link Fencing in Indore: Mesh, Wire, Height",
     description:
-      "Chain link fencing we manufacture in Indore: 1 to 4 inch mesh, 1.5 to 4 mm wire, 3 to 10 ft rolls, GI or PVC-coated. Orders accepted across India. Ask for the rate.",
+      "Chain link fencing we manufacture in Indore: 1 to 4 inch mesh, 1.5 to 4 mm wire, 3 to 10 ft rolls, GI or PVC. Orders across India. Ask for the rate.",
+  },
+  "products/ms-wiremesh": {
+    title: "MS Wiremesh Manufacturer in Indore, 15 to 150 mm",
+    description:
+      "MS wiremesh we manufacture in Indore: 15 x 15 to 150 x 150 mm openings, 1.2 m x 15 m rolls, cut to size. Orders accepted across India. Ask for the rate.",
+  },
+  "products/gi-wiremesh": {
+    title: "GI Wiremesh Manufacturer in Indore, 15 to 100 mm",
+    description:
+      "GI wiremesh we manufacture in Indore: 15 to 100 mm openings, zinc-coated, 1.2 m x 15 m rolls, cut to size. Orders across India. Ask for the rate.",
+  },
+  "products/gi-weldmesh": {
+    title: "GI Weldmesh Jali in Indore: Rolls and Panels | HM Ibrahim",
+    description:
+      "GI welded mesh (weldmesh jali) in rolls and panels, 15 x 15 to 150 x 150 mm, cut to size at Siyaganj, Indore. Send the opening and area for the rate.",
+  },
+  "products/ms-weldmesh": {
+    title: "MS Weldmesh Jali in Indore: Rolls and Panels | HM Ibrahim",
+    description:
+      "MS welded mesh (weldmesh jali) in rolls and panels, 15 x 15 to 150 x 150 mm, cut to size at Siyaganj, Indore. Send the opening and area for the rate.",
+  },
+  "products/pvc-coated-weldmesh": {
+    title: "PVC Coated Weldmesh in Indore: Green, 25 mm Grid",
+    description:
+      "Green PVC coated welded mesh, 25 x 25 mm grid, 3 ft x 15 m rolls, cut to size at Siyaganj, Indore. For fences and cages. Ask for the rate.",
+  },
+  "products/crimp-wiremesh": {
+    title: "Crimp Wiremesh in Indore: 15 to 150 mm, MS and GI",
+    description:
+      "Crimped wire mesh in MS and GI, 15 x 15 to 150 x 150 mm, 1.2 m x 15 m rolls, cut to size at Siyaganj, Indore. For sieves and screens. Ask for the rate.",
+  },
+  "products/chicken-net": {
+    title: "GI Chicken Mesh (Murga Jali) in Indore, 25 mm | HM Ibrahim",
+    description:
+      "Hexagonal galvanised chicken mesh (murga jali), 25 mm, 1 m x 30 m rolls, cut by the metre at Siyaganj, Indore. For poultry and cages. Ask for the rate.",
+  },
+  "products/expanded-metal-mesh": {
+    title: "Expanded Metal Mesh (Jali) in Indore: Sheets, Rolls",
+    description:
+      "Expanded metal jali, plain, painted or galvanised: 0.5, 1.0, 1.5 mm strand, 1.2 x 2.4 m sheets and 0.5 mm rolls at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/aluminium-wiremesh": {
+    title: "Aluminium Wiremesh (Aluminium Jali) in Indore | HM Ibrahim",
+    description:
+      "Aluminium jali, 18 x 16 per inch mesh count, 3 ft and 4 ft widths, cut to size at Siyaganj, Indore. Rust-free screening. Send width and length for a rate.",
+  },
+  "products/plastic-hexagonal-poultry-mesh": {
+    title: "Plastic Hexa Mesh (PVC Hexa Net) in Indore, 25 mm",
+    description:
+      "Green and white plastic hexagonal mesh, 25 mm opening, 1.2 m x 25 m rolls for poultry runs and garden fencing at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/square-mesh": {
+    title: "Plastic Square Mesh in Indore: 10 mm, Blue, Green",
+    description:
+      "Plastic square mesh, 10 x 10 mm holes, 1 m x 25 m rolls in blue and green for gardens and light barriers at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/ms-angles": {
+    title: "MS Angle in Indore: 20 to 100 mm, 3 to 10 mm | HM Ibrahim",
+    description:
+      "MS angle iron, 20 x 20 to 100 x 100 mm, 3 to 10 mm thick, 6 m and 12 m, commonly IS 2062, retail and wholesale at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/ms-flats": {
+    title: "MS Flat Bars in Indore: 12 to 150 mm Wide | HM Ibrahim",
+    description:
+      "MS flats 12 to 150 mm wide, 3 to 12 mm thick, in 6 m and 12 m lengths, retail and wholesale at Siyaganj, Indore. Send size and quantity for the rate.",
+  },
+  "products/bright-bars": {
+    title: "Bright Bars in Indore: 8 to 40 mm, Bright Drawn | HM Ibrahim",
+    description:
+      "Bright drawn steel bars, 8 to 40 mm, 6 m length, for shafts, pins and machined parts at Siyaganj, Indore. Send the diameter and quantity for the rate.",
+  },
+  "products/tmt-bars": {
+    title: "TMT Bars (Sariya) in Indore: 6 to 32 mm, Fe 500 | HM Ibrahim",
+    description:
+      "TMT sariya in 6, 8, 10, 12, 16, 20, 25 and 32 mm, typically 12 m, Fe 500 and Fe 550, retail and wholesale at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/ms-round-bars": {
+    title: "MS Round Bars and Rods in Indore: 6 to 50 mm | HM Ibrahim",
+    description:
+      "MS round bars and rods, 6 to 50 mm diameter, 6 m and 12 m lengths, black or bright, at Siyaganj, Indore. Send the diameter and quantity for the rate.",
+  },
+  "products/ms-channels": {
+    title: "MS Channels in Indore: 75 to 300 mm, ISMC | HM Ibrahim",
+    description:
+      "MS channels, 75 to 300 mm (ISA and ISMC sections), 6 m and 12 m lengths, retail and wholesale at Siyaganj, Indore. Send the size and quantity for the rate.",
+  },
+  "products/ms-i-beams-joists": {
+    title: "MS I-Beams and Joists in Indore: 75 to 300 mm | HM Ibrahim",
+    description:
+      "MS I-beams and joists, 75 to 300 mm (ISMB and ISJB), IS 2062 mild steel, 6 m and 12 m lengths at Siyaganj, Indore. Send the size for the rate.",
+  },
+  "products/gi-pipes": {
+    title: "GI Pipes in Indore: 15 to 150 mm NB, Light to Heavy",
+    description:
+      "GI pipes in 15 to 150 mm NB, light, medium and heavy class, 6 m standard length, for water lines and fencing at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/ms-pipes": {
+    title: "MS Pipes in Indore: 15 to 300 mm NB, Square Tube",
+    description:
+      "MS round pipe, 15 to 300 mm NB in 6 m lengths, plus square and rectangular hollow sections, at Siyaganj, Indore. Send size and wall thickness for the rate.",
+  },
+  "products/ms-holepass": {
+    title: "MS Holepass (Hole Pass) Bracket in Indore | HM Ibrahim",
+    description:
+      "Galvanised mild steel L-shaped holepass angle bracket with a central large hole and smaller fastener holes, at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/frp-bars": {
+    title: "FRP Bars in Indore: 6 to 20 mm, 4 to 6 ft Rods | HM Ibrahim",
+    description:
+      "Glass fibre reinforced polymer (FRP) bars, 6 to 20 mm, in 4, 5 and 6 ft rods, at Siyaganj, Indore. Send the diameter and quantity for the rate.",
+  },
+  "products/gi-wire": {
+    title: "GI Wire Gauges in Indore: 8 to 18 SWG, Packs | HM Ibrahim",
+    description:
+      "GI wire 8 to 18 SWG (4.06 to 1.22 mm), sold by weight in 5, 10 and 25 kg packs, plus Tata Wiron farming wire at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/binding-wire": {
+    title: "Binding Wire (Kala Taar) in Indore: 16 to 18 SWG",
+    description:
+      "Black annealed binding wire (kala taar), 16 to 18 SWG, in coils up to 50 kg for tying rebar and general site work at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/jhatka-machine-fencing-wire": {
+    title: "Jhatka Machine Fencing Wire in Indore, 1.5 mm | HM Ibrahim",
+    description:
+      "GI steel jhatka wire, 1.5 mm, in 100 m coils for farm boundaries and jhatka machines at Siyaganj, Indore. Send the length you need for the rate.",
+  },
+  "products/clutch-wire": {
+    title: "Clutch Wire in Indore: Spools and Coils | HM Ibrahim",
+    description:
+      "Clutch wire for clutch cables in thin gauge, galvanised or coated as per stock, in spools and coils at Siyaganj, Indore. Tell us the gauge for the rate.",
+  },
+  "products/ms-wire-rope": {
+    title: "MS Wire Rope in Indore: 2 to 20 mm, by the Metre",
+    description:
+      "MS wire rope, 2 to 20 mm and above, cut to length by the metre or full 500 m reel, at Siyaganj, Indore. Send the diameter and length for the rate.",
+  },
+  "products/gi-wire-rope": {
+    title: "GI Wire Rope in Indore: 2 to 20 mm, by the Metre",
+    description:
+      "GI wire rope, 2 to 20 mm and above, cut to length by the metre or full 500 m reel, at Siyaganj, Indore. Send the diameter and length for the rate.",
+  },
+  "products/ss-wire-rope": {
+    title: "SS Wire Rope in Indore: 2 to 20 mm, by the Metre",
+    description:
+      "Stainless steel wire rope from 2 mm to 20 mm and above, cut to your length by the metre or full 305 m reel, at Siyaganj, Indore. Send diameter and length.",
+  },
+  "products/wire-rope-clamp": {
+    title: "Wire Rope Clamp (U-Bolt Clip) in Indore, Galvanised",
+    description:
+      "Galvanised U-bolt wire rope clips for joining and ending wire rope, at Siyaganj, Indore. Send the rope diameter and quantity for the rate.",
+  },
+  "products/concertina-wire": {
+    title: "Concertina Wire in Indore: 450 and 600 mm Coils | HM Ibrahim",
+    description:
+      "Single and double coil concertina wire, 450 mm (8 m opened) and 600 mm (9 m opened) coils, supplied at Siyaganj, Indore. Send the quantity for the rate.",
+  },
+  "products/fiber-mesh": {
+    title: "Fibermesh (Fibreglass Mesh) in Indore: 4 in to 1 m",
+    description:
+      "Fibreglass reinforcement mesh for plaster and render, 4 in, 6 in, 8 in and 1 m widths, to resist cracks at joints, at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/santing-shikanja": {
+    title: "Shikanja (Santing) Shuttering Clamp in Indore | HM Ibrahim",
+    description:
+      "Heavy-duty shikanja shuttering clamps, 600 mm and 900 mm, sold by the piece for formwork and centering at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/concrete-cover-block": {
+    title: "Concrete Cover Blocks in Indore for RCC Rebar Cover",
+    description:
+      "Concrete cover blocks (spacers) to hold rebar cover in slabs, beams and columns, at Siyaganj, Indore. Tell us the cover and quantity for the rate.",
+  },
+  "products/welding-rods": {
+    title: "Welding Rods in Indore: E6013, E7018, 2.5 to 4 mm",
+    description:
+      "Arc welding electrodes E6013 and E7018 in 2.5, 3.15 and 4.0 mm, 1 kg and 5 kg boxes, at Siyaganj, Indore. Send the type and size for the rate.",
+  },
+  "products/sponge": {
+    title: "Construction Sponge in Indore for Finishing Work",
+    description:
+      "Construction sponge for cleaning and finishing plaster and tile work, in small, medium and large sizes as available, at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/cutting-discs-grinding-wheels": {
+    title: "Cutting Discs, Grinding Wheels in Indore, 4 to 7 in",
+    description:
+      "Metal cutting discs (1 to 3 mm) and grinding wheels (6 mm), 4 to 7 inch, 22 mm bore, at Siyaganj, Indore. Send the diameter and quantity for the rate.",
+  },
+  "products/fasteners-nails": {
+    title: "Wire Nails in Indore: 1 to 6 Inch | HM Ibrahim",
+    description:
+      "Wire nails from 1 to 6 inch, sold by weight at Siyaganj, Indore, retail and wholesale. Send the size and quantity for the rate.",
+  },
+  "products/roofing-nail": {
+    title: "Roofing Nails in Indore: 1.5 to 6 Inch, Wide Head",
+    description:
+      "Roofing nails with a wide flat head, 1.5 to 6 inch, for sheets and felt, sold by weight at Siyaganj, Indore. Send the size and quantity for the rate.",
+  },
+  "products/pigeon-nets": {
+    title: "Pigeon Net (Kabootar Jali) in Indore: 3 to 20 ft",
+    description:
+      "Knotted nylon and HDPE pigeon net, 50 x 50 mm mesh, 3 to 20 ft wide, cut to your length at Siyaganj, Indore. Send the width and length for the rate.",
+  },
+  "products/pigeon-spikes": {
+    title: "Pigeon Spikes (Bird Spikes) in Indore, 30 cm Strips",
+    description:
+      "Plastic and SS bird spikes in 30 cm strips, by the running metre or 10-strip, 3 m packs, for ledges and parapets at Siyaganj, Indore. Ask for the rate.",
+  },
+  "products/safety-net": {
+    title: "Safety Net for Construction Sites in Indore, 5 x 10 m",
+    description:
+      "Debris net, nylon and polyethylene, 5 x 10 m, 50 x 50 mm mesh, for sites and scaffolding at Siyaganj, Indore. Not fall protection. Ask for the rate.",
   },
   "products/mosquito-net": {
     title: "Mosquito Net (Machhar Jali) in Indore | HM Ibrahim",
@@ -81,12 +291,12 @@ export const seoOverrides: Record<string, SeoOverride> = {
   "products/gi-perforated-sheet": {
     title: "GI Perforated Sheet (Chaddar Jali), Indore | HM Ibrahim",
     description:
-      "Galvanised perforated sheet, 0.5 to 3 mm, in round, square, slot and hexagonal holes, cut to size at Siyaganj, Indore. Ask for the rate.",
+      "GI perforated sheet, 0.5 to 3 mm, 4 x 8 ft sheets, round, square, slot and hexagonal holes, cut to size at Siyaganj, Indore. Ask for the rate.",
   },
   "products/ms-perforated-sheet": {
     title: "MS Perforated Sheet (Chaddar Jali), Indore | HM Ibrahim",
     description:
-      "Mild steel perforated sheet, 0.5 to 3 mm, in round, square and slot holes, cut to size at Siyaganj, Indore. SS and aluminium sheet on request.",
+      "MS perforated sheet, 0.5 to 3 mm, 4 x 8 ft sheets, round, square and slot holes, cut to size at Siyaganj, Indore. SS and aluminium sheet on request.",
   },
   "products/sr-crowbar": {
     title: "SR Crowbar (Sabbal) in Indore | HM Ibrahim, Siyaganj",

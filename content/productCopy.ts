@@ -96,7 +96,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["What is holepass used for?", "It is an L-bracket with a hole for a pipe or cable to pass through, used for supports and mounting."],
       ["Is holepass galvanised?", "Yes, it is supplied galvanised, which helps it last outdoors."],
     ],
-    [],
+    ["top-hardware-contractors-buy-siyaganj"],
     ["ms-angles", "gi-pipes", "ms-flats"]
   ),
   "frp-bars": c(
@@ -127,25 +127,27 @@ export const productCopy: Record<string, ProductCopy> = {
 
   // ---------------------------------------------------------------- Wiremesh
   "ms-wiremesh": c(
-    "MS wiremesh is square-grid mild steel wire mesh. It is the cheapest mesh we sell and it is meant for indoor or painted use. Openings run from 15 mm to 150 mm. Whether a given roll is woven or welded is confirmed with the rate; see MS weldmesh for welded rolls and panels.",
+    "MS wiremesh is square-grid mild steel wire mesh, and we manufacture it at HM Ibrahim & Co in Indore. It is the cheapest mesh we sell and it is meant for indoor or painted use. Openings run from 15 mm to 150 mm. Whether a given roll is woven or welded is confirmed with the rate; see MS weldmesh for welded rolls and panels.",
     "Fabricators use it for guards, partitions, trays and cages inside buildings. It is also used for screening and as a base for plaster work indoors.",
     "Specify the opening, the wire thickness and the roll or panel size. If the mesh will see rain or damp, choose GI or PVC-coated mesh instead of MS, or paint it after fixing.",
     "The rate depends on the opening, the wire gauge, the roll size and the quantity. A smaller opening and a thicker wire mean more steel and a higher rate. Ask us with the grid and the area.",
     [
       ["Will MS wiremesh rust?", "Yes, if it stays wet. Use it indoors or paint it. For outdoor use choose GI or PVC-coated mesh."],
       ["What openings do you keep?", "15 x 15 mm, 25 x 25 mm, 50 x 50 mm, 75 x 75 mm, 100 x 100 mm and 150 x 150 mm, as per stock."],
+      ["Do you manufacture MS wiremesh, and do you supply across India?", "Yes, we manufacture MS wiremesh and sell it from our shop on Siyaganj Main Road, Indore. Orders accepted across India; delivery arrangements confirmed with each quotation."],
     ],
     ["wire-mesh-supplier-indore-types-uses-prices", "welded-wire-mesh-vs-chain-link"],
     ["gi-wiremesh", "ms-weldmesh", "crimp-wiremesh"]
   ),
   "gi-wiremesh": c(
-    "GI wiremesh is steel wire mesh with a zinc coating, so it stands up to weather. We stock openings from 15 mm to 100 mm in rolls.",
+    "GI wiremesh is steel wire mesh with a zinc coating, so it stands up to weather. We manufacture it at HM Ibrahim & Co in Indore, in openings from 15 mm to 100 mm in rolls.",
     "It is used for compound screens, bird and animal cages, window guards, farm fencing and anywhere the mesh stays outdoors.",
     "Ask for the opening, the gauge and the roll width. GI mesh costs more than MS and lasts much longer outdoors. For a coated, softer finish on a fence, see PVC-coated weldmesh.",
     "The rate depends on the opening, the wire gauge, the zinc coating, the roll size and the quantity. Ask us with the grid and the area.",
     [
       ["What is the difference between GI and MS wiremesh?", "GI has a zinc coat and resists rust. MS is bare steel and should be used indoors or painted."],
       ["Can I use it for a poultry shed?", "Yes, GI wiremesh is common for cages and sheds. For hexagonal poultry net, see GI chicken mesh."],
+      ["Do you manufacture GI wiremesh, and do you supply across India?", "Yes, we manufacture GI wiremesh and sell it from our shop on Siyaganj Main Road, Indore. Orders accepted across India; delivery arrangements confirmed with each quotation."],
     ],
     ["wire-mesh-supplier-indore-types-uses-prices", "mosquito-net-types-fibreglass-ss-aluminium-indore"],
     ["ms-wiremesh", "gi-weldmesh", "chicken-net"]
@@ -233,7 +235,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["Will plastic hexa mesh last in the sun?", "Good UV-stabilised plastic lasts several seasons. Cheaper nets fade and go brittle sooner."],
       ["What colours are available?", "Green and white are common. Other colours as per stock."],
     ],
-    [],
+    ["farm-fencing-madhya-pradesh-posts-wire-angle-plan", "wire-mesh-supplier-indore-types-uses-prices"],
     ["chicken-net", "square-mesh", "pvc-coated-weldmesh"]
   ),
   "square-mesh": c(
@@ -245,7 +247,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["Where is plastic square mesh used?", "Gardens, plant climbers, poultry runs and light barriers."],
       ["Is it strong enough for a fence?", "Only for light duty. For a real boundary use chain link or welded mesh."],
     ],
-    [],
+    ["wire-mesh-supplier-indore-types-uses-prices"],
     ["plastic-hexagonal-poultry-mesh", "chicken-net", "pvc-coated-weldmesh"]
   ),
 
@@ -256,9 +258,10 @@ export const productCopy: Record<string, ProductCopy> = {
     "Choose the grid and the wire thickness from the job. A 50 x 50 mm grid with thick wire is stiff enough for a guard. Wider grids suit fencing. For slab reinforcement, use the grid and wire that your engineer specifies, not a guess. See our guide on welded mesh and chain link.",
     "The rate depends on the grid, the wire thickness, the roll or panel size and the quantity. Heavier wire and tighter grids cost more. Ask us with the grid and the area.",
     [
-      ["What grid sizes of GI weldmesh do you stock?", "15 x 15 mm, 50 x 50 mm, 75 x 75 mm, 100 x 100 mm and 150 x 150 mm, as per stock."],
+      ["What grid sizes of GI weldmesh do you stock?", "15 x 15 mm, 25 x 25 mm, 50 x 50 mm, 75 x 75 mm, 100 x 100 mm and 150 x 150 mm, as per stock."],
       ["Is GI weldmesh better than MS weldmesh?", "For outdoor use, yes, because of the zinc coat. Indoors, MS is cheaper and does the same work."],
       ["Is weldmesh the same as jali?", "Customers often call weldmesh jali at the counter. It is welded wire mesh, in a square grid."],
+      ["What roll and panel sizes does GI weldmesh come in?", "Rolls are 1.5 m wide x 15 m long in a 25 x 25 mm opening with 2.5 mm wire. Panels are 1.2 x 2.4 m in a 50 x 50 mm opening with 3 mm wire. For other openings, the wire diameter and the roll or panel size are confirmed with the rate."],
     ],
     ["welded-wire-mesh-vs-chain-link", "wire-mesh-supplier-indore-types-uses-prices"],
     ["ms-weldmesh", "pvc-coated-weldmesh", "chain-link-fencing"]
@@ -271,6 +274,8 @@ export const productCopy: Record<string, ProductCopy> = {
     [
       ["Can MS weldmesh go into a slab?", "Yes, where the structural drawing calls for it, in the grid and wire it specifies."],
       ["Will it rust?", "Bare MS rusts if it stays wet. Paint it or use GI for outdoors."],
+      ["What roll and panel sizes does MS weldmesh come in?", "Rolls are 1.5 m wide x 15 m long in a 25 x 25 mm opening with 2.5 mm wire. Panels are 1.2 x 2.4 m in a 50 x 50 mm opening with 3 mm wire. For other openings, the wire diameter and the roll or panel size are confirmed with the rate."],
+      ["What grid sizes of MS weldmesh do you stock?", "15 x 15 mm, 25 x 25 mm, 50 x 50 mm, 75 x 75 mm, 100 x 100 mm and 150 x 150 mm, as per stock."],
     ],
     ["welded-wire-mesh-vs-chain-link", "wire-mesh-supplier-indore-types-uses-prices"],
     ["gi-weldmesh", "ms-wiremesh", "binding-wire"]
@@ -283,6 +288,7 @@ export const productCopy: Record<string, ProductCopy> = {
     [
       ["How is PVC-coated mesh different from GI weldmesh?", "The wire carries a plastic coat over the metal, which resists rust and looks neater. It costs more."],
       ["Which colours do you have?", "Green is common. Others as per stock."],
+      ["What size is the PVC-coated weldmesh roll?", "The roll is 3 ft high x 15 m long, green, with a 25 x 25 mm finished opening. It is cut to size at the counter."],
     ],
     ["welded-wire-mesh-vs-chain-link", "how-to-estimate-material-quantity-fencing"],
     ["gi-weldmesh", "chain-link-fencing", "plastic-hexagonal-poultry-mesh"]
@@ -339,6 +345,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["What gauge binding wire is used for rebar?", "16 to 18 SWG annealed wire, with 18 SWG the most common for hand tying."],
       ["How much binding wire do I need?", "Sites commonly budget 8 to 10 kg per tonne of steel. Use your bar bending schedule for the real number."],
       ["What is kala taar?", "It is the market name for black annealed binding wire."],
+      ["What are 16 SWG and 18 SWG in mm?", "16 SWG is 1.63 mm and 18 SWG is 1.22 mm. A higher gauge number means thinner wire."],
     ],
     ["wire-gauge-chart-swg-bwg-mm-guide", "tmt-bar-weight-chart-size-guide-indore", "concrete-cover-blocks-why-cover-matters-slab-beam-column"],
     ["gi-wire", "tmt-bars", "concrete-cover-block"]
@@ -364,7 +371,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["Can clutch wire be used for lifting?", "No. Use wire rope with a known working load for lifting."],
       ["Can I bring a sample?", "Yes, a short piece lets us match the diameter at the counter."],
     ],
-    [],
+    ["wire-gauge-chart-swg-bwg-mm-guide"],
     ["ms-wire-rope", "gi-wire", "binding-wire"]
   ),
   "ms-wire-rope": c(
@@ -388,7 +395,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["Why choose SS over GI wire rope?", "Stainless does not rust and does not stain. GI is cheaper and fine for most outdoor jobs."],
       ["Do you cut it to length?", "Yes, we sell by the metre or by the coil."],
     ],
-    [],
+    ["how-to-estimate-material-quantity-fencing"],
     ["gi-wire-rope", "ms-wire-rope", "wire-rope-clamp"]
   ),
   "gi-wire-rope": c(
@@ -412,7 +419,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["How many clamps do I need per eye?", "At least three for small ropes, and more as the rope gets thicker. Follow the maker's table for your size."],
       ["Which way round does a rope clamp go?", "The saddle on the live (load) side of the rope and the U-bolt on the short end."],
     ],
-    [],
+    ["how-to-estimate-material-quantity-fencing"],
     ["gi-wire-rope", "ms-wire-rope", "ss-wire-rope"]
   ),
   "concertina-wire": c(
@@ -435,7 +442,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "Pick the length and weight for the job. A long bar gives more leverage; a short one is easier to carry. Check that the ends are not chipped.",
     "The rate depends on the length, the weight and the number of pieces. Ask us with the size.",
     [["Is sabbal the same as a crowbar?", "Yes. Sabbal is the Hindi market name for the crowbar."], ["Which brand of crowbar do you sell?", "SR brand."], ["Do you keep different lengths?", "Yes. Tell us the length or the job and we will show you what is in stock."]],
-    [],
+    ["top-hardware-contractors-buy-siyaganj"],
     ["sr-sledge-hammer", "sr-pickaxe-geti", "sr-hoe-faurdha"]
   ),
   "sr-sledge-hammer": c(
@@ -444,7 +451,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "Choose the head size by the work: the lighter head is for stakes and long days; the heavy one is for breaking. Handles are fitted from the market on request. Check the head is tight on the handle before use.",
     "The rate depends on the head size and the number of pieces. Ask us with the size.",
     [["What sizes do you stock?", "5M, 10M and 15M heads, SR brand."], ["Do you supply the handle?", "Ask when you request the rate; handle options depend on stock."]],
-    [],
+    ["top-hardware-contractors-buy-siyaganj"],
     ["sr-crowbar", "sr-pickaxe-geti", "santing-shikanja"]
   ),
   "sr-hoe-faurdha": c(
@@ -453,7 +460,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "Choose the blade size by the soil: a heavier blade for hard ground. If you want a ready tool, ask for the faurdha with handle.",
     "The rate depends on the blade size and the number of pieces. Ask us with the size.",
     [["Is faurdha the same as phawda?", "Yes. Faurdha and phawda are two names for the shovel."], ["Is the handle included?", "This listing is for the blade. A shovel with a fitted handle is listed separately."], ["Which brand?", "SR brand."]],
-    [],
+    ["top-hardware-contractors-buy-siyaganj"],
     ["sr-hoe-faurdha-with-handle", "sr-pickaxe-geti", "sr-crowbar"]
   ),
   "sr-pickaxe-geti": c(
@@ -462,7 +469,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "Choose by weight: a heavier head breaks harder ground but tires the user faster. Handles are fitted after purchase. Check that the head is well wedged before use.",
     "The rate depends on the head weight and the number of pieces. Ask us with the size.",
     [["What is a geti?", "Geti is the market name for a pickaxe head."], ["Which brand do you sell?", "SR brand."]],
-    [],
+    ["top-hardware-contractors-buy-siyaganj"],
     ["sr-crowbar", "sr-sledge-hammer", "sr-hoe-faurdha"]
   ),
   "santing-shikanja": c(
@@ -504,7 +511,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "Soft sponge is for wiping and tile cleaning, firm sponge is for finishing plaster. Tell us the size and what it is for.",
     "The rate depends on the size, the density and the pack. Ask us with the size and the count.",
     [["Which sponge for wiping grout?", "A soft to medium sponge."], ["Is it sold singly?", "Singly or in packs, as per stock."]],
-    [],
+    ["top-hardware-contractors-buy-siyaganj"],
     ["cutting-discs-grinding-wheels", "welding-rods", "santing-shikanja"]
   ),
   "cutting-discs-grinding-wheels": c(
@@ -516,7 +523,7 @@ export const productCopy: Record<string, ProductCopy> = {
       ["What size disc fits my grinder?", "The diameter printed on the grinder's guard. The common one is 4 inch (100 mm)."],
       ["Can I grind with a cutting disc?", "No. A cutting disc is thin and can break if used on its side."],
     ],
-    [],
+    ["top-hardware-contractors-buy-siyaganj"],
     ["welding-rods", "ms-angles", "sponge"]
   ),
   "sr-hoe-faurdha-with-handle": c(
@@ -525,7 +532,7 @@ export const productCopy: Record<string, ProductCopy> = {
     "Choose a handle length that suits the user's height. Carbon steel holds an edge but should be wiped dry to stop rust.",
     "The rate depends on the blade size and the handle. Ask us for the current rate.",
     [["Is this the complete tool?", "Yes. It comes with the handle fitted."], ["What colours?", "Green and black as per stock."]],
-    [],
+    ["top-hardware-contractors-buy-siyaganj"],
     ["sr-hoe-faurdha", "sr-pickaxe-geti", "sr-crowbar"]
   ),
 

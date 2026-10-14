@@ -74,6 +74,8 @@ const contentMap: Partial<Record<string, ProductSeoContent>> = {
       { question: "Do you deliver TMT bars to construction sites?", answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Mention your site location when requesting a quote." },
       { question: "Can I get a small quantity for a home project?", answer: "Yes. We serve both retail and wholesale. Minimum order may vary by product; contact us for details." },
       { question: "Are your TMT bars from branded manufacturers?", answer: "We stock TMT bars in several grades; Tata and other brands may be available on request. Ask for current availability." },
+      { question: "How much does a TMT bar weigh per metre?", answer: "Weight per metre is the diameter squared divided by 162. A 12 mm bar is 0.889 kg per metre, so a 12 m bar is about 10.7 kg. The full chart for 6 to 32 mm is in our TMT bar weight chart guide." },
+      { question: "What is the difference between Fe 500, Fe 500D and Fe 550?", answer: "Fe 500 is the common grade for houses and small buildings. Fe 500D has higher ductility and is specified where the structure must flex before it fails, including earthquake zones. Fe 550 carries more load per bar. Use the grade on your structural drawing." },
     ],
     relatedBlogSlugs: ["how-to-choose-tmt-bars-indore", "tmt-bar-weight-chart-size-guide-indore", "frp-bars-vs-tmt-bars-where-each-belongs"],
   },

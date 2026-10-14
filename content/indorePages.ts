@@ -33,28 +33,30 @@ export type IndorePage = {
 
 /**
  * Manufacturing scope, owner-confirmed 12 Oct 2026: the shop manufactures barbed wire, chain link fencing and wire mesh.
- * Everything else is stocked and supplied. The word "manufacture" may only appear on pages for these three families;
+ * Everything else is stocked and supplied. Within wire mesh, product pages carry the claim only for MS and GI wiremesh
+ * (owner-confirmed 13 Oct 2026, TASK-027); welded, crimp and other mesh product pages stay stockist wording.
+ * The word "manufacture" may only appear on pages for these families;
  * tests/seo.test.mjs fails if it shows up in product or Indore copy for anything else.
  */
-export const manufacturedProductSlugs = ["barbed-wire", "chain-link-fencing"] as const;
+export const manufacturedProductSlugs = ["barbed-wire", "chain-link-fencing", "ms-wiremesh", "gi-wiremesh"] as const;
 
 export const indorePages: Record<IndorePageSlug, IndorePage> = {
   "wire-mesh": {
     slug: "wire-mesh",
     // Owns: "wire mesh Indore", "wiremesh Indore", "welded wire mesh Indore". Not "jali" (see chain-link-fencing-jaali).
-    title: "Wire Mesh Manufacturer and Supplier in Indore",
+    title: "Wire Mesh in Indore: GI and MS Manufacturer, Supplier",
     description:
-      "We manufacture wire mesh: GI and MS weldmesh, PVC-coated weldmesh, woven and crimp mesh, in rolls and panels. Siyaganj, Indore. Ask for the rate.",
-    h1: "Wire Mesh Manufacturer in Indore",
+      "We manufacture GI and MS wiremesh; weldmesh, PVC-coated and crimp mesh are stocked and supplied. Rolls and panels at Siyaganj, Indore. Ask for the rate.",
+    h1: "Wire Mesh in Indore: GI and MS Wiremesh Manufacturer",
     topic: "wire mesh",
     intro:
-      "We manufacture wire mesh and sell it from our shop on Siyaganj Main Road, Indore. Welded mesh for slabs, cages and partitions. Woven and crimped mesh for screening and sifting. Rolls and panels, retail and wholesale, with orders accepted across India.",
+      "We manufacture GI and MS wiremesh and sell it from our shop on Siyaganj Main Road, Indore. Welded mesh for slabs, cages and partitions, PVC-coated mesh for fences, and crimped mesh for screening are stocked and supplied alongside it. Rolls and panels, retail and wholesale, with orders accepted across India.",
     intro2:
-      "Tell us what the mesh is for, the opening size and the wire thickness. We check stock and call back with the rate. Many buyers call it weldmesh jali or wiremesh jali; it is the same family of products, and we will point you to the right one. Other mesh in our range, such as expanded metal, mosquito net and SS fine mesh, is stocked and supplied rather than made by us.",
+      "Tell us what the mesh is for, the opening size and the wire thickness. We check stock and call back with the rate. Many buyers call it weldmesh jali or wiremesh jali; it is the same family of products, and we will point you to the right one. Welded and PVC-coated mesh, crimp mesh, expanded metal, mosquito net and SS fine mesh are stocked and supplied rather than made by us.",
     specs: [
-      "Welded mesh (GI and MS): openings from 15 x 15 mm and 50 x 50 mm up to 150 x 150 mm, wire 3 to 5 mm",
-      "PVC-coated weldmesh in rolls, for fencing and cages that stand outdoors",
-      "Woven GI and MS wiremesh, and crimped wiremesh for screening and sifting",
+      "Welded mesh, stocked (GI and MS): openings from 15 x 15 mm and 50 x 50 mm up to 150 x 150 mm, wire 3 to 5 mm",
+      "PVC-coated weldmesh, stocked, in rolls, for fencing and cages that stand outdoors",
+      "GI and MS wiremesh, made by us; crimped wiremesh, stocked, for screening and sifting",
       "Rolls and panels; cut sizes on request",
     ],
     useCases: ["RCC slab reinforcement", "Partitions and cages", "Machine guards and screening", "Sifting and filtration", "Garden and compound fencing"],
@@ -63,7 +65,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       {
         question: "Do you manufacture wire mesh in Indore?",
         answer:
-          "Yes. We manufacture wire mesh and sell it from our shop on Siyaganj Main Road, Indore. Expanded metal, mosquito net, SS fine mesh and perforated sheet are stocked and supplied, not made by us.",
+          "We manufacture GI and MS wiremesh and sell it from our shop on Siyaganj Main Road, Indore. Welded mesh, PVC-coated mesh, crimp mesh, expanded metal, mosquito net, SS fine mesh and perforated sheet are stocked and supplied, not made by us.",
       },
       {
         question: "What is the difference between weldmesh and wiremesh?",

@@ -2,7 +2,7 @@
 title: "Wire Mesh Supplier in Indore: Types, Uses, Price Factors"
 description: "Wire mesh types in Indore (MS, GI, welded and crimp), what each is used for and what moves the price. From a Siyaganj stockist."
 date: "2025-02-01"
-updated: "2026-10-11"
+updated: "2026-10-13"
 category: "Mesh and nets"
 image: "/blog/mesh-supplier-1.webp"
 imageAlt: "Close view of woven wire mesh"
@@ -47,6 +47,20 @@ Prices are not fixed; they depend on:
 - **Market rates:** Steel and zinc prices influence wire and mesh rates.
 
 Always request a quote with your specification (mesh size, wire gauge, material, and quantity) for current rates.
+
+## GI wiremesh or MS wiremesh: which one?
+
+We manufacture both at our shop in Siyaganj, so the choice is about where the mesh will sit, not about availability.
+
+| | [GI wiremesh](/products/gi-wiremesh) | [MS wiremesh](/products/ms-wiremesh) |
+|---|---|---|
+| Coating | Zinc coat | Bare mild steel |
+| Best for | Outdoors, damp places, farm and compound screens | Indoors, or painted after fixing |
+| Rust | Resists it | Rusts if it stays wet |
+| Cost | Higher | Lower |
+| Openings we keep | 15 mm to 100 mm | 15 mm to 150 mm |
+
+If the mesh will see rain or damp, choose GI. If it stays inside or will be painted, MS does the same work for less. Ask for the rate with the opening, the wire gauge and the roll size.
 
 ## How to Choose the Right Wire Mesh
 

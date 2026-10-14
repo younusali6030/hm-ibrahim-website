@@ -56,8 +56,8 @@
     "date": "2026-10-12"
   },
   "indore/wire-mesh": {
-    "hash": "ce1c35f191b3",
-    "date": "2026-10-12"
+    "hash": "dd99e3187144",
+    "date": "2026-10-14"
   },
   "products/aluminium-wiremesh": {
     "hash": "7a7a60aef03b",
@@ -68,8 +68,8 @@
     "date": "2026-10-14"
   },
   "products/binding-wire": {
-    "hash": "e76323550dff",
-    "date": "2026-10-12"
+    "hash": "47d3f9b70fcb",
+    "date": "2026-10-14"
   },
   "products/bright-bars": {
     "hash": "4f2fbe0215bf",
@@ -84,8 +84,8 @@
     "date": "2026-10-14"
   },
   "products/clutch-wire": {
-    "hash": "d7fb58ba8e41",
-    "date": "2026-10-12"
+    "hash": "639202ce1873",
+    "date": "2026-10-14"
   },
   "products/concertina-wire": {
     "hash": "c15c6e8735af",
@@ -100,8 +100,8 @@
     "date": "2026-10-13"
   },
   "products/cutting-discs-grinding-wheels": {
-    "hash": "957bcef4d2af",
-    "date": "2026-10-12"
+    "hash": "e4bc5e49edc7",
+    "date": "2026-10-14"
   },
   "products/expanded-metal-mesh": {
     "hash": "c2f2d3bf641a",
@@ -128,7 +128,7 @@
     "date": "2026-10-14"
   },
   "products/gi-weldmesh": {
-    "hash": "46380b8f106b",
+    "hash": "d82ccc783f83",
     "date": "2026-10-14"
   },
   "products/gi-wire": {
@@ -140,8 +140,8 @@
     "date": "2026-10-13"
   },
   "products/gi-wiremesh": {
-    "hash": "faba7e0a2a17",
-    "date": "2026-10-13"
+    "hash": "e4436e180015",
+    "date": "2026-10-14"
   },
   "products/jhatka-machine-fencing-wire": {
     "hash": "a2f250c2b9ae",
@@ -164,7 +164,7 @@
     "date": "2026-10-12"
   },
   "products/ms-holepass": {
-    "hash": "8f159c100b9a",
+    "hash": "6c82d27fa14c",
     "date": "2026-10-14"
   },
   "products/ms-i-beams-joists": {
@@ -184,7 +184,7 @@
     "date": "2026-10-12"
   },
   "products/ms-weldmesh": {
-    "hash": "d43da61057e8",
+    "hash": "165a5d493ef5",
     "date": "2026-10-14"
   },
   "products/ms-wire-rope": {
@@ -192,7 +192,7 @@
     "date": "2026-10-13"
   },
   "products/ms-wiremesh": {
-    "hash": "590527da0713",
+    "hash": "41f4b5e45220",
     "date": "2026-10-14"
   },
   "products/pigeon-nets": {
@@ -204,11 +204,11 @@
     "date": "2026-10-13"
   },
   "products/plastic-hexagonal-poultry-mesh": {
-    "hash": "fedf2e9badd0",
-    "date": "2026-10-13"
+    "hash": "de6ea443a9d2",
+    "date": "2026-10-14"
   },
   "products/pvc-coated-weldmesh": {
-    "hash": "cd7af37f041e",
+    "hash": "f71386c72f88",
     "date": "2026-10-14"
   },
   "products/roofing-nail": {
@@ -224,31 +224,31 @@
     "date": "2026-10-13"
   },
   "products/sponge": {
-    "hash": "30c73fdf2b13",
+    "hash": "604d48e4ed36",
     "date": "2026-10-14"
   },
   "products/square-mesh": {
-    "hash": "4dddc5fa19bf",
-    "date": "2026-10-13"
+    "hash": "4250feacb7d4",
+    "date": "2026-10-14"
   },
   "products/sr-crowbar": {
-    "hash": "c1eb79fd06e1",
-    "date": "2026-10-12"
+    "hash": "67e38a069d06",
+    "date": "2026-10-14"
   },
   "products/sr-hoe-faurdha": {
-    "hash": "594fe67a6bc0",
+    "hash": "7ff65a2eb91b",
     "date": "2026-10-14"
   },
   "products/sr-hoe-faurdha-with-handle": {
-    "hash": "a0b2cc2058b6",
+    "hash": "5e0f852d6b59",
     "date": "2026-10-14"
   },
   "products/sr-pickaxe-geti": {
-    "hash": "6bc27fcaa18c",
+    "hash": "c5b05a0acc42",
     "date": "2026-10-14"
   },
   "products/sr-sledge-hammer": {
-    "hash": "3642ed118bf5",
+    "hash": "697dec6ac3fb",
     "date": "2026-10-14"
   },
   "products/ss-fine-mesh": {
@@ -256,11 +256,11 @@
     "date": "2026-10-14"
   },
   "products/ss-wire-rope": {
-    "hash": "1e845571583d",
-    "date": "2026-10-13"
+    "hash": "93ba24953051",
+    "date": "2026-10-14"
   },
   "products/tmt-bars": {
-    "hash": "7715bf3f1eed",
+    "hash": "618c6b41ffe8",
     "date": "2026-10-14"
   },
   "products/welding-rods": {
@@ -268,7 +268,7 @@
     "date": "2026-10-12"
   },
   "products/wire-rope-clamp": {
-    "hash": "cc752f1a4892",
+    "hash": "3996aa688ef7",
     "date": "2026-10-14"
   }
 }

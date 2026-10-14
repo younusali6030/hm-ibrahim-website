@@ -10,6 +10,7 @@ export const catalogExtraHi: Record<string, string> = {
   "Section-profile drawing of an I-beam (illustration, not a photograph)": "आई-बीम के सेक्शन का चित्र (चित्रण, फ़ोटो नहीं)",
   "Stacked square and rectangular hollow steel sections": "एक के ऊपर एक रखे चौकोर और आयताकार खोखले स्टील सेक्शन",
   "Square-grid welded wire mesh panel": "चौकोर खानों वाला वेल्डेड वायर मेश पैनल",
+  "MS wiremesh, square-grid mild steel mesh": "एमएस वायर मेश, चौकोर खानों वाली माइल्ड स्टील जाली",
   "Rolls of fine woven wire cloth": "बारीक बुने तार की जाली के रोल",
   "MS wire rope wound on a large drum": "बड़े ड्रम पर लिपटा एमएस वायर रोप",
   "CM brand chain link fencing rolls stacked at the HM Ibrahim & Co shop": "एच एम इब्राहिम एंड कंपनी की दुकान पर रखे सीएम ब्रांड चेन लिंक फेंसिंग के रोल",
