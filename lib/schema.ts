@@ -2,8 +2,11 @@
  * JSON-LD builders and a sanitiser for the whole site.
  *
  * Rules (do not relax without evidence):
- * - No Offer, price, AggregateRating or Review nodes. Prices are "ask for rate"; the 4.9 / 633 Google
- *   figures are the shop's own rating of itself and are shown on the page, not marked up.
+ * - No AggregateRating or Review nodes: the 4.9 / 633 Google figures are the shop's own rating of itself
+ *   and are shown on the page, not marked up.
+ * - A Product carries one AggregateOffer built from the owner's indicative rate (lib/indicativeRate.ts), the
+ *   same range the page shows. A product without a parseable rate gets no Product node at all, because
+ *   Google rejects a Product that has no offers, review or aggregateRating.
  * - FAQPage only where the same questions are visible on the page.
  * - One stable @id per entity: organization, localbusiness, website. Other nodes point at them by @id.
  * - Every URL is absolute and on the canonical host (baseUrl).
@@ -14,6 +17,7 @@ import { categories } from "@/content/products";
 import { localePath, htmlLang, type Lang } from "@/lib/locale";
 import { siteHi } from "@/content/hi/site";
 import { catalogHi } from "@/content/hi/catalog";
+import { RATE_UNIT_CODE, type IndicativeRate } from "@/lib/indicativeRate";
 
 type Json = Record<string, unknown>;
 
@@ -211,8 +215,10 @@ export function productJsonLd(p: {
   materials?: string[];
   specs?: { label: string; value: string }[];
   brands?: string[];
+  rate: IndicativeRate;
 }): Json {
   const url = `${baseUrl}/products/${p.slug}`;
+  const { low, high, unit } = p.rate;
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -227,6 +233,22 @@ export function productJsonLd(p: {
     ...(p.specs?.length
       ? { additionalProperty: p.specs.map((s) => ({ "@type": "PropertyValue", name: s.label, value: s.value })) }
       : {}),
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "INR",
+      lowPrice: low,
+      highPrice: high,
+      url,
+      seller: { "@id": ids.localBusiness },
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        priceCurrency: "INR",
+        minPrice: low,
+        maxPrice: high,
+        unitCode: RATE_UNIT_CODE[unit],
+        unitText: unit,
+      },
+    },
   };
 }
 
@@ -283,7 +305,9 @@ export function sanitizeJsonLd<T>(node: T, parentKey?: string): T {
   }
 
   if (types.includes("Product")) {
-    delete out.offers;
+    // Only the AggregateOffer from productJsonLd survives; any other offer shape is dropped.
+    const o = out.offers as Json | undefined;
+    if (!o || o["@type"] !== "AggregateOffer" || typeof o.lowPrice !== "number") delete out.offers;
     delete out.mpn; // was the URL slug: not a manufacturer part number
     delete out.sku; // was the URL slug: not a stock-keeping unit
     const b = out.brand as Json | undefined;

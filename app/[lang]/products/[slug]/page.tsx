@@ -17,6 +17,7 @@ import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { ids, productJsonLd } from "@/lib/schema";
+import { parseIndicativeRate } from "@/lib/indicativeRate";
 import { manufacturedProductSlugs, localPageForProductSlug, getIndorePage } from "@/content/indorePages";
 import { indorePagesHi } from "@/content/hi/indore";
 
@@ -86,8 +87,9 @@ export default async function ProductDetailPage(props: Props) {
     { name: product.name, url: `/products/${product.slug}` },
   ];
 
-  // Product schema. No price, offer or rating: prices are "ask for rate" and ratings are the shop's own
-  // (see the rules at the top of lib/schema.ts). Brand is set only for makes the shop really stocks for this item.
+  // Product schema with one AggregateOffer from the indicative rate shown on the page; no rating (the ratings are
+  // the shop's own, see lib/schema.ts). No parseable rate, no Product node. Brand only for makes really stocked.
+  const rate = parseIndicativeRate(productEn.indicativeRate);
   const allImages = images.map((img) => (img.startsWith("http") ? img : `${baseUrl}${img}`));
   const productUrl = pageUrl(`products/${product.slug}`, lang);
   const brandNames = (productEn.brandVariants ?? [])
@@ -117,7 +119,7 @@ export default async function ProductDetailPage(props: Props) {
         .filter((n): n is NonNullable<typeof n> => !!n)
     : [];
 
-  const productSchema = {
+  const productSchema = rate && {
     ...productJsonLd({
       slug: product.slug,
       name: product.name,
@@ -127,6 +129,7 @@ export default async function ProductDetailPage(props: Props) {
       materials: product.materials,
       specs: product.specs,
       brands: brandNames,
+      rate,
     }),
     "@id": `${productUrl}#product`,
     url: productUrl,
@@ -174,7 +177,7 @@ export default async function ProductDetailPage(props: Props) {
   return (
     <article className="page-container pb-28 pt-4 md:pb-16 md:pt-6">
       <JsonLdBreadcrumb items={breadcrumbItems} lang={lang} />
-      <SeoJsonLd data={productSchema} lang={lang} />
+      {productSchema && <SeoJsonLd data={productSchema} lang={lang} />}
       {productFaqSchema && <SeoJsonLd data={productFaqSchema} lang={lang} />}
       <Breadcrumbs items={breadcrumbItems} className="mb-3 md:mb-6" lang={lang} />
 

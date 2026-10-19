@@ -18,6 +18,7 @@ import { trackProductView, trackCallClick, trackWhatsAppClick } from "@/lib/anal
 import { T, useT, useLang } from "@/lib/i18n";
 import { enquiryFields, enquiryText, enquiryTextHi, quoteHrefFor, type EnquiryContext } from "@/lib/enquiry";
 import { setEnquiryContext } from "@/lib/enquiryStore";
+import { parseIndicativeRate } from "@/lib/indicativeRate";
 
 type Props = {
   product: Product;
@@ -224,6 +225,15 @@ export function ProductDetailClient({ product, category, tx = {}, localNote, aft
           )}
 
           <div className="mt-5" data-product-enquiry>
+            {/* The same range is the AggregateOffer in this page's Product schema: keep the two together. */}
+            {parseIndicativeRate(product.indicativeRate) && (
+              <p className="mb-3 text-sm text-foreground" data-indicative-rate>
+                <span className="font-mono-brand text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+                  <T en="Indicative rate" hi="अनुमानित रेट" />
+                </span>{" "}
+                <span className="font-semibold">{L(product.indicativeRate!)}</span>
+              </p>
+            )}
             <div className="flex items-start justify-between gap-4">
               <p className="text-sm text-foreground/85">
                 <T
