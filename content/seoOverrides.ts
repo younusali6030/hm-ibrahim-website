@@ -139,7 +139,7 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "Bright drawn steel bars, 8 to 40 mm, 6 m length, for shafts, pins and machined parts at Siyaganj, Indore. Send the diameter and quantity for the rate.",
   },
   "products/tmt-bars": {
-    title: "TMT Bars (Sariya) in Indore: 6 to 32 mm, Fe 500 | HM Ibrahim",
+    title: "TMT Bars: 6 to 32 mm, Fe 500, Fe 550, 12 m | HM Ibrahim",
     description:
       "TMT sariya in 6, 8, 10, 12, 16, 20, 25 and 32 mm, typically 12 m, Fe 500 and Fe 550, retail and wholesale at Siyaganj, Indore. Ask for the rate.",
   },
@@ -279,7 +279,7 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "Debris net, nylon and polyethylene, 5 x 10 m, 50 x 50 mm mesh, for sites and scaffolding at Siyaganj, Indore. Not fall protection. Ask for the rate.",
   },
   "products/mosquito-net": {
-    title: "Mosquito Net (Machhar Jali) in Indore | HM Ibrahim",
+    title: "Mosquito Mesh Rolls: Fibreglass, Al, GI, SS | HM Ibrahim",
     description:
       "Mosquito mesh in rolls: fibreglass, aluminium, GI and stainless steel, cut to your window size at Siyaganj, Indore. Tell us the width and mesh count.",
   },

@@ -14,6 +14,8 @@ export const indorePageSlugs = [
   "weld-mesh",
   "ms-angles-channels",
   "ms-gi-pipes",
+  "mosquito-net",
+  "tmt-bars",
 ] as const;
 
 export type IndorePageSlug = (typeof indorePageSlugs)[number];
@@ -399,6 +401,87 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       },
     ],
   },
+  "mosquito-net": {
+    slug: "mosquito-net",
+    // Owns: "mosquito net Indore", "machhar jali Indore", "mosquito mesh shop Indore". /products/mosquito-net keeps the roll specification.
+    title: "Mosquito Net (Machhar Jali) in Indore: Cut to Size",
+    description:
+      "Mosquito net (machhar jali) in Indore: fibreglass, aluminium, GI and SS mesh in 3 ft and 4 ft rolls, cut to your window size at the Siyaganj counter.",
+    h1: "Mosquito Net (Machhar Jali) in Indore",
+    topic: "mosquito net",
+    intro:
+      "We sell mosquito net, called machhar jali in the market, from our shop on Siyaganj Main Road, Indore. It comes in fibreglass, aluminium, GI and stainless steel, in 3 ft and 4 ft wide rolls, and we cut it from the roll to the size of your window or door. It is sold by the square foot.",
+    intro2:
+      "Fibreglass is the usual choice for flats and bedroom windows. Aluminium and GI last longer on doors and ground-floor windows, and stainless steel is the one to pick where rats, heavy use or rust are a worry. Tell us the window size and where it goes and we will suggest the material.",
+    specs: [
+      "Material: fibreglass, aluminium, GI and stainless steel",
+      "Mesh count: fibreglass 18 x 16, aluminium 18 x 16, GI 16 x 16, SS 20 x 20, per inch",
+      "Roll width: 3 ft and 4 ft in each material",
+      "Cut from the roll to your size; sold by the square foot",
+    ],
+    useCases: ["Window screens", "Door screens", "Balconies and ventilators", "Insect barriers", "Kitchens and godowns"],
+    productSlugs: ["mosquito-net", "ss-fine-mesh"],
+    faqs: [
+      {
+        question: "Which mosquito net lasts longest?",
+        answer:
+          "Stainless steel lasts longest and resists rust and rats. Aluminium and GI are firmer than fibreglass and suit doors and ground-floor windows. Fibreglass is the lightest and cheapest and is fine for upper-floor windows.",
+      },
+      {
+        question: "Do you cut mosquito net to my window size?",
+        answer: "Yes. It comes in 3 ft and 4 ft wide rolls and we cut the length you need at our Siyaganj counter. Bring the window width and height.",
+      },
+      {
+        question: "What does the mesh count mean?",
+        answer:
+          "It is the number of wires per inch in each direction, for example 18 x 16. A higher count is finer and keeps out smaller insects but lets less air through.",
+      },
+      {
+        question: "What should I tell you to get a rate for mosquito net?",
+        answer: "Tell us the material, the width and height you need and how many windows or doors. We check stock and call back with the rate.",
+      },
+    ],
+  },
+  "tmt-bars": {
+    slug: "tmt-bars",
+    // Owns: "TMT bars Indore", "sariya Indore", "TMT bar supplier near me". /products/tmt-bars keeps sizes and grades; the weight chart stays in the blog.
+    title: "TMT Bars (Sariya) in Indore: Fe 500, Fe 550",
+    description:
+      "TMT bars (sariya) in Indore: 6 to 32 mm, typically 12 m, Fe 500, Fe 500D and Fe 550. Retail and wholesale at Siyaganj. Ask for the rate.",
+    h1: "TMT Bars (Sariya) in Indore",
+    topic: "TMT bars",
+    intro:
+      "We stock TMT bars, called sariya in the market, at our shop on Siyaganj Main Road, Indore, for houses, shops and small buildings. Sizes run from 6 mm to 32 mm, typically in 12 m lengths, in Fe 500, Fe 500D and Fe 550. We sell retail and wholesale, and availability depends on stock.",
+    intro2:
+      "The sizes most often asked for in RCC work are 8, 10, 12, 16 and 20 mm. Tell us the diameter, the grade and the weight or number of bars you need and we will call back with the rate. Our TMT weight chart guide helps you work out how many kilograms a job will take.",
+    specs: [
+      "Diameter: 6, 8, 10, 12, 16, 20, 25 and 32 mm",
+      "Length: typically 12 m",
+      "Grades: Fe 500, Fe 500D and Fe 550",
+      "Retail and wholesale; availability depends on stock",
+    ],
+    useCases: ["Foundations", "Columns and beams", "Slabs", "Lintels", "RCC boundary walls"],
+    productSlugs: ["tmt-bars", "ms-round-bars", "frp-bars"],
+    faqs: [
+      {
+        question: "Which TMT bar sizes do you stock?",
+        answer: "6, 8, 10, 12, 16, 20, 25 and 32 mm, typically in 12 m lengths. Availability depends on stock, so confirm the size with us before you visit.",
+      },
+      {
+        question: "What is the difference between Fe 500, Fe 500D and Fe 550?",
+        answer:
+          "The number is the yield strength in N/mm2. Fe 550 is the strongest. The D grades are more ductile, which matters in earthquake zones. Your engineer's drawing names the grade to use.",
+      },
+      {
+        question: "What should I tell you to get a rate for sariya?",
+        answer: "Tell us the diameter, the grade, the weight or number of bars and the delivery town. We check stock and call back with the rate.",
+      },
+      {
+        question: "Do you deliver TMT bars outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
+  },
 };
 
 /**
@@ -428,6 +511,9 @@ export const localPageForProductSlug: Record<string, IndorePageSlug> = {
   "ms-i-beams-joists": "ms-angles-channels",
   "ms-round-bars": "ms-angles-channels",
   "bright-bars": "ms-angles-channels",
+  "mosquito-net": "mosquito-net",
+  "ss-fine-mesh": "mosquito-net",
+  "tmt-bars": "tmt-bars",
   "gi-pipes": "ms-gi-pipes",
   "ms-pipes": "ms-gi-pipes",
   "gi-perforated-sheet": "perforated-sheets",

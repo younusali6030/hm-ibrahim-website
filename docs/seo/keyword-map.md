@@ -15,7 +15,8 @@ reel titles and customer reviews.
 | structural steel Indore, MS sections Indore, iron merchant Indore | `/indore/ms-angles-channels` (added 19 Oct 2026) | `/products/ms-angles`, `/products/ms-channels`, `/products/ms-i-beams-joists` (each owns its own section term) |
 | steel pipe Indore, pipe dealer Indore | `/indore/ms-gi-pipes` (added 19 Oct 2026) | `/products/gi-pipes`, `/products/ms-pipes` (each owns "GI/MS pipe Indore") |
 | expanded metal jali | `/products/expanded-metal-mesh` | `/blog/expanded-metal-mesh-uses-types-indore` |
-| TMT bars Indore, sariya Indore, Fe 500 / Fe 500D | `/products/tmt-bars` | `/blog/how-to-choose-tmt-bars-indore`, `/blog/tmt-bar-weight-chart-size-guide-indore` |
+| TMT bars Indore, sariya Indore, TMT supplier near me | `/indore/tmt-bars` | `/products/tmt-bars`, `/blog/how-to-choose-tmt-bars-indore`, `/blog/tmt-bar-weight-chart-size-guide-indore` |
+| TMT sizes, Fe 500 / Fe 500D / Fe 550 grades | `/products/tmt-bars` | `/indore/tmt-bars` |
 | TMT bar weight chart | `/blog/tmt-bar-weight-chart-size-guide-indore` | `/products/tmt-bars` |
 | barbed wire Indore, kata taar Indore | `/indore/barbed-wire` | `/products/barbed-wire`, `/blog/barbed-wire-vs-concertina-wire` |
 | concertina wire Indore | `/products/concertina-wire` | `/indore/barbed-wire`, `/blog/barbed-wire-vs-concertina-wire` |
@@ -30,7 +31,8 @@ reel titles and customer reviews.
 | Siyaganj iron market, Loha Mandi Indore | `/blog/siyaganj-market-guide-buying-iron-hardware-indore` | `/indore`, `/blog/how-bulk-buyers-save-cost-loha-mandi-indore` |
 | iron and hardware Indore (broad) | `/indore` | `/` (brand and shop name only) |
 | construction hardware Indore, geti, faurdha | `/indore/construction-hardware` | `/categories/construction-tools` |
-| mosquito net Indore, machhar jali, mosquito mesh, mosquito net roll, fibreglass / aluminium / GI mosquito mesh | `/products/mosquito-net` | `/products/ss-fine-mesh`, `/blog/mosquito-net-types-fibreglass-ss-aluminium-indore`, home "Often asked for" row |
+| mosquito net Indore, machhar jali Indore | `/indore/mosquito-net` | `/products/mosquito-net`, `/blog/mosquito-net-types-fibreglass-ss-aluminium-indore` |
+| mosquito mesh, mosquito net roll, fibreglass / aluminium / GI mosquito mesh | `/products/mosquito-net` | `/products/ss-fine-mesh`, `/blog/mosquito-net-types-fibreglass-ss-aluminium-indore`, home "Often asked for" row |
 | SS mosquito net, SS fine mesh, stainless mesh | `/products/ss-fine-mesh` | `/products/mosquito-net` |
 | chaddar jali, perforated sheet Indore (see row above) | `/indore/perforated-sheets` | `/products/ms-perforated-sheet`, `/products/gi-perforated-sheet`, `/categories/perforated-sheets` |
 | MS perforated sheet / GI perforated sheet | `/products/ms-perforated-sheet`, `/products/gi-perforated-sheet` | `/indore/perforated-sheets` |
