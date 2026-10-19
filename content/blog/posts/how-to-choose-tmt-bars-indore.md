@@ -68,6 +68,7 @@ For TMT bars in Indore, Siyaganj, or Loha Mandi, request a quote with diameter, 
 ## Related reading
 
 - [TMT bar weight chart: 6–32 mm](/blog/tmt-bar-weight-chart-size-guide-indore)
+- [What decides the TMT bar rate](/blog/tmt-bar-rate-what-decides-sariya-price-indore)
 - [FRP bars vs TMT bars](/blog/frp-bars-vs-tmt-bars-where-each-belongs)
 - [Concrete cover blocks](/blog/concrete-cover-blocks-why-cover-matters-slab-beam-column)
 - [Binding wire (kala taar)](/products/binding-wire)

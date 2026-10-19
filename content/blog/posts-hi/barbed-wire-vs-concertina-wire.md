@@ -58,6 +58,7 @@ image3Alt: "सियागंज के गोदाम में दुका�
 ## संबंधित पठन
 
 - [इंदौर में कांटेदार और कंसर्टिना तार](/indore/barbed-wire)
+- [कँटीले तार का रेट किन बातों से तय होता है](/blog/barbed-wire-price-per-kg-what-decides-the-rate)
 - [मध्य प्रदेश में खेत की फेंसिंग: खंभे, तार, एंगल](/blog/farm-fencing-madhya-pradesh-posts-wire-angle-plan)
 - [फेंसिंग का सामान कैसे आँकें](/blog/how-to-estimate-material-quantity-fencing)
 - [तार का गेज चार्ट](/blog/wire-gauge-chart-swg-bwg-mm-guide)

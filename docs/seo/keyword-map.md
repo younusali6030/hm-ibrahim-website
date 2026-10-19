@@ -16,6 +16,8 @@ reel titles and customer reviews.
 | steel pipe Indore, pipe dealer Indore | `/indore/ms-gi-pipes` (added 19 Oct 2026) | `/products/gi-pipes`, `/products/ms-pipes` (each owns "GI/MS pipe Indore") |
 | expanded metal jali | `/products/expanded-metal-mesh` | `/blog/expanded-metal-mesh-uses-types-indore` |
 | TMT bars Indore, sariya Indore, TMT supplier near me | `/indore/tmt-bars` | `/products/tmt-bars`, `/blog/how-to-choose-tmt-bars-indore`, `/blog/tmt-bar-weight-chart-size-guide-indore` |
+| TMT bar rate, sariya rate, what decides TMT price | `/blog/tmt-bar-rate-what-decides-sariya-price-indore` | `/indore/tmt-bars`, `/blog/tmt-bar-weight-chart-size-guide-indore` |
+| barbed wire rate, barbed wire price per kg | `/blog/barbed-wire-price-per-kg-what-decides-the-rate` | `/indore/barbed-wire`, `/products/barbed-wire` |
 | TMT sizes, Fe 500 / Fe 500D / Fe 550 grades | `/products/tmt-bars` | `/indore/tmt-bars` |
 | TMT bar weight chart | `/blog/tmt-bar-weight-chart-size-guide-indore` | `/products/tmt-bars` |
 | barbed wire Indore, kata taar Indore | `/indore/barbed-wire` | `/products/barbed-wire`, `/blog/barbed-wire-vs-concertina-wire` |

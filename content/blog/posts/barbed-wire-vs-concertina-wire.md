@@ -64,6 +64,7 @@ For barbed wire or concertina wire in Indore, Siyaganj, or Loha Mandi, send your
 ## Related reading
 
 - [Barbed and concertina wire in Indore](/indore/barbed-wire)
+- [What decides the barbed wire rate](/blog/barbed-wire-price-per-kg-what-decides-the-rate)
 - [Farm fencing in Madhya Pradesh: posts, wire, angle](/blog/farm-fencing-madhya-pradesh-posts-wire-angle-plan)
 - [How to estimate fencing material](/blog/how-to-estimate-material-quantity-fencing)
 - [Wire gauge chart](/blog/wire-gauge-chart-swg-bwg-mm-guide)

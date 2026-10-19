@@ -63,6 +63,7 @@ TMT सरिया और [MS एंगल](/products/ms-angles) व [MS फ्
 ## संबंधित पठन
 
 - [TMT सरिया वज़न चार्ट: 6–32 mm](/blog/tmt-bar-weight-chart-size-guide-indore)
+- [TMT सरिया का रेट किन बातों से तय होता है](/blog/tmt-bar-rate-what-decides-sariya-price-indore)
 - [FRP बार बनाम TMT सरिया](/blog/frp-bars-vs-tmt-bars-where-each-belongs)
 - [कंक्रीट कवर ब्लॉक](/blog/concrete-cover-blocks-why-cover-matters-slab-beam-column)
 - [बाइंडिंग तार (काला तार)](/products/binding-wire)
