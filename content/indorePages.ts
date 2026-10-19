@@ -10,6 +10,10 @@ export const indorePageSlugs = [
   "perforated-sheets",
   "gi-wire",
   "construction-hardware",
+  "wire-rope",
+  "weld-mesh",
+  "ms-angles-channels",
+  "ms-gi-pipes",
 ] as const;
 
 export type IndorePageSlug = (typeof indorePageSlugs)[number];
@@ -43,7 +47,7 @@ export const manufacturedProductSlugs = ["barbed-wire", "chain-link-fencing", "m
 export const indorePages: Record<IndorePageSlug, IndorePage> = {
   "wire-mesh": {
     slug: "wire-mesh",
-    // Owns: "wire mesh Indore", "wiremesh Indore", "welded wire mesh Indore". Not "jali" (see chain-link-fencing-jaali).
+    // Owns: "wire mesh Indore", "wiremesh Indore". Not "jali" (see chain-link-fencing-jaali); not "weld mesh" (see weld-mesh).
     title: "Wire Mesh in Indore: GI and MS Manufacturer, Supplier",
     description:
       "We manufacture GI and MS wiremesh; weldmesh, PVC-coated and crimp mesh are stocked and supplied. Rolls and panels at Siyaganj, Indore. Ask for the rate.",
@@ -230,6 +234,171 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
     useCases: ["Site work and digging", "Demolition", "Slab and beam shuttering", "Welding and fabrication", "General construction"],
     productSlugs: ["sr-crowbar", "sr-pickaxe-geti", "sr-hoe-faurdha", "sr-hoe-faurdha-with-handle", "sr-sledge-hammer", "santing-shikanja", "concrete-cover-block", "welding-rods", "cutting-discs-grinding-wheels", "fasteners-nails"],
   },
+  "wire-rope": {
+    slug: "wire-rope",
+    // Owns: "wire rope Indore", "wire rope dealer Indore", "steel wire rope Indore". Specs stay on the product pages.
+    title: "Wire Rope in Indore: MS, GI and SS, Cut to Length",
+    description:
+      "Wire rope in Indore: MS, GI and SS, 2 mm to 20+ mm, by the metre or full reel. Wire rope clamps too. Siyaganj shop, Indore. Ask for the rate.",
+    h1: "Wire Rope in Indore",
+    topic: "wire rope",
+    intro:
+      "We stock steel wire rope at our shop on Siyaganj Main Road, Indore, in three kinds: plain mild steel (MS), galvanised (GI) and stainless steel (SS). Diameters run from 2 mm to over 20 mm. Buy it by the metre, cut to your length at the counter, or by the full reel. Orders accepted across India.",
+    intro2:
+      "Choose by where the rope will work. MS rope is for dry or covered places, GI rope has a zinc coat for outdoor work, and SS rope is for damp, marine and corrosive places. Wire rope clamps (U-bolt clips) for making eyes and loops are at the same counter. We do not state lifting ratings here: tell us the job, the diameter and the length, and we will confirm the rope and call back with the rate.",
+    specs: [
+      "MS, GI and SS wire rope, 2 mm to 20+ mm diameter",
+      "By the metre, cut to your length, or by the full reel: 500 m (MS, GI), 305 m (SS)",
+      "Galvanised U-bolt wire rope clamps in sizes to fit the rope",
+      "Retail and wholesale; orders accepted across India",
+    ],
+    useCases: ["Hoisting and pulling", "Rigging and tie-downs", "Fencing and tension lines", "Marine and corrosive places (SS)", "Workshops and sites"],
+    productSlugs: ["ms-wire-rope", "gi-wire-rope", "ss-wire-rope", "wire-rope-clamp"],
+    faqs: [
+      {
+        question: "Which wire rope should I buy: MS, GI or SS?",
+        answer:
+          "MS wire rope is plain steel for dry or covered places. GI wire rope has a zinc coat and is the usual choice outdoors. SS wire rope is for damp, marine and corrosive places and costs the most.",
+      },
+      {
+        question: "Can I buy wire rope by the metre in Indore?",
+        answer:
+          "Yes. We cut wire rope to your length at our Siyaganj counter, or sell the full reel: 500 m for MS and GI, 305 m for SS.",
+      },
+      {
+        question: "What should I tell you to get a rate for wire rope?",
+        answer:
+          "Tell us the job, the rope type (MS, GI or SS), the diameter, the length and the quantity. We check stock and call back with the rate.",
+      },
+      {
+        question: "Do you supply wire rope outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
+  },
+  "weld-mesh": {
+    slug: "weld-mesh",
+    // Owns: "weld mesh Indore", "weldmesh Indore", "welded wire mesh Indore", "weldmesh jali". Stocked, not made by the shop.
+    title: "Weld Mesh in Indore: GI, MS and PVC Coated Weldmesh",
+    description:
+      "Weld mesh in Indore: GI and MS weldmesh, 15 x 15 to 150 x 150 mm openings, rolls and panels cut to size. PVC-coated rolls too. Siyaganj, Indore.",
+    h1: "Weld Mesh in Indore",
+    topic: "weld mesh",
+    intro:
+      "Weld mesh, also asked for as weldmesh jali, has its wires welded at every crossing, so it stays stiff and holds its shape. We stock it at our shop on Siyaganj Main Road, Indore, in galvanised (GI), plain mild steel (MS) and green PVC-coated, in rolls and panels. We cut it to size at the counter.",
+    intro2:
+      "GI weldmesh is the choice for fences, cages and anything that stays outdoors. MS weldmesh is uncoated and is used where it will be covered, such as RCC slabs and partitions. PVC-coated weldmesh lasts longest in the open. Tell us what the mesh is for, the opening, and the area or number of pieces, and we will call back with the rate.",
+    specs: [
+      "Openings: 15 x 15, 25 x 25, 50 x 50, 75 x 75, 100 x 100 and 150 x 150 mm (GI and MS)",
+      "Roll: 1.5 m x 15 m, 25 x 25 mm opening, 2.5 mm wire",
+      "Panel: 1.2 x 2.4 m, 50 x 50 mm opening, 3 mm wire",
+      "PVC-coated roll: 3 ft x 15 m, 25 x 25 mm, green",
+      "Cut to size at the counter; other wire sizes confirmed with the rate",
+    ],
+    useCases: ["RCC slab reinforcement", "Partitions", "Cages and enclosures", "Fencing and boundaries", "Machine guards"],
+    productSlugs: ["gi-weldmesh", "ms-weldmesh", "pvc-coated-weldmesh"],
+    faqs: [
+      {
+        question: "What is the difference between GI and MS weld mesh?",
+        answer:
+          "GI weld mesh is galvanised and does not rust easily, so it is used outdoors for fences and cages. MS weld mesh is plain, uncoated steel and is used where it will be covered, such as inside an RCC slab or behind plaster.",
+      },
+      {
+        question: "Do you cut weld mesh to size?",
+        answer: "Yes. Rolls and panels are cut to size at our Siyaganj counter. Tell us the sizes and the number of pieces.",
+      },
+      {
+        question: "Is weld mesh the same as chain link jali?",
+        answer:
+          "No. Weld mesh has welded crossings and square openings and is stiff. Chain link jali is woven wire, flexible, and comes in tall rolls for boundary fencing.",
+      },
+      {
+        question: "Do you supply weld mesh outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
+  },
+  "ms-angles-channels": {
+    slug: "ms-angles-channels",
+    // Owns: "structural steel Indore", "MS sections Indore", "iron merchant Indore". Single sections ("MS angle Indore")
+    // stay with their product pages, whose titles target them.
+    title: "Structural Steel in Indore: MS Angle, Channel, Beam",
+    description:
+      "MS angles, channels, flats, I-beams and round bars in Indore: IS 2062 mild steel, 6 m and 12 m lengths. Siyaganj iron shop since 1939. Ask for the rate.",
+    h1: "Structural Steel in Indore",
+    topic: "structural steel (MS angles, channels, beams)",
+    intro:
+      "We stock mild steel sections at our shop on Siyaganj Main Road, Indore: angles, channels, flats, I-beams and joists, round bars and bright bars. Most sections are IS 2062 mild steel in 6 m and 12 m lengths, for fabricators, shed builders and site work. Availability of each size depends on stock.",
+    intro2:
+      "Tell us the section, the size, the thickness and the number of lengths, or send the fabrication list. We check stock and call back with the rate. Tata steel is available on request.",
+    specs: [
+      "MS angles: 20 x 20 to 100 x 100 mm, 3 to 10 mm thick, equal and unequal",
+      "MS channels (ISMC) and I-beams, joists (ISMB, ISJB): 75 mm to 300 mm",
+      "MS flats: 12 mm to 150 mm wide, 3 mm to 12 mm thick",
+      "MS round bars 6 mm to 50 mm; bright bars 8 mm to 40 mm",
+      "Lengths: 6 m and 12 m, as per section and stock",
+    ],
+    useCases: ["Fabrication and frames", "Industrial sheds and purlins", "Gates and grills", "Support brackets", "Machining (bright bars)"],
+    productSlugs: ["ms-angles", "ms-channels", "ms-flats", "ms-i-beams-joists", "ms-round-bars", "bright-bars"],
+    faqs: [
+      {
+        question: "Which MS angle sizes are asked for most?",
+        answer: "25 x 25, 40 x 40, 50 x 50 and 75 x 75 mm are the sizes asked for most, in 3 mm to 10 mm thickness.",
+      },
+      {
+        question: "What lengths do MS sections come in?",
+        answer: "Most angles, channels, flats, beams and round bars come in 6 m or 12 m lengths, depending on the section and stock. Bright bars come in 6 m.",
+      },
+      {
+        question: "What should I tell you to get a rate?",
+        answer: "Tell us the section, the size, the thickness and the number of lengths, or send the fabrication list. We check stock and call back with the rate.",
+      },
+      {
+        question: "Do you supply structural steel outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
+  },
+  "ms-gi-pipes": {
+    slug: "ms-gi-pipes",
+    // Owns: "steel pipe Indore", "pipe dealer Indore". "GI pipe Indore" and "MS pipe Indore" stay with the product pages.
+    title: "Steel Pipes in Indore: MS and GI, 15 to 300 mm NB",
+    description:
+      "MS and GI pipes in Indore: GI 15 to 150 mm NB in light, medium and heavy class; MS 15 to 300 mm NB, black or galvanised, 6 m. Cut at the counter.",
+    h1: "Steel Pipes in Indore: MS and GI",
+    topic: "MS and GI pipes",
+    intro:
+      "We stock steel pipe at our shop on Siyaganj Main Road, Indore. GI pipe comes in 15 mm (1/2 inch) to 150 mm (6 inch) NB in light, medium and heavy class, for water lines, fencing and structures. MS pipe comes in 15 mm to 300 mm NB, black or galvanised, for structures, handrails and conduit. Both come in 6 m lengths, and we cut to length at the counter.",
+    intro2:
+      "Square and rectangular hollow sections are also stocked; the width, depth and wall thickness are confirmed with the rate. Tell us the size, the class and the number of lengths and we will call back with the rate.",
+    specs: [
+      "GI pipe: 15 mm (1/2\") to 150 mm (6\") NB; light, medium and heavy class",
+      "MS pipe: 15 mm to 300 mm NB, black or galvanised",
+      "Square and rectangular hollow sections",
+      "6 m lengths, cut to length at the counter",
+    ],
+    useCases: ["Water lines", "Structures and sheds", "Handrails", "Fencing posts", "Conduit"],
+    productSlugs: ["gi-pipes", "ms-pipes"],
+    faqs: [
+      {
+        question: "What is the difference between light, medium and heavy GI pipe?",
+        answer:
+          "The class is the wall thickness. Heavy class has the thickest wall and takes the most pressure and load; light class is thinnest and cheapest. Medium is the usual choice for water lines.",
+      },
+      {
+        question: "Do you cut pipes to length?",
+        answer: "Yes. Pipes come in 6 m lengths and we cut them to your length at our Siyaganj counter.",
+      },
+      {
+        question: "What should I tell you to get a rate for pipes?",
+        answer: "Tell us MS or GI, the NB size, the class, the number of lengths and what the pipe is for. We check stock and call back with the rate.",
+      },
+      {
+        question: "Do you supply pipes outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
+  },
 };
 
 /**
@@ -246,9 +415,21 @@ export const localPageForProductSlug: Record<string, IndorePageSlug> = {
   "gi-wiremesh": "wire-mesh",
   "ms-wiremesh": "wire-mesh",
   "crimp-wiremesh": "wire-mesh",
-  "gi-weldmesh": "wire-mesh",
-  "ms-weldmesh": "wire-mesh",
-  "pvc-coated-weldmesh": "wire-mesh",
+  "gi-weldmesh": "weld-mesh",
+  "ms-weldmesh": "weld-mesh",
+  "pvc-coated-weldmesh": "weld-mesh",
+  "ms-wire-rope": "wire-rope",
+  "gi-wire-rope": "wire-rope",
+  "ss-wire-rope": "wire-rope",
+  "wire-rope-clamp": "wire-rope",
+  "ms-angles": "ms-angles-channels",
+  "ms-channels": "ms-angles-channels",
+  "ms-flats": "ms-angles-channels",
+  "ms-i-beams-joists": "ms-angles-channels",
+  "ms-round-bars": "ms-angles-channels",
+  "bright-bars": "ms-angles-channels",
+  "gi-pipes": "ms-gi-pipes",
+  "ms-pipes": "ms-gi-pipes",
   "gi-perforated-sheet": "perforated-sheets",
   "ms-perforated-sheet": "perforated-sheets",
   "sr-crowbar": "construction-hardware",

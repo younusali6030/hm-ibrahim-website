@@ -7,9 +7,13 @@ reel titles and customer reviews.
 
 | Head term (and spellings) | Owner URL | Supporting pages that link to the owner |
 |---|---|---|
-| wire mesh Indore, wiremesh Indore, welded wire mesh Indore | `/indore/wire-mesh` | `/blog/wire-mesh-supplier-indore-types-uses-prices`, `/categories/wiremesh`, `/categories/welded-mesh` |
+| wire mesh Indore, wiremesh Indore | `/indore/wire-mesh` | `/blog/wire-mesh-supplier-indore-types-uses-prices`, `/categories/wiremesh` |
+| weld mesh Indore, weldmesh Indore, welded wire mesh Indore | `/indore/weld-mesh` (added 19 Oct 2026) | `/categories/welded-mesh`, `/products/gi-weldmesh`, `/products/ms-weldmesh`, `/products/pvc-coated-weldmesh` |
 | jali Indore, jaali Indore, chain link jali, jali for compound wall | `/indore/chain-link-fencing-jaali` | `/blog/welded-wire-mesh-vs-chain-link`, `/products/chain-link-fencing`, brand pages |
-| weldmesh jali, welded mesh panel | `/products/gi-weldmesh` (GI), `/products/ms-weldmesh` (MS) | `/categories/welded-mesh`, `/indore/wire-mesh` |
+| weldmesh jali, welded mesh panel | `/products/gi-weldmesh` (GI), `/products/ms-weldmesh` (MS) | `/categories/welded-mesh`, `/indore/weld-mesh` |
+| wire rope Indore, wire rope dealer Indore | `/indore/wire-rope` (added 19 Oct 2026) | `/products/ms-wire-rope`, `/products/gi-wire-rope`, `/products/ss-wire-rope` (each owns "<type> wire rope Indore") |
+| structural steel Indore, MS sections Indore, iron merchant Indore | `/indore/ms-angles-channels` (added 19 Oct 2026) | `/products/ms-angles`, `/products/ms-channels`, `/products/ms-i-beams-joists` (each owns its own section term) |
+| steel pipe Indore, pipe dealer Indore | `/indore/ms-gi-pipes` (added 19 Oct 2026) | `/products/gi-pipes`, `/products/ms-pipes` (each owns "GI/MS pipe Indore") |
 | expanded metal jali | `/products/expanded-metal-mesh` | `/blog/expanded-metal-mesh-uses-types-indore` |
 | TMT bars Indore, sariya Indore, Fe 500 / Fe 500D | `/products/tmt-bars` | `/blog/how-to-choose-tmt-bars-indore`, `/blog/tmt-bar-weight-chart-size-guide-indore` |
 | TMT bar weight chart | `/blog/tmt-bar-weight-chart-size-guide-indore` | `/products/tmt-bars` |

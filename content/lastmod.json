@@ -51,13 +51,29 @@
     "hash": "75e9fe821706",
     "date": "2026-10-12"
   },
+  "indore/ms-angles-channels": {
+    "hash": "49ebd2c37df3",
+    "date": "2026-10-19"
+  },
+  "indore/ms-gi-pipes": {
+    "hash": "6bde5b7fb52d",
+    "date": "2026-10-19"
+  },
   "indore/perforated-sheets": {
     "hash": "93302372ea0c",
     "date": "2026-10-12"
   },
+  "indore/weld-mesh": {
+    "hash": "7acfd7fa876d",
+    "date": "2026-10-19"
+  },
   "indore/wire-mesh": {
     "hash": "dd99e3187144",
     "date": "2026-10-14"
+  },
+  "indore/wire-rope": {
+    "hash": "a7f03ac1531c",
+    "date": "2026-10-19"
   },
   "products/aluminium-wiremesh": {
     "hash": "7a7a60aef03b",
