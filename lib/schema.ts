@@ -184,6 +184,14 @@ export function itemList(name: string, items: { name: string; url: string }[]): 
   };
 }
 
+/**
+ * Google's VideoObject check wants uploadDate as a full ISO 8601 datetime with a timezone; a bare "YYYY-MM-DD"
+ * raises "Invalid datetime value" and "missing a timezone". Date-only values get midnight India time.
+ */
+export function isoDateTimeIST(date: string): string {
+  return /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T00:00:00+05:30` : date;
+}
+
 export function videoObject(v: {
   name: string;
   description: string;
@@ -201,7 +209,7 @@ export function videoObject(v: {
     description: v.description,
     thumbnailUrl: [abs(v.thumbnail)],
     contentUrl: abs(v.contentUrl),
-    uploadDate: v.uploadDate,
+    uploadDate: isoDateTimeIST(v.uploadDate),
     ...(v.duration ? { duration: v.duration } : {}),
     inLanguage: "en-IN",
     publisher: { "@id": ids.organization },

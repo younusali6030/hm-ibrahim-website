@@ -18,6 +18,7 @@ const OFTEN_ASKED: { href: string; en: string; hi: string }[] = [
   { href: "/products/sr-pickaxe-geti", en: "Pickaxe (geti)", hi: "गेंती" },
   { href: "/products/sr-hoe-faurdha-with-handle", en: "Shovel (faurdha, phawda) with handle", hi: "दस्ते सहित फौड़ा" },
   { href: "/products/sr-sledge-hammer", en: "Sledge hammer", hi: "घन (स्लेज हैमर)" },
+  { href: "/indore/construction-hardware", en: "Construction hardware in Indore", hi: "इंदौर में निर्माण हार्डवेयर" },
 ];
 
 /** The counter as a ledger: one ruled row per range, a few real photos, a count, and a way in. */
@@ -92,9 +93,15 @@ export function CategoryShowcase({ lang = "en" }: { lang?: Lang }) {
               ))}
             </ul>
           </nav>
-          <div className="mt-6">
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link href="/products" className="glass-btn glass-btn-main">
               <T en="Browse all products" hi="सभी प्रोडक्ट देखें" /> <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              href="/indore"
+              className="inline-flex min-h-[40px] items-center text-sm text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <T en="Buying in Indore: every product, pickup and delivery" hi="इंदौर में खरीदें: हर प्रोडक्ट, पिकअप और डिलीवरी" />
             </Link>
           </div>
         </div>

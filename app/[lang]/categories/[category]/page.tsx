@@ -10,6 +10,8 @@ import { categoryGuides } from "@/content/categoryGuides";
 import { getRelatedBlogSlugsForProduct } from "@/content/productSeoContent";
 import { getPostBySlug } from "@/content/blog/posts";
 import { CategoryGuide } from "@/components/catalog/CategoryGuide";
+import { localPageForProductSlug, getIndorePage } from "@/content/indorePages";
+import { indorePagesHi } from "@/content/hi/indore";
 import { localize, tr } from "@/lib/localize";
 import { tt, type Lang } from "@/lib/locale";
 import { pageUrl } from "@/lib/seo";
@@ -184,6 +186,13 @@ export default async function CategoryPage(props: Props) {
     .filter((p): p is NonNullable<typeof p> => p != null)
     .map((p) => ({ slug: p.slug, title: p.title, lang: p.lang }));
 
+  // The Indore pages that own local buying for this range's products (same mapping the product pages use),
+  // in catalogue order, once each. Gives every /indore/* page a crawl path from its category.
+  const localPages = Array.from(new Set(categoryEn.products.map((p) => localPageForProductSlug[p.slug]).filter(Boolean)))
+    .map((s) => getIndorePage(s))
+    .filter((p): p is NonNullable<typeof p> => p != null)
+    .map((p) => (hi ? { ...p, ...indorePagesHi[p.slug] } : p));
+
   return (
     <>
       <JsonLdBreadcrumb items={breadcrumbItems} lang={lang} />
@@ -265,6 +274,22 @@ export default async function CategoryPage(props: Props) {
                 />
               ))}
             </ul>
+            {localPages.length > 0 && (
+              <p className="mt-4 text-sm text-muted-foreground">
+                {hi ? "इंदौर में खरीदने की जानकारी, पिकअप और डिलीवरी: " : "Buying in Indore, with pickup and delivery: "}
+                {localPages.map((p, i) => (
+                  <span key={p.slug}>
+                    {i > 0 && ", "}
+                    <Link
+                      href={`/indore/${p.slug}`}
+                      className="inline-flex min-h-[24px] items-center font-semibold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      {p.h1}
+                    </Link>
+                  </span>
+                ))}
+              </p>
+            )}
           </div>
         </div>
       </section>
