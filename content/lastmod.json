@@ -40,12 +40,16 @@
     "date": "2026-10-12"
   },
   "indore/chain-link-fencing-jaali": {
-    "hash": "59d0867fac46",
-    "date": "2026-10-12"
+    "hash": "a4299d7ba21d",
+    "date": "2026-11-09"
   },
   "indore/construction-hardware": {
     "hash": "a91bcdf3e2b3",
     "date": "2026-10-14"
+  },
+  "indore/fencing": {
+    "hash": "d99ccae8f68b",
+    "date": "2026-11-09"
   },
   "indore/gi-wire": {
     "hash": "75e9fe821706",
@@ -64,12 +68,16 @@
     "date": "2026-10-19"
   },
   "indore/perforated-sheets": {
-    "hash": "93302372ea0c",
-    "date": "2026-10-12"
+    "hash": "1f36f03d011c",
+    "date": "2026-11-09"
+  },
+  "indore/pigeon-net": {
+    "hash": "e4e823b11dd2",
+    "date": "2026-11-09"
   },
   "indore/tmt-bars": {
-    "hash": "df90a12b5d65",
-    "date": "2026-10-19"
+    "hash": "918edf834ef5",
+    "date": "2026-11-09"
   },
   "indore/weld-mesh": {
     "hash": "7acfd7fa876d",
@@ -100,8 +108,8 @@
     "date": "2026-10-13"
   },
   "products/chain-link-fencing": {
-    "hash": "99c7ebc0269d",
-    "date": "2026-10-14"
+    "hash": "4efc4bd5c467",
+    "date": "2026-11-09"
   },
   "products/chicken-net": {
     "hash": "5245af10016c",
@@ -144,8 +152,8 @@
     "date": "2026-10-14"
   },
   "products/gi-perforated-sheet": {
-    "hash": "7e12383e6929",
-    "date": "2026-10-14"
+    "hash": "49cdec11fee4",
+    "date": "2026-11-09"
   },
   "products/gi-pipes": {
     "hash": "02c33b4f06fc",
@@ -196,8 +204,8 @@
     "date": "2026-10-12"
   },
   "products/ms-perforated-sheet": {
-    "hash": "edfc4e8bc384",
-    "date": "2026-10-14"
+    "hash": "4240729cb446",
+    "date": "2026-11-09"
   },
   "products/ms-pipes": {
     "hash": "9a3ee577f465",

@@ -89,6 +89,7 @@ image3Alt: "चेन लिंक की डायमंड बुनावट 
 
 ## संबंधित पठन
 
+- [इंदौर में फेंसिंग सामग्री](/indore/fencing)
 - [इंदौर में कांटेदार और कंसर्टिना तार](/indore/barbed-wire)
 - [फेंसिंग का माल कैसे आँकें](/blog/how-to-estimate-material-quantity-fencing)
 - [कांटेदार तार बनाम कंसर्टिना तार](/blog/barbed-wire-vs-concertina-wire)

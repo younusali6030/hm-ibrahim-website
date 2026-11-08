@@ -87,6 +87,7 @@ image3Alt: "स्पाइक स्ट्रिप के साथ हरे 
 
 ## संबंधित पठन
 
+- [इंदौर में कबूतर जाली](/indore/pigeon-net)
 - [कबूतर स्पाइक और जाली की इंस्टॉलेशन गाइड](/blog/pigeon-spikes-netting-installation-guide)
 - [तार गेज चार्ट](/blog/wire-gauge-chart-swg-bwg-mm-guide)
 - [सेफ्टी नेट और बर्ड स्पाइक रेंज](/categories/safety-nets-equipments)

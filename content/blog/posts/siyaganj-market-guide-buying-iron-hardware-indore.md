@@ -1,8 +1,8 @@
 ---
 title: "A Buyer's Guide to Siyaganj: How to Buy Iron and Hardware in Indore's Wholesale Market"
-description: "How Siyaganj and Loha Mandi work: when to go, what to carry, how to compare rates and how to avoid the common mistakes. Written by a shop on Siyaganj Main Road since 1939."
+description: "Siyaganj and Loha Mandi are Indore's hardware and iron wholesale market. When to go, what to carry, how to compare rates. From a Siyaganj shop since 1939."
 date: "2026-09-20"
-updated: "2026-09-20"
+updated: "2026-11-09"
 category: "Buying guide"
 image: "/blog/siyaganj-1.webp"
 imageAlt: "The HM Ibrahim shopfront in Siyaganj lit at night"
@@ -18,9 +18,9 @@ This guide is the one we wish every first-time buyer had.
 
 ## What Siyaganj is
 
-Siyaganj is Indore's old wholesale trading quarter. Wire, mesh, pipes, tools, nails, fasteners, sheets and construction hardware are sold from shops that line the lanes, many of them run by the same families for generations. Loha Mandi, the iron market, is close by for structural steel.
+Siyaganj is Indore's old wholesale trading quarter and the city's main hardware wholesale market. Wire, mesh, pipes, tools, nails, fasteners, sheets and construction hardware are sold from shops that line the lanes, many of them run by the same families for generations. Loha Mandi, the iron market, is close by for structural steel.
 
-Our shop, HM Ibrahim & Co, has been at 60 Siyaganj Main Road, opposite Tijori Gali, since 1939.
+Our shop, HM Ibrahim & Co, has been at 60 Siyaganj Main Road, opposite Tijori Gali, Indore 452007, since 1939. [Open it in Google Maps](https://www.google.com/maps?cid=13885147699571790648).
 
 ## When to go
 
@@ -73,6 +73,12 @@ You can send us a list at any time. See [our product range](/products), or [cont
 
 ## FAQs
 
+**Where is the hardware wholesale market in Indore?**  
+In Siyaganj, in the old city, with Loha Mandi close by for structural steel. Wire, mesh, sheets, pipes, tools, nails and fasteners are sold wholesale and retail from the shops along Siyaganj Main Road and its lanes.
+
+**What are your shop timings in Siyaganj?**  
+Monday to Saturday, 10 AM to 8 PM. Sunday closed. Most of the market keeps Sunday closed too.
+
 **Where is Siyaganj in Indore?**  
 In Indore's old city. HM Ibrahim & Co is at 60 Siyaganj Main Road, opposite Tijori Gali.
 
@@ -94,4 +100,5 @@ We send material to Dewas, Ujjain, Mhow, Pithampur and other nearby towns. Order
 - [Contractor checklist](/blog/top-hardware-contractors-buy-siyaganj)
 - [How bulk buyers save cost](/blog/how-bulk-buyers-save-cost-loha-mandi-indore)
 - [Wire mesh in Indore](/indore/wire-mesh)
+- [Fencing material in Indore](/indore/fencing)
 - [TMT bars](/products/tmt-bars)

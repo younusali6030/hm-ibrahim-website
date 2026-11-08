@@ -16,6 +16,8 @@ export const indorePageSlugs = [
   "ms-gi-pipes",
   "mosquito-net",
   "tmt-bars",
+  "fencing",
+  "pigeon-net",
 ] as const;
 
 export type IndorePageSlug = (typeof indorePageSlugs)[number];
@@ -92,13 +94,13 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
   "chain-link-fencing-jaali": {
     slug: "chain-link-fencing-jaali",
     // Owns: "jali Indore", "jaali Indore", "chain link fencing Indore", "jali for compound wall".
-    title: "Chain Link Fencing Manufacturer, Jali in Indore",
+    title: "Chain Link Taar Fencing Jali Manufacturer in Indore",
     description:
-      "We manufacture chain link fencing (jali): GI and PVC-coated rolls, 1 to 4 inch mesh, 3 to 10 ft high. CM, Border and Tata Wiron at Siyaganj, Indore.",
+      "We manufacture chain link taar fencing (jali): GI and PVC-coated rolls, 1 to 4 inch mesh, 3 to 10 ft high, with this month's market rate. Siyaganj, Indore.",
     h1: "Chain Link Fencing and Jali Manufacturer in Indore",
     topic: "chain link fencing (jali)",
     intro:
-      "Chain link jali (jaali) is what most compound walls, school grounds and factory boundaries in Indore are fenced with. We manufacture chain link fencing and sell it in rolls from our shop in Siyaganj, under our own CM and Border brands. Tata Wiron, also in stock, is Tata's product, which we supply as an authorised dealer.",
+      "Chain link jali (jaali), also called taar fencing, is what most compound walls, school grounds and factory boundaries in Indore are fenced with. We manufacture chain link fencing and sell it in rolls from our shop in Siyaganj, under our own CM and Border brands. Tata Wiron, also in stock, is Tata's product, which we supply as an authorised dealer.",
     intro2:
       "Choose the mesh opening, the wire thickness and the height of the roll. Smaller mesh and thicker wire cost more and last longer. PVC-coated roll lasts longer where it stays wet. Send us the perimeter and the height and we will work out the number of rolls.",
     specs: [
@@ -115,6 +117,11 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
         question: "Do you manufacture chain link fencing in Indore?",
         answer:
           "Yes. We manufacture chain link fencing and sell it from our shop on Siyaganj Main Road, Indore. Tata Wiron chain link, which we also stock, is made by Tata and supplied by us as an authorised dealer.",
+      },
+      {
+        question: "Is taar fencing the same as chain link?",
+        answer:
+          "In Indore, taar fencing usually means chain link jali on angle posts, often with a line or two of barbed wire (kata taar) along the top. Tell us which you mean, or send a photo, and we will price the jali, the barbed wire and the binding wire together.",
       },
       {
         question: "Which mesh size and wire thickness should I choose?",
@@ -179,7 +186,7 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
   "perforated-sheets": {
     slug: "perforated-sheets",
     // Owns: "perforated sheet Indore". Category page /categories/perforated-sheets is the range page.
-    title: "Perforated Sheet (Chaddar Jali) in Indore: MS, GI",
+    title: "Perforated Sheet (Chaddar Jali) in Indore: Rate, MS, GI",
     description:
       "Perforated sheet (chaddar jali) in Indore: MS and GI, 0.5 to 3 mm, round, square, slot and hexagonal holes. SS and aluminium on request. Siyaganj shop.",
     h1: "Perforated Sheets in Indore",
@@ -191,10 +198,32 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       "Material: mild steel (MS) and galvanised iron (GI); SS and aluminium on request",
       "Thickness: 0.5 mm to 3 mm",
       "Holes: round, square, slot and hexagonal (GI)",
+      "Full sheet: 1,220 x 2,440 mm (4 x 8 ft)",
+      "Round holes in 1 mm sheet: 2, 3, 5 and 6 mm (catalogue series)",
       "Custom sizes on request",
     ],
     useCases: ["Screens and partitions", "Machine guards", "Ventilation panels", "Filtration and sieving", "Decorative cladding"],
     productSlugs: ["gi-perforated-sheet", "ms-perforated-sheet", "expanded-metal-mesh", "gi-weldmesh"],
+    faqs: [
+      {
+        question: "What is chaddar jali?",
+        answer: "Chaddar jali is the market name for perforated sheet: a steel sheet punched with rows of holes. It is not expanded metal, which is slit and stretched.",
+      },
+      {
+        question: "What sizes of perforated sheet can I buy?",
+        answer:
+          "Full sheets are 1,220 x 2,440 mm (4 x 8 ft), from 0.5 mm to 3 mm thick, and we cut them to the size you need. In 1 mm sheet the catalogue round holes are 2, 3, 5 and 6 mm. Hole pitch and open area follow the maker's specification and are confirmed per order.",
+      },
+      {
+        question: "How is perforated sheet priced?",
+        answer:
+          "By weight. A plain 1 mm MS sheet of 4 x 8 ft weighs about 23.4 kg before punching, and the holes take some of that off, so the price of a sheet depends on its thickness and open area. Tell us the thickness, the hole and the number of sheets for a rate.",
+      },
+      {
+        question: "Do you deliver perforated sheet outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
   },
   "gi-wire": {
     slug: "gi-wire",
@@ -445,9 +474,9 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
   "tmt-bars": {
     slug: "tmt-bars",
     // Owns: "TMT bars Indore", "sariya Indore", "TMT bar supplier near me". /products/tmt-bars keeps sizes and grades; the weight chart stays in the blog.
-    title: "TMT Bars (Sariya) in Indore: Fe 500, Fe 550",
+    title: "Sariya Rate in Indore Today: TMT Bars Fe 500D, Fe 550",
     description:
-      "TMT bars (sariya) in Indore: 6 to 32 mm, typically 12 m, Fe 500, Fe 500D and Fe 550. Retail and wholesale at Siyaganj. Ask for the rate.",
+      "TMT bars (sariya) in Indore with this month's market rate. 6 to 32 mm, typically 12 m, Fe 500, Fe 500D and Fe 550. Retail and wholesale at Siyaganj.",
     h1: "TMT Bars (Sariya) in Indore",
     topic: "TMT bars",
     intro:
@@ -479,6 +508,102 @@ export const indorePages: Record<IndorePageSlug, IndorePage> = {
       {
         question: "Do you deliver TMT bars outside Indore?",
         answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
+  },
+  "fencing": {
+    slug: "fencing",
+    // Owns: "fencing Indore", "fencing material Indore", "tar fencing material", "fencing shop near me". The wire and jali
+    // pages keep their own product terms; this hub owns the whole-fence intent. Owner facts D-019 (9 Nov 2026).
+    title: "Fencing Material in Indore: Wire, Jali, Angles, Poles",
+    description:
+      "Fencing material in Indore: chain link jali, barbed wire, concertina, jhatka wire and insulators, angle posts, concrete poles and FRP bars. Siyaganj shop.",
+    h1: "Fencing Material in Indore",
+    topic: "fencing material",
+    intro:
+      "Everything a fence in and around Indore needs comes from one counter at our shop on Siyaganj Main Road: the jali or wire, the posts it hangs on, and the binding wire that holds it together. We manufacture barbed wire and chain link fencing. Angle posts, concrete poles, FRP bars, concertina, jhatka wire and its insulators are stocked and supplied.",
+    intro2:
+      "Tell us the length of the boundary, the height you want and what the fence has to keep out (people, cattle or wild animals), and we will list the jali or wire, the number of posts and the binding wire, with a rate for the whole lot.",
+    specs: [
+      "Chain link fencing (jali): GI and PVC-coated, 1 to 4 inch mesh, rolls 3 to 10 ft high",
+      "Barbed wire (kata taar): single and double strand, 12 x 14 and 14 x 14 gauge",
+      "Concertina wire: single and double coil",
+      "Jhatka wire: GI, 1.5 mm, 100 m coils, with insulators to mount it on posts",
+      "Posts: MS angle posts, concrete poles and FRP bars",
+      "Weld mesh and binding wire",
+    ],
+    useCases: ["Plot and boundary fencing", "Farm and field fencing", "Jhatka fencing against cattle and wild animals", "Wire on top of compound walls", "Factory and site perimeters"],
+    productSlugs: ["chain-link-fencing", "barbed-wire", "concertina-wire", "jhatka-machine-fencing-wire", "ms-angles", "frp-bars", "gi-weldmesh", "binding-wire"],
+    faqs: [
+      {
+        question: "What do I need to fence a plot in Indore?",
+        answer:
+          "The jali or wire, posts to hang it on, and binding wire to tie it. Many plots use chain link jali with one or two lines of barbed wire along the top. Send us the boundary length and the height and we will work out the rolls, the posts and the wire.",
+      },
+      {
+        question: "Angle post, concrete pole or FRP bar: which post should I use?",
+        answer:
+          "MS angle posts are steel, easy to weld or bolt, and take chain link and barbed wire well. Concrete poles do not rust and suit long farm boundaries. FRP bars are light, do not rust and do not conduct electricity, which helps on a jhatka fence.",
+      },
+      {
+        question: "Do you sell jhatka fencing wire and insulators?",
+        answer: "Yes. Our jhatka wire is GI, 1.5 mm, in 100 m coils, and we sell the insulators that hold it off the posts.",
+      },
+      {
+        question: "Do you manufacture fencing wire?",
+        answer:
+          "We manufacture barbed wire and chain link fencing. Concertina wire, jhatka wire, weld mesh, angle posts, concrete poles, FRP bars and insulators are stocked and supplied by us, not made by us.",
+      },
+      {
+        question: "Do you supply fencing material outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the quantity and the delivery town with your request.",
+      },
+    ],
+  },
+  "pigeon-net": {
+    slug: "pigeon-net",
+    // Owns: "pigeon net Indore", "kabootar jali Indore", "pigeon net installation Indore" (we sell, we do not install:
+    // owner fact D-019). Blog posts keep mesh-size and fixing how-to intent.
+    title: "Pigeon Net (Kabootar Jali) in Indore: Nets and Spikes",
+    description:
+      "Pigeon net (kabootar jali) in Indore: knotted nylon and HDPE, 3 to 20 ft wide, 50 mm mesh, cut to length. Plastic and SS bird spikes. Siyaganj shop.",
+    h1: "Pigeon Net (Kabootar Jali) in Indore",
+    topic: "pigeon net (kabootar jali)",
+    intro:
+      "We sell pigeon net, called kabootar jali, at our shop on Siyaganj Main Road, Indore: knotted nylon and HDPE net for balconies, windows and duct shafts, cut at the counter to the length you need. Bird spikes for ledges and parapets are on the same counter, in plastic and stainless steel.",
+    intro2:
+      "We sell the net and the spikes; we do not install them. Measure the width and height of the opening, allow a margin for fixing, and tell us whether it is a balcony, a window or a shaft. Our pigeon net guide explains mesh size and fixing for people who fit it themselves or through their own fitter.",
+    specs: [
+      "Net: knotted nylon and HDPE",
+      "Width: 3 ft to 20 ft",
+      "Mesh opening: 50 x 50 mm (about 2 x 2 in)",
+      "Cut to the length you need, at the counter",
+      "Bird spikes: plastic and SS wire, 30 cm strips, sold by the running metre (retail pack: 10 strips, 3 m)",
+    ],
+    useCases: ["Balconies", "Windows", "Duct and lift shafts", "Ledges and parapets (spikes)", "Sign boards (spikes)"],
+    productSlugs: ["pigeon-nets", "pigeon-spikes"],
+    faqs: [
+      {
+        question: "Do you install pigeon nets in Indore?",
+        answer:
+          "No. We sell the net and the spikes, cut to your size, from our Siyaganj shop. Fixing is done by you or your own fitter. Bring the measurements and we will cut the net to match.",
+      },
+      {
+        question: "What size pigeon net do I need?",
+        answer:
+          "Measure the width and height of the opening and allow a margin for fixing. The net comes 3 ft to 20 ft wide and is cut to length, so most balconies need one piece.",
+      },
+      {
+        question: "Net or spikes: which one do I need?",
+        answer: "Net closes an opening such as a balcony, a window or a shaft. Spikes stop birds sitting on a ledge, a parapet or a sign board. Many buildings use both.",
+      },
+      {
+        question: "What mesh size is pigeon net?",
+        answer: "Our pigeon net has a 50 x 50 mm (about 2 x 2 in) opening, in knotted nylon or HDPE.",
+      },
+      {
+        question: "Do you send pigeon net outside Indore?",
+        answer: "Orders accepted across India; delivery arrangements confirmed with each quotation. Send the size and the delivery town with your request.",
       },
     ],
   },
@@ -524,6 +649,9 @@ export const localPageForProductSlug: Record<string, IndorePageSlug> = {
   "sr-hoe-faurdha-with-handle": "construction-hardware",
   "sr-sledge-hammer": "construction-hardware",
   "santing-shikanja": "construction-hardware",
+  "jhatka-machine-fencing-wire": "fencing",
+  "pigeon-nets": "pigeon-net",
+  "pigeon-spikes": "pigeon-net",
 };
 
 export function getIndorePage(slug: string): IndorePage | null {

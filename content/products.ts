@@ -447,7 +447,7 @@ const ownCategories: Category[] = [
             notes: "Tata Wiron D-Fence chain link, made by Tata in 15 m and 30 m compacted bundles.",
           },
         ],
-        indicativeRate: "Approx. ₹55–75 per sq m (varies by mesh size and height). Confirm for current price.",
+        indicativeRate: "Approx. ₹61–85 per kg (varies by mesh and gauge). Confirm for current price.",
       },
       {
         slug: "barbed-wire",
@@ -852,7 +852,7 @@ const ownCategories: Category[] = [
         variants: ["Round holes", "Square holes", "Slot holes", "Hexagonal"],
         materials: ["Galvanised iron"],
         notes: "Galvanised perforated sheet in round, square, slot and hexagonal patterns, cut to your size.",
-        indicativeRate: "Approx. ₹120–220 per sq m (varies by thickness and pattern). Confirm for current price.",
+        indicativeRate: "Approx. ₹100–140 per kg (varies by thickness and pattern). Confirm for current price.",
       },
       {
         slug: "ms-perforated-sheet",
@@ -876,7 +876,7 @@ const ownCategories: Category[] = [
         variants: ["Round holes", "Square holes", "Slot holes"],
         materials: ["Mild steel"],
         notes: "Mild steel perforated sheet in round, square and slot patterns, cut to your size. For indoor use or for painting.",
-        indicativeRate: "Approx. ₹120–220 per sq m (varies by thickness and pattern). Confirm for current price.",
+        indicativeRate: "Approx. ₹90–130 per kg (varies by thickness and pattern). Confirm for current price.",
       },
     ],
   },

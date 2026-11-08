@@ -77,6 +77,7 @@ image3Alt: "सफ़ेद कबूतर स्पाइक की पट्�
 
 ## संबंधित पठन
 
+- [इंदौर में कबूतर जाली](/indore/pigeon-net)
 - [बालकनी के लिए कबूतर जाली: मेश साइज़ और फिक्सिंग](/blog/pigeon-net-balcony-indore-mesh-size-fixing-guide)
 - [कबूतर जाली](/products/pigeon-nets)
 - [सेफ्टी नेट और बर्ड स्पाइक रेंज](/categories/safety-nets-equipments)

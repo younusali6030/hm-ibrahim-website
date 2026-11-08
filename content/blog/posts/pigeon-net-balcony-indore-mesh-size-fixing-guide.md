@@ -93,6 +93,7 @@ We stock the net, the wire, the hooks and binding wire. Tell us the size.
 
 ## Related reading
 
+- [Pigeon net (kabootar jali) in Indore](/indore/pigeon-net)
 - [Pigeon spikes and netting installation](/blog/pigeon-spikes-netting-installation-guide)
 - [Wire gauge chart](/blog/wire-gauge-chart-swg-bwg-mm-guide)
 - [Safety nets and bird spikes range](/categories/safety-nets-equipments)

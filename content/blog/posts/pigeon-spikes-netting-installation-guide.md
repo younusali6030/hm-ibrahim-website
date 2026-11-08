@@ -82,6 +82,7 @@ For pigeon spikes or pigeon netting in Indore, Siyaganj, or Loha Mandi, request 
 
 ## Related reading
 
+- [Pigeon net (kabootar jali) in Indore](/indore/pigeon-net)
 - [Pigeon net for balconies: mesh size and fixing](/blog/pigeon-net-balcony-indore-mesh-size-fixing-guide)
 - [Pigeon net](/products/pigeon-nets)
 - [Safety nets and bird spikes range](/categories/safety-nets-equipments)

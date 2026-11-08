@@ -66,6 +66,7 @@ For chain link, barbed wire, GI pipe, or binding wire in Indore, Siyaganj, or Lo
 
 ## Related reading
 
+- [Fencing material in Indore](/indore/fencing)
 - [Jali and chain link fencing in Indore](/indore/chain-link-fencing-jaali)
 - [Farm fencing in Madhya Pradesh](/blog/farm-fencing-madhya-pradesh-posts-wire-angle-plan)
 - [Barbed wire vs concertina wire](/blog/barbed-wire-vs-concertina-wire)

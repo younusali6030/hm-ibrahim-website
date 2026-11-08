@@ -1,8 +1,8 @@
 ---
-title: "TMT Bar Weight Chart: 6–32 mm, and How to Check a Delivery"
-description: "TMT bar weight per metre and per piece for every common diameter, the formula behind it, and how to check a delivery against the paperwork. From the counter at Siyaganj, Indore."
+title: "TMT Bar Weight Chart: 6–32 mm per Metre, Bar and Tonne"
+description: "6 mm = 0.222 kg/m, 12 mm = 0.889, 32 mm = 6.321 kg/m. Weight of a 12 m or 40 ft bar and bars per tonne for every size. From Siyaganj, Indore."
 date: "2026-10-11"
-updated: "2026-10-12"
+updated: "2026-11-09"
 category: "Structural steel"
 image: "/blog/tmt-weight-3.webp"
 imageAlt: "TMT bars with the rib detail visible"
@@ -11,7 +11,7 @@ image2Alt: "Gloved hand checking a bundle of steel bars"
 image3: "/blog/tmt-weight-1.webp"
 image3Alt: "A bundle of steel bars tied and laid out on the counter table for weighing"
 ---
-**Quick answer:** A TMT bar weighs diameter squared divided by 162, in kg per metre. A 12 mm bar is 0.889 kg per metre, so a 12 m bar is about 10.7 kg. Use the chart to estimate what a delivery should weigh, then check it against the weighing records.
+**Quick answer:** A TMT bar weighs diameter squared divided by 162, in kg per metre. A 12 mm bar is 0.889 kg per metre, so a 12 m bar is about 10.7 kg. A 32 mm bar is 6.321 kg per metre, about 75.9 kg for 12 m. A 6 mm bar is 0.222 kg per metre, about 2.7 kg for a 40 ft (12.19 m) bar. Use the chart to estimate what a delivery should weigh, then check it against the weighing records.
 
 Every contractor in Indore has had the argument. The invoice says 2 tonnes. The truck feels light. Nobody wants to say it out loud.
 
@@ -84,6 +84,18 @@ About 0.889 kg per metre, or roughly 10.7 kg for a 12 metre bar.
 
 **How many 10 mm bars make one tonne?**  
 About 135 bars of 12 metres each.
+
+**How many kg is a 32 mm TMT bar?**  
+6.321 kg per metre. One 12 m bar is about 75.9 kg, and a 40 ft (12.19 m) bar about 77 kg.
+
+**How many bars are in one tonne of sariya?**  
+It depends on the size. Counting 12 m bars: about 211 of 8 mm, 94 of 12 mm, 53 of 16 mm, 34 of 20 mm and 13 of 32 mm.
+
+**What does a 6 mm TMT bar weigh for 40 feet?**  
+0.222 kg per metre, so a 40 ft (12.19 m) bar is about 2.7 kg.
+
+**What is 4 sut sariya in mm?**  
+One sut is 1/8 inch, so 4 sut is half an inch, sold in the market as 12 mm. In the same way 3 sut is close to 10 mm, 5 sut to 16 mm and 6 sut to 20 mm.
 
 **What does the D in Fe 500D mean?**  
 The D stands for ductile. These bars stretch more before breaking and have better bending properties, which matters in seismic zones.

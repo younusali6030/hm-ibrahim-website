@@ -94,6 +94,7 @@ Orders accepted across India; delivery arrangements confirmed with each quotatio
 
 ## Related reading
 
+- [Fencing material in Indore](/indore/fencing)
 - [Barbed and concertina wire in Indore](/indore/barbed-wire)
 - [How to estimate fencing material](/blog/how-to-estimate-material-quantity-fencing)
 - [Barbed wire vs concertina wire](/blog/barbed-wire-vs-concertina-wire)

@@ -11,7 +11,8 @@ const root = path.resolve(import.meta.dirname, "..");
 const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 
 // Owner-confirmed 12 Oct 2026: barbed wire, chain link fencing and wire mesh are made by the shop. Nothing else.
-const MADE = new Set(["barbed-wire", "chain-link-fencing-jaali", "wire-mesh"]);
+// The fencing hub (owner facts D-019, 9 Nov 2026) names barbed wire and chain link as made, everything else as supplied.
+const MADE = new Set(["barbed-wire", "chain-link-fencing-jaali", "wire-mesh", "fencing"]);
 // "manufacturers" (plural, as in "branded manufacturers") is not a claim about the shop.
 const EN_CLAIM = /\bmanufactur(e|es|ed|er)\b/i;
 const HI_CLAIM = /बनाते|बनाती|निर्माता|निर्माण करते|बनाया|बनाई|बनाए/;

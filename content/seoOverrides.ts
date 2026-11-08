@@ -398,10 +398,10 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "Spikes for ledges, net for open spaces. How to fit bird spikes and pigeon netting so they hold, with notes from the Siyaganj counter in Indore.",
   },
   "blog/siyaganj-market-guide-buying-iron-hardware-indore": {
-    title: "Siyaganj Iron Market Guide: Buying Hardware in Indore",
+    title: "Indore Hardware Wholesale Market: Siyaganj Buyer's Guide",
   },
   "blog/tmt-bar-weight-chart-size-guide-indore": {
-    title: "TMT Bar Weight Chart: 6 mm to 32 mm, Per Metre and Bar",
+    title: "TMT Bar Weight Chart: 6–32 mm per Metre, Bar and Tonne",
   },
   "blog/top-hardware-contractors-buy-siyaganj": {
     title: "Hardware Contractors Buy in Siyaganj: Checklist",
@@ -414,7 +414,7 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "Welded mesh or chain link jali for your fence? Cost, strength, look and where each one is the better choice, compared plainly.",
   },
   "blog/wire-gauge-chart-swg-bwg-mm-guide": {
-    title: "Wire Gauge Chart (SWG, BWG) in mm: Which Gauge for What",
+    title: "Wire Gauge to mm Chart: SWG and BWG (8 SWG = 4.06 mm)",
   },
   "blog/wire-mesh-supplier-indore-types-uses-prices": {
     title: "Wire Mesh in Indore: Types, Uses, What Sets the Rate",

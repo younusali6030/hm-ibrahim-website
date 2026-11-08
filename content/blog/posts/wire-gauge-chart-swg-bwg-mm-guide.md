@@ -1,8 +1,8 @@
 ---
-title: "Wire Gauge Chart: SWG, BWG and mm for GI, Binding and Fencing Wire"
-description: "Convert SWG and BWG to millimetres, and see which gauge is used for binding wire, GI wire, barbed wire and mesh. A buyer's table from an Indore wire stockist."
+title: "Wire Gauge to mm Chart: SWG and BWG (8 SWG = 4.06 mm)"
+description: "8 SWG = 4.06 mm, 10 SWG = 3.25 mm, 12 SWG = 2.64 mm, 12 BWG = 2.77 mm. SWG and BWG to mm for GI, binding and fencing wire, from an Indore stockist."
 date: "2026-10-03"
-updated: "2026-10-03"
+updated: "2026-11-09"
 category: "Wire"
 image: "/blog/gauge-1.webp"
 imageAlt: "Binding wire coils in different gauges stacked at the shop"
@@ -11,7 +11,7 @@ image2Alt: "Heavy coil of black annealed wire in close-up"
 image3: "/blog/gauge-3.webp"
 image3Alt: "Yellow wrapped Tata Wiron coil on top of loose wire"
 ---
-**Quick answer:** A higher gauge number means thinner wire. 12 SWG is 2.64 mm, 14 SWG is 2.03 mm, 16 SWG is 1.63 mm and 18 SWG is 1.22 mm. Rebar tying uses 16 to 18 SWG annealed binding wire. Fence tying uses 12 to 14 SWG GI.
+**Quick answer:** A higher gauge number means thinner wire. 8 SWG is 4.06 mm, 10 SWG is 3.25 mm, 12 SWG is 2.64 mm, 14 SWG is 2.03 mm, 16 SWG is 1.63 mm and 18 SWG is 1.22 mm. Rebar tying uses 16 to 18 SWG annealed binding wire. Fence tying uses 12 to 14 SWG GI. In BWG, 12 is 2.77 mm and 14 is 2.11 mm. Buying in Indore? See [GI wire in Indore](/indore/gi-wire) for the gauges and coils we keep.
 
 You ask for 12 gauge wire. The shop hands you a coil. How do you know it is the 12 gauge you meant?
 
@@ -83,6 +83,15 @@ See [wires](/categories/wires) for the full range.
 
 **What is 12 gauge wire in mm?**  
 2.64 mm in SWG and 2.77 mm in BWG.
+
+**What is 8 SWG in mm?**  
+4.06 mm. 8 BWG is 4.19 mm. It is a heavy wire, used for fencing line wire and mesh.
+
+**What is GI wire gauge in mm?**  
+GI wire follows the same SWG table: 8 SWG 4.06 mm, 10 SWG 3.25 mm, 12 SWG 2.64 mm, 14 SWG 2.03 mm, 16 SWG 1.63 mm and 18 SWG 1.22 mm.
+
+**What is the full form of SWG?**  
+Standard Wire Gauge, also called Imperial Wire Gauge. BWG is Birmingham Wire Gauge.
 
 **Is 16 gauge or 18 gauge binding wire better?**  
 Both work. 16 gauge is stronger and 18 gauge is easier to twist by hand. Many sites use 18 gauge for small bars.

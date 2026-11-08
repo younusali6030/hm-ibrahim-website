@@ -18,6 +18,7 @@ import { SectionHead } from "@/components/story/SectionHead";
 import { ContactStrip } from "@/components/story/ContactStrip";
 import { T } from "@/lib/i18n";
 import { indorePagesHi } from "@/content/hi/indore";
+import { marketRates, marketRateFaq, formatAsOf, rupees } from "@/content/marketRates";
 import { localize } from "@/lib/localize";
 import { tt, type Lang } from "@/lib/locale";
 import "@/components/story/story.css";
@@ -53,7 +54,9 @@ export default async function IndoreLandingPage(props: Props) {
   const products = base.productSlugs.map((s) => getProductBySlug(s)).filter((p): p is NonNullable<typeof p> => !!p);
   const hero = products[0] ? getProductImages(products[0], getCategoryBySlug(products[0].categorySlug))[0] : undefined;
   const topic = page.topic ?? (hi ? page.h1.replace(/^इंदौर में /, "") : page.h1.replace(/ in Indore$/, ""));
-  const pageFaqs = page.faqs ?? [];
+  const rate = marketRates[base.slug];
+  // The rate question goes first: it is what "<product> rate today Indore" searches ask.
+  const pageFaqs = [...(rate ? [marketRateFaq(rate, hi)] : []), ...(page.faqs ?? [])];
   const faqSchema = faqPage(pageFaqs);
   const waMessage = hi
     ? `नमस्ते, मुझे ${topic} में रुचि है। कृपया भाव और उपलब्धता बताइए।`
@@ -97,6 +100,31 @@ export default async function IndoreLandingPage(props: Props) {
       <section className="st-sec">
         <div className="page-container grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
           <div>
+            {rate && (
+              <section className="mb-8 rounded-[14px] border border-border bg-card p-5 md:p-6" aria-labelledby="market-rate-heading">
+                <p className="st-eyebrow" id="market-rate-heading">
+                  {hi ? `इंदौर बाज़ार भाव · ${formatAsOf(rate.asOf, true)}` : `Indore market rate · ${formatAsOf(rate.asOf, false)}`}
+                </p>
+                <p className="mt-2 font-display text-4xl font-extrabold leading-none text-foreground">
+                  {hi ? "लगभग " : "About "}
+                  {rupees(rate.mid)}
+                  <span className="ml-1 text-lg font-semibold text-muted-foreground">{hi ? "/ किलो" : "/ kg"}</span>
+                </p>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  {hi
+                    ? `${rupees(rate.low)}–${rupees(rate.high)} प्रति किलो का बीच का भाव, ${rate.basis.hi}। यह बाज़ार का अनुमान है, हमारा कोटेशन नहीं, और महीने के बीच भी बदल सकता है।`
+                    : `Midpoint of ${rupees(rate.low)}–${rupees(rate.high)} per kg for ${rate.basis.en}. A market estimate, not our quote; it can move within the month.`}
+                </p>
+                <a
+                  href={getWhatsAppLink(site.whatsapp, waMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex min-h-[40px] items-center text-sm font-semibold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  {t("WhatsApp us for today's rate", "आज का रेट व्हाट्सएप पर पूछें")}
+                </a>
+              </section>
+            )}
             {page.intro2 && <p className="text-lg leading-relaxed text-muted-foreground">{page.intro2}</p>}
             <p className="mt-4 text-muted-foreground">
               {hi ? (
