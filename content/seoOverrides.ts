@@ -8,6 +8,15 @@
 export type SeoOverride = { title: string; description?: string };
 
 export const seoOverrides: Record<string, SeoOverride> = {
+  // ---- Home. Absolute title so the shop name is always shown: the root title template does not reach the
+  // home page. Description names the products Search Console shows the home page for (Nov 2026):
+  // chain link fencing, machhar jali, perforated sheet.
+  "": {
+    title: "HM Ibrahim & Co, Indore: Iron, Wire & Mesh since 1939",
+    description:
+      "Iron, wire and mesh, Siyaganj Main Road, Indore, since 1939: chain link and barbed wire, machhar jali, perforated sheet, TMT sariya. Retail and wholesale.",
+  },
+
   // ---- Category pages: the RANGE. The /indore/* pages own "<term> Indore".
   "categories/structural-items": {
     title: "Steel Angles, Flats, Channels, Bars, Pipes | HM Ibrahim",
@@ -314,7 +323,9 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "SR carbon steel shovel (faurdha, phawda) with fitted handle, ready to use for farm, garden and site work. Green and black as per stock. Siyaganj, Indore.",
   },
   "products/sr-pickaxe-geti": {
-    title: "SR Pickaxe (Geti) in Indore | HM Ibrahim, Siyaganj",
+    // Search Console (Nov 2026): "geti price" and "geti tool" land here at ~position 9. Lead with "geti", the word
+    // people type; the page shows an indicative price per piece.
+    title: "Geti (SR Pickaxe) Price in Indore | HM Ibrahim, Siyaganj",
     description:
       "SR brand pickaxe (geti) heads for hard ground, trench work and demolition, at the Siyaganj counter in Indore. Retail and wholesale. Ask for the rate.",
   },
