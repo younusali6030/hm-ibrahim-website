@@ -17,6 +17,11 @@ reel titles and customer reviews.
 | expanded metal jali | `/products/expanded-metal-mesh` | `/blog/expanded-metal-mesh-uses-types-indore` |
 | TMT bars Indore, sariya Indore, TMT supplier near me | `/indore/tmt-bars` | `/products/tmt-bars`, `/blog/how-to-choose-tmt-bars-indore`, `/blog/tmt-bar-weight-chart-size-guide-indore` |
 | TMT bar rate, sariya rate, what decides TMT price | `/blog/tmt-bar-rate-what-decides-sariya-price-indore` | `/indore/tmt-bars`, `/blog/tmt-bar-weight-chart-size-guide-indore` |
+| sariya rate today Indore, Indore sariya rate, Indore sariya ka bhav (dated market rate, D-018) | `/indore/tmt-bars` | `/blog/tmt-bar-rate-what-decides-sariya-price-indore` |
+| tar fencing Indore, taar fencing jali | `/indore/chain-link-fencing-jaali` | `/indore/barbed-wire` |
+| fencing Indore, fencing material Indore, fencing shop near me (whole-fence intent, D-019) | `/indore/fencing` | `/indore/chain-link-fencing-jaali`, `/indore/barbed-wire`, `/blog/farm-fencing-madhya-pradesh-posts-wire-angle-plan` |
+| pigeon net Indore, kabootar jali Indore, pigeon net installation Indore (we sell, do not install: D-019) | `/indore/pigeon-net` | `/products/pigeon-nets`, `/blog/pigeon-net-balcony-indore-mesh-size-fixing-guide` |
+| Indore hardware wholesale market, Indore hardware market | `/blog/siyaganj-market-guide-buying-iron-hardware-indore` | `/indore` |
 | barbed wire rate, barbed wire price per kg | `/blog/barbed-wire-price-per-kg-what-decides-the-rate` | `/indore/barbed-wire`, `/products/barbed-wire` |
 | TMT sizes, Fe 500 / Fe 500D / Fe 550 grades | `/products/tmt-bars` | `/indore/tmt-bars` |
 | TMT bar weight chart | `/blog/tmt-bar-weight-chart-size-guide-indore` | `/products/tmt-bars` |
