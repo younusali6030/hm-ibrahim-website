@@ -249,6 +249,8 @@ export function productJsonLd(p: {
       priceCurrency: "INR",
       lowPrice: low,
       highPrice: high,
+      // One seller (this shop) offering a price range by size: Google's Product snippet check asks for offerCount.
+      offerCount: 1,
       url,
       seller: { "@id": ids.localBusiness },
       priceSpecification: {
