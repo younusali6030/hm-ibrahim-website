@@ -18,6 +18,8 @@ import { WatchPlayer } from "@/components/video/WatchPlayer";
 import { btnMain, btnGhostDark, btnGhost } from "@/components/site/PageHero";
 import { SectionHead } from "@/components/story/SectionHead";
 import { ContactStrip } from "@/components/story/ContactStrip";
+import { indoreSlugsForProducts } from "@/content/indorePages";
+import { IndoreBuyLinks } from "@/components/indore/IndoreBuyLinks";
 import "@/components/story/story.css";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
@@ -59,6 +61,11 @@ export default async function WatchPage(props: Props) {
   const brands = (reel.brands ?? []).map((b) => localize(getBrandById(b), lang)).filter((b) => b !== undefined && b !== null);
   const first = products[0];
   const quoteHref = first ? `/contact?product=${first.slug}&category=${first.categorySlug}` : categories[0] ? `/contact?category=${categories[0].slug}` : "/contact";
+  // Indore landing pages for what the clip shows: its products first, then its categories' products (TASK-032).
+  const indoreSlugs = indoreSlugsForProducts(
+    [...(reel.products ?? []), ...categories.flatMap((c) => c.products.map((p) => p.slug))],
+    2,
+  );
   const more = reels.filter((r) => r.id !== reel.id);
   const addr = hi ? siteHi.address : site.address;
   const hours = hi ? siteHi.hours : site.hours;
@@ -207,6 +214,12 @@ export default async function WatchPage(props: Props) {
             </ul>
           </div>
         </section>
+      )}
+
+      {indoreSlugs.length > 0 && (
+        <div className="page-container pb-12 md:pb-16">
+          <IndoreBuyLinks slugs={indoreSlugs} lang={lang} />
+        </div>
       )}
 
       <section className="st-sec st-sec-tint" aria-labelledby="more-heading">

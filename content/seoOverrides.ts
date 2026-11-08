@@ -59,12 +59,12 @@ export const seoOverrides: Record<string, SeoOverride> = {
   // Barbed wire and chain link are made by the shop (owner-confirmed 12 Oct 2026). The /indore/* pages own the
   // "<product> manufacturer Indore" intent; these product pages own the specification and "supplied across India" intent.
   "products/barbed-wire": {
-    title: "Barbed Wire in Indore: 12 x 14 Gauge, Coils | HM Ibrahim",
+    title: "Barbed Wire: 12 x 14 Gauge, Coil Weights, Sizes | HM Ibrahim",
     description:
       "Barbed wire we manufacture in Indore: single and double strand, 12 x 14 and 14 x 14 gauge, coils to 25 kg. Orders accepted across India. Ask for the rate.",
   },
   "products/chain-link-fencing": {
-    title: "Chain Link Fencing in Indore: Mesh, Wire, Height",
+    title: "Chain Link Fencing: Mesh Size, Wire Gauge, Roll Height",
     description:
       "Chain link fencing we manufacture in Indore: 1 to 4 inch mesh, 1.5 to 4 mm wire, 3 to 10 ft rolls, GI or PVC. Orders across India. Ask for the rate.",
   },
@@ -179,7 +179,7 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "Glass fibre reinforced polymer (FRP) bars, 6 to 20 mm, in 4, 5 and 6 ft rods, at Siyaganj, Indore. Send the diameter and quantity for the rate.",
   },
   "products/gi-wire": {
-    title: "GI Wire Gauges in Indore: 8 to 18 SWG, Packs | HM Ibrahim",
+    title: "GI Wire Gauges: 8 to 18 SWG, mm, Packs | HM Ibrahim",
     description:
       "GI wire 8 to 18 SWG (4.06 to 1.22 mm), sold by weight in 5, 10 and 25 kg packs, plus Tata Wiron farming wire at Siyaganj, Indore. Ask for the rate.",
   },
@@ -264,7 +264,7 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "Roofing nails with a wide flat head, 1.5 to 6 inch, for sheets and felt, sold by weight at Siyaganj, Indore. Send the size and quantity for the rate.",
   },
   "products/pigeon-nets": {
-    title: "Pigeon Net (Kabootar Jali) in Indore: 3 to 20 ft",
+    title: "Pigeon Net (Kabootar Jali): 3 to 20 ft Wide, 50 mm Mesh",
     description:
       "Knotted nylon and HDPE pigeon net, 50 x 50 mm mesh, 3 to 20 ft wide, cut to your length at Siyaganj, Indore. Send the width and length for the rate.",
   },
@@ -289,12 +289,12 @@ export const seoOverrides: Record<string, SeoOverride> = {
       "Stainless steel fine mesh in rolls for insect screens, filters and sieving. Rust and rat resistant. Siyaganj, Indore. Send mesh count and width for a rate.",
   },
   "products/gi-perforated-sheet": {
-    title: "GI Perforated Sheet (Chaddar Jali), Indore | HM Ibrahim",
+    title: "GI Perforated Sheet (Chaddar Jali): Holes, Thickness",
     description:
       "GI perforated sheet, 0.5 to 3 mm, 4 x 8 ft sheets, round, square, slot and hexagonal holes, cut to size at Siyaganj, Indore. Ask for the rate.",
   },
   "products/ms-perforated-sheet": {
-    title: "MS Perforated Sheet (Chaddar Jali), Indore | HM Ibrahim",
+    title: "MS Perforated Sheet (Chaddar Jali): Holes, Thickness",
     description:
       "MS perforated sheet, 0.5 to 3 mm, 4 x 8 ft sheets, round, square and slot holes, cut to size at Siyaganj, Indore. SS and aluminium sheet on request.",
   },

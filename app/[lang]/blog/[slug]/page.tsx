@@ -24,6 +24,8 @@ import "@/components/story/story.css";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { PostCard, formatDate } from "@/components/blog/PostCard";
 import { splitGuideTail } from "@/content/blog/tail";
+import { indorePageSlugs, indoreSlugsForProducts, type IndorePageSlug } from "@/content/indorePages";
+import { IndoreBuyLinks } from "@/components/indore/IndoreBuyLinks";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -117,6 +119,11 @@ export default async function BlogPostPage(props: Props) {
     }
   }
   const productCards = localize(productCardsEn, lang);
+  // Indore landing pages for the guide: any the body already links to, then the best match for its products (TASK-032).
+  const bodyIndore = [...post.content.matchAll(/\]\(\/indore\/([a-z0-9-]+)\)/g)]
+    .map((m) => m[1])
+    .filter((s): s is IndorePageSlug => (indorePageSlugs as readonly string[]).includes(s));
+  const indoreSlugs = [...new Set([...bodyIndore, ...indoreSlugsForProducts(productCardsEn.map((p) => p.slug), 2)])].slice(0, 2);
 
   const articleImages = [post.image, post.image2, post.image3].filter(Boolean) as string[];
   const abs = (src: string) => (src.startsWith("http") ? src : `${baseUrl}${src}`);
@@ -335,6 +342,8 @@ export default async function BlogPostPage(props: Props) {
                   ))}
               </div>
             )}
+
+            <IndoreBuyLinks slugs={indoreSlugs} lang={lang} className="mt-14" />
 
             {productCards.length > 0 && (
               <section className="mt-14" aria-labelledby="related-products-heading">

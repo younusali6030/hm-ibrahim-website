@@ -252,8 +252,10 @@ export type ProductMetaInput = {
 };
 
 /**
- * Product meta. Title leads with the product name and the buyer's question (sizes, uses, rate),
- * so product pages do not compete with the /indore/* landing pages that own "<term> Indore".
+ * Product meta. Title leads with the product name and the buyer's question (sizes, uses, rate).
+ * The "in Indore" template is for products that have no /indore/* page. Where an /indore/* page owns
+ * "<term> Indore" (docs/seo/keyword-map.md), the product's override in content/seoOverrides.ts and
+ * content/hi/seo.ts must leave "Indore" out of the title so the two pages do not compete (TASK-032).
  * For Hindi, productName and shortDesc must already be the Hindi strings.
  */
 export function buildProductMeta(input: ProductMetaInput): Metadata {

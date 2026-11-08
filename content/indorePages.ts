@@ -660,3 +660,25 @@ export function getIndorePage(slug: string): IndorePage | null {
   }
   return null;
 }
+
+/**
+ * The Indore pages that best match these products, at most `max`.
+ * Each product votes for one page: the page that lists it earliest in its productSlugs, a tie going to the page with
+ * the shorter list (the more specific page, e.g. weld-mesh over wire-mesh for GI weldmesh). Pages with more votes come
+ * first; equal votes keep the order the products were given in.
+ */
+export function indoreSlugsForProducts(productSlugs: string[], max = 2): IndorePageSlug[] {
+  const votes = new Map<IndorePageSlug, number>();
+  for (const p of productSlugs) {
+    let best: { slug: IndorePageSlug; idx: number; len: number } | null = null;
+    for (const slug of indorePageSlugs) {
+      const list = indorePages[slug].productSlugs;
+      const idx = list.indexOf(p);
+      if (idx < 0) continue;
+      if (!best || idx < best.idx || (idx === best.idx && list.length < best.len)) best = { slug, idx, len: list.length };
+    }
+    if (best) votes.set(best.slug, (votes.get(best.slug) ?? 0) + 1);
+  }
+  // Map keeps first-seen order, and Array.prototype.sort is stable, so ties stay in product order.
+  return [...votes.entries()].sort((a, b) => b[1] - a[1]).slice(0, max).map(([slug]) => slug);
+}

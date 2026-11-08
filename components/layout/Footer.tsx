@@ -11,6 +11,7 @@ import { catNameHi } from "@/content/hi/names";
 import { siteHi } from "@/content/hi/site";
 import { ShopStatus } from "@/components/visit/VisitUs";
 import { ClickTracker } from "@/components/conversion/ClickTracker";
+import { indoreLinkLabels, indoreLinkOrder } from "@/content/indoreLinks";
 
 const usefulLinks = [
   { href: "/products", en: "All products", hi: "सभी उत्पाद" },
@@ -149,6 +150,19 @@ export function Footer() {
             </ul>
           </FooterGroup>
         </div>
+
+        {/* Every /indore/* landing page, linked from every page of the site (TASK-032). */}
+        <FooterGroup label={t("Buy in Indore", "इंदौर में खरीदें")} className="mt-0 sm:mt-8">
+          <ul className="grid grid-cols-2 gap-x-4 sm:grid-cols-3 lg:grid-cols-5">
+            {indoreLinkOrder.map((slug) => (
+              <li key={slug}>
+                <Link href={`/indore/${slug}`} className={linkCls}>
+                  {hi ? `इंदौर में ${indoreLinkLabels[slug].hi}` : `${indoreLinkLabels[slug].en} in Indore`}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </FooterGroup>
 
         <div className="mt-5 flex flex-col gap-1 border-t border-white/15 pt-4 text-sm text-white/70 md:mt-8 md:flex-row md:items-center md:justify-between md:gap-3 md:pt-5">
           <p>&copy; {new Date().getFullYear()} <T en="HM Ibrahim & Co. All rights reserved." hi="एचएम इब्राहिम एंड कंपनी। सर्वाधिकार सुरक्षित।" /></p>

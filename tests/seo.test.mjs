@@ -90,3 +90,35 @@ test("internal navigation points at category pages, not filtered /products?categ
     assert.doesNotMatch(read(file), /\/products\?category=/, `${file} still links to /products?category=`);
   }
 });
+
+// TASK-032: one term, one page. A product whose main term is owned by an /indore/* page (it is the first product that
+// page lists) keeps "Indore" out of its search title, in both languages, so the two pages do not compete.
+test("product titles leave 'Indore' to the Indore page that owns the product's term", () => {
+  const owned = ["barbed-wire", "chain-link-fencing", "gi-wire", "pigeon-nets", "gi-perforated-sheet", "ms-perforated-sheet", "mosquito-net", "tmt-bars"];
+  const hiFile = read("content/hi/seo.ts");
+  for (const slug of owned) {
+    const en = seoOverrides[`products/${slug}`];
+    assert.ok(en, `products/${slug} needs a hand-written title so the "in Indore" template is not used`);
+    assert.doesNotMatch(en.title, /Indore/i, `products/${slug} title targets Indore: ${en.title}`);
+    const m = hiFile.match(new RegExp(`"products/${slug}": \\{\\s*title: "([^"]+)"`));
+    assert.ok(m, `products/${slug} needs a Hindi title override`);
+    assert.doesNotMatch(m[1], /इंदौर/, `hi products/${slug} title targets Indore: ${m[1]}`);
+  }
+});
+
+test("footer links every Indore landing page", async () => {
+  const { indoreLinkOrder, indoreLinkLabels } = await import("../content/indoreLinks.ts");
+  assert.deepEqual([...indoreLinkOrder].sort(), Object.keys(indorePages).sort());
+  assert.deepEqual(Object.keys(indoreLinkLabels).sort(), Object.keys(indorePages).sort());
+  assert.match(read("components/layout/Footer.tsx"), /indoreLinkOrder\.map/);
+});
+
+test("Indore match picks the specific page for a product", async () => {
+  const { indoreSlugsForProducts } = await import("../content/indorePages.ts");
+  assert.deepEqual(indoreSlugsForProducts(["barbed-wire"]), ["barbed-wire"]);
+  assert.deepEqual(indoreSlugsForProducts(["gi-weldmesh"]), ["weld-mesh"]);
+  assert.deepEqual(indoreSlugsForProducts(["tmt-bars", "chain-link-fencing", "gi-wire"]), ["tmt-bars", "chain-link-fencing-jaali"]);
+  assert.deepEqual(indoreSlugsForProducts(["no-such-product"]), []);
+  // FRP guide links barbed wire first, but two of its four products belong to the TMT page.
+  assert.deepEqual(indoreSlugsForProducts(["barbed-wire", "jhatka-machine-fencing-wire", "frp-bars", "tmt-bars"]), ["tmt-bars", "barbed-wire"]);
+});
