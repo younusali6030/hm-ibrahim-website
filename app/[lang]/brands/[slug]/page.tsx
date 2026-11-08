@@ -12,8 +12,6 @@ import { localize } from "@/lib/localize";
 import { tt, type Lang } from "@/lib/locale";
 import { siteHi } from "@/content/hi/site";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
-import { videoObject } from "@/lib/schema";
-import { brandVideos } from "@/content/reels";
 import { BrandVideo } from "../BrandVideo";
 import { PageHero, btnMain, btnGhostDark, btnGhost } from "@/components/site/PageHero";
 import { GaugeRule, StencilTag } from "@/components/motif/Motif";
@@ -97,12 +95,7 @@ export default async function BrandPage(props: Props) {
   return (
     <>
       <SeoJsonLd
-        data={[
-          schema,
-          ...brandVideos
-            .filter((v) => v.page === `/brands/${brand.id}`)
-            .map((v) => videoObject({ name: v.title, description: v.description, thumbnail: `${v.src}.jpg`, contentUrl: `${v.src}.mp4`, uploadDate: v.uploadDate, pageUrl: pageUrl(`brands/${brand.id}`, lang) })),
-        ]}
+        data={schema}
         lang={lang}
       />
       <PageHero

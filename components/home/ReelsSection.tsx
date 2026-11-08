@@ -9,45 +9,29 @@ import { tracksFor } from "@/content/captions";
 
 type Reel = { id: string; title: string; note: string; href?: string; cta?: string };
 
-/** Order and files come from content/reels.ts (also feeds the video sitemap and VideoObject schema). Files live in /public/reels. */
-const REEL_UI: Record<string, Omit<Reel, "id">> = {
-  "shop-par-bharosa": { title: "Shop par bharosa", note: "Walk in. See the stock. Decide." },
-  "check-the-strength": { title: "Check the strength", note: "Wire and mesh, tested in front of you." },
-  "machhar-full-stop": { title: "Machhar ka full stop", note: "Mosquito net, cut at the counter.", href: "/products/mosquito-net", cta: "Mosquito net" },
-  "perforated-sheet-customer": { title: "Perforated sheet", note: "A customer on why he buys it here.", href: "/categories/perforated-sheets", cta: "Perforated sheets" },
-  "nail-reel": { title: "Nails, by weight", note: "Every length in the bins.", href: "/categories/nails", cta: "Nails" },
-  "kala-taar-wholesale": { title: "Kala taar, wholesale", note: "Binding wire by the coil.", href: "/products/binding-wire", cta: "Binding wire" },
-  "frp-bars": { title: "FRP bars", note: "Light and rust-proof.", href: "/products/frp-bars", cta: "FRP bars" },
-  "weldmesh-jali": { title: "Weldmesh jali", note: "Rolls and panels, any gauge.", href: "/categories/welded-mesh", cta: "Welded mesh" },
-  "kabootar-jali": { title: "Kabootar jali", note: "Pigeon net for balconies and shafts.", href: "/products/pigeon-nets", cta: "Pigeon nets" },
-  "pvc-hexa-mesh": { title: "PVC hexa mesh", note: "Garden and poultry fencing.", href: "/products/plastic-hexagonal-poultry-mesh", cta: "Hexa mesh" },
-  "tata-wire-rate": { title: "Tata wire, firm rate", note: "Tata Wiron, straight from the shelf.", href: "/products/gi-wire", cta: "GI wire" },
-  "rat-jaali-customer": { title: "A customer, on camera", note: "Rat jaali, from our customer." },
+/** Titles, notes and order come from content/reels.ts, which also feeds the /videos watch pages. Files live in /public/reels. */
+const CTA: Record<string, { href: string; en: string; hi: string }> = {
+  "machhar-full-stop": { href: "/products/mosquito-net", en: "Mosquito net", hi: "मच्छरदानी जाली" },
+  "perforated-sheet-customer": { href: "/categories/perforated-sheets", en: "Perforated sheets", hi: "परफोरेटेड शीट" },
+  "nail-reel": { href: "/categories/nails", en: "Nails", hi: "कीलें" },
+  "kala-taar-wholesale": { href: "/products/binding-wire", en: "Binding wire", hi: "बाइंडिंग तार" },
+  "frp-bars": { href: "/products/frp-bars", en: "FRP bars", hi: "एफआरपी बार" },
+  "weldmesh-jali": { href: "/categories/welded-mesh", en: "Welded mesh", hi: "वेल्डेड मेश" },
+  "kabootar-jali": { href: "/products/pigeon-nets", en: "Pigeon nets", hi: "कबूतर जाली" },
+  "pvc-hexa-mesh": { href: "/products/plastic-hexagonal-poultry-mesh", en: "Hexa mesh", hi: "हेक्सा मेश" },
+  "tata-wire-rate": { href: "/products/gi-wire", en: "GI wire", hi: "जीआई तार" },
 };
 
-const REELS: Reel[] = homeReels.map((v) => {
-  const id = v.src.replace("/reels/", "");
-  return { id, ...(REEL_UI[id] ?? { title: v.title, note: v.description }) };
-});
+function reelFor(id: string, lang: "en" | "hi"): Reel {
+  const r = homeReels.find((x) => x.id === id)!;
+  const text = lang === "hi" ? r.hi : r.en;
+  const cta = CTA[id];
+  return { id, title: text.short, note: text.note, href: cta?.href, cta: cta ? (lang === "hi" ? cta.hi : cta.en) : undefined };
+}
 
-const REELS_HI: Record<string, Pick<Reel, "title" | "note" | "cta">> = {
-  "shop-par-bharosa": { title: "दुकान पर भरोसा", note: "आइए। माल देखिए। फिर तय कीजिए।" },
-  "check-the-strength": { title: "मज़बूती परखिए", note: "तार और जाली, आपके सामने जाँची गई।" },
-  "machhar-full-stop": { title: "मच्छर का फुल स्टॉप", note: "मच्छरदानी जाली, काउंटर पर कटती हुई।", cta: "मच्छरदानी जाली" },
-  "perforated-sheet-customer": { title: "परफोरेटेड शीट", note: "एक ग्राहक बताते हैं कि यहीं से क्यों लेते हैं।", cta: "परफोरेटेड शीट" },
-  "nail-reel": { title: "कीलें, वज़न के हिसाब से", note: "हर लंबाई डिब्बों में।", cta: "कीलें" },
-  "kala-taar-wholesale": { title: "काला तार, थोक में", note: "कॉइल के हिसाब से बाइंडिंग तार।", cta: "बाइंडिंग तार" },
-  "frp-bars": { title: "एफआरपी बार", note: "हल्के, ज़ंग-रहित, नाप से कटे।", cta: "एफआरपी बार" },
-  "weldmesh-jali": { title: "वेल्डमेश जाली", note: "रोल और पैनल, हर गेज।", cta: "वेल्डेड मेश" },
-  "kabootar-jali": { title: "कबूतर जाली", note: "बालकनी और शाफ्ट के लिए कबूतर रोकने वाली जाली।", cta: "कबूतर जाली" },
-  "pvc-hexa-mesh": { title: "पीवीसी हेक्सा मेश", note: "बगीचे और पोल्ट्री की फेंसिंग।", cta: "हेक्सा मेश" },
-  "tata-wire-rate": { title: "टाटा तार, पक्का रेट", note: "टाटा वायरॉन, सीधे शेल्फ से।", cta: "जीआई तार" },
-  "rat-jaali-customer": { title: "एक ग्राहक, कैमरे पर", note: "चूहा जाली, हमारे ग्राहक की ज़ुबानी।" },
-};
-
-function ReelCard({ reel: base }: { reel: Reel }) {
+function ReelCard({ id }: { id: string }) {
   const { lang } = useLang();
-  const reel: Reel = lang === "hi" && REELS_HI[base.id] ? { ...base, ...REELS_HI[base.id] } : base;
+  const reel = reelFor(id, lang);
   // The poster is fetched only when the card is near the viewport, not for all twelve at page load.
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -120,11 +104,16 @@ function ReelCard({ reel: base }: { reel: Reel }) {
       <figcaption className="mt-3">
         <span className="block font-display text-2xl font-extrabold uppercase leading-none text-foreground">{reel.title}</span>
         <span className="mt-1 block text-sm text-muted-foreground">{reel.note}</span>
-        {reel.href && (
-          <Link href={reel.href} className="mt-1 inline-flex min-h-[44px] items-center text-sm font-bold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-            {reel.cta}
+        <span className="flex flex-wrap gap-x-4">
+          {reel.href && (
+            <Link href={reel.href} className="inline-flex min-h-[44px] items-center text-sm font-bold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              {reel.cta}
+            </Link>
+          )}
+          <Link href={`/videos/${reel.id}`} className="inline-flex min-h-[44px] items-center text-sm text-muted-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            {lang === "hi" ? "वीडियो पेज" : "Video page"}
           </Link>
-        )}
+        </span>
       </figcaption>
     </figure>
   );
@@ -147,12 +136,15 @@ export function ReelsSection() {
             ? "असली स्टॉक, असली ग्राहक, हमारे सियागंज काउंटर पर पूरी क्वालिटी में फ़िल्माए गए। आवाज़ के साथ चलाने के लिए रील पर टैप कीजिए, और ज़्यादा देखने के लिए बगल में स्क्रोल कीजिए।"
             : "Real stock, real customers, filmed at our Siyaganj counter in full resolution. Tap a reel to play with sound, and scroll sideways for more."}
         </p>
+        <Link href="/videos" className="mt-3 inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          {hi ? "सभी वीडियो देखें" : "All videos"}
+        </Link>
       </div>
       <div className="mt-10 overflow-x-auto pb-4 [scrollbar-width:thin]" tabIndex={0} aria-label={hi ? "रील, बगल में स्क्रोल करें" : "Reels, scroll sideways"}>
         <div className="page-container">
           <div className="flex snap-x snap-mandatory gap-4 sm:gap-6">
-            {REELS.map((r) => (
-              <ReelCard key={r.id} reel={r} />
+            {homeReels.map((r) => (
+              <ReelCard key={r.id} id={r.id} />
             ))}
           </div>
         </div>

@@ -20,6 +20,8 @@ export const CONTENT_DATES = {
   product: "2026-10-12",
   privacy: "2026-10-12",
   terms: "2026-10-12",
+  /** /videos and the per-reel watch pages (content/reels.ts). */
+  videos: "2026-11-08",
 } as const;
 
 /** Date the site "Last verified" lines were checked against existing site content. */

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Play } from "lucide-react";
+import Link from "@/components/LocaleLink";
 import { useLang, useT } from "@/lib/i18n";
 import { tracksFor } from "@/content/captions";
 
@@ -50,7 +51,12 @@ export function BrandVideo() {
           </span>
         </span>
       </button>
-      <figcaption className="mt-3 text-sm text-muted-foreground">{t("Chain link fencing, walked through at our shop. Tap to play with sound.", "हमारी दुकान पर चेन लिंक फेंसिंग की झलक। आवाज़ के साथ चलाने के लिए टैप कीजिए।")}</figcaption>
+      <figcaption className="mt-3 text-sm text-muted-foreground">
+        {t("Chain link fencing, walked through at our shop. Tap to play with sound.", "हमारी दुकान पर चेन लिंक फेंसिंग की झलक। आवाज़ के साथ चलाने के लिए टैप कीजिए।")}{" "}
+        <Link href="/videos/chainlink-walkthrough" className="inline-flex min-h-[44px] items-center font-semibold text-foreground underline underline-offset-4 hover:text-primary">
+          {t("Video page", "वीडियो पेज")}
+        </Link>
+      </figcaption>
     </figure>
   );
 }

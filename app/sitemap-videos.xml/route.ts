@@ -1,84 +1,35 @@
-import { allProducts } from "@/content/products";
-import { getAllPosts } from "@/content/blog/posts";
-import { homeReels, brandVideos, type SiteVideo } from "@/content/reels";
+import { reels } from "@/content/reels";
 import { baseUrl } from "@/lib/site";
-import { tr } from "@/lib/localize";
-import { getHindiPostSlugs } from "@/content/blog/posts";
 
 export const dynamic = "force-static";
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-const human = (file: string) => {
-  const t = file.replace(/-/g, " ").trim();
-  return t.charAt(0).toUpperCase() + t.slice(1);
-};
-const base = (src: string) => src.replace(/^.*\//, "").replace(/\.mp4$/, "");
-const noExt = (src: string) => src.replace(/\.mp4$/, "");
 
-/** Video sitemap: home-page reels, brand-page walkthrough, product-page clips and blog-post loops. */
+/**
+ * Video sitemap: one entry per reel, on its watch page (/videos/<id> and /hi/videos/<id>).
+ * Google indexes a video only on a page where it is the main content, so the reels embedded on the home,
+ * brand and Indore pages and the short product / blog loops are deliberately not listed here
+ * (Search Console reported every one of them as "Video isn't on a watch page").
+ */
 export async function GET() {
-  const vids: SiteVideo[] = [...homeReels, ...brandVideos];
-
-  for (const p of allProducts) {
-    for (const v of p.videos ?? []) {
-      vids.push({
-        src: noExt(v),
-        title: `${p.name}: ${human(base(v))}`,
-        description: `${p.name} at the HM Ibrahim & Co counter, Siyaganj, Indore. ${p.shortDesc}`,
-        page: `/products/${p.slug}`,
-        uploadDate: "2026-10-11",
-      });
+  const rows: string[] = [];
+  for (const r of reels) {
+    for (const lang of ["en", "hi"] as const) {
+      const text = lang === "hi" ? r.hi : r.en;
+      const loc = `${baseUrl}${lang === "hi" ? "/hi" : ""}/videos/${r.id}`;
+      rows.push(
+        `<url><loc>${esc(loc)}</loc><video:video><video:thumbnail_loc>${esc(`${baseUrl}/reels/${r.id}.jpg`)}</video:thumbnail_loc><video:title>${esc(
+          text.title.slice(0, 100)
+        )}</video:title><video:description>${esc(text.summary.slice(0, 2000))}</video:description><video:content_loc>${esc(
+          `${baseUrl}/reels/${r.id}.mp4`
+        )}</video:content_loc><video:duration>${Math.round(r.duration)}</video:duration><video:publication_date>${r.uploadDate}</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video></url>`
+      );
     }
-  }
-  for (const post of await getAllPosts()) {
-    if (!post.video) continue;
-    vids.push({
-      src: noExt(post.video),
-      title: post.videoCaption || post.title,
-      description: post.videoCaption || post.description,
-      page: `/blog/${post.slug}`,
-      uploadDate: "2026-10-11",
-    });
-  }
-
-  // Hindi copies of every page that embeds a video, with Hindi titles where the dictionary has them.
-  const hiSlugs = new Set(await getHindiPostSlugs());
-  const hiVids: SiteVideo[] = vids
-    .filter((v) => !v.page.startsWith("/blog/") || hiSlugs.has(v.page.replace("/blog/", "")))
-    .map((v) => ({
-      ...v,
-      page: v.page === "/" ? "/hi" : `/hi${v.page}`,
-      title: tr(v.title, "hi"),
-      description: tr(v.description, "hi"),
-    }));
-  vids.push(...hiVids);
-
-  const byPage = new Map<string, SiteVideo[]>();
-  const seen = new Set<string>();
-  for (const v of vids) {
-    const key = `${v.page}|${v.src}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    byPage.set(v.page, [...(byPage.get(v.page) ?? []), v]);
   }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-${Array.from(byPage.entries())
-  .map(
-    ([page, list]) =>
-      `<url><loc>${esc(page === "/" ? baseUrl : `${baseUrl}${page}`)}</loc>${list
-        .map(
-          (v) =>
-            `<video:video><video:thumbnail_loc>${esc(`${baseUrl}${v.src}.jpg`)}</video:thumbnail_loc><video:title>${esc(
-              v.title.slice(0, 100)
-            )}</video:title><video:description>${esc(v.description.slice(0, 2000))}</video:description><video:content_loc>${esc(
-              `${baseUrl}${v.src}.mp4`
-            )}</video:content_loc><video:publication_date>${v.uploadDate}</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>`
-        )
-        .join("")}</url>`
-  )
-  .join("\n")}
+${rows.join("\n")}
 </urlset>`;
 
   return new Response(xml, {

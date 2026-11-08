@@ -191,6 +191,8 @@ export function videoObject(v: {
   contentUrl: string;
   uploadDate: string;
   pageUrl?: string;
+  /** ISO 8601, e.g. PT28S. */
+  duration?: string;
 }): Json {
   return {
     "@context": "https://schema.org",
@@ -200,6 +202,7 @@ export function videoObject(v: {
     thumbnailUrl: [abs(v.thumbnail)],
     contentUrl: abs(v.contentUrl),
     uploadDate: v.uploadDate,
+    ...(v.duration ? { duration: v.duration } : {}),
     inLanguage: "en-IN",
     publisher: { "@id": ids.organization },
     ...(v.pageUrl ? { embedUrl: abs(v.pageUrl) } : {}),

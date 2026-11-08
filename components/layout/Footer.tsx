@@ -21,6 +21,7 @@ const usefulLinks = [
   { href: "/services", en: "Services", hi: "सेवाएँ" },
   { href: "/about", en: "About us", hi: "हमारे बारे में" },
   { href: "/blog", en: "Blog", hi: "ब्लॉग" },
+  { href: "/videos", en: "Videos", hi: "वीडियो" },
 ];
 
 const linkCls =

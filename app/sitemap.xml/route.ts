@@ -4,6 +4,7 @@ import { localePath } from "@/lib/locale";
 import { indorePageSlugs } from "@/content/indorePages";
 import { baseUrl } from "@/lib/site";
 import { CONTENT_DATES } from "@/lib/contentDates";
+import { reels } from "@/content/reels";
 import lastmodLedger from "@/content/lastmod.json";
 
 /**
@@ -32,6 +33,8 @@ const staticPages: { path: string; date: string }[] = [
   { path: "indore", date: CONTENT_DATES.indore },
   { path: "privacy", date: CONTENT_DATES.contact },
   { path: "terms", date: CONTENT_DATES.contact },
+  { path: "videos", date: CONTENT_DATES.videos },
+  ...reels.map((r) => ({ path: `videos/${r.id}`, date: CONTENT_DATES.videos })),
 ];
 
 /**
