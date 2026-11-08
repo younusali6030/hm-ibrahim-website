@@ -1,18 +1,20 @@
 import Link from "@/components/LocaleLink";
 import { site } from "@/content/site";
 import { googleReviews } from "@/content/reviews";
-import { getReviewsForProduct, getReviewsForCategory } from "@/content/productReviews";
+import { getReviewsForProduct, getReviewsForProducts, getReviewsForCategory } from "@/content/productReviews";
 import { GaugeRule } from "@/components/motif/Motif";
 import { tt, whenText, type Lang } from "@/lib/locale";
 import { ReviewQuote } from "@/components/trust/ReviewQuote";
 
-type Props = { max?: number; title?: string; className?: string; productSlug?: string; categorySlug?: string; lang?: Lang };
+type Props = { max?: number; title?: string; className?: string; productSlug?: string; productSlugs?: string[]; categorySlug?: string; lang?: Lang };
 
 /** Real Google reviews, verbatim, set as a ruled quote ledger. */
-export function ReviewsList({ max = 3, title, className = "", productSlug, categorySlug, lang = "en" }: Props) {
+export function ReviewsList({ max = 3, title, className = "", productSlug, productSlugs, categorySlug, lang = "en" }: Props) {
   const t = tt(lang);
   const heading = title ?? t("What buyers say on Google", "गूगल पर खरीदार क्या कहते हैं");
-  const items = productSlug
+  const items = productSlugs?.length
+    ? getReviewsForProducts(productSlugs, max)
+    : productSlug
     ? getReviewsForProduct(productSlug, max)
     : categorySlug
       ? getReviewsForCategory(categorySlug, max)

@@ -122,3 +122,18 @@ test("Indore match picks the specific page for a product", async () => {
   // FRP guide links barbed wire first, but two of its four products belong to the TMT page.
   assert.deepEqual(indoreSlugsForProducts(["barbed-wire", "jhatka-machine-fencing-wire", "frp-bars", "tmt-bars"]), ["tmt-bars", "barbed-wire"]);
 });
+
+// TASK-033: the layout's title template must append the same suffix fitTitle() measures, or Hindi titles overrun.
+test("root title template uses the measured suffixes", () => {
+  const src = read("lib/seo.ts");
+  assert.match(src, /template: `%s\$\{hi \? TITLE_SUFFIX_HI : TITLE_SUFFIX\}`/);
+});
+
+test("Indore pages pass all their products to the review picker; review ids are unique", () => {
+  // productReviews.ts imports "./products" without an extension, which node --test cannot load, so this reads the
+  // source; the picks themselves are checked on the built pages (see 13-CHANGELOG, TASK-033).
+  assert.match(read("app/[lang]/indore/[slug]/page.tsx"), /<ReviewsList lang=\{lang\} max=\{4\} productSlugs=\{page\.productSlugs\} \/>/);
+  const ids = [...read("content/productReviews.ts").matchAll(/id: "(g\d+)"/g)].map((m) => m[1]);
+  assert.ok(ids.length > 80);
+  assert.equal(new Set(ids).size, ids.length);
+});

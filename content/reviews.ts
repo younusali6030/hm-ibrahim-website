@@ -57,5 +57,7 @@ export const googleReviews: GoogleReview[] = [
   },
 ];
 
-/** Rating breakdown from the same listing, 633 reviews in total. */
+/** Rating breakdown from the same listing, counted in October 2026 at 633 reviews (site.googleReview.reviewCount is newer). */
 export const ratingBreakdown = { 5: 603, 4: 19, 3: 3, 2: 2, 1: 6 } as const;
+/** Share of five-star reviews, from the breakdown's own total so it stays right when only the count is updated. */
+export const fiveStarShare = ratingBreakdown[5] / Object.values(ratingBreakdown).reduce((a, b) => a + b, 0);

@@ -96,19 +96,19 @@
     "date": "2026-10-14"
   },
   "products/barbed-wire": {
-    "hash": "087e98f0653b",
-    "date": "2026-10-14"
+    "hash": "b0936fd6bf15",
+    "date": "2026-11-09"
   },
   "products/binding-wire": {
-    "hash": "47d3f9b70fcb",
-    "date": "2026-10-14"
+    "hash": "35e25d2f5366",
+    "date": "2026-11-09"
   },
   "products/bright-bars": {
-    "hash": "4f2fbe0215bf",
-    "date": "2026-10-13"
+    "hash": "06d5f036321e",
+    "date": "2026-11-09"
   },
   "products/chain-link-fencing": {
-    "hash": "4efc4bd5c467",
+    "hash": "2ecf8afddafd",
     "date": "2026-11-09"
   },
   "products/chicken-net": {
@@ -124,8 +124,8 @@
     "date": "2026-10-14"
   },
   "products/concrete-cover-block": {
-    "hash": "fcd9f2c37e8c",
-    "date": "2026-10-12"
+    "hash": "1b2f24c2055c",
+    "date": "2026-11-09"
   },
   "products/crimp-wiremesh": {
     "hash": "1804d6eb9868",
@@ -152,7 +152,7 @@
     "date": "2026-10-14"
   },
   "products/gi-perforated-sheet": {
-    "hash": "49cdec11fee4",
+    "hash": "0e4b67fb3265",
     "date": "2026-11-09"
   },
   "products/gi-pipes": {
@@ -160,8 +160,8 @@
     "date": "2026-10-14"
   },
   "products/gi-weldmesh": {
-    "hash": "d82ccc783f83",
-    "date": "2026-10-14"
+    "hash": "e0ebc515be43",
+    "date": "2026-11-09"
   },
   "products/gi-wire": {
     "hash": "3154cc70763d",
@@ -180,20 +180,20 @@
     "date": "2026-10-13"
   },
   "products/mosquito-net": {
-    "hash": "e7dc8c7111ae",
-    "date": "2026-10-14"
+    "hash": "e36a632d5eb7",
+    "date": "2026-11-09"
   },
   "products/ms-angles": {
-    "hash": "bd2c7d49fd48",
-    "date": "2026-10-12"
+    "hash": "6f714d8bcd08",
+    "date": "2026-11-09"
   },
   "products/ms-channels": {
-    "hash": "a3a2c0904cf4",
-    "date": "2026-10-12"
+    "hash": "b428df01941b",
+    "date": "2026-11-09"
   },
   "products/ms-flats": {
-    "hash": "4522e9a7101b",
-    "date": "2026-10-12"
+    "hash": "737b2d401b5e",
+    "date": "2026-11-09"
   },
   "products/ms-holepass": {
     "hash": "6c82d27fa14c",
@@ -204,40 +204,40 @@
     "date": "2026-10-12"
   },
   "products/ms-perforated-sheet": {
-    "hash": "4240729cb446",
+    "hash": "d5fa6eb10195",
     "date": "2026-11-09"
   },
   "products/ms-pipes": {
-    "hash": "9a3ee577f465",
-    "date": "2026-10-14"
+    "hash": "85e60acf9e68",
+    "date": "2026-11-09"
   },
   "products/ms-round-bars": {
     "hash": "3a6730808e0e",
     "date": "2026-10-12"
   },
   "products/ms-weldmesh": {
-    "hash": "165a5d493ef5",
-    "date": "2026-10-14"
+    "hash": "abb477cf1b1d",
+    "date": "2026-11-09"
   },
   "products/ms-wire-rope": {
-    "hash": "494d0f65df8c",
-    "date": "2026-10-13"
+    "hash": "9037c94fb8d9",
+    "date": "2026-11-09"
   },
   "products/ms-wiremesh": {
     "hash": "41f4b5e45220",
     "date": "2026-10-14"
   },
   "products/pigeon-nets": {
-    "hash": "9ddd231f54d0",
-    "date": "2026-10-13"
+    "hash": "920fa8098477",
+    "date": "2026-11-09"
   },
   "products/pigeon-spikes": {
-    "hash": "e6e14084b0ff",
-    "date": "2026-10-13"
+    "hash": "105f7e439ea6",
+    "date": "2026-11-09"
   },
   "products/plastic-hexagonal-poultry-mesh": {
-    "hash": "de6ea443a9d2",
-    "date": "2026-10-14"
+    "hash": "2cf094f34b23",
+    "date": "2026-11-09"
   },
   "products/pvc-coated-weldmesh": {
     "hash": "f71386c72f88",
@@ -248,12 +248,12 @@
     "date": "2026-10-12"
   },
   "products/safety-net": {
-    "hash": "5f425df17cfa",
-    "date": "2026-10-14"
+    "hash": "f95c147178a0",
+    "date": "2026-11-09"
   },
   "products/santing-shikanja": {
-    "hash": "905eb292c8ed",
-    "date": "2026-10-13"
+    "hash": "c8d19f63f612",
+    "date": "2026-11-09"
   },
   "products/sponge": {
     "hash": "604d48e4ed36",
@@ -288,12 +288,12 @@
     "date": "2026-10-14"
   },
   "products/ss-wire-rope": {
-    "hash": "93ba24953051",
-    "date": "2026-10-14"
+    "hash": "5e7c1187c7f9",
+    "date": "2026-11-09"
   },
   "products/tmt-bars": {
-    "hash": "618c6b41ffe8",
-    "date": "2026-10-14"
+    "hash": "927b7324d64f",
+    "date": "2026-11-09"
   },
   "products/welding-rods": {
     "hash": "084d9e82e459",

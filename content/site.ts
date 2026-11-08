@@ -99,10 +99,10 @@ export const site = {
 
   /** Google rating badge (hero). Update with real profile URL when available. */
   googleReview: {
-    /** Real figures from the shop's Google Business Profile (checked October 2026). */
+    /** Real figures from the shop's Google Business Profile (checked 9 Nov 2026: 4.9 from 647 reviews). */
     verified: true,
     rating: 4.9,
-    reviewCount: 633,
+    reviewCount: 647,
     profileUrl: "https://www.google.com/maps?cid=13885147699571790648",
   },
 } as const;

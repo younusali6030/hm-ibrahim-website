@@ -213,7 +213,8 @@ export function buildRootMeta(lang: Lang): Metadata {
         "HM Ibrahim",
       ];
   return {
-    title: { default: `${name} | ${tagline}`, template: `%s | ${name}` },
+    // The template must append exactly the suffix fitTitle() measured, or Hindi titles overrun (TASK-033).
+    title: { default: `${name} | ${tagline}`, template: `%s${hi ? TITLE_SUFFIX_HI : TITLE_SUFFIX}` },
     description,
     keywords,
     metadataBase: new URL(baseUrl),

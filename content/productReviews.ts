@@ -102,6 +102,8 @@ export const taggedReviews: TaggedReview[] = [
   { id: "g150", author: "Manish Sharma", rating: 5, when: "March 2026", tags: [], text: "Everything this is fine best rate and good shop" },
   { id: "g157", author: "Sanendra Tripathi", rating: 5, when: "March 2026", tags: ["gi-wire"], text: "Gi wire and tata wiron good price.\nExcellent behaviour of owner." },
   { id: "g158", author: "SAJID KHAN", rating: 5, when: "April 2026", tags: ["mosquito-net", "wiremesh", "ms-angles", "frp-bars", "jhatka-machine-fencing-wire"], text: "Best rate for jali..ss mosquito net.\nLot of varities in meshes.\nAngel nd iron products at wholesale price.\nOne stop shop for all iron nd hardware products.\nFrp bars jhatka machine wire and insulatora too .\nExcellent behaviour of owner Mr Akbarji.\nSurely recommend to all viewers nd customer for must visit before purchasing in Siyaganj." },
+  { id: "g160", author: "Nihar K Dalal", rating: 5, when: "March 2026", tags: ["tmt-bars", "concrete-cover-block", "binding-wire", "santing-shikanja", "ms-angles", "ms-channels", "ms-flats", "bright-bars", "ms-pipes", "perforated-sheets", "gi-perforated-sheet", "ms-perforated-sheet", "ss-wire-rope", "ms-wire-rope", "mosquito-net", "safety-net", "gi-weldmesh", "ms-weldmesh", "chain-link-fencing", "barbed-wire", "plastic-hexagonal-poultry-mesh", "pigeon-spikes", "pigeon-nets"], text: "Nice people , experienced fair dealing.\nI bought a lot of material for my house construction from them सरियाTMT BARS, cover blocks, binding wire, shikanja nd structure items(angel, channel, flate )se lekar bright bar for window nd fabrication purpose as well as ms pipes, perforated sheet, wirerope ss nd ms etc...all under one roof.\nAnd all types of mosquito mesh nd safety net as well fencing solutions (weldmesh, CHAINLINK, Barbed wire nd Pvc Hexagon Jali)\n\nThe last nd foremost thing that I purchased after shifting at my newly constructed home was pigeon spikes nd pigeon net (kabutar jaali).\n\nWat a Incredible stuff." },
+  { id: "g161", author: "manoj rai", rating: 5, when: "April 2026", tags: ["mosquito-net"], text: "Bought machar jali in plastic. Best rate. Wholesale shop. One stop destination for all hardware, steel and iron products." },
 ];
 
 const MONTHS = ["january","february","march","april","may","june","july","august","september","october","november","december"];
@@ -166,6 +168,22 @@ export function getReviewsForProduct(productSlug: string, limit = 3): TaggedRevi
 export function getProductReviewSet(productSlug: string, limit = 3): { items: TaggedReview[]; directCount: number } {
   const items = getReviewsForProduct(productSlug, limit);
   return { items, directCount: items.filter((r) => r.tags.includes(productSlug)).length };
+}
+
+/**
+ * Reviews for an /indore/* landing page (TASK-033): reviews that name any of the page's products, those naming the
+ * page's lead products first (earlier in productSlugs wins, then the usual score), topped up with the lead product's
+ * usual picks when fewer than `limit` match.
+ */
+export function getReviewsForProducts(productSlugs: string[], limit = 4): TaggedReview[] {
+  const rank = (r: TaggedReview) => Math.min(...r.tags.map((t) => productSlugs.indexOf(t)).filter((i) => i >= 0));
+  const direct = taggedReviews
+    .filter((r) => r.tags.some((t) => productSlugs.includes(t)))
+    .sort((a, b) => rank(a) - rank(b) || score(b) - score(a))
+    .slice(0, limit);
+  if (direct.length >= limit || !productSlugs[0]) return direct;
+  const fill = getReviewsForProduct(productSlugs[0], limit * 2).filter((r) => !direct.includes(r));
+  return [...direct, ...fill].slice(0, limit);
 }
 
 /** Reviews for a category page. */

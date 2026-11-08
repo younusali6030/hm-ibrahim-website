@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { googleReviews, ratingBreakdown } from "@/content/reviews";
+import { googleReviews, fiveStarShare } from "@/content/reviews";
 import { tt, whenText, type Lang } from "@/lib/locale";
 import { ReviewQuote } from "@/components/trust/ReviewQuote";
 
@@ -26,8 +26,8 @@ export function GoogleReviews({ lang = "en" }: { lang?: Lang }) {
                 <p className="text-xl text-primary" aria-hidden="true">★★★★★</p>
                 <p className="text-sm text-muted-foreground">
                   {lang === "hi"
-                    ? `गूगल पर ${site.googleReview.reviewCount} रिव्यू, ${Math.round((ratingBreakdown[5] / site.googleReview.reviewCount) * 100)}% पाँच सितारा`
-                    : `${site.googleReview.reviewCount} reviews on Google, ${Math.round((ratingBreakdown[5] / site.googleReview.reviewCount) * 100)}% five-star`}
+                    ? `गूगल पर ${site.googleReview.reviewCount} रिव्यू, ${Math.round(fiveStarShare * 100)}% पाँच सितारा`
+                    : `${site.googleReview.reviewCount} reviews on Google, ${Math.round(fiveStarShare * 100)}% five-star`}
                 </p>
               </div>
             </div>

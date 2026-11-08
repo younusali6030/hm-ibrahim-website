@@ -6,7 +6,7 @@ import Image from "next/image";
 import { indorePageSlugs, getIndorePage } from "@/content/indorePages";
 import { getProductBySlug, getProductImages, getCategoryBySlug } from "@/content/products";
 import { site, baseUrl } from "@/lib/site";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getWhatsAppLink, telHref } from "@/lib/utils";
 import { JsonLdBreadcrumb } from "@/components/JsonLdBreadcrumb";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { FAQAccordion } from "@/components/FAQAccordion";
@@ -18,6 +18,7 @@ import { SectionHead } from "@/components/story/SectionHead";
 import { ContactStrip } from "@/components/story/ContactStrip";
 import { T } from "@/lib/i18n";
 import { indorePagesHi } from "@/content/hi/indore";
+import { siteHi } from "@/content/hi/site";
 import { marketRates, marketRateFaq, formatAsOf, rupees } from "@/content/marketRates";
 import { localize } from "@/lib/localize";
 import { tt, type Lang } from "@/lib/locale";
@@ -161,6 +162,32 @@ export default async function IndoreLandingPage(props: Props) {
                 </ul>
               </>
             )}
+            {/* How to order (TASK-033): only facts already stated on the site (hours, address, orderReach). */}
+            <section className={page.useCases.length > 0 ? "mt-10" : ""} aria-labelledby="how-to-order-heading">
+              <p className="st-eyebrow" id="how-to-order-heading">{t("How to order in Indore", "इंदौर में ऑर्डर कैसे करें")}</p>
+              <ol className="st-ledger mt-4">
+                <li className="border-b border-border py-3 text-foreground">
+                  <span className="font-semibold">1. </span>
+                  {hi ? "उत्पाद, साइज़ और मात्रा " : "Send the product, size and quantity on "}
+                  <a href={getWhatsAppLink(site.whatsapp, waMessage)} target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-4 hover:text-primary">
+                    {hi ? "व्हाट्सएप" : "WhatsApp"}
+                  </a>
+                  {hi ? " पर भेजें या " : ", or call "}
+                  <a href={telHref(site.phone)} className="whitespace-nowrap font-semibold underline underline-offset-4 hover:text-primary">{site.phone}</a>
+                  {hi ? " पर कॉल करें।" : "."}
+                </li>
+                <li className="border-b border-border py-3 text-foreground">
+                  <span className="font-semibold">2. </span>
+                  {hi ? "हम उस दिन के बाज़ार के हिसाब से आपके ऑर्डर का रेट बताते हैं।" : "We quote the rate for your order at that day's market."}
+                </li>
+                <li className="border-b border-border py-3 text-foreground">
+                  <span className="font-semibold">3. </span>
+                  {hi
+                    ? `${siteHi.address.line1}, ${siteHi.address.line2} से ले जाएँ (${siteHi.hours.weekdays}), या डिलीवरी पूछें। ${siteHi.orderReach}`
+                    : `Collect from ${site.address.line1}, ${site.address.line2} (${site.hours.weekdays}), or ask for delivery. ${site.orderReach}`}
+                </li>
+              </ol>
+            </section>
           </aside>
         </div>
       </section>
@@ -202,7 +229,7 @@ export default async function IndoreLandingPage(props: Props) {
       )}
 
       <div className="page-container st-sec">
-        <ReviewsList lang={lang} max={3} productSlug={page.productSlugs[0]} />
+        <ReviewsList lang={lang} max={4} productSlugs={page.productSlugs} />
       </div>
 
       <ContactStrip
